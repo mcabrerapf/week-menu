@@ -1,0 +1,8 @@
+.food-button {
+    display: flex;
+    background-color: aquamarine;
+    color: black;
+    width: 100px;
+    height: 60px;
+    border-radius: 5px;
+}
