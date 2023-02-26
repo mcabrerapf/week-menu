@@ -1,0 +1,27 @@
+.shoping-list  {
+    color: white;
+    display: flex;
+    margin: 10px;
+    padding: 5px;
+    justify-content: center;
+}
+
+.shoping-list-section {
+    margin: 10px;
+    padding: 20px;
+    background: darkgoldenrod;
+    border-radius: 8px;
+}
+
+.shoping-list-section-label {
+    font-weight: 800;
+    border-bottom: 1px dashed;
+    margin-bottom: 2px;
+}
+
+.shoping-list-section-items {
+    margin-top: 5px;
+}
+.shoping-list-section-item {
+    padding: 2px;
+}

@@ -1,15 +1,13 @@
 // import logo from './logo.svg';
 import React from 'react';
 import './App.css';
-import { Week } from './Components';
+import { Main, Header } from './Components';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <span> Menjare of the week</span>
-      </header>
-      <Week />
+      <Header />
+      <Main />
     </div>
   );
 }

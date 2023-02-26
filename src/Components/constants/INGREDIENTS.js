@@ -6,8 +6,6 @@ const INGREDIENT_TYPES = {
   other: 'otros',
 };
 
-// {label:'', type:INGREDIENT_TYPES.}
-
 const INGREDIENTS = {
   chicken: { label: 'pollo', type: INGREDIENT_TYPES.meat },
   chorizo: { label: 'chorizo', type: INGREDIENT_TYPES.meat },

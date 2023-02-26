@@ -1,7 +1,7 @@
 import React from 'react';
 
-function ShopingListItem() {
-  return <div>Item</div>;
+function ShopingListItem({ label }) {
+  return <div className="shoping-list-section-item">{label}</div>;
 }
 
 export default ShopingListItem;
