@@ -1,10 +1,17 @@
-/* eslint-disable jsx-a11y/interactive-supports-focus */
 import React from 'react';
+import PropTypes from 'prop-types';
 import './Button.css';
 
 function Button({ handleOnClick }) {
-  // eslint-disable-next-line jsx-a11y/click-events-have-key-events
-  return <div role="button" className="food-button" onClick={handleOnClick}><span>Gimme Foooood</span></div>;
+  return (
+    <div role="button" className="food-button" onClick={handleOnClick} onKeyUp={handleOnClick} tabIndex={0}>
+      <span>Build Plan</span>
+    </div>
+  );
 }
+
+Button.propTypes = {
+  handleOnClick: PropTypes.func.isRequired,
+};
 
 export default Button;

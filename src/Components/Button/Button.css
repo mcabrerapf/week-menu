@@ -1,10 +1,12 @@
 .food-button {
     display: flex;
     background-color: darkgoldenrod;
-    color: black;
+    color: white;
     width: 100px;
     height: 60px;
     border-radius: 5px;
+    font-weight: 500;
     cursor: pointer;
     align-items: center;
+    justify-content: center;
 }
