@@ -27,3 +27,33 @@
 .shoping-list-section-item {
     padding: 2px;
 }
+
+.shoping-list-note {
+    border-radius: 5px;
+    margin: 15px;
+    padding: 15px;
+    background: darkgoldenrod;
+}
+
+.type-section-header {
+    width: 40%;
+    border-bottom: 1px dashed;
+    margin: 0px;
+}
+
+.type-section-items {
+    margin-top: 5px;
+    margin-left: 10px;
+}
+
+.shopping-list-tooltip {
+    position: absolute;
+    background-color: #282c34;
+    padding: 5px;
+    border-radius: 3px;
+    color: white;
+}
+
+.tooltip-list {
+    padding: 0px 5px 0px 20px;
+}

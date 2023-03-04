@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import './WeekView.css';
 import Button from '../Button';
 import { DISHES } from '../constants';
-import { buildWeekPlan, getIngredientsList } from '../helpers';
-import ShopingList from './ShopingList';
+import { buildWeekPlan } from '../helpers';
 import Week from './Week';
+import ShopingListNote from './ShopingList/ShopingListNote';
 
 function WeekView() {
   const [weekPlan, setWeekPlan] = useState([]);
@@ -13,13 +13,13 @@ function WeekView() {
     const newPlan = buildWeekPlan(DISHES);
     setWeekPlan(newPlan);
   };
-  const ingredientsList = getIngredientsList(weekPlan);
+  const [dishes, ingredients] = weekPlan;
 
   return (
     <div className="week-view">
       <div className="week-buttons"><Button handleOnClick={buildWeek} /></div>
-      {!!weekPlan.length && <Week weekPlan={weekPlan} />}
-      {!!ingredientsList.length && <ShopingList ingredients={ingredientsList} />}
+      {!!dishes && <Week weekPlan={dishes} />}
+      {!!ingredients && <ShopingListNote ingredients={ingredients} />}
     </div>
   );
 }
