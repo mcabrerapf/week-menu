@@ -1,7 +1,6 @@
-.App {
+.app {
   height: 100%;
   width: 100%;
-  text-align: center;
   background-color: black;
 }
 
@@ -16,27 +15,5 @@
   } */
 }
 
-.App-header {
-  background-color: #282c34;
-  padding: 10px;
-  min-height: 5vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
 
-.App-link {
-  color: #61dafb;
-}
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}

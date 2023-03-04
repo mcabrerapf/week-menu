@@ -1,5 +1,5 @@
 .week {
-    max-width: 1400px;
+    width: 100%;
     display: flex;
     flex-direction: column;
 }
@@ -16,7 +16,9 @@
 
 .days {
     display: flex;
-    max-width: 1400px;
+    justify-content: space-between;
+    overflow-x: auto;
+    padding: 10px;
 }
   
 
