@@ -19,7 +19,7 @@ function Day({ plan }) {
 
 Day.propTypes = {
   plan: PropTypes.shape({
-    meals: PropTypes.arrayOf(),
+    meals: PropTypes.arrayOf(PropTypes.shape),
     label: PropTypes.string,
   }).isRequired,
 };

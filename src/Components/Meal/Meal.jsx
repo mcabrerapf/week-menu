@@ -16,8 +16,11 @@ function Meal({ addDash, meal }) {
 }
 
 Meal.propTypes = {
-  addDash: PropTypes.bool.isRequired,
+  addDash: PropTypes.bool,
   meal: PropTypes.shape({ label: PropTypes.string }).isRequired,
 };
 
+Meal.defaultProps = {
+  addDash: false,
+};
 export default Meal;
