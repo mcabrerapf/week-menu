@@ -1,25 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './Main.css';
-import Week from '../Week';
-import Button from '../Button';
-import ShopingList from '../ShopingList';
-import { DISHES } from '../constants';
-import { buildWeekPlan, getIngredientsList } from '../helpers';
+import WeekView from '../WeekView';
+import { useMainContext, MainContext } from '../../Context';
 
 function Main() {
-  const [weekPlan, setWeekPlan] = useState(null);
-
-  const buildWeek = () => {
-    const newPlan = buildWeekPlan(DISHES);
-    setWeekPlan(newPlan);
-  };
-  const ingredientsList = getIngredientsList(weekPlan);
+  const { view } = useMainContext(MainContext);
 
   return (
     <div className="main">
-      <div className="main-buttons"><Button handleOnClick={buildWeek} /></div>
-      {weekPlan && <Week weekPlan={weekPlan} />}
-      {ingredientsList.length && <ShopingList ingredients={ingredientsList} />}
+      {view === 'week' && <WeekView />}
     </div>
   );
 }

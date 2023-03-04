@@ -1,11 +1,9 @@
 .week {
     width: 100%;
     display: flex;
-    flex-direction: column;
-}
-
-.week-plan {
-    justify-content: center;
+    justify-content: space-between;
+    overflow-y: hidden;
+    overflow-x: auto;
 }
 
 .week-buttons {
@@ -17,7 +15,7 @@
 .days {
     display: flex;
     justify-content: space-between;
-    overflow-x: auto;
+    overflow-y: hidden;
     padding: 10px;
 }
   

@@ -1,13 +1,17 @@
 import React from 'react';
 import './App.css';
-import { Main, Header } from './Components';
+import { Main, Footer } from './Components';
+import { MainContextWrapper } from './Context';
 
 function App() {
   return (
-    <div className="app">
-      <Header />
-      <Main />
-    </div>
+    <MainContextWrapper>
+      <div className="app">
+        <Main />
+        <Footer />
+      </div>
+    </MainContextWrapper>
+
   );
 }
 

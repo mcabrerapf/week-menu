@@ -1,6 +1,6 @@
 .food-button {
-    display: flex;
     background-color: darkgoldenrod;
+    border: none;
     color: white;
     width: 100px;
     height: 60px;

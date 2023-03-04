@@ -1,12 +1,10 @@
 .shoping-list  {
     color: white;
     display: flex;
-    margin: 10px;
-    padding: 5px;
+    padding: 10px 0;
     justify-content: space-between;
-    display: flex;
+    overflow-y: hidden;
     overflow-x: auto;
-    padding: 10px;
 }
 
 .shoping-list-section {
