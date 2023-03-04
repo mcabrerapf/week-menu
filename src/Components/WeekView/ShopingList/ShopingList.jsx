@@ -11,7 +11,13 @@ function ShopingList({ ingredients }) {
   return (
     <div className="shoping-list">
       {ingredientTypes
-        .map((type) => <ShopingListSection key={type} label={type} ingredients={ingredients} />)}
+        .map((type) => (
+          <ShopingListSection
+            key={type}
+            label={type}
+            ingredients={ingredients}
+          />
+        ))}
     </div>
   );
 }

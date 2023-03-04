@@ -1,24 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ShopingListItem from './ShopingListItem';
+import { getSectionIngredients } from '../../helpers';
 
 function ShopingListSection({ label, ingredients }) {
   const sectionLabel = label.toUpperCase();
-  const addedItems = [];
-  ingredients.forEach((ingredient) => {
-    const { label: currentLabel, type: currentType } = ingredient;
-    if (currentType !== label) return;
-    const isIn = !!addedItems.find((item) => item === currentLabel);
-    if (isIn) return;
-    addedItems.push(currentLabel);
-  });
-  if (!addedItems.length) return null;
+  const shoppingListItems = [];
+  getSectionIngredients(shoppingListItems, label, ingredients);
+  if (!shoppingListItems.length) return null;
 
   return (
     <div className="shoping-list-section">
       <span className="shoping-list-section-label">{sectionLabel}</span>
       <div className="shoping-list-section-items">
-        {addedItems.map((item) => (
+        {shoppingListItems.map((item) => (
           <ShopingListItem key={item} label={item} />
         ))}
       </div>
