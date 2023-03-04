@@ -23,4 +23,5 @@ Meal.propTypes = {
 Meal.defaultProps = {
   addDash: false,
 };
+
 export default Meal;

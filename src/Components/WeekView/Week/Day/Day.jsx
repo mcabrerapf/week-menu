@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './Day.css';
-import Meal from '../Meal';
+import Meal from './Meal';
 
 function Day({ plan }) {
   const { meals, label } = plan;
