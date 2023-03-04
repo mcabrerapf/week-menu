@@ -1,21 +1,27 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './Day.css';
 import Meal from '../Meal';
 
 function Day({ plan }) {
-  // console.log(day)
+  const { meals, label } = plan;
 
   return (
     <div className="day">
       <span className="day-label">
-        {' '}
-        {plan.label}
-        {' '}
+        {label}
       </span>
-      <Meal addDash meal={plan.meals[0]} />
-      <Meal meal={plan.meals[1]} />
+      <Meal addDash meal={meals[0]} />
+      <Meal meal={meals[1]} />
     </div>
   );
 }
+
+Day.propTypes = {
+  plan: PropTypes.shape({
+    meals: PropTypes.arrayOf(),
+    label: PropTypes.string,
+  }).isRequired,
+};
 
 export default Day;

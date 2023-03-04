@@ -20,5 +20,6 @@ module.exports = {
     'react',
   ],
   rules: {
+    'import/no-extraneous-dependencies': 'off',
   },
 };

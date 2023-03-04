@@ -1,8 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import ShopingListItem from './ShopingListItem';
 
 function ShopingListSection({ label, ingredients }) {
-  if (!ingredients.length) return null;
   const sectionLabel = label.toUpperCase();
   const addedItems = [];
   ingredients.forEach((ingredient) => {
@@ -25,5 +25,10 @@ function ShopingListSection({ label, ingredients }) {
     </div>
   );
 }
+
+ShopingListSection.propTypes = {
+  label: PropTypes.string.isRequired,
+  ingredients: PropTypes.arrayOf().isRequired,
+};
 
 export default ShopingListSection;
