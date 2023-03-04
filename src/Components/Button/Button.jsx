@@ -3,11 +3,8 @@ import PropTypes from 'prop-types';
 import './Button.css';
 
 function Button({ handleOnClick }) {
-  return (
-    <div role="button" className="food-button" onClick={handleOnClick} onKeyUp={handleOnClick} tabIndex={0}>
-      <span>Build Plan</span>
-    </div>
-  );
+  // eslint-disable-next-line jsx-a11y/click-events-have-key-events
+  return <div role="button" className="food-button" onClick={handleOnClick}>Gimme Foooood</div>;
 }
 
 Button.propTypes = {

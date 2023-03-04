@@ -2,32 +2,25 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ShopingListItem from './ShopingListItem';
 
-function checkIngredient(ingredient, label, addedItems) {
-  const { label: currentLabel, type: currentType } = ingredient;
-  if (currentType !== label) return false;
-  const isIn = !!addedItems.find((item) => item === currentLabel);
-  if (isIn) return false;
-  return true;
-}
-
 function ShopingListSection({ label, ingredients }) {
   const sectionLabel = label.toUpperCase();
   const addedItems = [];
+  ingredients.forEach((ingredient) => {
+    const { label: currentLabel, type: currentType } = ingredient;
+    if (currentType !== label) return;
+    const isIn = !!addedItems.find((item) => item === currentLabel);
+    if (isIn) return;
+    addedItems.push(currentLabel);
+  });
+  if (!addedItems.length) return null;
 
   return (
     <div className="shoping-list-section">
       <span className="shoping-list-section-label">{sectionLabel}</span>
       <div className="shoping-list-section-items">
-        {ingredients.map((ingredient) => {
-          const { label: currentLabel } = ingredient;
-          const shouldRender = checkIngredient(ingredient, label, addedItems);
-          if (!shouldRender) return null;
-          addedItems.push(currentLabel);
-
-          return (
-            <ShopingListItem key={currentLabel} label={currentLabel} />
-          );
-        })}
+        {addedItems.map((label) => (
+          <ShopingListItem key={label} label={label} />
+        ))}
       </div>
     </div>
   );
