@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './ShopingList.css';
 import ShopingListSection from './ShopingListSection';
-import { INGREDIENT_TYPES } from '../constants/INGREDIENTS';
+import { INGREDIENT_TYPES } from '../../constants/INGREDIENTS';
 
 function ShopingList({ ingredients }) {
   if (!ingredients) return null;

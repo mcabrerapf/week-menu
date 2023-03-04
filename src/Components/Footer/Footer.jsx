@@ -3,9 +3,9 @@ import './Footer.css';
 import { MainContext, useMainContext } from '../../Context';
 
 function Footer() {
-  const { setContextState } = useMainContext(MainContext);
-  const handleOnClick = (view) => {
-    setContextState('view', view);
+  const { view, setContextState } = useMainContext(MainContext);
+  const handleOnClick = (newView) => {
+    if (newView !== view) setContextState('view', newView);
   };
 
   return (
