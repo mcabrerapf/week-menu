@@ -4,16 +4,8 @@ import Week from '../Week';
 import Button from '../Button';
 import ShopingList from '../ShopingList';
 import { DISHES } from '../constants';
-import { buildWeekPlan } from '../helpers';
+import { buildWeekPlan, getIngredientsList } from '../helpers';
 
-const getIngredientsList = (plan = []) => {
-  const ingredientsList = [];
-  if (!plan) return ingredientsList;
-  plan.forEach(({ meals }) => {
-    meals.forEach(({ ingredients }) => ingredients.forEach((ingredient) => ingredientsList.push(ingredient)));
-  });
-  return ingredientsList;
-};
 function Main() {
   const [weekPlan, setWeekPlan] = useState(null);
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './ShopingList.css';
 import ShopingListSection from './ShopingListSection';
 import { INGREDIENT_TYPES } from '../constants/INGREDIENTS';
@@ -9,9 +10,14 @@ function ShopingList({ ingredients }) {
 
   return (
     <div className="shoping-list">
-      {ingredientTypes.map((type) => <ShopingListSection key={type} label={type} ingredients={ingredients} />)}
+      {ingredientTypes
+        .map((type) => <ShopingListSection key={type} label={type} ingredients={ingredients} />)}
     </div>
   );
 }
+
+ShopingList.propTypes = {
+  ingredients: PropTypes.arrayOf().isRequired,
+};
 
 export default ShopingList;

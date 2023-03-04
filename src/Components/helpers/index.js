@@ -33,6 +33,18 @@ const buildDishes = (type, allDishes, chosenIndexes) => {
 
 const capitalizeFirstLetter = (string) => string.charAt(0).toUpperCase() + string.slice(1);
 
+const getIngredientsList = (plan) => {
+  const ingredientsList = [];
+  if (!plan) return ingredientsList;
+  plan.forEach(({ meals }) => {
+    meals
+      .forEach(({ ingredients }) => ingredients
+        .forEach((ingredient) => ingredientsList
+          .push(ingredient)));
+  });
+  return ingredientsList;
+};
+
 const buildWeekPlan = (dishes) => {
   const dishesCopy = [...dishes];
   const chosenIndexes = [];
@@ -54,4 +66,4 @@ const buildWeekPlan = (dishes) => {
   ];
   return finalWeekPlan;
 };
-export { capitalizeFirstLetter, buildWeekPlan };
+export { capitalizeFirstLetter, buildWeekPlan, getIngredientsList };
