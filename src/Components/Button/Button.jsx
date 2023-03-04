@@ -4,7 +4,7 @@ import './Button.css';
 
 function Button({ handleOnClick }) {
   // eslint-disable-next-line jsx-a11y/click-events-have-key-events
-  return <div role="button" className="food-button" onClick={handleOnClick}><span>Gimme Foooood</span></div>;
+  return <div role="button" className="food-button" onClick={handleOnClick}>Gimme Foooood</div>;
 }
 
 export default Button;
