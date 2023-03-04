@@ -4,6 +4,7 @@ import './App.css';
 import { Main, Header } from './Components';
 
 function App() {
+  const a = 's';
   return (
     <div className="App">
       <Header />
