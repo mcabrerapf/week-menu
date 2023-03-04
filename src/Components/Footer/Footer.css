@@ -1,0 +1,35 @@
+.footer {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    min-height: 6vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+    
+}
+
+footer .footer-buttons {
+    width: 100%;
+    height: 30px;
+    display: flex;
+    justify-content: space-around;
+}
+
+footer .footer-buttons button {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background-color: black;
+    border-right: 1px solid white;
+    color: white;
+}
+
+footer .footer-buttons button:last-of-type {
+    border-right: none;
+    
+}
