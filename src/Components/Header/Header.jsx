@@ -8,9 +8,9 @@ function Header() {
         <span> Menjare of the week</span>
       </div>
       <div className="header-buttons">
-        <button>but1</button>
-        <button>but2</button>
-        <button>but3</button>
+        <button type="button">Week</button>
+        <button type="button"> Dishes</button>
+        <button type="button">Ingredients</button>
       </div>
     </header>
   );
