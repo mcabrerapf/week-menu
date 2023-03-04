@@ -17,7 +17,7 @@ function ShopingList({ ingredients }) {
 }
 
 ShopingList.propTypes = {
-  ingredients: PropTypes.arrayOf().isRequired,
+  ingredients: PropTypes.arrayOf(PropTypes.shape()).isRequired,
 };
 
 export default ShopingList;

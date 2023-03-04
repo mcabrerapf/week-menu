@@ -18,8 +18,8 @@ function ShopingListSection({ label, ingredients }) {
     <div className="shoping-list-section">
       <span className="shoping-list-section-label">{sectionLabel}</span>
       <div className="shoping-list-section-items">
-        {addedItems.map((label) => (
-          <ShopingListItem key={label} label={label} />
+        {addedItems.map((item) => (
+          <ShopingListItem key={item} label={item} />
         ))}
       </div>
     </div>
@@ -28,7 +28,7 @@ function ShopingListSection({ label, ingredients }) {
 
 ShopingListSection.propTypes = {
   label: PropTypes.string.isRequired,
-  ingredients: PropTypes.arrayOf().isRequired,
+  ingredients: PropTypes.arrayOf(PropTypes.shape()).isRequired,
 };
 
 export default ShopingListSection;

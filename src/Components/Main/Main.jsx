@@ -13,14 +13,13 @@ function Main() {
     const newPlan = buildWeekPlan(DISHES);
     setWeekPlan(newPlan);
   };
-
   const ingredientsList = getIngredientsList(weekPlan);
 
   return (
     <div className="main">
       <div className="main-buttons"><Button handleOnClick={buildWeek} /></div>
-      <Week weekPlan={weekPlan} />
-      <ShopingList ingredients={ingredientsList} />
+      {weekPlan && <Week weekPlan={weekPlan} />}
+      {ingredientsList.length && <ShopingList ingredients={ingredientsList} />}
     </div>
   );
 }

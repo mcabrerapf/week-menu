@@ -5,7 +5,6 @@ import Day from '../Day';
 
 function Week({ weekPlan }) {
   return (
-
     <div className="week-plan">
       {weekPlan && <div className="days">{weekPlan.map((plan) => <Day key={plan.label} plan={plan} />)}</div>}
     </div>
@@ -14,7 +13,7 @@ function Week({ weekPlan }) {
 }
 
 Week.propTypes = {
-  weekPlan: PropTypes.arrayOf().isRequired,
+  weekPlan: PropTypes.arrayOf(PropTypes.shape()).isRequired,
 };
 
 export default Week;
