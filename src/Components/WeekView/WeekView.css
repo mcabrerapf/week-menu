@@ -1,5 +1,43 @@
+.week-view {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.week-view .week-view-header {
+    height: 50px;
+    width: 100%;
+}
+
+.week-view .week-view-header .week-view-header-buttons {
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.week-view .week-view-header .week-view-header-buttons button {
+    border-radius: 0;
+    border-right: 1px solid lightblue;
+    color: black;
+    font-size: 16px;
+}
+
+.week-view .week-view-header .week-view-header-buttons button:last-of-type {
+    border-right: none;
+}
+
+.week-view .week-view-content {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+
+
+
+/* 
 .week-view .week-buttons {
     margin: 10px;
     display: flex;
     justify-content: center;
-}
+} */

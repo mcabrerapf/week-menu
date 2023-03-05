@@ -1,4 +1,10 @@
 .meal-lunch {
+    height: 35%;
+    font-size: 14px;
     padding-bottom: 5px;
     border-bottom: dotted 3px white;
+}
+
+.meal-dinner {
+    font-size: 14px;
 }
