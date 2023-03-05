@@ -26,7 +26,11 @@ function Modal({ children, hideModal, headerText }) {
   return (
     <div className="modal-background">
       <div ref={wrapperRef} className="modal-container">
-        {headerText && <h3 className="modal-header">{parsedHeaderText}</h3>}
+        {headerText && (
+        <div className="modal-header">
+          <h3>{parsedHeaderText}</h3>
+        </div>
+        )}
         <div className="modal-content">
           {children}
         </div>

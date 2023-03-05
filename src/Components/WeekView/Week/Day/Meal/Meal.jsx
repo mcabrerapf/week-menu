@@ -4,15 +4,16 @@ import './Meal.css';
 import Modal from '../../../../Modal';
 import MealModalContent from './MealModalContent';
 
-function Meal({ addDash, meal }) {
+function Meal({ meal }) {
   const [showTooltip, setShowTooltip] = useState(false);
   const { label } = meal;
-  const mealClassName = `meal-${addDash ? 'lunch' : 'dinner'}`;
+
   const handleToggleTooltip = () => {
     setShowTooltip(!showTooltip);
   };
+
   return (
-    <div className={mealClassName}>
+    <div className="meal">
       <div
         tabIndex={0}
         role="button"
@@ -34,15 +35,10 @@ function Meal({ addDash, meal }) {
 }
 
 Meal.propTypes = {
-  addDash: PropTypes.bool,
   meal: PropTypes.shape({
     label: PropTypes.string,
     description: PropTypes.string,
   }).isRequired,
-};
-
-Meal.defaultProps = {
-  addDash: false,
 };
 
 export default Meal;

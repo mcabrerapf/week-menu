@@ -16,17 +16,22 @@
     display: flex;
     border-radius: 10px;
     flex-direction: column;
-    background-color: darkgoldenrod;
+    background-color: lightblue;
     color: black;
+    box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
 }
 
 .modal-background .modal-container .modal-header {
+    background-color: darkgoldenrod;
+    align-items: center;
     text-align: center;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
 .modal-background .modal-container .modal-content {
     min-height: 200px;
     width: 300px;
-    background-color: lightblue;
     color: black;
+    padding: 0 25px;
 }

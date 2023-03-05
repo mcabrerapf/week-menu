@@ -1,5 +1,5 @@
-.week-buttons {
-    margin: 10px;
+.dishes-view {
+    height: 100%;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
 }
