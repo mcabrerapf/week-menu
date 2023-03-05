@@ -32,6 +32,23 @@
     overflow: hidden;
 }
 
+.no-week-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.no-week-container button {
+    height: 80px;
+    width: 120px;
+    background-color: darkgoldenrod;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 10px;
+    
+}
 
 
 

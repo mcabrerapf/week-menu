@@ -12,7 +12,7 @@ function Dish({
     <li className="dish">
       <div className="dish-label">{parsedLabel}</div>
       <div className="dish-buttons">
-        <button type="button">{type}</button>
+        {type && <button type="button">{type}</button>}
         <button type="button" className="rounded-button" onClick={() => handleEdit(dish)}>
           <i className="fa fa-pencil-square-o" />
         </button>
