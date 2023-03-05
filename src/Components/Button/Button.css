@@ -1,13 +1,18 @@
-.food-button {
+.button {
+    width: 100%;
+    height: 100%;
     background-color: darkgoldenrod;
     border: none;
     color: white;
-    width: 100px;
-    height: 60px;
     padding: 5px;
     border-radius: 5px;
     font-weight: 500;
     cursor: pointer;
     align-items: center;
     text-align: center;
+    font-weight: 500;
+}
+
+.selected {
+    font-weight: 600;
 }

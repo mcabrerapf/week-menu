@@ -5,9 +5,9 @@ const INGREDIENT_TYPES = {
   fruits: 'frutas',
   other: 'otros',
 };
-
+const INGREDIENT_UNITS = ['ml', 'g', 'u', 'sp', 'tp', 'cup'];
 const INGREDIENTS = {
-  chicken: { label: 'pollo', type: INGREDIENT_TYPES.meat },
+  chicken: { label: 'pollo', type: INGREDIENT_TYPES.meat, unit: INGREDIENT_UNITS[2] },
   chorizo: { label: 'chorizo', type: INGREDIENT_TYPES.meat },
   beef: { label: 'ternera', type: INGREDIENT_TYPES.meat },
   bacon: { label: 'bacon', type: INGREDIENT_TYPES.meat },
