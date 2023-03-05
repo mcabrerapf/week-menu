@@ -1,17 +1,20 @@
-import React from 'react';
+/* eslint-disable react/jsx-props-no-spreading */
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './ShopingList.css';
-import { capitalizeFirstLetter } from '../../helpers';
+import { capitalizeFirstLetter, parseIngredientLabel } from '../../helpers';
 import ShopingListNoteSectionItem from './ShoppingListNoteSectionItem';
+import Modal from '../../Modal';
+import ShoppingListToolTip from './ShoppingListToolTip';
 
-const parseIngredientLabel = (label, i, length, quantity) => {
-  const isLast = (i + 1) === length;
-  const isFirst = i === 0;
-  const parsedQuantity = `(${quantity})`;
-  if (isFirst) return `- ${capitalizeFirstLetter(label)}${length > 1 ? ` ${parsedQuantity}, ` : ` ${parsedQuantity}`}`;
-  return `${label} ${parsedQuantity}${isLast ? ' ' : ', '}`;
-};
 function ShopingListNoteSection({ ingredients, label }) {
+  const [showTooltip, setShowTooltip] = useState({ show: false, modalProps: {}, tooltipProps: {} });
+  const { show, modalProps, tooltipProps } = showTooltip;
+
+  const handleOnClick = (props = {}) => {
+    setShowTooltip({ ...props, show: !show });
+  };
+
   if (!ingredients.length) return null;
 
   return (
@@ -22,11 +25,24 @@ function ShopingListNoteSection({ ingredients, label }) {
           const { length } = ingredients;
           const parsedLabel = parseIngredientLabel(ingredientLabel, i, length, quantity);
           return (
-            <ShopingListNoteSectionItem key={parsedLabel} label={parsedLabel} dishes={dishes} />
+            <ShopingListNoteSectionItem
+              key={parsedLabel}
+              label={parsedLabel}
+              baseLabel={ingredientLabel}
+              dishes={dishes}
+              setShowTooltip={handleOnClick}
+            />
 
           );
         })}
       </p>
+      {show && (
+        <Modal {...modalProps} hideModal={handleOnClick}>
+          <ShoppingListToolTip
+            {...tooltipProps}
+          />
+        </Modal>
+      )}
     </div>
 
   );

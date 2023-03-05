@@ -1,0 +1,32 @@
+.modal-background {
+    position: absolute;
+    display: flex;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 500;
+    /* background-color: blue; */
+    background-color: rgba(255,255,255,0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-background .modal-container {
+    display: flex;
+    border-radius: 10px;
+    flex-direction: column;
+    background-color: goldenrod;
+    color: white;
+}
+
+.modal-background .modal-container .modal-header {
+    padding-left: 25px;
+}
+
+.modal-background .modal-container .modal-content {
+    min-height: 200px;
+    width: 300px;
+    background-color: lightblue;
+    color: black;
+}
