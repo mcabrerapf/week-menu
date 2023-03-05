@@ -10,9 +10,9 @@ function Main() {
 
   return (
     <div className="main">
-      {view === 'week' && <WeekView />}
-      {view === 'dishes' && <DishesView />}
-      {view === 'ingredients' && <IngredientsView />}
+      <WeekView hidden={view !== 0} />
+      <DishesView hidden={view !== 1} />
+      <IngredientsView hidden={view !== 2} />
     </div>
   );
 }

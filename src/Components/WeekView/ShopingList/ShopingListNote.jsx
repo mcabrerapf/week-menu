@@ -4,6 +4,8 @@ import './ShopingList.css';
 import ShopingListNoteSection from './ShopingListNoteSection';
 
 function ShopingListNote({ ingredients }) {
+  if (!ingredients) return null;
+
   return (
     <div className="shoping-list-note">
       {Object.keys(ingredients).map((sectionKey) => {
@@ -17,7 +19,11 @@ function ShopingListNote({ ingredients }) {
 }
 
 ShopingListNote.propTypes = {
-  ingredients: PropTypes.PropTypes.shape().isRequired,
+  ingredients: PropTypes.PropTypes.shape(),
+};
+
+ShopingListNote.defaultProps = {
+  ingredients: null,
 };
 
 export default ShopingListNote;

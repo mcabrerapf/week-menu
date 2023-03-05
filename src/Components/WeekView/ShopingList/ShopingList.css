@@ -47,11 +47,8 @@
 }
 
 .shopping-list-tooltip {
-    position: absolute;
-    background-color: #282c34;
-    padding: 5px;
-    border-radius: 3px;
-    color: white;
+    margin-left: 15px;
+    margin-bottom: 5px;
 }
 
 .tooltip-list {

@@ -4,7 +4,7 @@ import { MainContextProvider } from './MainContext';
 
 function MainContextWrapper({ children }) {
   const [contextState, setContextState] = useState({
-    view: 'week',
+    view: 0,
   });
   const stateHandler = (key, value) => {
     setContextState({ ...contextState, [key]: value });

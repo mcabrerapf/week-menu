@@ -4,6 +4,7 @@ import './Week.css';
 import Day from './Day';
 
 function Week({ weekPlan }) {
+  if (!weekPlan || !weekPlan.length) return null;
   return (
     <div className="week">
       {weekPlan.map((plan) => <Day key={plan.label} plan={plan} />)}
@@ -13,7 +14,11 @@ function Week({ weekPlan }) {
 }
 
 Week.propTypes = {
-  weekPlan: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  weekPlan: PropTypes.arrayOf(PropTypes.shape()),
+};
+
+Week.defaultProps = {
+  weekPlan: null,
 };
 
 export default Week;
