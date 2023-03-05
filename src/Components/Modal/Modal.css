@@ -16,12 +16,12 @@
     display: flex;
     border-radius: 10px;
     flex-direction: column;
-    background-color: goldenrod;
-    color: white;
+    background-color: darkgoldenrod;
+    color: black;
 }
 
 .modal-background .modal-container .modal-header {
-    padding-left: 25px;
+    text-align: center;
 }
 
 .modal-background .modal-container .modal-content {

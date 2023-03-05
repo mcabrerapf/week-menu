@@ -2,9 +2,28 @@
     height: 35%;
     font-size: 14px;
     padding-bottom: 5px;
-    border-bottom: dotted 3px white;
+    border-bottom: dotted 3px black;
 }
 
 .meal-dinner {
     font-size: 14px;
+}
+
+.meal-modal-content {
+    margin-top: 10px;
+}
+
+.meal-modal-content ul {
+    list-style: none;
+    text-align: left;
+    padding-bottom: 15px;
+}
+
+li {
+    margin-top: 3px;
+}
+
+li span {
+    font-weight: 600;
+    text-decoration: underline;
 }

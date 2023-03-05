@@ -5,7 +5,7 @@ import './IngredientsView.css';
 
 function IngredientsView({ hidden }) {
   return (
-    <div className="ingredients-view" hidden={hidden}>
+    <div className="ingredients-view" style={{ display: hidden ? 'none' : 'flex' }}>
       <IngredientsList />
     </div>
   );

@@ -3,8 +3,8 @@
     flex-direction: column;
     margin: 5px;
     padding: 10px;
-    background-color: #282c34;
-    color: white;
+    background-color: darkgoldenrod;
+    color: black;
     width: 40%;
     border-radius: 5px;
     text-align: center;
@@ -15,7 +15,7 @@
     font-size: 16px;
     font-weight: 600;
     padding: 5px 0;
-    border-bottom: solid 3px white;
+    border-bottom: solid 3px black;
 }
 
 

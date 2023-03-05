@@ -22,7 +22,7 @@ function WeekViewButtons({ handleBuildPlanClick, handleChangeView, view }) {
       <Button
         modifier={view === 1 ? ' selected' : ''}
         handleOnClick={() => checkView(1)}
-        buttonText="Ingredients"
+        buttonText="Shopping List"
       />
     </div>
   );
