@@ -5,7 +5,7 @@ import DishesList from './DishesList';
 
 function DishesView({ hidden }) {
   return (
-    <div className="dishes-view" hidden={hidden}>
+    <div className="dishes-view" style={{ display: hidden ? 'none' : 'flex' }}>
       <DishesList />
     </div>
   );

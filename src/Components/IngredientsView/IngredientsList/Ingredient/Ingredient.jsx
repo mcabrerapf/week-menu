@@ -4,19 +4,19 @@ import './Ingredient.css';
 import { capitalizeFirstLetter } from '../../../helpers';
 
 function Ingredient({
-  label, type, handleDelete, handleEdit, unit,
+  label, type, handleDelete, handleEdit, dish,
 }) {
   const parsedLabel = capitalizeFirstLetter(label);
-  const ingredientData = { label, type, unit };
+
   return (
     <li className="ingredient">
       <div className="ingredient-label">{parsedLabel}</div>
       <div className="ingredient-buttons">
         <button type="button">{type}</button>
-        <button type="button" className="rounded-button" onClick={() => handleEdit(ingredientData)}>
+        <button type="button" className="rounded-button" onClick={() => handleEdit(dish)}>
           <i className="fa fa-pencil-square-o" />
         </button>
-        <button type="button" className="rounded-button" onClick={() => handleDelete(ingredientData)}>
+        <button type="button" className="rounded-button" onClick={() => handleDelete(dish)}>
           <i className="fa trash-o fa-trash-o" />
         </button>
       </div>
@@ -29,11 +29,7 @@ Ingredient.propTypes = {
   type: PropTypes.string.isRequired,
   handleDelete: PropTypes.func.isRequired,
   handleEdit: PropTypes.func.isRequired,
-  unit: PropTypes.string,
-};
-
-Ingredient.defaultProps = {
-  unit: '',
+  dish: PropTypes.shape().isRequired,
 };
 
 export default Ingredient;

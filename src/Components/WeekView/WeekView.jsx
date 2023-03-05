@@ -32,6 +32,11 @@ function WeekView({ hidden }) {
         />
       </div>
       <div className="week-view-content">
+        {!dishes && (
+        <div className="no-week-container">
+          <button type="button" onClick={handleBuildPlanClick}>Gime FOOOD!</button>
+        </div>
+        )}
         <Week weekPlan={dishes} hidden={view !== 0} />
         <ShopingList hidden={view !== 1} ingredients={ingredients} />
       </div>

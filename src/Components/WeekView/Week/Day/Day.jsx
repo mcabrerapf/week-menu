@@ -11,8 +11,10 @@ function Day({ plan }) {
       <span className="day-label">
         {label}
       </span>
-      <Meal addDash meal={meals[0]} />
-      <Meal meal={meals[1]} />
+      <div className="meals">
+        <Meal meal={meals[0]} />
+        <Meal meal={meals[1]} />
+      </div>
     </div>
   );
 }

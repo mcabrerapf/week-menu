@@ -21,12 +21,13 @@ function IngredientsList() {
   return (
     <div>
       <ul className="ingredients-list">
-        {ingredients.map(({ label, type, unit }) => (
+        {ingredients.map((dish) => (
           <Ingredient
-            key={`${label}-${type}`}
-            label={label}
-            type={type}
-            unit={unit}
+            key={`${dish.label}-${dish.type}`}
+            label={dish.label}
+            type={dish.type}
+            unit={dish.unit}
+            dish={dish}
             handleDelete={handleDelete}
             handleEdit={handleEdit}
           />
@@ -39,13 +40,19 @@ function IngredientsList() {
           hideModal={() => setShowModal({ show: false, action: null })}
         >
           <div>
-            {`${capitalizeFirstLetter(modalData.label)} - ${modalData.type} -  (${modalData.unit})`}
-
+            <div>{capitalizeFirstLetter(modalData.label)}</div>
+            <div>{capitalizeFirstLetter(modalData.type)}</div>
+            {modalData.unit && (
+            <div>
+              ($
+              {modalData.unit}
+              )`
+            </div>
+            )}
           </div>
         </Modal>
         )}
     </div>
-
   );
 }
 
