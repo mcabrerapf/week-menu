@@ -1,7 +1,6 @@
 {
   "name": "week-menu",
   "version": "0.1.0",
-  "homepage": "https://mcabrerapf.github.io/week-menu",
   "private": true,
   "scripts": {
     "start": "react-scripts start",
