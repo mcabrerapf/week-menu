@@ -4,6 +4,8 @@ import { Authenticator } from '@aws-amplify/ui-react';
 import { Amplify } from 'aws-amplify';
 import { Main, Footer } from './Components';
 import { MainContextWrapper } from './Context';
+// eslint-disable-next-line import/no-unresolved
+import '@aws-amplify/ui-react/styles.css';
 
 import awsExports from './aws-exports';
 
