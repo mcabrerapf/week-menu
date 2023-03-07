@@ -1,5 +1,5 @@
-import { INGREDIENTS } from './INGREDIENTS';
-
+// import { INGREDIENTS } from './INGREDIENTS';
+const INGREDIENTS = {};
 const DISH_TYPES = { lunch: 'lunch', dinner: 'dinner' };
 
 const DISH_TAGS = {

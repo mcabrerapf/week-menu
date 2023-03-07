@@ -1,5 +1,5 @@
 import { DISH_TYPES, DAYS } from '../constants';
-import { INGREDIENT_TYPES } from '../constants/INGREDIENTS';
+// import { INGREDIENT_TYPES } from '../constants/INGREDIENTS';
 
 const generateRandom = (min = 0, max = 100) => {
   const difference = max - min;
@@ -11,8 +11,8 @@ const generateRandom = (min = 0, max = 100) => {
 
 const buildIngredientSections = (dishes) => {
   const ingredientSections = {};
-  Object.keys(INGREDIENT_TYPES).forEach((key) => {
-    const label = INGREDIENT_TYPES[key];
+  Object.keys({}).forEach((key) => {
+    const label = {}[key];
     ingredientSections[label] = [];
   });
   dishes.forEach(({ ingredients, label: dishLabel }) => {

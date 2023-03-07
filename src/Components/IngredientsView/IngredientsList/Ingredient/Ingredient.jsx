@@ -4,7 +4,7 @@ import './Ingredient.css';
 import { capitalizeFirstLetter } from '../../../helpers';
 
 function Ingredient({
-  label, type, handleDelete, handleEdit, dish,
+  label, type, handleDelete, handleEdit, ingredient, unit,
 }) {
   const parsedLabel = capitalizeFirstLetter(label);
 
@@ -12,11 +12,12 @@ function Ingredient({
     <li className="ingredient">
       <div className="ingredient-label">{parsedLabel}</div>
       <div className="ingredient-buttons">
+        <button type="button">{unit}</button>
         <button type="button">{type}</button>
-        <button type="button" className="rounded-button" onClick={() => handleEdit(dish)}>
+        <button type="button" className="rounded-button" onClick={() => handleEdit(ingredient)}>
           <i className="fa fa-pencil-square-o" />
         </button>
-        <button type="button" className="rounded-button" onClick={() => handleDelete(dish)}>
+        <button type="button" className="rounded-button" onClick={() => handleDelete(ingredient)}>
           <i className="fa trash-o fa-trash-o" />
         </button>
       </div>
@@ -26,10 +27,16 @@ function Ingredient({
 
 Ingredient.propTypes = {
   label: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
   handleDelete: PropTypes.func.isRequired,
   handleEdit: PropTypes.func.isRequired,
-  dish: PropTypes.shape().isRequired,
+  ingredient: PropTypes.shape().isRequired,
+  type: PropTypes.string,
+  unit: PropTypes.string,
+};
+
+Ingredient.defaultProps = {
+  type: '',
+  unit: '',
 };
 
 export default Ingredient;
