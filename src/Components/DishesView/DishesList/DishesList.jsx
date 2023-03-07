@@ -19,7 +19,7 @@ function DishesList() {
   };
 
   return (
-    <div>
+    <div className="dishes-list-container">
       <ul className="dishes-list">
         {DISHES.map((dish) => (
           <Dish

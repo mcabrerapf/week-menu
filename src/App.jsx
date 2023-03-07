@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import { Authenticator } from '@aws-amplify/ui-react';
 import { Amplify, AuthModeStrategyType } from 'aws-amplify';
-import { Main, Footer } from './Components';
+import { Main } from './Components';
 import { MainContextWrapper } from './Context';
 // eslint-disable-next-line import/no-unresolved
 import '@aws-amplify/ui-react/styles.css';
@@ -22,10 +22,8 @@ function App() {
       {({ signOut }) => (
         <MainContextWrapper>
           <div className="app">
-            <button type="button" onClick={signOut}>get me out</button>
             {/* {console.log(user)} */}
-            <Main />
-            <Footer />
+            <Main signOut={signOut} />
           </div>
         </MainContextWrapper>
       )}

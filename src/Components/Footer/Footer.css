@@ -1,35 +1,44 @@
 .footer {
-    position: absolute;
-    bottom: 0px;
     width: 100%;
-    min-height: 6vh;
-    display: flex;
+    height: 5%;
+    background-color: black;
+    /* display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    text-align: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
+    text-align: center; */
+    /* font-size: calc(10px + 2vmin); */
+    /* color: white; */
     
 }
 
-footer .footer-buttons {
-    width: 100%;
-    height: 30px;
-    display: flex;
-    justify-content: space-around;
+.footer .footer-buttons {
+  display: flex;
+  height: 100%;
 }
 
-footer .footer-buttons button {
+.footer .footer-buttons .view-buttons {
+    width:90%;
+    display: flex;
+    justify-content: space-around;
+    background-color: black;
+}
+
+footer .footer-buttons .view-buttons button {
     width: 100%;
     height: 100%;
     border: none;
     background-color: black;
-    border-right: 1px solid white;
+    border-right: 1px solid lightblue;
     color: white;
 }
 
-footer .footer-buttons button:last-of-type {
-    border-right: none;
-    
+footer .footer-buttons .signout-button {
+    width: 10%;
+    height: 100%;
+    border: none;
+    background-color: black;
+    color: white;
 }
+
+

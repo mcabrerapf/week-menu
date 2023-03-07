@@ -1,6 +1,6 @@
 .header {
-  position: absolute;
-  top: 0px;
+  /* position: absolute; */
+  /* top: 0px; */
   width: 100%;
   min-height: 5vh;
   display: flex;

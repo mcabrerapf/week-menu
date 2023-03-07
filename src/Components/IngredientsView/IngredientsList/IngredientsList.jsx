@@ -53,9 +53,7 @@ function IngredientsList({ ingredients, setIngredients }) {
           <i className="fa fa-plus" aria-hidden="true" />
 
         </button>
-
       </div>
-
       {show
         && (
         <Modal
