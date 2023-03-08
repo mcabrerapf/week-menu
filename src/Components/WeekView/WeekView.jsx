@@ -1,19 +1,26 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './WeekView.css';
-import { DISHES } from '../constants';
 import { buildWeekPlan } from '../helpers';
 import Week from './Week';
 import ShopingList from './ShopingList';
 import WeekViewButtons from './WeekViewButtons';
+import { handleGetAllDishes } from '../../Services';
 
 function WeekView({ hidden }) {
   const [weekPlan, setWeekPlan] = useState([]);
   const [view, setView] = useState(0);
 
-  const handleBuildPlanClick = () => {
-    const newPlan = buildWeekPlan(DISHES);
-    setWeekPlan(newPlan);
+  const handleBuildPlanClick = async () => {
+    const {
+      data,
+    } = await handleGetAllDishes();
+    if (!data) return;
+    const {
+      listDishes: { items },
+    } = data;
+    const newMenu = buildWeekPlan(items);
+    setWeekPlan(newMenu);
   };
 
   const handleChangeView = (newView) => {

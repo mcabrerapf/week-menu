@@ -10,15 +10,17 @@ function IngredientsView({ hidden }) {
   useEffect(() => {
     async function getAllIngs() {
       const {
-        data: {
-          listIngredients: { items: ingredientsData },
-        },
+        data,
       } = await handleGetAllIngredients();
-      setIngredients(ingredientsData);
+      if (!data) return;
+      const {
+        listIngredients: { items },
+      } = data;
+      setIngredients(items);
     }
     getAllIngs();
   }, []);
-
+  console.log({ ingredients });
   return (
     <div className="ingredients-view" style={{ display: hidden ? 'none' : 'flex' }}>
       <IngredientsList ingredients={ingredients} setIngredients={setIngredients} />

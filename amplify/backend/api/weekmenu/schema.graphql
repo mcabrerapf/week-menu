@@ -1,4 +1,36 @@
-enum IngredientUnit {
+enum DishTypeKeysEnum {
+  BREAKFAST
+  LUNCH
+  DINNER
+  DESSERT
+  VERMUT
+  MUNCH
+}
+
+enum DayKeysEnum {
+  MON
+  TUE
+  WED
+  THU
+  FRI
+  SAT
+  SUN
+}
+
+type DayListItemType {
+  name: DayKeysEnum
+  breakfast: [ID]
+  lunch: [ID]
+  dinner: [ID]
+  dessert: [ID]
+}
+
+type IngredientListiItemType {
+  id: ID
+  quantity: Int
+}
+
+enum IngredientUnitEnum {
   UN
   G
   KG
@@ -13,7 +45,7 @@ enum IngredientUnit {
   DOZ
 }
 
-enum IngredientType {
+enum IngredientTypeEnum {
   OTHER
   MEAT
   FRUIT
@@ -26,27 +58,29 @@ enum IngredientType {
 type Ingredient @model @auth(rules: [{allow: owner}]) {
   id: ID!
   name: String!
-  type: IngredientType
-  unit: IngredientUnit
-  Menus: [Dish] @manyToMany(relationName: "DishIngredient")
+  type: IngredientTypeEnum
+  unit: IngredientUnitEnum
 }
 
-type Dish @model @auth(rules: [{allow: public}]) {
+type Dish @model @auth(rules: [{allow: owner}]) {
   id: ID!
   name: String!
-  type: String
+  type: DishTypeKeysEnum
+  tags: [String]
   size: String
   time: String
   description: String
   instructions: String
-  Ingredients: [Ingredient] @manyToMany(relationName: "DishIngredient")
-  Menus: [Menu] @manyToMany(relationName: "DishMenu")
+  ingredients: [IngredientListiItemType]
 }
 
-type Menu @model @auth(rules: [{allow: public}]) {
+type Menu @model @auth(rules: [{allow: owner}]) {
   id: ID!
   name: String!
   favourite: Boolean
-  Dishes: [Dish] @manyToMany(relationName: "DishMenu")
+  days: [DayListItemType]
+  description: String
+  tags: [String]
+  menuDessert: ID
 }
  

@@ -1,6 +1,3 @@
-/* eslint-disable */
-// this is an auto generated file. This will be overwritten
-
 export const CREATE_INGREDIENT_MUTATION = `
   mutation CreateIngredient(
     $input: CreateIngredientInput!
@@ -89,14 +86,6 @@ export const DELETE_DISH_MUTATION = `
   ) {
     deleteDish(input: $input, condition: $condition) {
       id
-      name
-      type
-      size
-      time
-      description
-      instructions
-      createdAt
-      updatedAt
     }
   }
 `;

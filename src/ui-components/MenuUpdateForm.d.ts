@@ -16,16 +16,25 @@ export declare type ValidationFunction<T> = (value: T, validationResponse: Valid
 export declare type MenuUpdateFormInputValues = {
     name?: string;
     favourite?: boolean;
+    description?: string;
+    tags?: string[];
+    menuDessert?: string;
 };
 export declare type MenuUpdateFormValidationValues = {
     name?: ValidationFunction<string>;
     favourite?: ValidationFunction<boolean>;
+    description?: ValidationFunction<string>;
+    tags?: ValidationFunction<string>;
+    menuDessert?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type MenuUpdateFormOverridesProps = {
     MenuUpdateFormGrid?: PrimitiveOverrideProps<GridProps>;
     name?: PrimitiveOverrideProps<TextFieldProps>;
     favourite?: PrimitiveOverrideProps<SwitchFieldProps>;
+    description?: PrimitiveOverrideProps<TextFieldProps>;
+    tags?: PrimitiveOverrideProps<TextFieldProps>;
+    menuDessert?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type MenuUpdateFormProps = React.PropsWithChildren<{
     overrides?: MenuUpdateFormOverridesProps | undefined | null;

@@ -57,30 +57,42 @@ function IngredentModal({
     <div className="ingredient-modal-content">
       {action !== 2 && (
         <form className="ingredient-modal-form">
-          <label htmlFor="name" className="ingredient-modal-form-input">
-            Name:
-            <input type="text" id="name" name="name" value={name} onChange={handleInputChange} />
-          </label>
-          <label htmlFor="type" className="ingredient-modal-form-input">
-            Type:
-            <select id="type" name="type" value={type} onChange={handleInputChange}>
-              {buildSelectOptions(INGREDIENT_TYPES_MOCK)}
-            </select>
-          </label>
-          <label htmlFor="unit" className="ingredient-modal-form-input">
-            Unit:
-            <select id="unit" name="unit" value={unit} onChange={handleInputChange}>
-              {buildSelectOptions(INGREDIENTS_UNITS_MOCK)}
-            </select>
-          </label>
 
-          <button type="button" onClick={handleSubmit} disabled={isButtonDisabled}>
+          <input
+            className="ingredient-modal-form-input"
+            type="text"
+            id="name"
+            name="name"
+            value={name}
+            onChange={handleInputChange}
+            placeholder="Name"
+          />
+          <select
+            className="ingredient-modal-form-select"
+            name="type"
+            id="type"
+            value={type}
+            onChange={handleInputChange}
+          >
+            <option value="" className="ingredient-modal-form-select-option" disabled>Chose an ingredient type...</option>
+            {buildSelectOptions(INGREDIENT_TYPES_MOCK)}
+          </select>
+          <select
+            className="ingredient-modal-form-select"
+            id="unit"
+            name="unit"
+            value={unit}
+            onChange={handleInputChange}
+          >
+            {buildSelectOptions(INGREDIENTS_UNITS_MOCK)}
+          </select>
+          <button className="ingredient-modal-button" type="button" onClick={handleSubmit} disabled={isButtonDisabled}>
             Save
           </button>
         </form>
       )}
       {action === 2 && (
-        <button type="button" onClick={handleDelete}>
+        <button className="ingredient-modal-button" type="button" onClick={handleDelete}>
           DELETE
         </button>
       )}

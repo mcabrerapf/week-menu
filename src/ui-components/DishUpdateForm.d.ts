@@ -5,7 +5,7 @@
  **************************************************************************/
 
 import * as React from "react";
-import { GridProps, TextFieldProps } from "@aws-amplify/ui-react";
+import { GridProps, SelectFieldProps, TextFieldProps } from "@aws-amplify/ui-react";
 import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
 import { Dish } from "../models";
 export declare type ValidationResponse = {
@@ -16,6 +16,7 @@ export declare type ValidationFunction<T> = (value: T, validationResponse: Valid
 export declare type DishUpdateFormInputValues = {
     name?: string;
     type?: string;
+    tags?: string[];
     size?: string;
     time?: string;
     description?: string;
@@ -24,6 +25,7 @@ export declare type DishUpdateFormInputValues = {
 export declare type DishUpdateFormValidationValues = {
     name?: ValidationFunction<string>;
     type?: ValidationFunction<string>;
+    tags?: ValidationFunction<string>;
     size?: ValidationFunction<string>;
     time?: ValidationFunction<string>;
     description?: ValidationFunction<string>;
@@ -33,7 +35,8 @@ export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes
 export declare type DishUpdateFormOverridesProps = {
     DishUpdateFormGrid?: PrimitiveOverrideProps<GridProps>;
     name?: PrimitiveOverrideProps<TextFieldProps>;
-    type?: PrimitiveOverrideProps<TextFieldProps>;
+    type?: PrimitiveOverrideProps<SelectFieldProps>;
+    tags?: PrimitiveOverrideProps<TextFieldProps>;
     size?: PrimitiveOverrideProps<TextFieldProps>;
     time?: PrimitiveOverrideProps<TextFieldProps>;
     description?: PrimitiveOverrideProps<TextFieldProps>;

@@ -7,16 +7,180 @@
 /* eslint-disable */
 import * as React from "react";
 import {
+  Badge,
   Button,
+  Divider,
   Flex,
   Grid,
+  Icon,
+  ScrollView,
   SwitchField,
+  Text,
   TextField,
+  useTheme,
 } from "@aws-amplify/ui-react";
 import { getOverrideProps } from "@aws-amplify/ui-react/internal";
 import { Menu } from "../models";
 import { fetchByPath, validateField } from "./utils";
 import { DataStore } from "aws-amplify";
+function ArrayField({
+  items = [],
+  onChange,
+  label,
+  inputFieldRef,
+  children,
+  hasError,
+  setFieldValue,
+  currentFieldValue,
+  defaultFieldValue,
+  lengthLimit,
+  getBadgeText,
+  errorMessage,
+}) {
+  const labelElement = <Text>{label}</Text>;
+  const {
+    tokens: {
+      components: {
+        fieldmessages: { error: errorStyles },
+      },
+    },
+  } = useTheme();
+  const [selectedBadgeIndex, setSelectedBadgeIndex] = React.useState();
+  const [isEditing, setIsEditing] = React.useState();
+  React.useEffect(() => {
+    if (isEditing) {
+      inputFieldRef?.current?.focus();
+    }
+  }, [isEditing]);
+  const removeItem = async (removeIndex) => {
+    const newItems = items.filter((value, index) => index !== removeIndex);
+    await onChange(newItems);
+    setSelectedBadgeIndex(undefined);
+  };
+  const addItem = async () => {
+    if (
+      currentFieldValue !== undefined &&
+      currentFieldValue !== null &&
+      currentFieldValue !== "" &&
+      !hasError
+    ) {
+      const newItems = [...items];
+      if (selectedBadgeIndex !== undefined) {
+        newItems[selectedBadgeIndex] = currentFieldValue;
+        setSelectedBadgeIndex(undefined);
+      } else {
+        newItems.push(currentFieldValue);
+      }
+      await onChange(newItems);
+      setIsEditing(false);
+    }
+  };
+  const arraySection = (
+    <React.Fragment>
+      {!!items?.length && (
+        <ScrollView height="inherit" width="inherit" maxHeight={"7rem"}>
+          {items.map((value, index) => {
+            return (
+              <Badge
+                key={index}
+                style={{
+                  cursor: "pointer",
+                  alignItems: "center",
+                  marginRight: 3,
+                  marginTop: 3,
+                  backgroundColor:
+                    index === selectedBadgeIndex ? "#B8CEF9" : "",
+                }}
+                onClick={() => {
+                  setSelectedBadgeIndex(index);
+                  setFieldValue(items[index]);
+                  setIsEditing(true);
+                }}
+              >
+                {getBadgeText ? getBadgeText(value) : value.toString()}
+                <Icon
+                  style={{
+                    cursor: "pointer",
+                    paddingLeft: 3,
+                    width: 20,
+                    height: 20,
+                  }}
+                  viewBox={{ width: 20, height: 20 }}
+                  paths={[
+                    {
+                      d: "M10 10l5.09-5.09L10 10l5.09 5.09L10 10zm0 0L4.91 4.91 10 10l-5.09 5.09L10 10z",
+                      stroke: "black",
+                    },
+                  ]}
+                  ariaLabel="button"
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    removeItem(index);
+                  }}
+                />
+              </Badge>
+            );
+          })}
+        </ScrollView>
+      )}
+      <Divider orientation="horizontal" marginTop={5} />
+    </React.Fragment>
+  );
+  if (lengthLimit !== undefined && items.length >= lengthLimit && !isEditing) {
+    return (
+      <React.Fragment>
+        {labelElement}
+        {arraySection}
+      </React.Fragment>
+    );
+  }
+  return (
+    <React.Fragment>
+      {labelElement}
+      {isEditing && children}
+      {!isEditing ? (
+        <>
+          <Button
+            onClick={() => {
+              setIsEditing(true);
+            }}
+          >
+            Add item
+          </Button>
+          {errorMessage && hasError && (
+            <Text color={errorStyles.color} fontSize={errorStyles.fontSize}>
+              {errorMessage}
+            </Text>
+          )}
+        </>
+      ) : (
+        <Flex justifyContent="flex-end">
+          {(currentFieldValue || isEditing) && (
+            <Button
+              children="Cancel"
+              type="button"
+              size="small"
+              onClick={() => {
+                setFieldValue(defaultFieldValue);
+                setIsEditing(false);
+                setSelectedBadgeIndex(undefined);
+              }}
+            ></Button>
+          )}
+          <Button
+            size="small"
+            variation="link"
+            isDisabled={hasError}
+            onClick={addItem}
+          >
+            {selectedBadgeIndex !== undefined ? "Save" : "Add"}
+          </Button>
+        </Flex>
+      )}
+      {arraySection}
+    </React.Fragment>
+  );
+}
 export default function MenuCreateForm(props) {
   const {
     clearOnSuccess = true,
@@ -31,18 +195,37 @@ export default function MenuCreateForm(props) {
   const initialValues = {
     name: "",
     favourite: false,
+    description: "",
+    tags: [],
+    menuDessert: "",
   };
   const [name, setName] = React.useState(initialValues.name);
   const [favourite, setFavourite] = React.useState(initialValues.favourite);
+  const [description, setDescription] = React.useState(
+    initialValues.description
+  );
+  const [tags, setTags] = React.useState(initialValues.tags);
+  const [menuDessert, setMenuDessert] = React.useState(
+    initialValues.menuDessert
+  );
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     setName(initialValues.name);
     setFavourite(initialValues.favourite);
+    setDescription(initialValues.description);
+    setTags(initialValues.tags);
+    setCurrentTagsValue("");
+    setMenuDessert(initialValues.menuDessert);
     setErrors({});
   };
+  const [currentTagsValue, setCurrentTagsValue] = React.useState("");
+  const tagsRef = React.createRef();
   const validations = {
     name: [{ type: "Required" }],
     favourite: [],
+    description: [],
+    tags: [],
+    menuDessert: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -72,6 +255,9 @@ export default function MenuCreateForm(props) {
         let modelFields = {
           name,
           favourite,
+          description,
+          tags,
+          menuDessert,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -128,6 +314,9 @@ export default function MenuCreateForm(props) {
             const modelFields = {
               name: value,
               favourite,
+              description,
+              tags,
+              menuDessert,
             };
             const result = onChange(modelFields);
             value = result?.name ?? value;
@@ -153,6 +342,9 @@ export default function MenuCreateForm(props) {
             const modelFields = {
               name,
               favourite: value,
+              description,
+              tags,
+              menuDessert,
             };
             const result = onChange(modelFields);
             value = result?.favourite ?? value;
@@ -167,6 +359,108 @@ export default function MenuCreateForm(props) {
         hasError={errors.favourite?.hasError}
         {...getOverrideProps(overrides, "favourite")}
       ></SwitchField>
+      <TextField
+        label="Description"
+        isRequired={false}
+        isReadOnly={false}
+        value={description}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              name,
+              favourite,
+              description: value,
+              tags,
+              menuDessert,
+            };
+            const result = onChange(modelFields);
+            value = result?.description ?? value;
+          }
+          if (errors.description?.hasError) {
+            runValidationTasks("description", value);
+          }
+          setDescription(value);
+        }}
+        onBlur={() => runValidationTasks("description", description)}
+        errorMessage={errors.description?.errorMessage}
+        hasError={errors.description?.hasError}
+        {...getOverrideProps(overrides, "description")}
+      ></TextField>
+      <ArrayField
+        onChange={async (items) => {
+          let values = items;
+          if (onChange) {
+            const modelFields = {
+              name,
+              favourite,
+              description,
+              tags: values,
+              menuDessert,
+            };
+            const result = onChange(modelFields);
+            values = result?.tags ?? values;
+          }
+          setTags(values);
+          setCurrentTagsValue("");
+        }}
+        currentFieldValue={currentTagsValue}
+        label={"Tags"}
+        items={tags}
+        hasError={errors?.tags?.hasError}
+        errorMessage={errors?.tags?.errorMessage}
+        setFieldValue={setCurrentTagsValue}
+        inputFieldRef={tagsRef}
+        defaultFieldValue={""}
+      >
+        <TextField
+          label="Tags"
+          isRequired={false}
+          isReadOnly={false}
+          value={currentTagsValue}
+          onChange={(e) => {
+            let { value } = e.target;
+            if (errors.tags?.hasError) {
+              runValidationTasks("tags", value);
+            }
+            setCurrentTagsValue(value);
+          }}
+          onBlur={() => runValidationTasks("tags", currentTagsValue)}
+          errorMessage={errors.tags?.errorMessage}
+          hasError={errors.tags?.hasError}
+          ref={tagsRef}
+          labelHidden={true}
+          {...getOverrideProps(overrides, "tags")}
+        ></TextField>
+      </ArrayField>
+      <TextField
+        label="Menu dessert"
+        isRequired={false}
+        isReadOnly={false}
+        value={menuDessert}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              name,
+              favourite,
+              description,
+              tags,
+              menuDessert: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.menuDessert ?? value;
+          }
+          if (errors.menuDessert?.hasError) {
+            runValidationTasks("menuDessert", value);
+          }
+          setMenuDessert(value);
+        }}
+        onBlur={() => runValidationTasks("menuDessert", menuDessert)}
+        errorMessage={errors.menuDessert?.errorMessage}
+        hasError={errors.menuDessert?.hasError}
+        {...getOverrideProps(overrides, "menuDessert")}
+      ></TextField>
       <Flex
         justifyContent="space-between"
         {...getOverrideProps(overrides, "CTAFlex")}

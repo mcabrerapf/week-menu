@@ -10,8 +10,21 @@ export const createIngredient = /* GraphQL */ `
       id
       name
       type
+      unit
+      Menus {
+        items {
+          id
+          ingredientId
+          dishId
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
+      }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -24,8 +37,21 @@ export const updateIngredient = /* GraphQL */ `
       id
       name
       type
+      unit
+      Menus {
+        items {
+          id
+          ingredientId
+          dishId
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
+      }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -38,8 +64,21 @@ export const deleteIngredient = /* GraphQL */ `
       id
       name
       type
+      unit
+      Menus {
+        items {
+          id
+          ingredientId
+          dishId
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
+      }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -52,10 +91,32 @@ export const createDish = /* GraphQL */ `
       id
       name
       type
+      tags
       size
       time
       description
       instructions
+      Ingredients {
+        items {
+          id
+          ingredientId
+          dishId
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
+      }
+      Menus {
+        items {
+          id
+          dishId
+          menuId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -70,10 +131,32 @@ export const updateDish = /* GraphQL */ `
       id
       name
       type
+      tags
       size
       time
       description
       instructions
+      Ingredients {
+        items {
+          id
+          ingredientId
+          dishId
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
+      }
+      Menus {
+        items {
+          id
+          dishId
+          menuId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -88,10 +171,32 @@ export const deleteDish = /* GraphQL */ `
       id
       name
       type
+      tags
       size
       time
       description
       instructions
+      Ingredients {
+        items {
+          id
+          ingredientId
+          dishId
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
+      }
+      Menus {
+        items {
+          id
+          dishId
+          menuId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -105,6 +210,17 @@ export const createMenu = /* GraphQL */ `
     createMenu(input: $input, condition: $condition) {
       id
       name
+      favourite
+      Dishes {
+        items {
+          id
+          dishId
+          menuId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -118,6 +234,17 @@ export const updateMenu = /* GraphQL */ `
     updateMenu(input: $input, condition: $condition) {
       id
       name
+      favourite
+      Dishes {
+        items {
+          id
+          dishId
+          menuId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -131,6 +258,278 @@ export const deleteMenu = /* GraphQL */ `
     deleteMenu(input: $input, condition: $condition) {
       id
       name
+      favourite
+      Dishes {
+        items {
+          id
+          dishId
+          menuId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createDishIngredient = /* GraphQL */ `
+  mutation CreateDishIngredient(
+    $input: CreateDishIngredientInput!
+    $condition: ModelDishIngredientConditionInput
+  ) {
+    createDishIngredient(input: $input, condition: $condition) {
+      id
+      ingredientId
+      dishId
+      ingredient {
+        id
+        name
+        type
+        unit
+        Menus {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      dish {
+        id
+        name
+        type
+        tags
+        size
+        time
+        description
+        instructions
+        Ingredients {
+          nextToken
+        }
+        Menus {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const updateDishIngredient = /* GraphQL */ `
+  mutation UpdateDishIngredient(
+    $input: UpdateDishIngredientInput!
+    $condition: ModelDishIngredientConditionInput
+  ) {
+    updateDishIngredient(input: $input, condition: $condition) {
+      id
+      ingredientId
+      dishId
+      ingredient {
+        id
+        name
+        type
+        unit
+        Menus {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      dish {
+        id
+        name
+        type
+        tags
+        size
+        time
+        description
+        instructions
+        Ingredients {
+          nextToken
+        }
+        Menus {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const deleteDishIngredient = /* GraphQL */ `
+  mutation DeleteDishIngredient(
+    $input: DeleteDishIngredientInput!
+    $condition: ModelDishIngredientConditionInput
+  ) {
+    deleteDishIngredient(input: $input, condition: $condition) {
+      id
+      ingredientId
+      dishId
+      ingredient {
+        id
+        name
+        type
+        unit
+        Menus {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      dish {
+        id
+        name
+        type
+        tags
+        size
+        time
+        description
+        instructions
+        Ingredients {
+          nextToken
+        }
+        Menus {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const createDishMenu = /* GraphQL */ `
+  mutation CreateDishMenu(
+    $input: CreateDishMenuInput!
+    $condition: ModelDishMenuConditionInput
+  ) {
+    createDishMenu(input: $input, condition: $condition) {
+      id
+      dishId
+      menuId
+      dish {
+        id
+        name
+        type
+        tags
+        size
+        time
+        description
+        instructions
+        Ingredients {
+          nextToken
+        }
+        Menus {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      menu {
+        id
+        name
+        favourite
+        Dishes {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateDishMenu = /* GraphQL */ `
+  mutation UpdateDishMenu(
+    $input: UpdateDishMenuInput!
+    $condition: ModelDishMenuConditionInput
+  ) {
+    updateDishMenu(input: $input, condition: $condition) {
+      id
+      dishId
+      menuId
+      dish {
+        id
+        name
+        type
+        tags
+        size
+        time
+        description
+        instructions
+        Ingredients {
+          nextToken
+        }
+        Menus {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      menu {
+        id
+        name
+        favourite
+        Dishes {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteDishMenu = /* GraphQL */ `
+  mutation DeleteDishMenu(
+    $input: DeleteDishMenuInput!
+    $condition: ModelDishMenuConditionInput
+  ) {
+    deleteDishMenu(input: $input, condition: $condition) {
+      id
+      dishId
+      menuId
+      dish {
+        id
+        name
+        type
+        tags
+        size
+        time
+        description
+        instructions
+        Ingredients {
+          nextToken
+        }
+        Menus {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      menu {
+        id
+        name
+        favourite
+        Dishes {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }

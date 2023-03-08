@@ -23,7 +23,7 @@ function Main({ signOut }) {
 }
 
 Main.propTypes = {
-  signOut: PropTypes.bool.isRequired,
+  signOut: PropTypes.func.isRequired,
 };
 
 export default Main;

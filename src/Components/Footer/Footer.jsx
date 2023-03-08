@@ -27,7 +27,7 @@ function Footer({ signOut }) {
 }
 
 Footer.propTypes = {
-  signOut: PropTypes.bool.isRequired,
+  signOut: PropTypes.func.isRequired,
 };
 
 export default Footer;

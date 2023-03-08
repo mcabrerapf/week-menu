@@ -54,6 +54,10 @@ export const GET_ALL_DISHES_QUERY = `
       items {
         id
         name
+        ingredients {
+          id
+          quantity
+        }
         type
         size
         time
@@ -71,25 +75,43 @@ export const GET_MENU_QUERY = `
     getMenu(id: $id) {
       id
       name
+      favourite
+      description
+      tags
+      menuDessert
+      days {
+        name
+        breakfast
+        lunch
+        dinner
+        dessert
+      }
       createdAt
       updatedAt
     }
   }
 `;
 export const GET_ALL_MENUS_QUERY = `
-  query ListMenus(
-    $filter: ModelMenuFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listMenus(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
+query ListMenu($filter: ModelMenuFilterInput, $limit: Int, $nextToken: String) {
+  listMenus(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      name
+      favourite
+      description
+      tags
+      menuDessert
+      days {
         name
-        createdAt
-        updatedAt
+        breakfast
+        lunch
+        dinner
+        dessert
       }
-      nextToken
+      createdAt
+      updatedAt
     }
+    nextToken
   }
+}
 `;

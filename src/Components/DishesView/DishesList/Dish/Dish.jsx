@@ -4,9 +4,9 @@ import './Dish.css';
 import { capitalizeFirstLetter } from '../../../helpers';
 
 function Dish({
-  label, type, handleDelete, handleEdit, dish,
+  name, type, handleDelete, handleEdit, dish,
 }) {
-  const parsedLabel = capitalizeFirstLetter(label);
+  const parsedLabel = capitalizeFirstLetter(name);
 
   return (
     <li className="dish">
@@ -25,11 +25,15 @@ function Dish({
 }
 
 Dish.propTypes = {
-  label: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
   handleDelete: PropTypes.func.isRequired,
   handleEdit: PropTypes.func.isRequired,
   dish: PropTypes.shape().isRequired,
+  type: PropTypes.string,
+};
+
+Dish.defaultProps = {
+  type: '',
 };
 
 export default Dish;
