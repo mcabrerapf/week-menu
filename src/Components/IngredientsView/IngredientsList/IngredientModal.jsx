@@ -5,11 +5,8 @@ import {
   handleCreateIngredient, handleUpdateIngredient, handleGetAllIngredients, handleDeleteIngredient,
 } from '../../../Services';
 import { initData } from './helpers';
+import { buildSelectOptions } from '../../helpers';
 
-const buildSelectOptions = (options) => options
-  .map(({
-    value, name,
-  }) => <option key={value} value={value}>{name}</option>);
 function IngredentModal({
   ingredient, action, setIngredients, setShowModal,
 }) {
@@ -52,12 +49,19 @@ function IngredentModal({
     setIngredients(updatedIngredientList);
     setShowModal({ show: false });
   };
+  const isEdit = action === 0 || action === 2;
 
   return (
     <div className="ingredient-modal-content">
-      {action !== 2 && (
+      {action === 1 && (
+        <div>
+          <div>{name}</div>
+          <div>{type}</div>
+          <div>{unit}</div>
+        </div>
+      )}
+      {isEdit && (
         <form className="ingredient-modal-form">
-
           <input
             className="ingredient-modal-form-input"
             type="text"
@@ -84,6 +88,7 @@ function IngredentModal({
             value={unit}
             onChange={handleInputChange}
           >
+            <option value="" className="ingredient-modal-form-select-option" disabled>Chose an ingredient unit...</option>
             {buildSelectOptions(INGREDIENTS_UNITS_MOCK)}
           </select>
           <button className="ingredient-modal-button" type="button" onClick={handleSubmit} disabled={isButtonDisabled}>
@@ -91,7 +96,7 @@ function IngredentModal({
           </button>
         </form>
       )}
-      {action === 2 && (
+      {action === 3 && (
         <button className="ingredient-modal-button" type="button" onClick={handleDelete}>
           DELETE
         </button>

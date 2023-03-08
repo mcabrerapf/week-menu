@@ -1,6 +1,5 @@
 .dish {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     width: 100%;
     margin: 5px 0;
@@ -13,11 +12,17 @@
 .dish .dish-label {
     padding-left: 5px;
     font-weight: 500;
-    max-width: 50%;
+    width: 50%;
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .dish .dish-buttons {
     display: flex;
+    width: 50%;
+    justify-content: flex-end;
 }
 
 .dish .dish-buttons button {

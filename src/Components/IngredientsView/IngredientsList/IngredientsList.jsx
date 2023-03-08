@@ -4,29 +4,32 @@ import Modal from '../../Modal';
 import Ingredient from './Ingredient';
 import IngredentModal from './IngredientModal';
 import './IngredientsList.css';
+import { getModalHeader } from '../../Modal/helpers';
 
-const getModalHeader = (action) => {
-  switch (action) {
-    case 1:
-      return 'Edit';
-    case 2:
-      return 'Delete';
-
-    default:
-      return 'Add';
-  }
-};
 // TODO: improve this shit
 function IngredientsList({ ingredients, setIngredients }) {
-  const [showModal, setShowModal] = useState({ show: false, action: null, modalData: {} });
-  const { show, action, modalData } = showModal;
+  const [showModal, setShowModal] = useState({
+    show: false, action: null, modalData: {},
+  });
+  const {
+    show, action, modalData,
+  } = showModal;
   if (!ingredients) return null;
-  const handleDelete = (data) => {
-    setShowModal({ show: !show, action: 2, modalData: data });
+
+  const handleNameClick = (data) => {
+    setShowModal({
+      show: !show, action: 1, modalData: data,
+    });
   };
 
   const handleEdit = (data) => {
-    setShowModal({ show: !show, action: 1, modalData: data });
+    setShowModal({
+      show: !show, action: 2, modalData: data,
+    });
+  };
+
+  const handleDelete = (data) => {
+    setShowModal({ show: !show, action: 3, modalData: data });
   };
 
   return (
@@ -39,6 +42,7 @@ function IngredientsList({ ingredients, setIngredients }) {
             type={ingredient.type}
             unit={ingredient.unit}
             ingredient={ingredient}
+            handleNameClick={handleNameClick}
             handleDelete={handleDelete}
             handleEdit={handleEdit}
           />
@@ -57,7 +61,7 @@ function IngredientsList({ ingredients, setIngredients }) {
       {show
         && (
         <Modal
-          headerText={getModalHeader(action)}
+          headerText={getModalHeader(action, modalData.name, 'Ingredient')}
           hideModal={() => setShowModal({ show: false, action: null })}
         >
           <IngredentModal

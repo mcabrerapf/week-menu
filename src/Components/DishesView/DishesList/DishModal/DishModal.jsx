@@ -8,6 +8,7 @@ import {
   handleGetAllIngredients,
 } from '../../../../Services';
 import './DishModal.css';
+import { buildSelectOptions } from '../../../helpers';
 
 const DISH_TYPES_MOCK = [
   {
@@ -41,11 +42,6 @@ const initData = ({
   instructions: instructions || '',
   description: description || '',
 });
-
-const buildSelectOptions = (options) => options
-  .map(({
-    id, name,
-  }) => <option key={id} value={id}>{name}</option>);
 
 function DishModal({
   dish, action, setDishes, setShowModal,
@@ -127,10 +123,14 @@ function DishModal({
       .filter(({ id: currentId }) => ingredientId !== currentId);
     setDishData({ ...dishData, ingredients: updatedIngredients });
   };
+  const isEdit = action === 0 || action === 2;
 
   return (
     <div className="dish-modal-content">
-      {action !== 2 && (
+      {action === 1 && (
+        <div>{name}</div>
+      )}
+      {isEdit && (
         <form className="dish-modal-form">
           <div className="dish-modal-form-inputs">
             <input
@@ -230,7 +230,7 @@ function DishModal({
           </button>
         </form>
       )}
-      {action === 2 && (
+      {action === 3 && (
         <div className="dish-modal-delete-warning">
           <div className="dish-modal-delete-text">
             Are you sure you want to delete

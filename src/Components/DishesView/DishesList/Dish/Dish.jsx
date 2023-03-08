@@ -4,13 +4,22 @@ import './Dish.css';
 import { capitalizeFirstLetter } from '../../../helpers';
 
 function Dish({
-  name, type, handleDelete, handleEdit, dish,
+  name, type, handleDelete, handleEdit, handleNameClick, dish,
 }) {
   const parsedLabel = capitalizeFirstLetter(name);
 
   return (
     <li className="dish">
-      <div className="dish-label">{parsedLabel}</div>
+      <div
+        className="dish-label"
+        role="button"
+        tabIndex={0}
+        onKeyDown={() => handleNameClick(dish)}
+        onClick={() => handleNameClick(dish)}
+      >
+        {parsedLabel}
+
+      </div>
       <div className="dish-buttons">
         {type && <button type="button">{type}</button>}
         <button type="button" className="rounded-button" onClick={() => handleEdit(dish)}>
@@ -28,6 +37,7 @@ Dish.propTypes = {
   name: PropTypes.string.isRequired,
   handleDelete: PropTypes.func.isRequired,
   handleEdit: PropTypes.func.isRequired,
+  handleNameClick: PropTypes.func.isRequired,
   dish: PropTypes.shape().isRequired,
   type: PropTypes.string,
 };

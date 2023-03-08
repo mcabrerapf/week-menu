@@ -1,5 +1,6 @@
+/* eslint-disable react/jsx-filename-extension */
 // import { DISH_TYPES, DAYS } from '../constants';
-
+import React from 'react';
 // createdAt
 // :
 // "2023-03-08T20:11:53.860Z"
@@ -148,10 +149,21 @@ const parseIngredientLabel = (label, i, length, quantity) => {
   return `${label} ${parsedQuantity}${isLast ? ' ' : ', '}`;
 };
 
+const buildSelectOptions = (options) => options
+  .map(({
+    value, id, name,
+  }) => <option key={id || value} value={id || value}>{name}</option>);
+
+// const buildSelectOptions = (options) => options
+// .map(({
+//   id, name,
+// }) => <option key={id} value={id}>{name}</option>);
+
 export {
   capitalizeFirstLetter,
   buildWeekPlan,
   getIngredientsList,
   getSectionIngredients,
   parseIngredientLabel,
+  buildSelectOptions,
 };
