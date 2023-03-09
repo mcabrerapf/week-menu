@@ -29,11 +29,11 @@ function View({
     setListData(sortedItems);
   };
 
-  const hasData = listData && !!listData.length;
+  // const hasData = listData && !!listData.length;
 
   return (
     <div className="view" style={{ display: isHidden ? 'none' : 'flex' }}>
-      {hasData && <List listData={listData} setListData={setSortedData} />}
+      <List listData={listData} setListData={setSortedData} />
     </div>
   );
 }

@@ -1,97 +1,79 @@
 /* eslint-disable react/jsx-filename-extension */
-// import { DISH_TYPES, DAYS } from '../constants';
 import React from 'react';
+import { DAYS } from '../constants';
 import sortBy from './sort-by';
-// createdAt
-// :
-// "2023-03-08T20:11:53.860Z"
-// description
-// :
-// "test descripsh"
-// id
-// :
-// "079e1635-5a01-42b0-b4dc-67fcbb442019"
-// ingredients
-// :
-// [{…}]
-// instructions
-// :
-// "instrucccccc"
-// name
-// :
-// "test with one ing"
-// size
-// :
-// null
-// time
-// :
-// null
-// type
-// :
-// "LUNCH"
-// updatedAt
-// :
-// "2023-03-08T20:11:53.860Z"
 
-// const generateRandom = (min = 0, max = 100) => {
-//   const difference = max - min;
-//   let rand = Math.random();
-//   rand = Math.floor(rand * difference);
-//   rand += min;
-//   return rand;
-// };
+const generateRandom = (min = 0, max = 100) => {
+  const difference = max - min;
+  let rand = Math.random();
+  rand = Math.floor(rand * difference);
+  rand += min;
+  return rand;
+};
 
-// const buildIngredientSections = (dishes) => {
-//   const ingredientSections = {};
-//   Object.keys({}).forEach((key) => {
-//     const label = {}[key];
-//     ingredientSections[label] = [];
-//   });
-//   dishes.forEach(({ ingredients, label: dishLabel }) => {
-//     ingredients.forEach(({ label: currentIngredientLabel, type }) => {
-//       const currentSection = ingredientSections[type];
-//       let foundIndex = null;
-//       const ing = currentSection.find(({ label }, i) => {
-//         if (label === currentIngredientLabel) {
-//           foundIndex = i;
-//           return true;
-//         }
-//         return false;
-//       });
-//       if (!ing) {
-//         currentSection
-//           .push({ label: currentIngredientLabel, dishes: [dishLabel], quantity: 1 });
-//       } else {
-//         currentSection[foundIndex].quantity += 1;
-//         currentSection[foundIndex].dishes = [...currentSection[foundIndex].dishes, dishLabel];
-//       }
-//     });
-//   });
-//   return ingredientSections;
-// };
+const buildIngredientSections = (ingredients) => {
+  const ingredientSections = {};
 
-// const checkIfShouldAddDish = (index, typeToCheck, dishes, indexes) => {
-//   const dish = dishes[index];
-//   if (!dish) return false;
-//   const { type } = dish;
-//   const isChosen = !!indexes.find((chosenIndex) => chosenIndex === index);
-//   return type !== typeToCheck && !isChosen;
-// };
+  ingredients.forEach((ingredient) => {
+    const {
+      id, name, unit, type, quantity, dishName,
+    } = ingredient;
+    const currentSection = ingredientSections[type];
+    if (!currentSection) {
+      ingredientSections[type] = [{
+        id, name, unit, quantity, dishNames: [dishName],
+      }];
+      return;
+    }
+    let found = false;
+    ingredientSections[type] = ingredientSections[type]
+      .map((ingredientToCheck) => {
+        const { id: idToCheck, quantity: qToAdd, dishNames } = ingredientToCheck;
+        const hasBeenAdded = !!dishNames.includes(dishName);
+        const updatedDishNames = hasBeenAdded ? dishNames : [...dishNames, dishName];
+        const updatedQuantity = quantity + qToAdd;
+        if (idToCheck === id) {
+          found = true;
+          return { ...ingredientToCheck, quantity: updatedQuantity, dishNames: updatedDishNames };
+        }
+        return ingredientToCheck;
+      });
+    if (!found) {
+      ingredientSections[type].push({
+        id, name, unit, quantity, dishNames: [dishName],
+      });
+    }
+  });
+  return ingredientSections;
+};
 
-// const buildDishes = (type, allDishes, chosenIndexes) => {
-//   const dishes = [];
-//   for (let lunchCount = 0; lunchCount < 3;) {
-//     const randomIndex = generateRandom(0, allDishes.length);
-//     const shouldAddDish = checkIfShouldAddDish(randomIndex, type, allDishes, chosenIndexes);
-//     if (shouldAddDish) {
-//       const newDish = { ...allDishes[randomIndex] };
-//       chosenIndexes.push(randomIndex);
-//       dishes.push(newDish);
-//       lunchCount += 1;
-//     }
-//   }
-//   return dishes;
-// };
+const checkIfShouldAddDish = (index, typeToCheck, dishes, indexes) => {
+  const dish = dishes[index];
+  if (!dish) return [false];
+  const { type } = dish;
+  const isChosen = !!indexes.find((chosenIndex) => chosenIndex === index);
+  return [type === typeToCheck && !isChosen, dish];
+};
+
+const buildDishes = (type, allDishes, chosenIndexes) => {
+  const dishes = [];
+  const dishIngredients = [];
+  for (let dishCount = 0; dishCount < 3;) {
+    const randomIndex = generateRandom(0, allDishes.length);
+    const [
+      shouldAddDish,
+      newDish,
+    ] = checkIfShouldAddDish(randomIndex, type, allDishes, chosenIndexes);
+    if (shouldAddDish) {
+      const { ingredients, name } = newDish;
+      chosenIndexes.push(randomIndex);
+      dishes.push(newDish);
+      ingredients.forEach((ingredient) => dishIngredients.push({ ...ingredient, dishName: name }));
+      dishCount += 1;
+    }
+  }
+  return [dishes, dishIngredients];
+};
 
 const capitalizeFirstLetter = (string) => string.charAt(0).toUpperCase() + string.slice(1);
 
@@ -106,30 +88,51 @@ const getIngredientsList = (plan) => {
   });
   return ingredientsList;
 };
+const buildDishesWithIngredients = (dishes, allIngredients) => dishes
+  .map((dish) => {
+    const { ingredients } = dish;
+    const parsedIngredients = ingredients.map((ingredient) => {
+      const {
+        id: ingredientId, unit, quantity, type,
+      } = ingredient;
+      const { name, unit: unitMatch, type: typeMatch } = allIngredients
+        .find(({ id: idToCheck }) => idToCheck === ingredientId) || {};
+      return {
+        id: ingredientId,
+        name,
+        unit: unit || unitMatch,
+        type: type || typeMatch,
+        quantity,
+      };
+    });
+    return { ...dish, ingredients: parsedIngredients };
+  });
 
-const buildWeekPlan = (dishes) => {
-  console.log(dishes);
-  return [];
-  // const dishesCopy = [...dishes];
-  // const chosenIndexes = [];
-  // const weekDishes = [];
-  // const finalLunches = buildDishes(DISH_TYPES.dinner, dishesCopy, chosenIndexes);
-  // const finalDinners = buildDishes(DISH_TYPES.lunch, dishesCopy, chosenIndexes);
+const buildWeekPlan = (dishes, ingredients) => {
+  const dishesWithIngredients = buildDishesWithIngredients(dishes, ingredients);
+  const chosenIndexes = [];
+  const weekDishes = [];
+  const [finalLunches, lunchIngredients] = buildDishes('LUNCH', dishesWithIngredients, chosenIndexes);
+  const [finalDinners, dinnerIngredients] = buildDishes('DINNER', dishesWithIngredients, chosenIndexes);
 
-  // finalDinners.forEach((d, i) => {
-  //   weekDishes[i] = [finalLunches[i], finalDinners[i]];
-  // });
-  // const ingredientSections = buildIngredientSections([...finalLunches, ...finalDinners]);
+  finalDinners.forEach((d, i) => {
+    weekDishes[i] = [finalLunches[i], finalDinners[i]];
+  });
 
-  // const finalWeekPlan = [
-  //   { label: DAYS[0][1], meals: [finalLunches[0], finalDinners[0]] },
-  //   { label: DAYS[1][1], meals: [finalLunches[1], finalDinners[1]] },
-  //   { label: DAYS[2][1], meals: [finalLunches[2], finalDinners[2]] },
-  //   { label: DAYS[3][1], meals: [finalLunches[0], finalDinners[0]] },
-  //   { label: DAYS[4][1], meals: [finalLunches[1], finalDinners[1]] },
-  //   { label: DAYS[5][1], meals: [finalLunches[2], finalDinners[2]] },
-  // ];
-  // return [finalWeekPlan, ingredientSections];
+  const ingredientSections = buildIngredientSections(
+    [...lunchIngredients, ...dinnerIngredients],
+  );
+
+  const days = [
+    { name: DAYS[0][1], lunch: finalLunches[0], dinner: finalDinners[0] },
+    { name: DAYS[1][1], lunch: finalLunches[1], dinner: finalDinners[1] },
+    { name: DAYS[2][1], lunch: finalLunches[2], dinner: finalDinners[2] },
+    { name: DAYS[3][1], lunch: finalLunches[0], dinner: finalDinners[0] },
+    { name: DAYS[4][1], lunch: finalLunches[1], dinner: finalDinners[1] },
+    { name: DAYS[5][1], lunch: finalLunches[2], dinner: finalDinners[2] },
+  ];
+
+  return [days, ingredientSections];
 };
 
 const getSectionIngredients = (sectionIngredients, sectionLabel, ingredients) => {

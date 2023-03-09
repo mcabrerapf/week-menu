@@ -4,16 +4,16 @@ import './Day.css';
 import Meal from './Meal';
 
 function Day({ plan }) {
-  const { meals, label } = plan;
+  const { lunch, dinner, name } = plan;
 
   return (
     <div className="day">
       <span className="day-label">
-        {label}
+        {name}
       </span>
       <div className="meals">
-        <Meal meal={meals[0]} />
-        <Meal meal={meals[1]} />
+        <Meal meal={lunch} />
+        <Meal meal={dinner} />
       </div>
     </div>
   );
@@ -21,8 +21,9 @@ function Day({ plan }) {
 
 Day.propTypes = {
   plan: PropTypes.shape({
-    meals: PropTypes.arrayOf(PropTypes.shape),
-    label: PropTypes.string,
+    lunch: PropTypes.shape(),
+    dinner: PropTypes.shape(),
+    name: PropTypes.string,
   }).isRequired,
 };
 

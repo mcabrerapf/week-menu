@@ -8,7 +8,7 @@ function Week({ weekPlan, hidden }) {
 
   return (
     <div className="week-plan" style={{ display: hidden ? 'none' : 'flex' }}>
-      {weekPlan.map((plan) => <Day key={plan.label} plan={plan} />)}
+      {weekPlan.map((day) => <Day key={day.name} plan={day} />)}
     </div>
 
   );

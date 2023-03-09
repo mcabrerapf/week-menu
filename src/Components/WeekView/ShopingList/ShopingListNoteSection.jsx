@@ -21,15 +21,15 @@ function ShopingListNoteSection({ ingredients, label }) {
     <div className="type-section">
       <h3 className="type-section-header">{capitalizeFirstLetter(label)}</h3>
       <p className="type-section-items">
-        {ingredients.map(({ dishes, label: ingredientLabel, quantity }, i) => {
+        {ingredients.map(({ dishNames, name, quantity }, i) => {
           const { length } = ingredients;
-          const parsedLabel = parseIngredientLabel(ingredientLabel, i, length, quantity);
+          const parsedLabel = parseIngredientLabel(name, i, length, quantity);
           return (
             <ShopingListNoteSectionItem
               key={parsedLabel}
               label={parsedLabel}
-              baseLabel={ingredientLabel}
-              dishes={dishes}
+              baseLabel={name}
+              dishes={dishNames}
               setShowTooltip={handleOnClick}
             />
 

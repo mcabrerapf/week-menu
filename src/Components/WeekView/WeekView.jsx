@@ -1,25 +1,26 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import './WeekView.css';
 import { buildWeekPlan } from '../helpers';
 import Week from './Week';
 import ShopingList from './ShopingList';
 import WeekViewButtons from './WeekViewButtons';
-import { handleGetAllDishes } from '../../Services';
+import { serviceHandler } from '../../Services';
+import { GET_ALL_STRING, DISH_STRING, INGREDIENT_STRING } from '../../constants';
+import { useMainContext, MainContext } from '../../Context';
+import Button from '../Button';
 
-function WeekView({ hidden }) {
+function WeekView() {
+  const { view: generalView } = useMainContext(MainContext);
   const [weekPlan, setWeekPlan] = useState([]);
   const [view, setView] = useState(0);
+  const isHidden = generalView !== 'menu';
 
   const handleBuildPlanClick = async () => {
-    const {
-      data,
-    } = await handleGetAllDishes();
-    if (!data) return;
-    const {
-      listDishes: { items },
-    } = data;
-    const newMenu = buildWeekPlan(items);
+    const allDishes = await serviceHandler(GET_ALL_STRING)(DISH_STRING);
+    const allIngredients = await serviceHandler(GET_ALL_STRING)(INGREDIENT_STRING);
+    if (!allDishes) return;
+    const newMenu = buildWeekPlan(allDishes, allIngredients);
     setWeekPlan(newMenu);
   };
 
@@ -27,10 +28,10 @@ function WeekView({ hidden }) {
     setView(newView);
   };
 
-  const [dishes, ingredients] = weekPlan;
+  const [dishes, ingredienSections] = weekPlan;
 
   return (
-    <div className="week-view" style={{ display: hidden ? 'none' : 'flex' }}>
+    <div className="week-view" style={{ display: isHidden ? 'none' : 'flex' }}>
       <div className="week-view-header">
         <WeekViewButtons
           view={view}
@@ -41,18 +42,18 @@ function WeekView({ hidden }) {
       <div className="week-view-content">
         {!dishes && (
         <div className="no-week-container">
-          <button type="button" onClick={handleBuildPlanClick}>Gime FOOOD!</button>
+          <Button handleOnClick={handleBuildPlanClick} buttonText="Gime FOOD!" />
         </div>
         )}
         <Week weekPlan={dishes} hidden={view !== 0} />
-        <ShopingList hidden={view !== 1} ingredients={ingredients} />
+        <ShopingList hidden={view !== 1} ingredients={ingredienSections} />
       </div>
     </div>
   );
 }
 
-WeekView.propTypes = {
-  hidden: PropTypes.bool.isRequired,
-};
+// WeekView.propTypes = {
+//   hidden: PropTypes.bool.isRequired,
+// };
 
 export default WeekView;

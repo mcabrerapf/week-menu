@@ -2,11 +2,14 @@
     display: flex;
     font-size: 14px;
     height: 100%;
+    width: 100%;
     justify-content: center;
     align-items: center;
 }
 
-
+.meal-content {
+    cursor: pointer;
+}
 
 .meal:first-of-type {
     border-bottom: dotted 3px black;

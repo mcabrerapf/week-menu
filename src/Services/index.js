@@ -64,6 +64,9 @@ export const handleDelete = async (name, input) => {
 };
 
 export const handleGetAll = async (name) => {
+  if (!name) console.log({ name });
+  if (!getQueryMatch) console.log({ getQueryMatch });
+  if (!getQueryMatch[name]) console.log(getQueryMatch[name]);
   const [query, dataKeys] = getQueryMatch[name].getAll;
   return fetchData(
     { query },
@@ -81,7 +84,6 @@ export const services = {
 
 export function serviceHandler(action) {
   if (!action || !services[action]) {
-    console.log('NO SERVICE FOUND');
     return () => {};
   }
   return services[action];

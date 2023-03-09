@@ -3,15 +3,15 @@ import PropTypes from 'prop-types';
 import './Main.css';
 import Footer from '../Footer';
 import View from '../View';
-import { INGREDIENT_STRING } from '../../constants';
+import WeekView from '../WeekView';
+import { DISH_STRING, INGREDIENT_STRING } from '../../constants';
 
 function Main({ signOut }) {
   return (
     <div className="main">
       <div className="main-view-container">
-        {/* <WeekView hidden={view !== 0} />
-        <DishesView hidden={view !== 1} /> */}
-        {/* <IngredientsView hidden={view !== 2} /> */}
+        <WeekView />
+        <View name={DISH_STRING} />
         <View name={INGREDIENT_STRING} />
       </div>
       <Footer signOut={signOut} />

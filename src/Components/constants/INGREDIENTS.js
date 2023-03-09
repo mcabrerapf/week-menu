@@ -3,6 +3,9 @@ export const INGREDIENT_UNITS = [
     value: 'UN', name: 'Unidad',
   },
   {
+    value: 'MG', name: 'Miligramos',
+  },
+  {
     value: 'G', name: 'Gramos',
   },
   {
@@ -63,10 +66,3 @@ export const INGREDIENT_TYPES = [
     value: 'SPICE', name: 'Especia',
   },
 ];
-
-export const SELECT_OPTIONS = {
-  ingredient: {
-    type: INGREDIENT_TYPES,
-    unit: INGREDIENT_UNITS,
-  },
-};

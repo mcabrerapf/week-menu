@@ -6,7 +6,7 @@ import MealModalContent from './MealModalContent';
 
 function Meal({ meal }) {
   const [showTooltip, setShowTooltip] = useState(false);
-  const { label } = meal;
+  const { name } = meal;
 
   const handleToggleTooltip = () => {
     setShowTooltip(!showTooltip);
@@ -21,12 +21,12 @@ function Meal({ meal }) {
         onKeyDown={handleToggleTooltip}
         onClick={handleToggleTooltip}
       >
-        {label}
+        {name}
       </div>
 
       {showTooltip
       && (
-      <Modal hideModal={handleToggleTooltip} headerText={label}>
+      <Modal hideModal={handleToggleTooltip} headerText={name}>
         <MealModalContent meal={meal} />
       </Modal>
       )}
@@ -35,10 +35,7 @@ function Meal({ meal }) {
 }
 
 Meal.propTypes = {
-  meal: PropTypes.shape({
-    label: PropTypes.string,
-    description: PropTypes.string,
-  }).isRequired,
+  meal: PropTypes.shape({ name: PropTypes.string }).isRequired,
 };
 
 export default Meal;

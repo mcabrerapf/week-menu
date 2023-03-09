@@ -34,6 +34,11 @@ export const GET_DISH_QUERY = `
     getDish(id: $id) {
       id
       name
+      ingredients {
+        id
+        quantity
+        unit
+      }
       type
       size
       time
@@ -57,6 +62,7 @@ export const GET_ALL_DISHES_QUERY = `
         ingredients {
           id
           quantity
+          unit
         }
         type
         size

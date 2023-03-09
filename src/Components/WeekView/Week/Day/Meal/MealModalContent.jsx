@@ -5,28 +5,28 @@ import './Meal.css';
 // TODO: refactor
 function MealModalContent({ meal }) {
   const {
-    description, instructions, time, ingredients, tags,
+    description, instructions, time, ingredients,
   } = meal;
-  const parsedTags = tags.map((tag, i) => {
-    if (i + 1 < tags.length) return `${tag}, `;
-    return tag;
-  });
+  // const parsedTags = tags.map((tag, i) => {
+  //   if (i + 1 < tags.length) return `${tag}, `;
+  //   return tag;
+  // });
 
-  const parsedIngredients = ingredients.map(({ label }, i) => {
-    if (i + 1 < ingredients.length) return `${label}, `;
-    return label;
+  const parsedIngredients = ingredients.map(({ name }, i) => {
+    if (i + 1 < ingredients.length) return `${name}, `;
+    return name;
   });
 
   return (
     <div className="meal-modal-content">
       <ul>
-        {!!parsedTags.length && (
+        {/* {!!parsedTags.length && (
         <li>
           <span>Tags:</span>
           {' '}
           {parsedTags}
         </li>
-        )}
+        )} */}
         {time && (
         <li>
           <span>Time:</span>

@@ -4,7 +4,7 @@ import './Button.css';
 
 function parseClassName(className, modifier) {
   if (modifier) return `${className} ${modifier}`;
-  return modifier;
+  return className;
 }
 
 function Button({
