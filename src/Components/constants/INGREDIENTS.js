@@ -1,4 +1,4 @@
-export const INGREDIENTS_UNITS_MOCK = [
+export const INGREDIENT_UNITS = [
   {
     value: 'UN', name: 'Unidad',
   },
@@ -37,7 +37,7 @@ export const INGREDIENTS_UNITS_MOCK = [
   },
 ];
 
-export const INGREDIENT_TYPES_MOCK = [
+export const INGREDIENT_TYPES = [
   {
     value: 'OTHER', name: 'Otro',
   },
@@ -63,3 +63,10 @@ export const INGREDIENT_TYPES_MOCK = [
     value: 'SPICE', name: 'Especia',
   },
 ];
+
+export const SELECT_OPTIONS = {
+  ingredient: {
+    type: INGREDIENT_TYPES,
+    unit: INGREDIENT_UNITS,
+  },
+};

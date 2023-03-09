@@ -1,0 +1,10 @@
+
+.list-modal-content {
+    height: 100%;
+}
+
+.list-modal-content .delete {
+    background-color: darkred;
+    color: black;
+    font-weight: 600;
+}

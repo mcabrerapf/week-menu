@@ -1,24 +1,5 @@
-enum DishTypeKeysEnum {
-  BREAKFAST
-  LUNCH
-  DINNER
-  DESSERT
-  VERMUT
-  MUNCH
-}
-
-enum DayKeysEnum {
-  MON
-  TUE
-  WED
-  THU
-  FRI
-  SAT
-  SUN
-}
-
 type DayListItemType {
-  name: DayKeysEnum
+  name: String
   breakfast: [ID]
   lunch: [ID]
   dinner: [ID]
@@ -26,59 +7,35 @@ type DayListItemType {
 }
 
 type IngredientListiItemType {
-  id: ID
+  id: ID!
   quantity: Int
-}
-
-enum IngredientUnitEnum {
-  UN
-  G
-  KG
-  L
-  TSP
-  TBSP
-  PT
-  QT
-  OZ
-  LB
-  ML
-  DOZ
-}
-
-enum IngredientTypeEnum {
-  OTHER
-  MEAT
-  FRUIT
-  VEGETABLE
-  SAUCE
-  LIQUOR
-  FISH
+  unit: String
 }
 
 type Ingredient @model @auth(rules: [{allow: owner}]) {
   id: ID!
   name: String!
-  type: IngredientTypeEnum
-  unit: IngredientUnitEnum
+  type: String!
+  unit: String!
 }
 
 type Dish @model @auth(rules: [{allow: owner}]) {
   id: ID!
   name: String!
-  type: DishTypeKeysEnum
+  type: String
   tags: [String]
   size: String
   time: String
   description: String
   instructions: String
-  ingredients: [IngredientListiItemType]
+  ingredients: [IngredientListiItemType!]
 }
 
 type Menu @model @auth(rules: [{allow: owner}]) {
   id: ID!
   name: String!
   favourite: Boolean
-  days: [DayListItemType]
+  days: [DayListItemType!]
   description: String
   tags: [String]
   menuDessert: ID

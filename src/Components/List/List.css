@@ -1,8 +1,8 @@
-.ingredients-list-container {
+.list-container {
     height: 100%;
 }
 
-.ingredients-list-container .ingredients-list {
+.list-container .list {
     height: 95%;
     width: 100%;
     overflow-y: auto;
@@ -10,7 +10,7 @@
     padding: 5px;
     margin: 0;
 }
-.add-ingredient {
+.add-container {
     height: 5%;
     width: 100%;
     display: flex;
@@ -19,7 +19,7 @@
     align-items: center;
 }
 
-.add-ingredient .add-ingredient-button {
+.add-container .add-button {
     background-color: darkgoldenrod;
     color: black;
     border: none;

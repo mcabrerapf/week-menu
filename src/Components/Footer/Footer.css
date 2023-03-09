@@ -25,6 +25,8 @@ footer .footer-buttons .view-buttons button {
     background-color: black;
     border-right: 1px solid lightblue;
     color: white;
+    border-radius: 0;
+    padding: 5px;
 }
 
 footer .footer-buttons .signout-button {

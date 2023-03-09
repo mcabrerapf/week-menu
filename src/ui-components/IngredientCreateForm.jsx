@@ -6,13 +6,7 @@
 
 /* eslint-disable */
 import * as React from "react";
-import {
-  Button,
-  Flex,
-  Grid,
-  SelectField,
-  TextField,
-} from "@aws-amplify/ui-react";
+import { Button, Flex, Grid, TextField } from "@aws-amplify/ui-react";
 import { getOverrideProps } from "@aws-amplify/ui-react/internal";
 import { Ingredient } from "../models";
 import { fetchByPath, validateField } from "./utils";
@@ -30,8 +24,8 @@ export default function IngredientCreateForm(props) {
   } = props;
   const initialValues = {
     name: "",
-    type: undefined,
-    unit: undefined,
+    type: "",
+    unit: "",
   };
   const [name, setName] = React.useState(initialValues.name);
   const [type, setType] = React.useState(initialValues.type);
@@ -45,8 +39,8 @@ export default function IngredientCreateForm(props) {
   };
   const validations = {
     name: [{ type: "Required" }],
-    type: [],
-    unit: [],
+    type: [{ type: "Required" }],
+    unit: [{ type: "Required" }],
   };
   const runValidationTasks = async (
     fieldName,
@@ -148,10 +142,10 @@ export default function IngredientCreateForm(props) {
         hasError={errors.name?.hasError}
         {...getOverrideProps(overrides, "name")}
       ></TextField>
-      <SelectField
+      <TextField
         label="Type"
-        placeholder="Please select an option"
-        isDisabled={false}
+        isRequired={true}
+        isReadOnly={false}
         value={type}
         onChange={(e) => {
           let { value } = e.target;
@@ -173,47 +167,11 @@ export default function IngredientCreateForm(props) {
         errorMessage={errors.type?.errorMessage}
         hasError={errors.type?.hasError}
         {...getOverrideProps(overrides, "type")}
-      >
-        <option
-          children="Other"
-          value="OTHER"
-          {...getOverrideProps(overrides, "typeoption0")}
-        ></option>
-        <option
-          children="Meat"
-          value="MEAT"
-          {...getOverrideProps(overrides, "typeoption1")}
-        ></option>
-        <option
-          children="Fruit"
-          value="FRUIT"
-          {...getOverrideProps(overrides, "typeoption2")}
-        ></option>
-        <option
-          children="Vegetable"
-          value="VEGETABLE"
-          {...getOverrideProps(overrides, "typeoption3")}
-        ></option>
-        <option
-          children="Sauce"
-          value="SAUCE"
-          {...getOverrideProps(overrides, "typeoption4")}
-        ></option>
-        <option
-          children="Liquor"
-          value="LIQUOR"
-          {...getOverrideProps(overrides, "typeoption5")}
-        ></option>
-        <option
-          children="Fish"
-          value="FISH"
-          {...getOverrideProps(overrides, "typeoption6")}
-        ></option>
-      </SelectField>
-      <SelectField
+      ></TextField>
+      <TextField
         label="Unit"
-        placeholder="Please select an option"
-        isDisabled={false}
+        isRequired={true}
+        isReadOnly={false}
         value={unit}
         onChange={(e) => {
           let { value } = e.target;
@@ -235,68 +193,7 @@ export default function IngredientCreateForm(props) {
         errorMessage={errors.unit?.errorMessage}
         hasError={errors.unit?.hasError}
         {...getOverrideProps(overrides, "unit")}
-      >
-        <option
-          children="Un"
-          value="UN"
-          {...getOverrideProps(overrides, "unitoption0")}
-        ></option>
-        <option
-          children="G"
-          value="G"
-          {...getOverrideProps(overrides, "unitoption1")}
-        ></option>
-        <option
-          children="Kg"
-          value="KG"
-          {...getOverrideProps(overrides, "unitoption2")}
-        ></option>
-        <option
-          children="L"
-          value="L"
-          {...getOverrideProps(overrides, "unitoption3")}
-        ></option>
-        <option
-          children="Tsp"
-          value="TSP"
-          {...getOverrideProps(overrides, "unitoption4")}
-        ></option>
-        <option
-          children="Tbsp"
-          value="TBSP"
-          {...getOverrideProps(overrides, "unitoption5")}
-        ></option>
-        <option
-          children="Pt"
-          value="PT"
-          {...getOverrideProps(overrides, "unitoption6")}
-        ></option>
-        <option
-          children="Qt"
-          value="QT"
-          {...getOverrideProps(overrides, "unitoption7")}
-        ></option>
-        <option
-          children="Oz"
-          value="OZ"
-          {...getOverrideProps(overrides, "unitoption8")}
-        ></option>
-        <option
-          children="Lb"
-          value="LB"
-          {...getOverrideProps(overrides, "unitoption9")}
-        ></option>
-        <option
-          children="Ml"
-          value="ML"
-          {...getOverrideProps(overrides, "unitoption10")}
-        ></option>
-        <option
-          children="Doz"
-          value="DOZ"
-          {...getOverrideProps(overrides, "unitoption11")}
-        ></option>
-      </SelectField>
+      ></TextField>
       <Flex
         justifyContent="space-between"
         {...getOverrideProps(overrides, "CTAFlex")}

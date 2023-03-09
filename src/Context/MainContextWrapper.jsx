@@ -4,7 +4,7 @@ import { MainContextProvider } from './MainContext';
 
 function MainContextWrapper({ children }) {
   const [contextState, setContextState] = useState({
-    view: 0,
+    view: 'menu',
   });
   const stateHandler = (key, value) => {
     setContextState({ ...contextState, [key]: value });

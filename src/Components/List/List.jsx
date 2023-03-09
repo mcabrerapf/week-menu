@@ -1,20 +1,19 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import Modal from '../../Modal';
-import Ingredient from './Ingredient';
-import IngredentModal from './IngredientModal';
-import './IngredientsList.css';
-import { getModalHeader } from '../../Modal/helpers';
+import Modal from '../Modal';
+import ListItem from './ListItem';
+import ListModal from './ListModalContent';
+import './List.css';
+import { getModalHeader } from '../Modal/helpers';
 
-// TODO: improve this shit
-function IngredientsList({ ingredients, setIngredients }) {
+function List({ listData, setListData }) {
   const [showModal, setShowModal] = useState({
     show: false, action: null, modalData: {},
   });
+
   const {
     show, action, modalData,
   } = showModal;
-  if (!ingredients) return null;
 
   const handleNameClick = (data) => {
     setShowModal({
@@ -33,24 +32,21 @@ function IngredientsList({ ingredients, setIngredients }) {
   };
 
   return (
-    <div className="ingredients-list-container">
-      <ul className="ingredients-list">
-        {ingredients.map((ingredient) => (
-          <Ingredient
-            key={ingredient.id}
-            label={ingredient.name}
-            type={ingredient.type}
-            unit={ingredient.unit}
-            ingredient={ingredient}
+    <div className="list-container">
+      <ul className="list">
+        {listData.map((listItem) => (
+          <ListItem
+            key={listItem.id}
+            itemData={listItem}
             handleNameClick={handleNameClick}
             handleDelete={handleDelete}
             handleEdit={handleEdit}
           />
         ))}
       </ul>
-      <div className="add-ingredient">
+      <div className="add-container">
         <button
-          className="add-ingredient-button"
+          className="add-button"
           type="button"
           onClick={() => setShowModal({ show: !show, action: 0, modalData: {} })}
         >
@@ -64,10 +60,10 @@ function IngredientsList({ ingredients, setIngredients }) {
           headerText={getModalHeader(action, modalData.name, 'Ingredient')}
           hideModal={() => setShowModal({ show: false, action: null })}
         >
-          <IngredentModal
-            ingredient={modalData}
+          <ListModal
+            modalData={modalData}
             action={action}
-            setIngredients={setIngredients}
+            setParentData={setListData}
             setShowModal={setShowModal}
           />
         </Modal>
@@ -76,9 +72,9 @@ function IngredientsList({ ingredients, setIngredients }) {
   );
 }
 
-IngredientsList.propTypes = {
-  ingredients: PropTypes.arrayOf(PropTypes.shape()).isRequired,
-  setIngredients: PropTypes.func.isRequired,
+List.propTypes = {
+  listData: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  setListData: PropTypes.func.isRequired,
 };
 
-export default IngredientsList;
+export default List;

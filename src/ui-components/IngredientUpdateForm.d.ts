@@ -5,7 +5,7 @@
  **************************************************************************/
 
 import * as React from "react";
-import { GridProps, SelectFieldProps, TextFieldProps } from "@aws-amplify/ui-react";
+import { GridProps, TextFieldProps } from "@aws-amplify/ui-react";
 import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
 import { Ingredient } from "../models";
 export declare type ValidationResponse = {
@@ -27,8 +27,8 @@ export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes
 export declare type IngredientUpdateFormOverridesProps = {
     IngredientUpdateFormGrid?: PrimitiveOverrideProps<GridProps>;
     name?: PrimitiveOverrideProps<TextFieldProps>;
-    type?: PrimitiveOverrideProps<SelectFieldProps>;
-    unit?: PrimitiveOverrideProps<SelectFieldProps>;
+    type?: PrimitiveOverrideProps<TextFieldProps>;
+    unit?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type IngredientUpdateFormProps = React.PropsWithChildren<{
     overrides?: IngredientUpdateFormOverridesProps | undefined | null;

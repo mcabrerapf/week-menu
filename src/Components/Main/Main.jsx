@@ -1,21 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './Main.css';
-import WeekView from '../WeekView';
-import DishesView from '../DishesView';
-import { useMainContext, MainContext } from '../../Context';
-import IngredientsView from '../IngredientsView';
 import Footer from '../Footer';
+import View from '../View';
+import { INGREDIENT_STRING } from '../../constants';
 
 function Main({ signOut }) {
-  const { view } = useMainContext(MainContext);
-
   return (
     <div className="main">
       <div className="main-view-container">
-        <WeekView hidden={view !== 0} />
-        <DishesView hidden={view !== 1} />
-        <IngredientsView hidden={view !== 2} />
+        {/* <WeekView hidden={view !== 0} />
+        <DishesView hidden={view !== 1} /> */}
+        {/* <IngredientsView hidden={view !== 2} /> */}
+        <View name={INGREDIENT_STRING} />
       </div>
       <Footer signOut={signOut} />
     </div>
