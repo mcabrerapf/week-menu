@@ -27,14 +27,14 @@ function Form({ formData, handleSubmit }) {
     setCurrentData(initData(formData));
   }, []);
 
-  if (!formData) return null;
-  const { name, type, unit } = formData;
+  if (!currentData) return null;
+  const { name, type, unit } = currentData;
 
   const isButtonDisabled = !name || !type || !unit;
 
   const handleSubmitButtonClick = () => {
     if (isButtonDisabled) return;
-    handleSubmit(formData);
+    handleSubmit(currentData);
   };
 
   const handleOnChange = ({ target: { value, name: eName } }) => {

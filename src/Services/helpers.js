@@ -20,6 +20,7 @@ export const fetchData = async (queryObject, dataKeys) => {
     const resultMatch = getResultData(data, dataKeys);
     return resultMatch;
   } catch (error) {
+    console.log(queryObject, dataKeys);
     console.error(error);
     return error;
   }
