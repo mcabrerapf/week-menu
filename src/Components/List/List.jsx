@@ -5,8 +5,10 @@ import ListItem from './ListItem';
 import ListModal from './ListModalContent';
 import './List.css';
 import { getModalHeader } from '../Modal/helpers';
+import { useMainContext, MainContext } from '../../Context';
 
 function List({ listData, setListData }) {
+  const { view } = useMainContext(MainContext);
   const [showModal, setShowModal] = useState({
     show: false, action: null, modalData: {},
   });
@@ -57,7 +59,7 @@ function List({ listData, setListData }) {
       {show
         && (
         <Modal
-          headerText={getModalHeader(action, modalData.name, 'Ingredient')}
+          headerText={getModalHeader(action, modalData.name, view)}
           hideModal={() => setShowModal({ show: false, action: null })}
         >
           <ListModal

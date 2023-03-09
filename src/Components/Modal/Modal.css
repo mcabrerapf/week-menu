@@ -5,8 +5,8 @@
     display: flex;
     top: 0;
     left: 0;
-    height: 100%;
-    width: 100%;
+    /* height: 100%;
+    width: 100%; */
     z-index: 500;
     /* background-color: blue; */
     background-color: rgba(255,255,255,0.5);
@@ -17,8 +17,8 @@
 .modal-background .modal-container {
     display: flex;
     border-radius: 10px;
-    max-width: 90vw;
-    max-height: 90vh;
+    max-width: 90%;
+    max-height: 80%;
     flex-direction: column;
     background-color: lightblue;
     color: black;
@@ -34,7 +34,7 @@
 }
 
 .modal-background .modal-container .modal-content {
-    min-height: 10vh;
-    min-width: 30vw;
+    min-height: 20%;
+    min-width: 50%;
     padding: 10px;
 }

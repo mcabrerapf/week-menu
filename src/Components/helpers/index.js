@@ -153,10 +153,10 @@ const parseIngredientLabel = (label, i, length, quantity) => {
   return `${label} ${parsedQuantity}${isLast ? ' ' : ', '}`;
 };
 
-const buildSelectOptions = (options) => options
+const buildSelectOptions = (options, key) => options
   .map(({
-    value, id, name,
-  }) => <option key={id || value} value={id || value}>{name}</option>);
+    value, id, name, [key]: optionalLabel,
+  }) => <option key={id || value} value={id || value}>{optionalLabel || name}</option>);
 
 export {
   capitalizeFirstLetter,

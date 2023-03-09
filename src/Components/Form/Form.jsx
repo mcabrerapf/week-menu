@@ -102,33 +102,34 @@ function Form({ formData, handleSubmit }) {
 
   return (
     <form className="form">
-      <input
-        className="form-input"
-        autoComplete="off"
-        type="text"
-        id="name"
-        name="name"
-        value={currentData.name}
-        onChange={handleOnChange}
-        placeholder="Name"
-      />
-      <select
-        className="form-select"
-        name="type"
-        id="type"
-        value={currentData.type}
-        onChange={handleOnChange}
-      >
-        <option value="" className="form-select-option" disabled>
-          Choose an
-          {' '}
-          {view}
-          {' '}
-          type...
-        </option>
-        {buildSelectOptions(SELECT_OPTIONS[view].type)}
-      </select>
-      {view === INGREDIENT_STRING && (
+      <div className="form-inputs">
+        <input
+          className="form-input"
+          autoComplete="off"
+          type="text"
+          id="name"
+          name="name"
+          value={currentData.name}
+          onChange={handleOnChange}
+          placeholder="Name"
+        />
+        <select
+          className="form-select"
+          name="type"
+          id="type"
+          value={currentData.type}
+          onChange={handleOnChange}
+        >
+          <option value="" className="form-select-option" disabled>
+            Choose an
+            {' '}
+            {view}
+            {' '}
+            type...
+          </option>
+          {buildSelectOptions(SELECT_OPTIONS[view].type)}
+        </select>
+        {view === INGREDIENT_STRING && (
         <select
           className="form-select"
           id="unit"
@@ -145,8 +146,8 @@ function Form({ formData, handleSubmit }) {
           </option>
           {buildSelectOptions(SELECT_OPTIONS[view].unit)}
         </select>
-      )}
-      {view === DISH_STRING && (
+        )}
+        {view === DISH_STRING && (
         <select
           className="form-select"
           value=""
@@ -157,86 +158,91 @@ function Form({ formData, handleSubmit }) {
           <option value="" className="form-select-option" disabled>Add ingredient</option>
           {buildSelectOptions(ingredientsData)}
         </select>
-      )}
-      {view === DISH_STRING && (
-      <div className="form-ingredients">
-        {currentData.ingredients.map((currentIngredient) => {
-          const { id: currentIngId, quantity, unit } = currentIngredient;
-          if (!currentIngId) return null;
-          const ingMatch = ingredientsData
-            .find(({ id: idToCheck }) => idToCheck === currentIngId);
-          if (!ingMatch) return null;
-          const { name: ingName, unit: defaultUnit } = ingMatch;
-          const iUnit = unit || defaultUnit;
+        )}
+        {view === DISH_STRING && (
+        <div className="form-ingredients">
+          {currentData.ingredients.map((currentIngredient) => {
+            const { id: currentIngId, quantity, unit } = currentIngredient;
+            if (!currentIngId) return null;
+            const ingMatch = ingredientsData
+              .find(({ id: idToCheck }) => idToCheck === currentIngId);
+            if (!ingMatch) return null;
+            const { name: ingName, unit: defaultUnit } = ingMatch;
+            const iUnit = unit || defaultUnit;
 
-          return (
-            <div className="form-ingredients-ingredient" key={currentIngId}>
-              <div className="form-ingredients-ingredient-name">{ingName}</div>
-              <div className="form-ingredients-ingredient-quantity-container">
-                <input
-                  type="number"
-                  className="form-ingredients-ingredient-quantity"
-                  aria-label={currentIngId}
-                  key={currentIngId}
-                  id={currentIngId}
-                  name="quantity"
-                  min={1}
-                  value={quantity}
-                  onChange={() => handleIngredientPropChange(currentIngId, 'quantity', quantity)}
-                />
-                <select
-                  className="form-ingredients-ingredient-unit"
-                  id={currentIngId}
-                  name="unit"
-                  value={iUnit}
-                  onChange={() => handleIngredientPropChange(currentIngId, 'unit', iUnit)}
-                >
-                  <option value="" className="form-select-option" disabled>
-                    Choose an
-                    {' '}
-                    {view}
-                    {' '}
-                    unit...
-                  </option>
-                  {buildSelectOptions(SELECT_OPTIONS[INGREDIENT_STRING].unit)}
-                </select>
-                <button
-                  className="form-ingredients-ingredient-remove"
-                  aria-label={`remove-${currentIngId}`}
-                  type="button"
-                  value={currentIngId}
-                  onClick={() => handleRemoveIngredient(currentIngId)}
-                >
-                  <i className="fa fa-times" aria-hidden="true" />
-                </button>
+            return (
+              <div className="form-ingredients-ingredient" key={currentIngId}>
+                <div className="form-ingredients-ingredient-name">{ingName}</div>
+                <div className="form-ingredients-ingredient-quantity-container">
+                  <input
+                    type="text"
+                    inputMode="numeric"
+                    pattern="[0-9]*"
+                    className="form-ingredients-ingredient-quantity"
+                    aria-label={currentIngId}
+                    key={currentIngId}
+                    id={currentIngId}
+                    name="quantity"
+                    value={quantity}
+                    onFocus={() => handleIngredientPropChange(currentIngId, 'quantity', null)}
+                    onBlur={() => !quantity && handleIngredientPropChange(currentIngId, 'quantity', 1)}
+                    onChange={({ target: { value } }) => !!value && handleIngredientPropChange(currentIngId, 'quantity', value)}
+                  />
+                  <select
+                    className="form-ingredients-ingredient-unit"
+                    id={currentIngId}
+                    name="unit"
+                    value={iUnit}
+                    onChange={({ target: { value } }) => handleIngredientPropChange(currentIngId, 'unit', value)}
+                  >
+                    <option value="" className="form-select-option" disabled>
+                      Choose an
+                      {' '}
+                      {view}
+                      {' '}
+                      unit...
+                    </option>
+                    {buildSelectOptions(SELECT_OPTIONS[INGREDIENT_STRING].unit, 'value')}
+                  </select>
+                  <button
+                    className="form-ingredients-ingredient-remove"
+                    aria-label={`remove-${currentIngId}`}
+                    type="button"
+                    value={currentIngId}
+                    onClick={() => handleRemoveIngredient(currentIngId)}
+                  >
+                    <i className="fa fa-times" aria-hidden="true" />
+                  </button>
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
+        )}
+        {view === DISH_STRING && (
+        <textarea
+          className="form-textarea"
+          autoComplete="off"
+          id="description"
+          name="description"
+          value={currentData.description}
+          onChange={handleOnChange}
+          placeholder="Dish description..."
+        />
+        )}
+        {view === DISH_STRING && (
+        <textarea
+          className="form-textarea"
+          autoComplete="off"
+          id="instructions"
+          name="instructions"
+          value={currentData.instructions}
+          onChange={handleOnChange}
+          placeholder="Dish instructions..."
+        />
+        )}
       </div>
-      )}
-      {view === DISH_STRING && (
-      <textarea
-        className="form-textarea"
-        autoComplete="off"
-        id="description"
-        name="description"
-        value={currentData.description}
-        onChange={handleOnChange}
-        placeholder="Dish description..."
-      />
-      )}
-      {view === DISH_STRING && (
-      <textarea
-        className="form-textarea"
-        autoComplete="off"
-        id="instructions"
-        name="instructions"
-        value={currentData.instructions}
-        onChange={handleOnChange}
-        placeholder="Dish instructions..."
-      />
-      )}
+
       <Button
         modifier={`submit${checkIsButtonDisabled(view, currentData) ? ' disabled' : ''}`}
         handleOnClick={handleSubmitButtonClick}
