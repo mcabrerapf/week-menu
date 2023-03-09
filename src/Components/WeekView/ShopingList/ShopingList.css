@@ -28,11 +28,19 @@
     padding: 2px;
 }
 
+.shoppin-list-note-container {
+    box-shadow: 0px 3px 15px rgb(0 0 0 / 20%);
+    margin-top: 3vh;
+    margin-right: 5vw;
+    margin-left: 5vw;
+}
+
 .shoping-list-note {
     border-radius: 5px;
-    margin: 15px;
     padding: 15px;
+    max-height: 80vh;
     background: darkgoldenrod;
+    overflow-y: auto;
 }
 
 .type-section-header {
