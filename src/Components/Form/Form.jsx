@@ -9,36 +9,10 @@ import {
   DISH_STRING, GET_ALL_STRING, INGREDIENT_STRING,
 } from '../../constants';
 import { serviceHandler } from '../../Services';
-
-const initDish = ({
-  name, ingredients, type, instructions, description,
-}) => ({
-  name: name || '',
-  type: type || '',
-  // time: time || '',
-  ingredients: ingredients || [],
-  // size: size || '',
-  instructions: instructions || '',
-  description: description || '',
-});
-const initIngredient = ({
-  name, unit, type,
-}) => ({
-  name: name || '',
-  type: type || '',
-  unit: unit || '',
-});
-
-const checkIsButtonDisabled = (view, data) => {
-  const {
-    name, type, unit, ingredients,
-  } = data;
-  if (view === DISH_STRING) return !name || !type || !ingredients;
-  return !name || !type || !unit;
-};
+import { checkIsButtonDisabled, initDish, initIngredient } from './helpers';
 
 function Form({ formData, handleSubmit }) {
-  const { view } = useMainContext(MainContext);
+  const { view, offlineMode } = useMainContext(MainContext);
   const [currentData, setCurrentData] = useState();
   const [ingredientsData, setIngredientData] = useState();
 
@@ -47,7 +21,7 @@ function Form({ formData, handleSubmit }) {
     async function initForm() {
       const initHelper = view === DISH_STRING ? initDish : initIngredient;
       if (view === DISH_STRING) {
-        const ingredients = await serviceHandler(GET_ALL_STRING)(INGREDIENT_STRING);
+        const ingredients = await serviceHandler(GET_ALL_STRING, offlineMode)(INGREDIENT_STRING);
         const sortedIngredients = sortBy(ingredients, 'name', 'alphabetical');
         setIngredientData(sortedIngredients);
         setCurrentData(initHelper(formData));
@@ -98,6 +72,12 @@ function Form({ formData, handleSubmit }) {
       return ing;
     });
     setCurrentData({ ...currentData, ingredients: updatedIngredients });
+  };
+
+  const setCursorOnInputEnd = (event) => {
+    const { value } = event.target;
+    const position = value.length;
+    event.target.setSelectionRange(position, position);
   };
 
   return (
@@ -184,6 +164,7 @@ function Form({ formData, handleSubmit }) {
                     id={currentIngId}
                     name="quantity"
                     value={quantity}
+                    onClick={setCursorOnInputEnd}
                     onFocus={() => handleIngredientPropChange(currentIngId, 'quantity', null)}
                     onBlur={() => !quantity && handleIngredientPropChange(currentIngId, 'quantity', 1)}
                     onChange={({ target: { value } }) => !!value && handleIngredientPropChange(currentIngId, 'quantity', value)}
@@ -204,15 +185,15 @@ function Form({ formData, handleSubmit }) {
                     </option>
                     {buildSelectOptions(SELECT_OPTIONS[INGREDIENT_STRING].unit, 'value')}
                   </select>
-                  <button
-                    className="form-ingredients-ingredient-remove"
+                  <Button
+                    modifier="form-ingredients-ingredient-remove"
                     aria-label={`remove-${currentIngId}`}
                     type="button"
                     value={currentIngId}
                     onClick={() => handleRemoveIngredient(currentIngId)}
                   >
                     <i className="fa fa-times" aria-hidden="true" />
-                  </button>
+                  </Button>
                 </div>
               </div>
             );
@@ -245,7 +226,7 @@ function Form({ formData, handleSubmit }) {
 
       <Button
         modifier={`submit${checkIsButtonDisabled(view, currentData) ? ' disabled' : ''}`}
-        handleOnClick={handleSubmitButtonClick}
+        onClick={handleSubmitButtonClick}
         disabled={checkIsButtonDisabled(view, currentData)}
         buttonText="Save"
       />

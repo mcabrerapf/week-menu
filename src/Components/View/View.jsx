@@ -10,13 +10,13 @@ import { GET_ALL_STRING } from '../../constants';
 function View({
   name,
 }) {
-  const { view } = useMainContext(MainContext);
+  const { view, offlineMode } = useMainContext(MainContext);
   const [listData, setListData] = useState([]);
   const isHidden = view !== name;
 
   useEffect(() => {
     async function getListData() {
-      const items = await serviceHandler(GET_ALL_STRING)(name);
+      const items = await serviceHandler(GET_ALL_STRING, offlineMode)(name);
       if (!items) return;
       const sortedItems = sortBy(items, 'name', 'alphabetical');
       setListData(sortedItems);
@@ -28,8 +28,6 @@ function View({
     const sortedItems = sortBy(data, 'name', 'alphabetical');
     setListData(sortedItems);
   };
-
-  // const hasData = listData && !!listData.length;
 
   return (
     <div className="view" style={{ display: isHidden ? 'none' : 'flex' }}>

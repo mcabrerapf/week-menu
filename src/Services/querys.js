@@ -10,6 +10,7 @@ export const GET_INGREDIENT_QUERY = `
     }
   }
 `;
+
 export const GET_ALL_INGREDIENTS_QUERY = `
   query ListIngredients(
     $filter: ModelIngredientFilterInput
@@ -29,6 +30,7 @@ export const GET_ALL_INGREDIENTS_QUERY = `
     }
   }
 `;
+
 export const GET_DISH_QUERY = `
   query GetDish($id: ID!) {
     getDish(id: $id) {
@@ -49,6 +51,7 @@ export const GET_DISH_QUERY = `
     }
   }
 `;
+
 export const GET_ALL_DISHES_QUERY = `
   query ListDishes(
     $filter: ModelDishFilterInput
@@ -76,6 +79,7 @@ export const GET_ALL_DISHES_QUERY = `
     }
   }
 `;
+
 export const GET_MENU_QUERY = `
   query GetMenu($id: ID!) {
     getMenu(id: $id) {
@@ -97,6 +101,7 @@ export const GET_MENU_QUERY = `
     }
   }
 `;
+
 export const GET_ALL_MENUS_QUERY = `
 query ListMenu($filter: ModelMenuFilterInput, $limit: Int, $nextToken: String) {
   listMenus(filter: $filter, limit: $limit, nextToken: $nextToken) {

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import './ListItem.css';
 import { capitalizeFirstLetter } from '../../helpers';
 
+// TODO: replace with button component
 function ListItem({
   itemData, handleDelete, handleEdit, handleNameClick,
 }) {
@@ -22,7 +23,6 @@ function ListItem({
 
       </div>
       <div className="list-item-buttons">
-        {/* <button type="button">{unit}</button> */}
         <button type="button">{type}</button>
         <button type="button" className="rounded-button" onClick={() => handleEdit(itemData)}>
           <i className="fa fa-pencil-square-o" />

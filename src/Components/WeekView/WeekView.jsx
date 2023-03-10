@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-// import PropTypes from 'prop-types';
 import './WeekView.css';
 import { buildWeekPlan } from '../helpers';
 import Week from './Week';
@@ -11,14 +10,14 @@ import { useMainContext, MainContext } from '../../Context';
 import Button from '../Button';
 
 function WeekView() {
-  const { view: generalView } = useMainContext(MainContext);
+  const { view: generalView, offlineMode } = useMainContext(MainContext);
   const [weekPlan, setWeekPlan] = useState([]);
   const [view, setView] = useState(0);
   const isHidden = generalView !== 'menu';
 
   const handleBuildPlanClick = async () => {
-    const allDishes = await serviceHandler(GET_ALL_STRING)(DISH_STRING);
-    const allIngredients = await serviceHandler(GET_ALL_STRING)(INGREDIENT_STRING);
+    const allDishes = await serviceHandler(GET_ALL_STRING, offlineMode)(DISH_STRING);
+    const allIngredients = await serviceHandler(GET_ALL_STRING, offlineMode)(INGREDIENT_STRING);
     if (!allDishes) return;
     const newMenu = buildWeekPlan(allDishes, allIngredients);
     setWeekPlan(newMenu);
@@ -42,7 +41,7 @@ function WeekView() {
       <div className="week-view-content">
         {!dishes && (
         <div className="no-week-container">
-          <Button handleOnClick={handleBuildPlanClick} buttonText="Gime FOOD!" />
+          <Button onClick={handleBuildPlanClick} buttonText="Gime FOOD!" />
         </div>
         )}
         <Week weekPlan={dishes} hidden={view !== 0} />
@@ -51,9 +50,5 @@ function WeekView() {
     </div>
   );
 }
-
-// WeekView.propTypes = {
-//   hidden: PropTypes.bool.isRequired,
-// };
 
 export default WeekView;

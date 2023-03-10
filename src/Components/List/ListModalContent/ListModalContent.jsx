@@ -14,23 +14,23 @@ import Button from '../../Button';
 function ListModal({
   modalData, action, setParentData, setShowModal,
 }) {
-  const { view } = useMainContext(MainContext);
+  const { view, offlineMode } = useMainContext(MainContext);
   const { id } = modalData;
   const displayForm = action === 0 || action === 2;
 
   const handleSubmit = async (submitData) => {
     const serviceToUse = action === 0
-      ? serviceHandler(CREATE_STRING) : serviceHandler(UPDATE_STRING);
+      ? serviceHandler(CREATE_STRING, offlineMode) : serviceHandler(UPDATE_STRING, offlineMode);
     const parsedData = action === 0 ? submitData : { ...submitData, id };
     await serviceToUse(view, parsedData);
-    const updatedData = await serviceHandler(GET_ALL_STRING)(view);
+    const updatedData = await serviceHandler(GET_ALL_STRING, offlineMode)(view);
     if (updatedData) setParentData(updatedData);
     setShowModal({ show: false });
   };
 
   const handleDelete = async () => {
-    await serviceHandler(DELETE_STRING)(view, { id });
-    const updatedData = await serviceHandler(GET_ALL_STRING)(view);
+    await serviceHandler(DELETE_STRING, offlineMode)(view, { id });
+    const updatedData = await serviceHandler(GET_ALL_STRING, offlineMode)(view);
     if (updatedData) setParentData(updatedData);
     setShowModal({ show: false });
   };
@@ -38,7 +38,7 @@ function ListModal({
   return (
     <div className="list-modal-content">
       {action === 1 && (
-        <div>
+        <div className="list-modal-content-display">
           <div>{modalData.name}</div>
           <div>{modalData.type}</div>
           <div>{modalData.unit}</div>
@@ -48,7 +48,21 @@ function ListModal({
         <Form handleSubmit={handleSubmit} formData={modalData} />
       )}
       {action === 3 && (
-        <Button modifier="delete" buttonText="DELETE" handleOnClick={handleDelete} />
+        <div className="list-modal-content-delete">
+          <div className="list-modal-content-delete-message">
+            <span> Are you sure you want to delete</span>
+            <span>
+              <strong>
+                {modalData.name}
+              </strong>
+            </span>
+          </div>
+          <div className="list-modal-content-delete-buttons">
+            <Button modifier="delete" buttonText="DELETE" onClick={handleDelete} />
+            <Button modifier="cancel" buttonText="Cancel" onClick={() => setShowModal({ show: false })} />
+          </div>
+
+        </div>
 
       )}
     </div>

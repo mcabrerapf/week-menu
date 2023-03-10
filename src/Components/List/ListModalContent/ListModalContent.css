@@ -3,8 +3,25 @@
     height: 100%;
 }
 
+.list-modal-content-delete .list-modal-content-delete-message {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.list-modal-content-delete .list-modal-content-delete-buttons {
+    display: flex;
+}
+
+.list-modal-content-delete .list-modal-content-delete-buttons button {
+    margin: 0 10px;
+}
+
 .list-modal-content .delete {
-    background-color: darkred;
-    color: black;
+    background-color: black;
+    color: white;
     font-weight: 600;
+    border-radius: 5px;
 }

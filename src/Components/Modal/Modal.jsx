@@ -2,8 +2,11 @@ import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import './Modal.css';
 import { capitalizeFirstLetter } from '../helpers';
+import Button from '../Button';
 
-function Modal({ children, hideModal, headerText }) {
+function Modal({
+  children, hideModal, headerText, hideHeader,
+}) {
   const wrapperRef = useRef(null);
 
   useEffect(
@@ -21,14 +24,17 @@ function Modal({ children, hideModal, headerText }) {
     },
     [hideModal, wrapperRef],
   );
-  const parsedHeaderText = capitalizeFirstLetter(headerText);
+  const parsedHeaderText = !hideHeader && capitalizeFirstLetter(headerText);
 
   return (
     <div className="modal-background">
       <div ref={wrapperRef} className="modal-container">
-        {headerText && (
+        {parsedHeaderText && (
         <div className="modal-header">
-          <h3>{parsedHeaderText}</h3>
+          <h3 className="modal-header-text">{parsedHeaderText}</h3>
+          <Button modifier="modal-header-close-button" onClick={hideModal}>
+            <i className="fa fa-times" aria-hidden="true" />
+          </Button>
         </div>
         )}
         <div className="modal-content">
@@ -44,10 +50,12 @@ function Modal({ children, hideModal, headerText }) {
 Modal.propTypes = {
   children: PropTypes.shape().isRequired,
   hideModal: PropTypes.func.isRequired,
+  hideHeader: PropTypes.bool,
   headerText: PropTypes.string,
 };
 
 Modal.defaultProps = {
+  hideHeader: false,
   headerText: '',
 };
 

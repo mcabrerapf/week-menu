@@ -5,7 +5,7 @@ import './ShopingList.css';
 import { capitalizeFirstLetter, parseIngredientLabel } from '../../helpers';
 import ShopingListNoteSectionItem from './ShoppingListNoteSectionItem';
 import Modal from '../../Modal';
-import ShoppingListToolTip from './ShoppingListToolTip';
+import ShoppingListModalContent from './ShoppingListModalContent';
 
 function ShopingListNoteSection({ ingredients, label }) {
   const [showTooltip, setShowTooltip] = useState({ show: false, modalProps: {}, tooltipProps: {} });
@@ -21,15 +21,18 @@ function ShopingListNoteSection({ ingredients, label }) {
     <div className="type-section">
       <h3 className="type-section-header">{capitalizeFirstLetter(label)}</h3>
       <p className="type-section-items">
-        {ingredients.map(({ dishNames, name, quantity }, i) => {
+        {ingredients.map((ingredient, i) => {
+          const { dishNames, name, quantity } = ingredient;
           const { length } = ingredients;
           const parsedLabel = parseIngredientLabel(name, i, length, quantity);
+
           return (
             <ShopingListNoteSectionItem
               key={parsedLabel}
               label={parsedLabel}
               baseLabel={name}
               dishes={dishNames}
+              quantity={quantity}
               setShowTooltip={handleOnClick}
             />
 
@@ -38,7 +41,7 @@ function ShopingListNoteSection({ ingredients, label }) {
       </p>
       {show && (
         <Modal {...modalProps} hideModal={handleOnClick}>
-          <ShoppingListToolTip
+          <ShoppingListModalContent
             {...tooltipProps}
           />
         </Modal>

@@ -54,11 +54,10 @@
     margin-left: 10px;
 }
 
-.shopping-list-tooltip {
-    margin-left: 15px;
-    margin-bottom: 5px;
-}
+/* .shopping-list-modal-content {
 
-.tooltip-list {
-    padding: 0px 5px 0px 20px;
+} */
+.shopping-list-modal-content-list {
+    list-style: none;
+    padding-left: 5px;
 }

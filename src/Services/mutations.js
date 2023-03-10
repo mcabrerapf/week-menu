@@ -89,6 +89,7 @@ export const DELETE_DISH_MUTATION = `
     }
   }
 `;
+
 export const CREATE_MENU_MUTATION = `
   mutation CreateMenu(
     $input: CreateMenuInput!

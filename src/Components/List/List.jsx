@@ -6,6 +6,7 @@ import ListModal from './ListModalContent';
 import './List.css';
 import { getModalHeader } from '../Modal/helpers';
 import { useMainContext, MainContext } from '../../Context';
+import Button from '../Button';
 
 function List({ listData, setListData }) {
   const { view } = useMainContext(MainContext);
@@ -47,18 +48,19 @@ function List({ listData, setListData }) {
         ))}
       </ul>
       <div className="add-container">
-        <button
-          className="add-button"
+        <Button
+          modifier="add-button"
           type="button"
           onClick={() => setShowModal({ show: !show, action: 0, modalData: {} })}
         >
           <i className="fa fa-plus" aria-hidden="true" />
 
-        </button>
+        </Button>
       </div>
       {show
         && (
         <Modal
+          hideHeader={action === 3}
           headerText={getModalHeader(action, modalData.name, view)}
           hideModal={() => setShowModal({ show: false, action: null })}
         >

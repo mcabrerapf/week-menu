@@ -5,6 +5,7 @@ import { MainContextProvider } from './MainContext';
 function MainContextWrapper({ children }) {
   const [contextState, setContextState] = useState({
     view: 'menu',
+    offlineMode: true,
   });
   const stateHandler = (key, value) => {
     setContextState({ ...contextState, [key]: value });

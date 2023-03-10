@@ -1,12 +1,10 @@
 .modal-background {
     position: absolute;
-    height: 100%;
+    height: 100vh;
     width: 100%;
     display: flex;
     top: 0;
     left: 0;
-    /* height: 100%;
-    width: 100%; */
     z-index: 500;
     /* background-color: blue; */
     background-color: rgba(255,255,255,0.5);
@@ -19,6 +17,7 @@
     border-radius: 10px;
     max-width: 90%;
     max-height: 80%;
+    min-width: 50%;
     flex-direction: column;
     background-color: lightblue;
     color: black;
@@ -27,14 +26,28 @@
 
 .modal-background .modal-container .modal-header {
     background-color: darkgoldenrod;
+    display: flex;
     align-items: center;
-    text-align: center;
+    padding: 2px 10px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
 }
 
+
+.modal-background .modal-container .modal-header .modal-header-text {
+    width: 90%;
+    text-align: center;
+}
+
+.modal-background .modal-container .modal-header .modal-header-close-button {
+    background-color: transparent;
+    width: 10%;
+    margin-left: 15px;
+}
+
+
+
 .modal-background .modal-container .modal-content {
     min-height: 20%;
-    min-width: 50%;
     padding: 10px;
 }

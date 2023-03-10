@@ -6,13 +6,19 @@ import {
   CREATE_DISH_MUTATION,
   DELETE_DISH_MUTATION,
   UPDATE_DISH_MUTATION,
+  CREATE_MENU_MUTATION,
+  UPDATE_MENU_MUTATION,
+  DELETE_MENU_MUTATION,
 } from './mutations';
 import {
   GET_INGREDIENT_QUERY,
   GET_ALL_INGREDIENTS_QUERY,
   GET_DISH_QUERY,
   GET_ALL_DISHES_QUERY,
+  GET_MENU_QUERY,
+  GET_ALL_MENUS_QUERY,
 } from './querys';
+import { offlineServices } from './offlineservices';
 
 const getQueryMatch = {
   ingredient: {
@@ -28,6 +34,13 @@ const getQueryMatch = {
     update: [UPDATE_DISH_MUTATION, 'updateDish'],
     delete: [DELETE_DISH_MUTATION, 'deleteDish'],
     getAll: [GET_ALL_DISHES_QUERY, 'listDishes-items'],
+  },
+  menu: {
+    get: [GET_MENU_QUERY, 'getMenu'],
+    create: [CREATE_MENU_MUTATION, 'createMenu'],
+    update: [UPDATE_MENU_MUTATION, 'updateMenu'],
+    delete: [DELETE_MENU_MUTATION, 'deleteMenu'],
+    getAll: [GET_ALL_MENUS_QUERY, 'listMenus-items'],
   },
 };
 
@@ -64,9 +77,6 @@ export const handleDelete = async (name, input) => {
 };
 
 export const handleGetAll = async (name) => {
-  if (!name) console.log({ name });
-  if (!getQueryMatch) console.log({ getQueryMatch });
-  if (!getQueryMatch[name]) console.log(getQueryMatch[name]);
   const [query, dataKeys] = getQueryMatch[name].getAll;
   return fetchData(
     { query },
@@ -82,9 +92,11 @@ export const services = {
   getAll: handleGetAll,
 };
 
-export function serviceHandler(action) {
-  if (!action || !services[action]) {
+export function serviceHandler(action, offlineMode) {
+  const servicesToUse = offlineMode ? offlineServices : services;
+  if (!action || !servicesToUse[action]) {
+    console.log('No actions found for ', action);
     return () => {};
   }
-  return services[action];
+  return servicesToUse[action];
 }
