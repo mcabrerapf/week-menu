@@ -38,7 +38,7 @@
 .shoping-list-note {
     border-radius: 5px;
     padding: 15px;
-    max-height: 80vh;
+    max-height: 75vh;
     background: darkgoldenrod;
     overflow-y: auto;
 }
