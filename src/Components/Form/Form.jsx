@@ -3,31 +3,22 @@ import PropTypes from 'prop-types';
 import './Form.css';
 import Button from '../Button';
 import { MainContext, useMainContext } from '../../Context';
-import { buildSelectOptions, sortBy } from '../helpers';
+import { buildSelectOptions } from '../helpers';
 import { SELECT_OPTIONS } from '../constants';
 import {
-  DISH_STRING, GET_ALL_STRING, INGREDIENT_STRING,
+  DISH_STRING, INGREDIENT_STRING,
 } from '../../constants';
-import { serviceHandler } from '../../Services';
 import { checkIsButtonDisabled, initDish, initIngredient } from './helpers';
 
-function Form({ formData, handleSubmit }) {
-  const { view, offlineMode } = useMainContext(MainContext);
+function Form({ formData, handleSubmit, ingredientsData }) {
+  const { view } = useMainContext(MainContext);
   const [currentData, setCurrentData] = useState();
-  const [ingredientsData, setIngredientData] = useState();
 
   useEffect(() => {
     // TODO: check why double api call on init
     async function initForm() {
       const initHelper = view === DISH_STRING ? initDish : initIngredient;
-      if (view === DISH_STRING) {
-        const ingredients = await serviceHandler(GET_ALL_STRING, offlineMode)(INGREDIENT_STRING);
-        const sortedIngredients = sortBy(ingredients, 'name', 'alphabetical');
-        setIngredientData(sortedIngredients);
-        setCurrentData(initHelper(formData));
-      } else {
-        setCurrentData(initHelper(formData));
-      }
+      setCurrentData(initHelper(formData));
     }
     initForm();
   }, []);
@@ -79,6 +70,7 @@ function Form({ formData, handleSubmit }) {
     const position = value.length;
     event.target.setSelectionRange(position, position);
   };
+  const { name, type, unit } = currentData;
 
   return (
     <form className="form">
@@ -89,7 +81,7 @@ function Form({ formData, handleSubmit }) {
           type="text"
           id="name"
           name="name"
-          value={currentData.name}
+          value={name}
           onChange={handleOnChange}
           placeholder="Name"
         />
@@ -97,7 +89,7 @@ function Form({ formData, handleSubmit }) {
           className="form-select"
           name="type"
           id="type"
-          value={currentData.type}
+          value={type}
           onChange={handleOnChange}
         >
           <option value="" className="form-select-option" disabled>
@@ -114,7 +106,7 @@ function Form({ formData, handleSubmit }) {
           className="form-select"
           id="unit"
           name="unit"
-          value={currentData.unit}
+          value={unit}
           onChange={handleOnChange}
         >
           <option value="" className="form-select-option" disabled>
@@ -142,13 +134,13 @@ function Form({ formData, handleSubmit }) {
         {view === DISH_STRING && (
         <div className="form-ingredients">
           {currentData.ingredients.map((currentIngredient) => {
-            const { id: currentIngId, quantity, unit } = currentIngredient;
+            const { id: currentIngId, quantity, unit: ingUnit } = currentIngredient;
             if (!currentIngId) return null;
             const ingMatch = ingredientsData
               .find(({ id: idToCheck }) => idToCheck === currentIngId);
             if (!ingMatch) return null;
             const { name: ingName, unit: defaultUnit } = ingMatch;
-            const iUnit = unit || defaultUnit;
+            const iUnit = ingUnit || defaultUnit;
 
             return (
               <div className="form-ingredients-ingredient" key={currentIngId}>
@@ -236,11 +228,13 @@ function Form({ formData, handleSubmit }) {
 
 Form.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
+  ingredientsData: PropTypes.arrayOf(PropTypes.shape),
   formData: PropTypes.shape(),
 
 };
 
 Form.defaultProps = {
+  ingredientsData: [],
   formData: '',
 };
 
