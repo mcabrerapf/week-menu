@@ -3,10 +3,18 @@
     align-items: center;
     width: 100%;
     margin: 5px 0;
-    background-color: darkgoldenrod;
+    background-color: #3f8881;
     border-radius: 10px;
     color: black;
     padding: 10px;
+}
+
+.list-item.ingredient {
+    background-color:#d94d3c!important
+}
+
+.list-item.dish {
+    background-color: #a56133!important;
 }
 
 .list-item .list-item-label {
@@ -26,13 +34,14 @@
 }
 
 .list-item .list-item-buttons button {
-    background-color: lightblue;
+    background-color: #3f8881;
     border: none;
     color: black;
-    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
     font-size: 12px;
     margin: 0px 3px;
     cursor: pointer; 
@@ -42,8 +51,10 @@
 }
 
 .list-item .rounded-button {
-    font-size: 16px!important;
+    font-size: 1rem!important;
     height: 30px;
     width: 30px;
     border-radius: 50%!important;
+   
+
 }

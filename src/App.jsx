@@ -21,7 +21,7 @@ function App() {
     <MainContextWrapper>
       <div className="app">
         {/* {console.log(user)} */}
-        <Authenticator>
+        <Authenticator hideSignUp>
           {({ signOut }) => (
             <div className="app-container">
               <Main signOut={signOut} />

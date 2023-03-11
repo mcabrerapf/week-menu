@@ -10,7 +10,7 @@
 .shoping-list-section {
     margin: 10px;
     padding: 20px;
-    background: darkgoldenrod;
+    background: #3f8881;
     border-radius: 8px;
 }
 
@@ -29,6 +29,7 @@
 }
 
 .shoppin-list-note-container {
+    cursor: pointer;
     box-shadow: 0px 3px 15px rgb(0 0 0 / 20%);
     margin-top: 3vh;
     margin-right: 5vw;
@@ -39,7 +40,7 @@
     border-radius: 5px;
     padding: 15px;
     max-height: 75vh;
-    background: darkgoldenrod;
+    background: #3f8881;
     overflow-y: auto;
 }
 

@@ -40,6 +40,7 @@ function List({ listData, setListData }) {
         {listData.map((listItem) => (
           <ListItem
             key={listItem.id}
+            modifier={view}
             itemData={listItem}
             handleNameClick={handleNameClick}
             handleDelete={handleDelete}

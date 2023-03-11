@@ -5,14 +5,14 @@ import Button from '../Button';
 import { useMainContext, MainContext } from '../../Context';
 import { useLongPress } from '../../Hooks';
 
-function WeekViewButtons({ handleBuildPlanClick, handleChangeView, view }) {
+function WeekViewButtons({ handleBuildMenu, handleChangeView, view }) {
   const { offlineMode, setContextState } = useMainContext(MainContext);
   const checkView = (newView) => {
     if (newView !== view) handleChangeView(newView);
   };
 
   const longPressProps = useLongPress({
-    onClick: handleBuildPlanClick,
+    onClick: handleBuildMenu,
     onLongPress: () => {
       setContextState('offlineMode', !offlineMode);
     },
@@ -41,7 +41,7 @@ function WeekViewButtons({ handleBuildPlanClick, handleChangeView, view }) {
 
 WeekViewButtons.propTypes = {
   view: PropTypes.number.isRequired,
-  handleBuildPlanClick: PropTypes.func.isRequired,
+  handleBuildMenu: PropTypes.func.isRequired,
   handleChangeView: PropTypes.func.isRequired,
 };
 

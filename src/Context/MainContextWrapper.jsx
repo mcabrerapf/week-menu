@@ -7,6 +7,7 @@ function MainContextWrapper({ children }) {
     view: 'menu',
     offlineMode: true,
   });
+
   const stateHandler = (key, value) => {
     setContextState({ ...contextState, [key]: value });
   };

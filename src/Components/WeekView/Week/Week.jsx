@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import './Week.css';
 import Day from './Day';
 
-function Week({ weekPlan, hidden }) {
-  if (!weekPlan || !weekPlan.length) return null;
+function Week({ menu, hidden }) {
+  if (!menu || !menu.length) return null;
 
   return (
     <div className="week-plan" style={{ display: hidden ? 'none' : 'flex' }}>
-      {weekPlan.map((day) => <Day key={day.name} plan={day} />)}
+      {menu.map((day) => <Day key={day.name} day={day} />)}
     </div>
 
   );
@@ -16,11 +16,11 @@ function Week({ weekPlan, hidden }) {
 
 Week.propTypes = {
   hidden: PropTypes.bool.isRequired,
-  weekPlan: PropTypes.arrayOf(PropTypes.shape()),
+  menu: PropTypes.arrayOf(PropTypes.shape()),
 };
 
 Week.defaultProps = {
-  weekPlan: null,
+  menu: null,
 };
 
 export default Week;

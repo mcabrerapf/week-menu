@@ -17,7 +17,7 @@
 
 .week-view .week-view-header .week-view-header-buttons button {
     border-radius: 0;
-    border-right: 1px solid lightblue;
+    border-right: 1px solid #ceb8a1;
     color: black;
     font-size: 16px;
 }
@@ -43,7 +43,7 @@
 .no-week-container button {
     height: 80px;
     width: 120px;
-    background-color: darkgoldenrod;
+    background-color: #3f8881;
     font-size: 16px;
     font-weight: 600;
     border-radius: 10px;

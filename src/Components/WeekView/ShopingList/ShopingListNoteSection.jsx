@@ -8,11 +8,11 @@ import Modal from '../../Modal';
 import ShoppingListModalContent from './ShoppingListModalContent';
 
 function ShopingListNoteSection({ ingredients, label }) {
-  const [showTooltip, setShowTooltip] = useState({ show: false, modalProps: {}, tooltipProps: {} });
-  const { show, modalProps, tooltipProps } = showTooltip;
+  const [showTooltip, setShowTooltip] = useState({ show: false, modalData: null });
+  const { show, modalData } = showTooltip;
 
-  const handleOnClick = (props = {}) => {
-    setShowTooltip({ ...props, show: !show });
+  const handleOnClick = (data) => {
+    setShowTooltip({ show: !show, modalData: data });
   };
 
   if (!ingredients.length) return null;
@@ -22,7 +22,7 @@ function ShopingListNoteSection({ ingredients, label }) {
       <h3 className="type-section-header">{capitalizeFirstLetter(label)}</h3>
       <p className="type-section-items">
         {ingredients.map((ingredient, i) => {
-          const { dishNames, name, quantity } = ingredient;
+          const { name, quantity } = ingredient;
           const { length } = ingredients;
           const parsedLabel = parseIngredientLabel(name, i, length, quantity);
 
@@ -30,19 +30,18 @@ function ShopingListNoteSection({ ingredients, label }) {
             <ShopingListNoteSectionItem
               key={parsedLabel}
               label={parsedLabel}
-              baseLabel={name}
-              dishes={dishNames}
+              ingredient={ingredient}
               quantity={quantity}
-              setShowTooltip={handleOnClick}
+              handleOnClick={handleOnClick}
             />
 
           );
         })}
       </p>
-      {show && (
-        <Modal {...modalProps} hideModal={handleOnClick}>
+      {show && modalData && (
+        <Modal headerText={modalData.name} hideModal={handleOnClick}>
           <ShoppingListModalContent
-            {...tooltipProps}
+            modalData={modalData}
           />
         </Modal>
       )}

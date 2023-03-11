@@ -169,7 +169,7 @@ function Form({ formData, handleSubmit, ingredientsData }) {
                     onChange={({ target: { value } }) => handleIngredientPropChange(currentIngId, 'unit', value)}
                   >
                     <option value="" className="form-select-option" disabled>
-                      Choose an
+                      Choose a
                       {' '}
                       {view}
                       {' '}

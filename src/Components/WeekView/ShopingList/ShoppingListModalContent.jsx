@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function ShoppingListModalContent({
-  dishes,
+  modalData,
 }) {
-  const uniqueDishes = [...new Set([...dishes])];
+  const { dishes } = modalData;
 
   return (
     <div
@@ -12,12 +12,12 @@ function ShoppingListModalContent({
 
     >
       <ul className="shopping-list-modal-content-list">
-        {uniqueDishes.map((dish) => (
-          <li key={dish} className="shopping-list-modal-content-item">
+        {dishes.map((dish) => (
+          <li key={dish.id} className="shopping-list-modal-content-item">
             {' '}
             -
             {' '}
-            {dish}
+            {dish.name}
           </li>
         ))}
       </ul>
@@ -26,7 +26,7 @@ function ShoppingListModalContent({
 }
 
 ShoppingListModalContent.propTypes = {
-  dishes: PropTypes.arrayOf(PropTypes.string).isRequired,
+  modalData: PropTypes.shape().isRequired,
 };
 
 export default ShoppingListModalContent;

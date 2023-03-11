@@ -3,17 +3,16 @@ import PropTypes from 'prop-types';
 import './ShopingList.css';
 
 function ShopingListNoteSectionItem({
-  dishes, label, baseLabel, setShowTooltip,
+  ingredient, label, handleOnClick,
 }) {
-  const handleOnClick = () => {
-    setShowTooltip({
-      modalProps: { headerText: baseLabel },
-      tooltipProps: { ingredientLabel: label, dishes },
-    });
-  };
-
   return (
-    <span role="button" tabIndex={0} className="ingredient-item" onClick={handleOnClick} onKeyDown={handleOnClick}>
+    <span
+      role="button"
+      tabIndex={0}
+      className="ingredient-item"
+      onClick={() => handleOnClick(ingredient)}
+      onKeyDown={() => handleOnClick(ingredient)}
+    >
       {label}
     </span>
   );
@@ -21,9 +20,8 @@ function ShopingListNoteSectionItem({
 
 ShopingListNoteSectionItem.propTypes = {
   label: PropTypes.string.isRequired,
-  baseLabel: PropTypes.string.isRequired,
-  dishes: PropTypes.arrayOf(PropTypes.string).isRequired,
-  setShowTooltip: PropTypes.func.isRequired,
+  ingredient: PropTypes.shape().isRequired,
+  handleOnClick: PropTypes.func.isRequired,
 };
 
 export default ShopingListNoteSectionItem;

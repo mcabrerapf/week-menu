@@ -5,13 +5,13 @@ import { capitalizeFirstLetter } from '../../helpers';
 
 // TODO: replace with button component
 function ListItem({
-  itemData, handleDelete, handleEdit, handleNameClick,
+  modifier, itemData, handleDelete, handleEdit, handleNameClick,
 }) {
   const { name, type } = itemData;
   const parsedLabel = capitalizeFirstLetter(name);
 
   return (
-    <li className="list-item">
+    <li className={`list-item ${modifier}`}>
       <div
         role="button"
         tabIndex={0}
@@ -23,7 +23,8 @@ function ListItem({
 
       </div>
       <div className="list-item-buttons">
-        <button type="button">{type}</button>
+        {/* {unit && <button type="button">{unit}</button>} */}
+        {type && <button type="button">{type}</button>}
         <button type="button" className="rounded-button" onClick={() => handleEdit(itemData)}>
           <i className="fa fa-pencil-square-o" />
         </button>
@@ -40,7 +41,11 @@ ListItem.propTypes = {
   handleDelete: PropTypes.func.isRequired,
   handleEdit: PropTypes.func.isRequired,
   itemData: PropTypes.shape().isRequired,
+  modifier: PropTypes.string,
+};
 
+ListItem.defaultProps = {
+  modifier: '',
 };
 
 export default ListItem;
