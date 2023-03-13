@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './Form.css';
 import Button from '../Button';
@@ -8,22 +8,12 @@ import { SELECT_OPTIONS } from '../constants';
 import {
   DISH_STRING, INGREDIENT_STRING,
 } from '../../constants';
-import { checkIsButtonDisabled, initDish, initIngredient } from './helpers';
+import { checkIsButtonDisabled } from './helpers';
+import IngredientsField from './IngredientsField';
 
 function Form({ formData, handleSubmit, ingredientsData }) {
   const { view } = useMainContext(MainContext);
-  const [currentData, setCurrentData] = useState();
-
-  useEffect(() => {
-    // TODO: check why double api call on init
-    async function initForm() {
-      const initHelper = view === DISH_STRING ? initDish : initIngredient;
-      setCurrentData(initHelper(formData));
-    }
-    initForm();
-  }, []);
-
-  if (!currentData) return null;
+  const [currentData, setCurrentData] = useState(formData);
 
   const handleSubmitButtonClick = () => {
     if (checkIsButtonDisabled(view, currentData)) return;
@@ -38,8 +28,10 @@ function Form({ formData, handleSubmit, ingredientsData }) {
     if (!eValue) return;
     const { ingredients } = currentData;
     if (ingredients.find(({ id: ingId }) => ingId === eValue)) return;
-    const { unit } = ingredientsData.find(({ id: ingId }) => ingId === eValue) || {};
-    const updatedIngredients = [...ingredients, { id: eValue, quantity: 1, unit: unit || 'UN' }];
+    const { unit, name } = ingredientsData.find(({ id: ingId }) => ingId === eValue) || {};
+    const updatedIngredients = [...ingredients, {
+      id: eValue, name, quantity: 1, unit,
+    }];
     setCurrentData({ ...currentData, ingredients: updatedIngredients });
   };
 
@@ -50,7 +42,7 @@ function Form({ formData, handleSubmit, ingredientsData }) {
     setCurrentData({ ...currentData, ingredients: updatedIngredients });
   };
 
-  const handleIngredientPropChange = (propId, propKey, propValue) => {
+  const handleIngredientChange = (propId, propKey, propValue) => {
     const { ingredients } = currentData;
     const updatedIngredients = ingredients.map((ing) => {
       const { id: ingId } = ing;
@@ -65,12 +57,11 @@ function Form({ formData, handleSubmit, ingredientsData }) {
     setCurrentData({ ...currentData, ingredients: updatedIngredients });
   };
 
-  const setCursorOnInputEnd = (event) => {
-    const { value } = event.target;
-    const position = value.length;
-    event.target.setSelectionRange(position, position);
-  };
-  const { name, type, unit } = currentData;
+  const {
+    name, type, unit, ingredients,
+  } = currentData;
+  const buttonClassName = `submit${checkIsButtonDisabled(view, currentData) ? ' disabled' : ''}`;
+  const isDish = view === DISH_STRING;
 
   return (
     <form className="form">
@@ -93,11 +84,7 @@ function Form({ formData, handleSubmit, ingredientsData }) {
           onChange={handleOnChange}
         >
           <option value="" className="form-select-option" disabled>
-            Choose an
-            {' '}
-            {view}
-            {' '}
-            type...
+            Choose a type...
           </option>
           {buildSelectOptions(SELECT_OPTIONS[view].type)}
         </select>
@@ -110,16 +97,12 @@ function Form({ formData, handleSubmit, ingredientsData }) {
           onChange={handleOnChange}
         >
           <option value="" className="form-select-option" disabled>
-            Choose an
-            {' '}
-            {view}
-            {' '}
-            unit...
+            Choose a unit...
           </option>
           {buildSelectOptions(SELECT_OPTIONS[view].unit)}
         </select>
         )}
-        {view === DISH_STRING && (
+        {isDish && (
         <select
           className="form-select"
           value=""
@@ -131,68 +114,16 @@ function Form({ formData, handleSubmit, ingredientsData }) {
           {buildSelectOptions(ingredientsData)}
         </select>
         )}
-        {view === DISH_STRING && (
+        {isDish && (
         <div className="form-ingredients">
-          {currentData.ingredients.map((currentIngredient) => {
-            const { id: currentIngId, quantity, unit: ingUnit } = currentIngredient;
-            if (!currentIngId) return null;
-            const ingMatch = ingredientsData
-              .find(({ id: idToCheck }) => idToCheck === currentIngId);
-            if (!ingMatch) return null;
-            const { name: ingName, unit: defaultUnit } = ingMatch;
-            const iUnit = ingUnit || defaultUnit;
-
-            return (
-              <div className="form-ingredients-ingredient" key={currentIngId}>
-                <div className="form-ingredients-ingredient-name">{ingName}</div>
-                <div className="form-ingredients-ingredient-quantity-container">
-                  <input
-                    type="text"
-                    inputMode="numeric"
-                    pattern="[0-9]*"
-                    className="form-ingredients-ingredient-quantity"
-                    aria-label={currentIngId}
-                    key={currentIngId}
-                    id={currentIngId}
-                    name="quantity"
-                    value={quantity}
-                    onClick={setCursorOnInputEnd}
-                    onFocus={() => handleIngredientPropChange(currentIngId, 'quantity', null)}
-                    onBlur={() => !quantity && handleIngredientPropChange(currentIngId, 'quantity', 1)}
-                    onChange={({ target: { value } }) => !!value && handleIngredientPropChange(currentIngId, 'quantity', value)}
-                  />
-                  <select
-                    className="form-ingredients-ingredient-unit"
-                    id={currentIngId}
-                    name="unit"
-                    value={iUnit}
-                    onChange={({ target: { value } }) => handleIngredientPropChange(currentIngId, 'unit', value)}
-                  >
-                    <option value="" className="form-select-option" disabled>
-                      Choose a
-                      {' '}
-                      {view}
-                      {' '}
-                      unit...
-                    </option>
-                    {buildSelectOptions(SELECT_OPTIONS[INGREDIENT_STRING].unit, 'value')}
-                  </select>
-                  <Button
-                    modifier="form-ingredients-ingredient-remove"
-                    aria-label={`remove-${currentIngId}`}
-                    type="button"
-                    value={currentIngId}
-                    onClick={() => handleRemoveIngredient(currentIngId)}
-                  >
-                    <i className="fa fa-times" aria-hidden="true" />
-                  </Button>
-                </div>
-              </div>
-            );
-          })}
+          <IngredientsField
+            ingredients={ingredients}
+            handleIngredientChange={handleIngredientChange}
+            handleRemoveIngredient={handleRemoveIngredient}
+          />
         </div>
         )}
-        {view === DISH_STRING && (
+        {isDish && (
         <textarea
           className="form-textarea"
           autoComplete="off"
@@ -203,7 +134,7 @@ function Form({ formData, handleSubmit, ingredientsData }) {
           placeholder="Dish description..."
         />
         )}
-        {view === DISH_STRING && (
+        {isDish && (
         <textarea
           className="form-textarea"
           autoComplete="off"
@@ -217,7 +148,7 @@ function Form({ formData, handleSubmit, ingredientsData }) {
       </div>
 
       <Button
-        modifier={`submit${checkIsButtonDisabled(view, currentData) ? ' disabled' : ''}`}
+        modifier={buttonClassName}
         onClick={handleSubmitButtonClick}
         disabled={checkIsButtonDisabled(view, currentData)}
         buttonText="Save"

@@ -29,8 +29,10 @@ function View({
     setListData(sortedItems);
   };
 
+  const className = isHidden ? 'view no-show' : 'view';
+
   return (
-    <div className="view" style={{ display: isHidden ? 'none' : 'flex' }}>
+    <div className={className}>
       <List listData={listData} setListData={setSortedData} />
     </div>
   );

@@ -31,9 +31,10 @@ function WeekView() {
   };
 
   const [menu, ingredienSections] = weekPlan;
+  const className = isHidden ? 'week-view no-show' : 'week-view';
 
   return (
-    <div className="week-view" style={{ display: isHidden ? 'none' : 'flex' }}>
+    <div className={className}>
       <div className="week-view-header">
         <WeekViewButtons
           view={view}

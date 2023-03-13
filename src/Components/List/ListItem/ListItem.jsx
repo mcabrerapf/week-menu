@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './ListItem.css';
 import { capitalizeFirstLetter } from '../../helpers';
+import Button from '../../Button';
 
 // TODO: replace with button component
 function ListItem({
@@ -24,13 +25,13 @@ function ListItem({
       </div>
       <div className="list-item-buttons">
         {/* {unit && <button type="button">{unit}</button>} */}
-        {type && <button type="button">{type}</button>}
-        <button type="button" className="rounded-button" onClick={() => handleEdit(itemData)}>
+        {type && <div className="list-item-type">{type}</div>}
+        <Button modifier="rounded-button" onClick={() => handleEdit(itemData)}>
           <i className="fa fa-pencil-square-o" />
-        </button>
-        <button type="button" className="rounded-button" onClick={() => handleDelete(itemData)}>
+        </Button>
+        <Button modifier="rounded-button" onClick={() => handleDelete(itemData)}>
           <i className="fa trash-o fa-trash-o" />
-        </button>
+        </Button>
       </div>
     </li>
   );

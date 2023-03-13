@@ -1,13 +1,18 @@
 .app {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+	height: 100%;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 }
 
 .app-container {
-  height: 100%;
-  height: calc(var(--vh, 1vh) * 100);
-  width: 100%;
+	height: 100%;
+	height: calc(var(--vh, 1vh) * 100);
+	width: 100%;
+	background-color: #ceb8a1;
+}
+
+.no-show {
+	display: none !important;
 }

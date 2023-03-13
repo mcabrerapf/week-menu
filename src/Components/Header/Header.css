@@ -1,17 +1,37 @@
 .header {
-  /* position: absolute; */
-  /* top: 0px; */
-  width: 100%;
-  min-height: 5vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+	width: 100%;
+	height: 5vh;
 }
 
-.header-text {
-  margin-top: 10px;
+.offline-mode button {
+	color: black !important;
+}
+
+.header .header-buttons {
+	display: flex;
+	height: 100%;
+}
+
+.header .header-buttons .view-buttons {
+	width: 90%;
+	display: flex;
+	justify-content: space-around;
+}
+
+header .header-buttons .view-buttons button {
+	width: 100%;
+	height: 100%;
+	border: none;
+	border-right: 1px solid #ceb8a1;
+	color: white;
+	border-radius: 0;
+	padding: 5px;
+}
+
+header .header-buttons .signout-button {
+	width: 10%;
+	height: 100%;
+	border: none;
+	border-radius: 0;
+	color: white;
 }

@@ -44,8 +44,4 @@ function Main() {
   );
 }
 
-// Main.propTypes = {
-//   signOut: PropTypes.func.isRequired,
-// };
-
 export default Main;

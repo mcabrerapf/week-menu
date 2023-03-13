@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import { Authenticator } from '@aws-amplify/ui-react';
 import { Amplify, AuthModeStrategyType } from 'aws-amplify';
-import { Main, Footer } from './Components';
+import { Main, Header } from './Components';
 import { MainContextWrapper } from './Context';
 // eslint-disable-next-line import/no-unresolved
 import '@aws-amplify/ui-react/styles.css';
@@ -24,8 +24,8 @@ function App() {
         <Authenticator hideSignUp>
           {({ signOut }) => (
             <div className="app-container">
-              <Main signOut={signOut} />
-              <Footer signOut={signOut} />
+              <Header signOut={signOut} />
+              <Main />
             </div>
 
           )}

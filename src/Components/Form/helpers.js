@@ -1,16 +1,28 @@
 import { DISH_STRING } from '../../constants';
 
-export const initDish = ({
-  name, ingredients, type, instructions, description,
-}) => ({
-  name: name || '',
-  type: type || '',
-  // time: time || '',
-  ingredients: ingredients || [],
-  // size: size || '',
-  instructions: instructions || '',
-  description: description || '',
-});
+export const initDish = (dishData, ingredientsData) => {
+  const {
+    name, ingredients = [], type, instructions, description,
+  } = dishData;
+  const ingredientsWithData = ingredients.map(({ id, quantity, unit }) => {
+    const ingredientMatch = ingredientsData.find(({ id: idToCheck }) => idToCheck === id);
+    const { name: ingredientName, unit: defaultUnit, type: ingredientType } = ingredientMatch || {};
+
+    return {
+      id, name: ingredientName, unit: unit || defaultUnit, type: ingredientType, quantity,
+    };
+  });
+
+  return {
+    name: name || '',
+    type: type || '',
+    // time: time || '',
+    ingredients: ingredientsWithData || [],
+    // size: size || '',
+    instructions: instructions || '',
+    description: description || '',
+  };
+};
 
 export const initIngredient = ({
   name, unit, type,

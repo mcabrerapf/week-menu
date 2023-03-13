@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import Modal from '../Modal';
 import ListItem from './ListItem';
-import ListModal from './ListModalContent';
+import ListModal from './ListModal';
 import './List.css';
-import { getModalHeader } from '../Modal/helpers';
 import { useMainContext, MainContext } from '../../Context';
 import Button from '../Button';
 
@@ -60,18 +58,12 @@ function List({ listData, setListData }) {
       </div>
       {show
         && (
-        <Modal
-          hideHeader={action === 3}
-          headerText={getModalHeader(action, modalData.name, view)}
-          hideModal={() => setShowModal({ show: false, action: null })}
-        >
           <ListModal
             modalData={modalData}
             action={action}
             setParentData={setListData}
             setShowModal={setShowModal}
           />
-        </Modal>
         )}
     </div>
   );
