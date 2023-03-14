@@ -19,14 +19,13 @@ function ShopingListNote({ ingredienSections, hidden }) {
   const longPressProps = useLongPress({ onLongPress: () => handleCopyShopingList() });
 
   if (!ingredienSections) return null;
-
+  const className = hidden ? 'shoppin-list-note-container no-show' : 'shoppin-list-note-container';
   return (
-    <div className="shoppin-list-note-container">
+    <div className={className}>
       <div
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...longPressProps}
         className="shoping-list-note"
-        style={{ display: hidden ? 'none' : 'block' }}
       >
         {Object.keys(ingredienSections).map((sectionKey) => {
           const sectionData = ingredienSections[sectionKey];

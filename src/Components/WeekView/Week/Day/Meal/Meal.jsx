@@ -4,12 +4,20 @@ import './Meal.css';
 import Modal from '../../../../Modal';
 import MealModalContent from './MealModalContent';
 
-function Meal({ meal }) {
+function Meal({
+  meals, dayIndex, type, handleUpdateDish,
+}) {
   const [showTooltip, setShowTooltip] = useState(false);
-  const { name } = meal;
+  const { name } = meals[0];
 
-  const handleToggleTooltip = () => {
+  const handleToggleTooltip = (updateData) => {
     setShowTooltip(!showTooltip);
+    if (!!updateData && updateData.newDish) {
+      const newDishData = { ...updateData.newDish, useAs: type, days: [dayIndex] };
+      handleUpdateDish({
+        ...updateData, newDish: newDishData, dayIndex, type,
+      });
+    }
   };
 
   return (
@@ -27,7 +35,7 @@ function Meal({ meal }) {
       {showTooltip
       && (
       <Modal hideModal={handleToggleTooltip} headerText={name}>
-        <MealModalContent meal={meal} />
+        <MealModalContent meal={meals[0]} handleToggleTooltip={handleToggleTooltip} />
       </Modal>
       )}
     </div>
@@ -35,7 +43,10 @@ function Meal({ meal }) {
 }
 
 Meal.propTypes = {
-  meal: PropTypes.shape({ name: PropTypes.string }).isRequired,
+  meals: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  handleUpdateDish: PropTypes.func.isRequired,
+  dayIndex: PropTypes.number.isRequired,
+  type: PropTypes.string.isRequired,
 };
 
 export default Meal;

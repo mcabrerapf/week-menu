@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './WeekView.css';
-import { buildDishesWithIngredients, buildMenu } from '../helpers';
+import { buildDishesWithIngredients, buildIngredientSections, buildMenu } from '../helpers';
 import Week from './Week';
 import ShopingList from './ShopingList';
 import WeekViewButtons from './WeekViewButtons';
@@ -14,7 +14,6 @@ function WeekView() {
   const { view: generalView, offlineMode } = useMainContext(MainContext);
   const [weekPlan, setWeekPlan] = useState([]);
   const [view, setView] = useState(0);
-  const isHidden = generalView !== 'menu';
 
   const handleBuildMenu = async () => {
     const allDishes = await serviceHandler(GET_ALL_STRING, offlineMode)(DISH_STRING);
@@ -30,7 +29,31 @@ function WeekView() {
     setView(newView);
   };
 
-  const [menu, ingredienSections] = weekPlan;
+  const handleUpdateDish = async (updateData) => {
+    const {
+      changeAll, dayIndex, oldDishId, newDish, type,
+    } = updateData;
+    const [menu] = weekPlan;
+    const allDays = [];
+    const newDishes = menu.map((currentDish) => {
+      const { id, useAs, days } = currentDish;
+      if (id === oldDishId && type === useAs) {
+        if (changeAll) {
+          days.forEach((day) => allDays.push(day));
+          return null;
+        }
+        const updatedDays = currentDish.days.filter((day) => day !== dayIndex);
+        return { ...currentDish, days: updatedDays };
+      }
+
+      return currentDish;
+    }).filter(Boolean);
+    newDishes.push({ ...newDish, days: changeAll ? allDays : [dayIndex] });
+    const newIngredientSections = buildIngredientSections(newDishes);
+    setWeekPlan([newDishes, newIngredientSections]);
+  };
+
+  const isHidden = generalView !== 'menu';
   const className = isHidden ? 'week-view no-show' : 'week-view';
 
   return (
@@ -43,13 +66,21 @@ function WeekView() {
         />
       </div>
       <div className="week-view-content">
-        {!menu && (
+        {!weekPlan[0] && (
         <div className="no-week-container">
           <Button onClick={handleBuildMenu} buttonText="Gime FOOD!" />
         </div>
         )}
-        <Week menu={menu} hidden={view !== 0} />
-        <ShopingList hidden={view !== 1} ingredienSections={ingredienSections} />
+        <Week
+          menu={weekPlan[0]}
+          options={defaultOptions}
+          hidden={view !== 0}
+          handleUpdateDish={handleUpdateDish}
+        />
+        <ShopingList
+          ingredienSections={weekPlan[1]}
+          hidden={view !== 1}
+        />
       </div>
     </div>
   );

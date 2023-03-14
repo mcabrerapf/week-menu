@@ -1,32 +1,55 @@
-import React from 'react';
+/* eslint-disable jsx-a11y/label-has-associated-control */
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './Meal.css';
+import Button from '../../../../Button';
+import { GET_ALL_STRING, DISH_STRING, INGREDIENT_STRING } from '../../../../../constants';
+import { serviceHandler } from '../../../../../Services';
+import { buildSelectOptions, buildDishesWithIngredients } from '../../../../helpers';
+import { useMainContext, MainContext } from '../../../../../Context';
 
 // TODO: refactor
-function MealModalContent({ meal }) {
+function MealModalContent({ meal, handleToggleTooltip }) {
   const {
-    description, instructions, time, ingredients,
+    id, description, instructions, time, ingredients,
   } = meal;
-  // const parsedTags = tags.map((tag, i) => {
-  //   if (i + 1 < tags.length) return `${tag}, `;
-  //   return tag;
-  // });
+  const { offlineMode } = useMainContext(MainContext);
+  const [modalData, setModalData] = useState({ mode: 0, changeAll: false });
+  const {
+    mode, dishes, selectedDish, changeAll,
+  } = modalData;
 
   const parsedIngredients = ingredients.map(({ name }, i) => {
     if (i + 1 < ingredients.length) return `${name}, `;
     return name;
   });
 
+  const handleButtonClick = async () => {
+    if (mode === 0) {
+      const allDishes = await serviceHandler(GET_ALL_STRING, offlineMode)(DISH_STRING);
+      const allIngredients = await serviceHandler(GET_ALL_STRING, offlineMode)(INGREDIENT_STRING);
+      const dishesWithIngredients = buildDishesWithIngredients(allDishes, allIngredients);
+      setModalData({
+        mode: 1, dishes: dishesWithIngredients, selectedDish: id, changeAll: false,
+      });
+    } else {
+      const newDish = dishes.find(({ id: newDishId }) => newDishId === selectedDish);
+      handleToggleTooltip({ newDish, oldDishId: id, changeAll });
+    }
+  };
+
+  const handleOnChange = ({ target: { value, checked, type: eType } }) => {
+    const key = eType === 'checkbox' ? 'changeAll' : 'selectedDish';
+    const valueToUse = eType === 'checkbox' ? checked : value;
+    setModalData({ ...modalData, [key]: valueToUse });
+  };
+
+  const buttonText = mode === 0 ? 'Change dish' : 'Save';
+
   return (
     <div className="meal-modal-content">
+      {mode === 0 && (
       <ul>
-        {/* {!!parsedTags.length && (
-        <li>
-          <span>Tags:</span>
-          {' '}
-          {parsedTags}
-        </li>
-        )} */}
         {time && (
         <li>
           <span>Time:</span>
@@ -54,19 +77,41 @@ function MealModalContent({ meal }) {
         </li>
         )}
       </ul>
+      )}
+      {mode === 1 && (
+      <div>
+        <select
+          className="form-select"
+          name="dish"
+          id="dish"
+          value={selectedDish}
+          onChange={handleOnChange}
+        >
+          <option value="" className="form-select-option" disabled>
+            Choose a dish
+          </option>
+          {buildSelectOptions(dishes)}
+        </select>
+        <div>
+          <label htmlFor="change-all">Change All</label>
+          <input
+            id="change-all"
+            type="checkbox"
+            value={changeAll}
+            onChange={handleOnChange}
+          />
+        </div>
+
+      </div>
+      )}
+      <Button buttonText={buttonText} onClick={handleButtonClick} />
     </div>
   );
 }
 
 MealModalContent.propTypes = {
-  meal: PropTypes.shape({
-    label: PropTypes.string,
-    description: PropTypes.string,
-    instructions: PropTypes.string,
-    time: PropTypes.string,
-    ingredients: PropTypes.arrayOf(PropTypes.shape()),
-    tags: PropTypes.arrayOf(PropTypes.string),
-  }).isRequired,
+  handleToggleTooltip: PropTypes.func.isRequired,
+  meal: PropTypes.shape().isRequired,
 };
 
 export default MealModalContent;

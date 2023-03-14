@@ -4,6 +4,7 @@ import buildDishesWithIngredients from './build-dishes-with-ingredients';
 import capitalizeFirstLetter from './capitalize-first-letter';
 import parseIngredientLabel from './parse-ingredient-label';
 import buildSelectOptions from './build-select-options';
+import buildIngredientSections from './build-ingredient-sections';
 
 export {
   capitalizeFirstLetter,
@@ -12,4 +13,5 @@ export {
   buildSelectOptions,
   sortBy,
   buildDishesWithIngredients,
+  buildIngredientSections,
 };

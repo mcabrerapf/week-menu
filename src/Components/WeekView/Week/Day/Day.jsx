@@ -3,29 +3,36 @@ import PropTypes from 'prop-types';
 import './Day.css';
 import Meal from './Meal';
 
-function Day({ day }) {
-  const { lunch, dinner, name } = day;
-  const hasNoFood = !lunch.length && !dinner.length;
+function Day({
+  name, dayIndex, checked, dishes, handleUpdateDish,
+}) {
+  const breakfasts = dishes.filter(({ useAs }) => useAs === 'BREAKFAST');
+  const lunches = dishes.filter(({ useAs }) => useAs === 'LUNCH');
+  const dinners = dishes.filter(({ useAs }) => useAs === 'DINNER');
 
   return (
-    <div className={`day ${hasNoFood ? 'no-food' : ''}`}>
+    <div className={`day ${checked ? '' : 'no-food'}`}>
       <span className="day-label">
         {name}
       </span>
       <div className="meals">
-        {lunch && lunch[0] && <Meal meal={lunch[0]} />}
-        {dinner && dinner[0] && <Meal meal={dinner[0]} />}
+        {!!breakfasts.length
+        && <Meal meals={breakfasts} type="BREAKFAST" dayIndex={dayIndex} handleUpdateDish={handleUpdateDish} />}
+        {!!lunches.length
+        && <Meal meals={lunches} type="LUNCH" dayIndex={dayIndex} handleUpdateDish={handleUpdateDish} />}
+        {!!dinners.length
+        && <Meal meals={dinners} type="DINNER" dayIndex={dayIndex} handleUpdateDish={handleUpdateDish} />}
       </div>
     </div>
   );
 }
 
 Day.propTypes = {
-  day: PropTypes.shape({
-    lunch: PropTypes.arrayOf(PropTypes.shape),
-    dinner: PropTypes.arrayOf(PropTypes.shape),
-    name: PropTypes.string,
-  }).isRequired,
+  dishes: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  handleUpdateDish: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired,
+  dayIndex: PropTypes.number.isRequired,
+  checked: PropTypes.bool.isRequired,
 };
 
 export default Day;
