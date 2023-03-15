@@ -5,6 +5,7 @@ import capitalizeFirstLetter from './capitalize-first-letter';
 import parseIngredientLabel from './parse-ingredient-label';
 import buildSelectOptions from './build-select-options';
 import buildIngredientSections from './build-ingredient-sections';
+import parseClassName from './parse-classname';
 
 export {
   capitalizeFirstLetter,
@@ -14,4 +15,5 @@ export {
   sortBy,
   buildDishesWithIngredients,
   buildIngredientSections,
+  parseClassName,
 };

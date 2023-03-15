@@ -1,25 +1,46 @@
-import React from 'react';
+/* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable jsx-a11y/no-noninteractive-element-to-interactive-role */
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './ShopingList.css';
+import Input from '../../Input';
 
 function ShopingListNoteSectionItem({
-  ingredient, label, handleOnClick,
+  ingredient, handleOnClick,
 }) {
+  const [gotIt, setGotIt] = useState(false);
+
+  const {
+    name, quantity, unit,
+  } = ingredient;
+  const className = gotIt ? 'shoping-list-section-items-item-name got-it' : 'shoping-list-section-items-item-name';
+  const parsedLabel = `${name} (${quantity}${unit})`;
+
   return (
-    <span
-      role="button"
-      tabIndex={0}
-      className="ingredient-item"
-      onClick={() => handleOnClick(ingredient)}
-      onKeyDown={() => handleOnClick(ingredient)}
+    <div
+      className="shoping-list-section-items-item"
     >
-      {label}
-    </span>
+      <Input
+        modifier="shoping-list-section-items-item-checkbox"
+        id={parsedLabel}
+        type="checkbox"
+        onChange={() => setGotIt(!gotIt)}
+      >
+        <span
+          className={className}
+          role="button"
+          tabIndex={0}
+          onClick={() => handleOnClick(ingredient)}
+          onKeyDown={() => handleOnClick(ingredient)}
+        >
+          {parsedLabel}
+        </span>
+      </Input>
+    </div>
   );
 }
 
 ShopingListNoteSectionItem.propTypes = {
-  label: PropTypes.string.isRequired,
   ingredient: PropTypes.shape().isRequired,
   handleOnClick: PropTypes.func.isRequired,
 };

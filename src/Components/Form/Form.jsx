@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import './Form.css';
 import Button from '../Button';
 import { MainContext, useMainContext } from '../../Context';
-import { buildSelectOptions } from '../helpers';
 import { SELECT_OPTIONS } from '../constants';
 import {
   DISH_STRING, INGREDIENT_STRING,
 } from '../../constants';
 import { checkIsButtonDisabled } from './helpers';
 import IngredientsField from './IngredientsField';
+import Input from '../Input';
 
 function Form({ formData, handleSubmit, ingredientsData }) {
   const { view } = useMainContext(MainContext);
@@ -66,8 +66,7 @@ function Form({ formData, handleSubmit, ingredientsData }) {
   return (
     <form className="form">
       <div className="form-inputs">
-        <input
-          className="form-input"
+        <Input
           autoComplete="off"
           type="text"
           id="name"
@@ -76,43 +75,37 @@ function Form({ formData, handleSubmit, ingredientsData }) {
           onChange={handleOnChange}
           placeholder="Name"
         />
-        <select
-          className="form-select"
+        <Input
           name="type"
           id="type"
           value={type}
           onChange={handleOnChange}
-        >
-          <option value="" className="form-select-option" disabled>
-            Choose a type...
-          </option>
-          {buildSelectOptions(SELECT_OPTIONS[view].type)}
-        </select>
+          placeholder="Choose a type..."
+          selectOptions={SELECT_OPTIONS[view].type}
+          type="select"
+        />
+
         {view === INGREDIENT_STRING && (
-        <select
-          className="form-select"
+        <Input
           id="unit"
           name="unit"
           value={unit}
           onChange={handleOnChange}
-        >
-          <option value="" className="form-select-option" disabled>
-            Choose a unit...
-          </option>
-          {buildSelectOptions(SELECT_OPTIONS[view].unit)}
-        </select>
+          placeholder="Choose a unit..."
+          selectOptions={SELECT_OPTIONS[view].unit}
+          type="select"
+        />
         )}
         {isDish && (
-        <select
-          className="form-select"
-          value=""
-          name="ingredients"
-          id="ingredients"
-          onChange={handleAddIngredient}
-        >
-          <option value="" className="form-select-option" disabled>Add ingredient</option>
-          {buildSelectOptions(ingredientsData)}
-        </select>
+          <Input
+            value=""
+            name="ingredients"
+            id="ingredients"
+            onChange={handleAddIngredient}
+            placeholder="Add ingredient"
+            selectOptions={ingredientsData}
+            type="select"
+          />
         )}
         {isDish && (
         <div className="form-ingredients">
@@ -124,25 +117,24 @@ function Form({ formData, handleSubmit, ingredientsData }) {
         </div>
         )}
         {isDish && (
-        <textarea
-          className="form-textarea"
-          autoComplete="off"
-          id="description"
-          name="description"
-          value={currentData.description}
-          onChange={handleOnChange}
-          placeholder="Dish description..."
-        />
+          <Input
+            id="description"
+            name="description"
+            value={currentData.description}
+            onChange={handleOnChange}
+            placeholder="Dish description..."
+            type="textarea"
+          />
+
         )}
         {isDish && (
-        <textarea
-          className="form-textarea"
-          autoComplete="off"
+        <Input
           id="instructions"
           name="instructions"
           value={currentData.instructions}
           onChange={handleOnChange}
           placeholder="Dish instructions..."
+          type="textarea"
         />
         )}
       </div>

@@ -1,52 +1,49 @@
 .modal-background {
-    position: absolute;
-    height: 100vh;
-    width: 100%;
-    display: flex;
-    top: 0;
-    left: 0;
-    z-index: 500;
-    background-color: rgba(255,255,255,0.5);
-    justify-content: center;
-    align-items: center;
+	position: absolute;
+	height: 100vh;
+	width: 100%;
+	display: flex;
+	top: 0;
+	left: 0;
+	z-index: 500;
+	background-color: rgba(255, 255, 255, 0.5);
+	justify-content: center;
+	align-items: center;
 }
 
 .modal-background .modal-container {
-    display: flex;
-    border-radius: 10px;
-    max-width: 90%;
-    max-height: 80%;
-    min-width: 50%;
-    flex-direction: column;
-    background-color: #ceb8a1;
-    color: black;
-    box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
+	display: flex;
+	border-radius: 10px;
+	max-width: 90%;
+	max-height: 80%;
+	min-width: 50%;
+	flex-direction: column;
+	background-color: #ceb8a1;
+	color: black;
+	box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.5);
 }
 
 .modal-background .modal-container .modal-header {
-    background-color: #3f8881;
-    display: flex;
-    align-items: center;
-    padding: 2px 10px;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+	background-color: #3f8881;
+	display: flex;
+	align-items: center;
+	padding: 2px 10px;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
 }
 
-
 .modal-background .modal-container .modal-header .modal-header-text {
-    width: 90%;
-    text-align: center;
+	width: 90%;
+	text-align: center;
 }
 
 .modal-background .modal-container .modal-header .modal-header-close-button {
-    background-color: transparent;
-    width: 10%;
-    margin-left: 15px;
+	background-color: transparent;
+	width: 10%;
+	margin-left: 15px;
 }
 
-
-
 .modal-background .modal-container .modal-content {
-    min-height: 20%;
-    padding: 10px;
+	min-height: 20%;
+	padding: 10px;
 }

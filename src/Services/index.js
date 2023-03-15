@@ -92,8 +92,10 @@ export const services = {
   getAll: handleGetAll,
 };
 
-export function serviceHandler(action, offlineMode) {
-  const servicesToUse = offlineMode ? offlineServices : services;
+export function serviceHandler(action) {
+  const currentMode = window.localStorage.getItem('week-menu-offline-mode', 1);
+  const isOffline = currentMode === '0';
+  const servicesToUse = isOffline ? offlineServices : services;
   if (!action || !servicesToUse[action]) {
     console.log('No actions found for ', action);
     return () => {};

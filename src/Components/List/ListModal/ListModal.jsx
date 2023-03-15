@@ -19,7 +19,7 @@ import Modal from '../../Modal';
 function ListModal({
   modalData, action, setParentData, setShowModal,
 }) {
-  const { view, offlineMode } = useMainContext(MainContext);
+  const { view } = useMainContext(MainContext);
   const [mmodalData, setModalData] = useState({ modalMode: action });
   const { data, modalMode, ingredientsData } = mmodalData;
   const { id } = modalData;
@@ -29,7 +29,7 @@ function ListModal({
     async function initForm() {
       const isDish = view === DISH_STRING;
       const ingredients = isDish
-        ? await serviceHandler(GET_ALL_STRING, offlineMode)(INGREDIENT_STRING) : [];
+        ? await serviceHandler(GET_ALL_STRING)(INGREDIENT_STRING) : [];
       const sortedIngredients = sortBy(ingredients, 'name', 'alphabetical');
       const initHelper = view === DISH_STRING ? initDish : initIngredient;
       const parsedData = initHelper(modalData, sortedIngredients);
@@ -43,17 +43,17 @@ function ListModal({
   };
   const handleSubmit = async (submitData) => {
     const serviceToUse = action === 0
-      ? serviceHandler(CREATE_STRING, offlineMode) : serviceHandler(UPDATE_STRING, offlineMode);
+      ? serviceHandler(CREATE_STRING) : serviceHandler(UPDATE_STRING);
     const parsedData = action === 0 ? submitData : { ...submitData, id };
     await serviceToUse(view, parsedData);
-    const updatedData = await serviceHandler(GET_ALL_STRING, offlineMode)(view);
+    const updatedData = await serviceHandler(GET_ALL_STRING)(view);
     if (updatedData) setParentData(updatedData);
     setShowModal({ show: false });
   };
 
   const handleDelete = async () => {
-    await serviceHandler(DELETE_STRING, offlineMode)(view, { id });
-    const updatedData = await serviceHandler(GET_ALL_STRING, offlineMode)(view);
+    await serviceHandler(DELETE_STRING)(view, { id });
+    const updatedData = await serviceHandler(GET_ALL_STRING)(view);
     if (updatedData) setParentData(updatedData);
     setShowModal({ show: false });
   };

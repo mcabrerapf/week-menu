@@ -18,14 +18,14 @@ import { useLongPress } from '../../Hooks';
 import { serviceHandler } from '../../Services';
 
 function Footer({ signOut }) {
-  const { view, offlineMode, setContextState } = useMainContext(MainContext);
+  const { view, setContextState } = useMainContext(MainContext);
 
   const handleOnClick = (newView) => {
     if (newView !== view) setContextState('view', newView);
   };
 
   const handleCopyList = async (value) => {
-    const items = await serviceHandler(GET_ALL_STRING, offlineMode)(value);
+    const items = await serviceHandler(GET_ALL_STRING)(value);
     navigator.clipboard.writeText(JSON.stringify(items));
     console.log(`Copied ${value} list to clipboard`);
   };
@@ -38,7 +38,7 @@ function Footer({ signOut }) {
   const checkIfSelected = (check) => (view === check ? 'selected' : '');
 
   return (
-    <header className={`header${offlineMode ? ' offline-mode' : ''}`}>
+    <header className="header">
       <div className="header-buttons">
         <div className="view-buttons">
           <Button

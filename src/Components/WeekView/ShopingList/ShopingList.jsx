@@ -4,7 +4,9 @@ import './ShopingList.css';
 import ShopingListNoteSection from './ShopingListNoteSection';
 import { useLongPress } from '../../../Hooks';
 
-function ShopingListNote({ ingredienSections, hidden }) {
+const INGREDIENT_TYPES = ['MEAT', 'FISH', 'FRUIT', 'VEGETABLE', 'SAUCE', 'LIQUOR', 'SPICE', 'OTHER'];
+
+function ShopingList({ ingredienSections, hidden }) {
   const handleCopyShopingList = () => {
     const shopingListItems = [];
     Object.keys(ingredienSections).forEach((sectionKey) => {
@@ -19,35 +21,35 @@ function ShopingListNote({ ingredienSections, hidden }) {
   const longPressProps = useLongPress({ onLongPress: () => handleCopyShopingList() });
 
   if (!ingredienSections) return null;
-  const className = hidden ? 'shoppin-list-note-container no-show' : 'shoppin-list-note-container';
-  return (
-    <div className={className}>
-      <div
-        // eslint-disable-next-line react/jsx-props-no-spreading
-        {...longPressProps}
-        className="shoping-list-note"
-      >
-        {Object.keys(ingredienSections).map((sectionKey) => {
-          const sectionData = ingredienSections[sectionKey];
+  const className = hidden ? 'shopping-list-note no-show' : 'shopping-list-note';
 
-          return (
-            <ShopingListNoteSection key={sectionKey} label={sectionKey} ingredients={sectionData} />
-          );
-        })}
-      </div>
+  return (
+
+    <div
+        // eslint-disable-next-line react/jsx-props-no-spreading
+      {...longPressProps}
+      className={className}
+    >
+      {INGREDIENT_TYPES.map((type) => {
+        const sectionData = ingredienSections[type];
+        if (!sectionData) return null;
+        return (
+          <ShopingListNoteSection key={type} label={type} ingredients={sectionData} />
+        );
+      })}
     </div>
 
   );
 }
 
-ShopingListNote.propTypes = {
+ShopingList.propTypes = {
   hidden: PropTypes.bool.isRequired,
   ingredienSections: PropTypes.shape(),
 
 };
 
-ShopingListNote.defaultProps = {
+ShopingList.defaultProps = {
   ingredienSections: null,
 };
 
-export default ShopingListNote;
+export default ShopingList;

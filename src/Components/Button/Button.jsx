@@ -1,11 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './Button.css';
-
-function parseClassName(className, modifier) {
-  if (modifier) return `${className} ${modifier}`;
-  return className;
-}
+import { parseClassName } from '../helpers';
 
 function Button({
   modifier,

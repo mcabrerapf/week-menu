@@ -1,0 +1,50 @@
+.menu-modal-content {
+	max-height: 55vh;
+	width: 80vw;
+}
+
+.menu-modal-inputs {
+	padding: 10px;
+	max-height: 50vh;
+	overflow-y: auto;
+}
+
+.menu-modal-day-container {
+	display: flex;
+	border: 1px solid black;
+	border-radius: 5px;
+	margin-bottom: 5px;
+}
+.day-is-checked {
+	padding: 10px;
+	border-right: 1px solid black;
+	flex-direction: row;
+	align-items: center;
+}
+
+.has-meal {
+	justify-content: left;
+	display: flex;
+	flex-direction: row-reverse;
+	margin-left: 5px;
+	align-items: center;
+}
+
+.menu-modal-day-meals {
+}
+
+.menu-modal-max-inputs {
+	margin-top: 10px;
+}
+
+.meal-max-input label {
+	font-size: 0.8rem;
+	padding-top: 7px;
+	border-bottom: 1px solid black;
+	width: 50%;
+}
+
+.meal-max-input input {
+	width: 30px;
+	font-size: 0.9rem;
+}

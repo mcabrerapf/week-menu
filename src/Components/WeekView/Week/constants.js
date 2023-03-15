@@ -1,4 +1,4 @@
-const defaultOptions = {
+const defaultMenuOptions = {
   days: [
     {
       checked: true, name: 'MON', hasBreakfast: false, hasLunch: true, hasDinner: true,
@@ -29,4 +29,4 @@ const defaultOptions = {
 
 const mock = '';
 
-export { defaultOptions, mock };
+export { defaultMenuOptions, mock };

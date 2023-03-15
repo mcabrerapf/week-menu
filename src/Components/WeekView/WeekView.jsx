@@ -8,25 +8,45 @@ import { serviceHandler } from '../../Services';
 import { GET_ALL_STRING, DISH_STRING, INGREDIENT_STRING } from '../../constants';
 import { useMainContext, MainContext } from '../../Context';
 import Button from '../Button';
-import { defaultOptions } from './Week/constants';
+import { defaultMenuOptions } from './Week/constants';
+import MenuModal from './MenuModal';
 
 function WeekView() {
-  const { view: generalView, offlineMode } = useMainContext(MainContext);
+  const { view: generalView } = useMainContext(MainContext);
   const [weekPlan, setWeekPlan] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [dishesWithData, setDishesWithData] = useState([]);
+  const [menuOptions, setMenuOptions] = useState(defaultMenuOptions);
   const [view, setView] = useState(0);
 
   const handleBuildMenu = async () => {
-    const allDishes = await serviceHandler(GET_ALL_STRING, offlineMode)(DISH_STRING);
-    const allIngredients = await serviceHandler(GET_ALL_STRING, offlineMode)(INGREDIENT_STRING);
+    const allDishes = await serviceHandler(GET_ALL_STRING)(DISH_STRING);
+    const allIngredients = await serviceHandler(GET_ALL_STRING)(INGREDIENT_STRING);
     if (!allDishes) return;
     const dishesWithIngredients = buildDishesWithIngredients(allDishes, allIngredients);
-    const newMenu = buildMenu(dishesWithIngredients, defaultOptions);
+    const newMenu = buildMenu(dishesWithIngredients, defaultMenuOptions);
     if (!newMenu) return;
+    if (view !== 0)setView(0);
     setWeekPlan(newMenu);
+  };
+
+  const getDataForModal = async () => {
+    const allDishes = await serviceHandler(GET_ALL_STRING)(DISH_STRING);
+    const allIngredients = await serviceHandler(GET_ALL_STRING)(INGREDIENT_STRING);
+    if (!allDishes) return;
+    const dishesWithIngredients = buildDishesWithIngredients(allDishes, allIngredients);
+    setDishesWithData(dishesWithIngredients);
+    setShowModal(true);
   };
 
   const handleChangeView = (newView) => {
     setView(newView);
+  };
+
+  const updateMenuAndOptions = (newMenu, newOptions) => {
+    setShowModal(false);
+    setMenuOptions(newOptions);
+    setWeekPlan(newMenu);
   };
 
   const handleUpdateDish = async (updateData) => {
@@ -61,19 +81,19 @@ function WeekView() {
       <div className="week-view-header">
         <WeekViewButtons
           view={view}
-          handleBuildMenu={handleBuildMenu}
+          handleBuildMenu={getDataForModal}
           handleChangeView={handleChangeView}
         />
       </div>
       <div className="week-view-content">
         {!weekPlan[0] && (
         <div className="no-week-container">
-          <Button onClick={handleBuildMenu} buttonText="Gime FOOD!" />
+          <Button onClick={getDataForModal} buttonText="Gime FOOD!" />
         </div>
         )}
         <Week
           menu={weekPlan[0]}
-          options={defaultOptions}
+          options={defaultMenuOptions}
           hidden={view !== 0}
           handleUpdateDish={handleUpdateDish}
         />
@@ -82,6 +102,15 @@ function WeekView() {
           hidden={view !== 1}
         />
       </div>
+      {showModal && (
+      <MenuModal
+        modalData={menuOptions}
+        aaa={handleBuildMenu}
+        handleBuildMenu={updateMenuAndOptions}
+        toggleModal={setShowModal}
+        dishes={dishesWithData}
+      />
+      )}
     </div>
   );
 }

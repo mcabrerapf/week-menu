@@ -2,21 +2,25 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './WeekView.css';
 import Button from '../Button';
-import { useMainContext, MainContext } from '../../Context';
+
 import { useLongPress } from '../../Hooks';
 
 function WeekViewButtons({ handleBuildMenu, handleChangeView, view }) {
-  const { offlineMode, setContextState } = useMainContext(MainContext);
-  const checkView = (newView) => {
-    if (newView !== view) handleChangeView(newView);
+  const checkView = () => {
+    const newView = view === 0 ? 1 : 0;
+    handleChangeView(newView);
   };
 
   const longPressProps = useLongPress({
     onClick: handleBuildMenu,
     onLongPress: () => {
-      setContextState('offlineMode', !offlineMode);
+      const currentMode = window.localStorage.getItem('week-menu-offline-mode');
+      const newMode = currentMode === '0' ? 1 : 0;
+      window.localStorage.setItem('week-menu-offline-mode', newMode);
     },
   });
+
+  const buttonText = `Show ${view === 1 ? 'Menu' : 'Sopping List'}`;
 
   return (
     <div className="week-view-header-buttons">
@@ -26,14 +30,8 @@ function WeekViewButtons({ handleBuildMenu, handleChangeView, view }) {
         buttonText="Build Plan"
       />
       <Button
-        modifier={view === 0 ? ' selected' : ''}
-        onClick={() => checkView(0)}
-        buttonText="Week"
-      />
-      <Button
-        modifier={view === 1 ? ' selected' : ''}
-        onClick={() => checkView(1)}
-        buttonText="Shopping List"
+        onClick={checkView}
+        buttonText={buttonText}
       />
     </div>
   );

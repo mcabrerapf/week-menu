@@ -22,7 +22,7 @@ const getMaxDishes = (dishes, type, filters) => {
   }).filter((day) => day !== null);
 
   const finalDishes = [];
-
+  console.log({ type, limit, daysForDishes });
   for (finalDishes.length; finalDishes.length < limit;) {
     const rIndex = generateRandomNumber(0, dishes.length);
     const randomDish = dishes[rIndex];
@@ -31,9 +31,12 @@ const getMaxDishes = (dishes, type, filters) => {
       finalDishes.push({ ...dishMatch, useAs: type, days: [] });
     }
   }
+
+  let dishCount = 0;
   daysForDishes.forEach((day) => {
-    const dishIndex = day >= limit ? day - limit : day;
-    finalDishes[dishIndex].days.push(day);
+    if (dishCount === limit) dishCount = 0;
+    finalDishes[dishCount].days.push(day);
+    dishCount += 1;
   });
 
   return finalDishes;

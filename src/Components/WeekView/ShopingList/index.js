@@ -1,3 +1,3 @@
-import ShopingListNote from './ShopingListNote';
+import ShopingList from './ShopingList';
 
-export default ShopingListNote;
+export default ShopingList;

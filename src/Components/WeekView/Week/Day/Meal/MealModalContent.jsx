@@ -3,17 +3,17 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './Meal.css';
 import Button from '../../../../Button';
+import Input from '../../../../Input';
 import { GET_ALL_STRING, DISH_STRING, INGREDIENT_STRING } from '../../../../../constants';
 import { serviceHandler } from '../../../../../Services';
-import { buildSelectOptions, buildDishesWithIngredients } from '../../../../helpers';
-import { useMainContext, MainContext } from '../../../../../Context';
+import { buildDishesWithIngredients } from '../../../../helpers';
 
 // TODO: refactor
 function MealModalContent({ meal, handleToggleTooltip }) {
   const {
     id, description, instructions, time, ingredients,
   } = meal;
-  const { offlineMode } = useMainContext(MainContext);
+
   const [modalData, setModalData] = useState({ mode: 0, changeAll: false });
   const {
     mode, dishes, selectedDish, changeAll,
@@ -26,8 +26,8 @@ function MealModalContent({ meal, handleToggleTooltip }) {
 
   const handleButtonClick = async () => {
     if (mode === 0) {
-      const allDishes = await serviceHandler(GET_ALL_STRING, offlineMode)(DISH_STRING);
-      const allIngredients = await serviceHandler(GET_ALL_STRING, offlineMode)(INGREDIENT_STRING);
+      const allDishes = await serviceHandler(GET_ALL_STRING)(DISH_STRING);
+      const allIngredients = await serviceHandler(GET_ALL_STRING)(INGREDIENT_STRING);
       const dishesWithIngredients = buildDishesWithIngredients(allDishes, allIngredients);
       setModalData({
         mode: 1, dishes: dishesWithIngredients, selectedDish: id, changeAll: false,
@@ -49,28 +49,28 @@ function MealModalContent({ meal, handleToggleTooltip }) {
   return (
     <div className="meal-modal-content">
       {mode === 0 && (
-      <ul>
+      <ul className="meal-modal-content-list">
         {time && (
-        <li>
+        <li className="meal-modal-content-list-item">
           <span>Time:</span>
           {' '}
           {time}
         </li>
         )}
-        <li>
+        <li className="meal-modal-content-list-item">
           <span>Ingredients:</span>
           {' '}
           {parsedIngredients}
         </li>
         {description && (
-        <li>
+        <li className="meal-modal-content-list-item">
           <span>Description:</span>
           {' '}
           {description}
         </li>
         )}
         {instructions && (
-        <li>
+        <li className="meal-modal-content-list-item">
           <span>Instuctions:</span>
           {' '}
           {instructions}
@@ -80,28 +80,22 @@ function MealModalContent({ meal, handleToggleTooltip }) {
       )}
       {mode === 1 && (
       <div>
-        <select
-          className="form-select"
+        <Input
           name="dish"
           id="dish"
           value={selectedDish}
           onChange={handleOnChange}
-        >
-          <option value="" className="form-select-option" disabled>
-            Choose a dish
-          </option>
-          {buildSelectOptions(dishes)}
-        </select>
-        <div>
-          <label htmlFor="change-all">Change All</label>
-          <input
-            id="change-all"
-            type="checkbox"
-            value={changeAll}
-            onChange={handleOnChange}
-          />
-        </div>
-
+          placeholder="Choose a dishs"
+          selectOptions={dishes}
+          type="select"
+        />
+        <Input
+          id="change-all"
+          type="checkbox"
+          value={changeAll}
+          onChange={handleOnChange}
+          label="Change all"
+        />
       </div>
       )}
       <Button buttonText={buttonText} onClick={handleButtonClick} />
