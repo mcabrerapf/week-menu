@@ -24,6 +24,7 @@ function ShopingListNoteSectionItem({
         modifier="shoping-list-section-items-item-checkbox"
         id={parsedLabel}
         type="checkbox"
+        value={gotIt}
         onChange={() => setGotIt(!gotIt)}
       >
         <span

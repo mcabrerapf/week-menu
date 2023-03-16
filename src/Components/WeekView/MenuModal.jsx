@@ -7,12 +7,12 @@ import Input from '../Input';
 import { buildMenu } from '../helpers';
 
 function MenuModal({
-  modalData, handleBuildMenu, toggleModal, dishes,
+  modalData, handleBuildMenu, setShowModal, dishes,
 }) {
   const currentBreakfasts = dishes.filter(({ type }) => type === 'BREAKFAST');
   const currentLunches = dishes.filter(({ type }) => type === 'LUNCH');
   const currentDinners = dishes.filter(({ type }) => type === 'DINNER');
-  const [currentData, setCurrentData] = useState(modalData);
+  const [currentData, setCurrentData] = useState({ ...modalData });
   const {
     days, maxBreakfasts, maxLunches, maxDinners,
   } = currentData;
@@ -35,74 +35,80 @@ function MenuModal({
   return (
     <Modal
       hideHeader
-      hideModal={() => toggleModal(true)}
+      hideModal={() => setShowModal(false)}
     >
       <div className="menu-modal-content">
         <div className="menu-modal-inputs">
-          {days.map((day, index) => {
-            const {
-              checked, hasBreakfast, hasLunch, hasDinner, name,
-            } = day;
-
-            return (
-              <div key={name} className="menu-modal-day-container">
-                <Input
-                  type="checkbox"
-                  name={`${index}-is-checked`}
-                  id={`${index}-is-checked`}
-                  modifier="day-is-checked"
-                  value={checked}
-                  label={name}
-                  onChange={() => {
-                    const updatedData = { ...currentData };
-                    updatedData.days[index].checked = !checked;
-                    setCurrentData(updatedData);
-                  }}
-                />
-                <div className="menu-modal-day-meals">
+          <div className="menu-modal-day-inputs">
+            {days.map((day, index) => {
+              const {
+                checked, hasBreakfast, hasLunch, hasDinner, name,
+              } = day;
+              const dayMealsClassname = `menu-modal-day-meals${checked ? '' : ' disabled'}`;
+              return (
+                <div key={name} className="menu-modal-day-container">
                   <Input
                     type="checkbox"
-                    name={`${index}-has-breakfast`}
-                    id={`${index}-has-breakfast`}
-                    modifier="has-meal"
-                    value={hasBreakfast}
-                    label="Breakfast"
+                    name={`${index}-is-checked`}
+                    id={`${index}-is-checked`}
+                    modifier="day-is-checked"
+                    value={checked}
+                    label={name}
                     onChange={() => {
                       const updatedData = { ...currentData };
-                      updatedData.days[index].hasBreakfast = !hasBreakfast;
+                      updatedData.days[index].checked = !checked;
                       setCurrentData(updatedData);
                     }}
                   />
-                  <Input
-                    type="checkbox"
-                    name={`${index}-has-lunch`}
-                    id={`${index}-has-lunch`}
-                    modifier="has-meal"
-                    value={hasLunch}
-                    label="Lunch"
-                    onChange={() => {
-                      const updatedData = { ...currentData };
-                      updatedData.days[index].hasLunch = !hasLunch;
-                      setCurrentData(updatedData);
-                    }}
-                  />
-                  <Input
-                    type="checkbox"
-                    name={`${index}-has-dinner`}
-                    id={`${index}-has-dinner`}
-                    modifier="has-meal"
-                    value={hasDinner}
-                    label="Dinner"
-                    onChange={() => {
-                      const updatedData = { ...currentData };
-                      updatedData.days[index].hasDinner = !hasDinner;
-                      setCurrentData(updatedData);
-                    }}
-                  />
+                  <div className={dayMealsClassname}>
+                    <Input
+                      disabled={!checked}
+                      type="checkbox"
+                      name={`${index}-has-breakfast`}
+                      id={`${index}-has-breakfast`}
+                      modifier="has-meal"
+                      value={hasBreakfast}
+                      label="B"
+                      onChange={() => {
+                        const updatedData = { ...currentData };
+                        updatedData.days[index].hasBreakfast = !hasBreakfast;
+                        setCurrentData(updatedData);
+                      }}
+                    />
+                    <Input
+                      disabled={!checked}
+                      type="checkbox"
+                      name={`${index}-has-lunch`}
+                      id={`${index}-has-lunch`}
+                      modifier="has-meal"
+                      value={hasLunch}
+                      label="L"
+                      onChange={() => {
+                        const updatedData = { ...currentData };
+                        updatedData.days[index].hasLunch = !hasLunch;
+                        setCurrentData(updatedData);
+                      }}
+                    />
+                    <Input
+                      disabled={!checked}
+                      type="checkbox"
+                      name={`${index}-has-dinner`}
+                      id={`${index}-has-dinner`}
+                      modifier="has-meal"
+                      value={hasDinner}
+                      label="D"
+                      onChange={() => {
+                        const updatedData = { ...currentData };
+                        updatedData.days[index].hasDinner = !hasDinner;
+                        setCurrentData(updatedData);
+                      }}
+                    />
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
+
           <div className="menu-modal-max-inputs">
             <Input
               type="number"
@@ -148,7 +154,7 @@ function MenuModal({
 
 MenuModal.propTypes = {
   handleBuildMenu: PropTypes.func.isRequired,
-  toggleModal: PropTypes.func.isRequired,
+  setShowModal: PropTypes.func.isRequired,
   dishes: PropTypes.arrayOf(PropTypes.shape()),
   modalData: PropTypes.shape(),
 };

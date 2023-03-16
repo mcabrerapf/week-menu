@@ -13,7 +13,7 @@ function Week({
   return (
     <div className={className}>
       {days.map((day, dayIndex) => {
-        const { checked, name } = day;
+        const { name } = day;
         const dayDishes = menu.filter((dish) => {
           const { days: dayIndexes } = dish;
           return !!dayIndexes.includes(dayIndex);
@@ -24,7 +24,7 @@ function Week({
             key={name}
             name={name}
             dayIndex={dayIndex}
-            checked={checked}
+            // checked={checked}
             dishes={dayDishes}
             handleUpdateDish={handleUpdateDish}
 

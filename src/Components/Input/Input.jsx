@@ -17,6 +17,7 @@ function Button({
   label,
   children,
   enableDefaultSelect,
+  disabled,
 }) {
   const className = parseClassName('input', modifier);
 
@@ -39,6 +40,7 @@ function Button({
         checked={value}
         onChange={onChange}
         placeholder={placeholder}
+        disabled={disabled}
       />
       )}
       {type === 'text' && (
@@ -51,6 +53,7 @@ function Button({
         value={value}
         onChange={onChange}
         placeholder={placeholder}
+        disabled={disabled}
       />
       )}
       {type === 'select' && (
@@ -60,6 +63,7 @@ function Button({
         id={id}
         value={value}
         onChange={onChange}
+        disabled={disabled}
       >
         {placeholder && (
         <option value="" className="select-input-option" disabled={!enableDefaultSelect}>
@@ -78,6 +82,7 @@ function Button({
           value={value}
           onChange={onChange}
           placeholder={placeholder}
+          disabled={disabled}
         />
       )}
       {type === 'number' && (
@@ -95,6 +100,7 @@ function Button({
           onFocus={onFocus}
           onBlur={onBlur}
           onChange={onChange}
+          disabled={disabled}
         />
       )}
       {!!children && children}
@@ -117,6 +123,7 @@ Button.propTypes = {
   children: PropTypes.shape(),
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
   enableDefaultSelect: PropTypes.bool,
+  disabled: PropTypes.bool,
 };
 
 Button.defaultProps = {
@@ -133,6 +140,7 @@ Button.defaultProps = {
   value: '',
   children: null,
   enableDefaultSelect: false,
+  disabled: false,
 };
 
 export default Button;

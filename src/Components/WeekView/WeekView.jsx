@@ -81,7 +81,7 @@ function WeekView() {
       <div className="week-view-header">
         <WeekViewButtons
           view={view}
-          handleBuildMenu={getDataForModal}
+          showBuildMenuModal={getDataForModal}
           handleChangeView={handleChangeView}
         />
       </div>
@@ -93,7 +93,7 @@ function WeekView() {
         )}
         <Week
           menu={weekPlan[0]}
-          options={defaultMenuOptions}
+          options={menuOptions}
           hidden={view !== 0}
           handleUpdateDish={handleUpdateDish}
         />
@@ -107,7 +107,7 @@ function WeekView() {
         modalData={menuOptions}
         aaa={handleBuildMenu}
         handleBuildMenu={updateMenuAndOptions}
-        toggleModal={setShowModal}
+        setShowModal={setShowModal}
         dishes={dishesWithData}
       />
       )}

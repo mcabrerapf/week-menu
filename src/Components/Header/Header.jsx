@@ -17,7 +17,7 @@ import Button from '../Button';
 import { useLongPress } from '../../Hooks';
 import { serviceHandler } from '../../Services';
 
-function Footer({ signOut }) {
+function Header() {
   const { view, setContextState } = useMainContext(MainContext);
 
   const handleOnClick = (newView) => {
@@ -60,20 +60,20 @@ function Footer({ signOut }) {
             buttonText={capitalizeFirstLetter(INGREDIENTS_STRING)}
           />
         </div>
-        <Button
+        {/* <Button
           modifier="signout-button"
           onClick={signOut}
         >
           <i className="fa fa-sign-out" aria-hidden="true" />
-        </Button>
+        </Button> */}
 
       </div>
     </header>
   );
 }
 
-Footer.propTypes = {
+Header.propTypes = {
   signOut: PropTypes.func.isRequired,
 };
 
-export default Footer;
+export default Header;

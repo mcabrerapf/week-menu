@@ -21,7 +21,7 @@ function ShopingList({ ingredienSections, hidden }) {
   const longPressProps = useLongPress({ onLongPress: () => handleCopyShopingList() });
 
   if (!ingredienSections) return null;
-  const className = hidden ? 'shopping-list-note no-show' : 'shopping-list-note';
+  const className = hidden ? 'shopping-list no-show' : 'shopping-list';
 
   return (
 

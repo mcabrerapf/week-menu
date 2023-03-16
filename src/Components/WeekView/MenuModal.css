@@ -1,25 +1,35 @@
 .menu-modal-content {
-	max-height: 55vh;
+	max-height: 80vh;
 	width: 80vw;
+}
+
+.disabled {
+	background-color: gray !important;
+	border-left: 1px solid gray !important;
 }
 
 .menu-modal-inputs {
 	padding: 10px;
-	max-height: 50vh;
+	max-height: 75vh;
 	overflow-y: auto;
 }
 
 .menu-modal-day-container {
 	display: flex;
-	border: 1px solid black;
-	border-radius: 5px;
-	margin-bottom: 5px;
+	width: 100%;
+	border-bottom: 1px solid black;
 }
+
+.menu-modal-day-inputs {
+	display: flex;
+	flex-wrap: wrap;
+}
+
 .day-is-checked {
-	padding: 10px;
-	border-right: 1px solid black;
-	flex-direction: row;
+	padding: 5px;
+	flex-direction: row-reverse;
 	align-items: center;
+	justify-content: left;
 }
 
 .has-meal {
@@ -31,6 +41,8 @@
 }
 
 .menu-modal-day-meals {
+	display: flex;
+	border-left: 1px solid black;
 }
 
 .menu-modal-max-inputs {

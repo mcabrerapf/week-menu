@@ -1,11 +1,16 @@
 .meal {
 	display: flex;
 	font-size: 14px;
-	height: 50%;
+	height: 100%;
 	width: 100%;
 	padding: 5px;
 	justify-content: center;
 	align-items: center;
+	border-right: dotted 3px black;
+}
+.no-dish {
+	background-color: gray;
+	border-right: none !important;
 }
 
 .meal-content {
@@ -13,8 +18,8 @@
 	font-size: 0.8rem;
 }
 
-.meal:first-of-type {
-	border-bottom: dotted 3px black;
+.meal:last-of-type {
+	border-right: none !important;
 }
 
 .meal-modal-content {

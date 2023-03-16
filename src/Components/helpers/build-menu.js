@@ -3,26 +3,29 @@ import buildIngredientSections from './build-ingredient-sections';
 
 const getMaxDishes = (dishes, type, filters) => {
   const { limit, days } = filters;
-  const daysForDishes = days.map(({
+  const daysForDishes = [];
+  days.forEach(({
     checked, hasBreakfast, hasLunch, hasDinner,
   }, index) => {
     if (checked) {
       switch (type) {
         case 'BREAKFAST':
-          return hasBreakfast && index;
+          if (hasBreakfast) daysForDishes.push(index);
+          break;
         case 'LUNCH':
-          return hasLunch && index;
+          if (hasLunch) daysForDishes.push(index);
+          break;
         case 'DINNER':
-          return hasDinner && index;
+          if (hasDinner) daysForDishes.push(index);
+          break;
         default:
-          return null;
+          break;
       }
     }
     return null;
-  }).filter((day) => day !== null);
+  });
 
   const finalDishes = [];
-  console.log({ type, limit, daysForDishes });
   for (finalDishes.length; finalDishes.length < limit;) {
     const rIndex = generateRandomNumber(0, dishes.length);
     const randomDish = dishes[rIndex];
@@ -34,7 +37,7 @@ const getMaxDishes = (dishes, type, filters) => {
 
   let dishCount = 0;
   daysForDishes.forEach((day) => {
-    if (dishCount === limit) dishCount = 0;
+    if (dishCount >= limit) dishCount = 0;
     finalDishes[dishCount].days.push(day);
     dishCount += 1;
   });
@@ -44,12 +47,13 @@ const getMaxDishes = (dishes, type, filters) => {
 
 const buildMenu = (dishes, options) => {
   const {
-    maxLunches, maxDinners, days,
+    maxLunches, maxDinners, maxBreakfasts, days,
   } = options;
 
+  const breakfasts = getMaxDishes(dishes, 'BREAKFAST', { limit: maxBreakfasts, days });
   const lunches = getMaxDishes(dishes, 'LUNCH', { limit: maxLunches, days });
   const dinners = getMaxDishes(dishes, 'DINNER', { limit: maxDinners, days });
-  const finalDishes = [...lunches, ...dinners];
+  const finalDishes = [...breakfasts, ...lunches, ...dinners];
   const ingredientSections = buildIngredientSections(finalDishes);
 
   return [finalDishes, ingredientSections];

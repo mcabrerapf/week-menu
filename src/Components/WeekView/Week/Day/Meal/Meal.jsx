@@ -8,20 +8,22 @@ function Meal({
   meals, dayIndex, type, handleUpdateDish,
 }) {
   const [showTooltip, setShowTooltip] = useState(false);
-  const { name } = meals[0];
+  const firstMeal = meals[0];
+  const { name } = firstMeal || {};
 
   const handleToggleTooltip = (updateData) => {
-    setShowTooltip(!showTooltip);
+    if (!firstMeal) return;
     if (!!updateData && updateData.newDish) {
       const newDishData = { ...updateData.newDish, useAs: type, days: [dayIndex] };
       handleUpdateDish({
         ...updateData, newDish: newDishData, dayIndex, type,
       });
     }
+    setShowTooltip(!showTooltip);
   };
-
+  const className = `meal${firstMeal ? '' : ' no-dish'}`;
   return (
-    <div className="meal">
+    <div className={className}>
       <div
         tabIndex={0}
         role="button"

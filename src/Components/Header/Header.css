@@ -13,7 +13,7 @@
 }
 
 .header .header-buttons .view-buttons {
-	width: 90%;
+	width: 100%;
 	display: flex;
 	justify-content: space-around;
 }
@@ -26,6 +26,9 @@ header .header-buttons .view-buttons button {
 	color: black;
 	border-radius: 0;
 	padding: 5px;
+}
+header .header-buttons .view-buttons button:last-of-type {
+	border-right: none;
 }
 
 header .header-buttons .signout-button {
