@@ -5,7 +5,7 @@ import {
 } from '../../../Services';
 import { useMainContext, MainContext } from '../../../Context';
 import {
-  CREATE_STRING, DELETE_STRING, DISH_STRING, GET_ALL_STRING, UPDATE_STRING,
+  CREATE_STRING, DELETE_STRING, DISH_STRING, UPDATE_STRING,
 } from '../../../constants';
 import './ListModal.css';
 import { sortBy } from '../../helpers';
@@ -60,15 +60,13 @@ function ListModal({
     const validatedData = validateData(submitData);
     const parsedData = action === 0 ? validatedData : { ...validatedData, id };
     await serviceToUse(view, parsedData);
-    const updatedData = await serviceHandler(GET_ALL_STRING)(view);
-    updateHandler(updatedData);
+    await updateHandler();
     setShowModal({ show: false });
   };
 
   const handleDelete = async () => {
     await serviceHandler(DELETE_STRING)(view, { id });
-    const updatedData = await serviceHandler(GET_ALL_STRING)(view);
-    updateHandler(updatedData);
+    await updateHandler();
     setShowModal({ show: false });
   };
 

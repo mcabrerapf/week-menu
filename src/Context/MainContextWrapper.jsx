@@ -36,13 +36,16 @@ function MainContextWrapper({ children }) {
     setContextState({ ...contextState, [key]: value });
   };
 
-  const updateDishes = (newData) => {
-    const { ingredients } = contextState;
+  const updateDishes = async () => {
+    const { view, ingredients } = contextState;
+    const newData = await serviceHandler(GET_ALL_STRING)(view);
     const dishesWithIngredients = buildDishesWithIngredients(newData, ingredients);
     setContextState({ ...contextState, dishes: dishesWithIngredients });
   };
 
-  const updateIngredients = (newData) => {
+  const updateIngredients = async () => {
+    const { view } = contextState;
+    const newData = await serviceHandler(GET_ALL_STRING)(view);
     setContextState({ ...contextState, ingredients: newData });
   };
 
