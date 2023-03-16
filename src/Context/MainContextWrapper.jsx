@@ -37,15 +37,17 @@ function MainContextWrapper({ children }) {
   };
 
   const updateDishes = async () => {
-    const { view, ingredients } = contextState;
-    const newData = await serviceHandler(GET_ALL_STRING)(view);
+    const {
+      view, ingredients, dishes, offlineMode,
+    } = contextState;
+    const newData = offlineMode === 0 ? await serviceHandler(GET_ALL_STRING)(view) : dishes;
     const dishesWithIngredients = buildDishesWithIngredients(newData, ingredients);
     setContextState({ ...contextState, dishes: dishesWithIngredients });
   };
 
   const updateIngredients = async () => {
-    const { view } = contextState;
-    const newData = await serviceHandler(GET_ALL_STRING)(view);
+    const { view, offlineMode, ingredients } = contextState;
+    const newData = offlineMode === 0 ? await serviceHandler(GET_ALL_STRING)(view) : ingredients;
     setContextState({ ...contextState, ingredients: newData });
   };
 
