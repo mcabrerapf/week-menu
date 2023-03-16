@@ -7,7 +7,7 @@ import { DISH_STRING, INGREDIENT_STRING } from '../../constants';
 import { MainContext, useMainContext } from '../../Context';
 
 function Main() {
-  const { view, setContextState } = useMainContext(MainContext);
+  const { view, offlineMode, setContextState } = useMainContext(MainContext);
   const [touchStart, setTouchStart] = useState(null);
   const [touchEnd, setTouchEnd] = useState(null);
   const minSwipeDistance = 50;
@@ -30,9 +30,11 @@ function Main() {
     if (view === 'ingredient' && isRightSwipe) setContextState('view', 'dish');
   };
 
+  const mainClassName = `main${offlineMode ? ' offline-mode' : ''}`;
+
   return (
     <div
-      className="main"
+      className={mainClassName}
       onTouchStart={onTouchStart}
       onTouchMove={onTouchMove}
       onTouchEnd={onTouchEnd}

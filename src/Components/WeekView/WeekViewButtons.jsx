@@ -4,8 +4,10 @@ import PropTypes from 'prop-types';
 import './WeekView.css';
 import Button from '../Button';
 import { useLongPress } from '../../Hooks';
+import { MainContext, useMainContext } from '../../Context';
 
 function WeekViewButtons({ showBuildMenuModal, handleChangeView, view }) {
+  const { setContextState } = useMainContext(MainContext);
   const checkView = () => {
     const newView = view === 0 ? 1 : 0;
     handleChangeView(newView);
@@ -16,6 +18,7 @@ function WeekViewButtons({ showBuildMenuModal, handleChangeView, view }) {
       const currentMode = window.localStorage.getItem('week-menu-offline-mode');
       const newMode = currentMode === '0' ? 1 : 0;
       window.localStorage.setItem('week-menu-offline-mode', newMode);
+      setContextState('offlineMode', newMode);
     },
   });
 
