@@ -4,16 +4,17 @@ import PropTypes from 'prop-types';
 function ShoppingListModalContent({
   modalData,
 }) {
-  const { dishes } = modalData;
+  const { dishes = [] } = modalData;
+  const uniqueDishes = [...new Set(dishes.map(({ name } = {}) => name))];
 
   return (
     <ul className="shopping-list-modal-content-list">
-      {dishes.map((dish) => (
-        <li key={dish.id} className="shopping-list-modal-content-item">
+      {uniqueDishes.map((dish) => (
+        <li key={dish} className="shopping-list-modal-content-item">
           {' '}
           -
           {' '}
-          {dish.name}
+          {dish}
         </li>
       ))}
     </ul>

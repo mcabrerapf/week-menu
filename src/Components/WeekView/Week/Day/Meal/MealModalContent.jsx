@@ -5,6 +5,7 @@ import './Meal.css';
 import Button from '../../../../Button';
 import Input from '../../../../Input';
 import { MainContext, useMainContext } from '../../../../../Context';
+import { sortBy } from '../../../../helpers';
 
 // TODO: refactor
 function MealModalContent({ meal, handleToggleTooltip }) {
@@ -25,8 +26,9 @@ function MealModalContent({ meal, handleToggleTooltip }) {
 
   const handleButtonClick = async () => {
     if (mode === 0) {
+      const sortedDishes = sortBy(dishesFromContext, 'name', 'alphabetical');
       setModalData({
-        mode: 1, dishes: dishesFromContext, selectedDish: id, changeAll: false,
+        mode: 1, dishes: sortedDishes, selectedDish: id, changeAll: false,
       });
     } else {
       const newDish = dishes.find(({ id: newDishId }) => newDishId === selectedDish);
