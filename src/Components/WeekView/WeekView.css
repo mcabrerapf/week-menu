@@ -4,9 +4,9 @@
 }
 
 .week-view .week-view-header {
-	height: 5vh;
+	height: 5%;
 	width: 100%;
-	border-top: 1px solid #ceb8a1;
+	border-top: 1px solid black;
 }
 
 .week-view .week-view-header .week-view-header-buttons {
@@ -17,7 +17,7 @@
 
 .week-view .week-view-header .week-view-header-buttons button {
 	border-radius: 0;
-	border-right: 1px solid #ceb8a1;
+	border-right: 1px solid black;
 	color: black;
 	font-size: 16px;
 }
@@ -27,7 +27,7 @@
 }
 
 .week-view .week-view-content {
-	height: 90vh;
+	height: 90%;
 	width: 100%;
 	overflow: hidden;
 }

@@ -24,9 +24,9 @@ function WeekView() {
     const allIngredients = await serviceHandler(GET_ALL_STRING)(INGREDIENT_STRING);
     if (!allDishes) return;
     const dishesWithIngredients = buildDishesWithIngredients(allDishes, allIngredients);
-    const newMenu = buildMenu(dishesWithIngredients, defaultMenuOptions);
+    const newMenu = buildMenu(dishesWithIngredients, menuOptions);
     if (!newMenu) return;
-    if (view !== 0)setView(0);
+    if (view !== 0) setView(0);
     setWeekPlan(newMenu);
   };
 
@@ -47,6 +47,7 @@ function WeekView() {
     setShowModal(false);
     setMenuOptions(newOptions);
     setWeekPlan(newMenu);
+    if (view !== 0) setView(0);
   };
 
   const handleUpdateDish = async (updateData) => {

@@ -34,8 +34,8 @@
 .list-filters-toggle-button {
 	height: 35px;
 	width: 100px;
-	margin-top: 5px;
-	margin-left: 35%;
+	margin: 5px 0;
+	align-self: center;
 }
 
 .list-container .list {
@@ -52,19 +52,20 @@
 }
 
 .add-container {
-	height: 55px;
-	width: 55px;
+	height: 50px;
+	width: 100%;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	position: absolute;
-	top: 92vh;
-	left: 47%;
+	bottom: 3px;
+	/* left: 47%; */
 }
 
 .add-container .add-button {
 	border: none;
+	width: 50px;
 	border-radius: 50% !important;
 	box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.5);
 }

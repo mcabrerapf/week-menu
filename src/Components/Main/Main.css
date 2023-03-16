@@ -1,6 +1,6 @@
 .main {
 	display: flex;
 	flex-direction: column;
-	height: 95vh;
+	height: 95%;
 	width: 100%;
 }

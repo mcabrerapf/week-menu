@@ -1,8 +1,9 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import PropTypes from 'prop-types';
 import './WeekView.css';
 import Button from '../Button';
-// import { useLongPress } from '../../Hooks';
+import { useLongPress } from '../../Hooks';
 
 function WeekViewButtons({ showBuildMenuModal, handleChangeView, view }) {
   const checkView = () => {
@@ -10,14 +11,13 @@ function WeekViewButtons({ showBuildMenuModal, handleChangeView, view }) {
     handleChangeView(newView);
   };
 
-  // const longPressProps = useLongPress({
-  //   onClick: showBuildMenuModal,
-  //   onLongPress: () => {
-  //     const currentMode = window.localStorage.getItem('week-menu-offline-mode');
-  //     const newMode = currentMode === '0' ? 1 : 0;
-  //     window.localStorage.setItem('week-menu-offline-mode', newMode);
-  //   },
-  // });
+  const longPressProps = useLongPress({
+    onLongPress: () => {
+      const currentMode = window.localStorage.getItem('week-menu-offline-mode');
+      const newMode = currentMode === '0' ? 1 : 0;
+      window.localStorage.setItem('week-menu-offline-mode', newMode);
+    },
+  });
 
   const buttonText = `Show ${view === 1 ? 'Menu' : 'Sopping List'}`;
 
@@ -25,9 +25,10 @@ function WeekViewButtons({ showBuildMenuModal, handleChangeView, view }) {
     <div className="week-view-header-buttons">
       <Button
         onClick={showBuildMenuModal}
-        buttonText="Build Plan"
+        buttonText="Build Menu"
       />
       <Button
+        {...longPressProps}
         onClick={checkView}
         buttonText={buttonText}
       />
