@@ -1,10 +1,11 @@
 .main {
 	display: flex;
 	flex-direction: column;
-	height: 95%;
+	height: calc(100% - 50px);
 	width: 100%;
+	background-color: #ceb8a1;
 }
 
 .offline-mode {
-	background-color: #deb9e0;
+	background-color: #deb9e0 !important;
 }

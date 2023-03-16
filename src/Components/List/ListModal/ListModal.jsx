@@ -5,7 +5,7 @@ import {
 } from '../../../Services';
 import { useMainContext, MainContext } from '../../../Context';
 import {
-  CREATE_STRING, DELETE_STRING, DISH_STRING, GET_ALL_STRING, INGREDIENT_STRING, UPDATE_STRING,
+  CREATE_STRING, DELETE_STRING, DISH_STRING, GET_ALL_STRING, UPDATE_STRING,
 } from '../../../constants';
 import './ListModal.css';
 import { sortBy } from '../../helpers';
@@ -16,20 +16,32 @@ import DeleteModal from './DeleteModal';
 import Form from '../../Form';
 import Modal from '../../Modal';
 
+const validateData = (data) => {
+  const newData = { ...data };
+  if (data.ingredients) {
+    const updatedIngredients = data.ingredients.map((ing) => {
+      const { id, quantity, unit } = ing;
+      return { id, quantity, unit };
+    });
+    newData.ingredients = updatedIngredients;
+  }
+  return newData;
+};
+
 function ListModal({
-  modalData, action, setParentData, setShowModal,
+  modalData, action, setShowModal,
 }) {
-  const { view } = useMainContext(MainContext);
+  const {
+    view, ingredients, updateDishes, updateIngredients,
+  } = useMainContext(MainContext);
   const [mmodalData, setModalData] = useState({ modalMode: action });
   const { data, modalMode, ingredientsData } = mmodalData;
   const { id } = modalData;
+  const updateHandler = view === 'dish' ? updateDishes : updateIngredients;
 
   useEffect(() => {
     // TODO: check why double api call on init
     async function initForm() {
-      const isDish = view === DISH_STRING;
-      const ingredients = isDish
-        ? await serviceHandler(GET_ALL_STRING)(INGREDIENT_STRING) : [];
       const sortedIngredients = sortBy(ingredients, 'name', 'alphabetical');
       const initHelper = view === DISH_STRING ? initDish : initIngredient;
       const parsedData = initHelper(modalData, sortedIngredients);
@@ -41,20 +53,22 @@ function ListModal({
   const setModalMode = (newMode) => {
     setModalData({ ...mmodalData, modalMode: newMode });
   };
+
   const handleSubmit = async (submitData) => {
     const serviceToUse = action === 0
       ? serviceHandler(CREATE_STRING) : serviceHandler(UPDATE_STRING);
-    const parsedData = action === 0 ? submitData : { ...submitData, id };
+    const validatedData = validateData(submitData);
+    const parsedData = action === 0 ? validatedData : { ...validatedData, id };
     await serviceToUse(view, parsedData);
     const updatedData = await serviceHandler(GET_ALL_STRING)(view);
-    if (updatedData) setParentData(updatedData);
+    updateHandler(updatedData);
     setShowModal({ show: false });
   };
 
   const handleDelete = async () => {
     await serviceHandler(DELETE_STRING)(view, { id });
     const updatedData = await serviceHandler(GET_ALL_STRING)(view);
-    if (updatedData) setParentData(updatedData);
+    updateHandler(updatedData);
     setShowModal({ show: false });
   };
 
@@ -83,7 +97,6 @@ function ListModal({
 }
 
 ListModal.propTypes = {
-  setParentData: PropTypes.func.isRequired,
   setShowModal: PropTypes.func.isRequired,
   modalData: PropTypes.shape(),
   action: PropTypes.number,

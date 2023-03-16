@@ -4,12 +4,11 @@ import PropTypes from 'prop-types';
 import './Meal.css';
 import Button from '../../../../Button';
 import Input from '../../../../Input';
-import { GET_ALL_STRING, DISH_STRING, INGREDIENT_STRING } from '../../../../../constants';
-import { serviceHandler } from '../../../../../Services';
-import { buildDishesWithIngredients } from '../../../../helpers';
+import { MainContext, useMainContext } from '../../../../../Context';
 
 // TODO: refactor
 function MealModalContent({ meal, handleToggleTooltip }) {
+  const { dishes: dishesFromContext } = useMainContext(MainContext);
   const {
     id, description, instructions, time, ingredients,
   } = meal;
@@ -26,11 +25,8 @@ function MealModalContent({ meal, handleToggleTooltip }) {
 
   const handleButtonClick = async () => {
     if (mode === 0) {
-      const allDishes = await serviceHandler(GET_ALL_STRING)(DISH_STRING);
-      const allIngredients = await serviceHandler(GET_ALL_STRING)(INGREDIENT_STRING);
-      const dishesWithIngredients = buildDishesWithIngredients(allDishes, allIngredients);
       setModalData({
-        mode: 1, dishes: dishesWithIngredients, selectedDish: id, changeAll: false,
+        mode: 1, dishes: dishesFromContext, selectedDish: id, changeAll: false,
       });
     } else {
       const newDish = dishes.find(({ id: newDishId }) => newDishId === selectedDish);

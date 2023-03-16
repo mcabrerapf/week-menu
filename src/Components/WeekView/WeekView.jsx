@@ -1,41 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './WeekView.css';
-import { buildDishesWithIngredients, buildIngredientSections, buildMenu } from '../helpers';
+import { buildIngredientSections, buildMenu } from '../helpers';
 import Week from './Week';
 import ShopingList from './ShopingList';
 import WeekViewButtons from './WeekViewButtons';
-import { serviceHandler } from '../../Services';
-import { GET_ALL_STRING, DISH_STRING, INGREDIENT_STRING } from '../../constants';
 import { useMainContext, MainContext } from '../../Context';
 import Button from '../Button';
 import { defaultMenuOptions } from './Week/constants';
 import MenuModal from './MenuModal';
 
 function WeekView() {
-  const { view: generalView } = useMainContext(MainContext);
+  const { view: generalView, dishes: dishesFromContext } = useMainContext(MainContext);
   const [weekPlan, setWeekPlan] = useState([]);
   const [showModal, setShowModal] = useState(false);
-  const [dishesWithData, setDishesWithData] = useState([]);
-  const [menuOptions, setMenuOptions] = useState(defaultMenuOptions);
+  const [menuOptions, setMenuOptions] = useState(null);
   const [view, setView] = useState(0);
 
+  useEffect(() => {
+    setMenuOptions(defaultMenuOptions);
+  }, []);
+
   const handleBuildMenu = async () => {
-    const allDishes = await serviceHandler(GET_ALL_STRING)(DISH_STRING);
-    const allIngredients = await serviceHandler(GET_ALL_STRING)(INGREDIENT_STRING);
-    if (!allDishes) return;
-    const dishesWithIngredients = buildDishesWithIngredients(allDishes, allIngredients);
-    const newMenu = buildMenu(dishesWithIngredients, menuOptions);
+    const newMenu = buildMenu(dishesFromContext, menuOptions);
     if (!newMenu) return;
     if (view !== 0) setView(0);
     setWeekPlan(newMenu);
   };
 
   const getDataForModal = async () => {
-    const allDishes = await serviceHandler(GET_ALL_STRING)(DISH_STRING);
-    const allIngredients = await serviceHandler(GET_ALL_STRING)(INGREDIENT_STRING);
-    if (!allDishes) return;
-    const dishesWithIngredients = buildDishesWithIngredients(allDishes, allIngredients);
-    setDishesWithData(dishesWithIngredients);
     setShowModal(true);
   };
 
@@ -109,7 +101,7 @@ function WeekView() {
         aaa={handleBuildMenu}
         handleBuildMenu={updateMenuAndOptions}
         setShowModal={setShowModal}
-        dishes={dishesWithData}
+        dishes={dishesFromContext}
       />
       )}
     </div>

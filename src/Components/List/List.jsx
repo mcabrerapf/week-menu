@@ -28,7 +28,7 @@ const filterList = (list, key, searchValue, filterValue) => {
 
 const sortOptions = [{ id: 'name', name: 'Name' }, { id: 'type', name: 'Type' }];
 
-function List({ listData, setListData }) {
+function List({ listData }) {
   const { view } = useMainContext(MainContext);
   const [showModal, setShowModal] = useState({
     show: false, action: null, modalData: {},
@@ -57,6 +57,7 @@ function List({ listData, setListData }) {
   const handleDelete = (data) => {
     setShowModal({ show: !show, action: 3, modalData: data });
   };
+
   const foundItems = filterList(listData, 'name', searchValue, listFilter);
   const sortedItems = sortBy(foundItems, listSort, 'alphabetical');
   const filterOptions = view === DISH_STRING ? DISH_TYPES : INGREDIENT_TYPES;
@@ -133,7 +134,6 @@ function List({ listData, setListData }) {
           <ListModal
             modalData={modalData}
             action={action}
-            setParentData={setListData}
             setShowModal={setShowModal}
           />
         )}
@@ -143,7 +143,6 @@ function List({ listData, setListData }) {
 
 List.propTypes = {
   listData: PropTypes.arrayOf(PropTypes.shape()).isRequired,
-  setListData: PropTypes.func.isRequired,
 };
 
 export default List;

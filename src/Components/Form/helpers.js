@@ -36,6 +36,6 @@ export const checkIsButtonDisabled = (view, data) => {
   const {
     name, type, unit, ingredients,
   } = data;
-  if (view === DISH_STRING) return !name || !type || !ingredients;
+  if (view === DISH_STRING) return !name || !type || !ingredients || !ingredients.length;
   return !name || !type || !unit;
 };

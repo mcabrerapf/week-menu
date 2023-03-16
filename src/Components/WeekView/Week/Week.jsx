@@ -24,7 +24,6 @@ function Week({
             key={name}
             name={name}
             dayIndex={dayIndex}
-            // checked={checked}
             dishes={dayDishes}
             handleUpdateDish={handleUpdateDish}
 
@@ -37,14 +36,15 @@ function Week({
 }
 
 Week.propTypes = {
-  options: PropTypes.shape().isRequired,
   handleUpdateDish: PropTypes.func.isRequired,
   hidden: PropTypes.bool.isRequired,
   menu: PropTypes.arrayOf(PropTypes.shape()),
+  options: PropTypes.shape(),
 };
 
 Week.defaultProps = {
   menu: null,
+  options: null,
 };
 
 export default Week;

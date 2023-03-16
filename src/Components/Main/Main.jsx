@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
-// import PropTypes from 'prop-types';
 import './Main.css';
 import View from '../View';
 import WeekView from '../WeekView';
 import { DISH_STRING, INGREDIENT_STRING } from '../../constants';
 import { MainContext, useMainContext } from '../../Context';
 
+const minSwipeDistance = 60;
+
 function Main() {
   const { view, offlineMode, setContextState } = useMainContext(MainContext);
   const [touchStart, setTouchStart] = useState(null);
   const [touchEnd, setTouchEnd] = useState(null);
-  const minSwipeDistance = 50;
 
   const onTouchStart = (e) => {
     setTouchEnd(null);
@@ -30,7 +30,7 @@ function Main() {
     if (view === 'ingredient' && isRightSwipe) setContextState('view', 'dish');
   };
 
-  const mainClassName = `main${offlineMode ? ' offline-mode' : ''}`;
+  const mainClassName = `main${offlineMode === 1 ? ' offline-mode' : ''}`;
 
   return (
     <div

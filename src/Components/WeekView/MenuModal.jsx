@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import './MenuModal.css';
 import Modal from '../Modal';
 import Button from '../Button';
 import Input from '../Input';
 import { buildMenu } from '../helpers';
+import { initMenuOptions } from './helpers';
 
 function MenuModal({
   modalData, handleBuildMenu, setShowModal, dishes,
@@ -12,10 +13,18 @@ function MenuModal({
   const currentBreakfasts = dishes.filter(({ type }) => type === 'BREAKFAST');
   const currentLunches = dishes.filter(({ type }) => type === 'LUNCH');
   const currentDinners = dishes.filter(({ type }) => type === 'DINNER');
-  const [currentData, setCurrentData] = useState({ ...modalData });
-  const {
-    days, maxBreakfasts, maxLunches, maxDinners,
-  } = currentData;
+  const [currentData, setCurrentData] = useState(null);
+
+  useEffect(() => {
+    const initedData = initMenuOptions(
+      modalData,
+      currentBreakfasts.length,
+      currentLunches.length,
+      currentDinners.length,
+    );
+
+    setCurrentData(initedData);
+  }, []);
 
   const handleButtonClick = () => {
     const newMenu = buildMenu(dishes, currentData);
@@ -27,11 +36,17 @@ function MenuModal({
   };
 
   const handleMaxChange = (key, quantity, limit) => {
-    if (quantity === '0') return setCurrentData({ ...currentData, [key]: limit });
-    if (Number(quantity) > limit) return setCurrentData({ ...currentData, [key]: limit });
-    return setCurrentData({ ...currentData, [key]: quantity });
+    const parsedQuantity = quantity ? Number(quantity) : 0;
+    if (parsedQuantity === 0) return setCurrentData({ ...currentData, [key]: limit });
+    if (parsedQuantity > limit) return setCurrentData({ ...currentData, [key]: limit });
+    return setCurrentData({ ...currentData, [key]: parsedQuantity });
   };
 
+  if (!currentData) return null;
+
+  const {
+    days, maxBreakfasts, maxLunches, maxDinners,
+  } = currentData;
   return (
     <Modal
       hideHeader

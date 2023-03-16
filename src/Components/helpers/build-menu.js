@@ -49,10 +49,10 @@ const buildMenu = (dishes, options) => {
   const {
     maxLunches, maxDinners, maxBreakfasts, days,
   } = options;
-
-  const breakfasts = getMaxDishes(dishes, 'BREAKFAST', { limit: maxBreakfasts, days });
-  const lunches = getMaxDishes(dishes, 'LUNCH', { limit: maxLunches, days });
-  const dinners = getMaxDishes(dishes, 'DINNER', { limit: maxDinners, days });
+  const dishesCopy = [...dishes];
+  const breakfasts = getMaxDishes(dishesCopy, 'BREAKFAST', { limit: maxBreakfasts, days });
+  const lunches = getMaxDishes(dishesCopy, 'LUNCH', { limit: maxLunches, days });
+  const dinners = getMaxDishes(dishesCopy, 'DINNER', { limit: maxDinners, days });
   const finalDishes = [...breakfasts, ...lunches, ...dinners];
   const ingredientSections = buildIngredientSections(finalDishes);
 

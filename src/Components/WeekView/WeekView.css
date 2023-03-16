@@ -1,10 +1,11 @@
 .week-view {
 	height: 100%;
+	display: flex;
 	flex-direction: column;
 }
 
 .week-view .week-view-header {
-	height: 5%;
+	height: 50px;
 	width: 100%;
 	border-top: 1px solid black;
 }
@@ -27,7 +28,7 @@
 }
 
 .week-view .week-view-content {
-	height: 90%;
+	height: calc(100% - 50px);
 	width: 100%;
 	overflow: hidden;
 }

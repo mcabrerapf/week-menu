@@ -6,7 +6,6 @@ import { MainContext, useMainContext } from '../../Context';
 import {
   DISHES_STRING,
   DISH_STRING,
-  GET_ALL_STRING,
   INGREDIENTS_STRING,
   INGREDIENT_STRING,
   MENUS_STRING,
@@ -15,17 +14,19 @@ import {
 import { capitalizeFirstLetter } from '../helpers';
 import Button from '../Button';
 import { useLongPress } from '../../Hooks';
-import { serviceHandler } from '../../Services';
 
 function Header() {
-  const { view, setContextState } = useMainContext(MainContext);
+  const {
+    view, dishes, ingredients, setContextState,
+  } = useMainContext(MainContext);
 
   const handleOnClick = (newView) => {
     if (newView !== view) setContextState('view', newView);
   };
 
   const handleCopyList = async (value) => {
-    const items = await serviceHandler(GET_ALL_STRING)(value);
+    if (value === 'menu') return;
+    const items = value === 'dish' ? dishes : ingredients;
     navigator.clipboard.writeText(JSON.stringify(items));
     console.log(`Copied ${value} list to clipboard`);
   };

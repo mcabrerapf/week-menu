@@ -15,6 +15,7 @@
 }
 
 .day .day-label {
+	padding-left: 3px;
 	font-size: 16px;
 	font-weight: 600;
 	writing-mode: tb;

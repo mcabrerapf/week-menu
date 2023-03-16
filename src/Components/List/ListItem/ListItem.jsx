@@ -4,7 +4,6 @@ import './ListItem.css';
 import { capitalizeFirstLetter } from '../../helpers';
 import Button from '../../Button';
 
-// TODO: replace with button component
 function ListItem({
   modifier, itemData, handleDelete, handleEdit, handleNameClick,
 }) {
