@@ -53,7 +53,11 @@ export const CREATE_DISH_MUTATION = `
       name
       type
       size
-      time
+      servings
+      time {
+        hours
+        minutes
+      }
       description
       instructions
       createdAt
@@ -71,7 +75,11 @@ export const UPDATE_DISH_MUTATION = `
       name
       type
       size
-      time
+      servings
+      time {
+        hours
+        minutes
+      }
       description
       instructions
       createdAt

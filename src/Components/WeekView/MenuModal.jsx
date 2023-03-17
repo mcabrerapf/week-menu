@@ -4,7 +4,7 @@ import './MenuModal.css';
 import Modal from '../Modal';
 import Button from '../Button';
 import Input from '../Input';
-import { buildMenu } from '../helpers';
+import { buildMenu, deepCopy } from '../helpers';
 import { initMenuOptions } from './helpers';
 
 function MenuModal({
@@ -16,8 +16,9 @@ function MenuModal({
   const [currentData, setCurrentData] = useState(null);
 
   useEffect(() => {
+    const copiedData = deepCopy(modalData);
     const initedData = initMenuOptions(
-      modalData,
+      copiedData,
       currentBreakfasts.length,
       currentLunches.length,
       currentDinners.length,

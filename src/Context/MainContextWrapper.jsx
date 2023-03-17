@@ -18,6 +18,7 @@ function MainContextWrapper({ children }) {
     async function initContext() {
       const allDishes = await serviceHandler(GET_ALL_STRING)(DISH_STRING);
       const allIngredients = await serviceHandler(GET_ALL_STRING)(INGREDIENT_STRING);
+      console.log({ allDishes, allIngredients });
       if (!allDishes) return;
       const dishesWithIngredients = buildDishesWithIngredients(allDishes, allIngredients);
       const localOfflineMode = window.localStorage.getItem('week-menu-offline-mode');

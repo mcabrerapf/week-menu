@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './WeekView.css';
-import { buildIngredientSections, buildMenu } from '../helpers';
+import { buildIngredientSections, buildMenu, deepCopy } from '../helpers';
 import Week from './Week';
 import ShopingList from './ShopingList';
 import WeekViewButtons from './WeekViewButtons';
@@ -17,7 +17,8 @@ function WeekView() {
   const [view, setView] = useState(0);
 
   useEffect(() => {
-    setMenuOptions(defaultMenuOptions);
+    const copiedOptions = deepCopy(defaultMenuOptions);
+    setMenuOptions(copiedOptions);
   }, []);
 
   const handleBuildMenu = async () => {
@@ -68,7 +69,7 @@ function WeekView() {
 
   const isHidden = generalView !== 'menu';
   const className = isHidden ? 'week-view no-show' : 'week-view';
-
+  console.log(menuOptions);
   return (
     <div className={className}>
       <div className="week-view-header">

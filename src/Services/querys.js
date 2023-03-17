@@ -43,7 +43,11 @@ export const GET_DISH_QUERY = `
       }
       type
       size
-      time
+      servings
+      time {
+        hours
+        minutes
+      }
       description
       instructions
       createdAt
@@ -69,7 +73,11 @@ export const GET_ALL_DISHES_QUERY = `
         }
         type
         size
-        time
+        servings
+        time {
+          hours
+          minutes
+        }
         description
         instructions
         createdAt

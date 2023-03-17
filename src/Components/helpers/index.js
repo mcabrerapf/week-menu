@@ -6,6 +6,7 @@ import parseIngredientLabel from './parse-ingredient-label';
 import buildSelectOptions from './build-select-options';
 import buildIngredientSections from './build-ingredient-sections';
 import parseClassName from './parse-classname';
+import deepCopy from './deep-copy';
 
 export {
   capitalizeFirstLetter,
@@ -16,4 +17,5 @@ export {
   buildDishesWithIngredients,
   buildIngredientSections,
   parseClassName,
+  deepCopy,
 };

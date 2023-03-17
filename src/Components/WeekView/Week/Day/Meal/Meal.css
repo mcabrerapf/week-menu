@@ -11,12 +11,14 @@
 }
 .no-dish {
 	background-color: gray;
-	border-right: none !important;
+	border-right: 3px dotted darkslategray !important;
 }
 
 .meal-content {
 	cursor: pointer;
-	font-size: 0.8rem;
+	font-weight: 400;
+	cursor: pointer;
+	font-size: 0.95rem;
 }
 
 .meal:last-of-type {

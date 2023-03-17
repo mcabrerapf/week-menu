@@ -26,8 +26,17 @@ function Modal({
   );
   const parsedHeaderText = !hideHeader && capitalizeFirstLetter(headerText);
 
+  const stopPropagation = (e) => {
+    e.stopPropagation();
+  };
+
   return (
-    <div className="modal-background">
+    <div
+      className="modal-background"
+      onTouchStart={stopPropagation}
+      onTouchMove={stopPropagation}
+      onTouchEnd={stopPropagation}
+    >
       <div ref={wrapperRef} className="modal-container">
         {parsedHeaderText && (
         <div className="modal-header">

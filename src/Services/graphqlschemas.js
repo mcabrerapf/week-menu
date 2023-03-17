@@ -1,4 +1,9 @@
-// type DayListItemType {
+// type TimeType {
+//     hours: Int
+//     minutes: Int
+//   }
+
+//   type DayListItemType {
 //     name: String
 //     breakfast: [ID]
 //     lunch: [ID]
@@ -23,12 +28,13 @@
 //     id: ID!
 //     name: String!
 //     type: String
-//     tags: [String]
+//     servings: Int
 //     size: String
-//     time: String
+//     time: TimeType
 //     description: String
 //     instructions: String
 //     ingredients: [IngredientListiItemType!]
+//     tags: [String]
 //   }
 
 //   type Menu @model @auth(rules: [{allow: owner}]) {

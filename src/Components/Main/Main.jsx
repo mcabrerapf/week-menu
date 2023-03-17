@@ -13,13 +13,18 @@ function Main() {
   const [touchEnd, setTouchEnd] = useState(null);
 
   const onTouchStart = (e) => {
+    e.stopPropagation();
     setTouchEnd(null);
     setTouchStart(e.targetTouches[0].clientX);
   };
 
-  const onTouchMove = (e) => setTouchEnd(e.targetTouches[0].clientX);
+  const onTouchMove = (e) => {
+    e.stopPropagation();
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
 
-  const onTouchEnd = () => {
+  const onTouchEnd = (e) => {
+    e.stopPropagation();
     if (!touchStart || !touchEnd) return;
     const distance = touchStart - touchEnd;
     const isLeftSwipe = distance > minSwipeDistance;

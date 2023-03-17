@@ -5,7 +5,7 @@ import Button from '../Button';
 import { MainContext, useMainContext } from '../../Context';
 import { SELECT_OPTIONS } from '../constants';
 import {
-  DISH_STRING, INGREDIENT_STRING,
+  DISH_STRING,
 } from '../../constants';
 import { checkIsButtonDisabled } from './helpers';
 import IngredientsField from './IngredientsField';
@@ -85,7 +85,7 @@ function Form({ formData, handleSubmit, ingredientsData }) {
           type="select"
         />
 
-        {view === INGREDIENT_STRING && (
+        {!isDish && (
         <Input
           id="unit"
           name="unit"

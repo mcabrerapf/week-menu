@@ -3,6 +3,7 @@ import buildIngredientSections from './build-ingredient-sections';
 
 const getMaxDishes = (dishes, type, filters) => {
   const { limit, days } = filters;
+  if (limit === 0) return [];
   const daysForDishes = [];
   days.forEach(({
     checked, hasBreakfast, hasLunch, hasDinner,

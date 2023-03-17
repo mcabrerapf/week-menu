@@ -1,9 +1,11 @@
 import { DISH_STRING } from '../../constants';
+import { deepCopy } from '../helpers';
 
 export const initDish = (dishData, ingredientsData) => {
+  const copiedDish = deepCopy(dishData);
   const {
     name, ingredients = [], type, instructions, description,
-  } = dishData;
+  } = copiedDish;
   const ingredientsWithData = ingredients.map(({ id, quantity, unit }) => {
     const ingredientMatch = ingredientsData.find(({ id: idToCheck }) => idToCheck === id);
     const { name: ingredientName, unit: defaultUnit, type: ingredientType } = ingredientMatch || {};
