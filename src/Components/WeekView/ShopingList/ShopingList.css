@@ -19,9 +19,14 @@
 	margin-left: 10px;
 }
 
+/* .shoping-list-section-items-item {
+	flex-direction: row;
+} */
+
 .shoping-list-section-items-item-checkbox {
 	width: 100%;
 	display: flex;
+	flex-direction: row;
 	align-items: center;
 }
 

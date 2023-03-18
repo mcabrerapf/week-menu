@@ -43,33 +43,29 @@ function WeekView() {
     if (view !== 0) setView(0);
   };
 
-  const handleUpdateDish = async (updateData) => {
+  const handleUpdateDish = (updateData) => {
     const {
-      changeAll, dayIndex, oldDishId, newDish, type,
+      changeAll, dayIndex, oldDishId, newDish,
     } = updateData;
-    const [menu] = weekPlan;
-    const allDays = [];
-    const newDishes = menu.map((currentDish) => {
-      const { id, useAs, days } = currentDish;
-      if (id === oldDishId && type === useAs) {
-        if (changeAll) {
-          days.forEach((day) => allDays.push(day));
-          return null;
-        }
-        const updatedDays = currentDish.days.filter((day) => day !== dayIndex);
+    const oldDishes = deepCopy(weekPlan[0]);
+    const newDishes = oldDishes.map((currentDish) => {
+      const { id, days } = currentDish;
+      if (id === oldDishId) {
+        if (changeAll) newDish.days = days;
+        const updatedDays = changeAll ? [] : days.filter((day) => day !== dayIndex);
         return { ...currentDish, days: updatedDays };
       }
 
       return currentDish;
-    }).filter(Boolean);
-    newDishes.push({ ...newDish, days: changeAll ? allDays : [dayIndex] });
-    const newIngredientSections = buildIngredientSections(newDishes);
+    }).filter(({ days }) => !!days.length);
+    newDishes.push({ ...newDish });
+    const newIngredientSections = buildIngredientSections(newDishes, menuOptions.people);
     setWeekPlan([newDishes, newIngredientSections]);
   };
 
   const isHidden = generalView !== 'menu';
   const className = isHidden ? 'week-view no-show' : 'week-view';
-  console.log(menuOptions);
+
   return (
     <div className={className}>
       <div className="week-view-header">

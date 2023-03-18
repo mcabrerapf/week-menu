@@ -8,7 +8,7 @@ import {
   CREATE_STRING, DELETE_STRING, DISH_STRING, UPDATE_STRING,
 } from '../../../constants';
 import './ListModal.css';
-import { sortBy } from '../../helpers';
+import { deepCopy, sortBy } from '../../helpers';
 import { getModalHeader } from '../../Modal/helpers';
 import { initDish, initIngredient } from '../../Form/helpers';
 import DisplayModal from './DisplayModal';
@@ -17,15 +17,15 @@ import Form from '../../Form';
 import Modal from '../../Modal';
 
 const validateData = (data) => {
-  const newData = { ...data };
+  const copiedData = deepCopy(data);
   if (data.ingredients) {
     const updatedIngredients = data.ingredients.map((ing) => {
       const { id, quantity, unit } = ing;
       return { id, quantity, unit };
     });
-    newData.ingredients = updatedIngredients;
+    copiedData.ingredients = updatedIngredients;
   }
-  return newData;
+  return copiedData;
 };
 
 function ListModal({

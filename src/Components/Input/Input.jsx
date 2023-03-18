@@ -1,9 +1,10 @@
+/* eslint-disable no-restricted-globals */
 import React from 'react';
 import PropTypes from 'prop-types';
 import './Input.css';
 import { parseClassName, buildSelectOptions } from '../helpers';
 
-function Button({
+function Input({
   modifier,
   id,
   name,
@@ -18,14 +19,59 @@ function Button({
   children,
   enableDefaultSelect,
   disabled,
+  min,
+  max,
+  resetValueOnClick,
 }) {
-  const className = parseClassName('input', modifier);
-
-  const setCursorOnInputEnd = (event) => {
-    const { value: eValue } = event.target;
-    const position = eValue.length;
-    event.target.setSelectionRange(position, position);
+  const checkLimits = (val) => {
+    const parsedValue = Number(val);
+    if (min === null && max === null) return parsedValue;
+    if (min !== null && max === null) return parsedValue >= min ? parsedValue : min;
+    if (min === null && max !== null) return parsedValue <= max ? parsedValue : max;
+    if (min !== null && max !== null) {
+      if (parsedValue <= min) return min;
+      if (parsedValue >= max) return max;
+    }
+    return parsedValue;
   };
+
+  const buildNumberEvent = (e, bypassCheck) => {
+    const { target: { value: eValue, id: eId, name: eName } } = e;
+    const valueToUse = bypassCheck ? eValue : checkLimits(eValue);
+
+    return {
+      ...e,
+      target: {
+        id: eId, name: eName, value: Number(valueToUse),
+      },
+    };
+  };
+
+  const setCursorOnInputEnd = (e) => {
+    const { value: eValue } = e.target;
+    const position = eValue.length;
+    e.target.setSelectionRange(position, position);
+  };
+
+  const handleNumberBlur = (e) => {
+    const newE = buildNumberEvent(e);
+    newE.target.value = newE.target.value === '' ? 0 : newE.target.value;
+    onBlur(newE);
+  };
+
+  const handleNumberFocus = (e) => {
+    const newE = buildNumberEvent(e);
+    newE.target.value = resetValueOnClick ? '' : value;
+    onFocus(newE);
+  };
+
+  const handleNumberChange = (e) => {
+    const newE = buildNumberEvent(e, true);
+
+    onChange(newE);
+  };
+
+  const className = parseClassName('input', modifier);
 
   return (
     <div className={className}>
@@ -88,6 +134,7 @@ function Button({
       {type === 'number' && (
         <input
           type="text"
+          autoComplete="off"
           inputMode="numeric"
           pattern="[0-9]*"
           className="number-input"
@@ -97,9 +144,9 @@ function Button({
           name={name}
           value={value}
           onClick={setCursorOnInputEnd}
-          onFocus={onFocus}
-          onBlur={onBlur}
-          onChange={onChange}
+          onFocus={handleNumberFocus}
+          onBlur={handleNumberBlur}
+          onChange={handleNumberChange}
           disabled={disabled}
         />
       )}
@@ -109,14 +156,14 @@ function Button({
   );
 }
 
-Button.propTypes = {
+Input.propTypes = {
   onChange: PropTypes.func,
   onFocus: PropTypes.func,
   onBlur: PropTypes.func,
   type: PropTypes.string,
   selectOptions: PropTypes.arrayOf(PropTypes.shape()),
   label: PropTypes.string,
-  id: PropTypes.string,
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   name: PropTypes.string,
   placeholder: PropTypes.string,
   modifier: PropTypes.string,
@@ -124,9 +171,12 @@ Button.propTypes = {
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
   enableDefaultSelect: PropTypes.bool,
   disabled: PropTypes.bool,
+  min: PropTypes.number,
+  max: PropTypes.number,
+  resetValueOnClick: PropTypes.bool,
 };
 
-Button.defaultProps = {
+Input.defaultProps = {
   type: 'text',
   onChange: () => {},
   onBlur: () => {},
@@ -141,6 +191,9 @@ Button.defaultProps = {
   children: null,
   enableDefaultSelect: false,
   disabled: false,
+  min: null,
+  max: null,
+  resetValueOnClick: true,
 };
 
-export default Button;
+export default Input;

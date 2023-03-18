@@ -6,24 +6,21 @@ const getMaxDishes = (dishes, type, filters) => {
   if (limit === 0) return [];
   const daysForDishes = [];
   days.forEach(({
-    checked, hasBreakfast, hasLunch, hasDinner,
+    hasBreakfast, hasLunch, hasDinner,
   }, index) => {
-    if (checked) {
-      switch (type) {
-        case 'BREAKFAST':
-          if (hasBreakfast) daysForDishes.push(index);
-          break;
-        case 'LUNCH':
-          if (hasLunch) daysForDishes.push(index);
-          break;
-        case 'DINNER':
-          if (hasDinner) daysForDishes.push(index);
-          break;
-        default:
-          break;
-      }
+    switch (type) {
+      case 'BREAKFAST':
+        if (hasBreakfast) daysForDishes.push(index);
+        break;
+      case 'LUNCH':
+        if (hasLunch) daysForDishes.push(index);
+        break;
+      case 'DINNER':
+        if (hasDinner) daysForDishes.push(index);
+        break;
+      default:
+        break;
     }
-    return null;
   });
 
   const finalDishes = [];
@@ -48,15 +45,15 @@ const getMaxDishes = (dishes, type, filters) => {
 
 const buildMenu = (dishes, options) => {
   const {
-    maxLunches, maxDinners, maxBreakfasts, days,
+    maxLunches, maxDinners, maxBreakfasts, days, people,
   } = options;
+
   const dishesCopy = [...dishes];
   const breakfasts = getMaxDishes(dishesCopy, 'BREAKFAST', { limit: maxBreakfasts, days });
   const lunches = getMaxDishes(dishesCopy, 'LUNCH', { limit: maxLunches, days });
   const dinners = getMaxDishes(dishesCopy, 'DINNER', { limit: maxDinners, days });
   const finalDishes = [...breakfasts, ...lunches, ...dinners];
-  const ingredientSections = buildIngredientSections(finalDishes);
-
+  const ingredientSections = buildIngredientSections(finalDishes, people);
   return [finalDishes, ingredientSections];
 };
 

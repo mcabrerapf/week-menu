@@ -89,6 +89,7 @@ function MealModalContent({ meal, handleToggleTooltip }) {
         />
         <Input
           id="change-all"
+          modifier="change-all-checkbox"
           type="checkbox"
           value={changeAll}
           onChange={handleOnChange}

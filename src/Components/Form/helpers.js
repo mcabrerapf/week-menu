@@ -1,25 +1,22 @@
 import { DISH_STRING } from '../../constants';
 import { deepCopy } from '../helpers';
 
-export const initDish = (dishData, ingredientsData) => {
+export const initDish = (dishData) => {
   const copiedDish = deepCopy(dishData);
   const {
-    name, ingredients = [], type, instructions, description,
+    name, ingredients = [], type, instructions, description, time, servings,
   } = copiedDish;
-  const ingredientsWithData = ingredients.map(({ id, quantity, unit }) => {
-    const ingredientMatch = ingredientsData.find(({ id: idToCheck }) => idToCheck === id);
-    const { name: ingredientName, unit: defaultUnit, type: ingredientType } = ingredientMatch || {};
-
-    return {
-      id, name: ingredientName, unit: unit || defaultUnit, type: ingredientType, quantity,
-    };
-  });
+  const { hours, minutes } = time || {};
 
   return {
     name: name || '',
     type: type || '',
-    // time: time || '',
-    ingredients: ingredientsWithData || [],
+    time: {
+      hours: hours || 0,
+      minutes: minutes || 0,
+    },
+    ingredients: ingredients || [],
+    servings: servings || 1,
     // size: size || '',
     instructions: instructions || '',
     description: description || '',

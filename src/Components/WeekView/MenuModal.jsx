@@ -3,27 +3,24 @@ import PropTypes from 'prop-types';
 import './MenuModal.css';
 import Modal from '../Modal';
 import Button from '../Button';
-import Input from '../Input';
 import { buildMenu, deepCopy } from '../helpers';
-import { initMenuOptions } from './helpers';
+import { initMenuOptions, getMealMinMax } from './helpers';
+import QuantityInput from './QuantityInput';
 
 function MenuModal({
   modalData, handleBuildMenu, setShowModal, dishes,
 }) {
-  const currentBreakfasts = dishes.filter(({ type }) => type === 'BREAKFAST');
-  const currentLunches = dishes.filter(({ type }) => type === 'LUNCH');
-  const currentDinners = dishes.filter(({ type }) => type === 'DINNER');
   const [currentData, setCurrentData] = useState(null);
+  const [dishesData, setDishesData] = useState(null);
 
   useEffect(() => {
     const copiedData = deepCopy(modalData);
+    const copiedDishes = deepCopy(dishes);
     const initedData = initMenuOptions(
       copiedData,
-      currentBreakfasts.length,
-      currentLunches.length,
-      currentDinners.length,
+      copiedDishes,
     );
-
+    setDishesData(copiedDishes);
     setCurrentData(initedData);
   }, []);
 
@@ -32,22 +29,60 @@ function MenuModal({
     handleBuildMenu(newMenu, currentData);
   };
 
-  const handleChange = (key, value) => {
-    setCurrentData({ ...currentData, [key]: value });
+  const handleDecrease = (valueKey) => {
+    const { [valueKey]: quantity } = currentData;
+    setCurrentData({ ...currentData, [valueKey]: quantity - 1 });
   };
 
-  const handleMaxChange = (key, quantity, limit) => {
-    const parsedQuantity = quantity ? Number(quantity) : 0;
-    if (parsedQuantity === 0) return setCurrentData({ ...currentData, [key]: limit });
-    if (parsedQuantity > limit) return setCurrentData({ ...currentData, [key]: limit });
-    return setCurrentData({ ...currentData, [key]: parsedQuantity });
+  const handleIncrease = (valueKey) => {
+    const { [valueKey]: quantity } = currentData;
+    setCurrentData({ ...currentData, [valueKey]: quantity + 1 });
   };
 
   if (!currentData) return null;
 
   const {
-    days, maxBreakfasts, maxLunches, maxDinners,
+    days,
+    maxBreakfasts,
+    maxLunches,
+    maxDinners,
+    people,
   } = currentData;
+
+  const [breakfastMin, breakfastMax, availableBreakfasts] = getMealMinMax(dishesData, currentData, 'BREAKFAST', 'hasBreakfast');
+  const [lunchMin, lunchMax, availableLunches] = getMealMinMax(dishesData, currentData, 'LUNCH', 'hasLunch');
+  const [dinnerMin, dinnerMax, availableDinners] = getMealMinMax(dishesData, currentData, 'DINNER', 'hasDinner');
+  const { length: daysWithMeals } = days
+    .filter(({ hasBreakfast: hB, hasLunch: hL, hasDinner: hD }) => hB || hL || hD);
+
+  const handleMealChange = (dayIndex, mealKey, mealValue) => {
+    const updatedData = deepCopy(currentData);
+    updatedData.days[dayIndex][mealKey] = !mealValue;
+    const initedData = initMenuOptions(
+      updatedData,
+      dishesData,
+    );
+    setCurrentData(initedData);
+  };
+
+  const handleDayChange = (hasMeal, dayIndex) => {
+    const updatedData = deepCopy(currentData);
+    if (hasMeal) {
+      updatedData.days[dayIndex].hasBreakfast = false;
+      updatedData.days[dayIndex].hasLunch = false;
+      updatedData.days[dayIndex].hasDinner = false;
+    } else {
+      updatedData.days[dayIndex].hasBreakfast = availableBreakfasts > 0;
+      updatedData.days[dayIndex].hasLunch = availableLunches > 0;
+      updatedData.days[dayIndex].hasDinner = availableDinners > 0;
+    }
+    const initedData = initMenuOptions(
+      updatedData,
+      dishesData,
+    );
+    setCurrentData(initedData);
+  };
+
   return (
     <Modal
       hideHeader
@@ -58,65 +93,48 @@ function MenuModal({
           <div className="menu-modal-day-inputs">
             {days.map((day, index) => {
               const {
-                checked, hasBreakfast, hasLunch, hasDinner, name,
+                hasBreakfast, hasLunch, hasDinner, name,
               } = day;
-              const dayMealsClassname = `menu-modal-day-meals${checked ? '' : ' disabled'}`;
+              const hasMeal = hasBreakfast || hasLunch || hasDinner;
+              const dayMealsClassname = `menu-modal-day-meals${hasMeal ? '' : ' disabled'}`;
+              const dayButtonClassName = `day-button${hasMeal ? '' : ' disabled'}`;
+
               return (
                 <div key={name} className="menu-modal-day-container">
-                  <Input
-                    type="checkbox"
-                    name={`${index}-is-checked`}
-                    id={`${index}-is-checked`}
-                    modifier="day-is-checked"
-                    value={checked}
-                    label={name}
-                    onChange={() => {
-                      const updatedData = { ...currentData };
-                      updatedData.days[index].checked = !checked;
-                      setCurrentData(updatedData);
+                  <Button
+                    value={index}
+                    modifier={dayButtonClassName}
+                    buttonText={name}
+                    onClick={() => {
+                      handleDayChange(hasMeal, index);
                     }}
                   />
                   <div className={dayMealsClassname}>
-                    <Input
-                      disabled={!checked}
-                      type="checkbox"
-                      name={`${index}-has-breakfast`}
-                      id={`${index}-has-breakfast`}
-                      modifier="has-meal"
+                    <Button
+                      modifier={`has-meal-button${hasBreakfast ? '' : ' disabled'}`}
                       value={hasBreakfast}
-                      label="B"
-                      onChange={() => {
-                        const updatedData = { ...currentData };
-                        updatedData.days[index].hasBreakfast = !hasBreakfast;
-                        setCurrentData(updatedData);
+                      buttonText="B"
+                      disabled={availableBreakfasts === 0}
+                      onClick={() => {
+                        handleMealChange(index, 'hasBreakfast', hasBreakfast);
                       }}
                     />
-                    <Input
-                      disabled={!checked}
-                      type="checkbox"
-                      name={`${index}-has-lunch`}
-                      id={`${index}-has-lunch`}
-                      modifier="has-meal"
+                    <Button
+                      modifier={`has-meal-button${hasLunch ? '' : ' disabled'}`}
                       value={hasLunch}
-                      label="L"
-                      onChange={() => {
-                        const updatedData = { ...currentData };
-                        updatedData.days[index].hasLunch = !hasLunch;
-                        setCurrentData(updatedData);
+                      buttonText="L"
+                      disabled={availableLunches === 0}
+                      onClick={() => {
+                        handleMealChange(index, 'hasLunch', hasLunch);
                       }}
                     />
-                    <Input
-                      disabled={!checked}
-                      type="checkbox"
-                      name={`${index}-has-dinner`}
-                      id={`${index}-has-dinner`}
-                      modifier="has-meal"
+                    <Button
+                      modifier={`has-meal-button${hasDinner ? '' : ' disabled'}`}
                       value={hasDinner}
-                      label="D"
-                      onChange={() => {
-                        const updatedData = { ...currentData };
-                        updatedData.days[index].hasDinner = !hasDinner;
-                        setCurrentData(updatedData);
+                      buttonText="D"
+                      disabled={availableDinners === 0}
+                      onClick={() => {
+                        handleMealChange(index, 'hasDinner', hasDinner);
                       }}
                     />
                   </div>
@@ -126,43 +144,49 @@ function MenuModal({
           </div>
 
           <div className="menu-modal-max-inputs">
-            <Input
-              type="number"
-              id="max-breakfasts"
-              name="max-breakfasts"
-              label="Breakfasts"
-              modifier="meal-max-input"
+            <div className="menu-modal-max-inputs-header">Max</div>
+            <QuantityInput
               value={maxBreakfasts}
-              onFocus={() => handleMaxChange('maxBreakfasts', '')}
-              onBlur={() => handleMaxChange('maxBreakfasts', maxBreakfasts, currentBreakfasts.length)}
-              onChange={({ target: { value } }) => handleChange('maxBreakfasts', value)}
+              valueKey="maxBreakfasts"
+              min={breakfastMin}
+              max={breakfastMax}
+              handleDecrease={handleDecrease}
+              handleIncrease={handleIncrease}
+              labelText="Breakfasts"
             />
-            <Input
-              type="number"
-              id="max-lunches"
-              name="max-lunches"
-              label="Lunches"
-              modifier="meal-max-input"
+            <QuantityInput
               value={maxLunches}
-              onFocus={() => handleMaxChange('maxLunches', '')}
-              onBlur={() => handleMaxChange('maxLunches', maxLunches, currentLunches.length)}
-              onChange={({ target: { value } }) => handleChange('maxLunches', value)}
+              valueKey="maxLunches"
+              min={lunchMin}
+              max={lunchMax}
+              handleDecrease={handleDecrease}
+              handleIncrease={handleIncrease}
+              labelText="Lunches"
             />
-            <Input
-              type="number"
-              id="max-dinners"
-              name="max-dinners"
-              label="Dinners"
-              modifier="meal-max-input"
+            <QuantityInput
               value={maxDinners}
-              onFocus={() => handleMaxChange('maxDinners', '')}
-              onBlur={() => handleMaxChange('maxDinners', maxDinners, currentDinners.length)}
-              onChange={({ target: { value } }) => handleChange('maxDinners', value)}
+              valueKey="maxDinners"
+              min={dinnerMin}
+              max={dinnerMax}
+              handleDecrease={handleDecrease}
+              handleIncrease={handleIncrease}
+              labelText="Dinners"
             />
+
+            <QuantityInput
+              value={people}
+              valueKey="people"
+              min={1}
+              max={99}
+              handleDecrease={handleDecrease}
+              handleIncrease={handleIncrease}
+              labelText="People"
+            />
+
           </div>
 
         </div>
-        <Button buttonText="GO!" onClick={handleButtonClick} />
+        <Button buttonText="GO!" onClick={handleButtonClick} disabled={daysWithMeals === 0} />
       </div>
     </Modal>
   );

@@ -7,16 +7,11 @@ import { SELECT_OPTIONS } from '../constants';
 import {
   INGREDIENT_STRING,
 } from '../../constants';
+import Input from '../Input';
 
 function IngredientsField({
   ingredients, handleIngredientChange, handleRemoveIngredient,
 }) {
-  const setCursorOnInputEnd = (event) => {
-    const { value } = event.target;
-    const position = value.length;
-    event.target.setSelectionRange(position, position);
-  };
-
   return (
     <div className="form-ingredients">
       {ingredients.map((currentIngredient) => {
@@ -28,27 +23,25 @@ function IngredientsField({
           <div className="form-ingredients-ingredient" key={id}>
             <div className="form-ingredients-ingredient-name">{name}</div>
             <div className="form-ingredients-ingredient-quantity-container">
-              <input
-                type="text"
-                inputMode="numeric"
-                pattern="[0-9]*"
-                className="form-ingredients-ingredient-quantity"
-                aria-label={id}
+              <Input
+                type="number"
+                modifier="form-ingredients-ingredient-quantity"
                 key={id}
                 id={id}
                 name="quantity"
                 value={quantity}
-                onClick={setCursorOnInputEnd}
-                onFocus={() => handleIngredientChange(id, 'quantity', null)}
-                onBlur={() => !quantity && handleIngredientChange(id, 'quantity', 1)}
-                onChange={({ target: { value } }) => !!value && handleIngredientChange(id, 'quantity', value)}
+                resetValueOnClick
+                min={1}
+                onFocus={handleIngredientChange}
+                onBlur={handleIngredientChange}
+                onChange={handleIngredientChange}
               />
               <select
                 className="form-ingredients-ingredient-unit"
                 id={id}
                 name="unit"
                 value={unit}
-                onChange={({ target: { value } }) => handleIngredientChange(id, 'unit', value)}
+                onChange={handleIngredientChange}
               >
                 <option value="" className="form-select-option" disabled>
                   Choose a unit...

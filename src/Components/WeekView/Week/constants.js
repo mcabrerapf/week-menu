@@ -1,27 +1,28 @@
 const defaultMenuOptions = {
   days: [
     {
-      checked: true, name: 'MON', hasBreakfast: false, hasLunch: true, hasDinner: true,
+      name: 'MON', hasBreakfast: false, hasLunch: true, hasDinner: true,
     },
     {
-      checked: true, name: 'TUE', hasBreakfast: false, hasLunch: true, hasDinner: true,
+      name: 'TUE', hasBreakfast: false, hasLunch: true, hasDinner: true,
     },
     {
-      checked: true, name: 'WED', hasBreakfast: false, hasLunch: true, hasDinner: true,
+      name: 'WED', hasBreakfast: false, hasLunch: true, hasDinner: true,
     },
     {
-      checked: true, name: 'THU', hasBreakfast: false, hasLunch: true, hasDinner: true,
+      name: 'THU', hasBreakfast: false, hasLunch: true, hasDinner: true,
     },
     {
-      checked: true, name: 'FRI', hasBreakfast: false, hasLunch: true, hasDinner: true,
+      name: 'FRI', hasBreakfast: false, hasLunch: true, hasDinner: true,
     },
     {
-      checked: true, name: 'SAT', hasBreakfast: false, hasLunch: true, hasDinner: true,
+      name: 'SAT', hasBreakfast: false, hasLunch: true, hasDinner: true,
     },
     {
-      checked: false, name: 'SUN', hasBreakfast: false, hasLunch: true, hasDinner: true,
+      name: 'SUN', hasBreakfast: false, hasLunch: true, hasDinner: true,
     },
   ],
+  people: 1,
   maxBreakfasts: 0,
   maxLunches: 3,
   maxDinners: 3,

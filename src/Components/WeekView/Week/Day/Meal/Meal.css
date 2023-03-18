@@ -54,3 +54,7 @@
 	font-weight: 600;
 	text-decoration: underline;
 }
+
+.change-all-checkbox {
+	flex-direction: row;
+}

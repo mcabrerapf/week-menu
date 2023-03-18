@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './Form.css';
@@ -42,14 +43,15 @@ function Form({ formData, handleSubmit, ingredientsData }) {
     setCurrentData({ ...currentData, ingredients: updatedIngredients });
   };
 
-  const handleIngredientChange = (propId, propKey, propValue) => {
+  const handleIngredientChange = (e = {}) => {
+    const { target: { value: eValue, id: eId, name: eName } } = e;
     const { ingredients } = currentData;
     const updatedIngredients = ingredients.map((ing) => {
       const { id: ingId } = ing;
-      if (ingId === propId) {
+      if (ingId === eId) {
         return {
           ...ing,
-          [propKey]: propKey === 'quantity' ? Number(propValue) : propValue,
+          [eName]: eValue,
         };
       }
       return ing;
@@ -57,9 +59,19 @@ function Form({ formData, handleSubmit, ingredientsData }) {
     setCurrentData({ ...currentData, ingredients: updatedIngredients });
   };
 
+  const handleTimeChange = (e) => {
+    const { target: { value: eValue, name: eName } } = e;
+    const {
+      time,
+    } = currentData;
+
+    setCurrentData({ ...currentData, time: { ...time, [eName]: eValue } });
+  };
+
   const {
-    name, type, unit, ingredients,
+    name, type, unit, ingredients, servings, time: { hours, minutes } = {},
   } = currentData;
+
   const buttonClassName = `submit${checkIsButtonDisabled(view, currentData) ? ' disabled' : ''}`;
   const isDish = view === DISH_STRING;
 
@@ -74,6 +86,7 @@ function Form({ formData, handleSubmit, ingredientsData }) {
           value={name}
           onChange={handleOnChange}
           placeholder="Name"
+          label="Name"
         />
         <Input
           name="type"
@@ -83,6 +96,7 @@ function Form({ formData, handleSubmit, ingredientsData }) {
           placeholder="Choose a type..."
           selectOptions={SELECT_OPTIONS[view].type}
           type="select"
+          label="Type"
         />
 
         {!isDish && (
@@ -94,8 +108,57 @@ function Form({ formData, handleSubmit, ingredientsData }) {
           placeholder="Choose a unit..."
           selectOptions={SELECT_OPTIONS[view].unit}
           type="select"
+          label="Unit"
         />
         )}
+        {isDish
+        && (
+        <div className="form-input-group">
+          <Input
+            modifier="servings-input"
+            type="number"
+            id="servings"
+            name="servings"
+            label="Servings"
+            value={servings}
+            resetValueOnClick
+            min={1}
+            onFocus={handleOnChange}
+            onBlur={handleOnChange}
+            onChange={handleOnChange}
+          />
+          <div className="time-inputs">
+            <span className="time-inputs-label">Time</span>
+            <Input
+              type="number"
+              id="hours"
+              name="hours"
+              label="h"
+              value={hours}
+              resetValueOnClick
+              min={0}
+              onFocus={handleTimeChange}
+              onBlur={handleTimeChange}
+              onChange={handleTimeChange}
+            />
+            <Input
+              type="number"
+              id="minutes"
+              name="minutes"
+              label="m"
+              value={minutes}
+              resetValueOnClick
+              min={0}
+              max={59}
+              onFocus={handleTimeChange}
+              onBlur={handleTimeChange}
+              onChange={handleTimeChange}
+            />
+          </div>
+
+        </div>
+        )}
+
         {isDish && (
           <Input
             value=""
@@ -120,6 +183,7 @@ function Form({ formData, handleSubmit, ingredientsData }) {
           <Input
             id="description"
             name="description"
+            label="Description"
             value={currentData.description}
             onChange={handleOnChange}
             placeholder="Dish description..."
@@ -131,6 +195,7 @@ function Form({ formData, handleSubmit, ingredientsData }) {
         <Input
           id="instructions"
           name="instructions"
+          label="Instructions"
           value={currentData.instructions}
           onChange={handleOnChange}
           placeholder="Dish instructions..."
