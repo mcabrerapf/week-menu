@@ -5,6 +5,22 @@ import PropTypes from 'prop-types';
 import './ShopingList.css';
 import Input from '../../Input';
 
+const unitMatches = {
+  UN: 'u',
+  MG: 'mg',
+  G: 'g',
+  KG: 'kg',
+  L: 'l',
+  ML: 'ml',
+  LB: 'lb',
+  OZ: 'oz',
+  TSP: 'tsp',
+  TBSP: 'tbsp',
+  PT: 'pt',
+  QT: 'ct',
+  DOZ: 'dz',
+};
+
 function ShopingListNoteSectionItem({
   ingredient, handleOnClick,
 }) {
@@ -13,8 +29,9 @@ function ShopingListNoteSectionItem({
   const {
     name, quantity, unit,
   } = ingredient;
+  const parsedUnit = unitMatches[unit] || 'u';
   const className = gotIt ? 'shoping-list-section-items-item-name got-it' : 'shoping-list-section-items-item-name';
-  const parsedLabel = `${name} (${quantity}${unit})`;
+  const parsedLabel = `${name} (${quantity}${parsedUnit})`;
 
   return (
     <div
