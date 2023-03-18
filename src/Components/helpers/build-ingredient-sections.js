@@ -1,8 +1,9 @@
-const buildIngredientSections = (dishes, people) => {
+const buildIngredientSections = (dishes, people = 1) => {
   const ingredientSections = {};
   const parsedIngredients = [];
   dishes.forEach((dish) => {
-    const { ingredients, name: dishName, servings = 1 } = dish;
+    const { ingredients, name: dishName } = dish;
+    const servings = dish.servings || 1;
     ingredients.forEach((ingredient) => {
       const {
         id, unit, quantity,
@@ -21,7 +22,7 @@ const buildIngredientSections = (dishes, people) => {
       });
       if (!ingredientMatch) {
         parsedIngredients
-          .push({ ...ingredient, dishes: parsedDishes, quantity: quantity + parsedQuantity });
+          .push({ ...ingredient, dishes: parsedDishes, quantity: parsedQuantity });
       }
     });
   });
