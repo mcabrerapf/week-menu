@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import {
   serviceHandler,
 } from '../../../Services';
-import { useMainContext, MainContext } from '../../../Context';
+import {
+  useMainContext, MainContext, useToastContext, ToastContext,
+} from '../../../Context';
 import {
   CREATE_STRING, DELETE_STRING, DISH_STRING, UPDATE_STRING,
 } from '../../../constants';
@@ -32,12 +34,12 @@ function ListModal({
   modalData, action, setShowModal,
 }) {
   const {
-    view, ingredients, updateDishes, updateIngredients,
+    view, ingredients, updateLists,
   } = useMainContext(MainContext);
+  const { addToast } = useToastContext(ToastContext);
   const [mmodalData, setModalData] = useState({ modalMode: action });
   const { data, modalMode, ingredientsData } = mmodalData;
   const { id } = modalData;
-  const updateHandler = view === 'dish' ? updateDishes : updateIngredients;
 
   useEffect(() => {
     // TODO: check why double api call on init
@@ -54,20 +56,41 @@ function ListModal({
     setModalData({ ...mmodalData, modalMode: newMode });
   };
 
+  const handleListUpdate = async () => {
+    const response = await updateLists();
+    if (response.errors) addToast(response.errors, 'error');
+  };
+
+  const handleToastMessage = (response, toastLabel, name, toastType) => {
+    if (response.errors) addToast(response.errors, 'error');
+    else {
+      const messageContent = `${toastLabel} ${view}: ${name}`;
+      addToast(messageContent, toastType);
+    }
+  };
+
   const handleSubmit = async (submitData) => {
+    // If new data hasnt changed dont call api
+    if (JSON.stringify(submitData) === JSON.stringify(mmodalData.data)) {
+      setShowModal({ show: false });
+      return;
+    }
     const serviceToUse = action === 0
       ? serviceHandler(CREATE_STRING) : serviceHandler(UPDATE_STRING);
     const validatedData = validateData(submitData);
     const parsedData = action === 0 ? validatedData : { ...validatedData, id };
-    await serviceToUse(view, parsedData);
-    await updateHandler();
+    const response = await serviceToUse(view, parsedData);
+    await handleListUpdate();
     setShowModal({ show: false });
+    const toastLabel = action === 0 ? 'Created' : 'Updated';
+    handleToastMessage(response, toastLabel, parsedData.name, 'success');
   };
 
   const handleDelete = async () => {
-    await serviceHandler(DELETE_STRING)(view, { id });
-    await updateHandler();
+    const response = await serviceHandler(DELETE_STRING)(view, { id });
+    await handleListUpdate();
     setShowModal({ show: false });
+    handleToastMessage(response, 'Deleted', data.name, 'error');
   };
 
   if (!data) return null;

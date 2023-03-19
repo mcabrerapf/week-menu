@@ -1,6 +1,10 @@
-import MainContextWrapper from './MainContextWrapper';
-import { MainContextConsumer, MainContextProvider, MainContext } from './MainContext';
-import useMainContext from './useMainContext';
+import {
+  MainContextWrapper, MainContext, MainContextConsumer, MainContextProvider, useMainContext,
+} from './MainContext';
+
+import {
+  ToastContextWrapper, ToastContext, ToastContextConsumer, ToastContextProvider, useToastContext,
+} from './ToastContext';
 
 export {
   MainContextWrapper,
@@ -8,5 +12,10 @@ export {
   MainContextConsumer,
   MainContextProvider,
   MainContext,
+  ToastContextWrapper,
+  ToastContext,
+  ToastContextConsumer,
+  ToastContextProvider,
+  useToastContext,
 
 };

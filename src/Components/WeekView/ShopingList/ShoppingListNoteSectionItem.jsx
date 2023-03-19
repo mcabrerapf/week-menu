@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './ShopingList.css';
 import Input from '../../Input';
+import { capitalizeFirstLetter } from '../../helpers';
 
 const unitMatches = {
   UN: 'u',
@@ -31,7 +32,7 @@ function ShopingListNoteSectionItem({
   } = ingredient;
   const parsedUnit = unitMatches[unit] || 'u';
   const className = gotIt ? 'shoping-list-section-items-item-name got-it' : 'shoping-list-section-items-item-name';
-  const parsedLabel = `${name} (${quantity}${parsedUnit})`;
+  const parsedLabel = `${capitalizeFirstLetter(name)} (${quantity}${parsedUnit})`;
 
   return (
     <div

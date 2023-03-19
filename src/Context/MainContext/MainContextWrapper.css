@@ -1,0 +1,11 @@
+.main-context-wrapper {
+	justify-content: center;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	align-items: center;
+	color: white;
+	font-weight: 600;
+	font-size: 2rem;
+}
