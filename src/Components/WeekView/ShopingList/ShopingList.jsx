@@ -2,11 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './ShopingList.css';
 import ShopingListNoteSection from './ShopingListNoteSection';
-import { useLongPress } from '../../../Hooks';
+import { ToastContext, useToastContext } from '../../../Context';
+import Button from '../../Button';
 
 const INGREDIENT_TYPES = ['MEAT', 'FISH', 'FRUIT', 'VEGETABLE', 'SAUCE', 'LIQUOR', 'SPICE', 'OTHER'];
 
 function ShopingList({ ingredienSections, hidden }) {
+  const { addToast } = useToastContext(ToastContext);
   const handleCopyShopingList = () => {
     const shopingListItems = [];
     Object.keys(ingredienSections).forEach((sectionKey) => {
@@ -17,8 +19,8 @@ function ShopingList({ ingredienSections, hidden }) {
       });
     });
     navigator.clipboard.writeText(JSON.stringify(shopingListItems.join(', ')));
+    addToast('Coppied shoping list to clipboard', 'info');
   };
-  const longPressProps = useLongPress({ onLongPress: () => handleCopyShopingList() });
 
   if (!ingredienSections) return null;
   const className = hidden ? 'shopping-list no-show' : 'shopping-list';
@@ -27,9 +29,11 @@ function ShopingList({ ingredienSections, hidden }) {
 
     <div
         // eslint-disable-next-line react/jsx-props-no-spreading
-      {...longPressProps}
       className={className}
     >
+      <Button modifier="shopping-list-copy-button" onClick={handleCopyShopingList}>
+        <i className="fa fa-clipboard" aria-hidden="true" />
+      </Button>
       {INGREDIENT_TYPES.map((type) => {
         const sectionData = ingredienSections[type];
         if (!sectionData) return null;

@@ -3,7 +3,7 @@ import './Main.css';
 import View from '../View';
 import WeekView from '../WeekView';
 import { DISH_STRING, INGREDIENT_STRING } from '../../constants';
-import { MainContext, useMainContext, ToastContextWrapper } from '../../Context';
+import { MainContext, useMainContext } from '../../Context';
 
 const minSwipeDistance = 60;
 
@@ -40,19 +40,18 @@ function Main() {
   const mainClassName = `main${offlineMode === 1 ? ' offline-mode' : ''}`;
 
   return (
-    <ToastContextWrapper>
-      <div
-        className={mainClassName}
-        onTouchStart={onTouchStart}
-        onTouchMove={onTouchMove}
-        onTouchEnd={onTouchEnd}
-      >
+    <div
+      className={mainClassName}
+      onTouchStart={onTouchStart}
+      onTouchMove={onTouchMove}
+      onTouchEnd={onTouchEnd}
+    >
 
-        <WeekView />
-        <View name={DISH_STRING} />
-        <View name={INGREDIENT_STRING} />
-      </div>
-    </ToastContextWrapper>
+      <WeekView />
+      <View name={DISH_STRING} />
+      <View name={INGREDIENT_STRING} />
+    </div>
+
   );
 }
 

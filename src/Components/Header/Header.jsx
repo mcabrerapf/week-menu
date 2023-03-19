@@ -2,7 +2,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './Header.css';
-import { MainContext, useMainContext } from '../../Context';
+import {
+  MainContext, ToastContext, useMainContext, useToastContext,
+} from '../../Context';
 import {
   DISHES_STRING,
   DISH_STRING,
@@ -19,6 +21,7 @@ function Header() {
   const {
     view, dishes, ingredients, setContextState,
   } = useMainContext(MainContext);
+  const { addToast } = useToastContext(ToastContext);
 
   const handleOnClick = (newView) => {
     if (newView !== view) setContextState('view', newView);
@@ -28,7 +31,7 @@ function Header() {
     if (value === 'menu') return;
     const items = value === 'dish' ? dishes : ingredients;
     navigator.clipboard.writeText(JSON.stringify(items));
-    console.log(`Copied ${value} list to clipboard`);
+    addToast(`Copied ${value} list to clipboard`, 'info');
   };
 
   const longPressProps = useLongPress({

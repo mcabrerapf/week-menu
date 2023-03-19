@@ -3,7 +3,7 @@ import './App.css';
 import { Authenticator } from '@aws-amplify/ui-react';
 import { Amplify, AuthModeStrategyType } from 'aws-amplify';
 import { Main, Header } from './Components';
-import { MainContextWrapper } from './Context';
+import { MainContextWrapper, ToastContextWrapper } from './Context';
 // eslint-disable-next-line import/no-unresolved
 import '@aws-amplify/ui-react/styles.css';
 import awsExports from './aws-exports';
@@ -23,10 +23,12 @@ function App() {
       <Authenticator hideSignUp>
         {({ signOut }) => (
           <MainContextWrapper>
-            <div className="app-container">
-              <Header signOut={signOut} />
-              <Main />
-            </div>
+            <ToastContextWrapper>
+              <div className="app-container">
+                <Header signOut={signOut} />
+                <Main />
+              </div>
+            </ToastContextWrapper>
           </MainContextWrapper>
         )}
       </Authenticator>
