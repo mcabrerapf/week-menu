@@ -5,7 +5,7 @@
 	margin: 5px 0;
 	background-color: #3f8881;
 	border-radius: 10px;
-	color: black;
+	justify-content: space-between;
 	padding: 10px;
 }
 
@@ -29,11 +29,12 @@
 
 .list-item .list-item-buttons {
 	display: flex;
-	width: 50%;
 	justify-content: flex-end;
 }
 
 .list-item-type {
+	display: flex;
+	align-items: center;
 	background-color: #3f8881;
 	border-radius: 5px;
 	padding: 5px;
@@ -43,9 +44,7 @@
 }
 
 .list-item .list-item-buttons button {
-	background-color: #3f8881;
 	border: none;
-	color: black;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -60,7 +59,7 @@
 
 .list-item .rounded-button {
 	font-size: 1rem !important;
-	height: 30px;
-	width: 30px;
+	/* height: 30px;
+	width: 30px; */
 	border-radius: 50% !important;
 }

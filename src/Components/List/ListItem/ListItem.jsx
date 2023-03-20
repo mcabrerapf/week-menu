@@ -23,14 +23,17 @@ function ListItem({
 
       </div>
       <div className="list-item-buttons">
-        {/* {unit && <button type="button">{unit}</button>} */}
         {type && <div className="list-item-type">{type}</div>}
-        <Button modifier="rounded-button" onClick={() => handleEdit(itemData)}>
-          <i className="fa fa-pencil-square-o" />
-        </Button>
-        <Button modifier="rounded-button" onClick={() => handleDelete(itemData)}>
-          <i className="fa trash-o fa-trash-o" />
-        </Button>
+        <Button
+          modifier="rounded-button"
+          onClick={() => handleEdit(itemData)}
+          buttonIcon="pencil"
+        />
+        <Button
+          modifier="rounded-button"
+          onClick={() => handleDelete(itemData)}
+          buttonIcon="trash"
+        />
       </div>
     </li>
   );

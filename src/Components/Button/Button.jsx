@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './Button.css';
 import { parseClassName } from '../helpers';
+import Icon from '../Icon';
 
 function Button({
   modifier,
@@ -15,8 +16,10 @@ function Button({
   children,
   value,
   disabled,
+  buttonIcon,
 }) {
   const baseClassName = `button${disabled ? ' disabled' : ''}`;
+
   return (
     <button
       type="button"
@@ -30,6 +33,9 @@ function Button({
       value={value}
       disabled={disabled}
     >
+      {!!buttonIcon && (
+        <Icon type={buttonIcon} />
+      )}
       {buttonText}
       {children}
     </button>
@@ -48,6 +54,7 @@ Button.propTypes = {
   modifier: PropTypes.string,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
   disabled: PropTypes.bool,
+  buttonIcon: PropTypes.string,
 };
 
 Button.defaultProps = {
@@ -62,6 +69,7 @@ Button.defaultProps = {
   children: null,
   value: '',
   disabled: false,
+  buttonIcon: '',
 };
 
 export default Button;

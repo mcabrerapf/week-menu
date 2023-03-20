@@ -8,7 +8,7 @@ import './MainContextWrapper.css';
 
 function MainContextWrapper({ children }) {
   const [contextState, setContextState] = useState({
-    view: 'menu',
+    view: 'dish',
     loading: true,
     offlineMode: 0,
     menus: [],

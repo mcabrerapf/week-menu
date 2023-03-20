@@ -1,0 +1,15 @@
+.icon-component {
+	/* background-color: black; */
+	/* height: 100%;
+	width: 100%; */
+	height: 100%;
+	width: 100%;
+	min-width: 1.5rem;
+	min-height: 1.5rem;
+	background-size: contain;
+	background-repeat: no-repeat;
+	/* background-attachment: fixed; */
+	background-position: center;
+	/* filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(86deg)
+		brightness(118%) contrast(119%); */
+}

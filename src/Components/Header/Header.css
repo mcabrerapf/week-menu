@@ -1,6 +1,6 @@
 .header {
 	width: 100%;
-	height: 50px;
+	height: 3rem;
 }
 
 .header .header-buttons {
@@ -25,12 +25,4 @@ header .header-buttons .view-buttons button {
 }
 header .header-buttons .view-buttons button:last-of-type {
 	border-right: none;
-}
-
-header .header-buttons .signout-button {
-	width: 10%;
-	height: 100%;
-	border: none;
-	border-radius: 0;
-	color: black;
 }

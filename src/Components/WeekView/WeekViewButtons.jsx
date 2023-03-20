@@ -8,7 +8,9 @@ import {
   MainContext, ToastContext, useMainContext, useToastContext,
 } from '../../Context';
 
-function WeekViewButtons({ showBuildMenuModal, handleChangeView, view }) {
+function WeekViewButtons({
+  showBuildMenuModal, handleChangeView, handleBuildMenu, view,
+}) {
   const { setContextState } = useMainContext(MainContext);
   const { addToast } = useToastContext(ToastContext);
   const checkView = () => {
@@ -26,13 +28,17 @@ function WeekViewButtons({ showBuildMenuModal, handleChangeView, view }) {
     },
   });
 
-  const buttonText = `Show ${view === 1 ? 'Menu' : 'Sopping List'}`;
+  const buttonText = `${view === 1 ? 'M' : 'L'}`;
 
   return (
     <div className="week-view-header-buttons">
       <Button
         onClick={showBuildMenuModal}
-        buttonText="Build Menu"
+        buttonText="B"
+      />
+      <Button
+        onClick={handleBuildMenu}
+        buttonIcon="dice"
       />
       <Button
         {...longPressProps}
@@ -47,6 +53,7 @@ WeekViewButtons.propTypes = {
   view: PropTypes.number.isRequired,
   showBuildMenuModal: PropTypes.func.isRequired,
   handleChangeView: PropTypes.func.isRequired,
+  handleBuildMenu: PropTypes.func.isRequired,
 };
 
 export default WeekViewButtons;

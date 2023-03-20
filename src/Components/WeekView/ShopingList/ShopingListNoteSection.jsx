@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
@@ -21,12 +22,12 @@ function ShopingListNoteSection({ ingredients, label }) {
     <div className="shoping-list-section">
       <h3 className="shoping-list-section-header">{capitalizeFirstLetter(label)}</h3>
       <div className="shoping-list-section-items">
-        {ingredients.map((ingredient) => {
+        {ingredients.map((ingredient, i) => {
           const { id } = ingredient;
 
           return (
             <ShopingListNoteSectionItem
-              key={id}
+              key={`${id}-${i}`}
               ingredient={ingredient}
               handleOnClick={handleOnClick}
             />

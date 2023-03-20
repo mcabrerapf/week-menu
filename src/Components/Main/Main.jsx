@@ -46,7 +46,6 @@ function Main() {
       onTouchMove={onTouchMove}
       onTouchEnd={onTouchEnd}
     >
-
       <WeekView />
       <View name={DISH_STRING} />
       <View name={INGREDIENT_STRING} />

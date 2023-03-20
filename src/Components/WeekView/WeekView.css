@@ -4,31 +4,27 @@
 	flex-direction: column;
 }
 
-.week-view .week-view-header {
-	height: 50px;
+.week-view .week-view-header-buttons {
+	height: 3rem;
 	width: 100%;
 	border-top: 1px solid black;
-}
-
-.week-view .week-view-header .week-view-header-buttons {
-	height: 100%;
 	display: flex;
 	justify-content: space-between;
 }
 
-.week-view .week-view-header .week-view-header-buttons button {
+.week-view .week-view-header-buttons button {
 	border-radius: 0;
 	border-right: 1px solid black;
 	color: black;
 	font-size: 16px;
 }
 
-.week-view .week-view-header .week-view-header-buttons button:last-of-type {
+.week-view .week-view-header-buttons button:last-of-type {
 	border-right: none;
 }
 
 .week-view .week-view-content {
-	height: calc(100% - 50px);
+	height: calc(100% - 3rem);
 	width: 100%;
 	overflow: hidden;
 }

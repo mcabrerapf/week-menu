@@ -21,14 +21,14 @@ function WeekView() {
     setMenuOptions(copiedOptions);
   }, []);
 
-  const handleBuildMenu = async () => {
+  const handleBuildMenu = () => {
     const newMenu = buildMenu(dishesFromContext, menuOptions);
     if (!newMenu) return;
     if (view !== 0) setView(0);
     setWeekPlan(newMenu);
   };
 
-  const getDataForModal = async () => {
+  const getDataForModal = () => {
     setShowModal(true);
   };
 
@@ -68,13 +68,12 @@ function WeekView() {
 
   return (
     <div className={className}>
-      <div className="week-view-header">
-        <WeekViewButtons
-          view={view}
-          showBuildMenuModal={getDataForModal}
-          handleChangeView={handleChangeView}
-        />
-      </div>
+      <WeekViewButtons
+        view={view}
+        showBuildMenuModal={getDataForModal}
+        handleChangeView={handleChangeView}
+        handleBuildMenu={handleBuildMenu}
+      />
       <div className="week-view-content">
         {!weekPlan[0] && (
         <div className="no-week-container">

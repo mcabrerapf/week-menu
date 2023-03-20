@@ -6,14 +6,10 @@ import {
   MainContext, ToastContext, useMainContext, useToastContext,
 } from '../../Context';
 import {
-  DISHES_STRING,
   DISH_STRING,
-  INGREDIENTS_STRING,
   INGREDIENT_STRING,
-  MENUS_STRING,
   MENU_STRING,
 } from '../../constants';
-import { capitalizeFirstLetter } from '../helpers';
 import Button from '../Button';
 import { useLongPress } from '../../Hooks';
 
@@ -27,7 +23,7 @@ function Header() {
     if (newView !== view) setContextState('view', newView);
   };
 
-  const handleCopyList = async (value) => {
+  const handleCopyList = (value) => {
     if (value === 'menu') return;
     const items = value === 'dish' ? dishes : ingredients;
     navigator.clipboard.writeText(JSON.stringify(items));
@@ -35,7 +31,6 @@ function Header() {
   };
 
   const longPressProps = useLongPress({
-    onClick: ({ target: { value } }) => handleOnClick(value),
     onLongPress: ({ target: { value } }) => handleCopyList(value),
   });
 
@@ -49,19 +44,22 @@ function Header() {
             {...longPressProps}
             value={MENU_STRING}
             modifier={checkIfSelected(MENU_STRING)}
-            buttonText={capitalizeFirstLetter(MENUS_STRING)}
+            buttonIcon={MENU_STRING}
+            onClick={() => handleOnClick(MENU_STRING)}
           />
           <Button
             {...longPressProps}
             value={DISH_STRING}
             modifier={checkIfSelected(DISH_STRING)}
-            buttonText={capitalizeFirstLetter(DISHES_STRING)}
+            buttonIcon={DISH_STRING}
+            onClick={() => handleOnClick(DISH_STRING)}
           />
           <Button
             {...longPressProps}
             value={INGREDIENT_STRING}
             modifier={checkIfSelected(INGREDIENT_STRING)}
-            buttonText={capitalizeFirstLetter(INGREDIENTS_STRING)}
+            buttonIcon={INGREDIENT_STRING}
+            onClick={() => handleOnClick(INGREDIENT_STRING)}
           />
         </div>
         {/* <Button
