@@ -1,0 +1,21 @@
+.ingredient-item-group {
+	display: flex;
+	flex-direction: column;
+}
+
+.ingredient-item-group-label {
+	margin-left: 5px;
+	font-size: 0.9rem;
+	font-weight: 600;
+}
+
+.ingredient-item-group-options {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	gap: 5px;
+}
+
+.ingredient-item-group-button {
+	width: auto !important;
+}

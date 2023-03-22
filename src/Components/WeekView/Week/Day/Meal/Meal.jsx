@@ -1,45 +1,42 @@
-import React, { useState } from 'react';
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import './Meal.css';
-import Modal from '../../../../Modal';
-import MealModalContent from './MealModalContent';
+import Button from '../../../../Button';
+import { ModalContext } from '../../../../../Contexts/ModalContext';
 
 function Meal({
   meals, dayIndex, type, handleUpdateDish,
 }) {
-  const [showTooltip, setShowTooltip] = useState(false);
+  const { addModal } = useContext(ModalContext);
+
   const firstMeal = meals[0];
   const { name } = firstMeal || {};
 
-  const handleToggleTooltip = (updateData) => {
-    if (!firstMeal) return;
-    if (!!updateData && updateData.newDish) {
-      const newDishData = { ...updateData.newDish, useAs: type, days: [dayIndex] };
-      handleUpdateDish({
-        ...updateData, newDish: newDishData, dayIndex, type,
-      });
-    }
-    setShowTooltip(!showTooltip);
-  };
-  const className = `meal${firstMeal ? '' : ' no-dish'}`;
-  return (
-    <div className={className}>
-      <div
-        tabIndex={0}
-        role="button"
-        className="meal-content"
-        onKeyDown={handleToggleTooltip}
-        onClick={handleToggleTooltip}
-      >
-        {name}
-      </div>
+  const updateDishes = (updateData) => {
+    const newDishData = { ...updateData.newDish, useAs: type, days: [dayIndex] };
 
-      {showTooltip
-      && (
-      <Modal hideModal={handleToggleTooltip} headerText={name}>
-        <MealModalContent meal={meals[0]} handleToggleTooltip={handleToggleTooltip} />
-      </Modal>
-      )}
+    handleUpdateDish({
+      ...updateData, newDish: newDishData, dayIndex, type,
+    });
+  };
+
+  const openMealModal = () => {
+    addModal({
+      type: 'meal',
+      modalData: firstMeal,
+      onClose: updateDishes,
+    });
+  };
+
+  const className = `meal${firstMeal ? '' : ' no-dish'}`;
+
+  return (
+    <div
+      className={className}
+
+    >
+      <Button modifier="meal-content" onClick={openMealModal} buttonText={name} />
     </div>
   );
 }

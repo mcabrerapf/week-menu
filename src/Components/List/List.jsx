@@ -1,65 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import ListItem from './ListItem';
-import ListModal from './ListModal';
 import './List.css';
-import { useMainContext, MainContext } from '../../Context';
+import { MainContext } from '../../Contexts/MainContext';
+import { ModalContext } from '../../Contexts/ModalContext';
 import Button from '../Button';
 import { sortBy } from '../helpers';
 import Input from '../Input';
 import { INGREDIENT_TYPES, DISH_TYPES } from '../constants';
 import { DISH_STRING } from '../../constants';
+import { filterList } from './helpers';
 
-const filterList = (list, key, searchValue, filterValue) => {
-  if (!searchValue && !filterValue) return list;
-
-  return list.filter(({ name, type }) => {
-    const filterMatch = type === filterValue;
-    if (searchValue) {
-      if (filterValue) {
-        return name.toLowerCase().indexOf(searchValue.toLowerCase()) !== -1 && filterMatch;
-      }
-      return name.toLowerCase().indexOf(searchValue.toLowerCase()) !== -1;
-    }
-    if (filterValue) return filterMatch;
-    return true;
-  });
-};
-
-const sortOptions = [{ id: 'name', name: 'Name' }, { id: 'type', name: 'Type' }];
+// const sortOptions = [{ id: 'name', name: 'Name' }, { id: 'type', name: 'Type' }];
 
 function List({ listData }) {
-  const { view } = useMainContext(MainContext);
-  const [showModal, setShowModal] = useState({
-    show: false, action: null, modalData: {},
-  });
+  const { view } = useContext(MainContext);
+  const { addModal } = useContext(ModalContext);
   const [searchValue, setSearchValue] = useState('');
   const [listFilter, setListFilter] = useState();
-  const [listSort, setListSort] = useState('name');
+  // const [listSort, setListSort] = useState('name');
   const [showFilters, setShowFilters] = useState(false);
 
-  const {
-    show, action, modalData,
-  } = showModal;
-
-  const handleNameClick = (data) => {
-    setShowModal({
-      show: !show, action: 1, modalData: data,
+  const handleOpenModal = (type, mode, data) => {
+    addModal({
+      type,
+      mode,
+      modalData: data,
     });
-  };
-
-  const handleEdit = (data) => {
-    setShowModal({
-      show: !show, action: 2, modalData: data,
-    });
-  };
-
-  const handleDelete = (data) => {
-    setShowModal({ show: !show, action: 3, modalData: data });
   };
 
   const foundItems = filterList(listData, 'name', searchValue, listFilter);
-  const sortedItems = sortBy(foundItems, listSort, 'alphabetical');
+  const sortedItems = sortBy(foundItems, 'name', 'alphabetical');
   const filterOptions = view === DISH_STRING ? DISH_TYPES : INGREDIENT_TYPES;
   const filtersClassName = `list-filters${showFilters ? '' : ' no-show'}`;
   const buttonText = `${showFilters ? 'Hide' : 'Show'} filters`;
@@ -88,7 +59,7 @@ function List({ listData }) {
           label="Filter by:"
           selectOptions={filterOptions}
         />
-        <Input
+        {/* <Input
           type="select"
           modifier="list-sort-by"
           value={listSort}
@@ -97,7 +68,7 @@ function List({ listData }) {
           label="Sort by:"
           onChange={({ target: { value } }) => setListSort(value)}
           selectOptions={sortOptions}
-        />
+        /> */}
 
       </div>
       <Button
@@ -111,9 +82,7 @@ function List({ listData }) {
             key={listItem.id}
             modifier={view}
             itemData={listItem}
-            handleNameClick={handleNameClick}
-            handleDelete={handleDelete}
-            handleEdit={handleEdit}
+            handleOpenModal={handleOpenModal}
           />
         ))}
 
@@ -123,20 +92,12 @@ function List({ listData }) {
         <Button
           modifier="add-button"
           type="button"
-          onClick={() => setShowModal({ show: !show, action: 0, modalData: {} })}
+          onClick={() => handleOpenModal('list', 'create', {})}
         >
           <i className="fa fa-plus" aria-hidden="true" />
 
         </Button>
       </div>
-      {show
-        && (
-          <ListModal
-            modalData={modalData}
-            action={action}
-            setShowModal={setShowModal}
-          />
-        )}
     </div>
   );
 }

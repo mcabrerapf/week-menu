@@ -1,21 +1,15 @@
 const DISH_TYPES = [
   {
-    id: 'BREAKFAST', name: 'Breakfast',
+    id: 'BREAKFAST', name: 'Breakfast', shortLabel: 'B',
   },
   {
-    id: 'LUNCH', name: 'Lunch',
+    id: 'LUNCH', name: 'Lunch', shortLabel: 'L',
   },
   {
-    id: 'DINNER', name: 'Dinner',
+    id: 'DINNER', name: 'Dinner', shortLabel: 'D',
   },
   {
-    id: 'DESSERT', name: 'Dessert',
-  },
-  {
-    id: 'VERMUT', name: 'Vermut',
-  },
-  {
-    id: 'MUNCH', name: 'Pica pica',
+    id: 'DESSERT', name: 'Dessert', shortLabel: 'S',
   },
 ];
 

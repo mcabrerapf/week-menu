@@ -1,57 +1,79 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import './WeekView.css';
-import { buildIngredientSections, buildMenu, deepCopy } from '../helpers';
+import { buildMenuDishes, deepCopy } from '../helpers';
 import Week from './Week';
 import ShopingList from './ShopingList';
 import WeekViewButtons from './WeekViewButtons';
-import { useMainContext, MainContext } from '../../Context';
+import { MainContext } from '../../Contexts/MainContext';
+import { ModalContext } from '../../Contexts/ModalContext';
 import Button from '../Button';
-import { defaultMenuOptions } from './Week/constants';
-import MenuModal from './MenuModal';
+
+const minSwipeDistance = 80;
 
 function WeekView() {
-  const { view: generalView, dishes: dishesFromContext } = useMainContext(MainContext);
-  const [weekPlan, setWeekPlan] = useState([]);
-  const [showModal, setShowModal] = useState(false);
-  const [menuOptions, setMenuOptions] = useState(null);
+  const {
+    view: generalView,
+    dishes: dishesFromContext,
+    currentMenu: { menuOptions, menuDishes },
+    setContextState,
+  } = useContext(MainContext);
+  const { addModal } = useContext(ModalContext);
   const [view, setView] = useState(0);
-
-  useEffect(() => {
-    const copiedOptions = deepCopy(defaultMenuOptions);
-    setMenuOptions(copiedOptions);
-  }, []);
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
 
   const handleBuildMenu = () => {
-    const newMenu = buildMenu(dishesFromContext, menuOptions);
-    if (!newMenu) return;
+    const newDishes = buildMenuDishes(dishesFromContext, menuOptions);
+    if (!newDishes) return;
     if (view !== 0) setView(0);
-    setWeekPlan(newMenu);
-  };
-
-  const getDataForModal = () => {
-    setShowModal(true);
+    setContextState('currentMenu', { menuOptions, menuDishes: newDishes });
   };
 
   const handleChangeView = (newView) => {
     setView(newView);
   };
 
-  const updateMenuAndOptions = (newMenu, newOptions) => {
-    setShowModal(false);
-    setMenuOptions(newOptions);
-    setWeekPlan(newMenu);
+  const onTouchStart = (e) => {
+    e.stopPropagation();
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e) => {
+    e.stopPropagation();
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = (e) => {
+    e.stopPropagation();
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    if (isLeftSwipe) setContextState('view', 'dish');
+  };
+
+  const updateMenuAndOptions = () => {
     if (view !== 0) setView(0);
+  };
+
+  const openBuildMenuModal = () => {
+    addModal({
+      type: 'buildMenu',
+      modalData: menuOptions,
+      onClose: updateMenuAndOptions,
+    });
   };
 
   const handleUpdateDish = (updateData) => {
     const {
-      changeAll, dayIndex, oldDishId, newDish,
+      changeAll, dayIndex, oldDishId, newDish, type,
     } = updateData;
-    const oldDishes = deepCopy(weekPlan[0]);
+
+    const oldDishes = deepCopy(menuDishes);
     const newDishes = oldDishes.map((currentDish) => {
-      const { id, days } = currentDish;
-      if (id === oldDishId) {
-        if (changeAll) newDish.days = days;
+      const { id, days, useAs } = currentDish;
+      if (id === oldDishId && useAs === type) {
+        if (changeAll) newDish.days = days.map((day) => day);
         const updatedDays = changeAll ? [] : days.filter((day) => day !== dayIndex);
         return { ...currentDish, days: updatedDays };
       }
@@ -59,8 +81,8 @@ function WeekView() {
       return currentDish;
     }).filter(({ days }) => !!days.length);
     newDishes.push({ ...newDish });
-    const newIngredientSections = buildIngredientSections(newDishes, menuOptions.people);
-    setWeekPlan([newDishes, newIngredientSections]);
+
+    setContextState('currentMenu', { menuOptions, menuDishes: newDishes });
   };
 
   const isHidden = generalView !== 'menu';
@@ -70,36 +92,33 @@ function WeekView() {
     <div className={className}>
       <WeekViewButtons
         view={view}
-        showBuildMenuModal={getDataForModal}
+        showBuildMenuModal={openBuildMenuModal}
         handleChangeView={handleChangeView}
         handleBuildMenu={handleBuildMenu}
       />
-      <div className="week-view-content">
-        {!weekPlan[0] && (
+      <div
+        className="week-view-content"
+        onTouchStart={onTouchStart}
+        onTouchMove={onTouchMove}
+        onTouchEnd={onTouchEnd}
+      >
+        {!menuDishes.length && (
         <div className="no-week-container">
-          <Button onClick={getDataForModal} buttonText="Gime FOOD!" />
+          <Button onClick={openBuildMenuModal} buttonText="Gime FOOD!" />
         </div>
         )}
         <Week
-          menu={weekPlan[0]}
+          menu={menuDishes}
           options={menuOptions}
           hidden={view !== 0}
           handleUpdateDish={handleUpdateDish}
         />
         <ShopingList
-          ingredienSections={weekPlan[1]}
+          menuDishes={menuDishes}
+          menuPeople={menuOptions.people}
           hidden={view !== 1}
         />
       </div>
-      {showModal && (
-      <MenuModal
-        modalData={menuOptions}
-        aaa={handleBuildMenu}
-        handleBuildMenu={updateMenuAndOptions}
-        setShowModal={setShowModal}
-        dishes={dishesFromContext}
-      />
-      )}
     </div>
   );
 }

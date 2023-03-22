@@ -1,10 +1,11 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import './Header.css';
 import {
-  MainContext, ToastContext, useMainContext, useToastContext,
-} from '../../Context';
+  MainContext,
+} from '../../Contexts/MainContext';
+import { ToastContext } from '../../Contexts/ToastContext';
 import {
   DISH_STRING,
   INGREDIENT_STRING,
@@ -16,8 +17,8 @@ import { useLongPress } from '../../Hooks';
 function Header() {
   const {
     view, dishes, ingredients, setContextState,
-  } = useMainContext(MainContext);
-  const { addToast } = useToastContext(ToastContext);
+  } = useContext(MainContext);
+  const { addToast } = useContext(ToastContext);
 
   const handleOnClick = (newView) => {
     if (newView !== view) setContextState('view', newView);

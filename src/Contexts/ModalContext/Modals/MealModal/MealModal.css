@@ -1,0 +1,18 @@
+.meal-modal-content {
+	max-height: 70vh;
+}
+
+.old-dish-name {
+	font-size: 1.2rem;
+}
+
+.edit-container {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+}
+
+.meal-modal-buttons {
+	display: flex;
+	gap: 5px;
+}

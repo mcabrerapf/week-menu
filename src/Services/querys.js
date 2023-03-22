@@ -41,7 +41,7 @@ export const GET_DISH_QUERY = `
         quantity
         unit
       }
-      type
+      types
       size
       servings
       time {
@@ -71,7 +71,7 @@ export const GET_ALL_DISHES_QUERY = `
           quantity
           unit
         }
-        type
+        types
         size
         servings
         time {

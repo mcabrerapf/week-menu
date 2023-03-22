@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+import { ToastContext } from '../../../Contexts/ToastContext';
+import { buildIngredientSections } from '../../helpers';
 import './ShopingList.css';
-import ShopingListNoteSection from './ShopingListNoteSection';
-import { ToastContext, useToastContext } from '../../../Context';
+import ShopingListSection from './ShopingListSection';
 import Button from '../../Button';
 
 const INGREDIENT_TYPES = ['MEAT', 'FISH', 'FRUIT', 'VEGETABLE', 'SAUCE', 'LIQUOR', 'SPICE', 'OTHER'];
 
-function ShopingList({ ingredienSections, hidden }) {
-  const { addToast } = useToastContext(ToastContext);
+function ShopingList({ menuDishes, menuPeople, hidden }) {
+  const { addToast } = useContext(ToastContext);
+  const ingredienSections = buildIngredientSections(menuDishes, menuPeople);
+
   const handleCopyShopingList = () => {
     const shopingListItems = [];
     Object.keys(ingredienSections).forEach((sectionKey) => {
@@ -28,19 +31,21 @@ function ShopingList({ ingredienSections, hidden }) {
   return (
 
     <div
-        // eslint-disable-next-line react/jsx-props-no-spreading
       className={className}
     >
       <Button modifier="shopping-list-copy-button" onClick={handleCopyShopingList}>
         <i className="fa fa-clipboard" aria-hidden="true" />
       </Button>
-      {INGREDIENT_TYPES.map((type) => {
-        const sectionData = ingredienSections[type];
-        if (!sectionData) return null;
-        return (
-          <ShopingListNoteSection key={type} label={type} ingredients={sectionData} />
-        );
-      })}
+      <div className="shopping-list-sections">
+        {INGREDIENT_TYPES.map((type) => {
+          const sectionData = ingredienSections[type];
+          if (!sectionData) return null;
+          return (
+            <ShopingListSection key={type} label={type} ingredients={sectionData} />
+          );
+        })}
+      </div>
+
     </div>
 
   );
@@ -48,12 +53,14 @@ function ShopingList({ ingredienSections, hidden }) {
 
 ShopingList.propTypes = {
   hidden: PropTypes.bool.isRequired,
-  ingredienSections: PropTypes.shape(),
+  menuDishes: PropTypes.arrayOf(PropTypes.shape()),
+  menuPeople: PropTypes.number,
 
 };
 
 ShopingList.defaultProps = {
-  ingredienSections: null,
+  menuDishes: [],
+  menuPeople: 1,
 };
 
 export default ShopingList;

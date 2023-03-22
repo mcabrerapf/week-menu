@@ -1,9 +1,8 @@
 .day {
 	display: flex;
-	height: 10vh;
+	flex: 1 1 0px;
 	width: 100%;
-	margin: 5px 0;
-	background-color: #50479a;
+	background-color: #3f8881;
 	color: black;
 	border-radius: 5px;
 	text-align: center;

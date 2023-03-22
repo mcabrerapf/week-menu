@@ -5,10 +5,11 @@ import { capitalizeFirstLetter } from '../../helpers';
 import Button from '../../Button';
 
 function ListItem({
-  modifier, itemData, handleDelete, handleEdit, handleNameClick,
+  modifier, itemData, handleOpenModal,
 }) {
-  const { name, type } = itemData;
+  const { name, type, types } = itemData;
   const parsedLabel = capitalizeFirstLetter(name);
+  const typeToUse = types ? types.join('-') : type;
 
   return (
     <li className={`list-item ${modifier}`}>
@@ -16,22 +17,22 @@ function ListItem({
         role="button"
         tabIndex={0}
         className="list-item-label"
-        onKeyDown={() => handleNameClick(itemData)}
-        onClick={() => handleNameClick(itemData)}
+        onKeyDown={() => handleOpenModal('list', 'display', itemData)}
+        onClick={() => handleOpenModal('list', 'display', itemData)}
       >
         {parsedLabel}
 
       </div>
       <div className="list-item-buttons">
-        {type && <div className="list-item-type">{type}</div>}
+        {typeToUse && <div className="list-item-type">{typeToUse}</div>}
         <Button
           modifier="rounded-button"
-          onClick={() => handleEdit(itemData)}
+          onClick={() => handleOpenModal('list', 'edit', itemData)}
           buttonIcon="pencil"
         />
         <Button
           modifier="rounded-button"
-          onClick={() => handleDelete(itemData)}
+          onClick={() => handleOpenModal('list', 'delete', itemData)}
           buttonIcon="trash"
         />
       </div>
@@ -40,9 +41,7 @@ function ListItem({
 }
 
 ListItem.propTypes = {
-  handleNameClick: PropTypes.func.isRequired,
-  handleDelete: PropTypes.func.isRequired,
-  handleEdit: PropTypes.func.isRequired,
+  handleOpenModal: PropTypes.func.isRequired,
   itemData: PropTypes.shape().isRequired,
   modifier: PropTypes.string,
 };

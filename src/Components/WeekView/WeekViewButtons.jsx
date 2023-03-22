@@ -1,18 +1,21 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import './WeekView.css';
 import Button from '../Button';
 import { useLongPress } from '../../Hooks';
 import {
-  MainContext, ToastContext, useMainContext, useToastContext,
-} from '../../Context';
+  MainContext,
+} from '../../Contexts/MainContext';
+import {
+  ToastContext,
+} from '../../Contexts/ToastContext';
 
 function WeekViewButtons({
   showBuildMenuModal, handleChangeView, handleBuildMenu, view,
 }) {
-  const { setContextState } = useMainContext(MainContext);
-  const { addToast } = useToastContext(ToastContext);
+  const { setContextState } = useContext(MainContext);
+  const { addToast } = useContext(ToastContext);
   const checkView = () => {
     const newView = view === 0 ? 1 : 0;
     handleChangeView(newView);

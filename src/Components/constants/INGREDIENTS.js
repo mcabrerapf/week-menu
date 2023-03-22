@@ -1,42 +1,42 @@
 export const INGREDIENT_UNITS = [
   {
-    value: 'UN', name: 'Unidad',
+    value: 'u', name: 'Unidad',
   },
   {
-    value: 'MG', name: 'Miligramos',
+    value: 'mg', name: 'Miligramos',
   },
   {
-    value: 'G', name: 'Gramos',
+    value: 'g', name: 'Gramos',
   },
   {
-    value: 'KG', name: 'Kilogramos',
+    value: 'kg', name: 'Kilogramos',
   },
   {
-    value: 'L', name: 'Litros',
+    value: 'l', name: 'Litros',
   },
   {
-    value: 'ML', name: 'Mililitros',
+    value: 'ml', name: 'Mililitros',
   },
   {
-    value: 'LB', name: 'Libras',
+    value: 'lb', name: 'Libras',
   },
   {
-    value: 'OZ', name: 'Onza',
+    value: 'oz', name: 'Onza',
   },
   {
-    value: 'TSP', name: 'Cucharadita',
+    value: 'tsp', name: 'Cucharadita',
   },
   {
-    value: 'TBSP', name: 'Cucharada',
+    value: 'tbsp', name: 'Cucharada',
   },
   {
-    value: 'PT', name: 'Pinta',
+    value: 'pt', name: 'Pinta',
   },
   {
-    value: 'QT', name: 'Cuarto',
+    value: 'qt', name: 'Cuarto',
   },
   {
-    value: 'DOZ', name: 'Dozena',
+    value: 'doz', name: 'Dozena',
   },
 ];
 

@@ -6,41 +6,15 @@
 
 .form-inputs {
 	max-height: 400px;
+	display: flex;
+	flex-direction: column;
 	overflow-y: auto;
 	padding: 10px;
+	gap: 10px;
 }
 
-.form-inputs .form-input-group {
-	display: flex;
-	width: 100%;
-}
-
-.form-input-group label {
-	padding-top: 5px;
-}
-
-.form-input-group input {
-	width: 35px;
-}
-
-.form-input-group .servings-input {
-	width: 45%;
-	flex-direction: row;
-}
-
-.form-input-group .time-inputs {
-	display: flex;
-}
-
-.time-inputs .input {
-	flex-direction: row-reverse;
-}
-
-.time-inputs-label {
-	padding-top: 4px;
-	padding-right: 5px;
-	font-size: 0.9rem;
-	font-weight: 600;
+.not-selected {
+	background-color: gray;
 }
 
 .form .submit {
@@ -50,68 +24,4 @@
 	color: black;
 	font-weight: 600;
 	border-radius: 20px;
-}
-
-/* Ingredients bit */
-.form-ingredients {
-	width: 100%;
-	margin: 5px 0 15px 0px;
-}
-
-.form-ingredients-ingredient {
-	display: flex;
-	justify-content: space-between;
-	width: 100%;
-	margin-bottom: 5px;
-}
-
-.form-ingredients-ingredient-name {
-	width: 50%;
-	padding: 5px;
-	font-weight: 600;
-	border-bottom: 1px solid black;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-}
-
-.form-ingredients-ingredient-quantity-container {
-	display: flex;
-	width: 50%;
-	justify-content: flex-end;
-}
-
-.form-ingredients-ingredient-quantity {
-	width: 30% !important;
-	margin: 0px !important;
-}
-
-.form-ingredients-ingredient-quantity input {
-	width: 100%;
-	text-align: center !important;
-	border: 0 !important;
-	background-color: transparent !important;
-	padding: 5px !important;
-	box-shadow: none;
-}
-
-.form-ingredients-ingredient-unit {
-	background-color: transparent;
-	border: none;
-	text-align: center;
-	cursor: pointer;
-	width: 30%;
-	font-weight: 600;
-	font-size: 11px;
-	box-shadow: none;
-}
-
-.form-ingredients-ingredient-remove {
-	padding: 0px !important;
-	background-color: transparent !important;
-	width: 30% !important;
-	border: none !important;
-	padding-top: 0px !important;
-	text-align: center !important;
-	font-size: 20px !important;
 }

@@ -3,7 +3,8 @@ import './App.css';
 import { Authenticator } from '@aws-amplify/ui-react';
 import { Amplify, AuthModeStrategyType } from 'aws-amplify';
 import { Main, Header } from './Components';
-import { MainContextWrapper, ToastContextWrapper } from './Context';
+import { MainContextWrapper } from './Contexts/MainContext';
+import { ToastContextWrapper } from './Contexts/ToastContext';
 // eslint-disable-next-line import/no-unresolved
 import '@aws-amplify/ui-react/styles.css';
 import awsExports from './aws-exports';

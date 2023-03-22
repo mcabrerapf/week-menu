@@ -1,0 +1,35 @@
+.display-mode {
+	text-align: left;
+}
+
+.display-mode-props {
+	margin: 10px;
+	max-height: 50vh;
+	overflow-y: auto;
+}
+
+.display-mode-props-prop {
+	margin: 5px 0;
+}
+
+.display-mode-props-prop strong {
+	font-size: 1rem !important;
+}
+.display-mode-props-prop {
+	font-size: 0.8rem;
+}
+
+.display-mode-props ul {
+	list-style: none;
+	padding-left: 5px;
+}
+
+.display-mode-props-ingredients-label {
+	text-decoration: underline;
+	font-weight: 600;
+	font-size: 1rem !important;
+}
+
+.display-mode-props-ingredients li {
+	font-size: 0.8rem;
+}

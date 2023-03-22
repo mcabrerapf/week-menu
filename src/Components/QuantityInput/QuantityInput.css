@@ -1,0 +1,24 @@
+.quantity-input-container {
+	display: flex;
+}
+
+.quantity-input-container .quantity-input-container-label {
+	font-size: 0.8rem;
+	font-weight: 500;
+	text-align: left;
+	padding-top: 5px;
+	width: 45%;
+}
+
+.quantity-input-container button {
+	width: 30px;
+	height: 30px;
+	padding-top: 2px;
+}
+
+.quantity-input-container .quantity-input-container-quantity {
+	width: 25px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}

@@ -51,7 +51,7 @@ export const CREATE_DISH_MUTATION = `
     createDish(input: $input, condition: $condition) {
       id
       name
-      type
+      types
       size
       servings
       time {
@@ -73,7 +73,7 @@ export const UPDATE_DISH_MUTATION = `
     updateDish(input: $input, condition: $condition) {
       id
       name
-      type
+      types
       size
       servings
       time {

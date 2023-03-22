@@ -1,0 +1,56 @@
+.menu-modal-content {
+	max-height: 80vh;
+	width: 100%;
+}
+
+.disabled {
+	background-color: gray !important;
+}
+
+.menu-modal-inputs {
+	padding: 10px;
+	max-height: 75vh;
+	overflow-y: auto;
+	display: flex;
+}
+
+.menu-modal-day-inputs {
+	display: flex;
+	flex-direction: column;
+	width: 55%;
+}
+
+.menu-modal-day-container {
+	display: flex;
+	width: 100%;
+}
+
+.menu-modal-day-container .day-button {
+	border-radius: 0;
+	width: 40%;
+}
+
+.has-meal-button {
+	justify-content: center;
+	border-radius: 0;
+	align-items: center;
+}
+
+.menu-modal-day-meals {
+	display: flex;
+	border-left: 1px solid black;
+	width: 55%;
+}
+
+.menu-modal-max-inputs {
+	width: 45%;
+	gap: 5px;
+	display: flex;
+	flex-direction: column;
+}
+
+.menu-modal-max-inputs-header {
+	font-size: 0.9rem;
+	font-weight: 600;
+	text-decoration: underline;
+}

@@ -5,6 +5,7 @@ import diceIcon from './dice-icon.svg';
 import menuIcon from './menu-icon.svg';
 import dishIcon from './dish-icon.svg';
 import ingredientIcon from './ingredient-icon.svg';
+import closeIcon from './close-icon.svg';
 import testIcon from './test-icon.svg';
 
 const icons = {
@@ -15,6 +16,7 @@ const icons = {
   menu: menuIcon,
   dish: dishIcon,
   ingredient: ingredientIcon,
+  close: closeIcon,
   test: testIcon,
 };
 

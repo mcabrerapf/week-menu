@@ -1,9 +1,8 @@
 .shopping-list {
 	border-radius: 5px;
 	padding: 20px;
-	max-height: 96%;
+	height: 96%;
 	background: #3f8881;
-	overflow-y: auto;
 	box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.5);
 	margin: 10px;
 }
@@ -14,6 +13,13 @@
 	height: 30px;
 	right: 30px;
 	box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.5);
+}
+
+.shopping-list-sections {
+	overflow-y: auto;
+	display: flex;
+	height: 100%;
+	flex-direction: column;
 }
 
 .shoping-list-section-header {
@@ -50,10 +56,4 @@
 
 .got-it {
 	text-decoration: line-through;
-}
-
-/* Modal styles */
-.shopping-list-modal-content-list {
-	list-style: none;
-	padding-left: 10px;
 }

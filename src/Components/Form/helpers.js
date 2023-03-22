@@ -2,15 +2,15 @@ import { DISH_STRING } from '../../constants';
 import { deepCopy } from '../helpers';
 
 export const initDish = (dishData) => {
-  const copiedDish = deepCopy(dishData);
   const {
-    name, ingredients = [], type, instructions, description, time, servings,
-  } = copiedDish;
+    name, ingredients, types, instructions, description, time, servings,
+  } = dishData;
   const { hours, minutes } = time || {};
 
   return {
     name: name || '',
-    type: type || '',
+    // type: type || '',
+    types: types || [],
     time: {
       hours: hours || 0,
       minutes: minutes || 0,
@@ -31,10 +31,22 @@ export const initIngredient = ({
   unit: unit || '',
 });
 
+export const initFormData = (view, data) => {
+  const copiedData = deepCopy(data);
+
+  switch (view) {
+    case DISH_STRING:
+      return initDish(copiedData);
+
+    default:
+      return initIngredient(copiedData);
+  }
+};
+
 export const checkIsButtonDisabled = (view, data) => {
   const {
-    name, type, unit, ingredients,
+    name, type, types, unit, ingredients,
   } = data;
-  if (view === DISH_STRING) return !name || !type || !ingredients || !ingredients.length;
+  if (view === DISH_STRING) return !name || !types.length || !ingredients || !ingredients.length;
   return !name || !type || !unit;
 };

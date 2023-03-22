@@ -16,6 +16,7 @@ function Button({
   children,
   value,
   disabled,
+  name,
   buttonIcon,
 }) {
   const baseClassName = `button${disabled ? ' disabled' : ''}`;
@@ -23,8 +24,13 @@ function Button({
   return (
     <button
       type="button"
+      name={name}
       className={parseClassName(baseClassName, modifier)}
-      onClick={onClick}
+      onClick={(e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        onClick(e);
+      }}
       onMouseDown={onMouseDown}
       onMouseLeave={onMouseLeave}
       onMouseUp={onMouseUp}
@@ -55,6 +61,7 @@ Button.propTypes = {
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
   disabled: PropTypes.bool,
   buttonIcon: PropTypes.string,
+  name: PropTypes.string,
 };
 
 Button.defaultProps = {
@@ -70,6 +77,7 @@ Button.defaultProps = {
   value: '',
   disabled: false,
   buttonIcon: '',
+  name: '',
 };
 
 export default Button;

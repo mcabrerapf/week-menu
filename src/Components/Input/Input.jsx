@@ -71,6 +71,19 @@ function Input({
     onChange(newE);
   };
 
+  const handleEnter = (e) => {
+    const { target, key } = e;
+    const { form } = target;
+    const newE = buildNumberEvent(e);
+    if (key.toLowerCase() === 'enter') {
+      e.preventDefault();
+
+      const index = [...form].indexOf(target);
+      form.elements[index + 1].focus();
+    }
+    onChange(newE);
+  };
+
   const className = parseClassName('input', modifier);
 
   return (
@@ -100,6 +113,7 @@ function Input({
         onChange={onChange}
         placeholder={placeholder}
         disabled={disabled}
+        onKeyDown={handleEnter}
       />
       )}
       {type === 'select' && (
@@ -110,6 +124,7 @@ function Input({
         value={value}
         onChange={onChange}
         disabled={disabled}
+        onKeyDown={handleEnter}
       >
         {placeholder && (
         <option value="" className="select-input-option" disabled={!enableDefaultSelect}>
@@ -148,6 +163,7 @@ function Input({
           onBlur={handleNumberBlur}
           onChange={handleNumberChange}
           disabled={disabled}
+          onKeyDown={handleEnter}
         />
       )}
       {!!children && children}
