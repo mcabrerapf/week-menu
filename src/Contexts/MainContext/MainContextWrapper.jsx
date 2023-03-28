@@ -31,7 +31,7 @@ function MainContextWrapper({ children }) {
         return setContextState({ ...contextState, errorMessage: allIngredients.errors[0].message });
       }
       if (!allDishes.length) {
-        setContextState({
+        return setContextState({
           ...contextState,
           offlineMode: Number(localOfflineMode),
           loading: false,
@@ -39,6 +39,7 @@ function MainContextWrapper({ children }) {
           ingredients: allIngredients,
         });
       }
+
       const dishesWithIngredients = buildDishesWithIngredients(allDishes, allIngredients);
 
       return setContextState({
@@ -49,6 +50,7 @@ function MainContextWrapper({ children }) {
         ingredients: allIngredients,
       });
     }
+
     initContext();
   }, []);
 
@@ -97,7 +99,8 @@ function MainContextWrapper({ children }) {
 }
 
 MainContextWrapper.propTypes = {
-  children: PropTypes.shape({}).isRequired,
+  children: PropTypes
+    .oneOfType([PropTypes.shape(), PropTypes.arrayOf(PropTypes.shape())]).isRequired,
 };
 
 export default MainContextWrapper;

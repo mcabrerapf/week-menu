@@ -32,6 +32,7 @@ function ShopingListSectionItem({
   } = ingredient;
   const className = gotIt ? 'shoping-list-section-items-item-name got-it' : 'shoping-list-section-items-item-name';
   const [convertedQuantity, convertedUnit] = checkUnitConversion(quantity, unit);
+  const parsedName = capitalizeFirstLetter(name);
   const parsedLabel = `${capitalizeFirstLetter(name)} (${convertedQuantity}${convertedUnit})`;
 
   return (
@@ -52,8 +53,14 @@ function ShopingListSectionItem({
           onClick={() => handleOnClick(ingredient)}
           onKeyDown={() => handleOnClick(ingredient)}
         >
-          {parsedLabel}
+          {parsedName}
+
+          {/* {parsedLabel} */}
         </span>
+        <strong>
+          {convertedQuantity}
+          {convertedUnit}
+        </strong>
       </Input>
     </div>
   );

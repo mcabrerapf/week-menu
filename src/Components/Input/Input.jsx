@@ -204,7 +204,7 @@ Input.propTypes = {
   name: PropTypes.string,
   placeholder: PropTypes.string,
   modifier: PropTypes.string,
-  children: PropTypes.shape(),
+  children: PropTypes.oneOfType([PropTypes.shape(), PropTypes.arrayOf(PropTypes.shape())]),
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
   enableDefaultSelect: PropTypes.bool,
   disabled: PropTypes.bool,

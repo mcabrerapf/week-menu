@@ -41,7 +41,8 @@ function ToastContextWrapper({ children }) {
 }
 
 ToastContextWrapper.propTypes = {
-  children: PropTypes.shape({}).isRequired,
+  children: PropTypes
+    .oneOfType([PropTypes.shape(), PropTypes.arrayOf(PropTypes.shape())]).isRequired,
 };
 
 export default ToastContextWrapper;

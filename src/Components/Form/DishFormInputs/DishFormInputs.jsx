@@ -75,7 +75,11 @@ function DishFormInputs({ currentData, setCurrentData }) {
     setCurrentData({ ...currentData, servings: servings - 1 });
   };
 
-  const sortedIngredients = sortBy(contextIngredients, 'name', 'alphabetical');
+  const selectedIngredientids = ingredients.map(({ id: iId }) => iId);
+  const filteredIngredientOptions = contextIngredients
+    .filter(({ id: iId }) => !selectedIngredientids.includes(iId));
+
+  const sortedIngredients = sortBy(filteredIngredientOptions, 'name', 'alphabetical');
 
   return (
     <div className="form-inputs">

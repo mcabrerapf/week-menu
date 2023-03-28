@@ -45,7 +45,7 @@ function Modal({
 
 Modal.propTypes = {
   closeModal: PropTypes.func.isRequired,
-  children: PropTypes.shape(),
+  children: PropTypes.oneOfType([PropTypes.shape(), PropTypes.arrayOf(PropTypes.shape())]),
   hideHeader: PropTypes.bool,
   headerText: PropTypes.string,
 };

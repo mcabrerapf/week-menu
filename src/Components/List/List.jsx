@@ -44,7 +44,8 @@ function List({ listData }) {
           value={searchValue}
           id="search-value"
           name="search-value"
-          label="Search: "
+          // label="Search: "
+          placeholder="Search..."
           onChange={({ target: { value } }) => setSearchValue(value)}
         />
         <Input
@@ -54,9 +55,9 @@ function List({ listData }) {
           id="filter-value"
           name="filter-value"
           onChange={({ target: { value } }) => setListFilter(value)}
-          placeholder="None"
+          placeholder="No Filter"
           enableDefaultSelect
-          label="Filter by:"
+          // label="Filter by:"
           selectOptions={filterOptions}
         />
         {/* <Input

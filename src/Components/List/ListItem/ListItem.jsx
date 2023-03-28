@@ -9,7 +9,7 @@ function ListItem({
 }) {
   const { name, type, types } = itemData;
   const parsedLabel = capitalizeFirstLetter(name);
-  const typeToUse = types ? types.join('-') : type;
+  const typeToUse = types ? types[0] : type;
 
   return (
     <li className={`list-item ${modifier}`}>

@@ -56,7 +56,7 @@ Button.propTypes = {
   onTouchEnd: PropTypes.func,
   onTouchStart: PropTypes.func,
   buttonText: PropTypes.string,
-  children: PropTypes.shape(),
+  children: PropTypes.oneOfType([PropTypes.shape(), PropTypes.arrayOf(PropTypes.shape())]),
   modifier: PropTypes.string,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
   disabled: PropTypes.bool,
