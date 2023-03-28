@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { ModalContextProvider } from './ModalContext';
 import './ModalContextWrapper.css';
-import Modal from './Modal/Modal';
+import Modal from '../../Components/Modals/Modal';
 import { getModalByType } from './helpers';
 
 const initialModalState = {

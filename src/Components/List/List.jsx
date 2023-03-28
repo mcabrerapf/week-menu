@@ -19,7 +19,7 @@ function List({ listData }) {
   const [searchValue, setSearchValue] = useState('');
   const [listFilter, setListFilter] = useState();
   // const [listSort, setListSort] = useState('name');
-  const [showFilters, setShowFilters] = useState(false);
+  // const [showFilters, setShowFilters] = useState(false);
 
   const handleOpenModal = (type, mode, data) => {
     addModal({
@@ -32,14 +32,14 @@ function List({ listData }) {
   const foundItems = filterList(listData, 'name', searchValue, listFilter);
   const sortedItems = sortBy(foundItems, 'name', 'alphabetical');
   const filterOptions = view === DISH_STRING ? DISH_TYPES : INGREDIENT_TYPES;
-  const filtersClassName = `list-filters${showFilters ? '' : ' no-show'}`;
-  const buttonText = `${showFilters ? 'Hide' : 'Show'} filters`;
+  // const filtersClassName = `list-filters${showFilters ? '' : ' no-show'}`;
+  // const buttonText = `${showFilters ? 'Hide' : 'Show'} filters`;
 
   return (
     <div className="list-container">
-      <div className={filtersClassName}>
+      <div className="list-filters">
         <Input
-          type="text"
+          type="search"
           modifier="list-search-filter"
           value={searchValue}
           id="search-value"
@@ -71,11 +71,11 @@ function List({ listData }) {
         /> */}
 
       </div>
-      <Button
+      {/* <Button
         modifier="list-filters-toggle-button"
         buttonText={buttonText}
         onClick={() => setShowFilters(!showFilters)}
-      />
+      /> */}
       <ul className="list">
         {sortedItems.map((listItem) => (
           <ListItem

@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import './BuildMenuModal.css';
-import Button from '../../../../Components/Button';
-import { buildMenuDishes, deepCopy } from '../../../../Components/helpers';
+import Button from '../../Button';
+import { buildMenuDishes, deepCopy } from '../../helpers';
 import { initMenuOptions, getMealMinMax } from './helpers';
-import QuantityInput from '../../../../Components/QuantityInput';
-import { MainContext } from '../../../MainContext';
+import QuantityInput from '../../QuantityInput';
+import { MainContext } from '../../../Contexts/MainContext';
 
 function BuildMenuModal({
   modalData, closeModal,

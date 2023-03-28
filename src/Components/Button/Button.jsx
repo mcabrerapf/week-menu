@@ -40,7 +40,7 @@ function Button({
       disabled={disabled}
     >
       {!!buttonIcon && (
-        <Icon type={buttonIcon} />
+        <Icon type={buttonIcon} value={value} />
       )}
       {buttonText}
       {children}

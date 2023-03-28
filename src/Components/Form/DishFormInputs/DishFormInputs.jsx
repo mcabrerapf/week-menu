@@ -8,6 +8,7 @@ import IngredientsField from './IngredientsField';
 import Input from '../../Input';
 import Button from '../../Button';
 import QuantityInput from '../../QuantityInput';
+import { sortBy } from '../../helpers';
 
 function DishFormInputs({ currentData, setCurrentData }) {
   const { ingredients: contextIngredients } = useContext(MainContext);
@@ -74,6 +75,8 @@ function DishFormInputs({ currentData, setCurrentData }) {
     setCurrentData({ ...currentData, servings: servings - 1 });
   };
 
+  const sortedIngredients = sortBy(contextIngredients, 'name', 'alphabetical');
+
   return (
     <div className="form-inputs">
       <Input
@@ -83,6 +86,7 @@ function DishFormInputs({ currentData, setCurrentData }) {
         name="name"
         value={name}
         onChange={handleOnChange}
+        onBlur={handleOnChange}
         placeholder="Name"
         label="Name"
       />
@@ -154,7 +158,7 @@ function DishFormInputs({ currentData, setCurrentData }) {
         id="ingredients"
         onChange={handleAddIngredient}
         placeholder="Add ingredient"
-        selectOptions={contextIngredients}
+        selectOptions={sortedIngredients}
         type="select"
       />
       <div className="form-ingredients">

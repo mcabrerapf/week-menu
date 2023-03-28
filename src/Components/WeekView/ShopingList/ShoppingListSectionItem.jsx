@@ -6,20 +6,20 @@ import './ShopingList.css';
 import Input from '../../Input';
 import { capitalizeFirstLetter } from '../../helpers';
 
-const unitMatches = {
-  UN: 'u',
-  MG: 'mg',
-  G: 'g',
-  KG: 'kg',
-  L: 'l',
-  ML: 'ml',
-  LB: 'lb',
-  OZ: 'oz',
-  TSP: 'tsp',
-  TBSP: 'tbsp',
-  PT: 'pt',
-  QT: 'ct',
-  DOZ: 'dz',
+const checkUnitConversion = (q, u) => {
+  if (q > 999) {
+    const parsedQUantity = (q / 1000).toFixed(1);
+    if (u === 'mg') return [parsedQUantity, 'g'];
+    if (u === 'g') return [parsedQUantity, 'kg'];
+    if (u === 'ml') return [parsedQUantity, 'l'];
+  }
+  if (q < 1) {
+    const parsedQUantity = (q * 1000).toFixed(0);
+    if (u === 'g') return [parsedQUantity, 'mg'];
+    if (u === 'kg') return [parsedQUantity, 'g'];
+    if (u === 'l') return [parsedQUantity, 'ml'];
+  }
+  return [q, u];
 };
 
 function ShopingListSectionItem({
@@ -30,9 +30,9 @@ function ShopingListSectionItem({
   const {
     name, quantity, unit,
   } = ingredient;
-  const parsedUnit = unitMatches[unit] || 'u';
   const className = gotIt ? 'shoping-list-section-items-item-name got-it' : 'shoping-list-section-items-item-name';
-  const parsedLabel = `${capitalizeFirstLetter(name)} (${quantity}${parsedUnit})`;
+  const [convertedQuantity, convertedUnit] = checkUnitConversion(quantity, unit);
+  const parsedLabel = `${capitalizeFirstLetter(name)} (${convertedQuantity}${convertedUnit})`;
 
   return (
     <div

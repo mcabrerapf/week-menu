@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export */
-import { deepCopy } from '../../../Components/helpers';
+import { deepCopy } from '../helpers';
 
 const validateData = (data) => {
   const copiedData = deepCopy(data);

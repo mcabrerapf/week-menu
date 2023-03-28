@@ -1,10 +1,10 @@
 import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import './MealModal.css';
-import Button from '../../../../Components/Button';
-import Input from '../../../../Components/Input';
-import { MainContext } from '../../../MainContext';
-import { deepCopy, sortBy } from '../../../../Components/helpers';
+import Button from '../../Button';
+import Input from '../../Input';
+import { MainContext } from '../../../Contexts/MainContext';
+import { deepCopy, sortBy } from '../../helpers';
 import DisplayMode from '../DisplayMode';
 
 function MealModal({ modalData, closeModal }) {

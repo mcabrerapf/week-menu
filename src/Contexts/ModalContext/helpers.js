@@ -1,8 +1,8 @@
 import { capitalizeFirstLetter } from '../../Components/helpers';
-import { ListModal } from './Modals';
-import BuildMenuModal from './Modals/BuildMenuModal';
-import MealModal from './Modals/MealModal/MealModal';
-import ShoppingListItemModal from './Modals/ShopingListItemModal';
+import ListModal from '../../Components/Modals/ListModal';
+import BuildMenuModal from '../../Components/Modals/BuildMenuModal';
+import MealModal from '../../Components/Modals/MealModal';
+import ShoppingListItemModal from '../../Components/Modals/ShopingListItemModal';
 
 const getModalHeader = (action, name, type) => {
   switch (action) {

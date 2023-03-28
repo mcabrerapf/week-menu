@@ -1,4 +1,10 @@
-// type TimeType {
+// type MenuDishType {
+//     id: ID
+//     days: [Int]
+//     useAs: String
+//   }
+
+//   type TimeType {
 //     hours: Int
 //     minutes: Int
 //   }
@@ -27,7 +33,7 @@
 //   type Dish @model @auth(rules: [{allow: owner}]) {
 //     id: ID!
 //     name: String!
-//     type: String
+//     types: [String!]
 //     servings: Int
 //     size: String
 //     time: TimeType
@@ -41,8 +47,9 @@
 //     id: ID!
 //     name: String!
 //     favourite: Boolean
-//     days: [DayListItemType!]
+//     dishes: [MenuDishType!]
 //     description: String
 //     tags: [String]
-//     menuDessert: ID
+//     dessert: [ID]
+//     snacks: [ID]
 //   }

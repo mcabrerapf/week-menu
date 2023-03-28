@@ -1,4 +1,4 @@
-import { capitalizeFirstLetter } from '../helpers';
+import { capitalizeFirstLetter } from '../../helpers';
 
 export const getModalHeader = (action, name, type) => {
   switch (action) {

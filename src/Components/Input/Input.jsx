@@ -1,5 +1,5 @@
 /* eslint-disable no-restricted-globals */
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './Input.css';
 import { parseClassName, buildSelectOptions } from '../helpers';
@@ -23,16 +23,19 @@ function Input({
   max,
   resetValueOnClick,
 }) {
+  const [initialValue, setInitialValue] = useState(value);
+
   const checkLimits = (val) => {
     const parsedValue = Number(val);
-    if (min === null && max === null) return parsedValue;
-    if (min !== null && max === null) return parsedValue >= min ? parsedValue : min;
-    if (min === null && max !== null) return parsedValue <= max ? parsedValue : max;
+    const valueToUse = parsedValue || initialValue;
+    if (min === null && max === null) return valueToUse;
+    if (min !== null && max === null) return valueToUse >= min ? valueToUse : min;
+    if (min === null && max !== null) return valueToUse <= max ? valueToUse : max;
     if (min !== null && max !== null) {
-      if (parsedValue <= min) return min;
-      if (parsedValue >= max) return max;
+      if (valueToUse <= min) return min;
+      if (valueToUse >= max) return max;
     }
-    return parsedValue;
+    return valueToUse;
   };
 
   const buildNumberEvent = (e, bypassCheck) => {
@@ -55,7 +58,8 @@ function Input({
 
   const handleNumberBlur = (e) => {
     const newE = buildNumberEvent(e);
-    newE.target.value = newE.target.value === '' ? 0 : newE.target.value;
+    newE.target.value = newE.target.value === '' ? initialValue : newE.target.value;
+    setInitialValue(newE.target.value);
     onBlur(newE);
   };
 
@@ -67,21 +71,23 @@ function Input({
 
   const handleNumberChange = (e) => {
     const newE = buildNumberEvent(e, true);
-
     onChange(newE);
   };
 
   const handleEnter = (e) => {
     const { target, key } = e;
     const { form } = target;
-    const newE = buildNumberEvent(e);
+
     if (key.toLowerCase() === 'enter') {
       e.preventDefault();
-
       const index = [...form].indexOf(target);
       form.elements[index + 1].focus();
     }
-    onChange(newE);
+    if (type === 'number') {
+      const newE = buildNumberEvent(e);
+      onChange(newE);
+    }
+    onChange(e);
   };
 
   const className = parseClassName('input', modifier);
@@ -89,17 +95,18 @@ function Input({
   return (
     <div className={className}>
       {label && <label className="input-label" htmlFor={id}>{label}</label>}
-      {type === 'checkbox' && (
+      {type === 'search' && (
       <input
-        className="checkbox-input"
+        className="text-input"
         autoComplete="off"
         type={type}
         id={id}
         name={name}
-        checked={value}
-        onChange={onChange}
+        value={value}
         placeholder={placeholder}
         disabled={disabled}
+        onChange={onChange}
+        onKeyDown={handleEnter}
       />
       )}
       {type === 'text' && (
@@ -110,29 +117,11 @@ function Input({
         id={id}
         name={name}
         value={value}
-        onChange={onChange}
         placeholder={placeholder}
         disabled={disabled}
+        onChange={onChange}
         onKeyDown={handleEnter}
       />
-      )}
-      {type === 'select' && (
-      <select
-        className="select-input"
-        name={name}
-        id={id}
-        value={value}
-        onChange={onChange}
-        disabled={disabled}
-        onKeyDown={handleEnter}
-      >
-        {placeholder && (
-        <option value="" className="select-input-option" disabled={!enableDefaultSelect}>
-          {placeholder}
-        </option>
-        )}
-        {buildSelectOptions(selectOptions)}
-      </select>
       )}
       {type === 'textarea' && (
         <textarea
@@ -166,6 +155,38 @@ function Input({
           onKeyDown={handleEnter}
         />
       )}
+      {type === 'checkbox' && (
+      <input
+        className="checkbox-input"
+        autoComplete="off"
+        type={type}
+        id={id}
+        name={name}
+        checked={value}
+        onChange={onChange}
+        placeholder={placeholder}
+        disabled={disabled}
+      />
+      )}
+      {type === 'select' && (
+      <select
+        className="select-input"
+        name={name}
+        id={id}
+        value={value}
+        onChange={onChange}
+        disabled={disabled}
+        onKeyDown={handleEnter}
+      >
+        {placeholder && (
+        <option value="" className="select-input-option" disabled={!enableDefaultSelect}>
+          {placeholder}
+        </option>
+        )}
+        {buildSelectOptions(selectOptions)}
+      </select>
+      )}
+
       {!!children && children}
     </div>
 

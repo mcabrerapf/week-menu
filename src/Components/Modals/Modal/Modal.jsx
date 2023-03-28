@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import './Modal.css';
-import { capitalizeFirstLetter } from '../../../Components/helpers';
-import Button from '../../../Components/Button';
+import { capitalizeFirstLetter } from '../../helpers';
+import Button from '../../Button';
 
 function Modal({
   children, closeModal, headerText, hideHeader,

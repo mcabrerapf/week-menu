@@ -24,16 +24,12 @@ function Header() {
     if (newView !== view) setContextState('view', newView);
   };
 
-  const handleCopyList = (value) => {
-    if (value === 'menu') return;
-    const items = value === 'dish' ? dishes : ingredients;
+  const handleCopyList = (listName) => {
+    if (listName === 'menu') return;
+    const items = listName === 'dish' ? dishes : ingredients;
     navigator.clipboard.writeText(JSON.stringify(items));
-    addToast(`Copied ${value} list to clipboard`, 'info');
+    addToast(`Copied ${listName} list to clipboard`, 'info');
   };
-
-  const longPressProps = useLongPress({
-    onLongPress: ({ target: { value } }) => handleCopyList(value),
-  });
 
   const checkIfSelected = (check) => (view === check ? 'selected' : '');
 
@@ -42,21 +38,27 @@ function Header() {
       <div className="header-buttons">
         <div className="view-buttons">
           <Button
-            {...longPressProps}
+            {...useLongPress({
+              onLongPress: () => handleCopyList(MENU_STRING),
+            })}
             value={MENU_STRING}
             modifier={checkIfSelected(MENU_STRING)}
             buttonIcon={MENU_STRING}
             onClick={() => handleOnClick(MENU_STRING)}
           />
           <Button
-            {...longPressProps}
+            {...useLongPress({
+              onLongPress: () => handleCopyList(DISH_STRING),
+            })}
             value={DISH_STRING}
             modifier={checkIfSelected(DISH_STRING)}
             buttonIcon={DISH_STRING}
             onClick={() => handleOnClick(DISH_STRING)}
           />
           <Button
-            {...longPressProps}
+            {...useLongPress({
+              onLongPress: () => handleCopyList(INGREDIENT_STRING),
+            })}
             value={INGREDIENT_STRING}
             modifier={checkIfSelected(INGREDIENT_STRING)}
             buttonIcon={INGREDIENT_STRING}

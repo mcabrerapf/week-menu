@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Button from '../../../../Components/Button';
+import Button from '../../Button';
 import './DisplayMode.css';
 
 function DisplayMode({

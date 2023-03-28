@@ -1,14 +1,14 @@
 import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
-import { serviceHandler } from '../../../../Services';
-import { MainContext } from '../../../MainContext';
-import { ToastContext } from '../../../ToastContext';
+import { serviceHandler } from '../../../Services';
+import { MainContext } from '../../../Contexts/MainContext';
+import { ToastContext } from '../../../Contexts/ToastContext';
 import './ListModal.css';
 import {
   CREATE_STRING, DELETE_STRING, UPDATE_STRING,
-} from '../../../../constants';
+} from '../../../constants';
 import { parseData } from './helpers';
-import Form from '../../../../Components/Form/Form';
+import Form from '../../Form/Form';
 import DeleteMode from '../DeleteMode';
 import DisplayMode from '../DisplayMode';
 
