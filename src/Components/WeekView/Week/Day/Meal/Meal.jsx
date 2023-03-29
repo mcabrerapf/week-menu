@@ -10,8 +10,8 @@ function Meal({
 }) {
   const { addModal } = useContext(ModalContext);
 
-  const firstMeal = meals[0];
-  const { name } = firstMeal || {};
+  const firstMeal = meals[0] || {};
+  const { name } = firstMeal;
 
   const updateDishes = (updateData) => {
     const newDishData = { ...updateData.newDish, useAs: type, days: [dayIndex] };
@@ -29,7 +29,7 @@ function Meal({
     });
   };
 
-  const className = `meal${firstMeal ? '' : ' no-dish'}`;
+  const className = `meal${name ? '' : ' no-dish'}`;
 
   return (
     <div

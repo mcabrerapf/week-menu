@@ -17,11 +17,11 @@ function ShopingList({ menuDishes, menuPeople, hidden }) {
     Object.keys(ingredienSections).forEach((sectionKey) => {
       const sectionData = ingredienSections[sectionKey];
       sectionData.forEach((data) => {
-        const { name, quantity } = data;
-        shopingListItems.push(`${name}: ${quantity}`);
+        const { name, quantity, unit } = data;
+        shopingListItems.push(`${name}: ${quantity}${unit}`);
       });
     });
-    navigator.clipboard.writeText(JSON.stringify(shopingListItems.join(', ')));
+    navigator.clipboard.writeText(shopingListItems.join('\n'));
     addToast('Coppied shoping list to clipboard', 'info');
   };
 

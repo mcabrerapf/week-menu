@@ -15,7 +15,7 @@ function MealModal({ modalData, closeModal }) {
   const dishesCopy = deepCopy(dishesFromContext);
   const sortedDishes = sortBy(dishesCopy, 'name', 'alphabetical');
   const [selectedDish, setSelectedDish] = useState(id);
-  const [mode, setMode] = useState('display');
+  const [mode, setMode] = useState(id ? 'display' : 'edit');
 
   const handleButtonClick = (changeAll) => {
     const newDish = sortedDishes.find(({ id: newDishId }) => newDishId === selectedDish);
@@ -30,6 +30,7 @@ function MealModal({ modalData, closeModal }) {
       )}
       {mode === 'edit' && (
       <div className="edit-container">
+        {id && (
         <div className="old-dish-name">
           Change
           {' '}
@@ -37,12 +38,13 @@ function MealModal({ modalData, closeModal }) {
           {' '}
           to:
         </div>
+        )}
         <Input
           name="dish"
           id="dish"
           value={selectedDish}
           onChange={({ target: { value: eValue } }) => setSelectedDish(eValue)}
-          placeholder="Choose a dishs"
+          placeholder="Choose a dish"
           selectOptions={sortedDishes}
           type="select"
         />
