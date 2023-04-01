@@ -30,24 +30,31 @@ function MealModal({ modalData, closeModal }) {
       )}
       {mode === 'edit' && (
       <div className="edit-container">
-        {id && (
-        <div className="old-dish-name">
-          Change
-          {' '}
-          <strong>{name}</strong>
-          {' '}
-          to:
+        <div className="meal-modal-inputs">
+          {id ? (
+            <div className="old-dish-name">
+              Change
+              {' '}
+              <strong>{name}</strong>
+              {' '}
+              to:
+            </div>
+          ) : (
+            <div className="old-dish-name">
+              Add dish
+            </div>
+          )}
+          <Input
+            name="dish"
+            id="dish"
+            value={selectedDish}
+            onChange={({ target: { value: eValue } }) => setSelectedDish(eValue)}
+            placeholder="Choose a dish"
+            selectOptions={sortedDishes}
+            type="select"
+          />
         </div>
-        )}
-        <Input
-          name="dish"
-          id="dish"
-          value={selectedDish}
-          onChange={({ target: { value: eValue } }) => setSelectedDish(eValue)}
-          placeholder="Choose a dish"
-          selectOptions={sortedDishes}
-          type="select"
-        />
+
         <div className="meal-modal-buttons">
           <Button buttonText="ALL" onClick={() => handleButtonClick(true)} />
           <Button buttonText="One" onClick={() => handleButtonClick(false)} />

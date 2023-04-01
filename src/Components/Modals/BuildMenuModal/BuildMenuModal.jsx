@@ -86,19 +86,19 @@ function BuildMenuModal({
   };
 
   return (
-    <div className="menu-modal-content">
-      <div className="menu-modal-inputs">
-        <div className="menu-modal-day-inputs">
+    <div className="build-menu-modal-content">
+      <div className="build-menu-modal-inputs">
+        <div className="build-menu-modal-day-inputs">
           {days.map((day, index) => {
             const {
               hasBreakfast, hasLunch, hasDinner, name,
             } = day;
             const hasMeal = hasBreakfast || hasLunch || hasDinner;
-            const dayMealsClassname = `menu-modal-day-meals${hasMeal ? '' : ' disabled'}`;
+            const dayMealsClassname = `build-menu-modal-day-meals${hasMeal ? '' : ' disabled'}`;
             const dayButtonClassName = `day-button${hasMeal ? '' : ' disabled'}`;
 
             return (
-              <div key={name} className="menu-modal-day-container">
+              <div key={name} className="build-menu-modal-day-container">
                 <Button
                   value={index}
                   modifier={dayButtonClassName}
@@ -141,8 +141,8 @@ function BuildMenuModal({
           })}
         </div>
 
-        <div className="menu-modal-max-inputs">
-          <div className="menu-modal-max-inputs-header">Max</div>
+        <div className="build-menu-modal-max-inputs">
+          <div className="build-menu-modal-max-inputs-header">Max</div>
           <QuantityInput
             value={maxBreakfasts}
             valueKey="maxBreakfasts"

@@ -3,6 +3,7 @@ import ListModal from '../../Components/Modals/ListModal';
 import BuildMenuModal from '../../Components/Modals/BuildMenuModal';
 import MealModal from '../../Components/Modals/MealModal';
 import ShoppingListItemModal from '../../Components/Modals/ShopingListItemModal';
+import MenuModal from '../../Components/Modals/MenuModal';
 
 const getModalHeader = (action, name, type) => {
   switch (action) {
@@ -26,6 +27,8 @@ const getModalByType = (type) => {
       return ListModal;
     case 'buildMenu':
       return BuildMenuModal;
+    case 'menu':
+      return MenuModal;
     case 'meal':
       return MealModal;
     case 'shopingListItem':

@@ -96,13 +96,12 @@ export const GET_MENU_QUERY = `
       favourite
       description
       tags
-      menuDessert
-      days {
-        name
-        breakfast
-        lunch
-        dinner
-        dessert
+      snacks 
+      dessert 
+      dishes {
+        id
+        days
+        useAs
       }
       createdAt
       updatedAt
@@ -119,13 +118,12 @@ query ListMenu($filter: ModelMenuFilterInput, $limit: Int, $nextToken: String) {
       favourite
       description
       tags
-      menuDessert
-      days {
-        name
-        breakfast
-        lunch
-        dinner
-        dessert
+      snacks 
+      dessert 
+      dishes {
+        id
+        days
+        useAs
       }
       createdAt
       updatedAt

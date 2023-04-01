@@ -1,4 +1,4 @@
-.menu-modal-content {
+.build-menu-modal-content {
 	max-height: 80vh;
 	width: 100%;
 }
@@ -7,25 +7,25 @@
 	background-color: gray !important;
 }
 
-.menu-modal-inputs {
+.build-menu-modal-inputs {
 	padding: 10px;
 	max-height: 75vh;
 	overflow-y: auto;
 	display: flex;
 }
 
-.menu-modal-day-inputs {
+.build-menu-modal-day-inputs {
 	display: flex;
 	flex-direction: column;
 	width: 55%;
 }
 
-.menu-modal-day-container {
+.build-menu-modal-day-container {
 	display: flex;
 	width: 100%;
 }
 
-.menu-modal-day-container .day-button {
+.build-menu-modal-day-container .day-button {
 	border-radius: 0;
 	width: 40%;
 }
@@ -36,20 +36,20 @@
 	align-items: center;
 }
 
-.menu-modal-day-meals {
+.build-menu-modal-day-meals {
 	display: flex;
 	border-left: 1px solid black;
 	width: 55%;
 }
 
-.menu-modal-max-inputs {
+.build-menu-modal-max-inputs {
 	width: 45%;
 	gap: 5px;
 	display: flex;
 	flex-direction: column;
 }
 
-.menu-modal-max-inputs-header {
+.build-menu-modal-max-inputs-header {
 	font-size: 0.9rem;
 	font-weight: 600;
 	text-decoration: underline;

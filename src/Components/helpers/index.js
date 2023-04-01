@@ -1,6 +1,7 @@
 import sortBy from './sort-by';
 import buildMenuDishes from './build-menu-dishes';
 import buildDishesWithIngredients from './build-dishes-with-ingredients';
+import buildMenusWithDishes from './build-menus-with-dishes';
 import capitalizeFirstLetter from './capitalize-first-letter';
 import parseIngredientLabel from './parse-ingredient-label';
 import buildSelectOptions from './build-select-options';
@@ -16,6 +17,7 @@ export {
   buildSelectOptions,
   sortBy,
   buildDishesWithIngredients,
+  buildMenusWithDishes,
   buildIngredientSections,
   parseClassName,
   deepCopy,
