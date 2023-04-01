@@ -50,11 +50,6 @@ function MenuModal({ modalData, closeModal }) {
     closeModal();
   };
 
-  const loadMenu = () => {
-    closeModal();
-    handleToastMessage({}, 'success');
-  };
-
   const favouriteButtonClass = isFavourite ? '' : 'not-favourite ';
 
   return (
@@ -74,7 +69,7 @@ function MenuModal({ modalData, closeModal }) {
       </div>
       <div className="menu-modal-buttons">
         <Button buttonText="Save" onClick={saveMenu} disabled={!menuName} />
-        {id && <Button buttonText="Load" onClick={loadMenu} />}
+
       </div>
 
     </div>

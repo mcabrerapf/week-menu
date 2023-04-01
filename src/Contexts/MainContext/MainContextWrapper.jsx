@@ -47,7 +47,7 @@ function MainContextWrapper({ children }) {
       }
 
       const dishesWithIngredients = buildDishesWithIngredients(allDishes, allIngredients);
-      const menusWithDishes = buildMenusWithDishes(allMenus, allDishes);
+      const menusWithDishes = buildMenusWithDishes(allMenus, dishesWithIngredients);
 
       return setContextState({
         ...contextState,
@@ -64,22 +64,28 @@ function MainContextWrapper({ children }) {
 
   const updateLists = async () => {
     const {
-      view, ingredients, dishes,
+      view, ingredients, dishes, menus,
     } = contextState;
-    const newData = await serviceHandler(GET_ALL_STRING)(view);
+    const viewToUse = view === 'buildMenu' ? MENU_STRING : view;
+    const newData = await serviceHandler(GET_ALL_STRING)(viewToUse);
     if (newData.errors) return newData;
-    const dishesWithIngredients = view === DISH_STRING
-      ? buildDishesWithIngredients(newData, ingredients)
-      : buildDishesWithIngredients(dishes, newData);
-
-    const ingredientsToUse = view === INGREDIENT_STRING ? newData : ingredients;
+    const ingredientsToUse = viewToUse === INGREDIENT_STRING ? newData : ingredients;
+    const dishesToUse = viewToUse === DISH_STRING ? newData : dishes;
+    const menusToUse = viewToUse === MENU_STRING ? newData : menus;
+    const dishesWithIngredients = buildDishesWithIngredients(dishesToUse, ingredientsToUse);
+    const menusWithDishes = buildMenusWithDishes(menusToUse, dishesWithIngredients);
 
     setContextState({
       ...contextState,
       dishes: dishesWithIngredients,
       ingredients: ingredientsToUse,
+      menus: menusWithDishes,
     });
     return newData;
+  };
+
+  const updateCurrentMenu = (newMenu) => {
+    setContextState({ ...contextState, currentMenu: newMenu, view: 'buildMenu' });
   };
 
   const stateHandler = (key, value) => {
@@ -93,6 +99,7 @@ function MainContextWrapper({ children }) {
       ...contextState,
       setContextState: stateHandler,
       updateLists,
+      updateCurrentMenu,
     }}
     >
       <div

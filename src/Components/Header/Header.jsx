@@ -38,6 +38,13 @@ function Header() {
       <div className="header-buttons">
         <div className="view-buttons">
           <Button
+            value="buildMenu"
+            modifier={checkIfSelected('buildMenu')}
+            // buttonIcon={MENU_STRING}
+            buttonText="B"
+            onClick={() => handleOnClick('buildMenu')}
+          />
+          <Button
             {...useLongPress({
               onLongPress: () => handleCopyList(MENU_STRING),
             })}

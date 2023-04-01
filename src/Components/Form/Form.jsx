@@ -5,12 +5,13 @@ import './Form.css';
 import Button from '../Button';
 import { MainContext } from '../../Contexts/MainContext';
 import {
-  DISH_STRING,
+  DISH_STRING, INGREDIENT_STRING, MENU_STRING,
 } from '../../constants';
 import { checkIsButtonDisabled, initFormData } from './helpers';
 import { deepCompare } from '../helpers';
 import DishFormInputs from './DishFormInputs';
 import IngredientFormInputs from './IngredientFormInputs';
+import MenuFormInputs from './MenuFormInputs';
 
 function Form({ formData, handleSubmit }) {
   const { view } = useContext(MainContext);
@@ -24,7 +25,6 @@ function Form({ formData, handleSubmit }) {
   }, []);
 
   const handleSubmitButtonClick = () => {
-    if (checkIsButtonDisabled(view, currentData)) return;
     if (deepCompare(currentData, initialData)) {
       handleSubmit({}, true);
       return;
@@ -35,15 +35,17 @@ function Form({ formData, handleSubmit }) {
   if (!currentData) return null;
 
   const buttonClassName = `submit${checkIsButtonDisabled(view, currentData) ? ' disabled' : ''}`;
-  const isDish = view === DISH_STRING;
 
   return (
     <form className="form">
-      {isDish && (
+      { view === DISH_STRING && (
         <DishFormInputs currentData={currentData} setCurrentData={setCurrentData} />
       )}
-      {!isDish && (
-      <IngredientFormInputs currentData={currentData} setCurrentData={setCurrentData} />
+      { view === INGREDIENT_STRING && (
+        <IngredientFormInputs currentData={currentData} setCurrentData={setCurrentData} />
+      )}
+      { view === MENU_STRING && (
+        <MenuFormInputs currentData={currentData} setCurrentData={setCurrentData} />
       )}
 
       <Button

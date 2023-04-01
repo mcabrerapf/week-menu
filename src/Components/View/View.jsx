@@ -5,6 +5,36 @@ import List from '../List';
 import { MainContext } from '../../Contexts/MainContext';
 
 const minSwipeDistance = 80;
+const getListData = (view, contextProps) => {
+  switch (view) {
+    case 'menu':
+      return contextProps.menus;
+    case 'dish':
+      return contextProps.dishes;
+    case 'ingredients':
+      return contextProps.ingredients;
+    default:
+      return contextProps.ingredients;
+  }
+};
+
+const getNewView = (view, leftSwipe, rightSwipe) => {
+  switch (view) {
+    case 'menu':
+      if (leftSwipe) return 'buildMenu';
+      if (rightSwipe) return 'dish';
+      return view;
+    case 'dish':
+      if (leftSwipe) return 'menu';
+      if (rightSwipe) return 'ingredient';
+      return view;
+    case 'ingredient':
+      if (leftSwipe) return 'dish';
+      return view;
+    default:
+      return view;
+  }
+};
 
 function View({
   name,
@@ -13,10 +43,10 @@ function View({
   const [touchEnd, setTouchEnd] = useState(null);
 
   const {
-    view, ingredients, dishes, setContextState,
+    view, setContextState, ...contextProps
   } = useContext(MainContext);
   const isHidden = view !== name;
-  const listData = view === 'dish' ? dishes : ingredients;
+  const listData = getListData(view, contextProps);
   const className = isHidden ? 'view no-show' : 'view';
 
   const onTouchStart = (e) => {
@@ -36,9 +66,8 @@ function View({
     const distance = touchStart - touchEnd;
     const isLeftSwipe = distance > minSwipeDistance;
     const isRightSwipe = distance < -minSwipeDistance;
-    if (view === 'dish' && isRightSwipe) setContextState('view', 'menu');
-    if (view === 'dish' && isLeftSwipe) setContextState('view', 'ingredient');
-    if (view === 'ingredient' && isRightSwipe) setContextState('view', 'dish');
+    const newView = getNewView(view, isRightSwipe, isLeftSwipe);
+    if (newView !== view) setContextState('view', newView);
   };
 
   return (
@@ -50,7 +79,6 @@ function View({
     >
       <List
         listData={listData}
-
       />
     </div>
   );

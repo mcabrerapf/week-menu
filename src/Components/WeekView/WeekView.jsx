@@ -49,7 +49,7 @@ function WeekView() {
     if (!touchStart || !touchEnd) return;
     const distance = touchStart - touchEnd;
     const isLeftSwipe = distance > minSwipeDistance;
-    if (isLeftSwipe) setContextState('view', 'dish');
+    if (isLeftSwipe) setContextState('view', 'menu');
   };
 
   const updateMenuAndOptions = () => {
@@ -65,6 +65,7 @@ function WeekView() {
   };
 
   const handleUpdateDish = (updateData) => {
+    // TODO: fix this shit
     const {
       changeAll, dayIndex, oldDishId, newDish, type,
     } = updateData;
@@ -85,7 +86,7 @@ function WeekView() {
     setContextState('currentMenu', { menuOptions, menuDishes: newDishes });
   };
 
-  const isHidden = generalView !== 'menu';
+  const isHidden = generalView !== 'buildMenu';
   const className = isHidden ? 'week-view no-show' : 'week-view';
 
   return (

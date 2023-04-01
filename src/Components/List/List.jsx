@@ -14,7 +14,9 @@ import { filterList } from './helpers';
 // const sortOptions = [{ id: 'name', name: 'Name' }, { id: 'type', name: 'Type' }];
 
 function List({ listData }) {
-  const { view } = useContext(MainContext);
+  const {
+    view, currentMenu, updateCurrentMenu,
+  } = useContext(MainContext);
   const { addModal } = useContext(ModalContext);
   const [searchValue, setSearchValue] = useState('');
   const [listFilter, setListFilter] = useState();
@@ -27,6 +29,12 @@ function List({ listData }) {
       mode,
       modalData: data,
     });
+  };
+
+  const handleLoadMenu = (menuData) => {
+    const { dishes } = menuData;
+    const newCurrentMenu = { ...currentMenu, menuDishes: dishes };
+    updateCurrentMenu(newCurrentMenu);
   };
 
   const foundItems = filterList(listData, 'name', searchValue, listFilter);
@@ -84,11 +92,13 @@ function List({ listData }) {
             modifier={view}
             itemData={listItem}
             handleOpenModal={handleOpenModal}
+            handleLoadMenu={handleLoadMenu}
           />
         ))}
 
         {!sortedItems.length && <h3 className="empty-list-message">So empty...</h3>}
       </ul>
+      {view !== 'menu' && (
       <div className="add-container">
         <Button
           modifier="add-button"
@@ -99,6 +109,7 @@ function List({ listData }) {
 
         </Button>
       </div>
+      )}
     </div>
   );
 }
