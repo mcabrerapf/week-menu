@@ -37,8 +37,11 @@ function WeekViewButtons({
     <div className="week-view-header-buttons">
       <Button
         onClick={showBuildMenuModal}
-        buttonText="B"
-      />
+
+      >
+        <i className="fa fa-cog" aria-hidden="true" />
+
+      </Button>
       <Button
         onClick={handleBuildMenu}
         buttonIcon="dice"

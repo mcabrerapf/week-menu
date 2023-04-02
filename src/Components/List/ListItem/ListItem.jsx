@@ -30,7 +30,10 @@ function ListItem({
       <div className="list-item-buttons">
         {typeToUse && <div className="list-item-type">{typeToUse}</div>}
         {favourite && (
-        <Button onClick={() => {}}>
+        <Button
+          modifier="rounded-button"
+          onClick={() => {}}
+        >
           <i className="fa fa-star" aria-hidden="true" />
         </Button>
         )}
@@ -39,8 +42,11 @@ function ListItem({
           modifier="rounded-button"
           onClick={() => handleLoadMenu(itemData)}
           // buttonIcon="pencil"
-          buttonText="L"
-        />
+
+        >
+          <i className="fa fa-eye" aria-hidden="true" />
+
+        </Button>
         )}
         {modifier !== MENU_STRING && (
         <Button

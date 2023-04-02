@@ -44,6 +44,7 @@
 }
 
 .list-item .list-item-buttons button {
+	height: 34px;
 	border: none;
 	display: flex;
 	justify-content: center;

@@ -169,7 +169,7 @@ function DishFormInputs({ currentData, setCurrentData }) {
         type="select"
       /> */}
       <div className="ingredients-group-container">
-        <span className="ingredients-label">Ingredients</span>
+        <span className="group-input-label">Ingredients</span>
         <div className="ingredients-options-container">
           {INGREDIENT_TYPES
             .map(({ value, name: uName }) => (
