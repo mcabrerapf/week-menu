@@ -8,11 +8,22 @@ import Button from '../Button';
 import { sortBy } from '../helpers';
 import Input from '../Input';
 import { INGREDIENT_TYPES, DISH_TYPES } from '../constants';
-import { DISH_STRING } from '../../constants';
+import { DISH_STRING, INGREDIENT_STRING } from '../../constants';
 import { filterList } from './helpers';
 
 // const sortOptions = [{ id: 'name', name: 'Name' }, { id: 'type', name: 'Type' }];
-
+const getFilterOptions = (view) => {
+  switch (view) {
+    case 'menu':
+      return [{ value: 'favourite', name: 'Favourite' }];
+    case DISH_STRING:
+      return DISH_TYPES;
+    case INGREDIENT_STRING:
+      return INGREDIENT_TYPES;
+    default:
+      return [];
+  }
+};
 function List({ listData }) {
   const {
     view, currentMenu, updateCurrentMenu,
@@ -37,9 +48,9 @@ function List({ listData }) {
     updateCurrentMenu(newCurrentMenu);
   };
 
-  const foundItems = filterList(listData, 'name', searchValue, listFilter);
+  const foundItems = filterList(listData, searchValue, listFilter);
   const sortedItems = sortBy(foundItems, 'name', 'alphabetical');
-  const filterOptions = view === DISH_STRING ? DISH_TYPES : INGREDIENT_TYPES;
+  const filterOptions = getFilterOptions(view);
   // const filtersClassName = `list-filters${showFilters ? '' : ' no-show'}`;
   // const buttonText = `${showFilters ? 'Hide' : 'Show'} filters`;
 

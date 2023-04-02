@@ -23,9 +23,13 @@ function WeekView() {
   const [touchEnd, setTouchEnd] = useState(null);
 
   const handleBuildMenu = () => {
+    if (view !== 0) {
+      setView(0);
+      return;
+    }
     const newDishes = buildMenuDishes(dishesFromContext, menuOptions);
     if (!newDishes) return;
-    if (view !== 0) setView(0);
+
     setContextState('currentMenu', { menuOptions, menuDishes: newDishes });
   };
 

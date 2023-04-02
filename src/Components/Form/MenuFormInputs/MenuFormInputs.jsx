@@ -38,7 +38,7 @@ function MenuFormInputs({ currentData, setCurrentData }) {
         <ul className="menu-dishes-list">
           {dishes
             .map(({ name: dishName }) => (
-              <li className="menu-dishes-list-item">{dishName}</li>
+              <li className="menu-dishes-list-item" key={dishName}>{dishName}</li>
             ))}
         </ul>
       </div>

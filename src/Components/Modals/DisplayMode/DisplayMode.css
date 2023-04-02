@@ -16,7 +16,7 @@
 	font-size: 1rem !important;
 }
 .display-mode-props-prop {
-	font-size: 0.8rem;
+	font-size: 0.9rem;
 }
 
 .display-mode-props ul {
@@ -25,11 +25,11 @@
 }
 
 .display-mode-props-ingredients-label {
-	text-decoration: underline;
+	/* text-decoration: underline; */
 	font-weight: 600;
 	font-size: 1rem !important;
 }
 
 .display-mode-props-ingredients li {
-	font-size: 0.8rem;
+	font-size: 0.9rem;
 }

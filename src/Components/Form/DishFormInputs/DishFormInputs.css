@@ -27,11 +27,34 @@
 	font-size: 0.9rem;
 	font-weight: 600;
 }
+
+.ingredients-group-container {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+}
+
+.ingredients-options-container {
+	display: flex;
+	gap: 5px;
+	min-height: 50px;
+	align-items: center;
+	overflow-x: scroll;
+	overflow-y: hidden;
+}
+
+.ingredients-options-container button {
+	width: auto !important;
+	white-space: nowrap;
+}
 /* Ingredients bit */
 
 .form-ingredients {
 	width: 100%;
 	margin: 5px 0 15px 0px;
+	border: 1px dashed;
+	padding-top: 5px;
+	padding-bottom: 5px;
 }
 
 .form-ingredients-ingredient {

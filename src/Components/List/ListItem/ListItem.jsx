@@ -8,10 +8,13 @@ import { DISH_STRING, MENU_STRING } from '../../../constants';
 function ListItem({
   modifier, itemData, handleOpenModal, handleLoadMenu,
 }) {
-  const { name, type, types } = itemData;
+  const {
+    name, type, types, favourite,
+  } = itemData;
   const parsedLabel = capitalizeFirstLetter(name);
   const typeToUse = types ? types[0] : type;
   const defaultModalView = modifier === DISH_STRING ? 'display' : 'edit';
+
   return (
     <li className={`list-item ${modifier}`}>
       <div
@@ -26,6 +29,11 @@ function ListItem({
       </div>
       <div className="list-item-buttons">
         {typeToUse && <div className="list-item-type">{typeToUse}</div>}
+        {favourite && (
+        <Button onClick={() => {}}>
+          <i className="fa fa-star" aria-hidden="true" />
+        </Button>
+        )}
         {modifier === MENU_STRING && (
         <Button
           modifier="rounded-button"
@@ -34,11 +42,13 @@ function ListItem({
           buttonText="L"
         />
         )}
+        {modifier !== MENU_STRING && (
         <Button
           modifier="rounded-button"
           onClick={() => handleOpenModal('list', 'edit', itemData)}
           buttonIcon="pencil"
         />
+        )}
         <Button
           modifier="rounded-button"
           onClick={() => handleOpenModal('list', 'delete', itemData)}

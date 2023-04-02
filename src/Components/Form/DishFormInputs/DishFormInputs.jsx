@@ -1,5 +1,5 @@
 /* eslint-disable no-restricted-globals */
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import './DishFormInputs.css';
 import { DISH_TYPES } from '../../constants/DISHES';
@@ -8,10 +8,12 @@ import IngredientsField from './IngredientsField';
 import Input from '../../Input';
 import Button from '../../Button';
 import QuantityInput from '../../QuantityInput';
-import { sortBy } from '../../helpers';
+import { capitalizeFirstLetter, sortBy } from '../../helpers';
+import { INGREDIENT_TYPES } from '../../constants';
 
 function DishFormInputs({ currentData, setCurrentData }) {
   const { ingredients: contextIngredients } = useContext(MainContext);
+  const [selectedIngredientType, setSelectedIngredientType] = useState('OTHER');
   const {
     name, types, ingredients, servings, time: { hours, minutes } = {},
   } = currentData;
@@ -77,7 +79,8 @@ function DishFormInputs({ currentData, setCurrentData }) {
 
   const selectedIngredientids = ingredients.map(({ id: iId }) => iId);
   const filteredIngredientOptions = contextIngredients
-    .filter(({ id: iId }) => !selectedIngredientids.includes(iId));
+    .filter(({ id: iId, type }) => !selectedIngredientids
+      .includes(iId) && type === selectedIngredientType);
 
   const sortedIngredients = sortBy(filteredIngredientOptions, 'name', 'alphabetical');
 
@@ -156,7 +159,7 @@ function DishFormInputs({ currentData, setCurrentData }) {
         </div>
 
       </div>
-      <Input
+      {/* <Input
         value=""
         name="ingredients"
         id="ingredients"
@@ -164,14 +167,42 @@ function DishFormInputs({ currentData, setCurrentData }) {
         placeholder="Add ingredient"
         selectOptions={sortedIngredients}
         type="select"
-      />
-      <div className="form-ingredients">
-        <IngredientsField
-          ingredients={ingredients}
-          handleIngredientChange={handleIngredientChange}
-          handleRemoveIngredient={handleRemoveIngredient}
-        />
+      /> */}
+      <div className="ingredients-group-container">
+        <span className="ingredients-label">Ingredients</span>
+        <div className="ingredients-options-container">
+          {INGREDIENT_TYPES
+            .map(({ value, name: uName }) => (
+              <Button
+                key={value}
+                modifier={value === selectedIngredientType ? '' : 'not-selected'}
+                name="ingredient-type"
+                value={value}
+                buttonText={uName}
+                onClick={(e) => setSelectedIngredientType(e.target.value)}
+              />
+            ))}
+        </div>
+
+        <div className="ingredients-options-container">
+          {sortedIngredients
+            .map(({ id: ingredientId, name: uName }) => (
+              <Button
+                key={uName}
+                name="ingredient"
+                value={ingredientId}
+                buttonText={capitalizeFirstLetter(uName)}
+                onClick={handleAddIngredient}
+              />
+            ))}
+          {!sortedIngredients.length && <div>So empty...</div>}
+        </div>
       </div>
+      <IngredientsField
+        ingredients={ingredients}
+        handleIngredientChange={handleIngredientChange}
+        handleRemoveIngredient={handleRemoveIngredient}
+      />
       <Input
         id="description"
         name="description"

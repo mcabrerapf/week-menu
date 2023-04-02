@@ -28,7 +28,7 @@ function BuildMenuModal({
   const handleButtonClick = () => {
     const menuDishes = buildMenuDishes(dishes, currentData);
     setContextState('currentMenu', { menuDishes, menuOptions: currentData });
-    closeModal();
+    closeModal({ updateParent: true, data: {} });
   };
 
   const handleDecrease = (valueKey) => {

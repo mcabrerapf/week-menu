@@ -2,20 +2,23 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '../../Button';
 import Input from '../../Input';
+import { capitalizeFirstLetter, sortBy } from '../../helpers';
 
 function IngredientsField({
   ingredients, handleIngredientChange, handleRemoveIngredient,
 }) {
+  const sortedIngredients = sortBy(ingredients, 'name', 'alphabetical');
   return (
     <div className="form-ingredients">
-      {ingredients.map((currentIngredient) => {
+      {!sortedIngredients.length && <div>No ingredients...</div>}
+      {sortedIngredients.map((currentIngredient) => {
         const {
           id, name, quantity, unit,
         } = currentIngredient;
 
         return (
           <div className="form-ingredients-ingredient" key={id}>
-            <div className="form-ingredients-ingredient-name">{name}</div>
+            <div className="form-ingredients-ingredient-name">{capitalizeFirstLetter(name)}</div>
             <div className="form-ingredients-ingredient-quantity-container">
               <Input
                 type="number"
