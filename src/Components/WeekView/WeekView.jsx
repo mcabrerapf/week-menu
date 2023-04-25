@@ -69,24 +69,31 @@ function WeekView() {
   };
 
   const handleUpdateDish = (updateData) => {
-    // TODO: fix this shit
+    if (!updateData) return;
+
     const {
       changeAll, dayIndex, oldDishId, newDish, type,
     } = updateData;
-
+    const { id: newDishId } = newDish;
     const oldDishes = deepCopy(menuDishes);
-    const newDishes = oldDishes.map((currentDish) => {
-      const { id, days, useAs } = currentDish;
-      if (id === oldDishId && useAs === type) {
-        if (changeAll) newDish.days = days.map((day) => day);
-        const updatedDays = changeAll ? [] : days.filter((day) => day !== dayIndex);
-        return { ...currentDish, days: updatedDays };
-      }
+    const newDishes = oldDishes
+      .map((currentDish) => {
+        const { id, days, useAs } = currentDish;
+        if (useAs === type) {
+          if (id === oldDishId) {
+            if (changeAll) days.forEach((day) => newDish.days.push(day));
+            const updatedDays = changeAll ? [] : days.filter((day) => day !== dayIndex);
+            return { ...currentDish, days: updatedDays };
+          }
+          if (newDishId === id) {
+            days.forEach((day) => !newDish.days.includes(day) && newDish.days.push(day));
+            return { ...currentDish, days: [] };
+          }
+        }
 
-      return currentDish;
-    }).filter(({ days }) => !!days.length);
+        return currentDish;
+      }).filter(({ days }) => !!days.length);
     newDishes.push({ ...newDish });
-
     setContextState('currentMenu', { menuOptions, menuDishes: newDishes });
   };
 

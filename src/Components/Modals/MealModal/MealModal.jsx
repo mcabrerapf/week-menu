@@ -13,14 +13,15 @@ function MealModal({ modalData, closeModal }) {
     id, name,
   } = modalData;
   const dishesCopy = deepCopy(dishesFromContext);
-  const sortedDishes = sortBy(dishesCopy, 'name', 'alphabetical');
-  const [selectedDish, setSelectedDish] = useState(id);
+  const sortedDishes = sortBy(dishesCopy, 'name', 'alphabetical').filter(({ id: dishId }) => dishId !== id);
+  const [selectedDish, setSelectedDish] = useState();
   const [mode, setMode] = useState(id ? 'display' : 'edit');
 
   const handleButtonClick = (changeAll) => {
+    if (!selectedDish) return closeModal();
     const newDish = sortedDishes.find(({ id: newDishId }) => newDishId === selectedDish);
     const data = { newDish, oldDishId: id, changeAll };
-    closeModal({ updateParent: true, data });
+    return closeModal({ updateParent: true, data });
   };
 
   return (
