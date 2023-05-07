@@ -85,7 +85,6 @@ function MainContextWrapper({ children }) {
   };
 
   const updateCurrentMenu = (newMenu) => {
-    console.log({ newMenu });
     setContextState({ ...contextState, currentMenu: newMenu, view: 'buildMenu' });
   };
 
