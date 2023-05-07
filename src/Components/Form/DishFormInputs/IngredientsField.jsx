@@ -2,7 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '../../Button';
 import Input from '../../Input';
-import { capitalizeFirstLetter, sortBy } from '../../helpers';
+import { buildSelectOptions, capitalizeFirstLetter, sortBy } from '../../helpers';
+import { SELECT_OPTIONS } from '../../constants';
+import { INGREDIENT_STRING } from '../../../constants';
 
 function IngredientsField({
   ingredients, handleIngredientChange, handleRemoveIngredient,
@@ -33,8 +35,8 @@ function IngredientsField({
                 onBlur={handleIngredientChange}
                 onChange={handleIngredientChange}
               />
-              <div className="form-ingredients-ingredient-unit">{unit}</div>
-              {/* <select
+              {/* <div className="form-ingredients-ingredient-unit">{unit}</div> */}
+              <select
                 className="form-ingredients-ingredient-unit"
                 id={id}
                 name="unit"
@@ -45,7 +47,7 @@ function IngredientsField({
                   Choose a unit...
                 </option>
                 {buildSelectOptions(SELECT_OPTIONS[INGREDIENT_STRING].unit, 'value')}
-              </select> */}
+              </select>
               <div>
                 <Button
                   modifier="form-ingredients-ingredient-remove"

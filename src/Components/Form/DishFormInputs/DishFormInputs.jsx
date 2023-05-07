@@ -11,11 +11,17 @@ import QuantityInput from '../../QuantityInput';
 import { capitalizeFirstLetter, sortBy } from '../../helpers';
 import { INGREDIENT_TYPES } from '../../constants';
 
-function DishFormInputs({ currentData, setCurrentData }) {
-  const { ingredients: contextIngredients } = useContext(MainContext);
+const getMainDishes = (dishes, currentMainDishes, currentId) => {
+  const sideDishes = dishes
+    .filter(({ id, types: sideType }) => !sideType.includes('SIDE') && !currentMainDishes.includes(id) && id !== currentId);
+  return sortBy(sideDishes, 'name', 'alphabetical');
+};
+
+function DishFormInputs({ currentData, setCurrentData, showIngredients }) {
+  const { ingredients: contextIngredients, dishes } = useContext(MainContext);
   const [selectedIngredientType, setSelectedIngredientType] = useState('OTHER');
   const {
-    name, types, ingredients, servings, time: { hours, minutes } = {},
+    id, name, types, sideDishTo, ingredients, servings, time: { hours, minutes } = {},
   } = currentData;
 
   const handleOnChange = ({ target: { value, name: eName } }) => {
@@ -54,6 +60,16 @@ function DishFormInputs({ currentData, setCurrentData }) {
     });
     setCurrentData({ ...currentData, ingredients: updatedIngredients });
   };
+  const handleAddMainDish = ({ target: { value: eValue } }) => {
+    setCurrentData({ ...currentData, sideDishTo: [...sideDishTo, eValue] });
+  };
+
+  const handleRemoveMainDish = (idToCheck) => {
+    setCurrentData({
+      ...currentData,
+      sideDishTo: sideDishTo.filter((sideDishId) => sideDishId !== idToCheck),
+    });
+  };
 
   const handleTimeChange = (e) => {
     const { target: { value: eValue, name: eName } } = e;
@@ -65,9 +81,10 @@ function DishFormInputs({ currentData, setCurrentData }) {
   };
 
   const toggleType = ({ target: { value: eValue } }) => {
+    if (eValue === 'SIDE') return setCurrentData({ ...currentData, types: [eValue] });
     const newTypes = types.includes(eValue)
-      ? types.filter((type) => type !== eValue) : [...types, eValue];
-    setCurrentData({ ...currentData, types: newTypes });
+      ? types.filter((type) => type !== eValue) : [...types, eValue].filter((type) => type !== 'SIDE');
+    return setCurrentData({ ...currentData, types: newTypes });
   };
 
   const handleIncrease = () => {
@@ -83,9 +100,58 @@ function DishFormInputs({ currentData, setCurrentData }) {
       .includes(iId) && type === selectedIngredientType);
 
   const sortedIngredients = sortBy(filteredIngredientOptions, 'name', 'alphabetical');
+  const sortedMainDishes = getMainDishes(dishes, sideDishTo, id);
 
+  if (showIngredients) {
+    return (
+      <div className="form-inputs dish-inputs">
+        <div className="ingredients-group-container">
+          <div className="ingredients-options-container">
+            {INGREDIENT_TYPES
+              .map(({ value, name: uName }) => (
+                <Button
+                  key={value}
+                  modifier={value === selectedIngredientType ? '' : 'not-selected'}
+                  name="ingredient-type"
+                  value={value}
+                  buttonText={uName}
+                  onClick={(e) => setSelectedIngredientType(e.target.value)}
+                />
+              ))}
+          </div>
+          <Input
+            value=""
+            name="ingredients"
+            id="ingredients"
+            onChange={handleAddIngredient}
+            placeholder="Add ingredient"
+            selectOptions={sortedIngredients}
+            type="select"
+          />
+          {/* <div className="ingredients-options-container">
+          {sortedIngredients
+            .map(({ id: ingredientId, name: uName }) => (
+              <Button
+                key={uName}
+                name="ingredient"
+                value={ingredientId}
+                buttonText={capitalizeFirstLetter(uName)}
+                onClick={handleAddIngredient}
+              />
+            ))}
+          {!sortedIngredients.length && <div>So empty...</div>}
+        </div> */}
+        </div>
+        <IngredientsField
+          ingredients={ingredients}
+          handleIngredientChange={handleIngredientChange}
+          handleRemoveIngredient={handleRemoveIngredient}
+        />
+      </div>
+    );
+  }
   return (
-    <div className="form-inputs">
+    <div className="form-inputs dish-inputs">
       <Input
         autoComplete="off"
         type="text"
@@ -168,42 +234,47 @@ function DishFormInputs({ currentData, setCurrentData }) {
         selectOptions={sortedIngredients}
         type="select"
       /> */}
-      <div className="ingredients-group-container">
-        <span className="group-input-label">Ingredients</span>
-        <div className="ingredients-options-container">
-          {INGREDIENT_TYPES
-            .map(({ value, name: uName }) => (
-              <Button
-                key={value}
-                modifier={value === selectedIngredientType ? '' : 'not-selected'}
-                name="ingredient-type"
-                value={value}
-                buttonText={uName}
-                onClick={(e) => setSelectedIngredientType(e.target.value)}
-              />
-            ))}
-        </div>
 
+      {types.includes('SIDE') && (
+      <div className="side-dishes-container">
+        <Input
+          value=""
+          name="side-dishes"
+          id="side-dishes"
+          onChange={handleAddMainDish}
+          placeholder="Add main dish"
+          selectOptions={sortedMainDishes}
+          label="Side dish to"
+          type="select"
+        />
+        {!!sideDishTo.length && (
         <div className="ingredients-options-container">
-          {sortedIngredients
-            .map(({ id: ingredientId, name: uName }) => (
-              <Button
-                key={uName}
-                name="ingredient"
-                value={ingredientId}
-                buttonText={capitalizeFirstLetter(uName)}
-                onClick={handleAddIngredient}
-              />
-            ))}
-          {!sortedIngredients.length && <div>So empty...</div>}
+          {sideDishTo.map((sideDishId) => {
+            const { name: sideDishName } = dishes
+              .find(({ id: sideId }) => sideDishId === sideId) || {};
+            return (
+              <div className="form-side-dish" key={sideDishId}>
+                <Button
+                  modifier="form-side-dish-remove"
+                  aria-label={`remove-${sideDishId}`}
+                  type="button"
+                  value={sideDishId}
+                  buttonText={capitalizeFirstLetter(sideDishName)}
+                >
+                  <i
+                    className="fa fa-times"
+                    aria-hidden="true"
+                    onClick={() => handleRemoveMainDish(sideDishId)}
+                  />
+                </Button>
+              </div>
+            );
+          })}
         </div>
+        )}
       </div>
-      <IngredientsField
-        ingredients={ingredients}
-        handleIngredientChange={handleIngredientChange}
-        handleRemoveIngredient={handleRemoveIngredient}
-      />
-      <Input
+      )}
+      {/* <Input
         id="description"
         name="description"
         label="Description"
@@ -211,7 +282,7 @@ function DishFormInputs({ currentData, setCurrentData }) {
         onChange={handleOnChange}
         placeholder="Dish description..."
         type="textarea"
-      />
+      /> */}
       <Input
         id="instructions"
         name="instructions"
@@ -227,6 +298,7 @@ function DishFormInputs({ currentData, setCurrentData }) {
 
 DishFormInputs.propTypes = {
   setCurrentData: PropTypes.func.isRequired,
+  showIngredients: PropTypes.bool.isRequired,
   currentData: PropTypes.shape(),
 
 };

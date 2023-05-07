@@ -1,6 +1,20 @@
 import deepCopy from './deep-copy';
 import generateRandomNumber from './generate-random-number';
 
+const populateSideDishes = (dish, dishes) => {
+  const { id } = dish;
+
+  const sideDishes = dishes
+    .filter(({ sideDishTo }) => !!sideDishTo && !!sideDishTo
+      .filter((sideId) => sideId === id).length);
+
+  if (!sideDishes || !sideDishes.length) return { ...dish, sideDishesToUse: [], days: [] };
+  const rIndex = generateRandomNumber(0, sideDishes.length);
+  const randomSideDish = sideDishes[rIndex];
+
+  return { ...dish, days: [], sideDishesToUse: [randomSideDish] };
+};
+
 const getMaxDishes = (dishes, type, filters) => {
   const { limit, days } = filters;
   if (limit === 0) return [];
@@ -29,9 +43,10 @@ const getMaxDishes = (dishes, type, filters) => {
     const rIndex = generateRandomNumber(0, dishes.length);
     const randomDish = dishes[rIndex];
 
-    if (randomDish.types && randomDish.types.includes(type)) {
+    if (randomDish.types && !randomDish.types.includes('SIDE') && randomDish.types.includes(type)) {
       const [dishMatch] = dishes.splice(rIndex, 1);
-      finalDishes.push({ ...dishMatch, useAs: type, days: [] });
+      const finalDish = populateSideDishes(dishMatch, dishes);
+      finalDishes.push({ ...finalDish, useAs: type });
     }
   }
   if (!finalDishes.length) return finalDishes;
@@ -55,7 +70,6 @@ const buildMenuDishes = (dishes, options) => {
   const lunches = getMaxDishes(dishesCopy, 'LUNCH', { limit: maxLunches, days });
   const dinners = getMaxDishes(dishesCopy, 'DINNER', { limit: maxDinners, days });
   const finalDishes = [...breakfasts, ...lunches, ...dinners];
-
   return finalDishes;
 };
 

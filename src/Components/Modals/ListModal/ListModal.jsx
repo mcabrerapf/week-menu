@@ -39,12 +39,13 @@ function ListModal({
       closeModal();
       return;
     }
-    const serviceString = mode === 'create' ? CREATE_STRING : UPDATE_STRING;
+    const isCreate = mode === 'create';
+    const serviceString = isCreate ? CREATE_STRING : UPDATE_STRING;
     const serviceToUse = serviceHandler(serviceString);
-    const parsedData = parseData(submitData, view, mode, modalData.id);
+    const parsedData = parseData(submitData, view);
     const response = await serviceToUse(view, parsedData);
     await handleListUpdate();
-    const toastLabel = mode === 'create' ? 'Created' : 'Updated';
+    const toastLabel = isCreate ? 'Created' : 'Updated';
     handleToastMessage(response, toastLabel, parsedData.name, 'success');
     closeModal();
   };

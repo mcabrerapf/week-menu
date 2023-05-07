@@ -54,6 +54,8 @@ export const CREATE_DISH_MUTATION = `
       types
       size
       servings
+      sideDishes
+      sideDishTo
       time {
         hours
         minutes
@@ -76,6 +78,8 @@ export const UPDATE_DISH_MUTATION = `
       types
       size
       servings
+      sideDishes
+      sideDishTo
       time {
         hours
         minutes
@@ -128,6 +132,7 @@ export const UPDATE_MENU_MUTATION = `
         id
         days
         useAs
+        sideDishesToUse
       }
     }
   }

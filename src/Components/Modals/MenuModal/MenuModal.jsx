@@ -10,9 +10,17 @@ import { CREATE_STRING, UPDATE_STRING } from '../../../constants';
 
 const parseMenuData = (data) => {
   const { dishes, name, favourite } = data;
-  const parsedDishes = dishes.map(({ id, useAs, days }) => ({ id, useAs, days }));
+  const parsedDishes = dishes.map(({
+    id, useAs, days, sideDishesToUse,
+  }) => {
+    const sideDishesIds = sideDishesToUse.map(({ id: sideDishId }) => sideDishId);
+    return {
+      id, useAs, days, sideDishesToUse: sideDishesIds,
+    };
+  });
   return { name, favourite, dishes: parsedDishes };
 };
+
 function MenuModal({ modalData, closeModal }) {
   const {
     id, name, favourite, dishes,

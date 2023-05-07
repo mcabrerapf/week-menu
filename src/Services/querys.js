@@ -36,6 +36,8 @@ export const GET_DISH_QUERY = `
     getDish(id: $id) {
       id
       name
+      sideDishes
+      sideDishTo
       ingredients {
         id
         quantity
@@ -66,6 +68,8 @@ export const GET_ALL_DISHES_QUERY = `
       items {
         id
         name
+        sideDishes
+        sideDishTo
         ingredients {
           id
           quantity
@@ -102,6 +106,7 @@ export const GET_MENU_QUERY = `
         id
         days
         useAs
+        sideDishesToUse
       }
       createdAt
       updatedAt
@@ -124,6 +129,7 @@ query ListMenu($filter: ModelMenuFilterInput, $limit: Int, $nextToken: String) {
         id
         days
         useAs
+        sideDishesToUse
       }
       createdAt
       updatedAt

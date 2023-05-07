@@ -5,7 +5,7 @@ import './Form.css';
 import Button from '../Button';
 import { MainContext } from '../../Contexts/MainContext';
 import {
-  DISH_STRING, INGREDIENT_STRING, MENU_STRING,
+  DISH_STRING, MENU_STRING,
 } from '../../constants';
 import { checkIsButtonDisabled, initFormData } from './helpers';
 import { deepCompare } from '../helpers';
@@ -13,10 +13,21 @@ import DishFormInputs from './DishFormInputs';
 import IngredientFormInputs from './IngredientFormInputs';
 import MenuFormInputs from './MenuFormInputs';
 
+const getFormInputs = (type) => {
+  switch (type) {
+    case MENU_STRING:
+      return MenuFormInputs;
+    case DISH_STRING:
+      return DishFormInputs;
+    default:
+      return IngredientFormInputs;
+  }
+};
 function Form({ formData, handleSubmit }) {
   const { view } = useContext(MainContext);
   const [currentData, setCurrentData] = useState();
   const [initialData, setInitialData] = useState();
+  const [showIngredients, setShowIngredients] = useState(false);
 
   useEffect(() => {
     const parsedData = initFormData(view, formData);
@@ -32,22 +43,28 @@ function Form({ formData, handleSubmit }) {
     handleSubmit(currentData);
   };
 
+  const toggleIngredientsView = () => {
+    setShowIngredients(!showIngredients);
+  };
+
   if (!currentData) return null;
 
   const buttonClassName = `submit${checkIsButtonDisabled(view, currentData) ? ' disabled' : ''}`;
+  const FormInputs = getFormInputs(view);
+  const headerText = showIngredients ? 'View Dish' : 'View Ingredients';
 
   return (
     <form className="form">
-      { view === DISH_STRING && (
-        <DishFormInputs currentData={currentData} setCurrentData={setCurrentData} />
+      {view === 'dish' && (
+      <div className="form-header">
+        <Button className="header-option" onClick={toggleIngredientsView} buttonText={headerText} />
+      </div>
       )}
-      { view === INGREDIENT_STRING && (
-        <IngredientFormInputs currentData={currentData} setCurrentData={setCurrentData} />
-      )}
-      { view === MENU_STRING && (
-        <MenuFormInputs currentData={currentData} setCurrentData={setCurrentData} />
-      )}
-
+      <FormInputs
+        currentData={currentData}
+        setCurrentData={setCurrentData}
+        showIngredients={showIngredients}
+      />
       <Button
         modifier={buttonClassName}
         onClick={handleSubmitButtonClick}

@@ -9,7 +9,7 @@ const DISH_TYPES = [
     id: 'DINNER', name: 'Dinner', shortLabel: 'D',
   },
   {
-    id: 'DESSERT', name: 'Dessert', shortLabel: 'S',
+    id: 'SIDE', name: 'Side', shortLabel: 'S',
   },
 ];
 

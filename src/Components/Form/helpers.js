@@ -3,14 +3,16 @@ import { deepCopy } from '../helpers';
 
 export const initDish = (dishData) => {
   const {
-    name, ingredients, types, instructions, description, time, servings,
+    id, name, ingredients, types, sideDishes, sideDishTo, instructions, description, time, servings,
   } = dishData;
   const { hours, minutes } = time || {};
 
-  return {
+  const dish = {
     name: name || '',
     // type: type || '',
     types: types || [],
+    sideDishes: sideDishes || [],
+    sideDishTo: sideDishTo || [],
     time: {
       hours: hours || 0,
       minutes: minutes || 0,
@@ -21,23 +23,32 @@ export const initDish = (dishData) => {
     instructions: instructions || '',
     description: description || '',
   };
+
+  return id ? { ...dish, id } : dish;
 };
 
 export const initIngredient = ({
-  name, unit, type,
-}) => ({
-  name: name || '',
-  type: type || '',
-  unit: unit || '',
-});
+  id, name, unit, type,
+}) => {
+  const ingredient = {
+    name: name || '',
+    type: type || '',
+    unit: unit || '',
+  };
+  return id ? { ...ingredient, id } : ingredient;
+};
 
 export const initMenu = ({
-  name, dishes, favourite,
-}) => ({
-  name: name || '',
-  dishes: dishes || [],
-  favourite: favourite || false,
-});
+  id, name, dishes, favourite,
+}) => {
+  const menu = {
+    name: name || '',
+    dishes: dishes || [],
+    favourite: favourite || false,
+  };
+
+  return id ? { ...menu, id } : menu;
+};
 
 export const initFormData = (view, data) => {
   const copiedData = deepCopy(data);

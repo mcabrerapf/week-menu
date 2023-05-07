@@ -7,20 +7,37 @@ import { MainContext } from '../../../Contexts/MainContext';
 import { deepCopy, sortBy } from '../../helpers';
 import DisplayMode from '../DisplayMode';
 
+const getDishesAndSideDishes = (dishes, id) => {
+  const mainDishes = [];
+  const sideDishes = [];
+  dishes.forEach((dish) => {
+    const { id: dishId, types } = dish;
+    if (dishId === id) return;
+    if (types.includes('SIDE')) sideDishes.push(dish);
+    else mainDishes.push(dish);
+  });
+  return [sortBy(mainDishes, 'name', 'alphabetical'), sortBy(sideDishes, 'name', 'alphabetical')];
+};
+
 function MealModal({ modalData, closeModal }) {
   const { dishes: dishesFromContext } = useContext(MainContext);
   const {
     id, name,
   } = modalData;
   const dishesCopy = deepCopy(dishesFromContext);
-  const sortedDishes = sortBy(dishesCopy, 'name', 'alphabetical').filter(({ id: dishId }) => dishId !== id);
   const [selectedDish, setSelectedDish] = useState();
+  const [selectedSideDish, setSelectedSideDish] = useState();
   const [mode, setMode] = useState(id ? 'display' : 'edit');
+  const [sortedDishes, sortedSideDishes] = getDishesAndSideDishes(dishesCopy, id);
 
   const handleButtonClick = (changeAll) => {
     if (!selectedDish) return closeModal();
+    const newSideDish = sortedSideDishes
+      .find(({ id: newSideDishId }) => newSideDishId === selectedSideDish);
+    const sideDishesToUse = newSideDish ? [newSideDish] : [];
     const newDish = sortedDishes.find(({ id: newDishId }) => newDishId === selectedDish);
-    const data = { newDish, oldDishId: id, changeAll };
+    const data = { newDish: { ...newDish, sideDishesToUse }, oldDishId: id, changeAll };
+
     return closeModal({ updateParent: true, data });
   };
 
@@ -32,28 +49,35 @@ function MealModal({ modalData, closeModal }) {
       {mode === 'edit' && (
       <div className="edit-container">
         <div className="meal-modal-inputs">
-          {id ? (
-            <div className="old-dish-name">
-              Change
+          {id && (
+          <div className="old-dish-name">
+            Change
               {' '}
-              <strong>{name}</strong>
-              {' '}
-              to:
-            </div>
-          ) : (
-            <div className="old-dish-name">
-              Add dish
-            </div>
+            <strong>{name}</strong>
+            {' '}
+            to:
+          </div>
           )}
           <Input
             name="dish"
             id="dish"
             value={selectedDish}
             onChange={({ target: { value: eValue } }) => setSelectedDish(eValue)}
-            placeholder="Choose a dish"
+            placeholder="Selecet dish"
             selectOptions={sortedDishes}
             type="select"
           />
+          {!!sortedSideDishes.length && (
+          <Input
+            name="dish"
+            id="dish"
+            value={selectedSideDish}
+            onChange={({ target: { value: eValue } }) => setSelectedSideDish(eValue)}
+            placeholder="Selecet side dish"
+            selectOptions={sortedSideDishes}
+            type="select"
+          />
+          )}
         </div>
 
         <div className="meal-modal-buttons">
