@@ -11,7 +11,6 @@ const INGREDIENT_TYPES = ['MEAT', 'FISH', 'FRUIT', 'VEGETABLE', 'SAUCE', 'LIQUOR
 function ShopingList({ menuDishes, menuPeople, hidden }) {
   const { addToast } = useContext(ToastContext);
   const ingredienSections = buildIngredientSections(menuDishes, menuPeople);
-
   const handleCopyShopingList = () => {
     const shopingListItems = [];
     Object.keys(ingredienSections).forEach((sectionKey) => {
