@@ -10,7 +10,9 @@
 }
 
 .modal .modal-header {
+	min-height: 7vh;
 	background-color: #3f8881;
+	font-size: 1rem;
 	display: flex;
 	align-items: center;
 	padding: 2px 10px;
@@ -21,6 +23,7 @@
 .modal .modal-header .modal-header-text {
 	width: 100%;
 	text-align: center;
+	margin: 10px;
 }
 
 .modal .modal-header .modal-header-close-button {
@@ -28,11 +31,14 @@
 	width: 10%;
 	position: fixed;
 	margin-left: 75%;
+	height: 2rem;
 }
 
 .modal .modal-content {
-	min-height: 20%;
-	border-radius: 10px;
+	/* min-height: 20%; */
+	/* border-radius: 10px; */
+	border-bottom-right-radius: 10px;
+	border-bottom-left-radius: 10px;
 	padding: 10px;
 	background-color: #ceb8a1;
 }

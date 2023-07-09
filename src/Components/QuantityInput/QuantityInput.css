@@ -1,5 +1,6 @@
 .quantity-input-container {
 	display: flex;
+	flex-direction: column;
 }
 
 .quantity-input-container .quantity-input-container-label {
@@ -8,6 +9,10 @@
 	text-align: left;
 	padding-top: 5px;
 	width: 45%;
+}
+
+.quantity-input-buttons-container {
+	display: flex;
 }
 
 .quantity-input-container button {

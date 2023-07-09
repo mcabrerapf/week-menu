@@ -10,19 +10,22 @@ function QuantityInput({
   return (
     <div className={parseClassName('quantity-input-container', modifier)}>
       {labelText && <span className="quantity-input-container-label">{labelText}</span>}
-      <Button
-        modifier="quantity-input-container-button-less"
-        buttonText="-"
-        disabled={value === min}
-        onClick={() => handleDecrease(valueKey)}
-      />
-      <div className="quantity-input-container-quantity">{value}</div>
-      <Button
-        modifier="quantity-input-container-button-more"
-        buttonText="+"
-        disabled={value === max}
-        onClick={() => handleIncrease(valueKey)}
-      />
+      <div className="quantity-input-buttons-container">
+        <Button
+          modifier="quantity-input-container-button-less"
+          buttonText="-"
+          disabled={value === min}
+          onClick={() => handleDecrease(valueKey)}
+        />
+        <div className="quantity-input-container-quantity">{value}</div>
+        <Button
+          modifier="quantity-input-container-button-more"
+          buttonText="+"
+          disabled={value === max}
+          onClick={() => handleIncrease(valueKey)}
+        />
+      </div>
+
     </div>
   );
 }

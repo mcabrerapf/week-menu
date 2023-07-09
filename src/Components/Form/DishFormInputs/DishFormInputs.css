@@ -1,6 +1,6 @@
 .form-input-group {
 	display: flex;
-	justify-content: space-between;
+	gap: 60px;
 }
 
 .form-input-group .group-input {
@@ -49,6 +49,31 @@
 	width: auto !important;
 	white-space: nowrap;
 }
+
+.instructions-container {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.instruction-container {
+	display: flex;
+	gap: 5px;
+}
+
+.instruction-container .input {
+	flex: 2 1 auto;
+}
+
+.instruction-container .button {
+	flex: 1 1;
+}
+
+.instruction-buttons {
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+}
 /* Ingredients bit */
 
 .form-ingredients {
@@ -56,6 +81,8 @@
 	margin: 5px 0 15px 0px;
 	padding-top: 5px;
 	padding-bottom: 5px;
+	height: 40vh;
+	overflow-y: scroll;
 }
 
 .form-ingredients-ingredient {

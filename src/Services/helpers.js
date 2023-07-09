@@ -14,12 +14,13 @@ export const getResultData = (data, dataKeysString) => {
 
 export const fetchData = async (queryObject, dataKeys) => {
   try {
-    const result = await API.graphql(queryObject);
+    const result = await API.graphql(queryObject) || {};
     const { data } = result;
     if (!data) return null;
     const resultMatch = getResultData(data, dataKeys);
     return resultMatch;
   } catch (error) {
+    console.log('fetchData ERROR');
     console.log(queryObject, dataKeys);
     console.error(error);
     return error;

@@ -55,7 +55,7 @@ function ModalContextWrapper({ children }) {
           onTouchEnd={stopPropagation}
         >
           <Modal
-            hideHeader
+            headerText={modalData.name}
             closeModal={closeModal}
             modalData={modalData}
           >

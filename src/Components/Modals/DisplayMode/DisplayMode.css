@@ -4,7 +4,7 @@
 
 .display-mode-props {
 	margin: 10px;
-	max-height: 50vh;
+	/* max-height: 50vh; */
 	overflow-y: auto;
 }
 

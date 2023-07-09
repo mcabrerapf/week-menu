@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-autofocus */
 /* eslint-disable no-restricted-globals */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
@@ -22,6 +23,7 @@ function Input({
   min,
   max,
   resetValueOnClick,
+  autoFocus,
 }) {
   const [initialValue, setInitialValue] = useState(value);
 
@@ -133,6 +135,8 @@ function Input({
           onChange={onChange}
           placeholder={placeholder}
           disabled={disabled}
+          onBlur={onBlur}
+          autoFocus={autoFocus}
         />
       )}
       {type === 'number' && (
@@ -211,6 +215,7 @@ Input.propTypes = {
   min: PropTypes.number,
   max: PropTypes.number,
   resetValueOnClick: PropTypes.bool,
+  autoFocus: PropTypes.bool,
 };
 
 Input.defaultProps = {
@@ -231,6 +236,7 @@ Input.defaultProps = {
   min: null,
   max: null,
   resetValueOnClick: true,
+  autoFocus: false,
 };
 
 export default Input;

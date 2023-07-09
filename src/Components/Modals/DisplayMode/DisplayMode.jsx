@@ -7,13 +7,13 @@ function DisplayMode({
   modalData, setModalMode, buttonText,
 }) {
   const {
-    name, unit, type, description, instructions, ingredients,
+    unit, type, description, instructions, ingredients,
   } = modalData;
 
   return (
     <div className="display-mode">
       <div className="display-mode-props">
-        {name && (
+        {/* {name && (
         <div className="display-mode-props-prop">
           <span>
             <strong>Name: </strong>
@@ -21,7 +21,7 @@ function DisplayMode({
           </span>
 
         </div>
-        )}
+        )} */}
         {type && (
         <div className="display-mode-props-prop">
           <span>
@@ -68,7 +68,14 @@ function DisplayMode({
         <div className="display-mode-props-prop">
           <span>
             <strong>Instructions: </strong>
-            {instructions}
+            {instructions.split('---').map((ins, i) => (
+              <p>
+                {i + 1}
+                .
+                {' '}
+                {ins}
+              </p>
+            ))}
           </span>
         </div>
         )}

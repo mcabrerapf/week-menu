@@ -11,6 +11,7 @@ const INGREDIENT_TYPES = ['MEAT', 'FISH', 'FRUIT', 'VEGETABLE', 'SAUCE', 'LIQUOR
 function ShopingList({ menuDishes, menuPeople, hidden }) {
   const { addToast } = useContext(ToastContext);
   const ingredienSections = buildIngredientSections(menuDishes, menuPeople);
+
   const handleCopyShopingList = () => {
     const shopingListItems = [];
     Object.keys(ingredienSections).forEach((sectionKey) => {
@@ -29,9 +30,7 @@ function ShopingList({ menuDishes, menuPeople, hidden }) {
 
   return (
 
-    <div
-      className={className}
-    >
+    <div className={className}>
       <Button modifier="shopping-list-copy-button" onClick={handleCopyShopingList}>
         <i className="fa fa-clipboard" aria-hidden="true" />
       </Button>

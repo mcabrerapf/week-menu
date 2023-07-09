@@ -142,7 +142,7 @@ function BuildMenuModal({
         </div>
 
         <div className="build-menu-modal-max-inputs">
-          <div className="build-menu-modal-max-inputs-header">Max</div>
+          {/* <div className="build-menu-modal-max-inputs-header">Max</div> */}
           <QuantityInput
             value={maxBreakfasts}
             valueKey="maxBreakfasts"

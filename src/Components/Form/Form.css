@@ -5,10 +5,16 @@
 }
 .form-header {
 	display: flex;
+	/* gap: 5px; */
+}
+
+.form-header .button {
+	background-color: #50479a;
+	border-radius: 0px;
 }
 
 .form-inputs {
-	max-height: 69vh;
+	max-height: 25rem;
 	display: flex;
 	flex-direction: column;
 	overflow-y: auto;
@@ -17,7 +23,7 @@
 }
 
 .dish-inputs {
-	min-height: 69vh;
+	min-height: 25rem;
 }
 
 .not-selected {

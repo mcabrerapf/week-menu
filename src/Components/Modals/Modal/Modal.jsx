@@ -25,13 +25,13 @@ function Modal({
     [wrapperRef],
   );
 
-  const parsedHeaderText = !hideHeader && capitalizeFirstLetter(headerText);
+  const parsedHeaderText = capitalizeFirstLetter(headerText);
 
   return (
     <div ref={wrapperRef} className="modal">
-      {parsedHeaderText && (
+      {!hideHeader && (
         <div className="modal-header">
-          <h3 className="modal-header-text">{parsedHeaderText}</h3>
+          <p className="modal-header-text">{parsedHeaderText}</p>
           <Button modifier="modal-header-close-button" onClick={closeModal} buttonIcon="close" />
         </div>
       )}

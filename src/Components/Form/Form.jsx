@@ -27,7 +27,7 @@ function Form({ formData, handleSubmit }) {
   const { view } = useContext(MainContext);
   const [currentData, setCurrentData] = useState();
   const [initialData, setInitialData] = useState();
-  const [showIngredients, setShowIngredients] = useState(false);
+  const [fieldsView, setFieldsView] = useState('0');
 
   useEffect(() => {
     const parsedData = initFormData(view, formData);
@@ -43,27 +43,28 @@ function Form({ formData, handleSubmit }) {
     handleSubmit(currentData);
   };
 
-  const toggleIngredientsView = () => {
-    setShowIngredients(!showIngredients);
+  const changeFieldsView = (e) => {
+    setFieldsView(e?.target?.value);
   };
 
   if (!currentData) return null;
 
   const buttonClassName = `submit${checkIsButtonDisabled(view, currentData) ? ' disabled' : ''}`;
   const FormInputs = getFormInputs(view);
-  const headerText = showIngredients ? 'View Dish' : 'View Ingredients';
 
   return (
     <form className="form">
       {view === 'dish' && (
       <div className="form-header">
-        <Button className="header-option" onClick={toggleIngredientsView} buttonText={headerText} />
+        <Button modifier={`header-option${fieldsView !== '0' ? ' disabled' : ''}`} onClick={changeFieldsView} buttonText="General" value="0" />
+        <Button modifier={`header-option${fieldsView !== '1' ? ' disabled' : ''}`} onClick={changeFieldsView} buttonText="Ingredients" value="1" />
+        <Button modifier={`header-option${fieldsView !== '2' ? ' disabled' : ''}`} onClick={changeFieldsView} buttonText="Instructions" value="2" />
       </div>
       )}
       <FormInputs
         currentData={currentData}
         setCurrentData={setCurrentData}
-        showIngredients={showIngredients}
+        fieldsView={fieldsView}
       />
       <Button
         modifier={buttonClassName}
