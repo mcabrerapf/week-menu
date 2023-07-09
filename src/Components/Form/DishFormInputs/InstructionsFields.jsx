@@ -7,7 +7,7 @@ import Button from '../../Button';
 import InstructionField from './InstructionField';
 
 const initInstructions = (ins) => {
-  if (!ins) return [''];
+  if (!ins) return [];
   return ins.split('---');
 };
 

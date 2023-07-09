@@ -73,7 +73,7 @@ function MealModal({ modalData, closeModal }) {
             id="dish"
             value={selectedSideDish}
             onChange={({ target: { value: eValue } }) => setSelectedSideDish(eValue)}
-            placeholder="Selecet side dish"
+            placeholder="Side dish?"
             selectOptions={sortedSideDishes}
             type="select"
           />
@@ -81,8 +81,9 @@ function MealModal({ modalData, closeModal }) {
         </div>
 
         <div className="meal-modal-buttons">
-          <Button buttonText="ALL" onClick={() => handleButtonClick(true)} />
-          <Button buttonText="One" onClick={() => handleButtonClick(false)} />
+          {!id && <Button buttonText="Add dish" onClick={() => handleButtonClick(false)} disabled={!selectedDish} />}
+          {id && <Button buttonText="ALL" onClick={() => handleButtonClick(true)} disabled={!selectedDish} />}
+          {id && <Button buttonText="One" onClick={() => handleButtonClick(false)} disabled={!selectedDish} />}
         </div>
       </div>
       )}

@@ -9,7 +9,9 @@
 }
 
 .meal-modal-inputs {
-	margin: 10px 0 5px 0;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
 }
 
 .old-dish-name {
@@ -20,4 +22,5 @@
 .meal-modal-buttons {
 	display: flex;
 	gap: 5px;
+	margin-top: 10px;
 }

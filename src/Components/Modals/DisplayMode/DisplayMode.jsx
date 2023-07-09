@@ -2,27 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '../../Button';
 import './DisplayMode.css';
+import { capitalizeFirstLetter } from '../../helpers';
 
 function DisplayMode({
   modalData, setModalMode, buttonText,
 }) {
   const {
-    unit, type, description, instructions, ingredients,
+    types, servings, time, description, instructions, ingredients,
   } = modalData;
 
   return (
     <div className="display-mode">
       <div className="display-mode-props">
-        {/* {name && (
-        <div className="display-mode-props-prop">
-          <span>
-            <strong>Name: </strong>
-            {name}
-          </span>
-
-        </div>
-        )} */}
-        {type && (
+        {/* {type && (
         <div className="display-mode-props-prop">
           <span>
             <strong>Type: </strong>
@@ -30,8 +22,8 @@ function DisplayMode({
           </span>
 
         </div>
-        )}
-        {unit && (
+        )} */}
+        {/* {unit && (
         <div className="display-mode-props-prop">
           <span>
             <strong>Unit: </strong>
@@ -39,7 +31,38 @@ function DisplayMode({
           </span>
 
         </div>
+        )} */}
+        {types && types.length && (
+        <div className="display-mode-props-prop block-prop">
+          <span>
+            <strong>Type: </strong>
+            {types.map((tType) => capitalizeFirstLetter(tType)).join('')}
+          </span>
+
+        </div>
         )}
+        {servings && (
+        <div className="display-mode-props-prop block-prop">
+          <span>
+            <strong>Serves: </strong>
+            {servings}
+          </span>
+
+        </div>
+        )}
+
+        {time && (
+        <div className="display-mode-props-prop block-prop">
+          <span>
+            <strong>Time: </strong>
+            {time.hours}
+            :
+            {time.minutes}
+          </span>
+
+        </div>
+        )}
+
         {ingredients && (
         <ul className="display-mode-props-ingredients">
           <li
@@ -58,16 +81,13 @@ function DisplayMode({
         )}
         {description && (
         <div className="display-mode-props-prop">
-          <span>
-            <strong>Description: </strong>
-            {description}
-          </span>
+          <h4>Description: </h4>
+          <p>{description}</p>
         </div>
         )}
         {instructions && (
         <div className="display-mode-props-prop">
-          <span>
-            <strong>Instructions: </strong>
+          <h4>Instructions: </h4>
             {instructions.split('---').map((ins, i) => (
               <p>
                 {i + 1}
@@ -76,7 +96,7 @@ function DisplayMode({
                 {ins}
               </p>
             ))}
-          </span>
+
         </div>
         )}
       </div>

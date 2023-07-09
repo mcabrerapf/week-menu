@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './Button.css';
 import { parseClassName } from '../helpers';
@@ -18,8 +18,10 @@ function Button({
   disabled,
   name,
   buttonIcon,
+  disableMultipleClicks,
 }) {
   const baseClassName = `button${disabled ? ' disabled' : ''}`;
+  const [amountOfClicks, setAmountOfClicks] = useState(0);
 
   return (
     <button
@@ -27,6 +29,8 @@ function Button({
       name={name}
       className={parseClassName(baseClassName, modifier)}
       onClick={(e) => {
+        if (disableMultipleClicks && amountOfClicks > 0) return;
+        setAmountOfClicks(amountOfClicks + 1);
         e.preventDefault();
         e.stopPropagation();
         onClick(e);
@@ -62,6 +66,7 @@ Button.propTypes = {
   disabled: PropTypes.bool,
   buttonIcon: PropTypes.string,
   name: PropTypes.string,
+  disableMultipleClicks: PropTypes.bool,
 };
 
 Button.defaultProps = {
@@ -76,6 +81,7 @@ Button.defaultProps = {
   children: null,
   value: '',
   disabled: false,
+  disableMultipleClicks: false,
   buttonIcon: '',
   name: '',
 };

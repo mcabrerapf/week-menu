@@ -21,7 +21,7 @@ function DeleteMode({
         </span>
       </div>
       <div className="delete-mode-buttons">
-        <Button modifier="delete" buttonText="DELETE" onClick={handleDelete} />
+        <Button modifier="delete" buttonText="DELETE" onClick={handleDelete} disableMultipleClicks />
         <Button modifier="cancel" buttonText="Cancel" onClick={closeModal} />
       </div>
     </div>

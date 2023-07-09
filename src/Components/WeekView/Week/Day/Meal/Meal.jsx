@@ -6,9 +6,12 @@ import Button from '../../../../Button';
 import { ModalContext } from '../../../../../Contexts/ModalContext';
 
 const getParsedMealName = (name, sideDishes) => {
-  if (!sideDishes || !sideDishes.length) return name;
-  const sideDishesNames = sideDishes.map(({ name: sideDishName }) => sideDishName);
-  return `${name} + ${sideDishesNames.join(' + ')}`;
+  if (!name) return '';
+  if (!sideDishes || !sideDishes.length) return name.length > 35 ? `${name.substring(0, 35)}...` : name;
+  const sideDishesNames = sideDishes
+    .map(({ name: sideDishName }) => sideDishName);
+  const withSideDishes = `${name} + ${sideDishesNames.join(' + ')}`;
+  return withSideDishes.length > 35 ? `${withSideDishes.substring(0, 35)}...` : withSideDishes;
 };
 
 function Meal({

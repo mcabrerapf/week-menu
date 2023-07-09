@@ -4,7 +4,7 @@
 
 .display-mode-props {
 	margin: 10px;
-	/* max-height: 50vh; */
+	max-height: 55vh;
 	overflow-y: auto;
 }
 
@@ -32,4 +32,13 @@
 
 .display-mode-props-ingredients li {
 	font-size: 0.9rem;
+}
+
+.display-mode-props-prop h4 {
+	margin-bottom: 0px;
+}
+
+.display-mode-props-prop p {
+	margin-top: 0px;
+	margin-bottom: 0px;
 }

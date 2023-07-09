@@ -49,7 +49,6 @@ function Form({ formData, handleSubmit }) {
 
   if (!currentData) return null;
 
-  const buttonClassName = `submit${checkIsButtonDisabled(view, currentData) ? ' disabled' : ''}`;
   const FormInputs = getFormInputs(view);
 
   return (
@@ -67,9 +66,10 @@ function Form({ formData, handleSubmit }) {
         fieldsView={fieldsView}
       />
       <Button
-        modifier={buttonClassName}
+        modifier="submit"
         onClick={handleSubmitButtonClick}
         disabled={checkIsButtonDisabled(view, currentData)}
+        disableMultipleClicks
         buttonText="Save"
       />
     </form>
