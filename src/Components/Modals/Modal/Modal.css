@@ -27,6 +27,7 @@
 }
 
 .modal .modal-header .modal-header-close-button {
+	font-size: 1.5rem;
 	background-color: transparent;
 	width: 10%;
 	position: fixed;
@@ -35,8 +36,6 @@
 }
 
 .modal .modal-content {
-	/* min-height: 20%; */
-	/* border-radius: 10px; */
 	border-bottom-right-radius: 10px;
 	border-bottom-left-radius: 10px;
 	padding: 10px;

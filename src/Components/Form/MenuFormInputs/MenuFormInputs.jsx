@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 import './MenuFormInputs.css';
 import Input from '../../Input';
 import Button from '../../Button';
-
+// TODO improve this
+const dayInitials = ['M', 'T', 'W', 'TH', 'F', 'S', 'SU'];
 function MenuFormInputs({ currentData, setCurrentData }) {
   const handleOnChange = ({ target: { value, name: eName } }) => {
     setCurrentData({ ...currentData, [eName]: value });
@@ -37,8 +38,14 @@ function MenuFormInputs({ currentData, setCurrentData }) {
         <span className="menu-dishes-label">Dishes</span>
         <ul className="menu-dishes-list">
           {dishes
-            .map(({ name: dishName }) => (
-              <li className="menu-dishes-list-item" key={dishName}>{dishName}</li>
+            .map(({ name: dishName, days }) => (
+              <li className="menu-dishes-list-item" key={dishName}>
+                {dishName}
+                {' '}
+                (
+                {days.map((day, index) => (index + 1 === days.length ? dayInitials[day] : `${dayInitials[day]}, `))}
+                )
+              </li>
             ))}
         </ul>
       </div>

@@ -31,7 +31,7 @@ function WeekViewButtons({
     },
   });
 
-  const buttonText = `${view === 1 ? 'M' : 'L'}`;
+  const buttonIcon = `${view === 1 ? 'fa fa-calendar-o' : 'fa fa-list'}`;
 
   return (
     <div className="week-view-header-buttons">
@@ -40,17 +40,24 @@ function WeekViewButtons({
 
       >
         <i className="fa fa-cog" aria-hidden="true" />
-
       </Button>
       <Button
         onClick={handleBuildMenu}
-        buttonIcon="dice"
-      />
+      >
+        <i
+          className="fa fa-random"
+          aria-hidden="true"
+        />
+      </Button>
       <Button
         {...longPressProps}
         onClick={checkView}
-        buttonText={buttonText}
-      />
+      >
+        <i
+          className={buttonIcon}
+          aria-hidden="true"
+        />
+      </Button>
     </div>
   );
 }

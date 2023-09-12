@@ -31,7 +31,6 @@ function ListItem({
         {typeToUse && <div className="list-item-type">{typeToUse}</div>}
         {favourite && (
         <Button
-          modifier="rounded-button"
           onClick={() => {}}
         >
           <i className="fa fa-star" aria-hidden="true" />
@@ -39,27 +38,25 @@ function ListItem({
         )}
         {modifier === MENU_STRING && (
         <Button
-          modifier="rounded-button"
           onClick={() => handleLoadMenu(itemData)}
-          // buttonIcon="pencil"
 
         >
           <i className="fa fa-eye" aria-hidden="true" />
 
         </Button>
         )}
-        {modifier !== MENU_STRING && (
+        {/* {modifier === DISH_STRING && (
         <Button
-          modifier="rounded-button"
           onClick={() => handleOpenModal('list', 'edit', itemData)}
-          buttonIcon="pencil"
-        />
-        )}
+        >
+          <i className="fa fa-pencil" aria-hidden="true" />
+        </Button>
+        )} */}
         <Button
-          modifier="rounded-button"
           onClick={() => handleOpenModal('list', 'delete', itemData)}
-          buttonIcon="trash"
-        />
+        >
+          <i className="fa fa-trash" aria-hidden="true" />
+        </Button>
       </div>
     </li>
   );

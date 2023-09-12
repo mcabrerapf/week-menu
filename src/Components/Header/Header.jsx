@@ -40,9 +40,8 @@ function Header() {
           <Button
             value="buildMenu"
             modifier={checkIfSelected('buildMenu')}
-            // buttonIcon={MENU_STRING}
-            buttonText="B"
             onClick={() => handleOnClick('buildMenu')}
+            buttonText="🛒"
           />
           <Button
             {...useLongPress({
@@ -50,7 +49,7 @@ function Header() {
             })}
             value={MENU_STRING}
             modifier={checkIfSelected(MENU_STRING)}
-            buttonIcon={MENU_STRING}
+            buttonText="🗓️"
             onClick={() => handleOnClick(MENU_STRING)}
           />
           <Button
@@ -59,7 +58,7 @@ function Header() {
             })}
             value={DISH_STRING}
             modifier={checkIfSelected(DISH_STRING)}
-            buttonIcon={DISH_STRING}
+            buttonText="🍽️"
             onClick={() => handleOnClick(DISH_STRING)}
           />
           <Button
@@ -68,7 +67,7 @@ function Header() {
             })}
             value={INGREDIENT_STRING}
             modifier={checkIfSelected(INGREDIENT_STRING)}
-            buttonIcon={INGREDIENT_STRING}
+            buttonText="🍎"
             onClick={() => handleOnClick(INGREDIENT_STRING)}
           />
         </div>

@@ -78,7 +78,6 @@ function MenuModal({ modalData, closeModal }) {
       <div className="menu-modal-buttons">
         <Button buttonText="Save" onClick={saveMenu} disabled={!menuName} disableMultipleClicks />
       </div>
-
     </div>
   );
 }

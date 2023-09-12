@@ -32,7 +32,12 @@ function Modal({
       {!hideHeader && (
         <div className="modal-header">
           <p className="modal-header-text">{parsedHeaderText}</p>
-          <Button modifier="modal-header-close-button" onClick={closeModal} buttonIcon="close" />
+          <Button modifier="modal-header-close-button" onClick={closeModal}>
+            <i
+              className="fa fa-times"
+              aria-hidden="true"
+            />
+          </Button>
         </div>
       )}
       <div className="modal-content">
