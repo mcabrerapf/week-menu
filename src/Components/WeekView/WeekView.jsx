@@ -8,7 +8,7 @@ import { MainContext } from '../../Contexts/MainContext';
 import { ModalContext } from '../../Contexts/ModalContext';
 import Button from '../Button';
 
-const minSwipeDistance = 80;
+const minSwipeDistance = 50;
 
 function WeekView() {
   const {

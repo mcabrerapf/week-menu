@@ -4,7 +4,7 @@ import './View.css';
 import List from '../List';
 import { MainContext } from '../../Contexts/MainContext';
 
-const minSwipeDistance = 80;
+const minSwipeDistance = 50;
 const getListData = (view, contextProps) => {
   switch (view) {
     case 'menu':
