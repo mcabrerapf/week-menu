@@ -12,7 +12,7 @@ import {
 } from '../../Contexts/ToastContext';
 
 function WeekViewButtons({
-  showBuildMenuModal, handleChangeView, handleBuildMenu, view,
+  showBuildMenuModal, handleChangeView, handleBuildMenu, view, hasLoadedMenu,
 }) {
   const { setContextState } = useContext(MainContext);
   const { addToast } = useContext(ToastContext);
@@ -50,6 +50,7 @@ function WeekViewButtons({
         />
       </Button>
       <Button
+        disabled={!hasLoadedMenu}
         {...longPressProps}
         onClick={checkView}
       >
@@ -67,6 +68,7 @@ WeekViewButtons.propTypes = {
   showBuildMenuModal: PropTypes.func.isRequired,
   handleChangeView: PropTypes.func.isRequired,
   handleBuildMenu: PropTypes.func.isRequired,
+  hasLoadedMenu: PropTypes.bool.isRequired,
 };
 
 export default WeekViewButtons;

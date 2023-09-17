@@ -7,21 +7,22 @@
 .week-view .week-view-header-buttons {
 	height: 3rem;
 	width: 100%;
-	border-top: 1px solid black;
+	/* border-top: 1px solid black; */
 	display: flex;
 	justify-content: space-between;
 }
 
 .week-view .week-view-header-buttons button {
 	border-radius: 0;
-	border-right: 1px solid black;
+	/* border-right: 1px solid black; */
+	box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
 	color: black;
 	font-size: 1.5rem;
 }
 
-.week-view .week-view-header-buttons button:last-of-type {
+/* .week-view .week-view-header-buttons button:last-of-type {
 	border-right: none;
-}
+} */
 
 .week-view .week-view-content {
 	height: calc(100% - 3rem);

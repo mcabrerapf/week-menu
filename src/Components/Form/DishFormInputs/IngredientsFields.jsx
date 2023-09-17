@@ -58,31 +58,29 @@ function IngredientsFields({ ingredients, updateIngredients }) {
 
   return (
     <>
-      <div className="ingredients-group-container">
-        <div className="ingredients-options-container">
-          {INGREDIENT_TYPES
-            .map(({ value, name: uName }) => (
-              <Input
-                key={value}
-                value=""
-                name="ingredients"
-                id="ingredients"
-                onChange={handleAddIngredient}
-                placeholder={uName}
-                selectOptions={getIngredientsByType(availableIngredients, value)}
-                type="select"
-              />
-            ))}
-          <Input
-            value=""
-            name="ingredients"
-            id="ingredients"
-            onChange={handleAddIngredient}
-            placeholder="ALL"
-            selectOptions={sortBy(availableIngredients, 'name', 'alphabetical')}
-            type="select"
-          />
-        </div>
+      <div className="ingredients-types-container">
+        {INGREDIENT_TYPES
+          .map(({ value, name: uName }) => (
+            <Input
+              key={value}
+              value=""
+              name="ingredients"
+              id="ingredients"
+              onChange={handleAddIngredient}
+              placeholder={uName}
+              selectOptions={getIngredientsByType(availableIngredients, value)}
+              type="select"
+            />
+          ))}
+        <Input
+          value=""
+          name="ingredients"
+          id="ingredients"
+          onChange={handleAddIngredient}
+          placeholder="ALL"
+          selectOptions={sortBy(availableIngredients, 'name', 'alphabetical')}
+          type="select"
+        />
       </div>
       <IngredientsField
         ingredients={ingredients}

@@ -99,11 +99,13 @@ function WeekView() {
 
   const isHidden = generalView !== 'buildMenu';
   const className = isHidden ? 'week-view no-show' : 'week-view';
+  const hasLoadedMenu = !!menuDishes && !!menuDishes.length;
 
   return (
     <div className={className}>
       <WeekViewButtons
         view={view}
+        hasLoadedMenu={hasLoadedMenu}
         showBuildMenuModal={openBuildMenuModal}
         handleChangeView={handleChangeView}
         handleBuildMenu={handleBuildMenu}

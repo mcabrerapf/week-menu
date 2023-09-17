@@ -35,35 +35,25 @@
 	font-weight: 600;
 }
 
-.ingredients-group-container {
-	display: flex;
-	flex-direction: column;
-	gap: 5px;
-}
-
-.ingredients-options-container {
+.ingredients-types-container {
 	display: flex;
 	gap: 5px;
 	min-height: 50px;
 	align-items: center;
-	overflow-x: scroll;
+	overflow-x: hidden;
 	overflow-y: hidden;
 	flex-wrap: wrap;
 	padding-bottom: 5px;
+	justify-content: center;
 }
 
-.ingredients-options-container .input {
+.ingredients-types-container .input {
 	/* background-color: #3f8881; */
 	max-width: 6rem;
 }
 
-.ingredients-options-container .input .select-input {
+.ingredients-types-container .input .select-input {
 	background-color: #3f8881;
-}
-
-.ingredients-options-container button {
-	width: auto !important;
-	white-space: nowrap;
 }
 
 .instructions-container {
@@ -104,7 +94,7 @@
 .form-ingredients-ingredient {
 	display: flex;
 	justify-content: space-between;
-	width: 100%;
+	width: 98%;
 	margin-bottom: 5px;
 	font-size: 0.9rem;
 	align-items: center;
