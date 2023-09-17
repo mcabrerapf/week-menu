@@ -51,11 +51,9 @@ function MealModal({ modalData, closeModal }) {
         <div className="meal-modal-inputs">
           {id && (
           <div className="old-dish-name">
-            Change
-              {' '}
-            <strong>{name}</strong>
-            {' '}
-            to:
+
+            <span>{name}</span>
+            <i className="fa fa-arrow-down" aria-hidden="true" />
           </div>
           )}
           <Input

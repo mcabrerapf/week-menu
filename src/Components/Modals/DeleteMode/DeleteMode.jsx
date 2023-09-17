@@ -14,17 +14,14 @@ function DeleteMode({
     <div className="delete-mode">
       <div className="delete-mode-message">
 
-        <span>
-          <strong>
-            {name}
-          </strong>
-          <span>
-            {' '}
-            <i className="fa fa-arrow-right" aria-hidden="true" />
-            {' '}
-            <i className="fa fa-trash" aria-hidden="true" />
-          </span>
-        </span>
+        <strong>
+          {name}
+        </strong>
+        {' '}
+        <i className="fa fa-arrow-right" aria-hidden="true" />
+        {' '}
+        <i className="fa fa-trash" aria-hidden="true" />
+
       </div>
       <div className="delete-mode-buttons">
         <Button modifier="delete" onClick={handleDelete} disableMultipleClicks>
