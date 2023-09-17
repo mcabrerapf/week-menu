@@ -95,7 +95,7 @@ function BuildMenuModal({
             } = day;
             const hasMeal = hasBreakfast || hasLunch || hasDinner;
             const dayMealsClassname = `build-menu-modal-day-meals${hasMeal ? '' : ' disabled'}`;
-            const dayButtonClassName = `day-button${hasMeal ? '' : ' disabled'}`;
+            const dayButtonClassName = `day-button${hasMeal ? '' : ' disabled'} ${name.toLowerCase()}`;
 
             return (
               <div key={name} className="build-menu-modal-day-container">
@@ -127,7 +127,7 @@ function BuildMenuModal({
                     }}
                   />
                   <Button
-                    modifier={`has-meal-button${hasDinner ? '' : ' disabled'}`}
+                    modifier={`has-meal-button${hasDinner ? '' : ' disabled'} ${name.toLowerCase()}`}
                     value={hasDinner}
                     buttonText="D"
                     disabled={availableDinners === 0}

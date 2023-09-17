@@ -51,6 +51,22 @@
 	align-items: center;
 }
 
+.day-button.mon {
+	border-top-left-radius: 5px !important;
+}
+
+.has-meal-button.mon {
+	border-top-right-radius: 5px !important;
+}
+
+.day-button.sun {
+	border-bottom-left-radius: 5px !important;
+}
+
+.has-meal-button.sun {
+	border-bottom-right-radius: 5px !important;
+}
+
 .build-menu-modal-max-inputs-header {
 	font-size: 0.9rem;
 	font-weight: 600;
