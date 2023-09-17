@@ -39,6 +39,7 @@ function ModalContextWrapper({ children }) {
   };
 
   const ModalToUse = getModalByType(type);
+  const headerText = mode !== 'delete' && !!modalData ? modalData.name : '';
 
   return (
     <ModalContextProvider value={{
@@ -55,7 +56,7 @@ function ModalContextWrapper({ children }) {
           onTouchEnd={stopPropagation}
         >
           <Modal
-            headerText={modalData.name}
+            headerText={headerText}
             closeModal={closeModal}
             modalData={modalData}
           >

@@ -4,7 +4,7 @@ import Button from '../../Button';
 import './DeleteMode.css';
 
 function DeleteMode({
-  modalData, closeModal, handleDelete,
+  modalData, handleDelete,
 }) {
   const {
     name,
@@ -13,16 +13,24 @@ function DeleteMode({
   return (
     <div className="delete-mode">
       <div className="delete-mode-message">
-        <span> Are you sure you want to delete</span>
+
         <span>
           <strong>
             {name}
           </strong>
+          <span>
+            {' '}
+            <i className="fa fa-arrow-right" aria-hidden="true" />
+            {' '}
+            <i className="fa fa-trash" aria-hidden="true" />
+          </span>
         </span>
       </div>
       <div className="delete-mode-buttons">
-        <Button modifier="delete" buttonText="DELETE" onClick={handleDelete} disableMultipleClicks />
-        <Button modifier="cancel" buttonText="Cancel" onClick={closeModal} />
+        <Button modifier="delete" onClick={handleDelete} disableMultipleClicks>
+          <i className="fa fa-check" aria-hidden="true" />
+        </Button>
+
       </div>
     </div>
   );
@@ -30,7 +38,6 @@ function DeleteMode({
 
 DeleteMode.propTypes = {
   handleDelete: PropTypes.func.isRequired,
-  closeModal: PropTypes.func.isRequired,
   modalData: PropTypes.shape(),
 
 };
