@@ -42,3 +42,12 @@
 	margin-top: 0px;
 	margin-bottom: 0px;
 }
+
+.display-mode-footer {
+	padding: 0px 10px 0px 10px;
+	font-size: 1.5rem;
+}
+
+.display-mode-footer button {
+	margin: 5px 0;
+}

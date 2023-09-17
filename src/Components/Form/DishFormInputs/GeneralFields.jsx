@@ -65,7 +65,7 @@ function GeneralFields({ currentData, updateGeneralFields }) {
 
   return (
     <>
-      <Input
+      {/* <Input
         autoComplete="off"
         type="text"
         id="name"
@@ -74,10 +74,20 @@ function GeneralFields({ currentData, updateGeneralFields }) {
         onChange={handleOnChange}
         onBlur={handleOnChange}
         placeholder="Name"
-        label="Name"
-      />
+        // label="Name"
+      /> */}
       <div className="group-input type-input">
-        <span className="group-input-label">Type</span>
+        {/* <span className="group-input-label">Type</span> */}
+        <Input
+          autoComplete="off"
+          type="text"
+          id="name"
+          name="name"
+          value={name}
+          onChange={handleOnChange}
+          onBlur={handleOnChange}
+          placeholder="Name"
+        />
         <div className="group-input-inputs">
           {DISH_TYPES
             .map(({ id: typeId, shortLabel }) => (
@@ -94,7 +104,7 @@ function GeneralFields({ currentData, updateGeneralFields }) {
       </div>
       <div className="form-input-group">
         <div className="group-input">
-          <span className="group-input-label">Servings</span>
+          <span className="group-input-label"><i className="fa fa-users" aria-hidden="true" /></span>
           <QuantityInput
             value={servings}
             min={1}
@@ -106,7 +116,7 @@ function GeneralFields({ currentData, updateGeneralFields }) {
         </div>
 
         <div className="group-input">
-          <span className="group-input-label">Time</span>
+          <span className="group-input-label"><i className="fa fa-clock-o" aria-hidden="true" /></span>
           <div className="group-input-inputs">
             <Input
               type="number"
@@ -136,15 +146,6 @@ function GeneralFields({ currentData, updateGeneralFields }) {
           </div>
         </div>
       </div>
-      <Input
-        id="description"
-        name="description"
-        label="Description"
-        value={currentData.description}
-        onChange={handleOnChange}
-        placeholder="Dish description..."
-        type="textarea"
-      />
       {showSideDishes && (
       <div className="side-dishes-container">
         <Input
@@ -184,6 +185,15 @@ function GeneralFields({ currentData, updateGeneralFields }) {
         )}
       </div>
       )}
+      {/* <Input
+        id="description"
+        name="description"
+        label="Description"
+        value={currentData.description}
+        onChange={handleOnChange}
+        placeholder="Dish description..."
+        type="textarea"
+      /> */}
     </>
   );
 }

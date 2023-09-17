@@ -62,7 +62,7 @@ function ListModal({
   return (
     <div className="list-modal">
       {modalMode === 'display' && (
-      <DisplayMode modalData={modalData} setModalMode={setModalMode} buttonText="Edit" />
+      <DisplayMode modalData={modalData} setModalMode={setModalMode} />
       )}
       {displayForm && (
       <Form handleSubmit={handleSubmit} formData={modalData} />

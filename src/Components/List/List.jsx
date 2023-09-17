@@ -64,7 +64,7 @@ function List({ listData }) {
           id="search-value"
           name="search-value"
           // label="Search: "
-          placeholder="Search..."
+          placeholder="🔍"
           onChange={({ target: { value } }) => setSearchValue(value)}
         />
         <Input

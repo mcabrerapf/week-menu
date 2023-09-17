@@ -116,7 +116,7 @@ function WeekView() {
       >
         {!menuDishes.length && (
         <div className="no-week-container">
-          <Button onClick={openBuildMenuModal} buttonText="Gime FOOD!" />
+          <Button onClick={openBuildMenuModal} buttonText="🍽️" />
         </div>
         )}
         <Week

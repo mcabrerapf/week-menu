@@ -45,13 +45,13 @@ function ListItem({
 
         </Button>
         )}
-        {/* {modifier === DISH_STRING && (
+        {modifier === DISH_STRING && (
         <Button
           onClick={() => handleOpenModal('list', 'edit', itemData)}
         >
           <i className="fa fa-pencil" aria-hidden="true" />
         </Button>
-        )} */}
+        )}
         <Button
           onClick={() => handleOpenModal('list', 'delete', itemData)}
         >

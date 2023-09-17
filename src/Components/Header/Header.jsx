@@ -58,7 +58,7 @@ function Header() {
             })}
             value={DISH_STRING}
             modifier={checkIfSelected(DISH_STRING)}
-            buttonText="🍽️"
+            buttonText="🍲"
             onClick={() => handleOnClick(DISH_STRING)}
           />
           <Button

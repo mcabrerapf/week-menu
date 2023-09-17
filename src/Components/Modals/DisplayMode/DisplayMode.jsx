@@ -5,11 +5,13 @@ import './DisplayMode.css';
 import { capitalizeFirstLetter } from '../../helpers';
 
 function DisplayMode({
-  modalData, setModalMode, buttonText,
+  modalData, setModalMode,
 }) {
   const {
     types, servings, time, description, instructions, ingredients,
   } = modalData;
+
+  const displayTime = time && (time.hours || time.minutes);
 
   return (
     <div className="display-mode">
@@ -51,7 +53,7 @@ function DisplayMode({
         </div>
         )}
 
-        {time && (
+        {displayTime && (
         <div className="display-mode-props-prop block-prop">
           <span>
             <strong>Time: </strong>
@@ -100,21 +102,24 @@ function DisplayMode({
         </div>
         )}
       </div>
-      <Button modifier="edit" buttonText={buttonText} onClick={() => setModalMode('edit')} />
+      <div className="display-mode-footer">
+        <Button modifier="edit" onClick={() => setModalMode('edit')}>
+          <i className="fa fa-pencil" aria-hidden="true" />
+        </Button>
+      </div>
+
     </div>
   );
 }
 
 DisplayMode.propTypes = {
   setModalMode: PropTypes.func.isRequired,
-  buttonText: PropTypes.string,
   modalData: PropTypes.shape(),
 
 };
 
 DisplayMode.defaultProps = {
   modalData: {},
-  buttonText: '',
 };
 
 export default DisplayMode;

@@ -1,17 +1,22 @@
 /* eslint-disable no-restricted-globals */
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import './DishFormInputs.css';
 import { MainContext } from '../../../Contexts/MainContext';
 import IngredientsField from './IngredientsField';
 import Input from '../../Input';
-import Button from '../../Button';
 import { sortBy } from '../../helpers';
 import { INGREDIENT_TYPES } from '../../constants';
 
+const getIngredientsByType = (availableIngredients, selectedType) => {
+  const filteredIngredientOptions = availableIngredients
+    .filter(({ type }) => type === selectedType);
+
+  return sortBy(filteredIngredientOptions, 'name', 'alphabetical');
+};
+
 function IngredientsFields({ ingredients, updateIngredients }) {
   const { ingredients: contextIngredients } = useContext(MainContext);
-  const [selectedIngredientType, setSelectedIngredientType] = useState('OTHER');
 
   const handleAddIngredient = ({ target: { value: eValue } }) => {
     if (!eValue) return;
@@ -47,11 +52,9 @@ function IngredientsFields({ ingredients, updateIngredients }) {
   };
 
   const selectedIngredientids = ingredients.map(({ id: iId }) => iId);
-  const filteredIngredientOptions = contextIngredients
-    .filter(({ id: iId, type }) => !selectedIngredientids
-      .includes(iId) && type === selectedIngredientType);
-
-  const sortedIngredients = sortBy(filteredIngredientOptions, 'name', 'alphabetical');
+  const availableIngredients = contextIngredients
+    .filter(({ id: iId }) => !selectedIngredientids
+      .includes(iId));
 
   return (
     <>
@@ -59,25 +62,27 @@ function IngredientsFields({ ingredients, updateIngredients }) {
         <div className="ingredients-options-container">
           {INGREDIENT_TYPES
             .map(({ value, name: uName }) => (
-              <Button
+              <Input
                 key={value}
-                modifier={value === selectedIngredientType ? '' : 'not-selected'}
-                name="ingredient-type"
-                value={value}
-                buttonText={uName}
-                onClick={(e) => setSelectedIngredientType(e.target.value)}
+                value=""
+                name="ingredients"
+                id="ingredients"
+                onChange={handleAddIngredient}
+                placeholder={uName}
+                selectOptions={getIngredientsByType(availableIngredients, value)}
+                type="select"
               />
             ))}
+          <Input
+            value=""
+            name="ingredients"
+            id="ingredients"
+            onChange={handleAddIngredient}
+            placeholder="ALL"
+            selectOptions={sortBy(availableIngredients, 'name', 'alphabetical')}
+            type="select"
+          />
         </div>
-        <Input
-          value=""
-          name="ingredients"
-          id="ingredients"
-          onChange={handleAddIngredient}
-          placeholder="Add ingredient"
-          selectOptions={sortedIngredients}
-          type="select"
-        />
       </div>
       <IngredientsField
         ingredients={ingredients}

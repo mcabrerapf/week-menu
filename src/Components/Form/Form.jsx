@@ -65,13 +65,17 @@ function Form({ formData, handleSubmit }) {
         setCurrentData={setCurrentData}
         fieldsView={fieldsView}
       />
-      <Button
-        modifier="submit"
-        onClick={handleSubmitButtonClick}
-        disabled={checkIsButtonDisabled(view, currentData)}
-        disableMultipleClicks
-        buttonText="Save"
-      />
+      <div className="form-footer">
+        <Button
+          modifier="submit"
+          onClick={handleSubmitButtonClick}
+          disabled={checkIsButtonDisabled(view, currentData)}
+          disableMultipleClicks
+        >
+          <i className="fa fa-floppy-o" aria-hidden="true" />
+        </Button>
+      </div>
+
     </form>
   );
 }

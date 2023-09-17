@@ -38,6 +38,7 @@
 }
 
 .no-week-container button {
+	font-size: 3rem !important;
 	height: 80px;
 	width: 120px;
 	background-color: #3f8881;

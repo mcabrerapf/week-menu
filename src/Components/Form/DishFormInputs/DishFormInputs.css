@@ -1,11 +1,18 @@
 .form-input-group {
 	display: flex;
-	gap: 60px;
+	/* gap: 60px; */
+	justify-content: space-around;
 }
 
 .form-input-group .group-input {
 	display: flex;
 	flex-direction: column;
+}
+
+.type-input {
+	display: flex;
+	gap: 10px;
+	/* justify-content: space-around; */
 }
 
 .group-input .button {
@@ -23,8 +30,8 @@
 }
 
 .group-input-label {
-	text-align: start;
-	font-size: 0.9rem;
+	text-align: center;
+	font-size: 1.5rem;
 	font-weight: 600;
 }
 
@@ -43,6 +50,15 @@
 	overflow-y: hidden;
 	flex-wrap: wrap;
 	padding-bottom: 5px;
+}
+
+.ingredients-options-container .input {
+	/* background-color: #3f8881; */
+	max-width: 6rem;
+}
+
+.ingredients-options-container .input .select-input {
+	background-color: #3f8881;
 }
 
 .ingredients-options-container button {
@@ -78,7 +94,7 @@
 
 .form-ingredients {
 	width: 100%;
-	margin: 5px 0 15px 0px;
+	/* margin: 5px 0 15px 0px; */
 	padding-top: 5px;
 	padding-bottom: 5px;
 	height: 40vh;

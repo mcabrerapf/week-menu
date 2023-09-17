@@ -60,7 +60,7 @@ function InstructionField({
         value={instruction}
         onChange={handleChange}
         onBlur={handleBlur}
-        placeholder="Instruction..."
+        placeholder="Hmm..."
         type="textarea"
       />
       <div className="instruction-buttons">
