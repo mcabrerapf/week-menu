@@ -87,7 +87,7 @@
 	/* margin: 5px 0 15px 0px; */
 	padding-top: 5px;
 	padding-bottom: 5px;
-	height: 40vh;
+	max-height: 13rem;
 	overflow-y: scroll;
 }
 
