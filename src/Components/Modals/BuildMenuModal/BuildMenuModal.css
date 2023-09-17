@@ -72,3 +72,8 @@
 	font-weight: 600;
 	text-decoration: underline;
 }
+
+.build-menu-button {
+	font-size: 2rem;
+	padding: 0px;
+}
