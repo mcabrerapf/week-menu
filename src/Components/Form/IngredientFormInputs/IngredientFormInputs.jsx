@@ -25,7 +25,7 @@ function IngredientFormInputs({ currentData, setCurrentData }) {
         value={name}
         onChange={handleOnChange}
         placeholder="Name"
-        label="Name"
+        // label="Name"
       />
       <div className="ingredient-item-group">
         <span className="ingredient-item-group-label">Type</span>

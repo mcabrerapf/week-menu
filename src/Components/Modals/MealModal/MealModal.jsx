@@ -73,7 +73,7 @@ function MealModal({ modalData, closeModal }) {
             id="dish"
             value={selectedSideDish}
             onChange={({ target: { value: eValue } }) => setSelectedSideDish(eValue)}
-            placeholder="Side dish?"
+            placeholder="Side dish"
             selectOptions={sortedSideDishes}
             type="select"
           />

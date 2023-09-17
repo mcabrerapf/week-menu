@@ -11,7 +11,7 @@ function DisplayMode({
     types, servings, time, description, instructions, ingredients,
   } = modalData;
 
-  const displayTime = time && (time.hours || time.minutes);
+  const displayTime = !!time && !!(time.hours || time.minutes);
 
   return (
     <div className="display-mode">

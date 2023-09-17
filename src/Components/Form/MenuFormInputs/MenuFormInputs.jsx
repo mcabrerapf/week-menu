@@ -27,7 +27,7 @@ function MenuFormInputs({ currentData, setCurrentData }) {
           value={name}
           onChange={handleOnChange}
           placeholder="Name"
-          label="Name"
+          // label="Name"
         />
         <Button modifier={favouriteButtonClass} onClick={() => handleOnChange({ target: { value: !favourite, name: 'favourite' } })}>
           <i className="fa fa-star" aria-hidden="true" />
