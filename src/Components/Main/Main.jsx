@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import './Main.css';
 import View from '../View';
 import WeekView from '../WeekView';
@@ -10,6 +10,18 @@ function Main() {
   const {
     offlineMode,
   } = useContext(MainContext);
+  useEffect(() => {
+    const onBeforeUnload = (e) => {
+      e.preventDefault();
+      e.returnValue = '';
+    };
+
+    window.addEventListener('beforeunload', onBeforeUnload);
+
+    return () => {
+      window.removeEventListener('beforeunload', onBeforeUnload);
+    };
+  });
 
   const mainClassName = `main${offlineMode === 1 ? ' offline-mode' : ''}`;
 
