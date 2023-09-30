@@ -37,7 +37,6 @@ function MealModal({ modalData, closeModal }) {
     const sideDishesToUse = newSideDish ? [newSideDish] : [];
     const newDish = sortedDishes.find(({ id: newDishId }) => newDishId === selectedDish);
     const data = { newDish: { ...newDish, sideDishesToUse }, oldDishId: id, changeAll };
-
     return closeModal({ updateParent: true, data });
   };
 

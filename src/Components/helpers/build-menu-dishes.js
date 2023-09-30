@@ -1,9 +1,11 @@
+/* eslint-disable max-len */
 import deepCopy from './deep-copy';
 import generateRandomNumber from './generate-random-number';
 
+const DISH_TYPES = ['BREAKFAST', 'LUNCH', 'DINNER'];
+
 const populateSideDishes = (dish, dishes) => {
   const { id } = dish;
-
   const sideDishes = dishes
     .filter(({ sideDishTo }) => !!sideDishTo && !!sideDishTo
       .filter((sideId) => sideId === id).length);
@@ -15,47 +17,57 @@ const populateSideDishes = (dish, dishes) => {
   return { ...dish, days: [], sideDishesToUse: [randomSideDish] };
 };
 
-const getMaxDishes = (dishes, type, filters) => {
+const getRandomDishByType = (type, dishes) => {
+  let foundDish;
+  while (!foundDish) {
+    const rIndex = generateRandomNumber(0, dishes.length);
+    const randomDish = dishes[rIndex];
+    if (randomDish.types.includes(type)) {
+      [foundDish] = dishes.splice(rIndex, 1);
+    }
+  }
+
+  const finalDish = populateSideDishes(foundDish, dishes);
+  return { ...finalDish, useAs: type };
+};
+
+const buildDishesByType = (dishes, type, filters) => {
   const { limit, days } = filters;
-  if (limit === 0) return [];
   const dayIndexes = [];
+  const finalDishes = [];
+  if (limit === 0) return dayIndexes;
+
   days.forEach(({
     hasBreakfast, hasLunch, hasDinner,
   }, index) => {
     switch (type) {
-      case 'BREAKFAST':
+      case DISH_TYPES[0]:
         if (hasBreakfast) dayIndexes.push(index);
         break;
-      case 'LUNCH':
+      case DISH_TYPES[1]:
         if (hasLunch) dayIndexes.push(index);
         break;
-      case 'DINNER':
+      case DISH_TYPES[2]:
         if (hasDinner) dayIndexes.push(index);
         break;
       default:
         break;
     }
   });
+  if (!dayIndexes.length) return [];
 
-  const finalDishes = [];
-  for (finalDishes.length; finalDishes.length < limit;) {
-    if (!dishes.find(({ types }) => !!types && types.includes(type))) break;
-    const rIndex = generateRandomNumber(0, dishes.length);
-    const randomDish = dishes[rIndex];
-
-    if (randomDish.types && !randomDish.types.includes('SIDE') && randomDish.types.includes(type)) {
-      const [dishMatch] = dishes.splice(rIndex, 1);
-      const finalDish = populateSideDishes(dishMatch, dishes);
-      finalDishes.push({ ...finalDish, useAs: type });
+  for (let index = 0; index < limit; index += 1) {
+    const randomDish = getRandomDishByType(type, dishes);
+    let currentLimit = limit;
+    const dishDays = [dayIndexes[index]];
+    while (currentLimit < dayIndexes.length) {
+      const extraDay = dayIndexes[index + currentLimit];
+      if (extraDay)dishDays.push(extraDay);
+      currentLimit += limit;
     }
+    randomDish.days = dishDays;
+    finalDishes.push(randomDish);
   }
-  if (!finalDishes.length) return finalDishes;
-  let dishCount = 0;
-  dayIndexes.forEach((day) => {
-    if (dishCount >= limit) dishCount = 0;
-    finalDishes[dishCount].days.push(day);
-    dishCount += 1;
-  });
 
   return finalDishes;
 };
@@ -66,11 +78,15 @@ const buildMenuDishes = (dishes, options) => {
   } = options;
 
   const dishesCopy = deepCopy(dishes);
-  const breakfasts = getMaxDishes(dishesCopy, 'BREAKFAST', { limit: maxBreakfasts, days });
-  const lunches = getMaxDishes(dishesCopy, 'LUNCH', { limit: maxLunches, days });
-  const dinners = getMaxDishes(dishesCopy, 'DINNER', { limit: maxDinners, days });
-  const finalDishes = [...breakfasts, ...lunches, ...dinners];
-  return finalDishes;
+
+  const maxDishes = {
+    [DISH_TYPES[0]]: maxBreakfasts,
+    [DISH_TYPES[1]]: maxLunches,
+    [DISH_TYPES[2]]: maxDinners,
+  };
+
+  return DISH_TYPES
+    .map((dishType) => buildDishesByType(dishesCopy, dishType, { limit: maxDishes[dishType], days })).flat();
 };
 
 export default buildMenuDishes;

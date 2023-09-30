@@ -40,8 +40,8 @@ function Header() {
         <div className="view-buttons">
           <Button
             value={MENU_BUILDER_STRING}
-            modifier={checkIfSelected('MENU_BUILDER_STRING')}
-            onClick={() => handleOnClick('MENU_BUILDER_STRING')}
+            modifier={checkIfSelected(MENU_BUILDER_STRING)}
+            onClick={() => handleOnClick(MENU_BUILDER_STRING)}
             buttonText="🛒"
           />
           <Button

@@ -22,7 +22,7 @@ const defaultMenuOptions = {
       name: 'SUN', hasBreakfast: false, hasLunch: true, hasDinner: true,
     },
   ],
-  people: 1,
+  people: 2,
   maxBreakfasts: 0,
   maxLunches: 3,
   maxDinners: 3,

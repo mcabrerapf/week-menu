@@ -66,6 +66,7 @@ function MainContextWrapper({ children }) {
     const {
       view, ingredients, dishes, menus,
     } = contextState;
+
     const viewToUse = view === MENU_BUILDER_STRING ? MENU_STRING : view;
     const newData = await serviceHandler(GET_ALL_STRING)(viewToUse);
     if (newData.errors) return newData;

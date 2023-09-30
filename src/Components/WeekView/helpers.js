@@ -3,28 +3,28 @@ import { deepCopy } from '../helpers';
 
 const updateDishes = (updateData, menuDishes) => {
   const {
-    changeAll, dayIndex, oldDishId, newDish, type,
+    changeAll, dayIndex, oldDishId, newDish,
   } = updateData;
+
   const { id: newDishId } = newDish;
   const oldDishes = deepCopy(menuDishes);
   const newDishes = oldDishes
     .map((currentDish) => {
-      const { id, days, useAs } = currentDish;
-      if (useAs === type) {
-        if (id === oldDishId) {
-          if (changeAll) days.forEach((day) => newDish.days.push(day));
-          const updatedDays = changeAll ? [] : days.filter((day) => day !== dayIndex);
-          return { ...currentDish, days: updatedDays };
-        }
-        if (newDishId === id) {
-          days.forEach((day) => !newDish.days.includes(day) && newDish.days.push(day));
-          return { ...currentDish, days: [] };
-        }
+      const { id, days } = currentDish;
+      if (id === oldDishId) {
+        if (changeAll) newDish.days = days;
+        const updatedDays = changeAll ? [] : days.filter((day) => day !== dayIndex);
+        if (!updatedDays.length) return null;
+        return { ...currentDish, days: updatedDays };
+      }
+      if (id === newDishId) {
+        return null;
       }
 
       return currentDish;
-    }).filter(({ days }) => !!days.length);
+    }).filter(Boolean);
   newDishes.push({ ...newDish });
+  return newDishes;
 };
 
 export { updateDishes };

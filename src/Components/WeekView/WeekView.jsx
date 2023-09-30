@@ -52,6 +52,7 @@ function WeekView() {
   };
 
   const hasLoadedMenu = !!menuDishes && !!menuDishes.length;
+  const { people } = menuOptions;
 
   return (
     <>
@@ -78,7 +79,7 @@ function WeekView() {
         />
         <ShopingList
           menuDishes={menuDishes}
-          menuPeople={menuOptions.people}
+          menuPeople={people}
           hidden={view !== 1}
         />
       </div>
