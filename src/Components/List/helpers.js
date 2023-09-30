@@ -1,4 +1,6 @@
 /* eslint-disable import/prefer-default-export */
+import { INGREDIENT_TYPES, DISH_TYPES } from '../constants';
+import { DISH_STRING, INGREDIENT_STRING } from '../../constants';
 
 const filterList = (list, searchValue, filterValue) => {
   if (!searchValue && !filterValue) return list;
@@ -19,4 +21,17 @@ const filterList = (list, searchValue, filterValue) => {
   });
 };
 
-export { filterList };
+const getFilterOptions = (view) => {
+  switch (view) {
+    case 'menu':
+      return [{ value: 'favourite', name: 'Favourite' }];
+    case DISH_STRING:
+      return DISH_TYPES;
+    case INGREDIENT_STRING:
+      return INGREDIENT_TYPES;
+    default:
+      return [];
+  }
+};
+
+export { filterList, getFilterOptions };

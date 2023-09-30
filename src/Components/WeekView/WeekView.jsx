@@ -1,6 +1,8 @@
-import React, { useState, useContext } from 'react';
 import './WeekView.css';
-import { buildMenuDishes, deepCopy } from '../helpers';
+import React, { useState, useContext } from 'react';
+import { buildMenuDishes } from '../helpers';
+import { MENU_BUILDER_STRING } from '../../constants';
+import { updateDishes } from './helpers';
 import Week from './Week';
 import ShopingList from './ShopingList';
 import WeekViewButtons from './WeekViewButtons';
@@ -8,19 +10,14 @@ import { MainContext } from '../../Contexts/MainContext';
 import { ModalContext } from '../../Contexts/ModalContext';
 import Button from '../Button';
 
-const minSwipeDistance = 50;
-
 function WeekView() {
   const {
-    view: generalView,
     dishes: dishesFromContext,
     currentMenu: { menuOptions, menuDishes },
     setContextState,
   } = useContext(MainContext);
   const { addModal } = useContext(ModalContext);
   const [view, setView] = useState(0);
-  const [touchStart, setTouchStart] = useState(null);
-  const [touchEnd, setTouchEnd] = useState(null);
 
   const handleBuildMenu = () => {
     if (view !== 0) {
@@ -29,31 +26,11 @@ function WeekView() {
     }
     const newDishes = buildMenuDishes(dishesFromContext, menuOptions);
     if (!newDishes) return;
-
     setContextState('currentMenu', { menuOptions, menuDishes: newDishes });
   };
 
   const handleChangeView = (newView) => {
     setView(newView);
-  };
-
-  const onTouchStart = (e) => {
-    e.stopPropagation();
-    setTouchEnd(null);
-    setTouchStart(e.targetTouches[0].clientX);
-  };
-
-  const onTouchMove = (e) => {
-    e.stopPropagation();
-    setTouchEnd(e.targetTouches[0].clientX);
-  };
-
-  const onTouchEnd = (e) => {
-    e.stopPropagation();
-    if (!touchStart || !touchEnd) return;
-    const distance = touchStart - touchEnd;
-    const isLeftSwipe = distance > minSwipeDistance;
-    if (isLeftSwipe) setContextState('view', 'menu');
   };
 
   const updateMenuAndOptions = () => {
@@ -62,7 +39,7 @@ function WeekView() {
 
   const openBuildMenuModal = () => {
     addModal({
-      type: 'buildMenu',
+      type: MENU_BUILDER_STRING,
       modalData: menuOptions,
       onClose: updateMenuAndOptions,
     });
@@ -70,39 +47,14 @@ function WeekView() {
 
   const handleUpdateDish = (updateData) => {
     if (!updateData) return;
-
-    const {
-      changeAll, dayIndex, oldDishId, newDish, type,
-    } = updateData;
-    const { id: newDishId } = newDish;
-    const oldDishes = deepCopy(menuDishes);
-    const newDishes = oldDishes
-      .map((currentDish) => {
-        const { id, days, useAs } = currentDish;
-        if (useAs === type) {
-          if (id === oldDishId) {
-            if (changeAll) days.forEach((day) => newDish.days.push(day));
-            const updatedDays = changeAll ? [] : days.filter((day) => day !== dayIndex);
-            return { ...currentDish, days: updatedDays };
-          }
-          if (newDishId === id) {
-            days.forEach((day) => !newDish.days.includes(day) && newDish.days.push(day));
-            return { ...currentDish, days: [] };
-          }
-        }
-
-        return currentDish;
-      }).filter(({ days }) => !!days.length);
-    newDishes.push({ ...newDish });
+    const newDishes = updateDishes(updateData, menuDishes);
     setContextState('currentMenu', { menuOptions, menuDishes: newDishes });
   };
 
-  const isHidden = generalView !== 'buildMenu';
-  const className = isHidden ? 'week-view no-show' : 'week-view';
   const hasLoadedMenu = !!menuDishes && !!menuDishes.length;
 
   return (
-    <div className={className}>
+    <>
       <WeekViewButtons
         view={view}
         hasLoadedMenu={hasLoadedMenu}
@@ -112,11 +64,8 @@ function WeekView() {
       />
       <div
         className="week-view-content"
-        onTouchStart={onTouchStart}
-        onTouchMove={onTouchMove}
-        onTouchEnd={onTouchEnd}
       >
-        {!menuDishes.length && (
+        {!hasLoadedMenu && (
         <div className="no-week-container">
           <Button onClick={openBuildMenuModal} buttonText="🍽️" />
         </div>
@@ -133,7 +82,7 @@ function WeekView() {
           hidden={view !== 1}
         />
       </div>
-    </div>
+    </>
   );
 }
 

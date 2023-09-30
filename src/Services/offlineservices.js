@@ -1,4 +1,4 @@
-import { INGREDIENTS_MOCK, DISHES_MOCK, MENUS_MOCK } from './MOCKS';
+import { INGREDIENTS_MOCK, DISHES_MOCK, MENUS_MOCK } from './mocks';
 
 const getQueryMatch = {
   ingredient: {

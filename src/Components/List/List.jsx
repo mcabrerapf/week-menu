@@ -7,23 +7,8 @@ import { ModalContext } from '../../Contexts/ModalContext';
 import Button from '../Button';
 import { sortBy } from '../helpers';
 import Input from '../Input';
-import { INGREDIENT_TYPES, DISH_TYPES } from '../constants';
-import { DISH_STRING, INGREDIENT_STRING } from '../../constants';
-import { filterList } from './helpers';
+import { filterList, getFilterOptions } from './helpers';
 
-// const sortOptions = [{ id: 'name', name: 'Name' }, { id: 'type', name: 'Type' }];
-const getFilterOptions = (view) => {
-  switch (view) {
-    case 'menu':
-      return [{ value: 'favourite', name: 'Favourite' }];
-    case DISH_STRING:
-      return DISH_TYPES;
-    case INGREDIENT_STRING:
-      return INGREDIENT_TYPES;
-    default:
-      return [];
-  }
-};
 function List({ listData }) {
   const {
     view, currentMenu, updateCurrentMenu,
@@ -117,7 +102,6 @@ function List({ listData }) {
           onClick={() => handleOpenModal('list', 'create', {})}
         >
           <i className="fa fa-plus" aria-hidden="true" />
-
         </Button>
       </div>
       )}

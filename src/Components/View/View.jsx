@@ -2,39 +2,10 @@ import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import './View.css';
 import List from '../List';
+import WeekView from '../WeekView';
 import { MainContext } from '../../Contexts/MainContext';
-
-const minSwipeDistance = 50;
-const getListData = (view, contextProps) => {
-  switch (view) {
-    case 'menu':
-      return contextProps.menus;
-    case 'dish':
-      return contextProps.dishes;
-    case 'ingredients':
-      return contextProps.ingredients;
-    default:
-      return contextProps.ingredients;
-  }
-};
-
-const getNewView = (view, leftSwipe, rightSwipe) => {
-  switch (view) {
-    case 'menu':
-      if (leftSwipe) return 'buildMenu';
-      if (rightSwipe) return 'dish';
-      return view;
-    case 'dish':
-      if (leftSwipe) return 'menu';
-      if (rightSwipe) return 'ingredient';
-      return view;
-    case 'ingredient':
-      if (leftSwipe) return 'dish';
-      return view;
-    default:
-      return view;
-  }
-};
+import { getListData, getNewView } from './helpers';
+import { MENU_BUILDER_STRING } from '../../constants';
 
 function View({
   name,
@@ -63,10 +34,9 @@ function View({
   const onTouchEnd = (e) => {
     e.stopPropagation();
     if (!touchStart || !touchEnd) return;
-    const distance = touchStart - touchEnd;
-    const isLeftSwipe = distance > minSwipeDistance;
-    const isRightSwipe = distance < -minSwipeDistance;
-    const newView = getNewView(view, isRightSwipe, isLeftSwipe);
+    const newView = getNewView({
+      view, touchStart, touchEnd,
+    });
     if (newView !== view) setContextState('view', newView);
   };
 
@@ -77,10 +47,15 @@ function View({
       onTouchMove={onTouchMove}
       onTouchEnd={onTouchEnd}
     >
-      <List
-        listData={listData}
-      />
+      {view === MENU_BUILDER_STRING
+        ? <WeekView /> : (
+          <List
+            listData={listData}
+          />
+        )}
+
     </div>
+
   );
 }
 

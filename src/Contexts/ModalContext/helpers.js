@@ -25,7 +25,7 @@ const getModalByType = (type) => {
   switch (type) {
     case 'list':
       return ListModal;
-    case 'buildMenu':
+    case 'menuBuilder':
       return BuildMenuModal;
     case 'menu':
       return MenuModal;

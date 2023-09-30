@@ -7,6 +7,7 @@ export const CREATE_STRING = 'create';
 export const INGREDIENT_STRING = 'ingredient';
 export const DISH_STRING = 'dish';
 export const MENU_STRING = 'menu';
+export const MENU_BUILDER_STRING = 'menuBuilder';
 
 export const INGREDIENTS_STRING = 'ingredients';
 export const DISHES_STRING = 'dishes';

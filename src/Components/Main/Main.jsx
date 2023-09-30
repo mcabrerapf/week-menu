@@ -1,8 +1,9 @@
 import React, { useContext, useEffect } from 'react';
 import './Main.css';
 import View from '../View';
-import WeekView from '../WeekView';
-import { DISH_STRING, INGREDIENT_STRING, MENU_STRING } from '../../constants';
+import {
+  DISH_STRING, INGREDIENT_STRING, MENU_STRING, MENU_BUILDER_STRING,
+} from '../../constants';
 import { MainContext } from '../../Contexts/MainContext';
 import { ModalContextWrapper } from '../../Contexts/ModalContext';
 
@@ -29,9 +30,8 @@ function Main() {
     <ModalContextWrapper>
       <div
         className={mainClassName}
-
       >
-        <WeekView />
+        <View name={MENU_BUILDER_STRING} />
         <View name={MENU_STRING} />
         <View name={DISH_STRING} />
         <View name={INGREDIENT_STRING} />

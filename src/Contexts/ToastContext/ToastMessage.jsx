@@ -6,6 +6,7 @@ const typeTimeout = {
   success: 3000,
   info: 3500,
 };
+
 function ToastMessage({
   content, type,
 }) {

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { MainContextProvider } from './MainContext';
 import { serviceHandler } from '../../Services';
 import {
-  DISH_STRING, GET_ALL_STRING, INGREDIENT_STRING, MENU_STRING,
+  DISH_STRING, GET_ALL_STRING, INGREDIENT_STRING, MENU_STRING, MENU_BUILDER_STRING,
 } from '../../constants';
 import { buildDishesWithIngredients, buildMenusWithDishes } from '../../Components/helpers';
 import './MainContextWrapper.css';
@@ -23,7 +23,7 @@ function MainContextWrapper({ children }) {
 
   useEffect(() => {
     async function initContext() {
-      const localOfflineMode = window.localStorage.getItem('week-menu-offline-mode');
+      const localOfflineMode = Number(window.localStorage.getItem('week-menu-offline-mode'));
       const allDishes = await serviceHandler(GET_ALL_STRING)(DISH_STRING);
       if (allDishes.errors) {
         return setContextState({ ...contextState, errorMessage: allDishes.errors[0].message });
@@ -39,7 +39,7 @@ function MainContextWrapper({ children }) {
       if (!allDishes.length) {
         return setContextState({
           ...contextState,
-          offlineMode: Number(localOfflineMode),
+          offlineMode: localOfflineMode,
           loading: false,
           dishes: [],
           ingredients: allIngredients,
@@ -51,7 +51,7 @@ function MainContextWrapper({ children }) {
 
       return setContextState({
         ...contextState,
-        offlineMode: Number(localOfflineMode),
+        offlineMode: localOfflineMode,
         loading: false,
         dishes: dishesWithIngredients,
         ingredients: allIngredients,
@@ -66,7 +66,7 @@ function MainContextWrapper({ children }) {
     const {
       view, ingredients, dishes, menus,
     } = contextState;
-    const viewToUse = view === 'buildMenu' ? MENU_STRING : view;
+    const viewToUse = view === MENU_BUILDER_STRING ? MENU_STRING : view;
     const newData = await serviceHandler(GET_ALL_STRING)(viewToUse);
     if (newData.errors) return newData;
     const ingredientsToUse = viewToUse === INGREDIENT_STRING ? newData : ingredients;
@@ -85,7 +85,7 @@ function MainContextWrapper({ children }) {
   };
 
   const updateCurrentMenu = (newMenu) => {
-    setContextState({ ...contextState, currentMenu: newMenu, view: 'buildMenu' });
+    setContextState({ ...contextState, currentMenu: newMenu, view: MENU_BUILDER_STRING });
   };
 
   const stateHandler = (key, value) => {

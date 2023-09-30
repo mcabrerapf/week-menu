@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './Button.css';
 import { parseClassName } from '../helpers';
-import Icon from '../Icon';
 
 function Button({
   modifier,
@@ -17,7 +16,6 @@ function Button({
   value,
   disabled,
   name,
-  buttonIcon,
   disableMultipleClicks,
 }) {
   const baseClassName = `button${disabled ? ' disabled' : ''}`;
@@ -43,9 +41,6 @@ function Button({
       value={value}
       disabled={disabled}
     >
-      {!!buttonIcon && (
-        <Icon type={buttonIcon} value={value} />
-      )}
       {buttonText}
       {children}
     </button>
@@ -64,7 +59,6 @@ Button.propTypes = {
   modifier: PropTypes.string,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
   disabled: PropTypes.bool,
-  buttonIcon: PropTypes.string,
   name: PropTypes.string,
   disableMultipleClicks: PropTypes.bool,
 };
@@ -82,7 +76,6 @@ Button.defaultProps = {
   value: '',
   disabled: false,
   disableMultipleClicks: false,
-  buttonIcon: '',
   name: '',
 };
 

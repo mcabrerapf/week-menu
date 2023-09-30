@@ -9,7 +9,7 @@ export const INGREDIENT_UNITS = [
     value: 'g', name: 'Gramos',
   },
   {
-    value: 'kg', name: 'Kilogramos',
+    value: 'kg', name: 'Kilos',
   },
   {
     value: 'l', name: 'Litros',
@@ -31,6 +31,9 @@ export const INGREDIENT_UNITS = [
   },
   {
     value: 'pt', name: 'Pinta',
+  },
+  {
+    value: 'cup', name: 'Vaso',
   },
   {
     value: 'qt', name: 'Cuarto',

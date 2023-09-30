@@ -10,6 +10,7 @@ import {
   DISH_STRING,
   INGREDIENT_STRING,
   MENU_STRING,
+  MENU_BUILDER_STRING,
 } from '../../constants';
 import Button from '../Button';
 import { useLongPress } from '../../Hooks';
@@ -38,9 +39,9 @@ function Header() {
       <div className="header-buttons">
         <div className="view-buttons">
           <Button
-            value="buildMenu"
-            modifier={checkIfSelected('buildMenu')}
-            onClick={() => handleOnClick('buildMenu')}
+            value={MENU_BUILDER_STRING}
+            modifier={checkIfSelected('MENU_BUILDER_STRING')}
+            onClick={() => handleOnClick('MENU_BUILDER_STRING')}
             buttonText="🛒"
           />
           <Button
@@ -77,7 +78,6 @@ function Header() {
         >
           <i className="fa fa-sign-out" aria-hidden="true" />
         </Button> */}
-
       </div>
     </header>
   );

@@ -10,7 +10,7 @@ const DAYS = [
   ['Saturday', 'Sat'],
   ['Sunday', 'Sun'],
 ];
-export const SELECT_OPTIONS = {
+const SELECT_OPTIONS = {
   ingredient: {
     type: INGREDIENT_TYPES,
     unit: INGREDIENT_UNITS,
@@ -21,6 +21,8 @@ export const SELECT_OPTIONS = {
   },
 };
 
+const minSwipeDistance = 50;
+
 export {
-  DAYS, DISH_TAGS, DISH_TYPES, INGREDIENT_UNITS, INGREDIENT_TYPES,
+  DAYS, DISH_TAGS, DISH_TYPES, INGREDIENT_UNITS, INGREDIENT_TYPES, SELECT_OPTIONS, minSwipeDistance,
 };
