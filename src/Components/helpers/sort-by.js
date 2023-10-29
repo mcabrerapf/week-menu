@@ -1,6 +1,6 @@
 function getSortValue(item, itemKey, sorttype) {
   const parsedItem = itemKey ? item[itemKey] : item;
-  // console.log({ item, itemKey, sorttype });
+
   switch (sorttype) {
     case 'alphabetical':
       return parsedItem.toLowerCase();

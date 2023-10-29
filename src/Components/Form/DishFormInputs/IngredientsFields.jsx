@@ -55,7 +55,7 @@ function IngredientsFields({ ingredients, updateIngredients }) {
   const availableIngredients = contextIngredients
     .filter(({ id: iId }) => !selectedIngredientids
       .includes(iId));
-  console.log({ ingredients });
+
   return (
     <>
       <div className="ingredients-types-container">

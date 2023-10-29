@@ -50,7 +50,7 @@ function Form({ formData, handleSubmit }) {
   if (!currentData) return null;
 
   const FormInputs = getFormInputs(view);
-  console.log(currentData.ingredients);
+
   return (
     <form className="form">
       <div>
