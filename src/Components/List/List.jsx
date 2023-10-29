@@ -93,7 +93,7 @@ function List({ listData }) {
           />
         ))}
 
-        {!sortedItems.length && <h3 className="empty-list-message">So empty...</h3>}
+        {/* {!sortedItems.length && <h3 className="empty-list-message">So empty...</h3>} */}
       </ul>
       {view !== 'menu' && (
       <div className="add-container">
