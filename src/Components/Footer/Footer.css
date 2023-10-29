@@ -1,0 +1,35 @@
+.footer {
+	width: 100%;
+	height: 7%;
+}
+
+.footer .footer-buttons {
+	display: flex;
+	height: 100%;
+}
+
+.footer .footer-buttons .view-buttons {
+	width: 100%;
+	display: flex;
+	justify-content: space-around;
+}
+
+footer .footer-buttons .view-buttons button {
+	width: 100%;
+	height: 100%;
+	border: none;
+	/* border-bottom: 1px solid black; */
+	/* color: black; */
+	box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+	border-radius: 0;
+	padding: 5px;
+	font-size: 1.8rem;
+	background-color: #757f7e;
+}
+footer .footer-buttons .view-buttons button:last-of-type {
+	border-right: none;
+}
+
+footer .footer-buttons .selected {
+	background-color: #3f8881 !important;
+}

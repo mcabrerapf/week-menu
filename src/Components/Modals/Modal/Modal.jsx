@@ -5,7 +5,7 @@ import { capitalizeFirstLetter } from '../../helpers';
 import Button from '../../Button';
 
 function Modal({
-  children, closeModal, headerText, hideHeader,
+  children, closeModal, headerText, hideHeader, modifier,
 }) {
   const wrapperRef = useRef(null);
 
@@ -28,7 +28,7 @@ function Modal({
   const parsedHeaderText = capitalizeFirstLetter(headerText);
 
   return (
-    <div ref={wrapperRef} className="modal">
+    <div ref={wrapperRef} className={`modal ${modifier}`}>
       {!hideHeader && (
         <div className="modal-header">
           <p className="modal-header-text">{parsedHeaderText}</p>
@@ -53,11 +53,13 @@ Modal.propTypes = {
   children: PropTypes.oneOfType([PropTypes.shape(), PropTypes.arrayOf(PropTypes.shape())]),
   hideHeader: PropTypes.bool,
   headerText: PropTypes.string,
+  modifier: PropTypes.string,
 };
 
 Modal.defaultProps = {
   hideHeader: false,
   headerText: '',
+  modifier: '',
   children: null,
 };
 

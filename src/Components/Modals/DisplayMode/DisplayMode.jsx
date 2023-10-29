@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '../../Button';
@@ -76,7 +77,7 @@ function DisplayMode({
             id: ingId, name: ingName, quantity, unit: ingUnit,
           }) => (
             <li key={ingId}>
-              {`- ${ingName}: ${quantity} (${ingUnit})`}
+              {`- ${ingName}: ${quantity} ${ingUnit}`}
             </li>
           ))}
         </ul>
@@ -91,7 +92,7 @@ function DisplayMode({
         <div className="display-mode-props-prop">
           <h4>Instructions: </h4>
             {instructions.split('---').map((ins, i) => (
-              <p>
+              <p key={i}>
                 {i + 1}
                 .
                 {' '}

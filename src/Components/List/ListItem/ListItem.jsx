@@ -53,7 +53,7 @@ function ListItem({
         </Button>
         )}
         <Button
-          onClick={() => handleOpenModal('list', 'delete', itemData)}
+          onClick={() => handleOpenModal('list', 'delete', itemData, 'small')}
         >
           <i className="fa fa-trash" aria-hidden="true" />
         </Button>

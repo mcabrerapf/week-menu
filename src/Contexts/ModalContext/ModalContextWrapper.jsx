@@ -16,7 +16,7 @@ function ModalContextWrapper({ children }) {
   const [contextState, setContextState] = useState(initialModalState);
 
   const {
-    showModal, modalData, type, mode, onClose,
+    showModal, modalData, type, mode, onClose, modifier,
   } = contextState;
 
   const addModal = (modalOptions) => {
@@ -59,6 +59,7 @@ function ModalContextWrapper({ children }) {
             headerText={headerText}
             closeModal={closeModal}
             modalData={modalData}
+            modifier={modifier}
           >
             <ModalToUse
               modalData={modalData}

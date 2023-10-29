@@ -1,5 +1,8 @@
 .build-menu-modal-content {
-	max-height: 80vh;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 	padding: 5px;
 	width: 100%;
 }

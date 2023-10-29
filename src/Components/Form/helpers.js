@@ -1,6 +1,13 @@
 import { DISH_STRING, MENU_STRING } from '../../constants';
 import { deepCopy } from '../helpers';
 
+const checkIngredients = (ingredients) => {
+  if (!ingredients || !ingredients.length) return [];
+  return ingredients.filter(({
+    name, unit, type,
+  }) => name && unit && type);
+};
+
 export const initDish = (dishData) => {
   const {
     id, name, ingredients, types, sideDishes, sideDishTo, instructions, description, time, servings,
@@ -17,7 +24,7 @@ export const initDish = (dishData) => {
       hours: hours || 0,
       minutes: minutes || 0,
     },
-    ingredients: ingredients || [],
+    ingredients: checkIngredients(ingredients),
     servings: servings || 1,
     // size: size || '',
     instructions: instructions || '',

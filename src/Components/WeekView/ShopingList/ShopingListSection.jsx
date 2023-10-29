@@ -14,6 +14,7 @@ function ShopingListSection({ ingredients, label }) {
     addModal({
       type: 'shopingListItem',
       modalData: data,
+      modifier: 'full',
     });
   };
 

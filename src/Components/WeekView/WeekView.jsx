@@ -42,6 +42,7 @@ function WeekView() {
       type: MENU_BUILDER_STRING,
       modalData: menuOptions,
       onClose: updateMenuAndOptions,
+      modifier: 'full',
     });
   };
 

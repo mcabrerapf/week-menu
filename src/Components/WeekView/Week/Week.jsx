@@ -17,6 +17,7 @@ function Week({
     addModal({
       type: 'menu',
       modalData: { dishes: menu },
+      modifier: 'small',
     });
   };
 

@@ -50,21 +50,24 @@ function Form({ formData, handleSubmit }) {
   if (!currentData) return null;
 
   const FormInputs = getFormInputs(view);
-
+  console.log(currentData.ingredients);
   return (
     <form className="form">
-      {view === 'dish' && (
-      <div className="form-header">
-        <Button modifier={`header-option${fieldsView !== '0' ? ' disabled' : ''}`} onClick={changeFieldsView} buttonText="General" value="0" />
-        <Button modifier={`header-option${fieldsView !== '1' ? ' disabled' : ''}`} onClick={changeFieldsView} buttonText="Ingredients" value="1" />
-        <Button modifier={`header-option${fieldsView !== '2' ? ' disabled' : ''}`} onClick={changeFieldsView} buttonText="Instructions" value="2" />
+      <div>
+        {view === 'dish' && (
+        <div className="form-header">
+          <Button modifier={`header-option${fieldsView !== '0' ? ' disabled' : ''}`} onClick={changeFieldsView} buttonText="General" value="0" />
+          <Button modifier={`header-option${fieldsView !== '1' ? ' disabled' : ''}`} onClick={changeFieldsView} buttonText="Ingredients" value="1" />
+          <Button modifier={`header-option${fieldsView !== '2' ? ' disabled' : ''}`} onClick={changeFieldsView} buttonText="Instructions" value="2" />
+        </div>
+        )}
+        <FormInputs
+          currentData={currentData}
+          setCurrentData={setCurrentData}
+          fieldsView={fieldsView}
+        />
       </div>
-      )}
-      <FormInputs
-        currentData={currentData}
-        setCurrentData={setCurrentData}
-        fieldsView={fieldsView}
-      />
+
       <div className="form-footer">
         <Button
           modifier="submit"

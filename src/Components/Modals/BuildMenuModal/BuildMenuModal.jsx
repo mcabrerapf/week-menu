@@ -184,7 +184,10 @@ function BuildMenuModal({
         </div>
 
       </div>
-      <Button buttonText="🍽️" onClick={handleButtonClick} disabled={daysWithMeals === 0} modifier="build-menu-button" />
+      <div>
+        <Button buttonText="🍽️" onClick={handleButtonClick} disabled={daysWithMeals === 0} modifier="build-menu-button" />
+      </div>
+
     </div>
   );
 }

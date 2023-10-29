@@ -4,10 +4,11 @@ import './App.css';
 import React from 'react';
 import { Authenticator } from '@aws-amplify/ui-react';
 import { Amplify, AuthModeStrategyType } from 'aws-amplify';
-import { Main, Header } from './Components';
+import { Main } from './Components';
 import { MainContextWrapper } from './Contexts/MainContext';
 import { ToastContextWrapper } from './Contexts/ToastContext';
 import awsExports from './aws-exports';
+import Footer from './Components/Footer';
 
 Amplify.configure({
   ...awsExports,
@@ -26,9 +27,10 @@ function App() {
           <MainContextWrapper>
             <ToastContextWrapper>
               <div className="app-container">
-                <Header signOut={signOut} />
+                {/* <Header signOut={signOut} /> */}
                 <Main />
               </div>
+              <Footer signOut={signOut} />
             </ToastContextWrapper>
           </MainContextWrapper>
         )}

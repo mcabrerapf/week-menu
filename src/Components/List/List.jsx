@@ -19,11 +19,12 @@ function List({ listData }) {
   // const [listSort, setListSort] = useState('name');
   // const [showFilters, setShowFilters] = useState(false);
 
-  const handleOpenModal = (type, mode, data) => {
+  const handleOpenModal = (type, mode, data, modifier) => {
     addModal({
       type,
       mode,
       modalData: data,
+      modifier: modifier || 'full',
     });
   };
 
