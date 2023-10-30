@@ -10,11 +10,13 @@ import {
 import {
   ToastContext,
 } from '../../Contexts/ToastContext';
+import { ModalContext } from '../../Contexts/ModalContext';
 
 function WeekViewButtons({
-  showBuildMenuModal, handleChangeView, handleBuildMenu, view, hasLoadedMenu,
+  showBuildMenuModal, handleChangeView, handleBuildMenu, view, hasLoadedMenu, menu,
 }) {
   const { setContextState } = useContext(MainContext);
+  const { addModal } = useContext(ModalContext);
   const { addToast } = useContext(ToastContext);
   const checkView = () => {
     const newView = view === 0 ? 1 : 0;
@@ -30,6 +32,14 @@ function WeekViewButtons({
       addToast(`Offline mode is ${newMode === 1 ? 'ON' : 'OFF'}`, 'info');
     },
   });
+
+  const handleSaveClick = () => {
+    addModal({
+      type: 'menu',
+      modalData: { dishes: menu },
+      modifier: 'small',
+    });
+  };
 
   const buttonIcon = `${view === 1 ? 'fa fa-calendar-o' : 'fa fa-list'}`;
 
@@ -59,6 +69,16 @@ function WeekViewButtons({
           aria-hidden="true"
         />
       </Button>
+      <Button
+        disabled={!hasLoadedMenu}
+        {...longPressProps}
+        onClick={handleSaveClick}
+      >
+        <i
+          className="fa fa-floppy-o"
+          aria-hidden="true"
+        />
+      </Button>
     </div>
   );
 }
@@ -69,6 +89,7 @@ WeekViewButtons.propTypes = {
   handleChangeView: PropTypes.func.isRequired,
   handleBuildMenu: PropTypes.func.isRequired,
   hasLoadedMenu: PropTypes.bool.isRequired,
+  menu: PropTypes.arrayOf(PropTypes.shape()).isRequired,
 };
 
 export default WeekViewButtons;

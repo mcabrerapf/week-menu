@@ -63,6 +63,7 @@ function WeekView() {
         showBuildMenuModal={openBuildMenuModal}
         handleChangeView={handleChangeView}
         handleBuildMenu={handleBuildMenu}
+        menu={menuDishes}
       />
       <div
         className="week-view-content"
