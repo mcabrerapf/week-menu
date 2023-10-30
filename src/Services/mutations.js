@@ -8,8 +8,6 @@ export const CREATE_INGREDIENT_MUTATION = `
       name
       type
       unit
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -23,8 +21,6 @@ export const UPDATE_INGREDIENT_MUTATION = `
       name
       type
       unit
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -38,8 +34,6 @@ export const DELETE_INGREDIENT_MUTATION = `
       name
       type
       unit
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -62,8 +56,6 @@ export const CREATE_DISH_MUTATION = `
       }
       description
       instructions
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -86,8 +78,6 @@ export const UPDATE_DISH_MUTATION = `
       }
       description
       instructions
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -110,8 +100,6 @@ export const CREATE_MENU_MUTATION = `
     createMenu(input: $input, condition: $condition) {
       id
       name
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -145,8 +133,6 @@ export const DELETE_MENU_MUTATION = `
     deleteMenu(input: $input, condition: $condition) {
       id
       name
-      createdAt
-      updatedAt
     }
   }
 `;

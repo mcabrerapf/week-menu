@@ -1,5 +1,5 @@
 /* eslint-disable no-restricted-globals */
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import './DishFormInputs.css';
 import { MainContext } from '../../../Contexts/MainContext';
@@ -7,6 +7,8 @@ import IngredientsField from './IngredientsField';
 import Input from '../../Input';
 import { sortBy } from '../../helpers';
 import { INGREDIENT_TYPES } from '../../constants';
+import Button from '../../Button';
+import NewIngredientForm from './NewIngredientForm';
 
 const getIngredientsByType = (availableIngredients, selectedType) => {
   const filteredIngredientOptions = availableIngredients
@@ -17,6 +19,7 @@ const getIngredientsByType = (availableIngredients, selectedType) => {
 
 function IngredientsFields({ ingredients, updateIngredients }) {
   const { ingredients: contextIngredients } = useContext(MainContext);
+  const [ingredientsView, setIngredientsView] = useState(true);
 
   const handleAddIngredient = ({ target: { value: eValue } }) => {
     if (!eValue) return;
@@ -51,6 +54,17 @@ function IngredientsFields({ ingredients, updateIngredients }) {
     updateIngredients(updatedIngredients);
   };
 
+  const toggleNewIngredientView = (newIngredient) => {
+    setIngredientsView(!ingredientsView);
+
+    if (newIngredient.id) {
+      const updatedIngredients = [...ingredients, {
+        ...newIngredient, quantity: 1,
+      }];
+      updateIngredients(updatedIngredients);
+    }
+  };
+
   const selectedIngredientids = ingredients.map(({ id: iId }) => iId);
   const availableIngredients = contextIngredients
     .filter(({ id: iId }) => !selectedIngredientids
@@ -59,7 +73,24 @@ function IngredientsFields({ ingredients, updateIngredients }) {
   return (
     <>
       <div className="ingredients-types-container">
-        {INGREDIENT_TYPES
+        {ingredientsView && (
+        <Button
+          buttonText="New Ingredient"
+          onClick={toggleNewIngredientView}
+        />
+        )}
+        {ingredientsView && (
+        <Input
+          value=""
+          name="ingredients"
+          id="ingredients"
+          onChange={handleAddIngredient}
+          placeholder="ALL"
+          selectOptions={sortBy(availableIngredients, 'name', 'alphabetical')}
+          type="select"
+        />
+        )}
+        {ingredientsView && INGREDIENT_TYPES
           .map(({ value, name: uName }) => (
             <Input
               key={value}
@@ -72,21 +103,17 @@ function IngredientsFields({ ingredients, updateIngredients }) {
               type="select"
             />
           ))}
-        <Input
-          value=""
-          name="ingredients"
-          id="ingredients"
-          onChange={handleAddIngredient}
-          placeholder="ALL"
-          selectOptions={sortBy(availableIngredients, 'name', 'alphabetical')}
-          type="select"
-        />
+
       </div>
+      {ingredientsView && (
       <IngredientsField
         ingredients={ingredients}
         handleIngredientChange={handleIngredientChange}
         handleRemoveIngredient={handleRemoveIngredient}
       />
+      )}
+      {!ingredientsView && <NewIngredientForm toggleNewIngredientView={toggleNewIngredientView} />}
+
     </>
   );
 }

@@ -5,8 +5,6 @@ export const GET_INGREDIENT_QUERY = `
       name
       type
       unit
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -23,8 +21,6 @@ export const GET_ALL_INGREDIENTS_QUERY = `
         name
         type
         unit
-        createdAt
-        updatedAt
       }
       nextToken
     }
@@ -52,8 +48,6 @@ export const GET_DISH_QUERY = `
       }
       description
       instructions
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -84,8 +78,6 @@ export const GET_ALL_DISHES_QUERY = `
         }
         description
         instructions
-        createdAt
-        updatedAt
       }
       nextToken
     }
@@ -108,8 +100,6 @@ export const GET_MENU_QUERY = `
         useAs
         sideDishesToUse
       }
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -131,8 +121,6 @@ query ListMenu($filter: ModelMenuFilterInput, $limit: Int, $nextToken: String) {
         useAs
         sideDishesToUse
       }
-      createdAt
-      updatedAt
     }
     nextToken
   }

@@ -1,5 +1,6 @@
 .form-input-group {
 	display: flex;
+	margin-top: 10px;
 	/* gap: 60px; */
 	justify-content: space-around;
 }
@@ -7,6 +8,7 @@
 .form-input-group .group-input {
 	display: flex;
 	flex-direction: column;
+	gap: 2px;
 }
 
 .type-input {
@@ -38,7 +40,7 @@
 .ingredients-types-container {
 	display: flex;
 	gap: 5px;
-	min-height: 50px;
+	/* min-height: 50px; */
 	align-items: center;
 	overflow-x: hidden;
 	overflow-y: hidden;
@@ -49,7 +51,7 @@
 
 .ingredients-types-container .input {
 	/* background-color: #3f8881; */
-	max-width: 6rem;
+	max-width: 7rem;
 }
 
 .ingredients-types-container .input .select-input {
@@ -57,6 +59,7 @@
 }
 
 .instructions-container {
+	max-height: 28rem;
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
@@ -85,9 +88,9 @@
 .form-ingredients {
 	width: 100%;
 	/* margin: 5px 0 15px 0px; */
-	padding-top: 5px;
-	padding-bottom: 5px;
-	max-height: 21rem;
+	margin-top: 5px;
+	/* padding-bottom: 5px; */
+	height: 19rem;
 	overflow-y: scroll;
 }
 
@@ -151,4 +154,9 @@
 .form-ingredients-ingredient-remove {
 	background-color: transparent !important;
 	border: none !important;
+}
+
+.new-ingredient-submit-button {
+	margin-top: 10px;
+	font-size: 1.5rem;
 }

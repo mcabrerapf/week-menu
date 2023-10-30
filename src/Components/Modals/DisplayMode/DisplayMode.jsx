@@ -77,7 +77,8 @@ function DisplayMode({
             id: ingId, name: ingName, quantity, unit: ingUnit,
           }) => (
             <li key={ingId}>
-              {`- ${ingName}: ${quantity} ${ingUnit}`}
+              {`- ${ingName}: ${quantity}`}
+              <b>{ingUnit}</b>
             </li>
           ))}
         </ul>
@@ -106,6 +107,9 @@ function DisplayMode({
       <div className="display-mode-footer">
         <Button modifier="edit" onClick={() => setModalMode('edit')}>
           <i className="fa fa-pencil" aria-hidden="true" />
+        </Button>
+        <Button modifier="edit" onClick={() => setModalMode('edit')}>
+          <i className="fa fa-trash" aria-hidden="true" />
         </Button>
       </div>
 

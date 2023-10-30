@@ -45,9 +45,6 @@ export const INGREDIENT_UNITS = [
 
 export const INGREDIENT_TYPES = [
   {
-    value: 'OTHER', name: 'Otro',
-  },
-  {
     value: 'MEAT', name: 'Carne',
   },
   {
@@ -67,5 +64,8 @@ export const INGREDIENT_TYPES = [
   },
   {
     value: 'SPICE', name: 'Especia',
+  },
+  {
+    value: 'OTHER', name: 'Otro',
   },
 ];

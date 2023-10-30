@@ -1,6 +1,7 @@
 .ingredient-item-group {
 	display: flex;
 	flex-direction: column;
+	margin-top: 10px;
 }
 
 .ingredient-item-group-label {

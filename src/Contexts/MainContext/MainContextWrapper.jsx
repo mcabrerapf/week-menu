@@ -62,12 +62,12 @@ function MainContextWrapper({ children }) {
     initContext();
   }, []);
 
-  const updateLists = async () => {
+  const updateLists = async (listToUpdate) => {
     const {
       view, ingredients, dishes, menus,
     } = contextState;
-
-    const viewToUse = view === MENU_BUILDER_STRING ? MENU_STRING : view;
+    const listName = listToUpdate || view;
+    const viewToUse = view === MENU_BUILDER_STRING ? MENU_STRING : listName;
     const newData = await serviceHandler(GET_ALL_STRING)(viewToUse);
     if (newData.errors) return newData;
     const ingredientsToUse = viewToUse === INGREDIENT_STRING ? newData : ingredients;
