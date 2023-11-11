@@ -8,7 +8,7 @@ function Week({
 }) {
   if (!menu || !menu.length) return null;
   const { days } = options;
-  const className = hidden ? 'week-plan no-show' : 'week-plan';
+  const className = hidden ? 'week-plan hide' : 'week-plan';
 
   return (
     <div className={className}>

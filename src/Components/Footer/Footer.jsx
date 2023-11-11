@@ -37,7 +37,7 @@ function Footer() {
   return (
     <footer className="footer">
       <div className="footer-buttons">
-        <div className="view-buttons">
+        <div className="footer-buttons">
           <Button
             value={MENU_BUILDER_STRING}
             modifier={checkIfSelected(MENU_BUILDER_STRING)}

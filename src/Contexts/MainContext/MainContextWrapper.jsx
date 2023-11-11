@@ -7,7 +7,7 @@ import {
 } from '../../constants';
 import { buildDishesWithIngredients, buildMenusWithDishes } from '../../Components/helpers';
 import './MainContextWrapper.css';
-import { defaultMenuOptions } from '../../Components/WeekView/Week/constants';
+import { defaultMenuOptions } from '../../Components/MenuBuilderView/Week/constants';
 
 function MainContextWrapper({ children }) {
   const [contextState, setContextState] = useState({
@@ -103,13 +103,14 @@ function MainContextWrapper({ children }) {
       updateCurrentMenu,
     }}
     >
+      {loading && (
       <div
-        style={{ display: `${loading ? 'flex' : 'none'}` }}
-        className="main-context-wrapper"
+        className="main-context-message-wrapper"
       >
         <div>{errorMessage || 'Loading...'}</div>
       </div>
-      {!loading && children}
+      )}
+      {children}
     </MainContextProvider>
   );
 }

@@ -24,7 +24,7 @@ function DishFormInputs({ currentData, setCurrentData, fieldsView }) {
   };
 
   return (
-    <div className="form-inputs dish-inputs">
+    <div className="form-inputs dish">
       {fieldsView === '0'
       && (
       <GeneralFields

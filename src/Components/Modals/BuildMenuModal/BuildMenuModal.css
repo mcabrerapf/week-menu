@@ -8,7 +8,7 @@
 }
 
 .disabled {
-	background-color: #757f7e !important;
+	background-color: var(--gray-color) !important;
 }
 
 .build-menu-modal-inputs {

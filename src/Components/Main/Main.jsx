@@ -11,6 +11,7 @@ function Main() {
   const {
     offlineMode,
   } = useContext(MainContext);
+
   useEffect(() => {
     const onBeforeUnload = (e) => {
       e.preventDefault();
@@ -24,7 +25,7 @@ function Main() {
     };
   });
 
-  const mainClassName = `main${offlineMode === 1 ? ' offline-mode' : ''}`;
+  const mainClassName = offlineMode === 1 ? 'offline-mode' : 'main';
 
   return (
     <ModalContextWrapper>

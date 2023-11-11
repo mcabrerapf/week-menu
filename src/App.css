@@ -3,7 +3,6 @@
 	width: 100%;
 	display: flex;
 	flex-direction: column;
-	background-color: #ceb8a1;
 }
 
 .app-container {
@@ -13,6 +12,6 @@
 	flex-direction: column;
 }
 
-.no-show {
+.hide {
 	display: none !important;
 }

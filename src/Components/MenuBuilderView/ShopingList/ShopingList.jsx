@@ -26,7 +26,7 @@ function ShopingList({ menuDishes, menuPeople, hidden }) {
   };
 
   if (!ingredienSections) return null;
-  const className = hidden ? 'shopping-list no-show' : 'shopping-list';
+  const className = hidden ? 'shopping-list hide' : 'shopping-list';
 
   return (
 

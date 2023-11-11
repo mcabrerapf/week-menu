@@ -1,16 +1,16 @@
-import './WeekView.css';
+import './MenuBuilderView.css';
 import React, { useState, useContext } from 'react';
 import { buildMenuDishes } from '../helpers';
 import { MENU_BUILDER_STRING } from '../../constants';
 import { updateDishes } from './helpers';
 import Week from './Week';
 import ShopingList from './ShopingList';
-import WeekViewButtons from './WeekViewButtons';
+import MenuBuilderViewButtons from './MenuBuilderViewButtons';
 import { MainContext } from '../../Contexts/MainContext';
 import { ModalContext } from '../../Contexts/ModalContext';
 import Button from '../Button';
 
-function WeekView() {
+function MenuBuilderView() {
   const {
     dishes: dishesFromContext,
     currentMenu: { menuOptions, menuDishes },
@@ -57,7 +57,7 @@ function WeekView() {
 
   return (
     <>
-      <WeekViewButtons
+      <MenuBuilderViewButtons
         view={view}
         hasLoadedMenu={hasLoadedMenu}
         showBuildMenuModal={openBuildMenuModal}
@@ -89,4 +89,4 @@ function WeekView() {
   );
 }
 
-export default WeekView;
+export default MenuBuilderView;

@@ -6,8 +6,8 @@ import { MainContext } from '../../Contexts/MainContext';
 import { ModalContext } from '../../Contexts/ModalContext';
 import Button from '../Button';
 import { sortBy } from '../helpers';
-import Input from '../Input';
-import { filterList, getFilterOptions } from './helpers';
+import { filterList } from './helpers';
+import ListFilters from './ListFilters';
 
 function List({ listData }) {
   const {
@@ -15,9 +15,8 @@ function List({ listData }) {
   } = useContext(MainContext);
   const { addModal } = useContext(ModalContext);
   const [searchValue, setSearchValue] = useState('');
-  const [listFilter, setListFilter] = useState();
+  const [filterValue, setFilterValue] = useState('');
   // const [listSort, setListSort] = useState('name');
-  // const [showFilters, setShowFilters] = useState(false);
 
   const handleOpenModal = (type, mode, data, modifier) => {
     addModal({
@@ -34,54 +33,17 @@ function List({ listData }) {
     updateCurrentMenu(newCurrentMenu);
   };
 
-  const foundItems = filterList(listData, searchValue, listFilter);
+  const foundItems = filterList(listData, searchValue, filterValue);
   const sortedItems = sortBy(foundItems, 'name', 'alphabetical');
-  const filterOptions = getFilterOptions(view);
-  // const filtersClassName = `list-filters${showFilters ? '' : ' no-show'}`;
-  // const buttonText = `${showFilters ? 'Hide' : 'Show'} filters`;
 
   return (
     <div className="list-container">
-      <div className="list-filters">
-        <Input
-          type="search"
-          modifier="list-search-filter"
-          value={searchValue}
-          id="search-value"
-          name="search-value"
-          // label="Search: "
-          placeholder="🔍"
-          onChange={({ target: { value } }) => setSearchValue(value)}
-        />
-        <Input
-          type="select"
-          modifier="list-filter-by"
-          value={listFilter}
-          id="filter-value"
-          name="filter-value"
-          onChange={({ target: { value } }) => setListFilter(value)}
-          placeholder="No Filter"
-          enableDefaultSelect
-          // label="Filter by:"
-          selectOptions={filterOptions}
-        />
-        {/* <Input
-          type="select"
-          modifier="list-sort-by"
-          value={listSort}
-          id="filter-value"
-          name="filter-value"
-          label="Sort by:"
-          onChange={({ target: { value } }) => setListSort(value)}
-          selectOptions={sortOptions}
-        /> */}
-
-      </div>
-      {/* <Button
-        modifier="list-filters-toggle-button"
-        buttonText={buttonText}
-        onClick={() => setShowFilters(!showFilters)}
-      /> */}
+      <ListFilters
+        setFilterValue={setFilterValue}
+        setSearchValue={setSearchValue}
+        searchValue={searchValue}
+        filterValue={filterValue}
+      />
       <ul className="list">
         {sortedItems.map((listItem) => (
           <ListItem
@@ -92,8 +54,6 @@ function List({ listData }) {
             handleLoadMenu={handleLoadMenu}
           />
         ))}
-
-        {/* {!sortedItems.length && <h3 className="empty-list-message">So empty...</h3>} */}
       </ul>
       {view !== 'menu' && (
       <div className="add-container">

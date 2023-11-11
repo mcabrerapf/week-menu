@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import './View.css';
 import List from '../List';
-import WeekView from '../WeekView';
+import MenuBuilderView from '../MenuBuilderView';
 import { MainContext } from '../../Contexts/MainContext';
 import { getListData, getNewView } from './helpers';
 import { MENU_BUILDER_STRING } from '../../constants';
@@ -18,7 +18,6 @@ function View({
   } = useContext(MainContext);
   const isHidden = view !== name;
   const listData = getListData(view, contextProps);
-  const className = isHidden ? 'view no-show' : 'view';
 
   const onTouchStart = (e) => {
     e.stopPropagation();
@@ -40,6 +39,7 @@ function View({
     if (newView !== view) setContextState('view', newView);
   };
 
+  const className = `view${isHidden ? ' hide' : ''}`;
   return (
     <div
       className={className}
@@ -48,7 +48,7 @@ function View({
       onTouchEnd={onTouchEnd}
     >
       {view === MENU_BUILDER_STRING
-        ? <WeekView /> : (
+        ? <MenuBuilderView /> : (
           <List
             listData={listData}
           />

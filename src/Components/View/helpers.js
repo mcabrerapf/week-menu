@@ -1,15 +1,16 @@
 import { minSwipeDistance } from '../constants';
 
 const getListData = (view, contextProps) => {
+  const { menus, dishes, ingredients } = contextProps;
   switch (view) {
     case 'menu':
-      return contextProps.menus;
+      return menus;
     case 'dish':
-      return contextProps.dishes;
+      return dishes;
     case 'ingredients':
-      return contextProps.ingredients;
+      return ingredients;
     default:
-      return contextProps.ingredients;
+      return ingredients;
   }
 };
 

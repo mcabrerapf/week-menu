@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import './WeekView.css';
+import './MenuBuilderView.css';
 import Button from '../Button';
 import { useLongPress } from '../../Hooks';
 import {

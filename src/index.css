@@ -1,9 +1,23 @@
+:root {
+	--beige-color: #ceb8a1;
+	--blue-green-color: #3f8881;
+	--gray-color: #757f7e;
+	--white-color: white;
+	--black-color: black;
+	--blue-color: blue;
+	--red-color: red;
+	--green-color: green;
+	--offiline-background-color: #deb9e0;
+	--basic-box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.5);
+}
+
 body {
 	position: absolute;
 	width: 100%;
 	height: 100%;
 	min-height: 100% !important;
 	margin: 0;
+	background-color: var(--beige-color);
 	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
 		'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
 		sans-serif;

@@ -4,7 +4,7 @@ import './App.css';
 import React from 'react';
 import { Authenticator } from '@aws-amplify/ui-react';
 import { Amplify, AuthModeStrategyType } from 'aws-amplify';
-import { Main } from './Components';
+import Main from './Components/Main';
 import { MainContextWrapper } from './Contexts/MainContext';
 import { ToastContextWrapper } from './Contexts/ToastContext';
 import awsExports from './aws-exports';
@@ -18,6 +18,8 @@ Amplify.configure({
   },
 });
 
+// Hold any of the footer buttons to copy that list to clipboard
+
 function App() {
   return (
 
@@ -27,7 +29,6 @@ function App() {
           <MainContextWrapper>
             <ToastContextWrapper>
               <div className="app-container">
-                {/* <Header signOut={signOut} /> */}
                 <Main />
               </div>
               <Footer signOut={signOut} />

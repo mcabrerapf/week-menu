@@ -3,9 +3,13 @@
 	flex-direction: column;
 	height: 100%;
 	width: 100%;
-	background-color: #ceb8a1;
+	background-color: var(--beige-color);
 }
 
 .offline-mode {
-	background-color: #deb9e0 !important;
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	width: 100%;
+	background-color: var(--offiline-background-color);
 }
