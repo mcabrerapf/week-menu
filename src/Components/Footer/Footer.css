@@ -22,9 +22,17 @@ footer .footer-buttons .footer-buttons .button {
 	border-radius: 0;
 	font-size: 1.7rem;
 	background-color: var(--gray-color);
+	border-top-right-radius: 5px;
+	border-top-left-radius: 5px;
 }
+
+footer .footer-buttons .footer-buttons button:first-of-type {
+	border-top-left-radius: 0px;
+}
+
 footer .footer-buttons .footer-buttons button:last-of-type {
 	border-right: none;
+	border-top-right-radius: 0px;
 }
 
 footer .footer-buttons .selected {
