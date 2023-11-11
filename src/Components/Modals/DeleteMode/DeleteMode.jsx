@@ -18,7 +18,7 @@ function DeleteMode({
           {name}
         </strong>
         {' '}
-        <i className="fa fa-arrow-right" aria-hidden="true" />
+        <i className="fa fa-arrow-down" aria-hidden="true" />
         {' '}
         <i className="fa fa-trash" aria-hidden="true" />
 
