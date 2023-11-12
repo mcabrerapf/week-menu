@@ -1,28 +1,13 @@
-/* eslint-disable no-restricted-globals */
 import React, { useState, useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import './Form.css';
 import Button from '../Button';
 import { MainContext } from '../../Contexts/MainContext';
-import {
-  DISH_STRING, MENU_STRING,
-} from '../../constants';
-import { checkIsButtonDisabled, initFormData } from './helpers';
+import { checkIsButtonDisabled, getFormInputs, initFormData } from './helpers';
 import { deepCompare } from '../helpers';
-import DishFormInputs from './DishFormInputs';
-import IngredientFormInputs from './IngredientFormInputs';
-import MenuFormInputs from './MenuFormInputs';
 
-const getFormInputs = (type) => {
-  switch (type) {
-    case MENU_STRING:
-      return MenuFormInputs;
-    case DISH_STRING:
-      return DishFormInputs;
-    default:
-      return IngredientFormInputs;
-  }
-};
+// TODO separate to individual forms
+
 function Form({ formData, handleSubmit }) {
   const { view } = useContext(MainContext);
   const [currentData, setCurrentData] = useState();

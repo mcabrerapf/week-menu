@@ -1,5 +1,5 @@
 .form-inputs.dish {
-	height: 27rem;
+	height: 26rem;
 }
 
 .form-input-group {
@@ -18,7 +18,6 @@
 .type-input {
 	display: flex;
 	gap: 10px;
-	/* justify-content: space-around; */
 }
 
 .group-input .button {
@@ -38,7 +37,7 @@
 .group-input-label {
 	text-align: center;
 	font-size: 1.5rem;
-	font-weight: 600;
+	font-weight: 500;
 }
 
 .ingredients-types-container {
@@ -53,6 +52,10 @@
 	justify-content: center;
 }
 
+.ingredients-types-container .add-ingredient {
+	margin: 0px 5px 0px 5px;
+}
+
 .ingredients-types-container .input {
 	/* background-color: var(--blue-green-color); */
 	max-width: 7rem;
@@ -63,7 +66,6 @@
 }
 
 .instructions-container {
-	max-height: 28rem;
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
@@ -92,9 +94,9 @@
 .form-ingredients {
 	width: 100%;
 	/* margin: 5px 0 15px 0px; */
-	margin-top: 5px;
+	padding-top: 5px;
 	/* padding-bottom: 5px; */
-	height: 17rem;
+	height: 16rem;
 	overflow-y: scroll;
 }
 
@@ -111,7 +113,7 @@
 .form-ingredients-ingredient-name {
 	width: 50%;
 	padding: 5px;
-	font-weight: 600;
+	font-weight: 500;
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -142,7 +144,6 @@
 	justify-content: center;
 	align-items: center;
 	width: 30%;
-	font-weight: 600;
 }
 
 .form-ingredients-ingredient-unit {
@@ -151,13 +152,14 @@
 	text-align: center;
 	cursor: pointer;
 	width: 30%;
-	font-weight: 600;
+	font-weight: 500;
 	box-shadow: none;
 }
 
 .form-ingredients-ingredient-remove {
 	background-color: transparent !important;
 	border: none !important;
+	flex: 1;
 }
 
 .new-ingredient-submit-button {

@@ -3,22 +3,29 @@ const buildDishesWithIngredients = (dishes, allIngredients) => {
 
   return dishes
     .map((dish) => {
-      const { ingredients } = dish;
-      const parsedIngredients = ingredients.map((ingredient) => {
+      const { ingredients, name: dishName } = dish;
+      const parsedIngredients = ingredients.map((currentIngredient) => {
         const {
-          id: ingredientId, unit, quantity, type,
-        } = ingredient;
-        const { name, unit: unitMatch, type: typeMatch } = allIngredients
-          .find(({ id: idToCheck }) => idToCheck === ingredientId) || {};
+          id: ingredientId, unit, quantity,
+        } = currentIngredient;
+
+        const ingredientMatch = allIngredients
+          .find(({ id: idToCheck }) => idToCheck === ingredientId);
+
+        if (!ingredientMatch) {
+          console.log(`${dishName} failed to match ${ingredientId} with quantity ${quantity} and unit ${unit}`);
+          return null;
+        }
+        const { name, unit: unitMatch, type } = ingredientMatch;
         return {
           id: ingredientId,
           name,
           unit: unit || unitMatch,
-          type: type || typeMatch,
+          type,
           quantity,
         };
-      });
-      return { ...dish, ingredients: parsedIngredients };
+      }).filter(Boolean);
+      return { ...dish, ingredients: parsedIngredients || [] };
     });
 };
 

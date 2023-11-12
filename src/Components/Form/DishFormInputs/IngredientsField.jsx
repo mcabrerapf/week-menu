@@ -20,17 +20,17 @@ function IngredientsField({
 
         return (
           <div className="form-ingredients-ingredient" key={id}>
-            <div>
-              <Button
-                modifier="form-ingredients-ingredient-remove"
-                aria-label={`remove-${id}`}
-                type="button"
-                value={id}
-                onClick={() => handleRemoveIngredient(id)}
-              >
-                <i className="fa fa-times" aria-hidden="true" />
-              </Button>
-            </div>
+
+            <Button
+              modifier="form-ingredients-ingredient-remove"
+              aria-label={`remove-${id}`}
+              type="button"
+              value={id}
+              onClick={() => handleRemoveIngredient(id)}
+            >
+              <i className="fa fa-times" aria-hidden="true" />
+            </Button>
+
             <div className="form-ingredients-ingredient-name">{capitalizeFirstLetter(name)}</div>
             <div className="form-ingredients-ingredient-quantity-container">
               <Input

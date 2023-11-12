@@ -11,6 +11,7 @@ export const CREATE_INGREDIENT_MUTATION = `
     }
   }
 `;
+
 export const UPDATE_INGREDIENT_MUTATION = `
   mutation UpdateIngredient(
     $input: UpdateIngredientInput!
@@ -24,6 +25,7 @@ export const UPDATE_INGREDIENT_MUTATION = `
     }
   }
 `;
+
 export const DELETE_INGREDIENT_MUTATION = `
   mutation DeleteIngredient(
     $input: DeleteIngredientInput!
@@ -59,6 +61,7 @@ export const CREATE_DISH_MUTATION = `
     }
   }
 `;
+
 export const UPDATE_DISH_MUTATION = `
   mutation UpdateDish(
     $input: UpdateDishInput!
@@ -103,6 +106,7 @@ export const CREATE_MENU_MUTATION = `
     }
   }
 `;
+
 export const UPDATE_MENU_MUTATION = `
   mutation UpdateMenu(
     $input: UpdateMenuInput!
@@ -125,6 +129,7 @@ export const UPDATE_MENU_MUTATION = `
     }
   }
 `;
+
 export const DELETE_MENU_MUTATION = `
   mutation DeleteMenu(
     $input: DeleteMenuInput!

@@ -1,4 +1,4 @@
-import { DISH_TAGS, DISH_TYPES } from './DISHES';
+import { DISH_TYPES } from './DISHES';
 import { INGREDIENT_UNITS, INGREDIENT_TYPES } from './INGREDIENTS';
 
 const DAYS = [
@@ -10,6 +10,7 @@ const DAYS = [
   ['Saturday', 'Sat'],
   ['Sunday', 'Sun'],
 ];
+
 const SELECT_OPTIONS = {
   ingredient: {
     type: INGREDIENT_TYPES,
@@ -21,8 +22,8 @@ const SELECT_OPTIONS = {
   },
 };
 
-const minSwipeDistance = 50;
+const MIN_SWIPE_DISTANCE = 50;
 
 export {
-  DAYS, DISH_TAGS, DISH_TYPES, INGREDIENT_UNITS, INGREDIENT_TYPES, SELECT_OPTIONS, minSwipeDistance,
+  DAYS, DISH_TYPES, INGREDIENT_UNITS, INGREDIENT_TYPES, SELECT_OPTIONS, MIN_SWIPE_DISTANCE,
 };

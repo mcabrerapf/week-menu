@@ -5,7 +5,6 @@
 
 .menu-inputs button {
 	width: 30px;
-	/* margin-top: 20px; */
 	margin-left: 10px;
 }
 
@@ -16,7 +15,7 @@
 .menu-dishes-label {
 	margin-left: 5px;
 	font-size: 0.9rem;
-	font-weight: 600;
+	font-weight: 500;
 }
 
 .menu-dishes-list {

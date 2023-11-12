@@ -1,6 +1,6 @@
 const checkAndAddIngredient = (dish, parsedIngredients, people) => {
-  const { ingredients, name: dishName } = dish;
-  const servings = dish.servings || 1;
+  const { ingredients, name: dishName, servings = 1 } = dish;
+  if (!ingredients) return;
   ingredients.forEach((ingredient) => {
     const {
       id, unit, quantity,
@@ -28,6 +28,7 @@ const checkAndAddIngredient = (dish, parsedIngredients, people) => {
 const buildIngredientSections = (dishes, people = 1) => {
   const ingredientSections = {};
   const parsedIngredients = [];
+
   dishes.forEach((dish) => {
     checkAndAddIngredient(dish, parsedIngredients, people);
     const { sideDishesToUse } = dish;

@@ -45,27 +45,27 @@ export const INGREDIENT_UNITS = [
 
 export const INGREDIENT_TYPES = [
   {
-    value: 'MEAT', name: 'Carne',
+    value: 'MEAT', name: 'Carne', shortLabel: 'C',
   },
   {
-    value: 'FISH', name: 'Pescado',
+    value: 'FISH', name: 'Pescado', shortLabel: 'P',
   },
   {
-    value: 'FRUIT', name: 'Fruta',
+    value: 'FRUIT', name: 'Fruta', shortLabel: 'F',
   },
   {
-    value: 'VEGETABLE', name: 'Verdura',
+    value: 'VEGETABLE', name: 'Verdura', shortLabel: 'V',
   },
   {
-    value: 'SAUCE', name: 'Salsa',
+    value: 'SAUCE', name: 'Salsa', shortLabel: 'S',
   },
   {
-    value: 'LIQUOR', name: 'Licor',
+    value: 'LIQUOR', name: 'Licor', shortLabel: 'L',
   },
   {
-    value: 'SPICE', name: 'Especia',
+    value: 'SPICE', name: 'Especia', shortLabel: 'E',
   },
   {
-    value: 'OTHER', name: 'Otro',
+    value: 'OTHER', name: 'Otro', shortLabel: 'O',
   },
 ];

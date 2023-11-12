@@ -24,26 +24,19 @@ function MainContextWrapper({ children }) {
   useEffect(() => {
     async function initContext() {
       const localOfflineMode = Number(window.localStorage.getItem('week-menu-offline-mode'));
-      const allDishes = await serviceHandler(GET_ALL_STRING)(DISH_STRING);
-      if (allDishes.errors) {
-        return setContextState({ ...contextState, errorMessage: allDishes.errors[0].message });
-      }
       const allIngredients = await serviceHandler(GET_ALL_STRING)(INGREDIENT_STRING);
       if (allIngredients.errors) {
         return setContextState({ ...contextState, errorMessage: allIngredients.errors[0].message });
       }
+      const allDishes = await serviceHandler(GET_ALL_STRING)(DISH_STRING);
+
+      if (allDishes.errors) {
+        return setContextState({ ...contextState, errorMessage: allDishes.errors[0].message });
+      }
+
       const allMenus = await serviceHandler(GET_ALL_STRING)(MENU_STRING);
       if (allMenus.errors) {
         return setContextState({ ...contextState, errorMessage: allMenus.errors[0].message });
-      }
-      if (!allDishes.length) {
-        return setContextState({
-          ...contextState,
-          offlineMode: localOfflineMode,
-          loading: false,
-          dishes: [],
-          ingredients: allIngredients,
-        });
       }
 
       const dishesWithIngredients = buildDishesWithIngredients(allDishes, allIngredients);

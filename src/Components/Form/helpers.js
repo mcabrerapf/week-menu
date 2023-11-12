@@ -1,5 +1,8 @@
 import { DISH_STRING, MENU_STRING } from '../../constants';
 import { deepCopy } from '../helpers';
+import DishFormInputs from './DishFormInputs';
+import IngredientFormInputs from './IngredientFormInputs';
+import MenuFormInputs from './MenuFormInputs';
 
 const checkIngredients = (ingredients) => {
   if (!ingredients || !ingredients.length) return [];
@@ -77,4 +80,15 @@ export const checkIsButtonDisabled = (view, data) => {
   if (view === MENU_STRING) return !name;
   if (view === DISH_STRING) return !name || !types.length || !ingredients || !ingredients.length;
   return !name || !type || !unit;
+};
+
+export const getFormInputs = (type) => {
+  switch (type) {
+    case MENU_STRING:
+      return MenuFormInputs;
+    case DISH_STRING:
+      return DishFormInputs;
+    default:
+      return IngredientFormInputs;
+  }
 };

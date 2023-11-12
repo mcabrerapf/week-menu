@@ -1,4 +1,4 @@
-import { minSwipeDistance } from '../constants';
+import { MIN_SWIPE_DISTANCE } from '../constants';
 
 const getListData = (view, contextProps) => {
   const { menus, dishes, ingredients } = contextProps;
@@ -18,8 +18,8 @@ const getNewView = ({
   view, touchStart, touchEnd,
 }) => {
   const distance = touchStart - touchEnd;
-  const isLeftSwipe = distance > minSwipeDistance;
-  const isRightSwipe = distance < -minSwipeDistance;
+  const isLeftSwipe = distance > MIN_SWIPE_DISTANCE;
+  const isRightSwipe = distance < -MIN_SWIPE_DISTANCE;
 
   switch (view) {
     case 'menuBuilder':

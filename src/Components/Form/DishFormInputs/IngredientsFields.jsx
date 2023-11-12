@@ -24,10 +24,10 @@ function IngredientsFields({ ingredients, updateIngredients }) {
   const handleAddIngredient = ({ target: { value: eValue } }) => {
     if (!eValue) return;
     if (ingredients.find(({ id: ingId }) => ingId === eValue)) return;
-    const { unit, name: iName } = contextIngredients
+    const { unit, name, type } = contextIngredients
       .find(({ id: ingId }) => ingId === eValue) || {};
     const updatedIngredients = [...ingredients, {
-      id: eValue, name: iName, quantity: 1, unit,
+      id: eValue, name, unit, type, quantity: 1,
     }];
     updateIngredients(updatedIngredients);
   };
@@ -75,6 +75,7 @@ function IngredientsFields({ ingredients, updateIngredients }) {
       <div className="ingredients-types-container">
         {ingredientsView && (
         <Button
+          modifier="add-ingredient"
           buttonText="New Ingredient"
           onClick={toggleNewIngredientView}
         />

@@ -20,6 +20,6 @@
 .delete-mode .delete-mode-buttons button {
 	background-color: var(--black-color);
 	color: var(--white-color);
-	font-weight: 600;
+	font-weight: 500;
 	border-radius: 5px;
 }
