@@ -19,7 +19,7 @@ function GeneralFields({ currentData, updateGeneralFields }) {
   const { dishes } = useContext(MainContext);
 
   const {
-    id, name, types, sideDishTo, servings, time: { hours, minutes } = {},
+    id, name, types = [], sideDishTo, servings, time: { hours, minutes } = {},
   } = currentData;
 
   const handleOnChange = ({ target: { value, name: eName } }) => {

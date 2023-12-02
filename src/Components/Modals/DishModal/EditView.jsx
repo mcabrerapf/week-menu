@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import Button from '../../Button';
 import DishFormInputs from './DishFormInputs';
 
-function EditView({ formData, setDishData }) {
+function EditView({ dishData, setDishData }) {
   const [fieldsView, setFieldsView] = useState('0');
 
   const changeFieldsView = (e) => {
     setFieldsView(e?.target?.value);
   };
 
-  if (!formData) return null;
+  if (!dishData) return null;
 
   return (
     <form className="form">
@@ -20,7 +20,7 @@ function EditView({ formData, setDishData }) {
         <Button modifier={`header-option${fieldsView !== '2' ? ' disabled' : ''}`} onClick={changeFieldsView} buttonText="Instructions" value="2" />
       </div>
       <DishFormInputs
-        currentData={formData}
+        currentData={dishData}
         setCurrentData={setDishData}
         fieldsView={fieldsView}
       />
@@ -30,12 +30,12 @@ function EditView({ formData, setDishData }) {
 
 EditView.propTypes = {
   setDishData: PropTypes.func.isRequired,
-  formData: PropTypes.shape(),
+  dishData: PropTypes.shape(),
 
 };
 
 EditView.defaultProps = {
-  formData: {},
+  dishData: {},
 };
 
 export default EditView;

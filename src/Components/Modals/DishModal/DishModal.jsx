@@ -24,6 +24,7 @@ function DishModal({
 
   useEffect(() => {
     if (modalData.name) setDishData({ ...modalData });
+    else setModalView('edit');
   }, []);
 
   const handleListUpdate = async () => {
@@ -55,21 +56,25 @@ function DishModal({
     <div className="dish-modal">
       {modalView === 'display'
         ? <DisplayView dishData={dishData} closeModal={closeModal} />
-        : <EditView formData={dishData} setDishData={setDishData} /> }
+        : <EditView dishData={dishData} setDishData={setDishData} /> }
       <div className="display-mode-footer">
         {modalView === 'display'
           ? (
-            <Button modifier="edit" onClick={() => setModalView('edit')}>
-              <i className="fa fa-pencil" aria-hidden="true" />
-            </Button>
+            <>
+              <Button modifier="edit" onClick={() => setModalView('edit')}>
+                <i className="fa fa-pencil" aria-hidden="true" />
+              </Button>
+              <Button modifier="delete">
+                <i className="fa fa-trash" aria-hidden="true" />
+              </Button>
+            </>
+
           ) : (
-            <Button modifier="edit" onClick={handleSubmit}>
+            <Button modifier="save" onClick={handleSubmit}>
               <i className="fa fa-floppy-o" aria-hidden="true" />
             </Button>
           )}
-        <Button modifier="edit" onClick={() => setModalView('edit')}>
-          <i className="fa fa-trash" aria-hidden="true" />
-        </Button>
+
       </div>
     </div>
 

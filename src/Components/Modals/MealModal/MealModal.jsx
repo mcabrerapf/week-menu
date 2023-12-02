@@ -5,7 +5,7 @@ import Button from '../../Button';
 import Input from '../../Input';
 import { MainContext } from '../../../Contexts/MainContext';
 import { deepCopy, sortBy } from '../../helpers';
-import DisplayMode from '../DisplayMode';
+// import DisplayMode from '../DisplayMode';
 
 const getDishesAndSideDishes = (dishes, id) => {
   const mainDishes = [];
@@ -27,7 +27,7 @@ function MealModal({ modalData, closeModal }) {
   const dishesCopy = deepCopy(dishesFromContext);
   const [selectedDish, setSelectedDish] = useState();
   const [selectedSideDish, setSelectedSideDish] = useState();
-  const [mode, setMode] = useState(id ? 'display' : 'edit');
+  // const [mode, setMode] = useState(id ? 'display' : 'edit');
   const [sortedDishes, sortedSideDishes] = getDishesAndSideDishes(dishesCopy, id);
 
   const handleButtonClick = (changeAll) => {
@@ -42,10 +42,10 @@ function MealModal({ modalData, closeModal }) {
 
   return (
     <div className="meal-modal-content">
-      {mode === 'display' && (
+      {/* {mode === 'display' && (
       <DisplayMode modalData={modalData} setModalMode={setMode} buttonText="Change Dish" />
-      )}
-      {mode === 'edit' && (
+      )} */}
+      {/* {mode === 'edit' && ( */}
       <div className="edit-container">
         <div className="meal-modal-inputs">
           {id && (
@@ -83,7 +83,7 @@ function MealModal({ modalData, closeModal }) {
           {id && <Button buttonText="One" onClick={() => handleButtonClick(false)} disabled={!selectedDish} />}
         </div>
       </div>
-      )}
+      {/* )} */}
     </div>
   );
 }

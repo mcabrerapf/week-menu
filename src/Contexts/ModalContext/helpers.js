@@ -1,5 +1,4 @@
 import { capitalizeFirstLetter } from '../../Components/helpers';
-import ListModal from '../../Components/Modals/ListModal';
 import BuildMenuModal from '../../Components/Modals/BuildMenuModal';
 import MealModal from '../../Components/Modals/MealModal';
 import ShoppingListItemModal from '../../Components/Modals/ShopingListItemModal';
@@ -25,16 +24,14 @@ const getModalHeader = (action, name, type) => {
 
 const getModalByType = (type) => {
   switch (type) {
-    case 'list':
-      return ListModal;
     case 'ingredient':
       return IngredientModal;
     case 'dish':
       return DishModal;
-    case 'menuBuilder':
-      return BuildMenuModal;
     case 'menu':
       return MenuModal;
+    case 'menuBuilder':
+      return BuildMenuModal;
     case 'meal':
       return MealModal;
     case 'shopingListItem':
