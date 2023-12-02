@@ -24,7 +24,12 @@ function DishModal({
 
   useEffect(() => {
     if (modalData.name) setDishData({ ...modalData });
-    else setModalView('edit');
+    else {
+      setDishData({
+        name: '', types: [], servings: 1, time: { hours: 0, minutes: 0 }, description: '', instructions: '', ingredients: [],
+      });
+      setModalView('edit');
+    }
   }, []);
 
   const handleListUpdate = async () => {

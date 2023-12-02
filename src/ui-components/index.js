@@ -4,6 +4,8 @@
  * Any changes to this file will be overwritten when running amplify pull. *
  **************************************************************************/
 
+export { default as DishCreateForm } from "./DishCreateForm";
+export { default as DishUpdateForm } from "./DishUpdateForm";
 export { default as IngredientCreateForm } from "./IngredientCreateForm";
 export { default as IngredientUpdateForm } from "./IngredientUpdateForm";
 export { default as studioTheme } from "./studioTheme";

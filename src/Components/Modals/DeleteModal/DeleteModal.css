@@ -1,9 +1,9 @@
-.delete-mode {
+.delete-modal {
 	padding: 5px;
 	font-size: 1.2rem;
 }
 
-.delete-mode .delete-mode-message {
+.delete-modal .delete-modal-message {
 	display: flex;
 	flex-direction: column;
 	text-align: center;
@@ -13,11 +13,11 @@
 	margin: 10px 0px;
 }
 
-.delete-mode .delete-mode-buttons {
+.delete-modal .delete-modal-buttons {
 	display: flex;
 }
 
-.delete-mode .delete-mode-buttons button {
+.delete-modal .delete-modal-buttons button {
 	background-color: var(--black-color);
 	color: var(--white-color);
 	font-weight: 500;

@@ -9,7 +9,7 @@ import Button from '../../../Button';
 import QuantityInput from '../../../QuantityInput';
 import { capitalizeFirstLetter, sortBy } from '../../../helpers';
 
-const getMainDishes = (dishes, currentMainDishes, currentId) => {
+const getMainDishes = (dishes, currentId, currentMainDishes = []) => {
   const sideDishes = dishes
     .filter(({ id, types: sideType }) => !sideType.includes('SIDE') && !currentMainDishes.includes(id) && id !== currentId);
   return sortBy(sideDishes, 'name', 'alphabetical');
@@ -61,23 +61,11 @@ function GeneralFields({ currentData, updateGeneralFields }) {
   };
 
   const showSideDishes = types.includes('SIDE');
-  const sortedMainDishes = showSideDishes ? getMainDishes(dishes, sideDishTo, id) : [];
+  const sortedMainDishes = showSideDishes ? getMainDishes(dishes, id, sideDishTo) : [];
 
   return (
     <>
-      {/* <Input
-        autoComplete="off"
-        type="text"
-        id="name"
-        name="name"
-        value={name}
-        onChange={handleOnChange}
-        onBlur={handleOnChange}
-        placeholder="Name"
-        // label="Name"
-      /> */}
       <div className="group-input type-input">
-        {/* <span className="group-input-label">Type</span> */}
         <Input
           autoComplete="off"
           type="text"
@@ -185,15 +173,6 @@ function GeneralFields({ currentData, updateGeneralFields }) {
         )}
       </div>
       )}
-      {/* <Input
-        id="description"
-        name="description"
-        label="Description"
-        value={currentData.description}
-        onChange={handleOnChange}
-        placeholder="Dish description..."
-        type="textarea"
-      /> */}
     </>
   );
 }

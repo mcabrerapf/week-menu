@@ -42,7 +42,7 @@ type Dish @model @auth(rules: [{allow: owner}]) {
   time: TimeType
   description: String
   instructions: String
-  ingredients: [IngredientListiItemType!]
+  ingredients: [IngredientListiItemType]
   tags: [String]
   sideDishes: [ID]
   sideDishTo: [ID]
