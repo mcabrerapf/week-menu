@@ -7,14 +7,14 @@
 /* eslint-disable */
 import * as React from "react";
 import { Button, Flex, Grid, TextField } from "@aws-amplify/ui-react";
-import { getOverrideProps } from "@aws-amplify/ui-react/internal";
-import { Ingredient } from "../models";
-import { fetchByPath, validateField } from "./utils";
-import { DataStore } from "aws-amplify";
+import { fetchByPath, getOverrideProps, validateField } from "./utils";
+import { API } from "aws-amplify";
+import { getIngredient } from "../graphql/queries";
+import { updateIngredient } from "../graphql/mutations";
 export default function IngredientUpdateForm(props) {
   const {
     id: idProp,
-    ingredient,
+    ingredient: ingredientModelProp,
     onSuccess,
     onError,
     onSubmit,
@@ -41,16 +41,22 @@ export default function IngredientUpdateForm(props) {
     setUnit(cleanValues.unit);
     setErrors({});
   };
-  const [ingredientRecord, setIngredientRecord] = React.useState(ingredient);
+  const [ingredientRecord, setIngredientRecord] =
+    React.useState(ingredientModelProp);
   React.useEffect(() => {
     const queryData = async () => {
       const record = idProp
-        ? await DataStore.query(Ingredient, idProp)
-        : ingredient;
+        ? (
+            await API.graphql({
+              query: getIngredient.replaceAll("__typename", ""),
+              variables: { id: idProp },
+            })
+          )?.data?.getIngredient
+        : ingredientModelProp;
       setIngredientRecord(record);
     };
     queryData();
-  }, [idProp, ingredient]);
+  }, [idProp, ingredientModelProp]);
   React.useEffect(resetStateValues, [ingredientRecord]);
   const validations = {
     name: [{ type: "Required" }],
@@ -111,21 +117,26 @@ export default function IngredientUpdateForm(props) {
         }
         try {
           Object.entries(modelFields).forEach(([key, value]) => {
-            if (typeof value === "string" && value.trim() === "") {
-              modelFields[key] = undefined;
+            if (typeof value === "string" && value === "") {
+              modelFields[key] = null;
             }
           });
-          await DataStore.save(
-            Ingredient.copyOf(ingredientRecord, (updated) => {
-              Object.assign(updated, modelFields);
-            })
-          );
+          await API.graphql({
+            query: updateIngredient.replaceAll("__typename", ""),
+            variables: {
+              input: {
+                id: ingredientRecord.id,
+                ...modelFields,
+              },
+            },
+          });
           if (onSuccess) {
             onSuccess(modelFields);
           }
         } catch (err) {
           if (onError) {
-            onError(modelFields, err.message);
+            const messages = err.errors.map((e) => e.message).join("\n");
+            onError(modelFields, messages);
           }
         }
       }}
@@ -221,7 +232,7 @@ export default function IngredientUpdateForm(props) {
             event.preventDefault();
             resetStateValues();
           }}
-          isDisabled={!(idProp || ingredient)}
+          isDisabled={!(idProp || ingredientModelProp)}
           {...getOverrideProps(overrides, "ResetButton")}
         ></Button>
         <Flex
@@ -233,7 +244,7 @@ export default function IngredientUpdateForm(props) {
             type="submit"
             variation="primary"
             isDisabled={
-              !(idProp || ingredient) ||
+              !(idProp || ingredientModelProp) ||
               Object.values(errors).some((e) => e?.hasError)
             }
             {...getOverrideProps(overrides, "SubmitButton")}

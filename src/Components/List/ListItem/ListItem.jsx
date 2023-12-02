@@ -21,8 +21,8 @@ function ListItem({
         role="button"
         tabIndex={0}
         className="list-item-label"
-        onKeyDown={() => handleOpenModal('list', defaultModalView, itemData)}
-        onClick={() => handleOpenModal('list', defaultModalView, itemData)}
+        onKeyDown={() => handleOpenModal(modifier, defaultModalView, itemData)}
+        onClick={() => handleOpenModal(modifier, defaultModalView, itemData)}
       >
         {parsedLabel}
 
@@ -47,13 +47,13 @@ function ListItem({
         )}
         {modifier === DISH_STRING && (
         <Button
-          onClick={() => handleOpenModal('list', 'edit', itemData)}
+          onClick={() => handleOpenModal(modifier, 'edit', itemData)}
         >
           <i className="fa fa-pencil" aria-hidden="true" />
         </Button>
         )}
         <Button
-          onClick={() => handleOpenModal('list', 'delete', itemData, 'small')}
+          onClick={() => handleOpenModal(modifier, 'delete', itemData, 'small')}
         >
           <i className="fa fa-trash" aria-hidden="true" />
         </Button>

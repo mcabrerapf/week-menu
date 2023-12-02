@@ -60,7 +60,7 @@ function List({ listData }) {
         <Button
           modifier="add-button"
           type="button"
-          onClick={() => handleOpenModal('list', 'create', {})}
+          onClick={() => handleOpenModal(view, 'create', {})}
         >
           <i className="fa fa-plus" aria-hidden="true" />
         </Button>

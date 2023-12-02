@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { ModalContextProvider } from './ModalContext';
 import './ModalContextWrapper.css';
-import Modal from '../../Components/Modals/Modal';
+import ModalContainer from './ModalContainer';
 import { getModalByType } from './helpers';
 
 const initialModalState = {
@@ -55,7 +55,7 @@ function ModalContextWrapper({ children }) {
           onTouchMove={stopPropagation}
           onTouchEnd={stopPropagation}
         >
-          <Modal
+          <ModalContainer
             headerText={headerText}
             closeModal={closeModal}
             modalData={modalData}
@@ -67,7 +67,7 @@ function ModalContextWrapper({ children }) {
               closeModal={closeModal}
 
             />
-          </Modal>
+          </ModalContainer>
         </div>
       )}
 
