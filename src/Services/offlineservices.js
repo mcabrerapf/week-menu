@@ -1,4 +1,4 @@
-import { INGREDIENTS_MOCK, DISHES_MOCK, MENUS_MOCK } from './mocks';
+// import { INGREDIENTS_MOCK, DISHES_MOCK, MENUS_MOCK } from './mocks';
 
 const getQueryMatch = {
   ingredient: {
@@ -6,21 +6,21 @@ const getQueryMatch = {
     create: () => {},
     update: () => {},
     delete: () => {},
-    getAll: INGREDIENTS_MOCK,
+    getAll: [],
   },
   dish: {
     get: () => {},
     create: () => {},
     update: () => {},
     delete: () => {},
-    getAll: DISHES_MOCK,
+    getAll: [],
   },
   menu: {
     get: () => {},
     create: () => {},
     update: () => {},
     delete: () => {},
-    getAll: MENUS_MOCK,
+    getAll: [],
   },
 };
 
