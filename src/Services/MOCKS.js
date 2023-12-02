@@ -1,1319 +1,794 @@
 /* eslint-disable no-tabs */
-export const DISHES_MOCK = [
-  {
-    id: '5f453f9b-aef9-44a9-8f22-57b1c188a4da',
-    name: 'Amanida salmon',
-    ingredients: [
-      {
-        id: '28b02556-06d1-4eb9-8878-7256d34e98f8',
-        name: 'Cebolla',
-        unit: 'u',
-        type: 'VEGETABLE',
-        quantity: 1,
-      },
-      {
-        id: '958a3faf-74a5-46cf-9712-6b11780c9f87',
-        name: 'Lechuga',
-        unit: 'u',
-        type: 'VEGETABLE',
-        quantity: 1,
-      },
-      {
-        id: 'ca1446b0-0e5e-4c61-a1bf-6307aac3d7cb',
-        name: 'Zanahoria',
-        unit: 'u',
-        type: 'VEGETABLE',
-        quantity: 4,
-      },
-      {
-        id: 'b90030b4-1691-4bdb-82de-923325704025',
-        name: 'Salmon',
-        unit: 'u',
-        type: 'FISH',
-        quantity: 1,
-      },
-      {
-        id: 'fa32d2f9-ae37-4649-88d6-a6ec99744b93',
-        name: 'Queso',
-        unit: 'g',
-        type: 'OTHER',
-        quantity: 1,
-      },
-      {
-        id: '4817fdbd-c83c-4af2-838b-2d65c6839e1e',
-        name: 'Huevo',
-        unit: 'u',
-        type: 'OTHER',
-        quantity: 4,
-      },
-    ],
-    types: ['DINNER'],
-    size: null,
-    servings: 4,
-    time: { hours: 0, minutes: 30 },
-    description: '',
-    instructions: '',
-    createdAt: '2023-03-09T18:51:32.506Z',
-    updatedAt: '2023-03-25T14:32:19.497Z',
-  },
-  {
-    id: '71862292-2b39-47a7-95b8-824804069e78',
-    name: 'Arroz a la cubana',
-    ingredients: [
-      {
-        id: 'b2bcb11e-87e6-4f91-8ca2-8515cd026a29',
-        name: 'Arroz',
-        unit: 'g',
-        type: 'OTHER',
-        quantity: 320,
-      },
-      {
-        id: '53cabf58-5bfc-478c-8a43-8ef26cef4a89',
-        name: 'Ajo',
-        unit: 'u',
-        type: 'VEGETABLE',
-        quantity: 1,
-      },
-      {
-        id: '369763aa-cf58-4d7f-88da-b30ed9434d62',
-        name: 'Tomate frito',
-        unit: 'g',
-        type: 'OTHER',
-        quantity: 1,
-      },
-      {
-        id: '28b02556-06d1-4eb9-8878-7256d34e98f8',
-        name: 'Cebolla',
-        unit: 'u',
-        type: 'VEGETABLE',
-        quantity: 1,
-      },
-      {
-        id: '4817fdbd-c83c-4af2-838b-2d65c6839e1e',
-        name: 'Huevo',
-        unit: 'u',
-        type: 'OTHER',
-        quantity: 4,
-      },
-    ],
-    types: ['LUNCH'],
-    size: null,
-    servings: 4,
-    time: { hours: 0, minutes: 40 },
-    description: '',
-    instructions: '',
-    createdAt: '2023-03-09T18:53:28.679Z',
-    updatedAt: '2023-03-25T14:34:30.422Z',
-  },
-  {
-    id: '75c3844e-ce39-4dc0-b1a7-0234062b89c0',
-    name: 'Bistec con patatas y verduras',
-    ingredients: [
-      {
-        id: '36059f2a-9aed-4b75-bd45-38c816246e66',
-        name: 'Bistec',
-        unit: 'UN',
-        type: 'MEAT',
-        quantity: 4,
-      },
-      {
-        id: '5e6c9801-6a5c-4b85-a006-b066b6e4e95c',
-        name: 'Patata',
-        unit: 'UN',
-        type: 'VEGETABLE',
-        quantity: 4,
-      },
-      {
-        id: '28b02556-06d1-4eb9-8878-7256d34e98f8',
-        name: 'Cebolla',
-        unit: 'UN',
-        type: 'VEGETABLE',
-        quantity: 2,
-      },
-      {
-        id: 'dff30495-702f-4a04-a560-5e00a162084e',
-        name: 'Esparragos',
-        unit: 'UN',
-        type: 'VEGETABLE',
-        quantity: 1,
-      },
-      {
-        id: '359f3676-b3b3-4f2d-8667-79cbd233ac35',
-        name: 'Pimiento rojo',
-        unit: 'UN',
-        type: 'VEGETABLE',
-        quantity: 1,
-      },
-    ],
-    types: ['LUNCH'],
-    size: null,
-    servings: 4,
-    time: { hours: 0, minutes: 0 },
-    description: '',
-    instructions: '',
-    createdAt: '2023-03-09T18:45:24.758Z',
-    updatedAt: '2023-03-22T19:51:24.630Z',
-  },
-  {
-    id: '241188c4-9ff3-4bf4-b05e-e28347ae6d57',
-    name: 'Bolognesa',
-    ingredients: [
-      {
-        id: '53cabf58-5bfc-478c-8a43-8ef26cef4a89',
-        name: 'Ajo',
-        unit: 'UN',
-        type: 'VEGETABLE',
-        quantity: 2,
-      },
-      {
-        id: '28b02556-06d1-4eb9-8878-7256d34e98f8',
-        name: 'Cebolla',
-        unit: 'UN',
-        type: 'VEGETABLE',
-        quantity: 1,
-      },
-      {
-        id: 'b1a8db12-5aaf-4d37-b116-60b786c57123',
-        name: 'Tomate triturado',
-        unit: 'UN',
-        type: 'OTHER',
-        quantity: 1,
-      },
-      {
-        id: '7597511b-c3bb-4c75-ab4e-7b94ebf89822',
-        name: 'Salchicha',
-        unit: 'u',
-        type: 'MEAT',
-        quantity: 2,
-      },
-      {
-        id: '0319eb3f-f7cc-4ba8-9c09-d56abbc82b1d',
-        name: 'Spaghetti',
-        unit: 'g',
-        type: 'OTHER',
-        quantity: 400,
-      },
-    ],
-    types: ['LUNCH'],
-    size: null,
-    servings: 2,
-    time: { hours: 0, minutes: 0 },
-    description: '',
-    instructions: '',
-    createdAt: '2023-03-09T18:43:42.626Z',
-    updatedAt: '2023-03-28T12:28:35.882Z',
-  },
-  {
-    id: 'd0579d87-766e-4bf2-99d9-9941c2f46fa6',
-    name: 'Carbonara',
-    ingredients: [
-      {
-        id: '0319eb3f-f7cc-4ba8-9c09-d56abbc82b1d',
-        name: 'Spaghetti',
-        unit: 'G',
-        type: 'OTHER',
-        quantity: 400,
-      },
-      {
-        id: '77a7853f-9cdf-4440-a11f-c07e5c5be390',
-        name: 'Queso Parmesano',
-        unit: 'G',
-        type: 'OTHER',
-        quantity: 50,
-      },
-      {
-        id: '53cabf58-5bfc-478c-8a43-8ef26cef4a89',
-        name: 'Ajo',
-        unit: 'UN',
-        type: 'VEGETABLE',
-        quantity: 1,
-      },
-      {
-        id: '28b02556-06d1-4eb9-8878-7256d34e98f8',
-        name: 'Cebolla',
-        unit: 'UN',
-        type: 'VEGETABLE',
-        quantity: 1,
-      },
-      {
-        id: 'ac006aff-aacc-4127-950f-a12a9d4c870f',
-        name: 'Nata de cocinar',
-        unit: 'UN',
-        type: 'OTHER',
-        quantity: 1,
-      },
-      {
-        id: 'affb0414-db2e-4ac3-8af3-2c15ddcb171c',
-        name: 'Bacon',
-        unit: 'UN',
-        type: 'MEAT',
-        quantity: 1,
-      },
-    ],
-    types: ['LUNCH'],
-    size: null,
-    servings: 4,
-    time: { hours: 0, minutes: 0 },
-    description: 'No es carbonara de verdad',
-    instructions: 'Pim pam pum',
-    createdAt: '2023-03-09T18:42:47.960Z',
-    updatedAt: '2023-03-22T19:51:38.484Z',
-  },
-  {
-    id: 'e207d7a9-6804-48fb-a3e2-31bb57238239',
-    name: 'Cigrons amb espinacs',
-    ingredients: [
-      {
-        id: 'a4f6ced9-87ff-48ad-9248-e0f11a989cdf',
-        name: 'Cigrons',
-        unit: 'G',
-        type: 'OTHER',
-        quantity: 1,
-      },
-      {
-        id: '69895827-d905-4819-a34f-ccec5050a47c',
-        name: 'Espinacas',
-        unit: 'G',
-        type: 'VEGETABLE',
-        quantity: 1,
-      },
-    ],
-    types: ['DINNER'],
-    size: null,
-    servings: 4,
-    time: { hours: 0, minutes: 0 },
-    description: '',
-    instructions: '',
-    createdAt: '2023-03-09T19:02:46.998Z',
-    updatedAt: '2023-03-22T19:51:44.191Z',
-  },
-  {
-    id: 'faeb596c-8daf-4409-b3f0-11735aab5f60',
-    name: 'Croquetas',
-    ingredients: [
-      {
-        id: '20b1c231-642c-4775-9c16-12ee2dffedf4',
-        name: 'Croquetas',
-        unit: 'UN',
-        type: 'OTHER',
-        quantity: 8,
-      },
-      {
-        id: 'fa32d2f9-ae37-4649-88d6-a6ec99744b93',
-        name: 'Queso',
-        unit: 'UN',
-        type: 'OTHER',
-        quantity: 1,
-      },
-      {
-        id: 'dff30495-702f-4a04-a560-5e00a162084e',
-        name: 'Esparragos',
-        unit: 'UN',
-        type: 'VEGETABLE',
-        quantity: 1,
-      },
-    ],
-    types: ['DINNER'],
-    size: null,
-    servings: 2,
-    time: { hours: 0, minutes: 0 },
-    description: '',
-    instructions: '',
-    createdAt: '2023-03-11T16:15:20.345Z',
-    updatedAt: '2023-03-22T19:51:49.355Z',
-  },
-  {
-    id: '6e9f5784-c18a-4912-abb9-4224dc23b400',
-    name: 'Dorada con arroz y patatas',
-    ingredients: [
-      {
-        id: 'b2bcb11e-87e6-4f91-8ca2-8515cd026a29',
-        name: 'Arroz',
-        unit: 'G',
-        type: 'OTHER',
-        quantity: 180,
-      },
-      {
-        id: '0c2e40bc-c5e7-4a00-8360-facda91f4299',
-        name: 'dorada',
-        unit: 'UN',
-        type: 'FISH',
-        quantity: 1,
-      },
-      {
-        id: '5e6c9801-6a5c-4b85-a006-b066b6e4e95c',
-        name: 'Patata',
-        unit: 'UN',
-        type: 'VEGETABLE',
-        quantity: 2,
-      },
-      {
-        id: '28b02556-06d1-4eb9-8878-7256d34e98f8',
-        name: 'Cebolla',
-        unit: 'UN',
-        type: 'VEGETABLE',
-        quantity: 1,
-      },
-      {
-        id: '87fc1d01-045e-4989-b068-8fa904e87836',
-        name: 'Perejil',
-        unit: 'UN',
-        type: 'OTHER',
-        quantity: 1,
-      },
-    ],
-    types: ['LUNCH'],
-    size: null,
-    servings: 2,
-    time: { hours: 0, minutes: 0 },
-    description: '',
-    instructions: '',
-    createdAt: '2023-03-09T18:57:19.510Z',
-    updatedAt: '2023-03-22T19:51:53.013Z',
-  },
-  {
-    id: '56df044c-f6c1-4c16-9087-593979ff59d6',
-    name: 'Estofado de ternera',
-    ingredients: [
-      {
-        id: '53cabf58-5bfc-478c-8a43-8ef26cef4a89',
-        name: 'Ajo',
-        unit: 'UN',
-        type: 'VEGETABLE',
-        quantity: 1,
-      },
-      {
-        id: 'ca1446b0-0e5e-4c61-a1bf-6307aac3d7cb',
-        name: 'Zanahoria',
-        unit: 'UN',
-        type: 'VEGETABLE',
-        quantity: 1,
-      },
-      {
-        id: '28b02556-06d1-4eb9-8878-7256d34e98f8',
-        name: 'Cebolla',
-        unit: 'UN',
-        type: 'VEGETABLE',
-        quantity: 1,
-      },
-      {
-        id: 'a30c5085-a85f-458e-9e54-6ab2709d4884',
-        name: 'Carne (estofat)',
-        unit: 'KG',
-        type: 'MEAT',
-        quantity: 1,
-      },
-      {
-        id: '5e6c9801-6a5c-4b85-a006-b066b6e4e95c',
-        name: 'Patata',
-        unit: 'UN',
-        type: 'VEGETABLE',
-        quantity: 1,
-      },
-      {
-        id: '29a222fd-379f-431d-894f-1578881321e5',
-        name: 'Chocolate negro',
-        unit: 'UN',
-        type: 'OTHER',
-        quantity: 1,
-      },
-    ],
-    types: ['LUNCH'],
-    size: null,
-    servings: 1,
-    time: { hours: 0, minutes: 0 },
-    description:
-			'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsu',
-    instructions:
-			'Es un hecho establecido hace demasiado tiempo que un lector se distraerá con el contenido del texto de un sitio mientras que mira su diseño. El punto de usar Lorem Ipsum es que tiene una distribución más o menos normal de las letras, al contrario de usar textos como por ejemplo "Contenido aquí, contenido aquí". Estos textos hacen parecerlo un español que se puede leer. Muchos paquetes de autoedición y editores de páginas web usan el Lorem Ipsum como su texto por defecto, y al hacer una búsqueda de "Lorem Ipsum" va a dar por resultado muchos sitios web que usan este texto si se encuentran en estado de desarrollo. Muchas versiones han evol',
-    createdAt: '2023-03-09T18:55:49.159Z',
-    updatedAt: '2023-03-22T19:51:58.355Z',
-  },
-  {
-    id: 'e04aadfe-4f51-43cf-ab6a-e92f38bb18f0',
-    name: 'Flan de Ou',
-    ingredients: [
-      {
-        id: '4817fdbd-c83c-4af2-838b-2d65c6839e1e',
-        name: 'Huevo',
-        unit: 'UN',
-        type: 'OTHER',
-        quantity: 1,
-      },
-      {
-        id: 'db0b49f9-6a5b-4b03-87ea-3c6d677e820a',
-        name: 'Leche',
-        unit: 'ML',
-        type: 'OTHER',
-        quantity: 1,
-      },
-      {
-        id: 'd1ff4567-5e29-4f40-8546-5c9b878eb8f0',
-        name: 'Azucar',
-        unit: 'G',
-        type: 'SPICE',
-        quantity: 1,
-      },
-      {
-        id: 'de491f15-7054-4be2-bb35-b272415b4494',
-        name: 'Canela',
-        unit: 'UN',
-        type: 'SPICE',
-        quantity: 1,
-      },
-    ],
-    types: ['DESSERT'],
-    size: null,
-    servings: 1,
-    time: { hours: 0, minutes: 0 },
-    description: '',
-    instructions: '',
-    createdAt: '2023-03-09T19:05:18.611Z',
-    updatedAt: '2023-03-22T19:52:14.346Z',
-  },
-  {
-    id: 'db8abc58-da04-409e-9be0-61803829528f',
-    name: 'Linguini al zuccini',
-    ingredients: [
-      {
-        id: '0319eb3f-f7cc-4ba8-9c09-d56abbc82b1d',
-        name: 'Spaghetti',
-        unit: 'G',
-        type: 'OTHER',
-        quantity: 1,
-      },
-      {
-        id: '28b02556-06d1-4eb9-8878-7256d34e98f8',
-        name: 'Cebolla',
-        unit: 'UN',
-        type: 'VEGETABLE',
-        quantity: 1,
-      },
-      {
-        id: '2aeada57-6130-4220-9aba-c876c9fe51b4',
-        name: 'Calabacin',
-        unit: 'UN',
-        type: 'VEGETABLE',
-        quantity: 1,
-      },
-      {
-        id: '123066a5-18af-4fd0-a502-f126fac141a3',
-        name: 'Limon',
-        unit: 'UN',
-        type: 'FRUIT',
-        quantity: 1,
-      },
-      {
-        id: 'fa32d2f9-ae37-4649-88d6-a6ec99744b93',
-        name: 'Queso',
-        unit: 'UN',
-        type: 'OTHER',
-        quantity: 1,
-      },
-    ],
-    types: ['LUNCH'],
-    size: null,
-    servings: 1,
-    time: { hours: 0, minutes: 0 },
-    description: '',
-    instructions: '',
-    createdAt: '2023-03-11T16:20:13.987Z',
-    updatedAt: '2023-03-22T19:53:57.100Z',
-  },
-  {
-    id: 'b9657f1e-ced6-4d75-af7e-a17acbffb4fc',
-    name: 'Llenties',
-    ingredients: [
-      {
-        id: '53cabf58-5bfc-478c-8a43-8ef26cef4a89',
-        name: 'Ajo',
-        unit: 'UN',
-        type: 'VEGETABLE',
-        quantity: 1,
-      },
-      {
-        id: 'cb1790e2-3c88-4f7e-8f9e-f778eb0f6fee',
-        name: 'Almendras',
-        unit: 'UN',
-        type: 'OTHER',
-        quantity: 1,
-      },
-      {
-        id: '87fc1d01-045e-4989-b068-8fa904e87836',
-        name: 'Perejil',
-        unit: 'UN',
-        type: 'OTHER',
-        quantity: 1,
-      },
-      {
-        id: 'b1a8db12-5aaf-4d37-b116-60b786c57123',
-        name: 'Tomate triturado',
-        unit: 'UN',
-        type: 'OTHER',
-        quantity: 1,
-      },
-      {
-        id: '28b02556-06d1-4eb9-8878-7256d34e98f8',
-        name: 'Cebolla',
-        unit: 'UN',
-        type: 'VEGETABLE',
-        quantity: 1,
-      },
-    ],
-    types: ['LUNCH'],
-    size: null,
-    servings: 1,
-    time: { hours: 0, minutes: 0 },
-    description: '',
-    instructions: '',
-    createdAt: '2023-03-11T16:17:26.750Z',
-    updatedAt: '2023-03-22T19:54:00.707Z',
-  },
-  {
-    id: '60cf8b25-b080-4ab0-856b-29811d5ffcf2',
-    name: 'Llibrets',
-    ingredients: [
-      {
-        id: '395b695a-ab27-443c-af17-37741013f51e',
-        name: 'Llom de porc',
-        unit: 'UN',
-        type: 'MEAT',
-        quantity: 4,
-      },
-      {
-        id: '4817fdbd-c83c-4af2-838b-2d65c6839e1e',
-        name: 'Huevo',
-        unit: 'UN',
-        type: 'OTHER',
-        quantity: 1,
-      },
-      {
-        id: '294dfba8-a221-41d4-98ff-30d3b35872fc',
-        name: 'Queso en lonchas',
-        unit: 'UN',
-        type: 'OTHER',
-        quantity: 2,
-      },
-      {
-        id: 'dc01c64f-95f2-4a71-b98a-0e4aa6d11e15',
-        name: 'Pan rallado',
-        unit: 'UN',
-        type: 'OTHER',
-        quantity: 1,
-      },
-    ],
-    types: ['LUNCH'],
-    size: null,
-    servings: 2,
-    time: { hours: 0, minutes: 0 },
-    description: '',
-    instructions: '',
-    createdAt: '2023-03-11T16:24:04.040Z',
-    updatedAt: '2023-03-22T19:56:02.114Z',
-  },
-  {
-    id: '7d790634-ecfc-4bfa-9643-258297dab4bd',
-    name: 'Patacones con pollo',
-    ingredients: [
-      {
-        id: '03f0f048-0b30-4f7b-bc57-4923c118452e',
-        name: 'Platano verde',
-        unit: 'UN',
-        type: 'FRUIT',
-        quantity: 1,
-      },
-      {
-        id: '4f661943-1f81-4bc7-83ae-14875e630efb',
-        name: 'Pechuga',
-        unit: 'UN',
-        type: 'MEAT',
-        quantity: 1,
-      },
-      {
-        id: '359f3676-b3b3-4f2d-8667-79cbd233ac35',
-        name: 'Pimiento rojo',
-        unit: 'UN',
-        type: 'VEGETABLE',
-        quantity: 1,
-      },
-      {
-        id: 'c3d0b5b8-1977-4a4a-89ef-88e667eea2b0',
-        name: 'Pimiento verde',
-        unit: 'UN',
-        type: 'VEGETABLE',
-        quantity: 1,
-      },
-      {
-        id: '28b02556-06d1-4eb9-8878-7256d34e98f8',
-        name: 'Cebolla',
-        unit: 'UN',
-        type: 'VEGETABLE',
-        quantity: 1,
-      },
-    ],
-    types: ['DINNER'],
-    size: null,
-    servings: 1,
-    time: { hours: 0, minutes: 0 },
-    description: '',
-    instructions: '',
-    createdAt: '2023-03-09T19:03:10.705Z',
-    updatedAt: '2023-03-22T19:54:08.883Z',
-  },
-  {
-    id: '4fd2f617-4671-4b2d-b3e2-67328c4a775d',
-    name: 'Pizza',
-    ingredients: [
-      {
-        id: '0ee90e79-80a3-4cec-b359-26ceb17a0b8d',
-        name: 'Pizza',
-        unit: 'UN',
-        type: 'OTHER',
-        quantity: 1,
-      },
-    ],
-    types: ['DINNER'],
-    size: null,
-    servings: 2,
-    time: { hours: 0, minutes: 0 },
-    description: '',
-    instructions: '',
-    createdAt: '2023-03-11T16:25:10.611Z',
-    updatedAt: '2023-03-22T19:54:12.344Z',
-  },
-  {
-    id: '5d7cfe81-a0e9-44c2-956e-bc12b6d0b0e1',
-    name: 'Pollo al horno',
-    ingredients: [
-      {
-        id: '28b02556-06d1-4eb9-8878-7256d34e98f8',
-        name: 'Cebolla',
-        unit: 'u',
-        type: 'VEGETABLE',
-        quantity: 1,
-      },
-      {
-        id: '359f3676-b3b3-4f2d-8667-79cbd233ac35',
-        name: 'Pimiento rojo',
-        unit: 'u',
-        type: 'VEGETABLE',
-        quantity: 1,
-      },
-      {
-        id: 'c3d0b5b8-1977-4a4a-89ef-88e667eea2b0',
-        name: 'Pimiento verde',
-        unit: 'u',
-        type: 'VEGETABLE',
-        quantity: 1,
-      },
-      {
-        id: '53cabf58-5bfc-478c-8a43-8ef26cef4a89',
-        name: 'Ajo',
-        unit: 'u',
-        type: 'VEGETABLE',
-        quantity: 1,
-      },
-      {
-        id: '1bd4cabc-16c1-46ea-a2b6-a90dbfded769',
-        name: 'Pollo entero',
-        unit: 'u',
-        type: 'MEAT',
-        quantity: 1,
-      },
-    ],
-    types: ['LUNCH'],
-    size: null,
-    servings: 4,
-    time: { hours: 0, minutes: 0 },
-    description: '',
-    instructions: '',
-    createdAt: '2023-03-09T18:49:46.090Z',
-    updatedAt: '2023-03-25T14:37:48.471Z',
-  },
-  {
-    id: '38b9aabe-29f6-410f-81c6-daf72a97d764',
-    name: 'Pure carabasso',
-    ingredients: [
-      {
-        id: '5e6c9801-6a5c-4b85-a006-b066b6e4e95c',
-        name: 'Patata',
-        unit: 'UN',
-        type: 'VEGETABLE',
-        quantity: 1,
-      },
-      {
-        id: '2aeada57-6130-4220-9aba-c876c9fe51b4',
-        name: 'Calabacin',
-        unit: 'UN',
-        type: 'VEGETABLE',
-        quantity: 1,
-      },
-    ],
-    types: ['DINNER'],
-    size: null,
-    servings: 1,
-    time: { hours: 0, minutes: 0 },
-    description: '',
-    instructions: '',
-    createdAt: '2023-03-11T16:19:09.197Z',
-    updatedAt: '2023-03-22T19:54:19.411Z',
-  },
-  {
-    id: 'cc0622e2-4799-41fb-a443-d84ba22bc009',
-    name: 'Sanguich ous',
-    ingredients: [
-      {
-        id: '4817fdbd-c83c-4af2-838b-2d65c6839e1e',
-        name: 'Huevo',
-        unit: 'UN',
-        type: 'OTHER',
-        quantity: 2,
-      },
-      {
-        id: '4c60e212-65cf-486f-8211-891830c0de55',
-        name: 'Pan de molde',
-        unit: 'UN',
-        type: 'OTHER',
-        quantity: 1,
-      },
-      {
-        id: '1cf8093d-e198-4097-8170-6c741cbc2260',
-        name: 'Ketchup',
-        unit: 'UN',
-        type: 'OTHER',
-        quantity: 1,
-      },
-      {
-        id: '0b3eb70f-4e0d-406f-ae15-2ece57d577e4',
-        name: 'Mayonesa',
-        unit: 'KG',
-        type: 'OTHER',
-        quantity: 1,
-      },
-    ],
-    types: ['DINNER'],
-    size: null,
-    servings: 1,
-    time: { hours: 0, minutes: 0 },
-    description: '',
-    instructions: '',
-    createdAt: '2023-03-09T19:00:13.666Z',
-    updatedAt: '2023-03-22T19:54:22.641Z',
-  },
-  {
-    id: '2d92a69e-c908-4f9d-b612-33e832b9c1d8',
-    name: 'Tabla embutits',
-    ingredients: [
-      {
-        id: '89437b10-4dee-4cb7-92b8-2d112483ff5a',
-        name: 'Jamon salado',
-        unit: 'G',
-        type: 'MEAT',
-        quantity: 1,
-      },
-      {
-        id: 'fa32d2f9-ae37-4649-88d6-a6ec99744b93',
-        name: 'Queso',
-        unit: 'UN',
-        type: 'OTHER',
-        quantity: 1,
-      },
-    ],
-    types: ['DINNER'],
-    size: null,
-    servings: 1,
-    time: { hours: 0, minutes: 0 },
-    description: '',
-    instructions: '',
-    createdAt: '2023-03-09T18:56:41.584Z',
-    updatedAt: '2023-03-22T19:54:26.005Z',
-  },
-  {
-    id: '96b5f41f-9cf6-4116-96d1-84dc98c7b957',
-    name: 'Vichi',
-    ingredients: [
-      {
-        id: '28b02556-06d1-4eb9-8878-7256d34e98f8',
-        name: 'Cebolla',
-        unit: 'UN',
-        type: 'VEGETABLE',
-        quantity: 1,
-      },
-      {
-        id: '013565f9-1f26-4619-9ad9-e0068e5beb57',
-        name: 'Porros',
-        unit: 'UN',
-        type: 'VEGETABLE',
-        quantity: 3,
-      },
-      {
-        id: '5e6c9801-6a5c-4b85-a006-b066b6e4e95c',
-        name: 'Patata',
-        unit: 'UN',
-        type: 'VEGETABLE',
-        quantity: 3,
-      },
-    ],
-    types: ['DINNER'],
-    size: null,
-    servings: 1,
-    time: { hours: 0, minutes: 0 },
-    description: '',
-    instructions: '',
-    createdAt: '2023-03-11T16:18:38.592Z',
-    updatedAt: '2023-03-22T19:55:36.340Z',
-  },
-];
+export const DISHES_MOCK = [{
+  id: '5f453f9b-aef9-44a9-8f22-57b1c188a4da',
+  name: 'Amanida salmon',
+  sideDishes: [],
+  sideDishTo: [],
+  ingredients: [{
+    id: '28b02556-06d1-4eb9-8878-7256d34e98f8', name: 'Cebolla', unit: 'u', type: 'VEGETABLE', quantity: 1,
+  }, {
+    id: '958a3faf-74a5-46cf-9712-6b11780c9f87', name: 'Lechuga', unit: 'u', type: 'VEGETABLE', quantity: 1,
+  }, {
+    id: '40d98746-7ade-4417-8ac7-6092618b7ab4', name: 'Palmito', unit: 'u', type: 'OTHER', quantity: 4,
+  }, {
+    id: 'b90030b4-1691-4bdb-82de-923325704025', name: 'Salmon', unit: 'u', type: 'FISH', quantity: 1,
+  }, {
+    id: 'ca1446b0-0e5e-4c61-a1bf-6307aac3d7cb', name: 'Zanahoria', unit: 'u', type: 'VEGETABLE', quantity: 4,
+  }],
+  types: ['DINNER'],
+  size: null,
+  servings: 3,
+  time: { hours: 0, minutes: 20 },
+  description: '',
+  instructions: '',
+}, {
+  id: '71862292-2b39-47a7-95b8-824804069e78',
+  name: 'Arroz a la cubana',
+  sideDishes: [],
+  sideDishTo: [],
+  ingredients: [{
+    id: '53cabf58-5bfc-478c-8a43-8ef26cef4a89', name: 'Ajo', unit: 'u', type: 'VEGETABLE', quantity: 1,
+  }, {
+    id: 'b2bcb11e-87e6-4f91-8ca2-8515cd026a29', name: 'Arroz', unit: 'g', type: 'OTHER', quantity: 250,
+  }, {
+    id: '28b02556-06d1-4eb9-8878-7256d34e98f8', name: 'Cebolla', unit: 'u', type: 'VEGETABLE', quantity: 1,
+  }],
+  types: ['LUNCH'],
+  size: null,
+  servings: 4,
+  time: { hours: 0, minutes: 40 },
+  description: '',
+  instructions: '',
+}, {
+  id: '66d1c5dd-1cec-44fe-a235-5155217ddaab',
+  name: 'Arròs Xines',
+  sideDishes: [],
+  sideDishTo: [],
+  ingredients: [{
+    id: '6b84d3ae-e068-4baa-8f78-5e638de49b1c', name: 'Alls tendres', unit: 'u', type: 'VEGETABLE', quantity: 1,
+  }, {
+    id: 'b2bcb11e-87e6-4f91-8ca2-8515cd026a29', name: 'Arroz', unit: 'cup', type: 'OTHER', quantity: 1,
+  }, {
+    id: 'b3d93758-7745-4083-baf6-651d8ded386c', name: 'Brocolli', unit: 'u', type: 'VEGETABLE', quantity: 1,
+  }, {
+    id: '28b02556-06d1-4eb9-8878-7256d34e98f8', name: 'Cebolla', unit: 'u', type: 'VEGETABLE', quantity: 1,
+  }, {
+    id: '395b695a-ab27-443c-af17-37741013f51e', name: 'Llom de porc', unit: 'u', type: 'MEAT', quantity: 1,
+  }, {
+    id: '4f661943-1f81-4bc7-83ae-14875e630efb', name: 'Pechuga', unit: 'u', type: 'MEAT', quantity: 1,
+  }, {
+    id: '359f3676-b3b3-4f2d-8667-79cbd233ac35', name: 'Pimiento rojo', unit: 'u', type: 'VEGETABLE', quantity: 1,
+  }, {
+    id: 'c3d0b5b8-1977-4a4a-89ef-88e667eea2b0', name: 'Pimiento verde', unit: 'u', type: 'VEGETABLE', quantity: 1,
+  }, {
+    id: 'e5198b0d-105c-4ac3-bd53-3cefc3e4c7f9', name: 'Raices xinas', unit: 'u', type: 'VEGETABLE', quantity: 1,
+  }, {
+    id: 'ca1446b0-0e5e-4c61-a1bf-6307aac3d7cb', name: 'Zanahoria', unit: 'u', type: 'VEGETABLE', quantity: 2,
+  }],
+  types: ['LUNCH'],
+  size: null,
+  servings: 4,
+  time: { hours: 0, minutes: 0 },
+  description: '',
+  instructions: 'Cocinar',
+}, {
+  id: '75c3844e-ce39-4dc0-b1a7-0234062b89c0',
+  name: 'Bistec con patatas y verduras',
+  sideDishes: null,
+  sideDishTo: null,
+  ingredients: [{
+    id: '36059f2a-9aed-4b75-bd45-38c816246e66', name: 'Bistec', unit: 'u', type: 'MEAT', quantity: 1,
+  }, {
+    id: '28b02556-06d1-4eb9-8878-7256d34e98f8', name: 'Cebolla', unit: 'u', type: 'VEGETABLE', quantity: 1,
+  }, {
+    id: 'dff30495-702f-4a04-a560-5e00a162084e', name: 'Esparragos', unit: 'u', type: 'VEGETABLE', quantity: 1,
+  }, {
+    id: '359f3676-b3b3-4f2d-8667-79cbd233ac35', name: 'Pimiento rojo', unit: 'u', type: 'VEGETABLE', quantity: 1,
+  }],
+  types: ['LUNCH'],
+  size: null,
+  servings: 4,
+  time: { hours: 0, minutes: 0 },
+  description: '',
+  instructions: null,
+}, {
+  id: '241188c4-9ff3-4bf4-b05e-e28347ae6d57',
+  name: 'Bolognesa',
+  sideDishes: null,
+  sideDishTo: null,
+  ingredients: [{
+    id: '7597511b-c3bb-4c75-ab4e-7b94ebf89822', name: 'Salchicha', unit: 'u', type: 'MEAT', quantity: 2,
+  }, {
+    id: '0319eb3f-f7cc-4ba8-9c09-d56abbc82b1d', name: 'Spaghetti', unit: 'g', type: 'OTHER', quantity: 400,
+  }, {
+    id: '53cabf58-5bfc-478c-8a43-8ef26cef4a89', name: 'Ajo', unit: 'u', type: 'VEGETABLE', quantity: 1,
+  }, {
+    id: '28b02556-06d1-4eb9-8878-7256d34e98f8', name: 'Cebolla', unit: 'u', type: 'VEGETABLE', quantity: 1,
+  }],
+  types: ['LUNCH'],
+  size: null,
+  servings: 2,
+  time: { hours: 0, minutes: 0 },
+  description: '',
+  instructions: null,
+}, {
+  id: '34ffe9fb-acbe-4d86-ab74-354b1b34ccfa',
+  name: 'Bunyols bacala',
+  sideDishes: [],
+  sideDishTo: [],
+  ingredients: [{
+    id: 'd24d4bf7-00f4-49b4-8579-266f07dbcf5a', name: 'Agua', unit: 'ml', type: 'OTHER', quantity: 75,
+  }, {
+    id: '4b732225-9df3-424e-8a0d-90a979a2d4cd', name: 'Bacalao', unit: 'g', type: 'FISH', quantity: 75,
+  }, {
+    id: '28b02556-06d1-4eb9-8878-7256d34e98f8', name: 'Cebolla', unit: 'u', type: 'VEGETABLE', quantity: 1,
+  }, {
+    id: 'eca9d275-f7ee-4359-9a38-ba276b2ce8be', name: 'Harina', unit: 'g', type: 'OTHER', quantity: 75,
+  }, {
+    id: 'ed6d8f30-1321-424e-9a13-e515b35a487b', name: 'Huevo', unit: 'u', type: 'OTHER', quantity: 1,
+  }, {
+    id: '7d806449-6a9f-4c95-9f70-feca24689dbb', name: 'Levadura', unit: 'tbsp', type: 'OTHER', quantity: 1,
+  }, {
+    id: '27101419-a237-4040-9fe1-4853b882c68b', name: 'Perejil', unit: 'u', type: 'SPICE', quantity: 1,
+  }],
+  types: ['DINNER'],
+  size: null,
+  servings: 4,
+  time: { hours: 0, minutes: 0 },
+  description: '',
+  instructions: 'Mezclar la harina y levadura---Calentar el agua sin que hierva---Mezclaro con la harina/levadura que quede uniforme y dejar que enfrie---Agregar huevo y sal, mezclar hasta que este todo integrado y dejar reposar 10 mins---Agregar el bacalao, cebolla y perejil que amase todo y a freir',
+}, {
+  id: '23befa87-dedd-4d85-8585-480dde001f71',
+  name: 'Bunyols de carbassa',
+  sideDishes: [],
+  sideDishTo: [],
+  ingredients: [{
+    id: '53cabf58-5bfc-478c-8a43-8ef26cef4a89', name: 'Ajo', unit: 'u', type: 'VEGETABLE', quantity: 1,
+  }, {
+    id: 'f169e1f8-5dff-4075-acc7-fbf4e43a458c', name: 'Calabaza', unit: 'g', type: 'FRUIT', quantity: 200,
+  }, {
+    id: '28b02556-06d1-4eb9-8878-7256d34e98f8', name: 'Cebolla', unit: 'u', type: 'VEGETABLE', quantity: 1,
+  }, {
+    id: 'e49bfdf4-4fd1-4505-b9e7-7d5d0cf7fc89', name: 'Comino', unit: 'tbsp', type: 'OTHER', quantity: 1,
+  }, {
+    id: '42bcb590-24d6-44e7-b648-a4bddce0e119', name: 'Curry (polvo)', unit: 'tbsp', type: 'SPICE', quantity: 1,
+  }, {
+    id: 'eca9d275-f7ee-4359-9a38-ba276b2ce8be', name: 'Harina', unit: 'tbsp', type: 'OTHER', quantity: 4,
+  }, {
+    id: '66603236-2af7-41eb-bed1-f5ed4d83c576', name: 'Harina de pan', unit: 'g', type: 'OTHER', quantity: 1,
+  }, {
+    id: '27101419-a237-4040-9fe1-4853b882c68b', name: 'Perejil', unit: 'u', type: 'SPICE', quantity: 1,
+  }],
+  types: ['DINNER'],
+  size: null,
+  servings: 4,
+  time: { hours: 0, minutes: 0 },
+  description: '',
+  instructions: 'Pelar y picar la calabaza---Hervirla y escurrir---Picar la cebolla y el ajo---Poner en un bol la calabaza, harina, verdures y especias y salpimentar---Darle forma de bunuelos a los ingredientes, rebozarlos y a freir',
+}, {
+  id: '61922a9b-0bf8-41e2-86b5-e66303783eb4',
+  name: 'Calamares encebollados',
+  sideDishes: [],
+  sideDishTo: [],
+  ingredients: [{
+    id: '28b02556-06d1-4eb9-8878-7256d34e98f8', name: 'Cebolla', unit: 'u', type: 'VEGETABLE', quantity: 2,
+  }, {
+    id: 'b1a8db12-5aaf-4d37-b116-60b786c57123', name: 'Tomate triturado', unit: 'u', type: 'OTHER', quantity: 1,
+  }, {
+    id: 'a93ad2f9-86a2-40b8-a977-4166037c1ae3', name: 'Vi blanc', unit: 'ml', type: 'LIQUOR', quantity: 1,
+  }],
+  types: ['LUNCH'],
+  size: null,
+  servings: 1,
+  time: { hours: 0, minutes: 0 },
+  description: '',
+  instructions: '',
+}, {
+  id: '5b458dc5-9af9-42fc-97af-a75bd9ee9300',
+  name: 'Calamars Farcits',
+  sideDishes: [],
+  sideDishTo: [],
+  ingredients: [{
+    id: '6d9597a7-b806-424a-a325-4f29ae5b653b', name: 'Aceite', unit: 'tbsp', type: 'OTHER', quantity: 1,
+  }, {
+    id: '53cabf58-5bfc-478c-8a43-8ef26cef4a89', name: 'Ajo', unit: 'u', type: 'VEGETABLE', quantity: 1,
+  }, {
+    id: 'b50e1d13-3fb6-4fb1-a0ca-21cbc5d12cc8', name: 'Carn picada porc', unit: 'g', type: 'MEAT', quantity: 500,
+  }, {
+    id: '811804bd-6974-44a1-adcf-8b473f805ae1', name: 'Cebolla picada', unit: 'g', type: 'VEGETABLE', quantity: 150,
+  }, {
+    id: 'b1a8db12-5aaf-4d37-b116-60b786c57123', name: 'Tomate triturado', unit: 'u', type: 'OTHER', quantity: 1,
+  }],
+  types: ['LUNCH'],
+  size: null,
+  servings: 6,
+  time: { hours: 0, minutes: 0 },
+  description: '',
+  instructions: '',
+}, {
+  id: 'd0579d87-766e-4bf2-99d9-9941c2f46fa6',
+  name: 'Carbonara',
+  sideDishes: [],
+  sideDishTo: [],
+  ingredients: [{
+    id: '53cabf58-5bfc-478c-8a43-8ef26cef4a89', name: 'Ajo', unit: 'u', type: 'VEGETABLE', quantity: 2,
+  }, {
+    id: 'affb0414-db2e-4ac3-8af3-2c15ddcb171c', name: 'Bacon', unit: 'u', type: 'MEAT', quantity: 2,
+  }, {
+    id: '28b02556-06d1-4eb9-8878-7256d34e98f8', name: 'Cebolla', unit: 'u', type: 'VEGETABLE', quantity: 1,
+  }, {
+    id: 'ac006aff-aacc-4127-950f-a12a9d4c870f', name: 'Nata de cocinar', unit: 'ml', type: 'OTHER', quantity: 750,
+  }, {
+    id: '0319eb3f-f7cc-4ba8-9c09-d56abbc82b1d', name: 'Spaghetti', unit: 'g', type: 'OTHER', quantity: 400,
+  }],
+  types: ['LUNCH'],
+  size: null,
+  servings: 4,
+  time: { hours: 0, minutes: 0 },
+  description: '',
+  instructions: '',
+}, {
+  id: '1720e9da-1092-4589-b0ca-ceea97457611',
+  name: 'Cassoleta de cigrons amb curri',
+  sideDishes: [],
+  sideDishTo: [],
+  ingredients: [{
+    id: '813ea8f0-af3d-4281-9e8d-32be4dfa717f', name: 'Apio', unit: 'u', type: 'VEGETABLE', quantity: 5,
+  }, {
+    id: '13524082-756b-436b-8ca4-685186be5458', name: 'Caldo vegetal', unit: 'ml', type: 'OTHER', quantity: 250,
+  }, {
+    id: '28b02556-06d1-4eb9-8878-7256d34e98f8', name: 'Cebolla', unit: 'u', type: 'VEGETABLE', quantity: 1,
+  }, {
+    id: 'a4f6ced9-87ff-48ad-9248-e0f11a989cdf', name: 'Cigrons', unit: 'g', type: 'OTHER', quantity: 700,
+  }, {
+    id: '4d020c8f-ad3d-43ab-a44d-4e1871fd611b', name: 'Curry', unit: 'tbsp', type: 'OTHER', quantity: 1,
+  }, {
+    id: '27101419-a237-4040-9fe1-4853b882c68b', name: 'Perejil', unit: 'u', type: 'SPICE', quantity: 1,
+  }],
+  types: ['DINNER'],
+  size: null,
+  servings: 4,
+  time: { hours: 0, minutes: 0 },
+  description: '',
+  instructions: 'Picar la cebolla y cocinar---Agregar el apio cortado fino, las patatas en dados, el curry y saltear. Cocinar 5 mins---Agregar los cigrons, el caldo y se cocina 5-8 minutos mas---Agregar el perejil al servir',
+}, {
+  id: 'e207d7a9-6804-48fb-a3e2-31bb57238239',
+  name: 'Cigrons amb espinacs',
+  sideDishes: null,
+  sideDishTo: null,
+  ingredients: [{
+    id: 'a4f6ced9-87ff-48ad-9248-e0f11a989cdf', name: 'Cigrons', unit: 'g', type: 'OTHER', quantity: 1,
+  }, {
+    id: '69895827-d905-4819-a34f-ccec5050a47c', name: 'Espinacas', unit: 'g', type: 'VEGETABLE', quantity: 1,
+  }],
+  types: ['DINNER'],
+  size: null,
+  servings: 4,
+  time: { hours: 0, minutes: 0 },
+  description: '',
+  instructions: '',
+}, {
+  id: '6e9f5784-c18a-4912-abb9-4224dc23b400',
+  name: 'Dorada con arroz y patatas',
+  sideDishes: [],
+  sideDishTo: [],
+  ingredients: [{
+    id: '0c2e40bc-c5e7-4a00-8360-facda91f4299', name: 'Dorada', unit: 'u', type: 'FISH', quantity: 1,
+  }, {
+    id: '28b02556-06d1-4eb9-8878-7256d34e98f8', name: 'Cebolla', unit: 'u', type: 'VEGETABLE', quantity: 1,
+  }, {
+    id: 'b2bcb11e-87e6-4f91-8ca2-8515cd026a29', name: 'Arroz', unit: 'g', type: 'OTHER', quantity: 1,
+  }],
+  types: ['LUNCH'],
+  size: null,
+  servings: 2,
+  time: { hours: 0, minutes: 0 },
+  description: '',
+  instructions: '',
+}, {
+  id: '56df044c-f6c1-4c16-9087-593979ff59d6',
+  name: 'Estofado de ternera',
+  sideDishes: [],
+  sideDishTo: [],
+  ingredients: [{
+    id: '53cabf58-5bfc-478c-8a43-8ef26cef4a89', name: 'Ajo', unit: 'u', type: 'VEGETABLE', quantity: 3,
+  }, {
+    id: 'a30c5085-a85f-458e-9e54-6ab2709d4884', name: 'Carne (estofat)', unit: 'g', type: 'MEAT', quantity: 500,
+  }, {
+    id: '28b02556-06d1-4eb9-8878-7256d34e98f8', name: 'Cebolla', unit: 'u', type: 'VEGETABLE', quantity: 1,
+  }, {
+    id: '29a222fd-379f-431d-894f-1578881321e5', name: 'Chocolate negro', unit: 'u', type: 'OTHER', quantity: 1,
+  }, {
+    id: 'ca1446b0-0e5e-4c61-a1bf-6307aac3d7cb', name: 'Zanahoria', unit: 'u', type: 'VEGETABLE', quantity: 2,
+  }],
+  types: ['LUNCH'],
+  size: null,
+  servings: 1,
+  time: { hours: 0, minutes: 0 },
+  description: 'Desc',
+  instructions: 'cocinar 1---cocinar 2',
+}, {
+  id: 'db8abc58-da04-409e-9be0-61803829528f',
+  name: 'Linguini al zuccini',
+  sideDishes: [],
+  sideDishTo: [],
+  ingredients: [{
+    id: '28b02556-06d1-4eb9-8878-7256d34e98f8', name: 'Cebolla', unit: 'u', type: 'VEGETABLE', quantity: 1,
+  }, {
+    id: '2617dd1e-3ab5-49f5-9ab9-aa3898a62c0a', name: 'Menta', unit: 'g', type: 'SPICE', quantity: 100,
+  }, {
+    id: '8c336eca-b613-4639-8578-bae8a231b626', name: 'Parmesano', unit: 'g', type: 'OTHER', quantity: 100,
+  }, {
+    id: '0319eb3f-f7cc-4ba8-9c09-d56abbc82b1d', name: 'Spaghetti', unit: 'g', type: 'OTHER', quantity: 400,
+  }],
+  types: ['LUNCH'],
+  size: null,
+  servings: 4,
+  time: { hours: 0, minutes: 0 },
+  description: '',
+  instructions: 'Cortar zuccini en julianas, picar la menta, rallar el parmesano---Hervir la pasta, salpimentar el zuccini y sofreir en una sarten---Cuando este cocinado el zuccini anadir la menta picada, rayar cascara de lima y exprimr el juego en la misma sarten---Cuando la pasta este, anadir a la sarten y poner el parmesano',
+}, {
+  id: 'b9657f1e-ced6-4d75-af7e-a17acbffb4fc',
+  name: 'Llenties',
+  sideDishes: [],
+  sideDishTo: [],
+  ingredients: [{
+    id: '53cabf58-5bfc-478c-8a43-8ef26cef4a89', name: 'Ajo', unit: 'u', type: 'VEGETABLE', quantity: 1,
+  }, {
+    id: 'cb1790e2-3c88-4f7e-8f9e-f778eb0f6fee', name: 'Almendras', unit: 'u', type: 'OTHER', quantity: 1,
+  }, {
+    id: '28b02556-06d1-4eb9-8878-7256d34e98f8', name: 'Cebolla', unit: 'u', type: 'VEGETABLE', quantity: 1,
+  }, {
+    id: 'b1a8db12-5aaf-4d37-b116-60b786c57123', name: 'Tomate triturado', unit: 'u', type: 'OTHER', quantity: 1,
+  }],
+  types: ['LUNCH'],
+  size: null,
+  servings: 2,
+  time: { hours: 0, minutes: 0 },
+  description: '',
+  instructions: '',
+}, {
+  id: '60cf8b25-b080-4ab0-856b-29811d5ffcf2',
+  name: 'Llibrets',
+  sideDishes: null,
+  sideDishTo: null,
+  ingredients: [{
+    id: '395b695a-ab27-443c-af17-37741013f51e', name: 'Llom de porc', unit: 'g', type: 'MEAT', quantity: 1,
+  }, {
+    id: 'dc01c64f-95f2-4a71-b98a-0e4aa6d11e15', name: 'Pan rallado', unit: 'g', type: 'OTHER', quantity: 1,
+  }, {
+    id: '294dfba8-a221-41d4-98ff-30d3b35872fc', name: 'Queso en lonchas', unit: 'u', type: 'OTHER', quantity: 1,
+  }],
+  types: ['DINNER'],
+  size: null,
+  servings: 2,
+  time: { hours: 0, minutes: 0 },
+  description: '',
+  instructions: null,
+}, {
+  id: '3084094e-f129-4858-a75a-730f284da2cd',
+  name: 'Mongetes amb bacon i botifarra',
+  sideDishes: null,
+  sideDishTo: null,
+  ingredients: [{
+    id: 'affb0414-db2e-4ac3-8af3-2c15ddcb171c', name: 'Bacon', unit: 'u', type: 'MEAT', quantity: 1,
+  }, {
+    id: 'aa408ca8-fd2d-4203-9377-b758178579d0', name: 'Mongetes', unit: 'g', type: 'OTHER', quantity: 1,
+  }, {
+    id: '7597511b-c3bb-4c75-ab4e-7b94ebf89822', name: 'Salchicha', unit: 'u', type: 'MEAT', quantity: 2,
+  }],
+  types: ['DINNER'],
+  size: null,
+  servings: 2,
+  time: { hours: 0, minutes: 0 },
+  description: '',
+  instructions: null,
+}, {
+  id: 'fce5daae-0419-49f7-a47f-6cd35c2cc8ca',
+  name: 'Past amb salmo fumata',
+  sideDishes: [],
+  sideDishTo: [],
+  ingredients: [{
+    id: '0cc69303-7a54-4552-ad05-f2476b53ae18', name: 'Cebolla tierna', unit: 'u', type: 'VEGETABLE', quantity: 2,
+  }, {
+    id: '69895827-d905-4819-a34f-ccec5050a47c', name: 'Espinacas', unit: 'g', type: 'VEGETABLE', quantity: 80,
+  }, {
+    id: 'e45c50d3-f57c-44f8-8af8-61e5d1e893c6', name: 'Lassagna', unit: 'g', type: 'OTHER', quantity: 125,
+  }, {
+    id: '123066a5-18af-4fd0-a502-f126fac141a3', name: 'Limon', unit: 'u', type: 'FRUIT', quantity: 1,
+  }, {
+    id: '8c336eca-b613-4639-8578-bae8a231b626', name: 'Parmesano', unit: 'g', type: 'OTHER', quantity: 5,
+  }, {
+    id: '42c2f04f-e0c8-405f-b5d8-77b5af6c412b', name: 'Queso fresco', unit: 'tbsp', type: 'OTHER', quantity: 1,
+  }, {
+    id: 'efe81769-b8c8-4aea-b93f-b97d0cc179a4', name: 'Salmon fumat', unit: 'g', type: 'FISH', quantity: 60,
+  }],
+  types: ['LUNCH'],
+  size: null,
+  servings: 1,
+  time: { hours: 0, minutes: 10 },
+  description: '',
+  instructions: null,
+}, {
+  id: '7d790634-ecfc-4bfa-9643-258297dab4bd',
+  name: 'Patacones con pollo',
+  sideDishes: null,
+  sideDishTo: null,
+  ingredients: [{
+    id: '03f0f048-0b30-4f7b-bc57-4923c118452e', name: 'Platano verde', unit: 'u', type: 'FRUIT', quantity: 1,
+  }, {
+    id: '4f661943-1f81-4bc7-83ae-14875e630efb', name: 'Pechuga', unit: 'u', type: 'MEAT', quantity: 1,
+  }, {
+    id: '359f3676-b3b3-4f2d-8667-79cbd233ac35', name: 'Pimiento rojo', unit: 'u', type: 'VEGETABLE', quantity: 1,
+  }, {
+    id: '28b02556-06d1-4eb9-8878-7256d34e98f8', name: 'Cebolla', unit: 'u', type: 'VEGETABLE', quantity: 1,
+  }],
+  types: ['DINNER'],
+  size: null,
+  servings: 1,
+  time: { hours: 0, minutes: 0 },
+  description: '',
+  instructions: null,
+}, {
+  id: '8006ecfe-854e-4f07-ac90-055e788407f0',
+  name: 'Patates',
+  sideDishes: [],
+  sideDishTo: [],
+  ingredients: [{
+    id: '53cabf58-5bfc-478c-8a43-8ef26cef4a89', name: 'Ajo', unit: 'u', type: 'VEGETABLE', quantity: 1,
+  }, {
+    id: '28b02556-06d1-4eb9-8878-7256d34e98f8', name: 'Cebolla', unit: 'u', type: 'VEGETABLE', quantity: 1,
+  }],
+  types: ['SIDE'],
+  size: null,
+  servings: 2,
+  time: { hours: 0, minutes: 0 },
+  description: '',
+  instructions: null,
+}, {
+  id: '91052207-35eb-43e9-945e-9238c538b7c0', name: 'Patats Iron', sideDishes: [], sideDishTo: ['5d7cfe81-a0e9-44c2-956e-bc12b6d0b0e1'], ingredients: [], types: ['SIDE'], size: null, servings: 1, time: { hours: 0, minutes: 15 }, description: '', instructions: 'Cortar las patatas y remojar 1 o 2 horas (con o sin piel)---Calentar la sarten con mantequilla y aceite y poner las patatas---Saltear con pebre, ajo, callena y tomillo y cocinar por 10 mins',
+}, {
+  id: '4fd2f617-4671-4b2d-b3e2-67328c4a775d',
+  name: 'Pizza',
+  sideDishes: null,
+  sideDishTo: null,
+  ingredients: [{
+    id: '0ee90e79-80a3-4cec-b359-26ceb17a0b8d', name: 'Pizza', unit: 'u', type: 'OTHER', quantity: 1,
+  }],
+  types: ['DINNER'],
+  size: null,
+  servings: 2,
+  time: { hours: 0, minutes: 0 },
+  description: '',
+  instructions: '',
+}, {
+  id: 'ec488833-68e5-410b-ac2e-c351898e7095',
+  name: 'Pollastre rostit amb mel',
+  sideDishes: [],
+  sideDishTo: [],
+  ingredients: [{
+    id: '28b02556-06d1-4eb9-8878-7256d34e98f8', name: 'Cebolla', unit: 'u', type: 'VEGETABLE', quantity: 2,
+  }, {
+    id: '71de3a1e-10b9-4fb5-bc4d-b05871e947dd', name: 'Miel', unit: 'tbsp', type: 'OTHER', quantity: 2,
+  }, {
+    id: '0cae5bb2-9aad-4a9e-8a3c-a58fb3e4e390', name: 'Naranja', unit: 'u', type: 'FRUIT', quantity: 2,
+  }, {
+    id: 'b65d7579-aa8f-41ab-9eab-f0e9dff13633', name: 'Oregano', unit: 'g', type: 'SPICE', quantity: 20,
+  }, {
+    id: '400373a6-2818-413d-92da-2558e5640bc7', name: 'Pollo', unit: 'u', type: 'MEAT', quantity: 1,
+  }, {
+    id: '41443878-22e9-4b89-aa46-a16755a51bec', name: 'Tomate cherry', unit: 'g', type: 'VEGETABLE', quantity: 160,
+  }],
+  types: ['LUNCH'],
+  size: null,
+  servings: 4,
+  time: { hours: 0, minutes: 0 },
+  description: '',
+  instructions: 'Calentar horno 180°---Dorar el pollo en la sarten---Pelar cebola y naranjas',
+}, {
+  id: '5d7cfe81-a0e9-44c2-956e-bc12b6d0b0e1',
+  name: 'Pollo al horno',
+  sideDishes: null,
+  sideDishTo: null,
+  ingredients: [{
+    id: '28b02556-06d1-4eb9-8878-7256d34e98f8', name: 'Cebolla', unit: 'u', type: 'VEGETABLE', quantity: 1,
+  }, {
+    id: '359f3676-b3b3-4f2d-8667-79cbd233ac35', name: 'Pimiento rojo', unit: 'u', type: 'VEGETABLE', quantity: 1,
+  }, {
+    id: 'c3d0b5b8-1977-4a4a-89ef-88e667eea2b0', name: 'Pimiento verde', unit: 'u', type: 'VEGETABLE', quantity: 1,
+  }, {
+    id: '53cabf58-5bfc-478c-8a43-8ef26cef4a89', name: 'Ajo', unit: 'u', type: 'VEGETABLE', quantity: 1,
+  }, {
+    id: '1bd4cabc-16c1-46ea-a2b6-a90dbfded769', name: 'Pollo entero', unit: 'u', type: 'MEAT', quantity: 1,
+  }],
+  types: ['LUNCH'],
+  size: null,
+  servings: 4,
+  time: { hours: 0, minutes: 0 },
+  description: '',
+  instructions: null,
+}, {
+  id: '38b9aabe-29f6-410f-81c6-daf72a97d764', name: 'Pure carabasso', sideDishes: [], sideDishTo: [], ingredients: [], types: ['DINNER'], size: null, servings: 4, time: { hours: 0, minutes: 0 }, description: '', instructions: 'Pelar todo y picar---En una olla cubrir con agua, poner sal y a hervir hasta que este hecha la patata 🥔---Triturar',
+}, {
+  id: 'cc0622e2-4799-41fb-a443-d84ba22bc009',
+  name: 'Sanguich ous',
+  sideDishes: [],
+  sideDishTo: [],
+  ingredients: [{
+    id: '4c60e212-65cf-486f-8211-891830c0de55', name: 'Pan de molde', unit: 'u', type: 'OTHER', quantity: 1,
+  }, {
+    id: '0b3eb70f-4e0d-406f-ae15-2ece57d577e4', name: 'Mayonesa', unit: 'u', type: 'OTHER', quantity: 1,
+  }],
+  types: ['DINNER'],
+  size: null,
+  servings: 2,
+  time: { hours: 0, minutes: 0 },
+  description: '',
+  instructions: '',
+}, {
+  id: '84f0d913-e522-4b71-983b-234f2602c945',
+  name: 'Shakshuka verde',
+  sideDishes: [],
+  sideDishTo: [],
+  ingredients: [{
+    id: 'b3d93758-7745-4083-baf6-651d8ded386c', name: 'Brocolli', unit: 'g', type: 'VEGETABLE', quantity: 180,
+  }, {
+    id: '35b153e6-63a0-4d5b-ade4-75232a9f68b2', name: 'Cebolla morada', unit: 'u', type: 'VEGETABLE', quantity: 1,
+  }, {
+    id: 'ac5ea2e0-f4e4-4d33-ac36-4642825ea5a8', name: 'Cebollin', unit: 'g', type: 'VEGETABLE', quantity: 100,
+  }, {
+    id: 'c970aeb1-d248-4b76-8978-7fb97a706252', name: 'Col', unit: 'g', type: 'VEGETABLE', quantity: 100,
+  }, {
+    id: 'dff30495-702f-4a04-a560-5e00a162084e', name: 'Esparragos', unit: 'g', type: 'VEGETABLE', quantity: 180,
+  }, {
+    id: '2617dd1e-3ab5-49f5-9ab9-aa3898a62c0a', name: 'Menta', unit: 'g', type: 'SPICE', quantity: 100,
+  }, {
+    id: 'ac006aff-aacc-4127-950f-a12a9d4c870f', name: 'Nata de cocinar', unit: 'u', type: 'OTHER', quantity: 1,
+  }, {
+    id: '8c336eca-b613-4639-8578-bae8a231b626', name: 'Parmesano', unit: 'g', type: 'OTHER', quantity: 50,
+  }, {
+    id: '42c2f04f-e0c8-405f-b5d8-77b5af6c412b', name: 'Queso fresco', unit: 'tbsp', type: 'OTHER', quantity: 2,
+  }, {
+    id: 'c61860f9-4c06-454f-aa11-77631a30707b', name: 'Yogurt', unit: 'u', type: 'OTHER', quantity: 1,
+  }],
+  types: ['DINNER'],
+  size: null,
+  servings: 2,
+  time: { hours: 0, minutes: 0 },
+  description: '',
+  instructions: 'Picar todos los ingredientes y mezclar la nata con el queso fresco---Poner el boroccoli, esparragos, media cebolla y col en la sarten a fuego medio bajo y que se cocinen---Poner la menta, perejil y cebollin en la sarten, mezclar todo y dejar que se cocine un poco---Poner la mezcla de nata y queso fresco y esperar unos minutos que se cocine---Hacer hueco en la sarten para los huevos, subir el fuego y poner parmesano rallado por encima---Cuando este todo cocinado apagar, tapar unos minutos para que se termine de cocinar todo, antes de servir poner un poquito de yogurt',
+}, {
+  id: 'b3d0e50f-4da5-4d67-8396-a754a6a6b370',
+  name: "Truita d'alls tendres",
+  sideDishes: [],
+  sideDishTo: [],
+  ingredients: [{
+    id: '6b84d3ae-e068-4baa-8f78-5e638de49b1c', name: 'Alls tendres', unit: 'u', type: 'VEGETABLE', quantity: 1,
+  }],
+  types: ['DINNER'],
+  size: null,
+  servings: 2,
+  time: { hours: 0, minutes: 0 },
+  description: '',
+  instructions: '',
+}, {
+  id: '96b5f41f-9cf6-4116-96d1-84dc98c7b957',
+  name: 'Vichi',
+  sideDishes: [],
+  sideDishTo: [],
+  ingredients: [{
+    id: '28b02556-06d1-4eb9-8878-7256d34e98f8', name: 'Cebolla', unit: 'u', type: 'VEGETABLE', quantity: 1,
+  }, {
+    id: 'b38af9cd-a61c-46eb-bb69-e3888236c5a4', name: 'Mantequilla', unit: 'tbsp', type: 'OTHER', quantity: 1,
+  }, {
+    id: 'ac006aff-aacc-4127-950f-a12a9d4c870f', name: 'Nata de cocinar', unit: 'u', type: 'OTHER', quantity: 1,
+  }],
+  types: ['DINNER'],
+  size: null,
+  servings: 4,
+  time: { hours: 0, minutes: 30 },
+  description: '',
+  instructions: 'Pelar, picar y limpiar todo---Poner en una olla con aceite y mantequilla y dejar que se cocine---Llenar de agua y dejar hervir---Añadie sal y triturar cuando este todo hecho---Añadie la nata',
+}, {
+  id: 'f8dbdb24-7f22-459a-a52e-ef9832502aa2',
+  name: 'Xai amb patates i broquil',
+  sideDishes: null,
+  sideDishTo: null,
+  ingredients: [{
+    id: 'b3d93758-7745-4083-baf6-651d8ded386c', name: 'Brocolli', unit: 'u', type: 'VEGETABLE', quantity: 1,
+  }, {
+    id: '28b02556-06d1-4eb9-8878-7256d34e98f8', name: 'Cebolla', unit: 'u', type: 'VEGETABLE', quantity: 1,
+  }, {
+    id: '359f3676-b3b3-4f2d-8667-79cbd233ac35', name: 'Pimiento rojo', unit: 'u', type: 'VEGETABLE', quantity: 1,
+  }, {
+    id: 'bdd10433-2817-4887-bb9c-b5e92f94df5d', name: 'Xai', unit: 'u', type: 'MEAT', quantity: 4,
+  }],
+  types: ['LUNCH', 'DINNER'],
+  size: null,
+  servings: 2,
+  time: { hours: 0, minutes: 0 },
+  description: '',
+  instructions: '',
+}];
 
-export const INGREDIENTS_MOCK = [
-  {
-    id: '0ee90e79-80a3-4cec-b359-26ceb17a0b8d',
-    name: 'Pizza',
-    type: 'OTHER',
-    unit: 'u',
-    createdAt: '2023-03-11T16:24:51.185Z',
-    updatedAt: '2023-03-25T14:30:33.403Z',
-  },
-  {
-    id: 'dff30495-702f-4a04-a560-5e00a162084e',
-    name: 'Esparragos',
-    type: 'VEGETABLE',
-    unit: 'u',
-    createdAt: '2023-03-09T18:45:41.229Z',
-    updatedAt: '2023-03-25T14:28:22.473Z',
-  },
-  {
-    id: 'ca1446b0-0e5e-4c61-a1bf-6307aac3d7cb',
-    name: 'Zanahoria',
-    type: 'VEGETABLE',
-    unit: 'u',
-    createdAt: '2023-03-09T18:50:18.620Z',
-    updatedAt: '2023-03-25T14:31:10.776Z',
-  },
-  {
-    id: '7597511b-c3bb-4c75-ab4e-7b94ebf89822',
-    name: 'Salchicha',
-    type: 'MEAT',
-    unit: 'u',
-    createdAt: '2023-03-28T12:10:16.324Z',
-    updatedAt: '2023-03-28T12:10:16.324Z',
-  },
-  {
-    id: '0c2e40bc-c5e7-4a00-8360-facda91f4299',
-    name: 'dorada',
-    type: 'FISH',
-    unit: 'u',
-    createdAt: '2023-03-09T18:57:46.191Z',
-    updatedAt: '2023-03-25T14:28:19.127Z',
-  },
-  {
-    id: '36059f2a-9aed-4b75-bd45-38c816246e66',
-    name: 'Bistec',
-    type: 'MEAT',
-    unit: 'u',
-    createdAt: '2023-03-09T18:39:22.266Z',
-    updatedAt: '2023-03-25T14:27:34.686Z',
-  },
-  {
-    id: '428c9cc5-517d-4ad3-b27b-7d82a9e9766e',
-    name: 'Macarrones',
-    type: 'OTHER',
-    unit: 'g',
-    createdAt: '2023-03-09T18:40:29.599Z',
-    updatedAt: '2023-03-22T18:09:58.409Z',
-  },
-  {
-    id: 'db0b49f9-6a5b-4b03-87ea-3c6d677e820a',
-    name: 'Leche',
-    type: 'OTHER',
-    unit: 'ml',
-    createdAt: '2023-03-09T19:05:33.656Z',
-    updatedAt: '2023-03-25T14:28:53.178Z',
-  },
-  {
-    id: '0319eb3f-f7cc-4ba8-9c09-d56abbc82b1d',
-    name: 'Spaghetti',
-    type: 'OTHER',
-    unit: 'g',
-    createdAt: '2023-03-09T18:34:47.715Z',
-    updatedAt: '2023-03-22T18:13:06.772Z',
-  },
-  {
-    id: 'dc01c64f-95f2-4a71-b98a-0e4aa6d11e15',
-    name: 'Pan rallado',
-    type: 'OTHER',
-    unit: 'g',
-    createdAt: '2023-03-11T16:22:57.988Z',
-    updatedAt: '2023-03-22T18:10:50.896Z',
-  },
-  {
-    id: '77a7853f-9cdf-4440-a11f-c07e5c5be390',
-    name: 'Queso Parmesano',
-    type: 'OTHER',
-    unit: 'g',
-    createdAt: '2023-03-09T18:41:23.039Z',
-    updatedAt: '2023-03-22T18:12:45.796Z',
-  },
-  {
-    id: 'd1ff4567-5e29-4f40-8546-5c9b878eb8f0',
-    name: 'Azucar',
-    type: 'SPICE',
-    unit: 'g',
-    createdAt: '2023-03-09T19:06:01.764Z',
-    updatedAt: '2023-03-22T18:06:48.627Z',
-  },
-  {
-    id: '958a3faf-74a5-46cf-9712-6b11780c9f87',
-    name: 'Lechuga',
-    type: 'VEGETABLE',
-    unit: 'u',
-    createdAt: '2023-03-09T18:50:28.287Z',
-    updatedAt: '2023-03-22T21:45:56.126Z',
-  },
-  {
-    id: 'b723e39c-59c5-49ff-9abf-52ff3079aaa5',
-    name: 'Llenties',
-    type: 'OTHER',
-    unit: 'g',
-    createdAt: '2023-03-11T16:15:50.306Z',
-    updatedAt: '2023-03-22T18:09:36.327Z',
-  },
-  {
-    id: '61c84e84-0c77-407d-bdf6-74df995eaf91',
-    name: 'Pimienta',
-    type: 'SPICE',
-    unit: 'g',
-    createdAt: '2023-03-09T18:35:52.627Z',
-    updatedAt: '2023-03-22T18:11:32.470Z',
-  },
-  {
-    id: '123066a5-18af-4fd0-a502-f126fac141a3',
-    name: 'Limon',
-    type: 'FRUIT',
-    unit: 'u',
-    createdAt: '2023-03-11T16:20:35.420Z',
-    updatedAt: '2023-03-25T14:29:03.051Z',
-  },
-  {
-    id: 'cb1790e2-3c88-4f7e-8f9e-f778eb0f6fee',
-    name: 'Almendras',
-    type: 'OTHER',
-    unit: 'u',
-    createdAt: '2023-03-11T16:16:21.215Z',
-    updatedAt: '2023-03-25T14:27:12.428Z',
-  },
-  {
-    id: 'c3d0b5b8-1977-4a4a-89ef-88e667eea2b0',
-    name: 'Pimiento verde',
-    type: 'VEGETABLE',
-    unit: 'u',
-    createdAt: '2023-03-09T18:46:21.583Z',
-    updatedAt: '2023-03-25T14:30:30.396Z',
-  },
-  {
-    id: 'b3e60886-71c4-4ae2-b286-c520178d2980',
-    name: 'Ajo molido',
-    type: 'SPICE',
-    unit: 'g',
-    createdAt: '2023-03-09T18:38:37.483Z',
-    updatedAt: '2023-03-22T18:05:28.387Z',
-  },
-  {
-    id: 'b1a8db12-5aaf-4d37-b116-60b786c57123',
-    name: 'Tomate triturado',
-    type: 'OTHER',
-    unit: 'g',
-    createdAt: '2023-03-09T18:41:02.994Z',
-    updatedAt: '2023-03-22T18:13:18.720Z',
-  },
-  {
-    id: '20b1c231-642c-4775-9c16-12ee2dffedf4',
-    name: 'Croquetas',
-    type: 'OTHER',
-    unit: 'u',
-    createdAt: '2023-03-11T16:14:58.879Z',
-    updatedAt: '2023-03-25T14:28:13.893Z',
-  },
-  {
-    id: 'a4f6ced9-87ff-48ad-9248-e0f11a989cdf',
-    name: 'Cigrons',
-    type: 'OTHER',
-    unit: 'g',
-    createdAt: '2023-03-09T19:02:14.752Z',
-    updatedAt: '2023-03-22T18:08:13.098Z',
-  },
-  {
-    id: '29a222fd-379f-431d-894f-1578881321e5',
-    name: 'Chocolate negro',
-    type: 'OTHER',
-    unit: 'u',
-    createdAt: '2023-03-09T18:54:35.232Z',
-    updatedAt: '2023-03-25T14:28:04.518Z',
-  },
-  {
-    id: 'a30c5085-a85f-458e-9e54-6ab2709d4884',
-    name: 'Carne (estofat)',
-    type: 'MEAT',
-    unit: 'g',
-    createdAt: '2023-03-09T18:54:21.973Z',
-    updatedAt: '2023-03-22T18:07:34.133Z',
-  },
-  {
-    id: '1bd4cabc-16c1-46ea-a2b6-a90dbfded769',
-    name: 'Pollo entero',
-    type: 'MEAT',
-    unit: 'u',
-    createdAt: '2023-03-09T18:40:11.254Z',
-    updatedAt: '2023-03-25T14:30:43.196Z',
-  },
-  {
-    id: 'b90030b4-1691-4bdb-82de-923325704025',
-    name: 'Salmon',
-    type: 'FISH',
-    unit: 'u',
-    createdAt: '2023-03-09T18:50:42.858Z',
-    updatedAt: '2023-03-25T14:30:57.556Z',
-  },
-  {
-    id: '359f3676-b3b3-4f2d-8667-79cbd233ac35',
-    name: 'Pimiento rojo',
-    type: 'VEGETABLE',
-    unit: 'u',
-    createdAt: '2023-03-09T18:45:52.725Z',
-    updatedAt: '2023-03-25T14:30:27.752Z',
-  },
-  {
-    id: 'de491f15-7054-4be2-bb35-b272415b4494',
-    name: 'Canela',
-    type: 'SPICE',
-    unit: 'g',
-    createdAt: '2023-03-09T19:05:45.710Z',
-    updatedAt: '2023-03-22T18:07:25.687Z',
-  },
-  {
-    id: '811804bd-6974-44a1-adcf-8b473f805ae1',
-    name: 'Cebolla picada',
-    type: 'VEGETABLE',
-    unit: 'g',
-    createdAt: '2023-03-09T18:35:35.856Z',
-    updatedAt: '2023-03-22T18:08:01.173Z',
-  },
-  {
-    id: 'ac006aff-aacc-4127-950f-a12a9d4c870f',
-    name: 'Nata de cocinar',
-    type: 'OTHER',
-    unit: 'ml',
-    createdAt: '2023-03-09T18:34:29.864Z',
-    updatedAt: '2023-03-22T18:10:21.047Z',
-  },
-  {
-    id: 'b2bcb11e-87e6-4f91-8ca2-8515cd026a29',
-    name: 'Arroz',
-    type: 'OTHER',
-    unit: 'g',
-    createdAt: '2023-03-09T18:39:08.310Z',
-    updatedAt: '2023-03-22T18:05:51.767Z',
-  },
-  {
-    id: '4c60e212-65cf-486f-8211-891830c0de55',
-    name: 'Pan de molde',
-    type: 'OTHER',
-    unit: 'u',
-    createdAt: '2023-03-09T18:59:12.725Z',
-    updatedAt: '2023-03-25T14:30:01.556Z',
-  },
-  {
-    id: '294dfba8-a221-41d4-98ff-30d3b35872fc',
-    name: 'Queso en lonchas',
-    type: 'OTHER',
-    unit: 'u',
-    createdAt: '2023-03-11T16:23:13.202Z',
-    updatedAt: '2023-03-25T14:30:53.016Z',
-  },
-  {
-    id: '03f0f048-0b30-4f7b-bc57-4923c118452e',
-    name: 'Platano verde',
-    type: 'FRUIT',
-    unit: 'u',
-    createdAt: '2023-03-09T19:03:24.610Z',
-    updatedAt: '2023-03-25T14:30:38.174Z',
-  },
-  {
-    id: 'b65d7579-aa8f-41ab-9eab-f0e9dff13633',
-    name: 'Oregano',
-    type: 'SPICE',
-    unit: 'g',
-    createdAt: '2023-03-07T16:58:30.193Z',
-    updatedAt: '2023-03-22T18:10:42.482Z',
-  },
-  {
-    id: '1ec592c0-2ab3-4764-a24e-9932467f482e',
-    name: 'Pene',
-    type: 'OTHER',
-    unit: 'g',
-    createdAt: '2023-03-09T18:38:02.035Z',
-    updatedAt: '2023-03-22T18:11:23.281Z',
-  },
-  {
-    id: '6d005d24-1ffc-42f4-b557-6383fe8a7de4',
-    name: 'Carne picada',
-    type: 'MEAT',
-    unit: 'g',
-    createdAt: '2023-03-09T18:35:04.189Z',
-    updatedAt: '2023-03-22T18:07:40.533Z',
-  },
-  {
-    id: '69895827-d905-4819-a34f-ccec5050a47c',
-    name: 'Espinacas',
-    type: 'VEGETABLE',
-    unit: 'g',
-    createdAt: '2023-03-09T19:02:25.564Z',
-    updatedAt: '2023-03-22T18:08:41.970Z',
-  },
-  {
-    id: '4f661943-1f81-4bc7-83ae-14875e630efb',
-    name: 'Pechuga',
-    type: 'MEAT',
-    unit: 'u',
-    createdAt: '2023-03-09T18:39:56.805Z',
-    updatedAt: '2023-03-25T14:30:14.734Z',
-  },
-  {
-    id: '395b695a-ab27-443c-af17-37741013f51e',
-    name: 'Llom de porc',
-    type: 'MEAT',
-    unit: 'g',
-    createdAt: '2023-03-11T16:22:45.048Z',
-    updatedAt: '2023-03-22T18:09:45.373Z',
-  },
-  {
-    id: '0b3eb70f-4e0d-406f-ae15-2ece57d577e4',
-    name: 'Mayonesa',
-    type: 'OTHER',
-    unit: 'u',
-    createdAt: '2023-03-09T18:59:41.866Z',
-    updatedAt: '2023-03-25T14:29:22.337Z',
-  },
-  {
-    id: 'affb0414-db2e-4ac3-8af3-2c15ddcb171c',
-    name: 'Bacon',
-    type: 'MEAT',
-    unit: 'u',
-    createdAt: '2023-03-07T13:29:19.887Z',
-    updatedAt: '2023-03-25T14:27:28.955Z',
-  },
-  {
-    id: '28b02556-06d1-4eb9-8878-7256d34e98f8',
-    name: 'Cebolla',
-    type: 'VEGETABLE',
-    unit: 'u',
-    createdAt: '2023-03-09T18:46:37.342Z',
-    updatedAt: '2023-03-22T18:54:07.663Z',
-  },
-  {
-    id: '53cabf58-5bfc-478c-8a43-8ef26cef4a89',
-    name: 'Ajo',
-    type: 'VEGETABLE',
-    unit: 'u',
-    createdAt: '2023-03-09T18:38:26.613Z',
-    updatedAt: '2023-03-22T19:24:09.464Z',
-  },
-  {
-    id: '5e6c9801-6a5c-4b85-a006-b066b6e4e95c',
-    name: 'Patata',
-    type: 'VEGETABLE',
-    unit: 'u',
-    createdAt: '2023-03-09T18:44:23.201Z',
-    updatedAt: '2023-03-25T14:30:10.537Z',
-  },
-  {
-    id: '369763aa-cf58-4d7f-88da-b30ed9434d62',
-    name: 'Tomate frito',
-    type: 'OTHER',
-    unit: 'g',
-    createdAt: '2023-03-09T18:40:52.067Z',
-    updatedAt: '2023-03-22T18:13:13.734Z',
-  },
-  {
-    id: '1cf8093d-e198-4097-8170-6c741cbc2260',
-    name: 'Ketchup',
-    type: 'OTHER',
-    unit: 'u',
-    createdAt: '2023-03-09T18:59:34.114Z',
-    updatedAt: '2023-03-25T14:28:42.974Z',
-  },
-  {
-    id: '013565f9-1f26-4619-9ad9-e0068e5beb57',
-    name: 'Porros',
-    type: 'VEGETABLE',
-    unit: 'u',
-    createdAt: '2023-03-11T16:17:48.975Z',
-    updatedAt: '2023-03-25T14:30:46.665Z',
-  },
-  {
-    id: '6d2a200f-a066-483d-9465-840dcc01994a',
-    name: 'Salsa rosada',
-    type: 'SAUCE',
-    unit: 'u',
-    createdAt: '2023-03-09T18:59:24.648Z',
-    updatedAt: '2023-03-25T14:31:00.410Z',
-  },
-  {
-    id: '4817fdbd-c83c-4af2-838b-2d65c6839e1e',
-    name: 'Huevo',
-    type: 'OTHER',
-    unit: 'u',
-    createdAt: '2023-03-09T18:52:00.997Z',
-    updatedAt: '2023-03-25T14:28:32.801Z',
-  },
-  {
-    id: '87fc1d01-045e-4989-b068-8fa904e87836',
-    name: 'Perejil',
-    type: 'OTHER',
-    unit: 'g',
-    createdAt: '2023-03-09T18:57:34.224Z',
-    updatedAt: '2023-03-22T18:11:27.930Z',
-  },
-  {
-    id: '1c674c61-fa8b-4c5f-a364-eb41c3a1f1f1',
-    name: 'Lima',
-    type: 'FRUIT',
-    unit: 'u',
-    createdAt: '2023-03-11T16:20:23.548Z',
-    updatedAt: '2023-03-25T14:28:59.831Z',
-  },
-  {
-    id: '4871510a-7188-4011-994e-76f141f90962',
-    name: 'Mandarines',
-    type: 'FRUIT',
-    unit: 'u',
-    createdAt: '2023-03-09T23:48:20.497Z',
-    updatedAt: '2023-03-25T14:29:17.250Z',
-  },
-  {
-    id: 'fa32d2f9-ae37-4649-88d6-a6ec99744b93',
-    name: 'Queso',
-    type: 'OTHER',
-    unit: 'g',
-    createdAt: '2023-03-09T18:50:59.745Z',
-    updatedAt: '2023-03-22T18:12:30.914Z',
-  },
-  {
-    id: '89437b10-4dee-4cb7-92b8-2d112483ff5a',
-    name: 'Jamon salado',
-    type: 'MEAT',
-    unit: 'g',
-    createdAt: '2023-03-09T18:56:17.733Z',
-    updatedAt: '2023-03-22T18:08:57.404Z',
-  },
-  {
-    id: '2aeada57-6130-4220-9aba-c876c9fe51b4',
-    name: 'Calabacin',
-    type: 'VEGETABLE',
-    unit: 'u',
-    createdAt: '2023-03-11T16:19:23.003Z',
-    updatedAt: '2023-03-25T14:27:38.862Z',
-  },
-];
+export const INGREDIENTS_MOCK = [{
+  id: '6d9597a7-b806-424a-a325-4f29ae5b653b', name: 'Aceite', type: 'OTHER', unit: 'tbsp',
+}, {
+  id: 'd24d4bf7-00f4-49b4-8579-266f07dbcf5a', name: 'Agua', type: 'OTHER', unit: 'ml',
+}, {
+  id: '53cabf58-5bfc-478c-8a43-8ef26cef4a89', name: 'Ajo', type: 'VEGETABLE', unit: 'u',
+}, {
+  id: 'b3e60886-71c4-4ae2-b286-c520178d2980', name: 'Ajo molido', type: 'SPICE', unit: 'g',
+}, {
+  id: '6b84d3ae-e068-4baa-8f78-5e638de49b1c', name: 'Alls tendres', type: 'VEGETABLE', unit: 'u',
+}, {
+  id: 'cb1790e2-3c88-4f7e-8f9e-f778eb0f6fee', name: 'Almendras', type: 'OTHER', unit: 'u',
+}, {
+  id: '385d8510-54a5-4023-a33c-4cd8d206b17a', name: 'Anchoas', type: 'FISH', unit: 'u',
+}, {
+  id: '813ea8f0-af3d-4281-9e8d-32be4dfa717f', name: 'Apio', type: 'VEGETABLE', unit: 'u',
+}, {
+  id: 'b2bcb11e-87e6-4f91-8ca2-8515cd026a29', name: 'Arroz', type: 'OTHER', unit: 'g',
+}, {
+  id: 'd1ff4567-5e29-4f40-8546-5c9b878eb8f0', name: 'Azucar', type: 'SPICE', unit: 'g',
+}, {
+  id: '4b732225-9df3-424e-8a0d-90a979a2d4cd', name: 'Bacalao', type: 'FISH', unit: 'g',
+}, {
+  id: 'affb0414-db2e-4ac3-8af3-2c15ddcb171c', name: 'Bacon', type: 'MEAT', unit: 'u',
+}, {
+  id: '36059f2a-9aed-4b75-bd45-38c816246e66', name: 'Bistec', type: 'MEAT', unit: 'u',
+}, {
+  id: 'b3d93758-7745-4083-baf6-651d8ded386c', name: 'Brocolli', type: 'VEGETABLE', unit: 'u',
+}, {
+  id: 'f169e1f8-5dff-4075-acc7-fbf4e43a458c', name: 'Calabaza', type: 'FRUIT', unit: 'u',
+}, {
+  id: '13524082-756b-436b-8ca4-685186be5458', name: 'Caldo vegetal', type: 'OTHER', unit: 'l',
+}, {
+  id: 'de491f15-7054-4be2-bb35-b272415b4494', name: 'Canela', type: 'SPICE', unit: 'g',
+}, {
+  id: 'b50e1d13-3fb6-4fb1-a0ca-21cbc5d12cc8', name: 'Carn picada (porc)', type: 'MEAT', unit: 'g',
+}, {
+  id: 'a30c5085-a85f-458e-9e54-6ab2709d4884', name: 'Carne (estofat)', type: 'MEAT', unit: 'g',
+}, {
+  id: '6d005d24-1ffc-42f4-b557-6383fe8a7de4', name: 'Carne picada', type: 'MEAT', unit: 'g',
+}, {
+  id: '28b02556-06d1-4eb9-8878-7256d34e98f8', name: 'Cebolla', type: 'VEGETABLE', unit: 'u',
+}, {
+  id: '35b153e6-63a0-4d5b-ade4-75232a9f68b2', name: 'Cebolla morada', type: 'VEGETABLE', unit: 'u',
+}, {
+  id: '811804bd-6974-44a1-adcf-8b473f805ae1', name: 'Cebolla picada', type: 'VEGETABLE', unit: 'g',
+}, {
+  id: '0cc69303-7a54-4552-ad05-f2476b53ae18', name: 'Cebolla tierna', type: 'VEGETABLE', unit: 'u',
+}, {
+  id: 'ac5ea2e0-f4e4-4d33-ac36-4642825ea5a8', name: 'Cebollin', type: 'VEGETABLE', unit: 'g',
+}, {
+  id: '29a222fd-379f-431d-894f-1578881321e5', name: 'Chocolate negro', type: 'OTHER', unit: 'u',
+}, {
+  id: 'a4f6ced9-87ff-48ad-9248-e0f11a989cdf', name: 'Cigrons', type: 'OTHER', unit: 'g',
+}, {
+  id: 'c970aeb1-d248-4b76-8978-7fb97a706252', name: 'Col', type: 'VEGETABLE', unit: 'g',
+}, {
+  id: 'e49bfdf4-4fd1-4505-b9e7-7d5d0cf7fc89', name: 'Comino', type: 'OTHER', unit: 'tbsp',
+}, {
+  id: '20b1c231-642c-4775-9c16-12ee2dffedf4', name: 'Croquetas', type: 'OTHER', unit: 'u',
+}, {
+  id: '4d020c8f-ad3d-43ab-a44d-4e1871fd611b', name: 'Curry', type: 'OTHER', unit: 'tbsp',
+}, {
+  id: '42bcb590-24d6-44e7-b648-a4bddce0e119', name: 'Curry (polvo)', type: 'SPICE', unit: 'tbsp',
+}, {
+  id: '0c2e40bc-c5e7-4a00-8360-facda91f4299', name: 'Dorada', type: 'FISH', unit: 'u',
+}, {
+  id: 'dff30495-702f-4a04-a560-5e00a162084e', name: 'Esparragos', type: 'VEGETABLE', unit: 'u',
+}, {
+  id: '69895827-d905-4819-a34f-ccec5050a47c', name: 'Espinacas', type: 'VEGETABLE', unit: 'g',
+}, {
+  id: 'eca9d275-f7ee-4359-9a38-ba276b2ce8be', name: 'Harina', type: 'OTHER', unit: 'tbsp',
+}, {
+  id: '66603236-2af7-41eb-bed1-f5ed4d83c576', name: 'Harina de pan', type: 'OTHER', unit: 'g',
+}, {
+  id: '13a13080-86ac-4651-84a0-f4df8f60a6d8', name: 'Harissa', type: 'SAUCE', unit: 'u',
+}, {
+  id: 'ed6d8f30-1321-424e-9a13-e515b35a487b', name: 'Huevo', type: 'OTHER', unit: 'u',
+}, {
+  id: '5dedf1e2-5d7d-4297-8886-75ec1d0f33c2', name: 'Jamon salado', type: 'MEAT', unit: 'u',
+}, {
+  id: '69311386-4be6-4583-9b10-fa8d134c1154', name: 'Jugo de limon', type: 'OTHER', unit: 'tbsp',
+}, {
+  id: 'e45c50d3-f57c-44f8-8af8-61e5d1e893c6', name: 'Lassagna', type: 'OTHER', unit: 'g',
+}, {
+  id: '698b1cfc-915c-471d-ac92-391cdb180001', name: 'Laurel', type: 'SPICE', unit: 'tsp',
+}, {
+  id: 'db0b49f9-6a5b-4b03-87ea-3c6d677e820a', name: 'Leche', type: 'OTHER', unit: 'ml',
+}, {
+  id: '958a3faf-74a5-46cf-9712-6b11780c9f87', name: 'Lechuga', type: 'VEGETABLE', unit: 'u',
+}, {
+  id: '7d806449-6a9f-4c95-9f70-feca24689dbb', name: 'Levadura', type: 'OTHER', unit: 'tbsp',
+}, {
+  id: '123066a5-18af-4fd0-a502-f126fac141a3', name: 'Limon', type: 'FRUIT', unit: 'u',
+}, {
+  id: 'b723e39c-59c5-49ff-9abf-52ff3079aaa5', name: 'Llenties', type: 'OTHER', unit: 'g',
+}, {
+  id: '395b695a-ab27-443c-af17-37741013f51e', name: 'Llom de porc', type: 'MEAT', unit: 'g',
+}, {
+  id: '428c9cc5-517d-4ad3-b27b-7d82a9e9766e', name: 'Macarrones', type: 'OTHER', unit: 'g',
+}, {
+  id: 'b38af9cd-a61c-46eb-bb69-e3888236c5a4', name: 'Mantequilla', type: 'OTHER', unit: 'tbsp',
+}, {
+  id: '0b3eb70f-4e0d-406f-ae15-2ece57d577e4', name: 'Mayonesa', type: 'OTHER', unit: 'u',
+}, {
+  id: '2617dd1e-3ab5-49f5-9ab9-aa3898a62c0a', name: 'Menta', type: 'SPICE', unit: 'u',
+}, {
+  id: '71de3a1e-10b9-4fb5-bc4d-b05871e947dd', name: 'Miel', type: 'OTHER', unit: 'tbsp',
+}, {
+  id: 'aa408ca8-fd2d-4203-9377-b758178579d0', name: 'Mongetes', type: 'OTHER', unit: 'g',
+}, {
+  id: '0cae5bb2-9aad-4a9e-8a3c-a58fb3e4e390', name: 'Naranja', type: 'FRUIT', unit: 'u',
+}, {
+  id: 'ac006aff-aacc-4127-950f-a12a9d4c870f', name: 'Nata de cocinar', type: 'OTHER', unit: 'ml',
+}, {
+  id: 'b65d7579-aa8f-41ab-9eab-f0e9dff13633', name: 'Oregano', type: 'SPICE', unit: 'g',
+}, {
+  id: '40d98746-7ade-4417-8ac7-6092618b7ab4', name: 'Palmito', type: 'OTHER', unit: 'u',
+}, {
+  id: '4c60e212-65cf-486f-8211-891830c0de55', name: 'Pan de molde', type: 'OTHER', unit: 'u',
+}, {
+  id: 'dc01c64f-95f2-4a71-b98a-0e4aa6d11e15', name: 'Pan rallado', type: 'OTHER', unit: 'g',
+}, {
+  id: '8c336eca-b613-4639-8578-bae8a231b626', name: 'Parmesano', type: 'OTHER', unit: 'g',
+}, {
+  id: '4f661943-1f81-4bc7-83ae-14875e630efb', name: 'Pechuga', type: 'MEAT', unit: 'u',
+}, {
+  id: '1ec592c0-2ab3-4764-a24e-9932467f482e', name: 'Pene', type: 'OTHER', unit: 'g',
+}, {
+  id: '27101419-a237-4040-9fe1-4853b882c68b', name: 'Perejil', type: 'SPICE', unit: 'u',
+}, {
+  id: '86b0c4b4-75ed-431b-ac80-a59532e4fd5d', name: 'Pescado blanco', type: 'FISH', unit: 'g',
+}, {
+  id: '61c84e84-0c77-407d-bdf6-74df995eaf91', name: 'Pimienta', type: 'SPICE', unit: 'g',
+}, {
+  id: '359f3676-b3b3-4f2d-8667-79cbd233ac35', name: 'Pimiento rojo', type: 'VEGETABLE', unit: 'u',
+}, {
+  id: 'c3d0b5b8-1977-4a4a-89ef-88e667eea2b0', name: 'Pimiento verde', type: 'VEGETABLE', unit: 'u',
+}, {
+  id: '0ee90e79-80a3-4cec-b359-26ceb17a0b8d', name: 'Pizza', type: 'OTHER', unit: 'u',
+}, {
+  id: '03f0f048-0b30-4f7b-bc57-4923c118452e', name: 'Platano verde', type: 'FRUIT', unit: 'u',
+}, {
+  id: '400373a6-2818-413d-92da-2558e5640bc7', name: 'Pechuga', type: 'MEAT', unit: 'u',
+}, {
+  id: '1bd4cabc-16c1-46ea-a2b6-a90dbfded769', name: 'Pollo entero', type: 'MEAT', unit: 'u',
+}, {
+  id: '294dfba8-a221-41d4-98ff-30d3b35872fc', name: 'Queso en lonchas', type: 'OTHER', unit: 'u',
+}, {
+  id: '42c2f04f-e0c8-405f-b5d8-77b5af6c412b', name: 'Queso fresco', type: 'OTHER', unit: 'tbsp',
+}, {
+  id: '77a7853f-9cdf-4440-a11f-c07e5c5be390', name: 'Queso Parmesano', type: 'OTHER', unit: 'g',
+}, {
+  id: 'e5198b0d-105c-4ac3-bd53-3cefc3e4c7f9', name: 'Raices chinas', type: 'VEGETABLE', unit: 'g',
+}, {
+  id: 'cb5ba0b1-78a5-4b29-965f-37f1d1e8df48', name: 'Romero', type: 'SPICE', unit: 'u',
+}, {
+  id: '7597511b-c3bb-4c75-ab4e-7b94ebf89822', name: 'Salchicha', type: 'MEAT', unit: 'u',
+}, {
+  id: 'b90030b4-1691-4bdb-82de-923325704025', name: 'Salmon', type: 'FISH', unit: 'u',
+}, {
+  id: 'efe81769-b8c8-4aea-b93f-b97d0cc179a4', name: 'Salmon fumat', type: 'FISH', unit: 'g',
+}, {
+  id: '0319eb3f-f7cc-4ba8-9c09-d56abbc82b1d', name: 'Spaghetti', type: 'OTHER', unit: 'g',
+}, {
+  id: '41443878-22e9-4b89-aa46-a16755a51bec', name: 'Tomate cherry', type: 'VEGETABLE', unit: 'u',
+}, {
+  id: 'b1a8db12-5aaf-4d37-b116-60b786c57123', name: 'Tomate triturado', type: 'OTHER', unit: 'u',
+}, {
+  id: 'a93ad2f9-86a2-40b8-a977-4166037c1ae3', name: 'Vi blanc', type: 'LIQUOR', unit: 'ml',
+}, {
+  id: 'a7babb39-9039-4343-8e8f-d1a1b352a29f', name: 'Vi negre', type: 'LIQUOR', unit: 'ml',
+}, {
+  id: 'bdd10433-2817-4887-bb9c-b5e92f94df5d', name: 'Xai', type: 'MEAT', unit: 'u',
+}, {
+  id: 'c61860f9-4c06-454f-aa11-77631a30707b', name: 'Yogurt', type: 'OTHER', unit: 'u',
+}, {
+  id: 'ca1446b0-0e5e-4c61-a1bf-6307aac3d7cb', name: 'Zanahoria', type: 'VEGETABLE', unit: 'u',
+}];
 
 export const MENUS_MOCK = [];
