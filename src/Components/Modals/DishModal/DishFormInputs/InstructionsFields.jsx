@@ -14,6 +14,7 @@ const initInstructions = (ins) => {
 function InstructionsFields({
   instructions,
   updateInstructions,
+  handleSubmit,
 }) {
   const [currentInstructions, setCurrentInstructions] = useState(initInstructions(instructions));
 
@@ -51,33 +52,42 @@ function InstructionsFields({
   };
 
   return (
-    <div className="instructions-container">
-      {currentInstructions.map((instruction, i) => (
-        <InstructionField
-          key={`${i}-instruction`}
-          id={`${i}-instruction`}
-          index={i}
-          instruction={instruction}
-          handleInstructionChange={handleInstructionChange}
-          handleDeleteInstruction={handleDeleteInstruction}
-          moveInstruction={moveInstruction}
-          isLast={currentInstructions.length - 1 === i}
+    <>
+      <div className="instructions-container">
+        {currentInstructions.map((instruction, i) => (
+          <InstructionField
+            key={`${i}-instruction`}
+            id={`${i}-instruction`}
+            index={i}
+            instruction={instruction}
+            handleInstructionChange={handleInstructionChange}
+            handleDeleteInstruction={handleDeleteInstruction}
+            moveInstruction={moveInstruction}
+            isLast={currentInstructions.length - 1 === i}
+          />
+        ))}
 
-        />
-      ))}
-      <Button
-        modifier="add-button"
-        type="button"
-        onClick={addInstruction}
-      >
-        <i className="fa fa-plus" aria-hidden="true" />
-      </Button>
-    </div>
+      </div>
+      <div className="instruction-buttons">
+        <Button
+          modifier="add-button"
+          type="button"
+          onClick={addInstruction}
+        >
+          <i className="fa fa-plus" aria-hidden="true" />
+        </Button>
+        <Button modifier="submit" onClick={handleSubmit}>
+          <i className="fa fa-floppy-o" aria-hidden="true" />
+        </Button>
+      </div>
+    </>
+
   );
 }
 
 InstructionsFields.propTypes = {
   updateInstructions: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
   instructions: PropTypes.string,
 
 };

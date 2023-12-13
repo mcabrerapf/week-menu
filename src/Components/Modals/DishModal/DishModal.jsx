@@ -4,22 +4,21 @@ import { serviceHandler } from '../../../Services';
 import { MainContext } from '../../../Contexts/MainContext';
 import { ToastContext } from '../../../Contexts/ToastContext';
 import DisplayView from './DisplayView';
+import EditView from './EditView';
 import './DishModal.css';
 import {
   CREATE_STRING, UPDATE_STRING,
 } from '../../../constants';
-import Button from '../../Button';
-import EditView from './EditView';
 import { deepCompare } from '../../helpers';
 
 function DishModal({
-  modalData, closeModal,
+  modalData, closeModal, mode,
 }) {
   const {
     updateLists,
   } = useContext(MainContext);
   const { addToast } = useContext(ToastContext);
-  const [modalView, setModalView] = useState('display');
+  const [modalView, setModalView] = useState(mode);
   const [dishData, setDishData] = useState({});
 
   useEffect(() => {
@@ -60,27 +59,8 @@ function DishModal({
   return (
     <div className="dish-modal">
       {modalView === 'display'
-        ? <DisplayView dishData={dishData} closeModal={closeModal} />
-        : <EditView dishData={dishData} setDishData={setDishData} /> }
-      <div className="display-mode-footer">
-        {modalView === 'display'
-          ? (
-            <>
-              <Button modifier="edit" onClick={() => setModalView('edit')}>
-                <i className="fa fa-pencil" aria-hidden="true" />
-              </Button>
-              <Button modifier="delete">
-                <i className="fa fa-trash" aria-hidden="true" />
-              </Button>
-            </>
-
-          ) : (
-            <Button modifier="save" onClick={handleSubmit}>
-              <i className="fa fa-floppy-o" aria-hidden="true" />
-            </Button>
-          )}
-
-      </div>
+        ? <DisplayView dishData={dishData} closeModal={closeModal} setModalView={setModalView} />
+        : <EditView dishData={dishData} setDishData={setDishData} handleSubmit={handleSubmit} /> }
     </div>
 
   );
@@ -88,11 +68,13 @@ function DishModal({
 
 DishModal.propTypes = {
   closeModal: PropTypes.func.isRequired,
+  mode: PropTypes.string,
   modalData: PropTypes.shape(),
 };
 
 DishModal.defaultProps = {
   modalData: {},
+  mode: 'display',
 };
 
 export default DishModal;

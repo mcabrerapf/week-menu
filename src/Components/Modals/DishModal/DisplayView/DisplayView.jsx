@@ -2,10 +2,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './DisplayView.css';
-import { capitalizeFirstLetter } from '../../helpers';
+import { capitalizeFirstLetter } from '../../../helpers';
+import Button from '../../../Button';
 
 function DisplayView({
   dishData,
+  setModalView,
 }) {
   const {
     types, servings, time, description, instructions, ingredients,
@@ -14,10 +16,10 @@ function DisplayView({
   const displayTime = !!time && !!(time.hours || time.minutes);
 
   return (
-    <div className="display-mode">
-      <div className="display-mode-props">
+    <div className="display-view">
+      <div className="display-view-props">
         {types && types.length && (
-        <div className="display-mode-props-prop block-prop">
+        <div className="display-view-props-prop block-prop">
           <span>
             <strong>Type: </strong>
             {types.map((tType) => capitalizeFirstLetter(tType)).join('')}
@@ -26,7 +28,7 @@ function DisplayView({
         </div>
         )}
         {servings && (
-        <div className="display-mode-props-prop block-prop">
+        <div className="display-view-props-prop block-prop">
           <span>
             <strong>Serves: </strong>
             {servings}
@@ -36,7 +38,7 @@ function DisplayView({
         )}
 
         {displayTime && (
-        <div className="display-mode-props-prop block-prop">
+        <div className="display-view-props-prop block-prop">
           <span>
             <strong>Time: </strong>
             {time.hours}
@@ -48,9 +50,9 @@ function DisplayView({
         )}
 
         {ingredients && (
-        <ul className="display-mode-props-ingredients">
+        <ul className="display-view-props-ingredients">
           <li
-            className="display-mode-props-ingredients-label"
+            className="display-view-props-ingredients-label"
           >
             Ingredients:
           </li>
@@ -65,13 +67,13 @@ function DisplayView({
         </ul>
         )}
         {description && (
-        <div className="display-mode-props-prop">
+        <div className="display-view-props-prop">
           <h4>Description: </h4>
           <p>{description}</p>
         </div>
         )}
         {instructions && (
-        <div className="display-mode-props-prop">
+        <div className="display-view-props-prop">
           <h4>Instructions: </h4>
             {instructions.split('---').map((ins, i) => (
               <p key={i}>
@@ -85,12 +87,21 @@ function DisplayView({
         </div>
         )}
       </div>
+      <div className="display-view-footer">
+        <Button modifier="edit" onClick={() => setModalView('edit')}>
+          <i className="fa fa-pencil" aria-hidden="true" />
+        </Button>
+        {/* <Button modifier="delete">
+          <i className="fa fa-trash" aria-hidden="true" />
+        </Button> */}
+      </div>
     </div>
   );
 }
 
 DisplayView.propTypes = {
   dishData: PropTypes.shape(),
+  setModalView: PropTypes.func.isRequired,
 
 };
 

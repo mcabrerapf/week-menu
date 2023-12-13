@@ -4,33 +4,13 @@ import PropTypes from 'prop-types';
 import './DishFormInputs.css';
 import { MainContext } from '../../../../Contexts/MainContext';
 import IngredientsField from './IngredientsField';
-import Input from '../../../Input';
-import { sortBy } from '../../../helpers';
-import { INGREDIENT_TYPES } from '../../../constants';
 import Button from '../../../Button';
 import NewIngredientForm from './NewIngredientForm';
+import AddIngredientsView from './AddIngredientsView';
 
-const getIngredientsByType = (availableIngredients, selectedType) => {
-  const filteredIngredientOptions = availableIngredients
-    .filter(({ type }) => type === selectedType);
-
-  return sortBy(filteredIngredientOptions, 'name', 'alphabetical');
-};
-
-function IngredientsFields({ ingredients, updateIngredients }) {
+function IngredientsFields({ ingredients, updateIngredients, handleSubmit }) {
   const { ingredients: contextIngredients } = useContext(MainContext);
-  const [ingredientsView, setIngredientsView] = useState(true);
-
-  const handleAddIngredient = ({ target: { value: eValue } }) => {
-    if (!eValue) return;
-    if (ingredients.find(({ id: ingId }) => ingId === eValue)) return;
-    const { unit, name, type } = contextIngredients
-      .find(({ id: ingId }) => ingId === eValue) || {};
-    const updatedIngredients = [...ingredients, {
-      id: eValue, name, unit, type, quantity: 1,
-    }];
-    updateIngredients(updatedIngredients);
-  };
+  const [ingredientsView, setIngredientsView] = useState(0);
 
   const handleRemoveIngredient = (ingredientId) => {
     const updatedIngredients = ingredients
@@ -55,65 +35,48 @@ function IngredientsFields({ ingredients, updateIngredients }) {
   };
 
   const toggleNewIngredientView = (newIngredient) => {
-    setIngredientsView(!ingredientsView);
-
     if (newIngredient.id) {
       const updatedIngredients = [...ingredients, {
         ...newIngredient, quantity: 1,
       }];
       updateIngredients(updatedIngredients);
     }
+    setIngredientsView(0);
   };
-
-  const selectedIngredientids = ingredients.map(({ id: iId }) => iId);
-  const availableIngredients = contextIngredients
-    .filter(({ id: iId }) => !selectedIngredientids
-      .includes(iId));
 
   return (
     <>
-      <div className="ingredients-types-container">
-        {ingredientsView && (
-        <Button
-          modifier="add-ingredient"
-          buttonText="New Ingredient"
-          onClick={toggleNewIngredientView}
-        />
-        )}
-        {ingredientsView && (
-        <Input
-          value=""
-          name="ingredients"
-          id="ingredients"
-          onChange={handleAddIngredient}
-          placeholder="ALL"
-          selectOptions={sortBy(availableIngredients, 'name', 'alphabetical')}
-          type="select"
-        />
-        )}
-        {ingredientsView && INGREDIENT_TYPES
-          .map(({ value, name: uName }) => (
-            <Input
-              key={value}
-              value=""
-              name="ingredients"
-              id="ingredients"
-              onChange={handleAddIngredient}
-              placeholder={uName}
-              selectOptions={getIngredientsByType(availableIngredients, value)}
-              type="select"
-            />
-          ))}
 
-      </div>
-      {ingredientsView && (
+      {ingredientsView === 0 && (
+        <Button
+          modifier="add-ingredients"
+          buttonText="Add Ingredients"
+          onClick={() => setIngredientsView(1)}
+        />
+      )}
+      {ingredientsView === 1 && (
+        <AddIngredientsView
+          ingredients={contextIngredients}
+          selectedIngredients={ingredients}
+          setIngredientsView={setIngredientsView}
+          updateIngredients={updateIngredients}
+        />
+      )}
+
+      {ingredientsView === 0 && (
       <IngredientsField
         ingredients={ingredients}
         handleIngredientChange={handleIngredientChange}
         handleRemoveIngredient={handleRemoveIngredient}
       />
       )}
-      {!ingredientsView && <NewIngredientForm toggleNewIngredientView={toggleNewIngredientView} />}
+      {ingredientsView === 2
+      && <NewIngredientForm toggleNewIngredientView={toggleNewIngredientView} />}
+      {ingredientsView === 0 && (
+      <Button modifier="submit" onClick={handleSubmit}>
+        <i className="fa fa-floppy-o" aria-hidden="true" />
+      </Button>
+      )}
 
     </>
   );
@@ -121,8 +84,8 @@ function IngredientsFields({ ingredients, updateIngredients }) {
 
 IngredientsFields.propTypes = {
   updateIngredients: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
   ingredients: PropTypes.arrayOf(PropTypes.shape()),
-
 };
 
 IngredientsFields.defaultProps = {

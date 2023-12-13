@@ -15,7 +15,7 @@ const getMainDishes = (dishes, currentId, currentMainDishes = []) => {
   return sortBy(sideDishes, 'name', 'alphabetical');
 };
 
-function GeneralFields({ currentData, updateGeneralFields }) {
+function GeneralFields({ currentData, updateGeneralFields, handleSubmit }) {
   const { dishes } = useContext(MainContext);
 
   const {
@@ -65,120 +65,128 @@ function GeneralFields({ currentData, updateGeneralFields }) {
 
   return (
     <>
-      <div className="group-input type-input">
-        <Input
-          autoComplete="off"
-          type="text"
-          id="name"
-          name="name"
-          value={name}
-          onChange={handleOnChange}
-          onBlur={handleOnChange}
-          placeholder="Name"
-        />
-        <div className="group-input-inputs">
-          {DISH_TYPES
-            .map(({ id: typeId, shortLabel }) => (
-              <Button
-                key={typeId}
-                modifier={types.includes(typeId) ? '' : 'not-selected'}
-                buttonText={shortLabel}
-                value={typeId}
-                onClick={toggleType}
-              />
-            ))}
-
-        </div>
-      </div>
-      <div className="form-input-group">
-        <div className="group-input">
-          <span className="group-input-label"><i className="fa fa-users" aria-hidden="true" /></span>
-          <QuantityInput
-            value={servings}
-            min={1}
-            max={99}
-            valueKey="servings"
-            handleDecrease={handleDecrease}
-            handleIncrease={handleIncrease}
+      <div>
+        <div className="group-input type-input">
+          <Input
+            autoComplete="off"
+            type="text"
+            id="name"
+            name="name"
+            value={name}
+            onChange={handleOnChange}
+            onBlur={handleOnChange}
+            placeholder="Name"
           />
-        </div>
-
-        <div className="group-input">
-          <span className="group-input-label"><i className="fa fa-clock-o" aria-hidden="true" /></span>
           <div className="group-input-inputs">
-            <Input
-              type="number"
-              id="hours"
-              name="hours"
-              value={hours}
-              resetValueOnClick
-              min={0}
-              max={99}
-              onFocus={handleTimeChange}
-              onBlur={handleTimeChange}
-              onChange={handleTimeChange}
-            />
-            :
-            <Input
-              type="number"
-              id="minutes"
-              name="minutes"
-              value={minutes}
-              resetValueOnClick
-              min={0}
-              max={59}
-              onFocus={handleTimeChange}
-              onBlur={handleTimeChange}
-              onChange={handleTimeChange}
-            />
+            {DISH_TYPES
+              .map(({ id: typeId, shortLabel }) => (
+                <Button
+                  key={typeId}
+                  modifier={types.includes(typeId) ? '' : 'not-selected'}
+                  buttonText={shortLabel}
+                  value={typeId}
+                  onClick={toggleType}
+                />
+              ))}
+
           </div>
         </div>
-      </div>
-      {showSideDishes && (
-      <div className="side-dishes-container">
-        <Input
-          value=""
-          name="side-dishes"
-          id="side-dishes"
-          onChange={handleAddMainDish}
-          placeholder="Add main dish"
-          selectOptions={sortedMainDishes}
-          label="Side dish to"
-          type="select"
-        />
-        {!!sideDishTo.length && (
-        <div className="ingredients-options-container">
-          {sideDishTo.map((sideDishId) => {
-            const { name: sideDishName } = dishes
-              .find(({ id: sideId }) => sideDishId === sideId) || {};
-            return (
-              <div className="form-side-dish" key={sideDishId}>
-                <Button
-                  modifier="form-side-dish-remove"
-                  aria-label={`remove-${sideDishId}`}
-                  type="button"
-                  value={sideDishId}
-                  buttonText={capitalizeFirstLetter(sideDishName)}
-                >
-                  <i
-                    className="fa fa-times"
-                    aria-hidden="true"
-                    onClick={() => handleRemoveMainDish(sideDishId)}
-                  />
-                </Button>
-              </div>
-            );
-          })}
+        <div className="form-input-group">
+          <div className="group-input">
+            <span className="group-input-label"><i className="fa fa-users" aria-hidden="true" /></span>
+            <QuantityInput
+              value={servings}
+              min={1}
+              max={99}
+              valueKey="servings"
+              handleDecrease={handleDecrease}
+              handleIncrease={handleIncrease}
+            />
+          </div>
+
+          <div className="group-input">
+            <span className="group-input-label"><i className="fa fa-clock-o" aria-hidden="true" /></span>
+            <div className="group-input-inputs">
+              <Input
+                type="number"
+                id="hours"
+                name="hours"
+                value={hours}
+                resetValueOnClick
+                min={0}
+                max={99}
+                onFocus={handleTimeChange}
+                onBlur={handleTimeChange}
+                onChange={handleTimeChange}
+              />
+              :
+              <Input
+                type="number"
+                id="minutes"
+                name="minutes"
+                value={minutes}
+                resetValueOnClick
+                min={0}
+                max={59}
+                onFocus={handleTimeChange}
+                onBlur={handleTimeChange}
+                onChange={handleTimeChange}
+              />
+            </div>
+          </div>
+        </div>
+        {showSideDishes && (
+        <div className="side-dishes-container">
+          <Input
+            value=""
+            name="side-dishes"
+            id="side-dishes"
+            onChange={handleAddMainDish}
+            placeholder="Add main dish"
+            selectOptions={sortedMainDishes}
+            label="Side dish to"
+            type="select"
+          />
+          {!!sideDishTo.length && (
+          <div className="ingredients-options-container">
+            {sideDishTo.map((sideDishId) => {
+              const { name: sideDishName } = dishes
+                .find(({ id: sideId }) => sideDishId === sideId) || {};
+              return (
+                <div className="form-side-dish" key={sideDishId}>
+                  <Button
+                    modifier="form-side-dish-remove"
+                    aria-label={`remove-${sideDishId}`}
+                    type="button"
+                    value={sideDishId}
+                    buttonText={capitalizeFirstLetter(sideDishName)}
+                  >
+                    <i
+                      className="fa fa-times"
+                      aria-hidden="true"
+                      onClick={() => handleRemoveMainDish(sideDishId)}
+                    />
+                  </Button>
+                </div>
+              );
+            })}
+          </div>
+          )}
         </div>
         )}
       </div>
-      )}
+      <Button modifier="submit" onClick={handleSubmit}>
+        <i className="fa fa-floppy-o" aria-hidden="true" />
+      </Button>
+
     </>
+
   );
 }
 
 GeneralFields.propTypes = {
   updateGeneralFields: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
   currentData: PropTypes.shape(),
 
 };
