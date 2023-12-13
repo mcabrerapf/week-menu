@@ -15,6 +15,7 @@ function InstructionsFields({
   instructions,
   updateInstructions,
   handleSubmit,
+  canSave,
 }) {
   const [currentInstructions, setCurrentInstructions] = useState(initInstructions(instructions));
 
@@ -76,7 +77,7 @@ function InstructionsFields({
         >
           <i className="fa fa-plus" aria-hidden="true" />
         </Button>
-        <Button modifier="submit" onClick={handleSubmit}>
+        <Button modifier="submit" onClick={handleSubmit} disabled={!canSave}>
           <i className="fa fa-floppy-o" aria-hidden="true" />
         </Button>
       </div>
@@ -87,6 +88,7 @@ function InstructionsFields({
 
 InstructionsFields.propTypes = {
   updateInstructions: PropTypes.func.isRequired,
+  canSave: PropTypes.bool.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   instructions: PropTypes.string,
 

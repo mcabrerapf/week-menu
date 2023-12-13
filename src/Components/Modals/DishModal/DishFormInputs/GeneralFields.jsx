@@ -15,7 +15,9 @@ const getMainDishes = (dishes, currentId, currentMainDishes = []) => {
   return sortBy(sideDishes, 'name', 'alphabetical');
 };
 
-function GeneralFields({ currentData, updateGeneralFields, handleSubmit }) {
+function GeneralFields({
+  currentData, updateGeneralFields, handleSubmit, canSave,
+}) {
   const { dishes } = useContext(MainContext);
 
   const {
@@ -175,7 +177,7 @@ function GeneralFields({ currentData, updateGeneralFields, handleSubmit }) {
         </div>
         )}
       </div>
-      <Button modifier="submit" onClick={handleSubmit}>
+      <Button modifier="submit" onClick={handleSubmit} disabled={!canSave}>
         <i className="fa fa-floppy-o" aria-hidden="true" />
       </Button>
 
@@ -187,8 +189,8 @@ function GeneralFields({ currentData, updateGeneralFields, handleSubmit }) {
 GeneralFields.propTypes = {
   updateGeneralFields: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
+  canSave: PropTypes.bool.isRequired,
   currentData: PropTypes.shape(),
-
 };
 
 GeneralFields.defaultProps = {

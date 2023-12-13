@@ -8,7 +8,9 @@ import Button from '../../../Button';
 import NewIngredientForm from './NewIngredientForm';
 import AddIngredientsView from './AddIngredientsView';
 
-function IngredientsFields({ ingredients, updateIngredients, handleSubmit }) {
+function IngredientsFields({
+  ingredients, updateIngredients, handleSubmit, canSave,
+}) {
   const { ingredients: contextIngredients } = useContext(MainContext);
   const [ingredientsView, setIngredientsView] = useState(0);
 
@@ -73,7 +75,7 @@ function IngredientsFields({ ingredients, updateIngredients, handleSubmit }) {
       {ingredientsView === 2
       && <NewIngredientForm toggleNewIngredientView={toggleNewIngredientView} />}
       {ingredientsView === 0 && (
-      <Button modifier="submit" onClick={handleSubmit}>
+      <Button modifier="submit" onClick={handleSubmit} disabled={!canSave}>
         <i className="fa fa-floppy-o" aria-hidden="true" />
       </Button>
       )}
@@ -84,6 +86,7 @@ function IngredientsFields({ ingredients, updateIngredients, handleSubmit }) {
 
 IngredientsFields.propTypes = {
   updateIngredients: PropTypes.func.isRequired,
+  canSave: PropTypes.bool.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   ingredients: PropTypes.arrayOf(PropTypes.shape()),
 };
