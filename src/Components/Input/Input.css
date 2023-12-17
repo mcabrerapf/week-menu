@@ -1,9 +1,7 @@
 .input {
 	width: 100%;
-	/* margin-bottom: 10px; */
 	display: flex;
 	flex-direction: column;
-	/* box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2); */
 }
 
 input {
@@ -31,9 +29,6 @@ textarea {
 }
 
 .input-label {
-	margin-left: 5px;
-	margin-right: 5px;
-	font-size: 0.9rem;
 	font-weight: 500;
 }
 

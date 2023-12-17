@@ -1,5 +1,5 @@
 .menu-modal-content {
-	max-height: 70vh;
+	max-height: 30rem;
 	padding: 10px;
 }
 
@@ -7,18 +7,5 @@
 	margin: 10px 0 10px 0px;
 	display: flex;
 	gap: 5px;
-}
-
-.menu-modal-inputs button {
-	width: 30px;
-	margin: 2px 5px 0px 10px;
-}
-
-.menu-modal-inputs .not-favourite {
-	background-color: gray;
-}
-
-.menu-modal-buttons {
-	display: flex;
-	gap: 5px;
+	align-items: center;
 }

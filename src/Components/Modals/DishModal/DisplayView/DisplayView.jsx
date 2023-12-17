@@ -88,7 +88,7 @@ function DisplayView({
         )}
       </div>
       <div className="display-view-footer">
-        <Button modifier="edit" onClick={() => setModalView('edit')}>
+        <Button modifier="icon-only" onClick={() => setModalView('edit')}>
           <i className="fa fa-pencil" aria-hidden="true" />
         </Button>
         {/* <Button modifier="delete">

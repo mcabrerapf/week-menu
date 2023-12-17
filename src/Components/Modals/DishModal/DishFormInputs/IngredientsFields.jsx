@@ -75,7 +75,7 @@ function IngredientsFields({
       {ingredientsView === 2
       && <NewIngredientForm toggleNewIngredientView={toggleNewIngredientView} />}
       {ingredientsView === 0 && (
-      <Button modifier="submit" onClick={handleSubmit} disabled={!canSave}>
+      <Button modifier="icon-only" onClick={handleSubmit} disabled={!canSave}>
         <i className="fa fa-floppy-o" aria-hidden="true" />
       </Button>
       )}

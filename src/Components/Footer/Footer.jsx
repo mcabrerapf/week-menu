@@ -32,7 +32,7 @@ function Footer() {
     addToast(`Copied ${listName} list to clipboard`, 'info');
   };
 
-  const checkIfSelected = (check) => (view === check ? 'selected' : '');
+  const checkIfSelected = (check) => (view === check ? 'icon-only selected' : 'icon-only');
 
   return (
     <footer className="footer">
@@ -42,35 +42,40 @@ function Footer() {
           value={MENU_BUILDER_STRING}
           modifier={checkIfSelected(MENU_BUILDER_STRING)}
           onClick={() => handleOnClick(MENU_BUILDER_STRING)}
-          buttonText="🛒"
-        />
+        >
+          <i className="fa fa-calendar" aria-hidden="true" />
+        </Button>
         <Button
           {...useLongPress({
             onLongPress: () => handleCopyList(MENU_STRING),
           })}
           value={MENU_STRING}
           modifier={checkIfSelected(MENU_STRING)}
-          buttonText="🗓️"
           onClick={() => handleOnClick(MENU_STRING)}
-        />
+        >
+          <i className="fa fa-cutlery" aria-hidden="true" />
+        </Button>
         <Button
           {...useLongPress({
             onLongPress: () => handleCopyList(DISH_STRING),
           })}
           value={DISH_STRING}
           modifier={checkIfSelected(DISH_STRING)}
-          buttonText="🍲"
           onClick={() => handleOnClick(DISH_STRING)}
-        />
+        >
+          <i className="fa fa-book" aria-hidden="true" />
+        </Button>
         <Button
           {...useLongPress({
             onLongPress: () => handleCopyList(INGREDIENT_STRING),
           })}
           value={INGREDIENT_STRING}
           modifier={checkIfSelected(INGREDIENT_STRING)}
-          buttonText="🍎"
+          // buttonText="🍎"
           onClick={() => handleOnClick(INGREDIENT_STRING)}
-        />
+        >
+          <i className="fa fa-apple" aria-hidden="true" />
+        </Button>
       </div>
       {/* <Button
           modifier="signout-button"

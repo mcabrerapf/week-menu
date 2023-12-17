@@ -1,3 +1,25 @@
+.form-header {
+	display: flex;
+	height: 2rem;
+}
+
+.form-header .button {
+	background-color: var(--blue-green-color);
+	border-radius: 0px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+.form-header .button:first-of-type {
+	border-bottom-right-radius: 5px;
+	border-bottom-left-radius: 0px;
+}
+
+.form-header .button:last-of-type {
+	border-bottom-right-radius: 0px;
+	border-bottom-left-radius: 5px;
+}
+
 .form-inputs.dish {
 	height: 28rem;
 	display: flex;
@@ -21,11 +43,6 @@
 .type-input {
 	display: flex;
 	gap: 10px;
-}
-
-.group-input .button {
-	height: 30px;
-	width: 30px;
 }
 
 .group-input .group-input-inputs {
@@ -141,28 +158,18 @@
 
 .form-ingredients-ingredient-quantity {
 	width: 3rem !important;
-	margin: 0px !important;
 }
 
 .form-ingredients-ingredient-quantity input {
-	width: 100%;
-	text-align: center !important;
-	border: 0 !important;
 	background-color: transparent !important;
-	padding: 5px !important;
 	box-shadow: none;
 }
 
 .form-ingredients-ingredient-unit {
-	width: 3rem;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+	width: 4rem;
 	background-color: transparent;
 	border: none;
-	text-align: center;
 	cursor: pointer;
-	font-weight: 500;
 	box-shadow: none;
 }
 
@@ -170,13 +177,4 @@
 	background-color: transparent !important;
 	border: none !important;
 	width: 2rem;
-}
-
-.form-inputs button.submit {
-	font-size: 1.5rem;
-}
-
-.new-ingredient-submit-button {
-	margin-top: 10px;
-	font-size: 1.5rem;
 }

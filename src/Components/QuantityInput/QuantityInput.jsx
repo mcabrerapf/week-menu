@@ -12,14 +12,14 @@ function QuantityInput({
       {labelText && <span className="quantity-input-container-label">{labelText}</span>}
       <div className="quantity-input-buttons-container">
         <Button
-          modifier="quantity-input-container-button-less"
+          modifier="square"
           buttonText="-"
           disabled={value === min}
           onClick={() => handleDecrease(valueKey)}
         />
         <div className="quantity-input-container-quantity">{value}</div>
         <Button
-          modifier="quantity-input-container-button-more"
+          modifier="square"
           buttonText="+"
           disabled={value === max}
           onClick={() => handleIncrease(valueKey)}

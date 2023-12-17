@@ -185,7 +185,9 @@ function BuildMenuModal({
 
       </div>
       <div>
-        <Button buttonText="🍽️" onClick={handleButtonClick} disabled={daysWithMeals === 0} modifier="build-menu-button" />
+        <Button modifier="icon-only" onClick={handleButtonClick} disabled={daysWithMeals === 0}>
+          <i className="fa fa-check" aria-hidden="true" />
+        </Button>
       </div>
 
     </div>

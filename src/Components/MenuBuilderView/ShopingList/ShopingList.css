@@ -12,7 +12,6 @@
 	width: 30px;
 	height: 30px;
 	right: 2rem;
-	box-shadow: var(--basic-box-shadow);
 }
 
 .shopping-list-sections {
@@ -32,10 +31,6 @@
 	margin-top: 5px;
 	margin-left: 10px;
 }
-
-/* .shoping-list-section-items-item {
-	flex-direction: row;
-} */
 
 .shoping-list-section-items-item-checkbox {
 	width: 100%;

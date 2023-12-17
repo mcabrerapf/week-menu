@@ -70,6 +70,7 @@ function GeneralFields({
       <div>
         <div className="group-input type-input">
           <Input
+            label="Name"
             autoComplete="off"
             type="text"
             id="name"
@@ -84,7 +85,7 @@ function GeneralFields({
               .map(({ id: typeId, shortLabel }) => (
                 <Button
                   key={typeId}
-                  modifier={types.includes(typeId) ? '' : 'not-selected'}
+                  modifier={types.includes(typeId) ? 'square' : 'square disabled'}
                   buttonText={shortLabel}
                   value={typeId}
                   onClick={toggleType}
@@ -177,7 +178,7 @@ function GeneralFields({
         </div>
         )}
       </div>
-      <Button modifier="submit" onClick={handleSubmit} disabled={!canSave}>
+      <Button modifier="icon-only" onClick={handleSubmit} disabled={!canSave}>
         <i className="fa fa-floppy-o" aria-hidden="true" />
       </Button>
 

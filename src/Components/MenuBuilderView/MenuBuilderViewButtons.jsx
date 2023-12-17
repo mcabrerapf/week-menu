@@ -41,17 +41,18 @@ function WeekViewButtons({
     });
   };
 
-  const buttonIcon = `${view === 1 ? 'fa fa-calendar-o' : 'fa fa-list'}`;
+  const buttonIcon = `${view === 1 ? 'fa fa-calendar-o' : 'fa fa-shopping-cart'}`;
 
   return (
     <div className="week-view-header-buttons">
       <Button
+        modifier="icon-only"
         onClick={showBuildMenuModal}
-
       >
         <i className="fa fa-cog" aria-hidden="true" />
       </Button>
       <Button
+        modifier="icon-only"
         onClick={handleBuildMenu}
       >
         <i
@@ -60,6 +61,7 @@ function WeekViewButtons({
         />
       </Button>
       <Button
+        modifier="icon-only"
         disabled={!hasLoadedMenu}
         {...longPressProps}
         onClick={checkView}
@@ -70,6 +72,7 @@ function WeekViewButtons({
         />
       </Button>
       <Button
+        modifier="icon-only"
         disabled={!hasLoadedMenu}
         {...longPressProps}
         onClick={handleSaveClick}

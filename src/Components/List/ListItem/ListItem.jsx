@@ -31,6 +31,7 @@ function ListItem({
         {typeToUse && <div className="list-item-type">{typeToUse}</div>}
         {favourite && (
         <Button
+          modifier="square icon-only"
           onClick={() => {}}
         >
           <i className="fa fa-star" aria-hidden="true" />
@@ -38,6 +39,7 @@ function ListItem({
         )}
         {modifier === MENU_STRING && (
         <Button
+          modifier="square icon-only"
           onClick={() => handleLoadMenu(itemData)}
 
         >
@@ -47,12 +49,14 @@ function ListItem({
         )}
         {modifier === DISH_STRING && (
         <Button
+          modifier="square icon-only"
           onClick={() => handleOpenModal(modifier, 'edit', itemData)}
         >
           <i className="fa fa-pencil" aria-hidden="true" />
         </Button>
         )}
         <Button
+          modifier="square icon-only"
           onClick={() => handleOpenModal('delete', 'delete', itemData, 'small')}
         >
           <i className="fa fa-trash" aria-hidden="true" />

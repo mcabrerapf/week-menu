@@ -45,7 +45,7 @@ function NewIngredientForm({
               .map(({ value, name: tName }) => (
                 <Button
                   key={value}
-                  modifier={`ingredient-item-group-button${type === value ? '' : ' not-selected'}`}
+                  modifier={`ingredient-item-group-button${type === value ? '' : 'disabled'}`}
                   name="type"
                   value={value}
                   buttonText={tName}
@@ -61,7 +61,7 @@ function NewIngredientForm({
               .map(({ value, name: uName }) => (
                 <Button
                   key={value}
-                  modifier={`ingredient-item-group-button${unit === value ? '' : ' not-selected'}`}
+                  modifier={`ingredient-item-group-button${unit === value ? '' : 'disabled'}`}
                   name="unit"
                   value={value}
                   buttonText={uName}
@@ -75,7 +75,7 @@ function NewIngredientForm({
 
       <Button
         disabled={!canSubmit}
-        modifier="new-ingredient-submit-button"
+        modifier="icon-only"
         onClick={handleAddNewIngredient}
         // disabled={checkIsButtonDisabled(view, currentData)}
         disableMultipleClicks

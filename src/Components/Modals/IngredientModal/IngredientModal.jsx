@@ -31,7 +31,7 @@ function IngredientModal({
   const handleSubmit = async () => {
     const noChange = deepCompare(ingredientData, modalData);
     if (noChange) return closeModal();
-    handleSave(ingredientData);
+    await handleSave(ingredientData);
     return closeModal();
   };
 
@@ -47,6 +47,7 @@ function IngredientModal({
       <form className="form">
         <div className="form-inputs">
           <Input
+            label="Name"
             autoComplete="off"
             type="text"
             id="name"
@@ -56,13 +57,13 @@ function IngredientModal({
             placeholder="Name"
           />
           <div className="ingredient-item-group">
-            <span className="ingredient-item-group-label">Type</span>
-            <div className="ingredient-item-group-options">
+            <span className="input-label">Type</span>
+            <div className="buttons-group">
               {INGREDIENT_TYPES
                 .map(({ value, name: tName }) => (
                   <Button
                     key={value}
-                    modifier={`ingredient-item-group-button${type === value ? '' : ' not-selected'}`}
+                    modifier={type === value ? '' : 'disabled'}
                     name="type"
                     value={value}
                     buttonText={tName}
@@ -72,13 +73,13 @@ function IngredientModal({
             </div>
           </div>
           <div className="ingredient-item-group">
-            <span className="ingredient-item-group-label">Unit</span>
-            <div className="ingredient-item-group-options">
+            <span className="input-label">Unit</span>
+            <div className="buttons-group">
               {INGREDIENT_UNITS
                 .map(({ value, name: uName }) => (
                   <Button
                     key={value}
-                    modifier={`ingredient-item-group-button${unit === value ? '' : ' not-selected'}`}
+                    modifier={unit === value ? '' : 'disabled'}
                     name="unit"
                     value={value}
                     buttonText={uName}
@@ -91,7 +92,7 @@ function IngredientModal({
 
         <div className="form-footer">
           <Button
-            modifier="submit"
+            modifier="icon-only"
             onClick={handleSubmit}
             disabled={isButtonDisabled}
             disableMultipleClicks

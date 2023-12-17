@@ -13,7 +13,7 @@
 
 .build-menu-modal-inputs {
 	padding: 10px;
-	max-height: 75vh;
+	height: 16rem;
 	overflow-y: auto;
 	display: flex;
 }
@@ -21,7 +21,7 @@
 .build-menu-modal-day-inputs {
 	display: flex;
 	flex-direction: column;
-	width: 55%;
+	width: 15rem;
 }
 
 .build-menu-modal-day-container {

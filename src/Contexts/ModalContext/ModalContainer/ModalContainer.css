@@ -34,10 +34,10 @@
 }
 
 .modal .modal-header .modal-header-close-button {
-	font-size: 1.5rem;
 	flex: 0.5;
 }
 
 .modal .modal-content {
 	width: 100%;
+	height: 100%;
 }

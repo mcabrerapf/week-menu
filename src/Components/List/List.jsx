@@ -59,7 +59,7 @@ function List({ listData }) {
       {view !== 'menu' && (
       <div className="add-container">
         <Button
-          modifier="add-button"
+          modifier="circle icon-only"
           type="button"
           onClick={() => handleOpenModal(view, 'create', {})}
         >

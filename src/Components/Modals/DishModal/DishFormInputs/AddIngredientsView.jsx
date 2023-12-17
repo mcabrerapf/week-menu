@@ -56,7 +56,7 @@ function AddIngredientsView({
       <div className="ingredients-types-container">
         <Button
           value="ALL"
-          modifier={selectedType !== 'ALL' && 'not-selected'}
+          modifier={selectedType !== 'ALL' && 'disabled'}
           buttonText="All"
           onClick={handleTypeSelect}
         />
@@ -65,7 +65,7 @@ function AddIngredientsView({
             <Button
               key={value}
               value={value}
-              modifier={selectedType !== value && 'not-selected'}
+              modifier={selectedType !== value && 'disabled'}
               buttonText={uName}
               onClick={handleTypeSelect}
             />
@@ -85,14 +85,14 @@ function AddIngredientsView({
             <Button
               key={ingredientOption.id}
               value={ingredientOption.id}
-              modifier={!isSelected && 'not-selected'}
+              modifier={!isSelected && 'disabled'}
               buttonText={ingredientOption.name}
               onClick={() => handleIngredientSelect(ingredientOption.id, isSelected)}
             />
           );
         })}
       </div>
-      <Button modifier="submit" onClick={handleUpdateIngredients}>
+      <Button modifier="icon-only" onClick={handleUpdateIngredients}>
         <i className="fa fa-floppy-o" aria-hidden="true" />
       </Button>
     </>

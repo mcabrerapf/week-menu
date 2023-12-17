@@ -28,7 +28,7 @@ function DishModal({
   const handleSubmit = async () => {
     const noChange = deepCompare(dishData, modalData);
     if (noChange) return closeModal();
-    handleSave(dishData);
+    await handleSave(dishData);
     return closeModal();
   };
 

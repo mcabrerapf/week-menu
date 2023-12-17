@@ -38,7 +38,7 @@ function InstructionField({
     <div ref={ref} className="instruction-container">
       <div className="instruction-buttons">
         <Button
-          modifier="move-up-button"
+          modifier="square"
           type="button"
           onClick={handleMoveUp}
           disabled={index === 0}
@@ -46,7 +46,7 @@ function InstructionField({
           <i className="fa fa-arrow-up" aria-hidden="true" />
         </Button>
         <Button
-          modifier="move-down-button"
+          modifier="square"
           type="button"
           onClick={handleMoveDown}
           disabled={isLast}
@@ -65,7 +65,7 @@ function InstructionField({
       />
       <div className="instruction-buttons">
         <Button
-          modifier="add-button"
+          modifier="square"
           type="button"
           onClick={handleDeleteClick}
         >

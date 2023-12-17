@@ -71,13 +71,13 @@ function InstructionsFields({
       </div>
       <div className="instruction-buttons">
         <Button
-          modifier="add-button"
+          modifier="icon-only"
           type="button"
           onClick={addInstruction}
         >
           <i className="fa fa-plus" aria-hidden="true" />
         </Button>
-        <Button modifier="submit" onClick={handleSubmit} disabled={!canSave}>
+        <Button modifier="icon-only" onClick={handleSubmit} disabled={!canSave}>
           <i className="fa fa-floppy-o" aria-hidden="true" />
         </Button>
       </div>

@@ -24,7 +24,7 @@ function MenuModal({ modalData, closeModal }) {
     closeModal();
   };
 
-  const favouriteButtonClass = isFavourite ? '' : 'not-favourite ';
+  const favouriteButtonClass = isFavourite ? 'square' : 'square disabled ';
 
   return (
     <div className="menu-modal-content">
@@ -42,7 +42,9 @@ function MenuModal({ modalData, closeModal }) {
         </Button>
       </div>
       <div className="menu-modal-buttons">
-        <Button buttonText="Save" onClick={saveMenu} disabled={!menuName} disableMultipleClicks />
+        <Button modifier="icon-only" onClick={saveMenu} disabled={!menuName} disableMultipleClicks>
+          <i className="fa fa-floppy-o" aria-hidden="true" />
+        </Button>
       </div>
     </div>
   );

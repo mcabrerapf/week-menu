@@ -31,7 +31,7 @@ function ShopingList({ menuDishes, menuPeople, hidden }) {
   return (
 
     <div className={className}>
-      <Button modifier="shopping-list-copy-button" onClick={handleCopyShopingList}>
+      <Button modifier="shopping-list-copy-button icon-only" onClick={handleCopyShopingList}>
         <i className="fa fa-clipboard" aria-hidden="true" />
       </Button>
       <div className="shopping-list-sections">
