@@ -8,8 +8,7 @@
 
 .display-view-props {
 	margin: 10px;
-	/* max-height: 55vh; */
-	height: 30rem;
+	height: 25rem;
 	overflow-y: auto;
 }
 
@@ -30,7 +29,6 @@
 }
 
 .display-view-props-ingredients-label {
-	/* text-decoration: underline; */
 	font-weight: 500;
 	font-size: 1rem !important;
 }

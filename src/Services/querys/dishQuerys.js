@@ -9,6 +9,7 @@ export const GET_DISH_QUERY = `
         id
         quantity
         unit
+        name
       }
       types
       size
@@ -26,10 +27,9 @@ export const GET_DISH_QUERY = `
 export const GET_ALL_DISHES_QUERY = `
   query ListDishes(
     $filter: ModelDishFilterInput
-    $limit: Int
     $nextToken: String
   ) {
-    listDishes(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listDishes(filter: $filter, limit: 999, nextToken: $nextToken) {
       items {
         id
         name
@@ -39,6 +39,7 @@ export const GET_ALL_DISHES_QUERY = `
           id
           quantity
           unit
+          name
         }
         types
         size

@@ -3,58 +3,28 @@ import PropTypes from 'prop-types';
 import './MenuModal.css';
 import Button from '../../Button';
 import Input from '../../Input';
-import { ToastContext } from '../../../Contexts/ToastContext';
-import { serviceHandler } from '../../../Services';
 import { MainContext } from '../../../Contexts/MainContext';
-import { CREATE_STRING, UPDATE_STRING } from '../../../constants';
-
-const parseMenuData = (data) => {
-  const { dishes, name, favourite } = data;
-  const parsedDishes = dishes.map(({
-    id, useAs, days, sideDishesToUse,
-  }) => {
-    const sideDishesIds = sideDishesToUse.map(({ id: sideDishId }) => sideDishId);
-    return {
-      id, useAs, days, sideDishesToUse: sideDishesIds,
-    };
-  });
-  return { name, favourite, dishes: parsedDishes };
-};
+import { parseMenuData } from './helpers';
 
 function MenuModal({ modalData, closeModal }) {
   const {
     id, name, favourite, dishes,
   } = modalData;
-
-  const { addToast } = useContext(ToastContext);
   const {
-    updateLists,
+    handleSave,
   } = useContext(MainContext);
   const [menuName, setMenuName] = useState(name);
   const [isFavourite, setIsFavourite] = useState(!!favourite);
-
-  const handleToastMessage = (response, toastType) => {
-    if (response.errors) addToast(response.errors, 'error');
-    else {
-      addToast(`Saved ${menuName} menu`, toastType);
-    }
-  };
-
-  const handleListUpdate = async () => {
-    const response = await updateLists();
-    if (response.errors) addToast(response.errors, 'error');
-  };
 
   const saveMenu = async () => {
     const parsedData = parseMenuData({
       name: menuName, favourite: isFavourite, dishes,
     });
-    const serviceString = id ? UPDATE_STRING : CREATE_STRING;
-    const serviceToUse = serviceHandler(serviceString);
-    const finalData = id ? { ...parsedData, id } : parsedData;
-    const response = await serviceToUse('menu', finalData);
-    await handleListUpdate();
-    handleToastMessage(response, 'success');
+    await handleSave(
+      id,
+      parsedData.name,
+      parsedData,
+    );
     closeModal();
   };
 

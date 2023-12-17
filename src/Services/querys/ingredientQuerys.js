@@ -12,10 +12,9 @@ export const GET_INGREDIENT_QUERY = `
 export const GET_ALL_INGREDIENTS_QUERY = `
   query ListIngredients(
     $filter: ModelIngredientFilterInput
-    $limit: Int
     $nextToken: String
   ) {
-    listIngredients(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listIngredients(filter: $filter, limit: 999, nextToken: $nextToken) {
       items {
         id
         name

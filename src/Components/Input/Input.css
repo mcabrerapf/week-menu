@@ -47,8 +47,9 @@ textarea {
 
 .textarea-input {
 	resize: vertical;
-	min-height: 10vh;
-	max-height: 20vh;
+	font-size: 0.8rem;
+	min-height: 4rem;
+	max-height: 5rem;
 	padding: 5px;
 	border: 0;
 }

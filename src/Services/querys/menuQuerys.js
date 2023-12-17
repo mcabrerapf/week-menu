@@ -19,8 +19,8 @@ export const GET_MENU_QUERY = `
 `;
 
 export const GET_ALL_MENUS_QUERY = `
-query ListMenu($filter: ModelMenuFilterInput, $limit: Int, $nextToken: String) {
-  listMenus(filter: $filter, limit: $limit, nextToken: $nextToken) {
+query ListMenu($filter: ModelMenuFilterInput, $nextToken: String) {
+  listMenus(filter: $filter, limit: 999, nextToken: $nextToken) {
     items {
       id
       name

@@ -23,6 +23,7 @@ function ToastMessage({
   }, []);
 
   if (!showToast) return null;
+
   return (
     <div
       role="button"
@@ -31,7 +32,11 @@ function ToastMessage({
       onClick={() => setShowToast(false)}
       onKeyDown={() => setShowToast(false)}
     >
-      <div className={`toast-message-content ${type}`}>{content}</div>
+      <div className={`toast-message-content ${type}`}>
+        {type === 'success' && <i className="fa fa-floppy-o" aria-hidden="true" />}
+        {type === 'delete' && <i className="fa fa-trash" aria-hidden="true" />}
+        {content}
+      </div>
     </div>
   );
 }

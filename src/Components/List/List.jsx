@@ -22,6 +22,7 @@ function List({ listData }) {
     addModal({
       type,
       mode,
+      hideHeader: mode === 'delete',
       modalData: data,
       modifier: modifier || 'full',
     });

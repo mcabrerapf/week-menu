@@ -6,22 +6,19 @@ const buildDishesWithIngredients = (dishes, allIngredients) => {
       const { ingredients, name: dishName } = dish;
       const parsedIngredients = ingredients.map((currentIngredient) => {
         const {
-          id: ingredientId, unit, quantity,
+          id: ingredientId, unit, quantity = 1, name, type,
         } = currentIngredient;
 
         const ingredientMatch = allIngredients
           .find(({ id: idToCheck }) => idToCheck === ingredientId);
 
-        if (!ingredientMatch) {
-          console.log(`${dishName} failed to match ${ingredientId} with quantity ${quantity} and unit ${unit}`);
-          return null;
-        }
-        const { name, unit: unitMatch, type } = ingredientMatch;
+        if (!ingredientMatch) console.log(`${dishName} failed to match: \n ${name} ${ingredientId}`);
+        const { name: nameMatch, unit: unitMatch, type: typeMatch } = ingredientMatch || {};
         return {
           id: ingredientId,
-          name,
+          name: name || nameMatch,
           unit: unit || unitMatch,
-          type,
+          type: type || typeMatch,
           quantity,
         };
       }).filter(Boolean);

@@ -24,7 +24,7 @@ function ToastContextWrapper({ children }) {
       addToast,
     }}
     >
-      <div className="toast-messages-container">
+      <div className="toast-context-wrapper">
         {contextToasts.map(({ content, type = 'info' }, index) => (
           <ToastMessage
             key={`${content}-${index}`}

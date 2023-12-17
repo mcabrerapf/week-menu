@@ -3,41 +3,21 @@ import PropTypes from 'prop-types';
 import Button from '../../Button';
 import './DeleteModal.css';
 import { MainContext } from '../../../Contexts/MainContext';
-import { ToastContext } from '../../../Contexts/ToastContext';
-import { DELETE_STRING } from '../../../constants';
-import { serviceHandler } from '../../../Services';
 
 function DeleteModal({
   modalData, closeModal,
 }) {
   const {
-    view,
-    updateLists,
+    handleDelete: contextHandleDelete,
   } = useContext(MainContext);
-  const { addToast } = useContext(ToastContext);
+
   const {
     name,
     id,
   } = modalData;
 
-  const handleListUpdate = async () => {
-    const response = await updateLists();
-    if (response.errors) addToast(response.errors, 'error');
-  };
-
-  const handleToastMessage = (response) => {
-    if (response.errors) addToast(response.errors, 'error');
-    else {
-      const messageContent = `Deleted ${view}: ${name}`;
-      addToast(messageContent, 'success');
-    }
-  };
-
   const handleDelete = async () => {
-    const serviceToUse = serviceHandler(DELETE_STRING);
-    const response = await serviceToUse(view, { id });
-    await handleListUpdate();
-    handleToastMessage(response);
+    contextHandleDelete(id, name);
     return closeModal();
   };
 

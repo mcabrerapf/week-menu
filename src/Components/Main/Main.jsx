@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import './Main.css';
 import View from '../View';
 import {
@@ -12,18 +12,19 @@ function Main() {
     offlineMode,
   } = useContext(MainContext);
 
-  useEffect(() => {
-    const onBeforeUnload = (e) => {
-      e.preventDefault();
-      e.returnValue = '';
-    };
+  // Enable to stop browser auto navigation
+  // useEffect(() => {
+  //   const onBeforeUnload = (e) => {
+  //     e.preventDefault();
+  //     e.returnValue = '';
+  //   };
 
-    window.addEventListener('beforeunload', onBeforeUnload);
+  //   window.addEventListener('beforeunload', onBeforeUnload);
 
-    return () => {
-      window.removeEventListener('beforeunload', onBeforeUnload);
-    };
-  });
+  //   return () => {
+  //     window.removeEventListener('beforeunload', onBeforeUnload);
+  //   };
+  // });
 
   const mainClassName = offlineMode === 1 ? 'offline-mode' : 'main';
 

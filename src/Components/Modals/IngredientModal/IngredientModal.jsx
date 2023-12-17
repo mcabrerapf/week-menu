@@ -1,12 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { serviceHandler } from '../../../Services';
 import { MainContext } from '../../../Contexts/MainContext';
-import { ToastContext } from '../../../Contexts/ToastContext';
 import './IngredientModal.css';
-import {
-  CREATE_STRING, UPDATE_STRING,
-} from '../../../constants';
 import Button from '../../Button';
 import { INGREDIENT_TYPES, INGREDIENT_UNITS } from '../../constants';
 import Input from '../../Input';
@@ -16,9 +11,8 @@ function IngredientModal({
   modalData, closeModal,
 }) {
   const {
-    view, updateLists,
+    handleSave,
   } = useContext(MainContext);
-  const { addToast } = useContext(ToastContext);
   const [ingredientData, setIngredientData] = useState({});
 
   useEffect(() => {
@@ -34,28 +28,10 @@ function IngredientModal({
     }
   }, []);
 
-  const handleListUpdate = async () => {
-    const response = await updateLists();
-    if (response.errors) addToast(response.errors, 'error');
-  };
-
-  const handleToastMessage = (response, toastLabel, name, toastType) => {
-    if (response.errors) addToast(response.errors, 'error');
-    else {
-      const messageContent = `${toastLabel} ${view}: ${name}`;
-      addToast(messageContent, toastType);
-    }
-  };
-
   const handleSubmit = async () => {
     const noChange = deepCompare(ingredientData, modalData);
     if (noChange) return closeModal();
-    const serviceString = !modalData.name ? CREATE_STRING : UPDATE_STRING;
-    const serviceToUse = serviceHandler(serviceString);
-    const response = await serviceToUse(view, ingredientData);
-    await handleListUpdate();
-    const toastLabel = !modalData.name ? 'Created' : 'Updated';
-    handleToastMessage(response, toastLabel, ingredientData.name, 'success');
+    handleSave(ingredientData.id, ingredientData.name, ingredientData);
     return closeModal();
   };
 

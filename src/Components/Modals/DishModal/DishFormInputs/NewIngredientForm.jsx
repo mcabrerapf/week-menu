@@ -3,15 +3,14 @@ import PropTypes from 'prop-types';
 import Input from '../../../Input';
 import Button from '../../../Button';
 import { INGREDIENT_TYPES, INGREDIENT_UNITS } from '../../../constants';
-import { CREATE_STRING } from '../../../../constants';
-import { serviceHandler } from '../../../../Services';
+import { INGREDIENT_STRING } from '../../../../constants';
 import { MainContext } from '../../../../Contexts/MainContext';
 
 function NewIngredientForm({
   toggleNewIngredientView,
 }) {
   const {
-    updateLists,
+    handleSave,
   } = useContext(MainContext);
   const [newIngredientData, setNewIngredientData] = useState({});
   const { name, type, unit } = newIngredientData;
@@ -21,14 +20,12 @@ function NewIngredientForm({
   };
 
   const handleAddNewIngredient = async () => {
-    const serviceToUse = serviceHandler(CREATE_STRING);
-    const response = await serviceToUse('ingredient', newIngredientData);
-
-    if (response.errors) {
-      toggleNewIngredientView();
-      return;
-    }
-    await updateLists('ingredient');
+    const response = await handleSave(
+      newIngredientData.id,
+      newIngredientData.name,
+      newIngredientData,
+      INGREDIENT_STRING,
+    );
     toggleNewIngredientView(response);
   };
 

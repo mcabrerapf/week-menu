@@ -16,7 +16,7 @@ function ModalContextWrapper({ children }) {
   const [contextState, setContextState] = useState(initialModalState);
 
   const {
-    showModal, modalData, type, mode, onClose, modifier,
+    showModal, modalData, type, mode, onClose, modifier, hideHeaderText, hideHeader,
   } = contextState;
 
   const addModal = (modalOptions) => {
@@ -39,7 +39,7 @@ function ModalContextWrapper({ children }) {
   };
 
   const ModalToUse = getModalByType(type);
-  const headerText = mode !== 'delete' && !!modalData ? modalData.name : '';
+  const headerText = !hideHeaderText && mode !== 'delete' && !!modalData ? modalData.name : '';
 
   return (
     <ModalContextProvider value={{
@@ -58,8 +58,8 @@ function ModalContextWrapper({ children }) {
           <ModalContainer
             headerText={headerText}
             closeModal={closeModal}
-            modalData={modalData}
             modifier={modifier}
+            hideHeader={hideHeader}
           >
             <ModalToUse
               modalData={modalData}
