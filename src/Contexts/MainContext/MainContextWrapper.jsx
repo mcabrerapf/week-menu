@@ -20,7 +20,7 @@ import { ToastContext } from '../ToastContext';
 function MainContextWrapper({ children }) {
   const { addToast } = useContext(ToastContext);
   const [contextState, setContextState] = useState({
-    view: 'dish',
+    view: DISH_STRING,
     offlineMode: 0,
     currentMenu: { menuOptions: defaultMenuOptions, menuDishes: [] },
     menus: [],
@@ -100,17 +100,17 @@ function MainContextWrapper({ children }) {
     setContextState({ ...contextState, [key]: value });
   };
 
-  const handleSave = async (id, name, data, serviceName) => {
+  const handleSave = async (data, serviceName) => {
     const listName = serviceName || view;
     const viewToUse = view === MENU_BUILDER_STRING ? MENU_STRING : listName;
-    const serviceString = id ? UPDATE_STRING : CREATE_STRING;
+    const serviceString = data.id ? UPDATE_STRING : CREATE_STRING;
     const serviceToUse = serviceHandler(serviceString);
     const response = await serviceToUse(viewToUse, data);
     if (response.errors) {
       addToast(response.errors[0], 'error');
       return null;
     }
-    addToast(name, 'success');
+    addToast(data.name, 'success');
     await updateLists(viewToUse);
     return response;
   };

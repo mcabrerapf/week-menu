@@ -18,13 +18,9 @@ function MenuModal({ modalData, closeModal }) {
 
   const saveMenu = async () => {
     const parsedData = parseMenuData({
-      name: menuName, favourite: isFavourite, dishes,
+      id, name: menuName, favourite: isFavourite, dishes,
     });
-    await handleSave(
-      id,
-      parsedData.name,
-      parsedData,
-    );
+    await handleSave(parsedData);
     closeModal();
   };
 

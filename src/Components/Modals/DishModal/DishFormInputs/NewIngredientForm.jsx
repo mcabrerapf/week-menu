@@ -20,12 +20,7 @@ function NewIngredientForm({
   };
 
   const handleAddNewIngredient = async () => {
-    const response = await handleSave(
-      newIngredientData.id,
-      newIngredientData.name,
-      newIngredientData,
-      INGREDIENT_STRING,
-    );
+    const response = await handleSave(newIngredientData, INGREDIENT_STRING);
     toggleNewIngredientView(response);
   };
 

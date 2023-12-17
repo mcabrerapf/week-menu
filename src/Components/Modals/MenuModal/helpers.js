@@ -1,14 +1,18 @@
 const parseMenuData = (data) => {
-  const { dishes, name, favourite } = data;
+  const {
+    dishes, name, favourite, id,
+  } = data;
   const parsedDishes = dishes.map(({
-    id, useAs, days, sideDishesToUse,
+    useAs, days, sideDishesToUse,
   }) => {
     const sideDishesIds = sideDishesToUse.map(({ id: sideDishId }) => sideDishId);
     return {
       id, useAs, days, sideDishesToUse: sideDishesIds,
     };
   });
-  return { name, favourite, dishes: parsedDishes };
+  const parsedData = { name, favourite, dishes: parsedDishes };
+  if (id) parsedData.id = id;
+  return parsedData;
 };
 
 // eslint-disable-next-line import/prefer-default-export

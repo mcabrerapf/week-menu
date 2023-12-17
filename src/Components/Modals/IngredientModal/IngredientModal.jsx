@@ -31,7 +31,7 @@ function IngredientModal({
   const handleSubmit = async () => {
     const noChange = deepCompare(ingredientData, modalData);
     if (noChange) return closeModal();
-    handleSave(ingredientData.id, ingredientData.name, ingredientData);
+    handleSave(ingredientData);
     return closeModal();
   };
 
