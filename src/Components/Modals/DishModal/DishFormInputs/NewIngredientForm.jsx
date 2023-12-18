@@ -5,6 +5,7 @@ import Button from '../../../Button';
 import { INGREDIENT_TYPES, INGREDIENT_UNITS } from '../../../constants';
 import { INGREDIENT_STRING } from '../../../../constants';
 import { MainContext } from '../../../../Contexts/MainContext';
+import { SaveIcon } from '../../../Icons';
 
 function NewIngredientForm({
   toggleNewIngredientView,
@@ -77,10 +78,9 @@ function NewIngredientForm({
         disabled={!canSubmit}
         modifier="icon-only"
         onClick={handleAddNewIngredient}
-        // disabled={checkIsButtonDisabled(view, currentData)}
         disableMultipleClicks
       >
-        <i className="fa fa-floppy-o" aria-hidden="true" />
+        <SaveIcon />
       </Button>
     </>
 

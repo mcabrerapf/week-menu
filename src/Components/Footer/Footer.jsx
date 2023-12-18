@@ -1,6 +1,9 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+import {
+  IngredientIcon, MenuBuilderIcon, MenuIcon, DishIcon,
+} from '../Icons';
 import './Footer.css';
 import {
   MainContext,
@@ -43,7 +46,7 @@ function Footer() {
           modifier={checkIfSelected(MENU_BUILDER_STRING)}
           onClick={() => handleOnClick(MENU_BUILDER_STRING)}
         >
-          <i className="fa fa-calendar" aria-hidden="true" />
+          <MenuBuilderIcon />
         </Button>
         <Button
           {...useLongPress({
@@ -53,7 +56,7 @@ function Footer() {
           modifier={checkIfSelected(MENU_STRING)}
           onClick={() => handleOnClick(MENU_STRING)}
         >
-          <i className="fa fa-cutlery" aria-hidden="true" />
+          <MenuIcon />
         </Button>
         <Button
           {...useLongPress({
@@ -63,7 +66,7 @@ function Footer() {
           modifier={checkIfSelected(DISH_STRING)}
           onClick={() => handleOnClick(DISH_STRING)}
         >
-          <i className="fa fa-book" aria-hidden="true" />
+          <DishIcon />
         </Button>
         <Button
           {...useLongPress({
@@ -71,19 +74,11 @@ function Footer() {
           })}
           value={INGREDIENT_STRING}
           modifier={checkIfSelected(INGREDIENT_STRING)}
-          // buttonText="🍎"
           onClick={() => handleOnClick(INGREDIENT_STRING)}
         >
-          <i className="fa fa-apple" aria-hidden="true" />
+          <IngredientIcon />
         </Button>
       </div>
-      {/* <Button
-          modifier="signout-button"
-          onClick={signOut}
-        >
-          <i className="fa fa-sign-out" aria-hidden="true" />
-        </Button> */}
-      {/* </div> */}
     </footer>
   );
 }

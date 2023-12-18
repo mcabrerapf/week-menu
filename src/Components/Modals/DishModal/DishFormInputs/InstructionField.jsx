@@ -2,6 +2,7 @@ import React, { useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Input from '../../../Input';
 import Button from '../../../Button';
+import { ArrowDownIcon, ArrowUpIcon, CloseIcon } from '../../../Icons';
 
 function InstructionField({
   instruction, handleInstructionChange, handleDeleteInstruction, moveInstruction, index, id, isLast,
@@ -43,7 +44,7 @@ function InstructionField({
           onClick={handleMoveUp}
           disabled={index === 0}
         >
-          <i className="fa fa-arrow-up" aria-hidden="true" />
+          <ArrowUpIcon />
         </Button>
         <Button
           modifier="square"
@@ -51,7 +52,7 @@ function InstructionField({
           onClick={handleMoveDown}
           disabled={isLast}
         >
-          <i className="fa fa-arrow-down" aria-hidden="true" />
+          <ArrowDownIcon />
         </Button>
       </div>
       <Input
@@ -69,7 +70,7 @@ function InstructionField({
           type="button"
           onClick={handleDeleteClick}
         >
-          <i className="fa fa-times" aria-hidden="true" />
+          <CloseIcon />
         </Button>
       </div>
 

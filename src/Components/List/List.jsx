@@ -8,6 +8,7 @@ import Button from '../Button';
 import { sortBy } from '../helpers';
 import { filterList } from './helpers';
 import ListFilters from './ListFilters';
+import { PlusIcon } from '../Icons';
 
 function List({ listData }) {
   const {
@@ -63,7 +64,7 @@ function List({ listData }) {
           type="button"
           onClick={() => handleOpenModal(view, 'create', {})}
         >
-          <i className="fa fa-plus" aria-hidden="true" />
+          <PlusIcon />
         </Button>
       </div>
       )}

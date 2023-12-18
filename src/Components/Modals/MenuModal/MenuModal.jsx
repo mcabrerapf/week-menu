@@ -5,6 +5,7 @@ import Button from '../../Button';
 import Input from '../../Input';
 import { MainContext } from '../../../Contexts/MainContext';
 import { parseMenuData } from './helpers';
+import { SaveIcon, StarIcon } from '../../Icons';
 
 function MenuModal({ modalData, closeModal }) {
   const {
@@ -38,12 +39,12 @@ function MenuModal({ modalData, closeModal }) {
           type="text"
         />
         <Button modifier={favouriteButtonClass} onClick={() => setIsFavourite(!isFavourite)}>
-          <i className="fa fa-star" aria-hidden="true" />
+          <StarIcon />
         </Button>
       </div>
       <div className="menu-modal-buttons">
         <Button modifier="icon-only" onClick={saveMenu} disabled={!menuName} disableMultipleClicks>
-          <i className="fa fa-floppy-o" aria-hidden="true" />
+          <SaveIcon />
         </Button>
       </div>
     </div>

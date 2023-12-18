@@ -6,6 +6,7 @@ import Button from '../../Button';
 import { INGREDIENT_TYPES, INGREDIENT_UNITS } from '../../constants';
 import Input from '../../Input';
 import { deepCompare } from '../../helpers';
+import { SaveIcon } from '../../Icons';
 
 function IngredientModal({
   modalData, closeModal,
@@ -97,7 +98,7 @@ function IngredientModal({
             disabled={isButtonDisabled}
             disableMultipleClicks
           >
-            <i className="fa fa-floppy-o" aria-hidden="true" />
+            <SaveIcon />
           </Button>
         </div>
 

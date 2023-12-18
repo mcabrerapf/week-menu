@@ -5,6 +5,7 @@ import Button from '../../Button';
 import Input from '../../Input';
 import { MainContext } from '../../../Contexts/MainContext';
 import { deepCopy, sortBy } from '../../helpers';
+import { ArrowDownIcon } from '../../Icons';
 // import DisplayMode from '../DisplayMode';
 
 const getDishesAndSideDishes = (dishes, id) => {
@@ -52,7 +53,7 @@ function MealModal({ modalData, closeModal }) {
           <div className="old-dish-name">
 
             <span>{name}</span>
-            <i className="fa fa-arrow-down" aria-hidden="true" />
+            <ArrowDownIcon />
           </div>
           )}
           <Input

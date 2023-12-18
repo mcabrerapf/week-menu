@@ -7,6 +7,7 @@ import IngredientsField from './IngredientsField';
 import Button from '../../../Button';
 import NewIngredientForm from './NewIngredientForm';
 import AddIngredientsView from './AddIngredientsView';
+import { PlusIcon, SaveIcon } from '../../../Icons';
 
 function IngredientsFields({
   ingredients, updateIngredients, handleSubmit, canSave,
@@ -49,13 +50,6 @@ function IngredientsFields({
   return (
     <>
 
-      {ingredientsView === 0 && (
-        <Button
-          modifier="add-ingredients"
-          buttonText="Add Ingredients"
-          onClick={() => setIngredientsView(1)}
-        />
-      )}
       {ingredientsView === 1 && (
         <AddIngredientsView
           ingredients={contextIngredients}
@@ -75,8 +69,16 @@ function IngredientsFields({
       {ingredientsView === 2
       && <NewIngredientForm toggleNewIngredientView={toggleNewIngredientView} />}
       {ingredientsView === 0 && (
+      <Button
+        modifier="icon-only"
+        onClick={() => setIngredientsView(1)}
+      >
+        <PlusIcon />
+      </Button>
+      )}
+      {ingredientsView === 0 && (
       <Button modifier="icon-only" onClick={handleSubmit} disabled={!canSave}>
-        <i className="fa fa-floppy-o" aria-hidden="true" />
+        <SaveIcon />
       </Button>
       )}
 

@@ -11,6 +11,9 @@ import {
   ToastContext,
 } from '../../Contexts/ToastContext';
 import { ModalContext } from '../../Contexts/ModalContext';
+import {
+  CalendarIcon, CartIcon, MenuBuilderSettingsIcon, SaveIcon, ShuffleIcon,
+} from '../Icons';
 
 function WeekViewButtons({
   showBuildMenuModal, handleChangeView, handleBuildMenu, view, hasLoadedMenu, menu,
@@ -41,24 +44,19 @@ function WeekViewButtons({
     });
   };
 
-  const buttonIcon = `${view === 1 ? 'fa fa-calendar-o' : 'fa fa-shopping-cart'}`;
-
   return (
     <div className="week-view-header-buttons">
       <Button
         modifier="icon-only"
         onClick={showBuildMenuModal}
       >
-        <i className="fa fa-cog" aria-hidden="true" />
+        <MenuBuilderSettingsIcon />
       </Button>
       <Button
         modifier="icon-only"
         onClick={handleBuildMenu}
       >
-        <i
-          className="fa fa-random"
-          aria-hidden="true"
-        />
+        <ShuffleIcon />
       </Button>
       <Button
         modifier="icon-only"
@@ -66,10 +64,7 @@ function WeekViewButtons({
         {...longPressProps}
         onClick={checkView}
       >
-        <i
-          className={buttonIcon}
-          aria-hidden="true"
-        />
+        {view === 1 ? <CalendarIcon /> : <CartIcon />}
       </Button>
       <Button
         modifier="icon-only"
@@ -77,10 +72,7 @@ function WeekViewButtons({
         {...longPressProps}
         onClick={handleSaveClick}
       >
-        <i
-          className="fa fa-floppy-o"
-          aria-hidden="true"
-        />
+        <SaveIcon />
       </Button>
     </div>
   );

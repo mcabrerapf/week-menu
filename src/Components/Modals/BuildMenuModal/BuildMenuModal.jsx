@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
+import { FaCheck } from 'react-icons/fa6';
 import PropTypes from 'prop-types';
 import './BuildMenuModal.css';
 import Button from '../../Button';
@@ -186,7 +187,7 @@ function BuildMenuModal({
       </div>
       <div>
         <Button modifier="icon-only" onClick={handleButtonClick} disabled={daysWithMeals === 0}>
-          <i className="fa fa-check" aria-hidden="true" />
+          <FaCheck />
         </Button>
       </div>
 

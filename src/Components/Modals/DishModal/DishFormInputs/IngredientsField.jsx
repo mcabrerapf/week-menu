@@ -5,6 +5,7 @@ import Input from '../../../Input';
 import { buildSelectOptions, capitalizeFirstLetter, sortBy } from '../../../helpers';
 import { SELECT_OPTIONS } from '../../../constants';
 import { INGREDIENT_STRING } from '../../../../constants';
+import { CloseIcon } from '../../../Icons';
 
 function IngredientsField({
   ingredients, handleIngredientChange, handleRemoveIngredient,
@@ -56,7 +57,7 @@ function IngredientsField({
                 value={id}
                 onClick={() => handleRemoveIngredient(id)}
               >
-                <i className="fa fa-times" aria-hidden="true" />
+                <CloseIcon />
               </Button>
 
             </div>

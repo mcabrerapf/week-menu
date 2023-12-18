@@ -5,6 +5,7 @@ import './DishFormInputs.css';
 import { sortBy } from '../../../helpers';
 import { INGREDIENT_TYPES } from '../../../constants';
 import Button from '../../../Button';
+import { PlusIcon, SaveIcon } from '../../../Icons';
 
 const getIngredientsByType = (availableIngredients, selectedType) => {
   const filteredIngredientOptions = availableIngredients
@@ -70,12 +71,13 @@ function AddIngredientsView({
               onClick={handleTypeSelect}
             />
           ))}
-
         <Button
-          modifier="add-ingredient"
-          buttonText="Create NEW Ingredient"
+          value="ALL"
+          modifier="square icon-only"
           onClick={() => setIngredientsView(2)}
-        />
+        >
+          <PlusIcon />
+        </Button>
 
       </div>
       <div className="ingredients-types-container">
@@ -93,7 +95,7 @@ function AddIngredientsView({
         })}
       </div>
       <Button modifier="icon-only" onClick={handleUpdateIngredients}>
-        <i className="fa fa-floppy-o" aria-hidden="true" />
+        <SaveIcon />
       </Button>
     </>
   );

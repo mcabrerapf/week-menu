@@ -8,6 +8,9 @@ import Input from '../../../Input';
 import Button from '../../../Button';
 import QuantityInput from '../../../QuantityInput';
 import { capitalizeFirstLetter, sortBy } from '../../../helpers';
+import {
+  ClockIcon, CloseIcon, PeopleIcon, SaveIcon,
+} from '../../../Icons';
 
 const getMainDishes = (dishes, currentId, currentMainDishes = []) => {
   const sideDishes = dishes
@@ -80,23 +83,27 @@ function GeneralFields({
             onBlur={handleOnChange}
             placeholder="Name"
           />
-          <div className="group-input-inputs">
-            {DISH_TYPES
-              .map(({ id: typeId, shortLabel }) => (
-                <Button
-                  key={typeId}
-                  modifier={types.includes(typeId) ? 'square' : 'square disabled'}
-                  buttonText={shortLabel}
-                  value={typeId}
-                  onClick={toggleType}
-                />
-              ))}
+          <div className="group-input">
+            <div>Types</div>
+            <div className="group-input-inputs">
+              {DISH_TYPES
+                .map(({ id: typeId, shortLabel }) => (
+                  <Button
+                    key={typeId}
+                    modifier={types.includes(typeId) ? 'square' : 'square disabled'}
+                    buttonText={shortLabel}
+                    value={typeId}
+                    onClick={toggleType}
+                  />
+                ))}
 
+            </div>
           </div>
+
         </div>
         <div className="form-input-group">
           <div className="group-input">
-            <span className="group-input-label"><i className="fa fa-users" aria-hidden="true" /></span>
+            <span className="group-input-label"><PeopleIcon /></span>
             <QuantityInput
               value={servings}
               min={1}
@@ -108,7 +115,7 @@ function GeneralFields({
           </div>
 
           <div className="group-input">
-            <span className="group-input-label"><i className="fa fa-clock-o" aria-hidden="true" /></span>
+            <span className="group-input-label"><ClockIcon /></span>
             <div className="group-input-inputs">
               <Input
                 type="number"
@@ -164,9 +171,7 @@ function GeneralFields({
                     value={sideDishId}
                     buttonText={capitalizeFirstLetter(sideDishName)}
                   >
-                    <i
-                      className="fa fa-times"
-                      aria-hidden="true"
+                    <CloseIcon
                       onClick={() => handleRemoveMainDish(sideDishId)}
                     />
                   </Button>
@@ -179,7 +184,7 @@ function GeneralFields({
         )}
       </div>
       <Button modifier="icon-only" onClick={handleSubmit} disabled={!canSave}>
-        <i className="fa fa-floppy-o" aria-hidden="true" />
+        <SaveIcon />
       </Button>
 
     </>

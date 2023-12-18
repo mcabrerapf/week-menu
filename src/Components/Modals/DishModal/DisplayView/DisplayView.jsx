@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import './DisplayView.css';
 import { capitalizeFirstLetter } from '../../../helpers';
 import Button from '../../../Button';
+import { EditIcon } from '../../../Icons';
 
 function DisplayView({
   dishData,
@@ -89,10 +90,10 @@ function DisplayView({
       </div>
       <div className="display-view-footer">
         <Button modifier="icon-only" onClick={() => setModalView('edit')}>
-          <i className="fa fa-pencil" aria-hidden="true" />
+          <EditIcon />
         </Button>
         {/* <Button modifier="delete">
-          <i className="fa fa-trash" aria-hidden="true" />
+          <DeleteIcon />
         </Button> */}
       </div>
     </div>

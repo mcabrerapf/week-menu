@@ -4,6 +4,9 @@ import './ListItem.css';
 import { capitalizeFirstLetter } from '../../helpers';
 import Button from '../../Button';
 import { DISH_STRING, MENU_STRING } from '../../../constants';
+import {
+  EditIcon, DeleteIcon, EyeIcon, StarIcon,
+} from '../../Icons';
 
 function ListItem({
   modifier, itemData, handleOpenModal, handleLoadMenu,
@@ -34,7 +37,7 @@ function ListItem({
           modifier="square icon-only"
           onClick={() => {}}
         >
-          <i className="fa fa-star" aria-hidden="true" />
+          <StarIcon />
         </Button>
         )}
         {modifier === MENU_STRING && (
@@ -43,7 +46,7 @@ function ListItem({
           onClick={() => handleLoadMenu(itemData)}
 
         >
-          <i className="fa fa-eye" aria-hidden="true" />
+          <EyeIcon />
 
         </Button>
         )}
@@ -52,14 +55,14 @@ function ListItem({
           modifier="square icon-only"
           onClick={() => handleOpenModal(modifier, 'edit', itemData)}
         >
-          <i className="fa fa-pencil" aria-hidden="true" />
+          <EditIcon />
         </Button>
         )}
         <Button
           modifier="square icon-only"
           onClick={() => handleOpenModal('delete', 'delete', itemData, 'small')}
         >
-          <i className="fa fa-trash" aria-hidden="true" />
+          <DeleteIcon />
         </Button>
       </div>
     </li>
