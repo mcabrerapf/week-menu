@@ -28,8 +28,8 @@ function NewIngredientForm({
   const canSubmit = !!name && !!type && !!unit;
 
   return (
-    <>
-      <div>
+    <form className="form">
+      <div className="add-ingredient-form-inputs">
         <Input
           autoComplete="off"
           type="text"
@@ -39,41 +39,34 @@ function NewIngredientForm({
           onChange={handleOnChange}
           placeholder="Name"
         />
-        <div className="ingredient-item-group">
-          <span className="ingredient-item-group-label">Type</span>
-          <div className="ingredient-item-group-options">
-            {INGREDIENT_TYPES
-              .map(({ value, name: tName }) => (
-                <Button
-                  key={value}
-                  modifier={`ingredient-item-group-button${type === value ? '' : 'disabled'}`}
-                  name="type"
-                  value={value}
-                  buttonText={tName}
-                  onClick={handleOnChange}
-                />
-              ))}
-          </div>
+        <div className="buttons-group border-bottom">
+          {INGREDIENT_TYPES
+            .map(({ value, name: tName }) => (
+              <Button
+                key={value}
+                modifier={type !== value ? 'disabled' : ''}
+                name="type"
+                value={value}
+                buttonText={tName}
+                onClick={handleOnChange}
+              />
+            ))}
         </div>
-        <div className="ingredient-item-group">
-          <span className="ingredient-item-group-label">Unit</span>
-          <div className="ingredient-item-group-options">
-            {INGREDIENT_UNITS
-              .map(({ value, name: uName }) => (
-                <Button
-                  key={value}
-                  modifier={`ingredient-item-group-button${unit === value ? '' : 'disabled'}`}
-                  name="unit"
-                  value={value}
-                  buttonText={uName}
-                  onClick={handleOnChange}
-                />
-              ))}
-          </div>
+        <div className="buttons-group">
+          {INGREDIENT_UNITS
+            .map(({ value, name: uName }) => (
+              <Button
+                key={value}
+                modifier={unit !== value ? 'disabled' : ''}
+                name="unit"
+                value={value}
+                buttonText={uName}
+                onClick={handleOnChange}
+              />
+            ))}
         </div>
 
       </div>
-
       <Button
         disabled={!canSubmit}
         modifier="icon-only"
@@ -82,7 +75,7 @@ function NewIngredientForm({
       >
         <SaveIcon />
       </Button>
-    </>
+    </form>
 
   );
 }

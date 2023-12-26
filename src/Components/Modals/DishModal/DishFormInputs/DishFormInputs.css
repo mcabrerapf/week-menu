@@ -60,8 +60,20 @@
 	font-weight: 500;
 }
 
+.add-ingredients-content {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+}
+
+.add-ingredients-actions {
+	display: flex;
+	gap: 5px;
+}
+
 .ingredients-types-container {
-	max-height: 15rem;
+	max-height: 17rem;
+	/* height: 17rem; */
 	display: flex;
 	gap: 5px;
 	flex-direction: row;
@@ -72,6 +84,10 @@
 	padding-bottom: 5px;
 	justify-content: center;
 }
+
+.ingredients-types-container.ingredient-types {
+	height: 5rem !important;
+}
 .ingredients-types-container:first-of-type {
 	border-bottom: 1px solid black;
 }
@@ -79,10 +95,6 @@
 .ingredients-types-container button {
 	min-width: 45px;
 	width: auto !important;
-}
-
-.ingredients-types-container .add-ingredient {
-	margin: 0px 5px 0px 5px;
 }
 
 .ingredients-types-container .input {
@@ -177,4 +189,14 @@
 	background-color: transparent !important;
 	border: none !important;
 	width: 2rem;
+}
+
+.add-ingredient-form-inputs {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+}
+
+.buttons-group {
+	padding-bottom: 5px;
 }

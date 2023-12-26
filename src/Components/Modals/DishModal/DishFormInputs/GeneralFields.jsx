@@ -73,7 +73,6 @@ function GeneralFields({
       <div>
         <div className="group-input type-input">
           <Input
-            label="Name"
             autoComplete="off"
             type="text"
             id="name"
@@ -84,7 +83,6 @@ function GeneralFields({
             placeholder="Name"
           />
           <div className="group-input">
-            <div>Types</div>
             <div className="group-input-inputs">
               {DISH_TYPES
                 .map(({ id: typeId, shortLabel }) => (

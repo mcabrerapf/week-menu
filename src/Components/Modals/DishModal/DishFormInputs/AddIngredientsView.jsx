@@ -2,22 +2,17 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './DishFormInputs.css';
-import { sortBy } from '../../../helpers';
 import { INGREDIENT_TYPES } from '../../../constants';
 import Button from '../../../Button';
 import { PlusIcon, SaveIcon } from '../../../Icons';
-
-const getIngredientsByType = (availableIngredients, selectedType) => {
-  const filteredIngredientOptions = availableIngredients
-    .filter(({ type }) => type === selectedType);
-
-  return sortBy(filteredIngredientOptions, 'name', 'alphabetical');
-};
+import Input from '../../../Input';
+import { filterIngredinents } from './helpers';
 
 function AddIngredientsView({
   ingredients, selectedIngredients, setIngredientsView, updateIngredients,
 }) {
   const [selectedType, setSelectedType] = useState('ALL');
+  const [searchValue, setSearchValue] = useState('');
   const [currentIngredients, setCurrentIngredients] = useState(selectedIngredients);
 
   const handleTypeSelect = (e) => {
@@ -50,50 +45,63 @@ function AddIngredientsView({
     setIngredientsView(0);
   };
 
-  const ingredientOptions = selectedType === 'ALL' ? sortBy(ingredients, 'name', 'alphabetical') : getIngredientsByType(ingredients, selectedType);
-
+  const ingredientOptions = filterIngredinents(ingredients, selectedType, searchValue);
   return (
     <>
-      <div className="ingredients-types-container">
-        <Button
-          value="ALL"
-          modifier={selectedType !== 'ALL' && 'disabled'}
-          buttonText="All"
-          onClick={handleTypeSelect}
-        />
-        {INGREDIENT_TYPES
-          .map(({ value, name: uName }) => (
-            <Button
-              key={value}
-              value={value}
-              modifier={selectedType !== value && 'disabled'}
-              buttonText={uName}
-              onClick={handleTypeSelect}
-            />
-          ))}
-        <Button
-          value="ALL"
-          modifier="square icon-only"
-          onClick={() => setIngredientsView(2)}
-        >
-          <PlusIcon />
-        </Button>
+      <div className="add-ingredients-content">
+        <div className="add-ingredients-actions">
+          <Input
+            type="search"
+            modifier="list-search-filter"
+            value={searchValue}
+            id="search-value"
+            name="search-value"
+            placeholder="🔍"
+            onChange={({ target: { value } }) => setSearchValue(value)}
+          />
+          <Button
+            value="ALL"
+            modifier="square icon-only"
+            onClick={() => setIngredientsView(2)}
+          >
+            <PlusIcon />
+          </Button>
+        </div>
+        <div className="ingredients-types-container ingredient-types border-bottom">
+          <Button
+            value="ALL"
+            modifier={selectedType !== 'ALL' && 'disabled'}
+            buttonText="All"
+            onClick={handleTypeSelect}
+          />
+          {INGREDIENT_TYPES
+            .map(({ value, name: uName }) => (
+              <Button
+                key={value}
+                value={value}
+                modifier={selectedType !== value && 'disabled'}
+                buttonText={uName}
+                onClick={handleTypeSelect}
+              />
+            ))}
 
+        </div>
+        <div className="ingredients-types-container">
+          {ingredientOptions.map((ingredientOption) => {
+            const isSelected = !!currentIngredients.find(({ id }) => id === ingredientOption.id);
+            return (
+              <Button
+                key={ingredientOption.id}
+                value={ingredientOption.id}
+                modifier={!isSelected && 'disabled'}
+                buttonText={ingredientOption.name}
+                onClick={() => handleIngredientSelect(ingredientOption.id, isSelected)}
+              />
+            );
+          })}
+        </div>
       </div>
-      <div className="ingredients-types-container">
-        {ingredientOptions.map((ingredientOption) => {
-          const isSelected = !!currentIngredients.find(({ id }) => id === ingredientOption.id);
-          return (
-            <Button
-              key={ingredientOption.id}
-              value={ingredientOption.id}
-              modifier={!isSelected && 'disabled'}
-              buttonText={ingredientOption.name}
-              onClick={() => handleIngredientSelect(ingredientOption.id, isSelected)}
-            />
-          );
-        })}
-      </div>
+
       <Button modifier="icon-only" onClick={handleUpdateIngredients}>
         <SaveIcon />
       </Button>

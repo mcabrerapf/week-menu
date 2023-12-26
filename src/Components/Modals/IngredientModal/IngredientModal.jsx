@@ -48,7 +48,6 @@ function IngredientModal({
       <form className="form">
         <div className="form-inputs">
           <Input
-            label="Name"
             autoComplete="off"
             type="text"
             id="name"
@@ -57,8 +56,7 @@ function IngredientModal({
             onChange={handleOnChange}
             placeholder="Name"
           />
-          <div className="ingredient-item-group">
-            <span className="input-label">Type</span>
+          <div className="ingredient-item-group border-bottom">
             <div className="buttons-group">
               {INGREDIENT_TYPES
                 .map(({ value, name: tName }) => (
@@ -74,7 +72,6 @@ function IngredientModal({
             </div>
           </div>
           <div className="ingredient-item-group">
-            <span className="input-label">Unit</span>
             <div className="buttons-group">
               {INGREDIENT_UNITS
                 .map(({ value, name: uName }) => (
