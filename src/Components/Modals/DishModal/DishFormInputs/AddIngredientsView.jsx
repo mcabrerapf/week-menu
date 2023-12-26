@@ -13,7 +13,6 @@ function AddIngredientsView({
 }) {
   const [selectedType, setSelectedType] = useState('ALL');
   const [searchValue, setSearchValue] = useState('');
-  const [currentIngredients, setCurrentIngredients] = useState(selectedIngredients);
 
   const handleTypeSelect = (e) => {
     setSelectedType(e.target.value);
@@ -22,30 +21,19 @@ function AddIngredientsView({
   const handleIngredientSelect = (ingredientId, isSelected) => {
     const ingMatch = ingredients.find((ingredient) => ingredientId === ingredient.id);
     const updatedIngredients = isSelected
-      ? currentIngredients.filter(({ id }) => id !== ingredientId)
+      ? selectedIngredients.filter(({ id }) => id !== ingredientId)
       : [
-        ...currentIngredients,
+        ...selectedIngredients,
         { ...ingMatch, quantity: 1 }];
-    setCurrentIngredients(updatedIngredients);
+    updateIngredients(updatedIngredients);
   };
 
   const handleUpdateIngredients = () => {
-    const updatedIngredients = currentIngredients
-      .map((ingredient) => {
-        const { id: ingredientId } = ingredient;
-        const ingMatch = selectedIngredients.find(({ id }) => id === ingredientId);
-        if (ingMatch) return ingMatch;
-        return {
-          ...ingredient,
-          quantity: 1,
-        };
-      });
-
-    updateIngredients(updatedIngredients);
     setIngredientsView(0);
   };
 
   const ingredientOptions = filterIngredinents(ingredients, selectedType, searchValue);
+
   return (
     <>
       <div className="add-ingredients-content">
@@ -88,7 +76,7 @@ function AddIngredientsView({
         </div>
         <div className="ingredients-types-container">
           {ingredientOptions.map((ingredientOption) => {
-            const isSelected = !!currentIngredients.find(({ id }) => id === ingredientOption.id);
+            const isSelected = !!selectedIngredients.find(({ id }) => id === ingredientOption.id);
             return (
               <Button
                 key={ingredientOption.id}
