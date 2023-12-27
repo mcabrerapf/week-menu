@@ -3,27 +3,30 @@ import PropTypes from 'prop-types';
 import './QuantityInput.css';
 import { parseClassName } from '../helpers';
 import Button from '../Button';
+import { MinusIcon, PlusIcon } from '../Icons';
 
 function QuantityInput({
   value, labelText, min, max, valueKey, handleDecrease, handleIncrease, modifier,
 }) {
   return (
     <div className={parseClassName('quantity-input-container', modifier)}>
-      {labelText && <span className="quantity-input-container-label">{labelText}</span>}
-      <div className="quantity-input-buttons-container">
+      {labelText && <span className="quantity-input-label">{labelText}</span>}
+      <div className="quantity-input-buttons">
         <Button
-          modifier="square"
-          buttonText="-"
+          modifier="m"
           disabled={value === min}
           onClick={() => handleDecrease(valueKey)}
-        />
+        >
+          <MinusIcon />
+        </Button>
         <div className="quantity-input-container-quantity">{value}</div>
         <Button
-          modifier="square"
-          buttonText="+"
+          modifier="m"
           disabled={value === max}
           onClick={() => handleIncrease(valueKey)}
-        />
+        >
+          <PlusIcon />
+        </Button>
       </div>
 
     </div>

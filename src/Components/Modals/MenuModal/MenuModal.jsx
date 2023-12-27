@@ -6,6 +6,7 @@ import Input from '../../Input';
 import { MainContext } from '../../../Contexts/MainContext';
 import { parseMenuData } from './helpers';
 import { SaveIcon, StarIcon } from '../../Icons';
+import { MENU_STRING } from '../../../constants';
 
 function MenuModal({ modalData, closeModal }) {
   const {
@@ -21,11 +22,11 @@ function MenuModal({ modalData, closeModal }) {
     const parsedData = parseMenuData({
       id, name: menuName, favourite: isFavourite, dishes,
     });
-    await handleSave(parsedData);
+    await handleSave(parsedData, MENU_STRING);
     closeModal();
   };
 
-  const favouriteButtonClass = isFavourite ? 'square' : 'square disabled ';
+  const favouriteButtonClass = isFavourite ? 'm icon-only' : 'm icon-only disabled';
 
   return (
     <div className="menu-modal-content">

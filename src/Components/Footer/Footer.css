@@ -1,17 +1,11 @@
 .footer {
 	width: 100%;
-	height: 7%;
-	padding-top: 1px;
+	height: 3rem;
+	display: flex;
 	background-color: var(--beige-color);
 }
 
-.footer .footer-buttons {
-	height: 100%;
-	width: 100%;
-	display: flex;
-}
-
-footer .footer-buttons .button {
+footer .button {
 	width: 100%;
 	height: 100%;
 	border-radius: 0;
@@ -20,14 +14,14 @@ footer .footer-buttons .button {
 	border-top-left-radius: 5px;
 }
 
-footer .footer-buttons button:first-of-type {
+footer button:first-of-type {
 	border-top-left-radius: 0px;
 }
 
-footer .footer-buttons button:last-of-type {
+footer button:last-of-type {
 	border-top-right-radius: 0px;
 }
 
-footer .footer-buttons .selected {
+footer .selected {
 	background-color: var(--blue-green-color) !important;
 }

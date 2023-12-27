@@ -2,10 +2,11 @@
 	height: 100%;
 	display: flex;
 	flex-direction: column;
+	padding: 5px;
+	gap: 5px;
 }
 
 .list-filters {
-	margin: 10px 5px 5px 5px;
 	display: flex;
 	gap: 5px;
 }
@@ -22,16 +23,14 @@
 	flex: 1;
 }
 
-.list-container .list {
+.list {
+	display: flex;
+	flex-direction: column;
 	height: 100%;
 	width: 100%;
 	margin: 0;
-	padding: 5px;
-	display: flex;
-	flex-direction: column;
 	gap: 5px;
 	overflow-y: auto;
-	list-style: none;
 }
 
 .add-container {

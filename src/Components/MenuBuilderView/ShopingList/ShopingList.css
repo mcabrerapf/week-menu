@@ -1,16 +1,13 @@
 .shopping-list {
 	border-radius: 5px;
 	padding: 20px;
-	height: 96%;
+	width: 100%;
+	height: 100%;
 	background: var(--blue-green-color);
-	box-shadow: var(--basic-box-shadow);
-	margin: 10px;
 }
 
 .shopping-list-copy-button {
 	position: fixed;
-	width: 30px;
-	height: 30px;
 	right: 2rem;
 }
 
@@ -22,8 +19,7 @@
 }
 
 .shoping-list-section-header {
-	width: 40%;
-	border-bottom: 1px dashed;
+	width: 50%;
 	margin: 0px;
 }
 

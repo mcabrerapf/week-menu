@@ -7,10 +7,6 @@
 	width: 100%;
 }
 
-.disabled {
-	background-color: var(--gray-color) !important;
-}
-
 .build-menu-modal-inputs {
 	padding: 10px;
 	height: 16rem;

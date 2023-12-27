@@ -9,7 +9,7 @@ function DeleteModal({
   modalData, closeModal,
 }) {
   const {
-    handleDelete: contextHandleDelete,
+    handleDelete: contextHandleDelete, view,
   } = useContext(MainContext);
 
   const {
@@ -18,7 +18,7 @@ function DeleteModal({
   } = modalData;
 
   const handleDelete = async () => {
-    contextHandleDelete(id, name);
+    contextHandleDelete(id, name, view);
     return closeModal();
   };
 

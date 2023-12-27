@@ -1,16 +1,39 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './Main.css';
-import View from '../View';
 import {
-  DISH_STRING, INGREDIENT_STRING, MENU_STRING, MENU_BUILDER_STRING,
+  MENU_BUILDER_STRING,
 } from '../../constants';
 import { MainContext } from '../../Contexts/MainContext';
-import { ModalContextWrapper } from '../../Contexts/ModalContext';
+import { getNewView } from './helpers';
+import MenuBuilderView from '../MenuBuilderView';
+import List from '../List';
 
 function Main() {
   const {
-    offlineMode,
+    offlineMode, view, setContextState,
   } = useContext(MainContext);
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
+
+  const onTouchStart = (e) => {
+    e.stopPropagation();
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e) => {
+    e.stopPropagation();
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = (e) => {
+    e.stopPropagation();
+    if (!touchStart || !touchEnd) return;
+    const newView = getNewView({
+      view, touchStart, touchEnd,
+    });
+    if (newView !== view) setContextState('view', newView);
+  };
 
   // Enable to stop browser auto navigation
   useEffect(() => {
@@ -26,19 +49,19 @@ function Main() {
     };
   });
 
-  const mainClassName = offlineMode === 1 ? 'offline-mode' : 'main';
+  const offlineClass = offlineMode === 1 ? 'offline-mode' : '';
 
   return (
-    <ModalContextWrapper>
-      <div
-        className={mainClassName}
-      >
-        <View name={MENU_BUILDER_STRING} />
-        <View name={MENU_STRING} />
-        <View name={DISH_STRING} />
-        <View name={INGREDIENT_STRING} />
-      </div>
-    </ModalContextWrapper>
+
+    <div
+      className={`main ${offlineClass}`}
+      onTouchStart={onTouchStart}
+      onTouchMove={onTouchMove}
+      onTouchEnd={onTouchEnd}
+    >
+      {view === MENU_BUILDER_STRING && <MenuBuilderView />}
+      {view !== MENU_BUILDER_STRING && <List />}
+    </div>
 
   );
 }

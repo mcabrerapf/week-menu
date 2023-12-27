@@ -1,19 +1,5 @@
 import { MIN_SWIPE_DISTANCE } from '../constants';
 
-const getListData = (view, contextProps) => {
-  const { menus, dishes, ingredients } = contextProps;
-  switch (view) {
-    case 'menu':
-      return menus;
-    case 'dish':
-      return dishes;
-    case 'ingredients':
-      return ingredients;
-    default:
-      return ingredients;
-  }
-};
-
 const getNewView = ({
   view, touchStart, touchEnd,
 }) => {
@@ -41,4 +27,5 @@ const getNewView = ({
   }
 };
 
-export { getListData, getNewView };
+// eslint-disable-next-line import/prefer-default-export
+export { getNewView };

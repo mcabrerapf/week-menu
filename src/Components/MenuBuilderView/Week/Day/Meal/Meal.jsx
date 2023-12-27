@@ -35,18 +35,18 @@ function Meal({
       modalData: firstMeal,
       onClose: updateDishes,
       modifier: 'full',
-      hideHeaderText: true,
+      hideHeader: true,
     });
   };
 
-  const className = `meal${name ? '' : ' no-dish'}`;
+  const modififier = `meal-content ${name ? '' : 'disabled'}`;
   const parsedMealName = getParsedMealName(name, sideDishesToUse);
 
   return (
     <div
-      className={className}
+      className="meal"
     >
-      <Button modifier="meal-content" onClick={openMealModal} buttonText={parsedMealName} />
+      <Button modifier={modififier} onClick={openMealModal} buttonText={parsedMealName} />
     </div>
   );
 }

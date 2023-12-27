@@ -2,22 +2,34 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Button from '../../../Button';
 import DishFormInputs from '../DishFormInputs';
+import { IngredientIcon, ListIcon, InfoIcon } from '../../../Icons';
 
 function EditView({ dishData, setDishData, handleSubmit }) {
   const [fieldsView, setFieldsView] = useState(0);
-
-  const changeFieldsView = (e) => {
-    setFieldsView(Number(e?.target?.value));
-  };
 
   if (!dishData) return null;
 
   return (
     <form className="form">
       <div className="form-header">
-        <Button modifier={`header-option${fieldsView !== 0 ? ' disabled' : ''}`} onClick={changeFieldsView} buttonText="General" value={0} />
-        <Button modifier={`header-option${fieldsView !== 1 ? ' disabled' : ''}`} onClick={changeFieldsView} buttonText="Ingredients" value={1} />
-        <Button modifier={`header-option${fieldsView !== 2 ? ' disabled' : ''}`} onClick={changeFieldsView} buttonText="Instructions" value={2} />
+        <Button
+          modifier={`header-option icon-only${fieldsView !== 0 ? ' disabled' : ''}`}
+          onClick={() => setFieldsView(0)}
+        >
+          <InfoIcon />
+        </Button>
+        <Button
+          modifier={`header-option icon-only${fieldsView !== 1 ? ' disabled' : ''}`}
+          onClick={() => setFieldsView(1)}
+        >
+          <IngredientIcon />
+        </Button>
+        <Button
+          modifier={`header-option icon-only${fieldsView !== 2 ? ' disabled' : ''}`}
+          onClick={() => setFieldsView(2)}
+        >
+          <ListIcon />
+        </Button>
       </div>
       <DishFormInputs
         currentData={dishData}

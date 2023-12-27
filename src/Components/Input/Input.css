@@ -9,7 +9,6 @@ input {
 	width: 100%;
 	border-radius: 5px;
 	text-align: left;
-	box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
 	border: 0;
 }
 
@@ -17,7 +16,6 @@ select {
 	height: 30px;
 	width: 100%;
 	border-radius: 5px;
-	box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
 	text-align: center;
 	font-weight: 500;
 }
@@ -25,7 +23,6 @@ select {
 textarea {
 	width: 100%;
 	border-radius: 5px;
-	box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
 }
 
 .input-label {

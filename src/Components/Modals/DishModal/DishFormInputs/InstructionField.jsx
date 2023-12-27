@@ -39,7 +39,7 @@ function InstructionField({
     <div ref={ref} className="instruction-container">
       <div className="instruction-buttons">
         <Button
-          modifier="square"
+          modifier="m"
           type="button"
           onClick={handleMoveUp}
           disabled={index === 0}
@@ -47,7 +47,7 @@ function InstructionField({
           <ArrowUpIcon />
         </Button>
         <Button
-          modifier="square"
+          modifier="m"
           type="button"
           onClick={handleMoveDown}
           disabled={isLast}
@@ -66,7 +66,7 @@ function InstructionField({
       />
       <div className="instruction-buttons">
         <Button
-          modifier="square"
+          modifier="m"
           type="button"
           onClick={handleDeleteClick}
         >

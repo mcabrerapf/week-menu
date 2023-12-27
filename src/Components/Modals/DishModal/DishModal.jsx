@@ -5,6 +5,7 @@ import DisplayView from './DisplayView';
 import EditView from './EditView';
 import './DishModal.css';
 import { deepCompare } from '../../helpers';
+import { DISH_STRING } from '../../../constants';
 
 function DishModal({
   modalData, closeModal, mode,
@@ -28,7 +29,7 @@ function DishModal({
   const handleSubmit = async () => {
     const noChange = deepCompare(dishData, modalData);
     if (noChange) return closeModal();
-    await handleSave(dishData);
+    await handleSave(dishData, DISH_STRING);
     return closeModal();
   };
 

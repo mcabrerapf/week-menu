@@ -88,7 +88,7 @@ function GeneralFields({
                 .map(({ id: typeId, shortLabel }) => (
                   <Button
                     key={typeId}
-                    modifier={types.includes(typeId) ? 'square' : 'square disabled'}
+                    modifier={types.includes(typeId) ? 'm' : 'm disabled'}
                     buttonText={shortLabel}
                     value={typeId}
                     onClick={toggleType}

@@ -9,6 +9,7 @@ import { MainContextWrapper } from './Contexts/MainContext';
 import { ToastContextWrapper } from './Contexts/ToastContext';
 import awsExports from './aws-exports';
 import Footer from './Components/Footer';
+import { ModalContextWrapper } from './Contexts/ModalContext';
 
 Amplify.configure({
   ...awsExports,
@@ -27,13 +28,13 @@ function App() {
         {({ signOut }) => (
           <ToastContextWrapper>
             <MainContextWrapper>
+              <ModalContextWrapper>
 
-              <div className="app-container">
                 <Main />
-              </div>
-              <Footer signOut={signOut} />
-
+                <Footer signOut={signOut} />
+              </ModalContextWrapper>
             </MainContextWrapper>
+
           </ToastContextWrapper>
         )}
       </Authenticator>

@@ -160,7 +160,7 @@ function ArrayField({
             <Button
               children="Cancel"
               type="button"
-              size="small"
+              size="s"
               onClick={() => {
                 setFieldValue(defaultFieldValue);
                 setIsEditing(false);
@@ -168,7 +168,7 @@ function ArrayField({
               }}
             ></Button>
           )}
-          <Button size="small" variation="link" onClick={addItem}>
+          <Button size="s" variation="link" onClick={addItem}>
             {selectedBadgeIndex !== undefined ? "Save" : "Add"}
           </Button>
         </Flex>

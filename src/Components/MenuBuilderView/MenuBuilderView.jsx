@@ -9,6 +9,7 @@ import MenuBuilderViewButtons from './MenuBuilderViewButtons';
 import { MainContext } from '../../Contexts/MainContext';
 import { ModalContext } from '../../Contexts/ModalContext';
 import Button from '../Button';
+import { BrainIcon } from '../Icons';
 
 function MenuBuilderView() {
   const {
@@ -43,6 +44,7 @@ function MenuBuilderView() {
       modalData: menuOptions,
       onClose: updateMenuAndOptions,
       modifier: 'full',
+      hideHeader: true,
     });
   };
 
@@ -69,21 +71,23 @@ function MenuBuilderView() {
         className="week-view-content"
       >
         {!hasLoadedMenu && (
-        <div className="no-week-container">
-          <Button onClick={openBuildMenuModal} buttonText="🍽️" />
-        </div>
+          <Button onClick={openBuildMenuModal} modifier="l icon-only build-menu-button">
+            <BrainIcon />
+          </Button>
         )}
+        {view === 0 && (
         <Week
           menu={menuDishes}
           options={menuOptions}
-          hidden={view !== 0}
           handleUpdateDish={handleUpdateDish}
         />
+        )}
+        { view === 1 && (
         <ShopingList
           menuDishes={menuDishes}
           menuPeople={people}
-          hidden={view !== 1}
         />
+        )}
       </div>
     </>
   );

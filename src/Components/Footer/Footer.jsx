@@ -39,46 +39,43 @@ function Footer() {
 
   return (
     <footer className="footer">
-      {/* <div className="footer-buttons"> */}
-      <div className="footer-buttons">
-        <Button
-          value={MENU_BUILDER_STRING}
-          modifier={checkIfSelected(MENU_BUILDER_STRING)}
-          onClick={() => handleOnClick(MENU_BUILDER_STRING)}
-        >
-          <MenuBuilderIcon />
-        </Button>
-        <Button
-          {...useLongPress({
-            onLongPress: () => handleCopyList(MENU_STRING),
-          })}
-          value={MENU_STRING}
-          modifier={checkIfSelected(MENU_STRING)}
-          onClick={() => handleOnClick(MENU_STRING)}
-        >
-          <MenuIcon />
-        </Button>
-        <Button
-          {...useLongPress({
-            onLongPress: () => handleCopyList(DISH_STRING),
-          })}
-          value={DISH_STRING}
-          modifier={checkIfSelected(DISH_STRING)}
-          onClick={() => handleOnClick(DISH_STRING)}
-        >
-          <DishIcon />
-        </Button>
-        <Button
-          {...useLongPress({
-            onLongPress: () => handleCopyList(INGREDIENT_STRING),
-          })}
-          value={INGREDIENT_STRING}
-          modifier={checkIfSelected(INGREDIENT_STRING)}
-          onClick={() => handleOnClick(INGREDIENT_STRING)}
-        >
-          <IngredientIcon />
-        </Button>
-      </div>
+      <Button
+        value={MENU_BUILDER_STRING}
+        modifier={checkIfSelected(MENU_BUILDER_STRING)}
+        onClick={() => handleOnClick(MENU_BUILDER_STRING)}
+      >
+        <MenuBuilderIcon />
+      </Button>
+      <Button
+        {...useLongPress({
+          onLongPress: () => handleCopyList(MENU_STRING),
+        })}
+        value={MENU_STRING}
+        modifier={checkIfSelected(MENU_STRING)}
+        onClick={() => handleOnClick(MENU_STRING)}
+      >
+        <MenuIcon />
+      </Button>
+      <Button
+        {...useLongPress({
+          onLongPress: () => handleCopyList(DISH_STRING),
+        })}
+        value={DISH_STRING}
+        modifier={checkIfSelected(DISH_STRING)}
+        onClick={() => handleOnClick(DISH_STRING)}
+      >
+        <DishIcon />
+      </Button>
+      <Button
+        {...useLongPress({
+          onLongPress: () => handleCopyList(INGREDIENT_STRING),
+        })}
+        value={INGREDIENT_STRING}
+        modifier={checkIfSelected(INGREDIENT_STRING)}
+        onClick={() => handleOnClick(INGREDIENT_STRING)}
+      >
+        <IngredientIcon />
+      </Button>
     </footer>
   );
 }

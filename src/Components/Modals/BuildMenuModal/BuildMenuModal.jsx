@@ -151,7 +151,7 @@ function BuildMenuModal({
             max={breakfastMax}
             handleDecrease={handleDecrease}
             handleIncrease={handleIncrease}
-            labelText="Breakfasts"
+            labelText="B"
           />
           <QuantityInput
             value={maxLunches}
@@ -160,7 +160,7 @@ function BuildMenuModal({
             max={lunchMax}
             handleDecrease={handleDecrease}
             handleIncrease={handleIncrease}
-            labelText="Lunches"
+            labelText="L"
           />
           <QuantityInput
             value={maxDinners}
@@ -169,7 +169,7 @@ function BuildMenuModal({
             max={dinnerMax}
             handleDecrease={handleDecrease}
             handleIncrease={handleIncrease}
-            labelText="Dinners"
+            labelText="D"
           />
 
           <QuantityInput

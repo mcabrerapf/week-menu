@@ -1,15 +1,11 @@
 .main {
 	display: flex;
 	flex-direction: column;
-	height: 100%;
+	height: calc(100% - 3rem);
 	width: 100%;
 	background-color: var(--beige-color);
 }
 
 .offline-mode {
-	display: flex;
-	flex-direction: column;
-	height: 100%;
-	width: 100%;
-	background-color: var(--offiline-background-color);
+	background-color: var(--offiline-background-color) !important;
 }

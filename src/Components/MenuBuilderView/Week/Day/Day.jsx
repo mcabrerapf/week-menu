@@ -12,7 +12,7 @@ function Day({
   const hasMeals = !!breakfasts.length || !!lunches.length || !!dinners.length;
 
   return (
-    <div className={`day ${hasMeals ? '' : 'no-food'}`}>
+    <div className={`day ${hasMeals ? '' : 'disabled'}`}>
       <div className="day-label">
         {name}
       </div>

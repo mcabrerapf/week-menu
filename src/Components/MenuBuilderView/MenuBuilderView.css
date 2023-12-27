@@ -1,50 +1,34 @@
-.week-view-header-buttons {
+.week-view-header {
 	height: 3rem;
 	width: 100%;
-	/* border-top: 1px solid black; */
 	display: flex;
 	justify-content: space-between;
 }
 
-.week-view-header-buttons button {
+.week-view-header button {
 	border-radius: 0;
-	border-right: 1px solid var(--beige-color);
-	color: black;
 	border-bottom-left-radius: 5px;
 	border-bottom-right-radius: 5px;
 }
 
-.week-view-header-buttons button:last-of-type {
+.week-view-header button:last-of-type {
 	border-bottom-right-radius: 0px;
-	border-right: none;
 }
 
-.week-view-header-buttons button:first-of-type {
+.week-view-header button:first-of-type {
 	border-bottom-left-radius: 0px;
 }
 
 .week-view-content {
-	height: calc(100% - 3rem);
-	width: 100%;
-	overflow: hidden;
-}
-
-.no-week-container {
-	width: 100%;
 	height: 100%;
+	width: 100%;
+	padding: 5px;
+	overflow: hidden;
 	display: flex;
+	justify-content: center;
 	align-items: center;
-	justify-content: space-evenly;
 }
 
-.no-week-container button {
-	font-size: 3rem !important;
-	height: 80px;
-	width: 120px;
-	background-color: var(--blue-green-color);
-	font-size: 16px;
-	font-weight: 500;
-	border-radius: 10px;
-	border: none;
+.build-menu-button {
 	box-shadow: var(--basic-box-shadow);
 }

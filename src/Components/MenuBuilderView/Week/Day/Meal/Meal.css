@@ -1,15 +1,9 @@
 .meal {
 	display: flex;
 	flex: 1 1 0px;
-	min-width: 0;
 	justify-content: center;
 	align-items: center;
-	border-right: dotted 1px var(--black-color);
-
-	cursor: pointer;
-}
-.no-dish {
-	background-color: gray;
+	border-right: solid 1px var(--black-color);
 }
 
 .meal-content {

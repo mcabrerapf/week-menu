@@ -12,8 +12,7 @@ import {
   UPDATE_STRING,
   CREATE_STRING,
 } from '../../constants';
-import { buildDishesWithIngredients, buildMenusWithDishes } from '../../Components/helpers';
-import './MainContextWrapper.css';
+import { buildDishesWithIngredients, buildMenusWithDishes, sortBy } from '../../Components/helpers';
 import { defaultMenuOptions } from '../../Components/MenuBuilderView/Week/constants';
 import { ToastContext } from '../ToastContext';
 
@@ -28,7 +27,7 @@ function MainContextWrapper({ children }) {
     ingredients: [],
     errorMessage: null,
   });
-  const { errorMessage, view } = contextState;
+  const { errorMessage } = contextState;
 
   useEffect(() => {
     async function initContext() {
@@ -54,9 +53,9 @@ function MainContextWrapper({ children }) {
       return setContextState({
         ...contextState,
         offlineMode: localOfflineMode,
-        dishes: dishesWithIngredients,
-        ingredients: allIngredients,
-        menus: menusWithDishes,
+        ingredients: sortBy(allIngredients, 'name', 'alphabetical'),
+        dishes: sortBy(dishesWithIngredients, 'name', 'alphabetical'),
+        menus: sortBy(menusWithDishes, 'name', 'alphabetical'),
       });
     }
 
@@ -67,28 +66,31 @@ function MainContextWrapper({ children }) {
     if (errorMessage) addToast(errorMessage, 'error');
   }, [errorMessage]);
 
-  const updateLists = async (listToUpdate) => {
+  const getListAndKey = (key, data) => {
     const {
-      ingredients, dishes, menus,
+      ingredients, dishes,
     } = contextState;
-    const listName = listToUpdate || view;
-    const viewToUse = view === MENU_BUILDER_STRING ? MENU_STRING : listName;
-    const newData = await serviceHandler(GET_ALL_STRING)(viewToUse);
+    switch (key) {
+      case DISH_STRING:
+        return [buildDishesWithIngredients(data, ingredients), `${key}es`];
+      case MENU_STRING:
+        return [buildMenusWithDishes(data, dishes), `${key}s`];
+
+      default:
+        return [data, `${key}s`];
+    }
+  };
+
+  const updateList = async (listToUpdate) => {
+    const newData = await serviceHandler(GET_ALL_STRING)(listToUpdate);
     if (newData.errors) {
       addToast(newData.errors, 'error');
       return;
     }
-    const ingredientsToUse = viewToUse === INGREDIENT_STRING ? newData : ingredients;
-    const dishesToUse = viewToUse === DISH_STRING ? newData : dishes;
-    const menusToUse = viewToUse === MENU_STRING ? newData : menus;
-    const dishesWithIngredients = buildDishesWithIngredients(dishesToUse, ingredientsToUse);
-    const menusWithDishes = buildMenusWithDishes(menusToUse, dishesWithIngredients);
-
+    const [updatedList, listKey] = getListAndKey(listToUpdate, newData);
     setContextState({
       ...contextState,
-      dishes: dishesWithIngredients,
-      ingredients: ingredientsToUse,
-      menus: menusWithDishes,
+      [listKey]: sortBy(updatedList, 'name', 'alphabetical'),
     });
   };
 
@@ -101,37 +103,34 @@ function MainContextWrapper({ children }) {
   };
 
   const handleSave = async (data, serviceName) => {
-    const listName = serviceName || view;
-    const viewToUse = view === MENU_BUILDER_STRING ? MENU_STRING : listName;
     const serviceString = data.id ? UPDATE_STRING : CREATE_STRING;
     const serviceToUse = serviceHandler(serviceString);
-    const response = await serviceToUse(viewToUse, data);
+    const response = await serviceToUse(serviceName, data);
     if (response.errors) {
       addToast(response.errors[0], 'error');
       return null;
     }
     addToast(data.name, 'success');
-    await updateLists(viewToUse);
+    await updateList(serviceName);
     return response;
   };
 
-  const handleDelete = async (id, name) => {
-    const viewToUse = view === MENU_BUILDER_STRING ? MENU_STRING : view;
+  const handleDelete = async (id, name, serviceName) => {
     const serviceToUse = serviceHandler(DELETE_STRING);
-    const response = await serviceToUse(viewToUse, { id });
+    const response = await serviceToUse(serviceName, { id });
     if (response.errors) {
       addToast(response.errors[0], 'error');
       return;
     }
     addToast(name, 'delete');
-    await updateLists();
+    await updateList(serviceName);
   };
 
   return (
     <MainContextProvider value={{
       ...contextState,
       setContextState: stateHandler,
-      updateLists,
+      updateList,
       updateCurrentMenu,
       handleDelete,
       handleSave,

@@ -4,14 +4,13 @@ import './Week.css';
 import Day from './Day';
 
 function Week({
-  menu, options, handleUpdateDish, hidden,
+  menu, options, handleUpdateDish,
 }) {
   if (!menu || !menu.length) return null;
   const { days } = options;
-  const className = hidden ? 'week-plan hide' : 'week-plan';
 
   return (
-    <div className={className}>
+    <div className="week-plan">
       {days.map((day, dayIndex) => {
         const { name } = day;
         const dishes = menu.filter((dish) => {
@@ -37,7 +36,6 @@ function Week({
 
 Week.propTypes = {
   handleUpdateDish: PropTypes.func.isRequired,
-  hidden: PropTypes.bool.isRequired,
   menu: PropTypes.arrayOf(PropTypes.shape()),
   options: PropTypes.shape(),
 };

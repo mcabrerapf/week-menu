@@ -9,7 +9,7 @@ import { CopyIcon } from '../../Icons';
 
 const INGREDIENT_TYPES = ['MEAT', 'FISH', 'FRUIT', 'VEGETABLE', 'SAUCE', 'LIQUOR', 'SPICE', 'OTHER'];
 
-function ShopingList({ menuDishes, menuPeople, hidden }) {
+function ShopingList({ menuDishes, menuPeople }) {
   const { addToast } = useContext(ToastContext);
   const ingredienSections = buildIngredientSections(menuDishes, menuPeople);
 
@@ -27,12 +27,10 @@ function ShopingList({ menuDishes, menuPeople, hidden }) {
   };
 
   if (!ingredienSections) return null;
-  const className = hidden ? 'shopping-list hide' : 'shopping-list';
 
   return (
-
-    <div className={className}>
-      <Button modifier="shopping-list-copy-button icon-only" onClick={handleCopyShopingList}>
+    <div className="shopping-list">
+      <Button modifier="shopping-list-copy-button l icon-only" onClick={handleCopyShopingList}>
         <CopyIcon />
       </Button>
       <div className="shopping-list-sections">
@@ -51,7 +49,6 @@ function ShopingList({ menuDishes, menuPeople, hidden }) {
 }
 
 ShopingList.propTypes = {
-  hidden: PropTypes.bool.isRequired,
   menuDishes: PropTypes.arrayOf(PropTypes.shape()),
   menuPeople: PropTypes.number,
 

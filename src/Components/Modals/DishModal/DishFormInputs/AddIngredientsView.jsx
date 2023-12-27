@@ -49,7 +49,7 @@ function AddIngredientsView({
           />
           <Button
             value="ALL"
-            modifier="square icon-only"
+            modifier="m icon-only"
             onClick={() => setIngredientsView(2)}
           >
             <PlusIcon />

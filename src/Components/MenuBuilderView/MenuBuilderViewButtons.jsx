@@ -40,12 +40,13 @@ function WeekViewButtons({
     addModal({
       type: 'menu',
       modalData: { dishes: menu },
-      modifier: 'small',
+      modifier: 's',
+      hideHeader: true,
     });
   };
 
   return (
-    <div className="week-view-header-buttons">
+    <div className="week-view-header">
       <Button
         modifier="icon-only"
         onClick={showBuildMenuModal}

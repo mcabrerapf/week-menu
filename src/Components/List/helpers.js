@@ -2,6 +2,20 @@
 import { INGREDIENT_TYPES, DISH_TYPES } from '../constants';
 import { DISH_STRING, INGREDIENT_STRING } from '../../constants';
 
+const getListData = (view, contextProps) => {
+  const { menus, dishes, ingredients } = contextProps;
+  switch (view) {
+    case 'menu':
+      return menus;
+    case 'dish':
+      return dishes;
+    case 'ingredients':
+      return ingredients;
+    default:
+      return ingredients;
+  }
+};
+
 const filterList = (list, searchValue, filterValue) => {
   if (!searchValue && !filterValue) return list;
   const useFavourite = filterValue === 'favourite';
@@ -34,4 +48,4 @@ const getFilterOptions = (view) => {
   }
 };
 
-export { filterList, getFilterOptions };
+export { filterList, getFilterOptions, getListData };

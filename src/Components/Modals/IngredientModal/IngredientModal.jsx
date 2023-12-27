@@ -7,6 +7,7 @@ import { INGREDIENT_TYPES, INGREDIENT_UNITS } from '../../constants';
 import Input from '../../Input';
 import { deepCompare } from '../../helpers';
 import { SaveIcon } from '../../Icons';
+import { INGREDIENT_STRING } from '../../../constants';
 
 function IngredientModal({
   modalData, closeModal,
@@ -32,7 +33,7 @@ function IngredientModal({
   const handleSubmit = async () => {
     const noChange = deepCompare(ingredientData, modalData);
     if (noChange) return closeModal();
-    await handleSave(ingredientData);
+    await handleSave(ingredientData, INGREDIENT_STRING);
     return closeModal();
   };
 

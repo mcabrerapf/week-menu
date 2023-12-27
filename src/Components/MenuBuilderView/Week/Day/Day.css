@@ -6,11 +6,10 @@
 	color: black;
 	border-radius: 5px;
 	text-align: center;
-	box-shadow: var(--basic-box-shadow);
 }
 
 .no-food {
-	background-color: gray !important;
+	background-color: var(--gray-color) !important;
 }
 
 .day .day-label {
@@ -20,7 +19,6 @@
 	writing-mode: tb;
 	text-orientation: upright;
 	padding-right: 5px;
-	border-right: solid 2px black;
 }
 
 .day .meals {

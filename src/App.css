@@ -5,17 +5,14 @@
 	flex-direction: column;
 }
 
-.app-container {
-	height: 93%;
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-}
-
-.hide {
+.hidden {
 	display: none !important;
 }
 
 .border-bottom {
-	border-bottom: 1px solid black;
+	border-bottom: 1px solid;
+}
+
+.disabled {
+	background-color: var(--gray-color) !important;
 }
