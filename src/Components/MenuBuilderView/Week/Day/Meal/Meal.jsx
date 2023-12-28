@@ -21,6 +21,7 @@ function Meal({
 
   const firstMeal = meals[0] || {};
   const { name, sideDishesToUse } = firstMeal;
+
   const updateDishes = (updateData) => {
     const newDishData = { ...updateData.newDish, useAs: type, days: [dayIndex] };
 

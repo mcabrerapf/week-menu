@@ -1,6 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 import { deepCopy } from '../helpers';
 
+// TODO refactor
 const updateDishes = (updateData, menuDishes) => {
   const {
     changeAll, dayIndex, oldDishId, newDish,

@@ -27,17 +27,17 @@ function MealModal({ modalData, closeModal }) {
   } = modalData;
   const dishesCopy = deepCopy(dishesFromContext);
   const [selectedDish, setSelectedDish] = useState();
-  const [selectedSideDish, setSelectedSideDish] = useState();
+  // const [selectedSideDish, setSelectedSideDish] = useState();
   // const [mode, setMode] = useState(id ? 'display' : 'edit');
-  const [sortedDishes, sortedSideDishes] = getDishesAndSideDishes(dishesCopy, id);
+  const [sortedDishes] = getDishesAndSideDishes(dishesCopy, id);
 
   const handleButtonClick = (changeAll) => {
     if (!selectedDish) return closeModal();
-    const newSideDish = sortedSideDishes
-      .find(({ id: newSideDishId }) => newSideDishId === selectedSideDish);
-    const sideDishesToUse = newSideDish ? [newSideDish] : [];
+    // const newSideDish = sortedSideDishes
+    //   .find(({ id: newSideDishId }) => newSideDishId === selectedSideDish);
+    // const sideDishesToUse = newSideDish ? [newSideDish] : [];
     const newDish = sortedDishes.find(({ id: newDishId }) => newDishId === selectedDish);
-    const data = { newDish: { ...newDish, sideDishesToUse }, oldDishId: id, changeAll };
+    const data = { newDish: { ...newDish }, oldDishId: id, changeAll };
     return closeModal({ updateParent: true, data });
   };
 
@@ -65,7 +65,7 @@ function MealModal({ modalData, closeModal }) {
             selectOptions={sortedDishes}
             type="select"
           />
-          {!!sortedSideDishes.length && (
+          {/* {!!sortedSideDishes.length && (
           <Input
             name="dish"
             id="dish"
@@ -75,9 +75,8 @@ function MealModal({ modalData, closeModal }) {
             selectOptions={sortedSideDishes}
             type="select"
           />
-          )}
+          )} */}
         </div>
-
         <div className="meal-modal-buttons">
           {!id && <Button buttonText="Add dish" onClick={() => handleButtonClick(false)} disabled={!selectedDish} />}
           {id && <Button buttonText="ALL" onClick={() => handleButtonClick(true)} disabled={!selectedDish} />}

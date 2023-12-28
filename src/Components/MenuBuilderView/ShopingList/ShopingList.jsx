@@ -7,7 +7,7 @@ import ShopingListSection from './ShopingListSection';
 import Button from '../../Button';
 import Icon from '../../Icon';
 
-const INGREDIENT_TYPES = ['MEAT', 'FISH', 'FRUIT', 'VEGETABLE', 'SAUCE', 'LIQUOR', 'SPICE', 'OTHER'];
+const INGREDIENT_TYPES = ['meat', 'fish', 'fruit', 'vegetable', 'sauce', 'liquor', 'spice', 'other'];
 
 function ShopingList({ menuDishes, menuPeople }) {
   const { addToast } = useContext(ToastContext);

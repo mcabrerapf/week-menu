@@ -49,7 +49,7 @@ function GeneralFields({
     updateGeneralFields({ ...currentData, time: { ...time, [eName]: eValue } });
   };
 
-  const toggleType = ({ target: { value: eValue } }) => {
+  const toggleType = (eValue) => {
     if (eValue === 'side') return updateGeneralFields({ ...currentData, types: [eValue] });
     const newTypes = types.includes(eValue)
       ? types.filter((type) => type !== eValue) : [...types, eValue].filter((type) => type !== 'side');
@@ -87,7 +87,7 @@ function GeneralFields({
                   key={typeId}
                   modifier={types.includes(typeId) ? 'icon m' : 'icon m bgc-gr'}
                   value={typeId}
-                  onClick={toggleType}
+                  onClick={() => toggleType(typeId)}
                 >
                   <Icon iconName={typeId} />
                 </Button>
