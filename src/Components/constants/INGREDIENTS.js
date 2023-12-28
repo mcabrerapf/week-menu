@@ -1,71 +1,71 @@
 export const INGREDIENT_UNITS = [
   {
-    value: 'u', name: 'Unidad',
+    value: 'u', name: 'U',
   },
   {
-    value: 'mg', name: 'Miligramos',
+    value: 'mg', name: 'Mg',
   },
   {
-    value: 'g', name: 'Gramos',
+    value: 'g', name: 'G',
   },
   {
-    value: 'kg', name: 'Kilos',
+    value: 'kg', name: 'K',
   },
   {
-    value: 'l', name: 'Litros',
+    value: 'l', name: 'L',
   },
   {
-    value: 'ml', name: 'Mililitros',
+    value: 'ml', name: 'Ml',
   },
   {
-    value: 'lb', name: 'Libras',
+    value: 'lb', name: 'Lb',
   },
   {
-    value: 'oz', name: 'Onza',
+    value: 'oz', name: 'Oz',
   },
   {
-    value: 'tsp', name: 'Cucharadita',
+    value: 'tsp', name: 'Cdita',
   },
   {
-    value: 'tbsp', name: 'Cucharada',
+    value: 'tbsp', name: 'Cda',
   },
   {
-    value: 'pt', name: 'Pinta',
+    value: 'pt', name: 'Pt',
   },
   {
-    value: 'cup', name: 'Vaso',
+    value: 'cup', name: 'Tz',
   },
   {
-    value: 'qt', name: 'Cuarto',
+    value: 'qt', name: 'Ct',
   },
   {
-    value: 'doz', name: 'Dozena',
+    value: 'doz', name: 'Dz',
   },
 ];
 
 export const INGREDIENT_TYPES = [
   {
-    value: 'MEAT', name: 'Carne', shortLabel: 'C',
+    value: 'meat', name: 'Carne', shortLabel: 'C',
   },
   {
-    value: 'FISH', name: 'Pescado', shortLabel: 'P',
+    value: 'fish', name: 'Pescado', shortLabel: 'P',
   },
   {
-    value: 'FRUIT', name: 'Fruta', shortLabel: 'F',
+    value: 'fruit', name: 'Fruta', shortLabel: 'F',
   },
   {
-    value: 'VEGETABLE', name: 'Verdura', shortLabel: 'V',
+    value: 'vegetable', name: 'Verdura', shortLabel: 'V',
   },
   {
-    value: 'SAUCE', name: 'Salsa', shortLabel: 'S',
+    value: 'sauce', name: 'Salsa', shortLabel: 'S',
   },
   {
-    value: 'LIQUOR', name: 'Licor', shortLabel: 'L',
+    value: 'liquor', name: 'Licor', shortLabel: 'L',
   },
   {
-    value: 'SPICE', name: 'Especia', shortLabel: 'E',
+    value: 'spice', name: 'Especia', shortLabel: 'E',
   },
   {
-    value: 'OTHER', name: 'Otro', shortLabel: 'O',
+    value: 'other', name: 'Otro', shortLabel: 'O',
   },
 ];

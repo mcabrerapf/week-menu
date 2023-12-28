@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import './DisplayView.css';
 import { capitalizeFirstLetter } from '../../../helpers';
 import Button from '../../../Button';
-import { EditIcon } from '../../../Icons';
+import Icon from '../../../Icon';
 
 function DisplayView({
   dishData,
@@ -19,7 +19,7 @@ function DisplayView({
   return (
     <div className="display-view">
       <div className="display-view-props">
-        {types && types.length && (
+        {!!types && !!types.length && (
         <div className="display-view-props-prop block-prop">
           <span>
             <strong>Type: </strong>
@@ -50,7 +50,7 @@ function DisplayView({
         </div>
         )}
 
-        {ingredients && (
+        {!!ingredients && !!ingredients.length && (
         <ul className="display-view-props-ingredients">
           <li
             className="display-view-props-ingredients-label"
@@ -89,8 +89,8 @@ function DisplayView({
         )}
       </div>
       <div className="display-view-footer">
-        <Button modifier="icon-only" onClick={() => setModalView('edit')}>
-          <EditIcon />
+        <Button modifier="icon" onClick={() => setModalView('edit')}>
+          <Icon iconName="edit" />
         </Button>
         {/* <Button modifier="delete">
           <DeleteIcon />

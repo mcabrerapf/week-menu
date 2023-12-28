@@ -10,7 +10,7 @@ function Week({
   const { days } = options;
 
   return (
-    <div className="week-plan">
+    <div className="week">
       {days.map((day, dayIndex) => {
         const { name } = day;
         const dishes = menu.filter((dish) => {

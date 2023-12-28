@@ -1,9 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import {
-  IngredientIcon, MenuBuilderIcon, MenuIcon, DishIcon,
-} from '../Icons';
+import Icon from '../Icon';
 import './Footer.css';
 import {
   MainContext,
@@ -35,7 +33,7 @@ function Footer() {
     addToast(`Copied ${listName} list to clipboard`, 'info');
   };
 
-  const checkIfSelected = (check) => (view === check ? 'icon-only selected' : 'icon-only');
+  const checkIfSelected = (check) => (view === check ? 'icon' : 'icon bgc-gr');
 
   return (
     <footer className="footer">
@@ -44,7 +42,7 @@ function Footer() {
         modifier={checkIfSelected(MENU_BUILDER_STRING)}
         onClick={() => handleOnClick(MENU_BUILDER_STRING)}
       >
-        <MenuBuilderIcon />
+        <Icon iconName="calendar" />
       </Button>
       <Button
         {...useLongPress({
@@ -54,7 +52,7 @@ function Footer() {
         modifier={checkIfSelected(MENU_STRING)}
         onClick={() => handleOnClick(MENU_STRING)}
       >
-        <MenuIcon />
+        <Icon iconName="menu" />
       </Button>
       <Button
         {...useLongPress({
@@ -64,7 +62,7 @@ function Footer() {
         modifier={checkIfSelected(DISH_STRING)}
         onClick={() => handleOnClick(DISH_STRING)}
       >
-        <DishIcon />
+        <Icon iconName="dish" />
       </Button>
       <Button
         {...useLongPress({
@@ -74,7 +72,7 @@ function Footer() {
         modifier={checkIfSelected(INGREDIENT_STRING)}
         onClick={() => handleOnClick(INGREDIENT_STRING)}
       >
-        <IngredientIcon />
+        <Icon iconName="ingredient" />
       </Button>
     </footer>
   );

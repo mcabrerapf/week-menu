@@ -5,7 +5,7 @@ import Button from '../../Button';
 import Input from '../../Input';
 import { MainContext } from '../../../Contexts/MainContext';
 import { deepCopy, sortBy } from '../../helpers';
-import { ArrowDownIcon } from '../../Icons';
+import Icon from '../../Icon';
 // import DisplayMode from '../DisplayMode';
 
 const getDishesAndSideDishes = (dishes, id) => {
@@ -14,7 +14,7 @@ const getDishesAndSideDishes = (dishes, id) => {
   dishes.forEach((dish) => {
     const { id: dishId, types } = dish;
     if (dishId === id) return;
-    if (types.includes('SIDE')) sideDishes.push(dish);
+    if (types.includes('side')) sideDishes.push(dish);
     else mainDishes.push(dish);
   });
   return [sortBy(mainDishes, 'name', 'alphabetical'), sortBy(sideDishes, 'name', 'alphabetical')];
@@ -53,7 +53,7 @@ function MealModal({ modalData, closeModal }) {
           <div className="old-dish-name">
 
             <span>{name}</span>
-            <ArrowDownIcon />
+            <Icon iconName="arrow-d" />
           </div>
           )}
           <Input

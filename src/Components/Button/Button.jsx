@@ -18,7 +18,7 @@ function Button({
   name,
   disableMultipleClicks,
 }) {
-  const baseClassName = `button${disabled ? ' disabled' : ''}`;
+  const baseClassName = `button${disabled ? ' bgc-gr' : ''}`;
   const [amountOfClicks, setAmountOfClicks] = useState(0);
 
   return (

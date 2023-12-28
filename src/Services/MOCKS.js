@@ -16,7 +16,7 @@ export const DISHES_MOCK = [
     }, {
       id: 'ca1446b0-0e5e-4c61-a1bf-6307aac3d7cb', name: 'Zanahoria', unit: 'u', type: 'VEGETABLE', quantity: 4,
     }],
-    types: ['DINNER'],
+    types: ['dinner'],
     size: null,
     servings: 3,
     time: { hours: 0, minutes: 20 },
@@ -34,7 +34,7 @@ export const DISHES_MOCK = [
     }, {
       id: '28b02556-06d1-4eb9-8878-7256d34e98f8', name: 'Cebolla', unit: 'u', type: 'VEGETABLE', quantity: 1,
     }],
-    types: ['LUNCH'],
+    types: ['lunch'],
     size: null,
     servings: 4,
     time: { hours: 0, minutes: 40 },
@@ -66,7 +66,7 @@ export const DISHES_MOCK = [
     }, {
       id: 'ca1446b0-0e5e-4c61-a1bf-6307aac3d7cb', name: 'Zanahoria', unit: 'u', type: 'VEGETABLE', quantity: 2,
     }],
-    types: ['LUNCH'],
+    types: ['lunch'],
     size: null,
     servings: 4,
     time: { hours: 0, minutes: 0 },
@@ -86,7 +86,7 @@ export const DISHES_MOCK = [
     }, {
       id: '359f3676-b3b3-4f2d-8667-79cbd233ac35', name: 'Pimiento rojo', unit: 'u', type: 'VEGETABLE', quantity: 1,
     }],
-    types: ['LUNCH'],
+    types: ['lunch'],
     size: null,
     servings: 4,
     time: { hours: 0, minutes: 0 },
@@ -106,7 +106,7 @@ export const DISHES_MOCK = [
     }, {
       id: '28b02556-06d1-4eb9-8878-7256d34e98f8', name: 'Cebolla', unit: 'u', type: 'VEGETABLE', quantity: 1,
     }],
-    types: ['LUNCH'],
+    types: ['lunch'],
     size: null,
     servings: 2,
     time: { hours: 0, minutes: 0 },
@@ -132,7 +132,7 @@ export const DISHES_MOCK = [
     }, {
       id: '27101419-a237-4040-9fe1-4853b882c68b', name: 'Perejil', unit: 'u', type: 'SPICE', quantity: 1,
     }],
-    types: ['DINNER'],
+    types: ['dinner'],
     size: null,
     servings: 4,
     time: { hours: 0, minutes: 0 },
@@ -160,7 +160,7 @@ export const DISHES_MOCK = [
     }, {
       id: '27101419-a237-4040-9fe1-4853b882c68b', name: 'Perejil', unit: 'u', type: 'SPICE', quantity: 1,
     }],
-    types: ['DINNER'],
+    types: ['dinner'],
     size: null,
     servings: 4,
     time: { hours: 0, minutes: 0 },
@@ -178,7 +178,7 @@ export const DISHES_MOCK = [
     }, {
       id: 'a93ad2f9-86a2-40b8-a977-4166037c1ae3', name: 'Vi blanc', unit: 'ml', type: 'LIQUOR', quantity: 1,
     }],
-    types: ['LUNCH'],
+    types: ['lunch'],
     size: null,
     servings: 1,
     time: { hours: 0, minutes: 0 },
@@ -200,7 +200,7 @@ export const DISHES_MOCK = [
     }, {
       id: 'b1a8db12-5aaf-4d37-b116-60b786c57123', name: 'Tomate triturado', unit: 'u', type: 'OTHER', quantity: 1,
     }],
-    types: ['LUNCH'],
+    types: ['lunch'],
     size: null,
     servings: 6,
     time: { hours: 0, minutes: 0 },
@@ -222,7 +222,7 @@ export const DISHES_MOCK = [
     }, {
       id: '0319eb3f-f7cc-4ba8-9c09-d56abbc82b1d', name: 'Spaghetti', unit: 'g', type: 'OTHER', quantity: 400,
     }],
-    types: ['LUNCH'],
+    types: ['lunch'],
     size: null,
     servings: 4,
     time: { hours: 0, minutes: 0 },
@@ -246,7 +246,7 @@ export const DISHES_MOCK = [
     }, {
       id: '27101419-a237-4040-9fe1-4853b882c68b', name: 'Perejil', unit: 'u', type: 'SPICE', quantity: 1,
     }],
-    types: ['DINNER'],
+    types: ['dinner'],
     size: null,
     servings: 4,
     time: { hours: 0, minutes: 0 },
@@ -262,7 +262,7 @@ export const DISHES_MOCK = [
     }, {
       id: '69895827-d905-4819-a34f-ccec5050a47c', name: 'Espinacas', unit: 'g', type: 'VEGETABLE', quantity: 1,
     }],
-    types: ['DINNER'],
+    types: ['dinner'],
     size: null,
     servings: 4,
     time: { hours: 0, minutes: 0 },
@@ -280,7 +280,7 @@ export const DISHES_MOCK = [
     }, {
       id: 'b2bcb11e-87e6-4f91-8ca2-8515cd026a29', name: 'Arroz', unit: 'g', type: 'OTHER', quantity: 1,
     }],
-    types: ['LUNCH'],
+    types: ['lunch'],
     size: null,
     servings: 2,
     time: { hours: 0, minutes: 0 },
@@ -302,7 +302,7 @@ export const DISHES_MOCK = [
     }, {
       id: 'ca1446b0-0e5e-4c61-a1bf-6307aac3d7cb', name: 'Zanahoria', unit: 'u', type: 'VEGETABLE', quantity: 2,
     }],
-    types: ['LUNCH'],
+    types: ['lunch'],
     size: null,
     servings: 1,
     time: { hours: 0, minutes: 0 },
@@ -322,7 +322,7 @@ export const DISHES_MOCK = [
     }, {
       id: '0319eb3f-f7cc-4ba8-9c09-d56abbc82b1d', name: 'Spaghetti', unit: 'g', type: 'OTHER', quantity: 400,
     }],
-    types: ['LUNCH'],
+    types: ['lunch'],
     size: null,
     servings: 4,
     time: { hours: 0, minutes: 0 },
@@ -342,7 +342,7 @@ export const DISHES_MOCK = [
     }, {
       id: 'b1a8db12-5aaf-4d37-b116-60b786c57123', name: 'Tomate triturado', unit: 'u', type: 'OTHER', quantity: 1,
     }],
-    types: ['LUNCH'],
+    types: ['lunch'],
     size: null,
     servings: 2,
     time: { hours: 0, minutes: 0 },
@@ -360,7 +360,7 @@ export const DISHES_MOCK = [
     }, {
       id: '294dfba8-a221-41d4-98ff-30d3b35872fc', name: 'Queso en lonchas', unit: 'u', type: 'OTHER', quantity: 1,
     }],
-    types: ['DINNER'],
+    types: ['dinner'],
     size: null,
     servings: 2,
     time: { hours: 0, minutes: 0 },
@@ -378,7 +378,7 @@ export const DISHES_MOCK = [
     }, {
       id: '7597511b-c3bb-4c75-ab4e-7b94ebf89822', name: 'Salchicha', unit: 'u', type: 'MEAT', quantity: 2,
     }],
-    types: ['DINNER'],
+    types: ['dinner'],
     size: null,
     servings: 2,
     time: { hours: 0, minutes: 0 },
@@ -404,7 +404,7 @@ export const DISHES_MOCK = [
     }, {
       id: 'efe81769-b8c8-4aea-b93f-b97d0cc179a4', name: 'Salmon fumat', unit: 'g', type: 'FISH', quantity: 60,
     }],
-    types: ['LUNCH'],
+    types: ['lunch'],
     size: null,
     servings: 1,
     time: { hours: 0, minutes: 10 },
@@ -424,7 +424,7 @@ export const DISHES_MOCK = [
     }, {
       id: '28b02556-06d1-4eb9-8878-7256d34e98f8', name: 'Cebolla', unit: 'u', type: 'VEGETABLE', quantity: 1,
     }],
-    types: ['DINNER'],
+    types: ['dinner'],
     size: null,
     servings: 1,
     time: { hours: 0, minutes: 0 },
@@ -440,14 +440,14 @@ export const DISHES_MOCK = [
     }, {
       id: '28b02556-06d1-4eb9-8878-7256d34e98f8', name: 'Cebolla', unit: 'u', type: 'VEGETABLE', quantity: 1,
     }],
-    types: ['SIDE'],
+    types: ['side'],
     size: null,
     servings: 2,
     time: { hours: 0, minutes: 0 },
     description: '',
     instructions: null,
   }, {
-    id: '91052207-35eb-43e9-945e-9238c538b7c0', name: 'Patats Iron', sideDishes: [], sideDishTo: ['5d7cfe81-a0e9-44c2-956e-bc12b6d0b0e1'], ingredients: [], types: ['SIDE'], size: null, servings: 1, time: { hours: 0, minutes: 15 }, description: '', instructions: 'Cortar las patatas y remojar 1 o 2 horas (con o sin piel)---Calentar la sarten con mantequilla y aceite y poner las patatas---Saltear con pebre, ajo, callena y tomillo y cocinar por 10 mins',
+    id: '91052207-35eb-43e9-945e-9238c538b7c0', name: 'Patats Iron', sideDishes: [], sideDishTo: ['5d7cfe81-a0e9-44c2-956e-bc12b6d0b0e1'], ingredients: [], types: ['side'], size: null, servings: 1, time: { hours: 0, minutes: 15 }, description: '', instructions: 'Cortar las patatas y remojar 1 o 2 horas (con o sin piel)---Calentar la sarten con mantequilla y aceite y poner las patatas---Saltear con pebre, ajo, callena y tomillo y cocinar por 10 mins',
   }, {
     id: '4fd2f617-4671-4b2d-b3e2-67328c4a775d',
     name: 'Pizza',
@@ -456,7 +456,7 @@ export const DISHES_MOCK = [
     ingredients: [{
       id: '0ee90e79-80a3-4cec-b359-26ceb17a0b8d', name: 'Pizza', unit: 'u', type: 'OTHER', quantity: 1,
     }],
-    types: ['DINNER'],
+    types: ['dinner'],
     size: null,
     servings: 2,
     time: { hours: 0, minutes: 0 },
@@ -480,7 +480,7 @@ export const DISHES_MOCK = [
     }, {
       id: '41443878-22e9-4b89-aa46-a16755a51bec', name: 'Tomate cherry', unit: 'g', type: 'VEGETABLE', quantity: 160,
     }],
-    types: ['LUNCH'],
+    types: ['lunch'],
     size: null,
     servings: 4,
     time: { hours: 0, minutes: 0 },
@@ -502,14 +502,14 @@ export const DISHES_MOCK = [
     }, {
       id: '1bd4cabc-16c1-46ea-a2b6-a90dbfded769', name: 'Pollo entero', unit: 'u', type: 'MEAT', quantity: 1,
     }],
-    types: ['LUNCH'],
+    types: ['lunch'],
     size: null,
     servings: 4,
     time: { hours: 0, minutes: 0 },
     description: '',
     instructions: null,
   }, {
-    id: '38b9aabe-29f6-410f-81c6-daf72a97d764', name: 'Pure carabasso', sideDishes: [], sideDishTo: [], ingredients: [], types: ['DINNER'], size: null, servings: 4, time: { hours: 0, minutes: 0 }, description: '', instructions: 'Pelar todo y picar---En una olla cubrir con agua, poner sal y a hervir hasta que este hecha la patata 🥔---Triturar',
+    id: '38b9aabe-29f6-410f-81c6-daf72a97d764', name: 'Pure carabasso', sideDishes: [], sideDishTo: [], ingredients: [], types: ['dinner'], size: null, servings: 4, time: { hours: 0, minutes: 0 }, description: '', instructions: 'Pelar todo y picar---En una olla cubrir con agua, poner sal y a hervir hasta que este hecha la patata 🥔---Triturar',
   }, {
     id: 'cc0622e2-4799-41fb-a443-d84ba22bc009',
     name: 'Sanguich ous',
@@ -520,7 +520,7 @@ export const DISHES_MOCK = [
     }, {
       id: '0b3eb70f-4e0d-406f-ae15-2ece57d577e4', name: 'Mayonesa', unit: 'u', type: 'OTHER', quantity: 1,
     }],
-    types: ['DINNER'],
+    types: ['dinner'],
     size: null,
     servings: 2,
     time: { hours: 0, minutes: 0 },
@@ -552,7 +552,7 @@ export const DISHES_MOCK = [
     }, {
       id: 'c61860f9-4c06-454f-aa11-77631a30707b', name: 'Yogurt', unit: 'u', type: 'OTHER', quantity: 1,
     }],
-    types: ['DINNER'],
+    types: ['dinner'],
     size: null,
     servings: 2,
     time: { hours: 0, minutes: 0 },
@@ -566,7 +566,7 @@ export const DISHES_MOCK = [
     ingredients: [{
       id: '6b84d3ae-e068-4baa-8f78-5e638de49b1c', name: 'Alls tendres', unit: 'u', type: 'VEGETABLE', quantity: 1,
     }],
-    types: ['DINNER'],
+    types: ['dinner'],
     size: null,
     servings: 2,
     time: { hours: 0, minutes: 0 },
@@ -584,7 +584,7 @@ export const DISHES_MOCK = [
     }, {
       id: 'ac006aff-aacc-4127-950f-a12a9d4c870f', name: 'Nata de cocinar', unit: 'u', type: 'OTHER', quantity: 1,
     }],
-    types: ['DINNER'],
+    types: ['dinner'],
     size: null,
     servings: 4,
     time: { hours: 0, minutes: 30 },
@@ -604,7 +604,7 @@ export const DISHES_MOCK = [
     }, {
       id: 'bdd10433-2817-4887-bb9c-b5e92f94df5d', name: 'Xai', unit: 'u', type: 'MEAT', quantity: 4,
     }],
-    types: ['LUNCH', 'DINNER'],
+    types: ['lunch', 'dinner'],
     size: null,
     servings: 2,
     time: { hours: 0, minutes: 0 },

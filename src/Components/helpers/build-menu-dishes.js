@@ -2,7 +2,7 @@
 import deepCopy from './deep-copy';
 import generateRandomNumber from './generate-random-number';
 
-const DISH_TYPES = ['BREAKFAST', 'LUNCH', 'DINNER'];
+const DISH_TYPES = ['breakfast', 'lunch', 'dinner'];
 
 const populateSideDishes = (dish, dishes) => {
   const { id } = dish;

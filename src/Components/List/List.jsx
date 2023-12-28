@@ -3,18 +3,16 @@ import './List.css';
 import { MainContext } from '../../Contexts/MainContext';
 import { ModalContext } from '../../Contexts/ModalContext';
 import Button from '../Button';
-// import { sortBy } from '../helpers';
 import { filterList, getListData } from './helpers';
 import ListItem from './ListItem';
 import ListFilters from './ListFilters';
-import { PlusIcon } from '../Icons';
+import Icon from '../Icon';
 
 function List() {
   const {
     view, currentMenu, updateCurrentMenu, ...contextProps
   } = useContext(MainContext);
   const { addModal } = useContext(ModalContext);
-
   const [searchValue, setSearchValue] = useState('');
   const [filterValue, setFilterValue] = useState('');
 
@@ -36,7 +34,6 @@ function List() {
 
   const listData = getListData(view, contextProps);
   const filteredList = filterList(listData, searchValue, filterValue);
-  // const sortedItems = sortBy(foundItems, 'name', 'alphabetical');
 
   return (
     <div className="list-container">
@@ -58,15 +55,13 @@ function List() {
         ))}
       </ul>
       {view !== 'menu' && (
-      <div className="add-container">
         <Button
-          modifier="circle l icon-only"
+          modifier="circle l icon shadow list-add-button"
           type="button"
           onClick={() => handleOpenModal(view, 'create', {})}
         >
-          <PlusIcon />
+          <Icon iconName="plus" />
         </Button>
-      </div>
       )}
     </div>
   );

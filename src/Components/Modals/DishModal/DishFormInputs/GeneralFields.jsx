@@ -1,20 +1,18 @@
 /* eslint-disable no-restricted-globals */
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import './DishFormInputs.css';
+import './GeneralFields.css';
 import { DISH_TYPES } from '../../../constants/DISHES';
 import { MainContext } from '../../../../Contexts/MainContext';
 import Input from '../../../Input';
 import Button from '../../../Button';
 import QuantityInput from '../../../QuantityInput';
 import { capitalizeFirstLetter, sortBy } from '../../../helpers';
-import {
-  ClockIcon, CloseIcon, PeopleIcon, SaveIcon,
-} from '../../../Icons';
+import Icon from '../../../Icon';
 
 const getMainDishes = (dishes, currentId, currentMainDishes = []) => {
   const sideDishes = dishes
-    .filter(({ id, types: sideType }) => !sideType.includes('SIDE') && !currentMainDishes.includes(id) && id !== currentId);
+    .filter(({ id, types: sideType }) => !sideType.includes('side') && !currentMainDishes.includes(id) && id !== currentId);
   return sortBy(sideDishes, 'name', 'alphabetical');
 };
 
@@ -52,9 +50,9 @@ function GeneralFields({
   };
 
   const toggleType = ({ target: { value: eValue } }) => {
-    if (eValue === 'SIDE') return updateGeneralFields({ ...currentData, types: [eValue] });
+    if (eValue === 'side') return updateGeneralFields({ ...currentData, types: [eValue] });
     const newTypes = types.includes(eValue)
-      ? types.filter((type) => type !== eValue) : [...types, eValue].filter((type) => type !== 'SIDE');
+      ? types.filter((type) => type !== eValue) : [...types, eValue].filter((type) => type !== 'side');
     return updateGeneralFields({ ...currentData, types: newTypes });
   };
 
@@ -65,13 +63,13 @@ function GeneralFields({
     updateGeneralFields({ ...currentData, servings: servings - 1 });
   };
 
-  const showSideDishes = types.includes('SIDE');
+  const showSideDishes = types.includes('side');
   const sortedMainDishes = showSideDishes ? getMainDishes(dishes, id, sideDishTo) : [];
 
   return (
-    <>
-      <div>
-        <div className="group-input type-input">
+    <div className="general-fields">
+      <div className="general-inputs">
+        <div className="row">
           <Input
             autoComplete="off"
             type="text"
@@ -82,26 +80,25 @@ function GeneralFields({
             onBlur={handleOnChange}
             placeholder="Name"
           />
-          <div className="group-input">
-            <div className="group-input-inputs">
-              {DISH_TYPES
-                .map(({ id: typeId, shortLabel }) => (
-                  <Button
-                    key={typeId}
-                    modifier={types.includes(typeId) ? 'm' : 'm disabled'}
-                    buttonText={shortLabel}
-                    value={typeId}
-                    onClick={toggleType}
-                  />
-                ))}
+          <div className="group-c">
+            {DISH_TYPES
+              .map(({ id: typeId }) => (
+                <Button
+                  key={typeId}
+                  modifier={types.includes(typeId) ? 'icon m' : 'icon m bgc-gr'}
+                  value={typeId}
+                  onClick={toggleType}
+                >
+                  <Icon iconName={typeId} />
+                </Button>
+              ))}
 
-            </div>
           </div>
-
         </div>
-        <div className="form-input-group">
-          <div className="group-input">
-            <span className="group-input-label"><PeopleIcon /></span>
+
+        <div className="row">
+          <div className="column centered">
+            <span className="icon-l"><Icon iconName="people" /></span>
             <QuantityInput
               value={servings}
               min={1}
@@ -111,10 +108,9 @@ function GeneralFields({
               handleIncrease={handleIncrease}
             />
           </div>
-
-          <div className="group-input">
-            <span className="group-input-label"><ClockIcon /></span>
-            <div className="group-input-inputs">
+          <div className="column centered">
+            <span className="icon-l"><Icon iconName="clock" /></span>
+            <div className="row">
               <Input
                 type="number"
                 id="hours"
@@ -143,6 +139,7 @@ function GeneralFields({
             </div>
           </div>
         </div>
+
         {showSideDishes && (
         <div className="side-dishes-container">
           <Input
@@ -169,7 +166,8 @@ function GeneralFields({
                     value={sideDishId}
                     buttonText={capitalizeFirstLetter(sideDishName)}
                   >
-                    <CloseIcon
+                    <Icon
+                      iconName="close"
                       onClick={() => handleRemoveMainDish(sideDishId)}
                     />
                   </Button>
@@ -181,11 +179,11 @@ function GeneralFields({
         </div>
         )}
       </div>
-      <Button modifier="icon-only" onClick={handleSubmit} disabled={!canSave}>
-        <SaveIcon />
+      <Button modifier="icon" onClick={handleSubmit} disabled={!canSave}>
+        <Icon iconName="save" />
       </Button>
 
-    </>
+    </div>
 
   );
 }

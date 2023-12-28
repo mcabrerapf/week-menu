@@ -5,10 +5,10 @@ import PropTypes from 'prop-types';
 import './DishFormInputs.css';
 import Button from '../../../Button';
 import InstructionField from './InstructionField';
-import { PlusIcon, SaveIcon } from '../../../Icons';
+import Icon from '../../../Icon';
 
 const initInstructions = (ins) => {
-  if (!ins) return [];
+  if (!ins) return [''];
   return ins.split('---');
 };
 
@@ -72,14 +72,14 @@ function InstructionsFields({
       </div>
       <div className="instruction-buttons">
         <Button
-          modifier="icon-only"
+          modifier="icon"
           type="button"
           onClick={addInstruction}
         >
-          <PlusIcon />
+          <Icon iconName="plus" />
         </Button>
-        <Button modifier="icon-only" onClick={handleSubmit} disabled={!canSave}>
-          <SaveIcon />
+        <Button modifier="icon" onClick={handleSubmit} disabled={!canSave}>
+          <Icon iconName="save" />
         </Button>
       </div>
     </>

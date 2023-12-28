@@ -49,12 +49,12 @@ function Main() {
     };
   });
 
-  const offlineClass = offlineMode === 1 ? 'offline-mode' : '';
+  const offlineClass = offlineMode === 1 ? ' offline-mode' : '';
 
   return (
 
     <div
-      className={`main ${offlineClass}`}
+      className={`main${offlineClass}`}
       onTouchStart={onTouchStart}
       onTouchMove={onTouchMove}
       onTouchEnd={onTouchEnd}

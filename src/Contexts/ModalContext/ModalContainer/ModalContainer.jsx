@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import './ModalContainer.css';
 import { capitalizeFirstLetter } from '../../../Components/helpers';
 import Button from '../../../Components/Button';
-import { CloseIcon } from '../../../Components/Icons';
+import Icon from '../../../Components/Icon';
 
 function ModalContainer({
   children, closeModal, headerText, hideHeader, modifier,
@@ -34,7 +34,7 @@ function ModalContainer({
         <div className="modal-header">
           <p className="modal-header-text">{parsedHeaderText}</p>
           <Button modifier="modal-header-close-button" onClick={closeModal}>
-            <CloseIcon />
+            <Icon iconName="close" />
           </Button>
         </div>
       )}

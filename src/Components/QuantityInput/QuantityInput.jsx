@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import './QuantityInput.css';
 import { parseClassName } from '../helpers';
 import Button from '../Button';
-import { MinusIcon, PlusIcon } from '../Icons';
+import Icon from '../Icon';
 
 function QuantityInput({
   value, labelText, min, max, valueKey, handleDecrease, handleIncrease, modifier,
@@ -17,7 +17,7 @@ function QuantityInput({
           disabled={value === min}
           onClick={() => handleDecrease(valueKey)}
         >
-          <MinusIcon />
+          <Icon iconName="minus" />
         </Button>
         <div className="quantity-input-container-quantity">{value}</div>
         <Button
@@ -25,7 +25,7 @@ function QuantityInput({
           disabled={value === max}
           onClick={() => handleIncrease(valueKey)}
         >
-          <PlusIcon />
+          <Icon iconName="plus" />
         </Button>
       </div>
 

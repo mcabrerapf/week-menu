@@ -6,20 +6,20 @@ import Meal from './Meal';
 function Day({
   name, dayIndex, dishes, handleUpdateDish,
 }) {
-  const breakfasts = dishes.filter(({ useAs }) => useAs === 'BREAKFAST');
-  const lunches = dishes.filter(({ useAs }) => useAs === 'LUNCH');
-  const dinners = dishes.filter(({ useAs }) => useAs === 'DINNER');
+  const breakfasts = dishes.filter(({ useAs }) => useAs === 'breakfast');
+  const lunches = dishes.filter(({ useAs }) => useAs === 'lunch');
+  const dinners = dishes.filter(({ useAs }) => useAs === 'dinner');
   const hasMeals = !!breakfasts.length || !!lunches.length || !!dinners.length;
 
   return (
-    <div className={`day ${hasMeals ? '' : 'disabled'}`}>
+    <div className={`day${hasMeals ? '' : ' bgc-gr'}`}>
       <div className="day-label">
         {name}
       </div>
-      <div className="meals">
-        <Meal meals={breakfasts} type="BREAKFAST" dayIndex={dayIndex} handleUpdateDish={handleUpdateDish} />
-        <Meal meals={lunches} type="LUNCH" dayIndex={dayIndex} handleUpdateDish={handleUpdateDish} />
-        <Meal meals={dinners} type="DINNER" dayIndex={dayIndex} handleUpdateDish={handleUpdateDish} />
+      <div className="day-meals">
+        <Meal meals={breakfasts} type="breakfast" dayIndex={dayIndex} handleUpdateDish={handleUpdateDish} />
+        <Meal meals={lunches} type="lunch" dayIndex={dayIndex} handleUpdateDish={handleUpdateDish} />
+        <Meal meals={dinners} type="dinner" dayIndex={dayIndex} handleUpdateDish={handleUpdateDish} />
       </div>
     </div>
   );

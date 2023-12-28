@@ -32,11 +32,6 @@
 
 .button.circle {
 	border-radius: 2rem;
-	box-shadow: var(--basic-box-shadow);
-}
-
-.button.icon-only {
-	font-size: 1.5rem;
 }
 
 .buttons-group {

@@ -5,7 +5,7 @@ import { buildIngredientSections } from '../../helpers';
 import './ShopingList.css';
 import ShopingListSection from './ShopingListSection';
 import Button from '../../Button';
-import { CopyIcon } from '../../Icons';
+import Icon from '../../Icon';
 
 const INGREDIENT_TYPES = ['MEAT', 'FISH', 'FRUIT', 'VEGETABLE', 'SAUCE', 'LIQUOR', 'SPICE', 'OTHER'];
 
@@ -30,8 +30,8 @@ function ShopingList({ menuDishes, menuPeople }) {
 
   return (
     <div className="shopping-list">
-      <Button modifier="shopping-list-copy-button l icon-only" onClick={handleCopyShopingList}>
-        <CopyIcon />
+      <Button modifier="shopping-list-copy-button l icon" onClick={handleCopyShopingList}>
+        <Icon iconName="copy" />
       </Button>
       <div className="shopping-list-sections">
         {INGREDIENT_TYPES.map((type) => {

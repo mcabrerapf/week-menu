@@ -8,14 +8,14 @@
 	flex-direction: column;
 }
 
-.toast-context-wrapper .toast-message-container {
+.toast-message-container {
 	display: flex;
 	flex-direction: row-reverse;
 	max-width: 100%;
 	margin: 5px;
 }
 
-.toast-message-container .toast-message-content {
+.toast-message {
 	max-width: 20rem;
 	min-width: 10rem;
 	background-color: black;
@@ -32,18 +32,18 @@
 	gap: 5px;
 }
 
-.toast-message-content.info {
+.toast-message.info {
 	background-color: var(--blue-color);
 }
 
-.toast-message-content.success {
+.toast-message.success {
 	background-color: var(--green-color);
 }
 
-.toast-message-content.alert {
+.toast-message.alert {
 	background-color: var(--red-color);
 }
 
-.toast-message-content.error {
+.toast-message.error {
 	background-color: var(--red-color);
 }

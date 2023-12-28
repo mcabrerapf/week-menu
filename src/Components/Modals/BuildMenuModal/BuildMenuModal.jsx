@@ -52,9 +52,9 @@ function BuildMenuModal({
     people,
   } = currentData;
 
-  const [breakfastMin, breakfastMax, availableBreakfasts] = getMealMinMax(dishesData, currentData, 'BREAKFAST', 'hasBreakfast');
-  const [lunchMin, lunchMax, availableLunches] = getMealMinMax(dishesData, currentData, 'LUNCH', 'hasLunch');
-  const [dinnerMin, dinnerMax, availableDinners] = getMealMinMax(dishesData, currentData, 'DINNER', 'hasDinner');
+  const [breakfastMin, breakfastMax, availableBreakfasts] = getMealMinMax(dishesData, currentData, 'breakfast', 'hasBreakfast');
+  const [lunchMin, lunchMax, availableLunches] = getMealMinMax(dishesData, currentData, 'lunch', 'hasLunch');
+  const [dinnerMin, dinnerMax, availableDinners] = getMealMinMax(dishesData, currentData, 'dinner', 'hasDinner');
   const { length: daysWithMeals } = days
     .filter(({ hasBreakfast: hB, hasLunch: hL, hasDinner: hD }) => hB || hL || hD);
 
@@ -96,7 +96,7 @@ function BuildMenuModal({
             } = day;
             const hasMeal = hasBreakfast || hasLunch || hasDinner;
             const dayMealsClassname = 'build-menu-modal-day-meals';
-            const dayButtonClassName = `day-button${hasMeal ? '' : ' disabled'} ${name.toLowerCase()}`;
+            const dayButtonClassName = `day-button${hasMeal ? '' : ' bgc-gr'} ${name.toLowerCase()}`;
 
             return (
               <div key={name} className="build-menu-modal-day-container">
@@ -110,7 +110,7 @@ function BuildMenuModal({
                 />
                 <div className={dayMealsClassname}>
                   <Button
-                    modifier={`has-meal-button${hasBreakfast ? '' : ' disabled'}`}
+                    modifier={`has-meal-button${hasBreakfast ? '' : ' bgc-gr'}`}
                     value={hasBreakfast}
                     buttonText="B"
                     disabled={availableBreakfasts === 0}
@@ -119,7 +119,7 @@ function BuildMenuModal({
                     }}
                   />
                   <Button
-                    modifier={`has-meal-button${hasLunch ? '' : ' disabled'}`}
+                    modifier={`has-meal-button${hasLunch ? '' : ' bgc-gr'}`}
                     value={hasLunch}
                     buttonText="L"
                     disabled={availableLunches === 0}
@@ -128,7 +128,7 @@ function BuildMenuModal({
                     }}
                   />
                   <Button
-                    modifier={`has-meal-button${hasDinner ? '' : ' disabled'} ${name.toLowerCase()}`}
+                    modifier={`has-meal-button${hasDinner ? '' : ' bgc-gr'} ${name.toLowerCase()}`}
                     value={hasDinner}
                     buttonText="D"
                     disabled={availableDinners === 0}
@@ -143,7 +143,6 @@ function BuildMenuModal({
         </div>
 
         <div className="build-menu-modal-max-inputs">
-          {/* <div className="build-menu-modal-max-inputs-header">Max</div> */}
           <QuantityInput
             value={maxBreakfasts}
             valueKey="maxBreakfasts"
@@ -186,7 +185,11 @@ function BuildMenuModal({
 
       </div>
       <div>
-        <Button modifier="icon-only" onClick={handleButtonClick} disabled={daysWithMeals === 0}>
+        <Button
+          modifier="icon"
+          onClick={handleButtonClick}
+          disabled={daysWithMeals === 0}
+        >
           <FaCheck />
         </Button>
       </div>

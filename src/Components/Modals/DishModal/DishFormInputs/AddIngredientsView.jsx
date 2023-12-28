@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import './DishFormInputs.css';
 import { INGREDIENT_TYPES } from '../../../constants';
 import Button from '../../../Button';
-import { PlusIcon, SaveIcon } from '../../../Icons';
+import Icon from '../../../Icon';
 import Input from '../../../Input';
 import { filterIngredinents } from './helpers';
 
@@ -49,16 +49,16 @@ function AddIngredientsView({
           />
           <Button
             value="ALL"
-            modifier="m icon-only"
+            modifier="m icon"
             onClick={() => setIngredientsView(2)}
           >
-            <PlusIcon />
+            <Icon iconName="plus" />
           </Button>
         </div>
-        <div className="ingredients-types-container ingredient-types border-bottom">
+        <div className="ingredients-types-container ingredient-types border-b">
           <Button
             value="ALL"
-            modifier={selectedType !== 'ALL' && 'disabled'}
+            modifier={selectedType === 'ALL' ? '' : 'bgc-gr'}
             buttonText="All"
             onClick={handleTypeSelect}
           />
@@ -67,7 +67,7 @@ function AddIngredientsView({
               <Button
                 key={value}
                 value={value}
-                modifier={selectedType !== value && 'disabled'}
+                modifier={selectedType !== value && 'bgc-gr'}
                 buttonText={uName}
                 onClick={handleTypeSelect}
               />
@@ -81,7 +81,7 @@ function AddIngredientsView({
               <Button
                 key={ingredientOption.id}
                 value={ingredientOption.id}
-                modifier={!isSelected && 'disabled'}
+                modifier={isSelected ? '' : 'bgc-gr'}
                 buttonText={ingredientOption.name}
                 onClick={() => handleIngredientSelect(ingredientOption.id, isSelected)}
               />
@@ -90,8 +90,8 @@ function AddIngredientsView({
         </div>
       </div>
 
-      <Button modifier="icon-only" onClick={handleUpdateIngredients}>
-        <SaveIcon />
+      <Button modifier="icon" onClick={handleUpdateIngredients}>
+        <Icon iconName="save" />
       </Button>
     </>
   );

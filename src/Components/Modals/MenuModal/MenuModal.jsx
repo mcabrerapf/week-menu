@@ -5,7 +5,7 @@ import Button from '../../Button';
 import Input from '../../Input';
 import { MainContext } from '../../../Contexts/MainContext';
 import { parseMenuData } from './helpers';
-import { SaveIcon, StarIcon } from '../../Icons';
+import Icon from '../../Icon';
 import { MENU_STRING } from '../../../constants';
 
 function MenuModal({ modalData, closeModal }) {
@@ -25,8 +25,7 @@ function MenuModal({ modalData, closeModal }) {
     await handleSave(parsedData, MENU_STRING);
     closeModal();
   };
-
-  const favouriteButtonClass = isFavourite ? 'm icon-only' : 'm icon-only disabled';
+  const favouriteButtonClass = `m icon${isFavourite ? '' : ' bgc-gr'}`;
 
   return (
     <div className="menu-modal-content">
@@ -40,12 +39,12 @@ function MenuModal({ modalData, closeModal }) {
           type="text"
         />
         <Button modifier={favouriteButtonClass} onClick={() => setIsFavourite(!isFavourite)}>
-          <StarIcon />
+          <Icon iconName="star" />
         </Button>
       </div>
       <div className="menu-modal-buttons">
-        <Button modifier="icon-only" onClick={saveMenu} disabled={!menuName} disableMultipleClicks>
-          <SaveIcon />
+        <Button modifier="icon" onClick={saveMenu} disabled={!menuName} disableMultipleClicks>
+          <Icon iconName="save" />
         </Button>
       </div>
     </div>

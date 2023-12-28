@@ -1,0 +1,18 @@
+.general-fields {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.general-inputs {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+	height: calc(100% - 3rem);
+}
+
+.column input {
+	width: 2rem;
+}

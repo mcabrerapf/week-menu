@@ -7,7 +7,7 @@ import IngredientsField from './IngredientsField';
 import Button from '../../../Button';
 import NewIngredientForm from './NewIngredientForm';
 import AddIngredientsView from './AddIngredientsView';
-import { PlusIcon, SaveIcon } from '../../../Icons';
+import Icon from '../../../Icon';
 
 function IngredientsFields({
   ingredients, updateIngredients, handleSubmit, canSave,
@@ -70,15 +70,19 @@ function IngredientsFields({
       && <NewIngredientForm toggleNewIngredientView={toggleNewIngredientView} />}
       {ingredientsView === 0 && (
       <Button
-        modifier="icon-only"
+        modifier="icon"
         onClick={() => setIngredientsView(1)}
       >
-        <PlusIcon />
+        <Icon iconName="plus" />
       </Button>
       )}
       {ingredientsView === 0 && (
-      <Button modifier="icon-only" onClick={handleSubmit} disabled={!canSave}>
-        <SaveIcon />
+      <Button
+        modifier="icon"
+        onClick={handleSubmit}
+        disabled={!canSave}
+      >
+        <Icon iconName="save" />
       </Button>
       )}
 

@@ -27,39 +27,8 @@
 	justify-content: space-between;
 }
 
-.form-input-group {
-	display: flex;
-	margin-top: 10px;
-	/* gap: 60px; */
+.row {
 	justify-content: space-around;
-}
-
-.form-input-group .group-input {
-	align-items: center;
-	display: flex;
-	flex-direction: column;
-	gap: 2px;
-}
-
-.type-input {
-	display: flex;
-	gap: 10px;
-	align-items: center;
-}
-
-.group-input .group-input-inputs {
-	display: flex;
-	gap: 5px;
-}
-
-.form-input-group input {
-	width: 30px;
-}
-
-.group-input-label {
-	text-align: center;
-	font-size: 1.5rem;
-	font-weight: 500;
 }
 
 .add-ingredients-content {
@@ -69,13 +38,13 @@
 }
 
 .add-ingredients-actions {
+	align-items: center;
 	display: flex;
 	gap: 5px;
 }
 
 .ingredients-types-container {
 	max-height: 17rem;
-	/* height: 17rem; */
 	display: flex;
 	gap: 5px;
 	flex-direction: row;
@@ -89,9 +58,6 @@
 
 .ingredients-types-container.ingredient-types {
 	height: 5rem !important;
-}
-.ingredients-types-container:first-of-type {
-	border-bottom: 1px solid black;
 }
 
 .ingredients-types-container button {
@@ -152,7 +118,6 @@
 	margin-bottom: 5px;
 	font-size: 0.9rem;
 	align-items: center;
-	border-bottom: 1px solid black;
 }
 
 .form-ingredients-ingredient-name {
@@ -196,9 +161,7 @@
 .add-ingredient-form-inputs {
 	display: flex;
 	flex-direction: column;
+	justify-content: space-around;
+	height: 100%;
 	gap: 5px;
-}
-
-.buttons-group {
-	padding-bottom: 5px;
 }

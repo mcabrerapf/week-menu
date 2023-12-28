@@ -1,12 +1,11 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-to-interactive-role */
 import React from 'react';
 import PropTypes from 'prop-types';
 import './ListItem.css';
 import { capitalizeFirstLetter } from '../../helpers';
 import Button from '../../Button';
 import { DISH_STRING, MENU_STRING } from '../../../constants';
-import {
-  EditIcon, DeleteIcon, EyeIcon, StarIcon,
-} from '../../Icons';
+import Icon from '../../Icon';
 
 function ListItem({
   modifier, itemData, handleOpenModal, handleLoadMenu,
@@ -19,50 +18,57 @@ function ListItem({
   const defaultModalView = modifier === DISH_STRING ? 'display' : 'edit';
 
   return (
-    <li className={`list-item ${modifier}`}>
+    <li
+      className="list-item"
+      role="button"
+      tabIndex={0}
+      onClick={() => handleOpenModal(modifier, defaultModalView, itemData)}
+      onKeyDown={() => handleOpenModal(modifier, defaultModalView, itemData)}
+    >
       <div
-        role="button"
-        tabIndex={0}
         className="list-item-label"
-        onKeyDown={() => handleOpenModal(modifier, defaultModalView, itemData)}
-        onClick={() => handleOpenModal(modifier, defaultModalView, itemData)}
       >
         {parsedLabel}
 
       </div>
       <div className="list-item-buttons">
-        {typeToUse && <div className="list-item-type">{typeToUse}</div>}
+        {typeToUse && (
+        <Button
+          modifier="l icon"
+        >
+          <Icon iconName={typeToUse} />
+        </Button>
+        )}
         {favourite && (
         <Button
-          modifier="m icon-only"
+          modifier="l icon"
           onClick={() => {}}
         >
-          <StarIcon />
+          <Icon iconName="star" />
         </Button>
         )}
         {modifier === MENU_STRING && (
         <Button
-          modifier="m icon-only"
+          modifier="l icon"
           onClick={() => handleLoadMenu(itemData)}
 
         >
-          <EyeIcon />
-
+          <Icon iconName="eye" />
         </Button>
         )}
         {modifier === DISH_STRING && (
         <Button
-          modifier="m icon-only"
+          modifier="l icon"
           onClick={() => handleOpenModal(modifier, 'edit', itemData)}
         >
-          <EditIcon />
+          <Icon iconName="edit" />
         </Button>
         )}
         <Button
-          modifier="m icon-only"
+          modifier="l icon"
           onClick={() => handleOpenModal('delete', 'delete', itemData, 's')}
         >
-          <DeleteIcon />
+          <Icon iconName="delete" />
         </Button>
       </div>
     </li>

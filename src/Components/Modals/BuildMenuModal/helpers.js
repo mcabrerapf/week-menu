@@ -19,9 +19,9 @@ const initMenuOptions = (data, dishes) => {
     maxBreakfasts, maxLunches, maxDinners,
   } = data;
 
-  const [breakfastMin, breakfastMax] = getMealMinMax(dishes, data, 'BREAKFAST', 'hasBreakfast');
-  const [lunchMin, lunchMax] = getMealMinMax(dishes, data, 'LUNCH', 'hasLunch');
-  const [dinnerMin, dinnerMax] = getMealMinMax(dishes, data, 'DINNER', 'hasDinner');
+  const [breakfastMin, breakfastMax] = getMealMinMax(dishes, data, 'breakfast', 'hasBreakfast');
+  const [lunchMin, lunchMax] = getMealMinMax(dishes, data, 'lunch', 'hasLunch');
+  const [dinnerMin, dinnerMax] = getMealMinMax(dishes, data, 'dinner', 'hasDinner');
 
   const breakfastsToUse = checkIfInRange(maxBreakfasts, breakfastMin, breakfastMax);
   const lunchesToUse = checkIfInRange(maxLunches, lunchMin, lunchMax);

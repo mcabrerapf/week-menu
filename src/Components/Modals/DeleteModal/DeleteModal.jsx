@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Button from '../../Button';
 import './DeleteModal.css';
 import { MainContext } from '../../../Contexts/MainContext';
-import { ArrowDownIcon, DeleteIcon } from '../../Icons';
+import Icon from '../../Icon';
 
 function DeleteModal({
   modalData, closeModal,
@@ -29,12 +29,12 @@ function DeleteModal({
         <strong>
           {name}
         </strong>
-        <ArrowDownIcon />
+        <Icon iconName="arrow-d" />
 
       </div>
       <div className="delete-modal-buttons">
         <Button modifier="delete" onClick={handleDelete} disableMultipleClicks>
-          <DeleteIcon />
+          <Icon iconName="delete" />
         </Button>
 
       </div>

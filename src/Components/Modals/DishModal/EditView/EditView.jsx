@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Button from '../../../Button';
 import DishFormInputs from '../DishFormInputs';
-import { IngredientIcon, ListIcon, InfoIcon } from '../../../Icons';
+import Icon from '../../../Icon';
 
 function EditView({ dishData, setDishData, handleSubmit }) {
   const [fieldsView, setFieldsView] = useState(0);
@@ -10,25 +10,25 @@ function EditView({ dishData, setDishData, handleSubmit }) {
   if (!dishData) return null;
 
   return (
-    <form className="form">
+    <div className="form">
       <div className="form-header">
         <Button
-          modifier={`header-option icon-only${fieldsView !== 0 ? ' disabled' : ''}`}
+          modifier={`header-option icon${fieldsView !== 0 ? ' bgc-gr' : ''}`}
           onClick={() => setFieldsView(0)}
         >
-          <InfoIcon />
+          <Icon iconName="info" />
         </Button>
         <Button
-          modifier={`header-option icon-only${fieldsView !== 1 ? ' disabled' : ''}`}
+          modifier={`header-option icon${fieldsView !== 1 ? ' bgc-gr' : ''}`}
           onClick={() => setFieldsView(1)}
         >
-          <IngredientIcon />
+          <Icon iconName="ingredient" />
         </Button>
         <Button
-          modifier={`header-option icon-only${fieldsView !== 2 ? ' disabled' : ''}`}
+          modifier={`header-option icon${fieldsView !== 2 ? ' bgc-gr' : ''}`}
           onClick={() => setFieldsView(2)}
         >
-          <ListIcon />
+          <Icon iconName="list" />
         </Button>
       </div>
       <DishFormInputs
@@ -37,7 +37,7 @@ function EditView({ dishData, setDishData, handleSubmit }) {
         fieldsView={fieldsView}
         handleSubmit={handleSubmit}
       />
-    </form>
+    </div>
   );
 }
 

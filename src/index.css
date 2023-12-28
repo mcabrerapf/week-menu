@@ -1,4 +1,5 @@
 :root {
+	font-size: 16px;
 	--beige-color: #ceb8a1;
 	--blue-green-color: #3f8881;
 	--gray-color: #757f7e;
@@ -9,6 +10,24 @@
 	--green-color: green;
 	--offiline-background-color: #deb9e0;
 	--basic-box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.5);
+}
+
+@media (min-width: 480px) {
+	:root {
+		font-size: 17px;
+	}
+}
+
+@media (min-width: 769px) {
+	:root {
+		font-size: 18px;
+	}
+}
+
+@media (min-width: 1025px) {
+	:root {
+		font-size: 20px;
+	}
 }
 
 body {

@@ -39,12 +39,12 @@ function Meal({
     });
   };
 
-  const modififier = `meal-content ${name ? '' : 'disabled'}`;
+  const modififier = `meal-content${name ? '' : ' bgc-gr'}`;
   const parsedMealName = getParsedMealName(name, sideDishesToUse);
 
   return (
     <div
-      className="meal"
+      className={`meal${type === 'lunch' ? ' lunch' : ''}`}
     >
       <Button modifier={modififier} onClick={openMealModal} buttonText={parsedMealName} />
     </div>

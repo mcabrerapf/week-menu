@@ -1,18 +1,21 @@
 .list-container {
-	height: 100%;
 	display: flex;
 	flex-direction: column;
-	padding: 5px;
-	gap: 5px;
+	align-items: center;
+	height: 100%;
+	padding: 0px 5px 5px 5px;
 }
 
 .list-filters {
 	display: flex;
+	align-items: center;
 	gap: 5px;
+	width: 100%;
+	height: 3rem;
 }
 
 .list-search-filter {
-	flex: 2.5;
+	flex: 2;
 }
 
 .list-filter-by {
@@ -26,19 +29,15 @@
 .list {
 	display: flex;
 	flex-direction: column;
-	height: 100%;
+	overflow-y: auto;
+	height: calc(100% - 3rem);
 	width: 100%;
 	margin: 0;
+	padding-top: 5px;
 	gap: 5px;
-	overflow-y: auto;
 }
 
-.add-container {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
+.list-add-button {
 	position: absolute;
-	bottom: 8%;
-	left: 47%;
+	bottom: 3.5rem;
 }

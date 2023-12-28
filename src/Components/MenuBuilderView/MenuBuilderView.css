@@ -1,25 +1,4 @@
-.week-view-header {
-	height: 3rem;
-	width: 100%;
-	display: flex;
-	justify-content: space-between;
-}
-
-.week-view-header button {
-	border-radius: 0;
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
-}
-
-.week-view-header button:last-of-type {
-	border-bottom-right-radius: 0px;
-}
-
-.week-view-header button:first-of-type {
-	border-bottom-left-radius: 0px;
-}
-
-.week-view-content {
+.menu-builder-container {
 	height: 100%;
 	width: 100%;
 	padding: 5px;
@@ -29,6 +8,23 @@
 	align-items: center;
 }
 
-.build-menu-button {
-	box-shadow: var(--basic-box-shadow);
+.menu-builder-header {
+	height: 3rem;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+}
+
+.menu-builder-header button {
+	border-radius: 0;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+.menu-builder-header button:last-of-type {
+	border-bottom-right-radius: 0px;
+}
+
+.menu-builder-header button:first-of-type {
+	border-bottom-left-radius: 0px;
 }

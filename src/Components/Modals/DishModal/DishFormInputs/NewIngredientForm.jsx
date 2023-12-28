@@ -5,7 +5,7 @@ import Button from '../../../Button';
 import { INGREDIENT_TYPES, INGREDIENT_UNITS } from '../../../constants';
 import { INGREDIENT_STRING } from '../../../../constants';
 import { MainContext } from '../../../../Contexts/MainContext';
-import { SaveIcon } from '../../../Icons';
+import Icon from '../../../Icon';
 
 function NewIngredientForm({
   toggleNewIngredientView,
@@ -39,12 +39,12 @@ function NewIngredientForm({
           onChange={handleOnChange}
           placeholder="Name"
         />
-        <div className="buttons-group border-bottom">
+        <div className="buttons-group border-b">
           {INGREDIENT_TYPES
             .map(({ value, name: tName }) => (
               <Button
                 key={value}
-                modifier={type !== value ? 'disabled' : ''}
+                modifier={type !== value ? 'bgc-gr' : ''}
                 name="type"
                 value={value}
                 buttonText={tName}
@@ -57,7 +57,7 @@ function NewIngredientForm({
             .map(({ value, name: uName }) => (
               <Button
                 key={value}
-                modifier={unit !== value ? 'disabled' : ''}
+                modifier={unit !== value ? 'bgc-gr' : ''}
                 name="unit"
                 value={value}
                 buttonText={uName}
@@ -69,11 +69,11 @@ function NewIngredientForm({
       </div>
       <Button
         disabled={!canSubmit}
-        modifier="icon-only"
+        modifier="icon"
         onClick={handleAddNewIngredient}
         disableMultipleClicks
       >
-        <SaveIcon />
+        <Icon iconName="save" />
       </Button>
     </form>
 

@@ -22,7 +22,7 @@ function ShopingListSection({ ingredients, label }) {
 
   return (
     <div className="shoping-list-section">
-      <h3 className="shoping-list-section-header border-bottom">{capitalizeFirstLetter(label)}</h3>
+      <h3 className="shoping-list-section-header border-b">{capitalizeFirstLetter(label)}</h3>
       <div className="shoping-list-section-items">
         {ingredients.map((ingredient, i) => {
           const { id } = ingredient;

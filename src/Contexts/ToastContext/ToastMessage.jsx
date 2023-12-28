@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { DeleteIcon, SaveIcon } from '../../Components/Icons';
+import Icon from '../../Components/Icon';
 
 const typeTimeout = {
   error: 5500,
@@ -28,14 +28,14 @@ function ToastMessage({
   return (
     <div
       role="button"
-      tabIndex={0}
       className="toast-message-container"
+      tabIndex={0}
       onClick={() => setShowToast(false)}
       onKeyDown={() => setShowToast(false)}
     >
-      <div className={`toast-message-content ${type}`}>
-        {type === 'success' && <SaveIcon />}
-        {type === 'delete' && <DeleteIcon />}
+      <div className={`toast-message ${type}`}>
+        {type === 'success' && <Icon iconName="save" />}
+        {type === 'delete' && <Icon iconName="delete" />}
         {content}
       </div>
     </div>

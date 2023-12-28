@@ -11,11 +11,9 @@ import {
   ToastContext,
 } from '../../Contexts/ToastContext';
 import { ModalContext } from '../../Contexts/ModalContext';
-import {
-  CalendarIcon, CartIcon, MenuBuilderSettingsIcon, SaveIcon, ShuffleIcon,
-} from '../Icons';
+import Icon from '../Icon';
 
-function WeekViewButtons({
+function MenuBuilderHeader({
   showBuildMenuModal, handleChangeView, handleBuildMenu, view, hasLoadedMenu, menu,
 }) {
   const { setContextState } = useContext(MainContext);
@@ -46,40 +44,41 @@ function WeekViewButtons({
   };
 
   return (
-    <div className="week-view-header">
+    <div className="menu-builder-header">
       <Button
-        modifier="icon-only"
+        modifier="icon"
         onClick={showBuildMenuModal}
       >
-        <MenuBuilderSettingsIcon />
+        <Icon iconName="settings" />
       </Button>
       <Button
-        modifier="icon-only"
+        modifier="icon"
         onClick={handleBuildMenu}
       >
-        <ShuffleIcon />
+        <Icon iconName="shuffle" />
       </Button>
       <Button
-        modifier="icon-only"
+        modifier="icon"
         disabled={!hasLoadedMenu}
         {...longPressProps}
         onClick={checkView}
       >
-        {view === 1 ? <CalendarIcon /> : <CartIcon />}
+        <Icon iconName={view === 1 ? 'calendar' : 'cart'} />
+
       </Button>
       <Button
-        modifier="icon-only"
+        modifier="icon"
         disabled={!hasLoadedMenu}
         {...longPressProps}
         onClick={handleSaveClick}
       >
-        <SaveIcon />
+        <Icon iconName="save" />
       </Button>
     </div>
   );
 }
 
-WeekViewButtons.propTypes = {
+MenuBuilderHeader.propTypes = {
   view: PropTypes.number.isRequired,
   showBuildMenuModal: PropTypes.func.isRequired,
   handleChangeView: PropTypes.func.isRequired,
@@ -88,4 +87,4 @@ WeekViewButtons.propTypes = {
   menu: PropTypes.arrayOf(PropTypes.shape()).isRequired,
 };
 
-export default WeekViewButtons;
+export default MenuBuilderHeader;

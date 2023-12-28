@@ -6,7 +6,7 @@ import Button from '../../Button';
 import { INGREDIENT_TYPES, INGREDIENT_UNITS } from '../../constants';
 import Input from '../../Input';
 import { deepCompare } from '../../helpers';
-import { SaveIcon } from '../../Icons';
+import Icon from '../../Icon';
 import { INGREDIENT_STRING } from '../../../constants';
 
 function IngredientModal({
@@ -37,6 +37,9 @@ function IngredientModal({
     return closeModal();
   };
 
+  const handleOnClick = (eValue, eName) => {
+    setIngredientData({ ...ingredientData, [eName]: eValue });
+  };
   const handleOnChange = ({ target: { value, name: eName } }) => {
     setIngredientData({ ...ingredientData, [eName]: value });
   };
@@ -57,18 +60,19 @@ function IngredientModal({
             onChange={handleOnChange}
             placeholder="Name"
           />
-          <div className="ingredient-item-group border-bottom">
+          <div className="ingredient-item-group border-b">
             <div className="buttons-group">
               {INGREDIENT_TYPES
-                .map(({ value, name: tName }) => (
+                .map(({ value }) => (
                   <Button
                     key={value}
-                    modifier={type === value ? '' : 'disabled'}
+                    modifier={type === value ? 'icon-l l' : 'icon-l l bgc-gr'}
                     name="type"
                     value={value}
-                    buttonText={tName}
-                    onClick={handleOnChange}
-                  />
+                    onClick={() => handleOnClick(value, 'type')}
+                  >
+                    <Icon iconName={value} />
+                  </Button>
                 ))}
             </div>
           </div>
@@ -78,11 +82,11 @@ function IngredientModal({
                 .map(({ value, name: uName }) => (
                   <Button
                     key={value}
-                    modifier={unit === value ? '' : 'disabled'}
+                    modifier={unit === value ? 'l' : 'l bgc-gr'}
                     name="unit"
                     value={value}
                     buttonText={uName}
-                    onClick={handleOnChange}
+                    onChange={() => handleOnClick(value, 'unit')}
                   />
                 ))}
             </div>
@@ -91,12 +95,12 @@ function IngredientModal({
 
         <div className="form-footer">
           <Button
-            modifier="icon-only"
+            modifier="icon"
             onClick={handleSubmit}
             disabled={isButtonDisabled}
             disableMultipleClicks
           >
-            <SaveIcon />
+            <Icon iconName="save" />
           </Button>
         </div>
 

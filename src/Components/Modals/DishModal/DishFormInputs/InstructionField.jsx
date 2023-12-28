@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Input from '../../../Input';
 import Button from '../../../Button';
-import { ArrowDownIcon, ArrowUpIcon, CloseIcon } from '../../../Icons';
+import Icon from '../../../Icon';
 
 function InstructionField({
   instruction, handleInstructionChange, handleDeleteInstruction, moveInstruction, index, id, isLast,
@@ -44,7 +44,7 @@ function InstructionField({
           onClick={handleMoveUp}
           disabled={index === 0}
         >
-          <ArrowUpIcon />
+          <Icon iconName="arrow-u" />
         </Button>
         <Button
           modifier="m"
@@ -52,7 +52,7 @@ function InstructionField({
           onClick={handleMoveDown}
           disabled={isLast}
         >
-          <ArrowDownIcon />
+          <Icon iconName="arrow-d" />
         </Button>
       </div>
       <Input
@@ -70,7 +70,7 @@ function InstructionField({
           type="button"
           onClick={handleDeleteClick}
         >
-          <CloseIcon />
+          <Icon iconName="close" />
         </Button>
       </div>
 

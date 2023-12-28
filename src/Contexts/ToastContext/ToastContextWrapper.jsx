@@ -9,7 +9,7 @@ import ToastMessage from './ToastMessage';
 function ToastContextWrapper({ children }) {
   const [contextToasts, setContextToasts] = useState([]);
 
-  const addToast = (newMsg, type) => {
+  const addToast = (newMsg, type = 'info') => {
     const newToasts = deepCopy(contextToasts);
     if (Array.isArray(newMsg)) {
       newMsg.forEach(({ message }) => newToasts.push({ content: message, type }));
@@ -25,7 +25,7 @@ function ToastContextWrapper({ children }) {
     }}
     >
       <div className="toast-context-wrapper">
-        {contextToasts.map(({ content, type = 'info' }, index) => (
+        {contextToasts.map(({ content, type }, index) => (
           <ToastMessage
             key={`${content}-${index}`}
             // id={index}

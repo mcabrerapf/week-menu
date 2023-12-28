@@ -5,11 +5,11 @@ import { MENU_BUILDER_STRING } from '../../constants';
 import { updateDishes } from './helpers';
 import Week from './Week';
 import ShopingList from './ShopingList';
-import MenuBuilderViewButtons from './MenuBuilderViewButtons';
+import MenuBuilderHeader from './MenuBuilderHeader';
 import { MainContext } from '../../Contexts/MainContext';
 import { ModalContext } from '../../Contexts/ModalContext';
 import Button from '../Button';
-import { BrainIcon } from '../Icons';
+import Icon from '../Icon';
 
 function MenuBuilderView() {
   const {
@@ -59,7 +59,7 @@ function MenuBuilderView() {
 
   return (
     <>
-      <MenuBuilderViewButtons
+      <MenuBuilderHeader
         view={view}
         hasLoadedMenu={hasLoadedMenu}
         showBuildMenuModal={openBuildMenuModal}
@@ -68,11 +68,11 @@ function MenuBuilderView() {
         menu={menuDishes}
       />
       <div
-        className="week-view-content"
+        className="menu-builder-container"
       >
         {!hasLoadedMenu && (
-          <Button onClick={openBuildMenuModal} modifier="l icon-only build-menu-button">
-            <BrainIcon />
+          <Button onClick={openBuildMenuModal} modifier="l icon shadow">
+            <Icon iconName="brain" />
           </Button>
         )}
         {view === 0 && (
@@ -82,7 +82,7 @@ function MenuBuilderView() {
           handleUpdateDish={handleUpdateDish}
         />
         )}
-        { view === 1 && (
+        {view === 1 && (
         <ShopingList
           menuDishes={menuDishes}
           menuPeople={people}

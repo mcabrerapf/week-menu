@@ -9,10 +9,76 @@
 	display: none !important;
 }
 
-.border-bottom {
+.row {
+	display: flex;
+	width: 100%;
+	gap: 5px;
+}
+
+.column {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+}
+
+.centered {
+	align-items: center;
+}
+
+.align-r {
+	align-self: flex-end;
+}
+
+.icon {
+	font-size: 1.5rem;
+}
+
+.icon-l {
+	font-size: 1.75rem;
+}
+
+.icon-xl {
+	font-size: 2rem;
+}
+
+.border-t {
+	border-top: 1px solid;
+}
+
+.border-b {
 	border-bottom: 1px solid;
 }
 
-.disabled {
+.border-l {
+	border-left: 1px solid;
+}
+
+.border-r {
+	border-right: 1px solid;
+}
+
+.shadow {
+	box-shadow: var(--basic-box-shadow);
+}
+
+.bgc-b {
+	background-color: var(--blue-color);
+}
+
+.bgc-g {
+	background-color: var(--green-color);
+}
+
+.bgc-gr {
 	background-color: var(--gray-color) !important;
+}
+
+.bgc-r {
+	background-color: var(--red-color);
+}
+
+.group-c {
+	display: flex;
+	gap: 5px;
+	justify-content: center;
 }

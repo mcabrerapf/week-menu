@@ -5,7 +5,7 @@ import Input from '../../../Input';
 import { buildSelectOptions, capitalizeFirstLetter, sortBy } from '../../../helpers';
 import { SELECT_OPTIONS } from '../../../constants';
 import { INGREDIENT_STRING } from '../../../../constants';
-import { CloseIcon } from '../../../Icons';
+import Icon from '../../../Icon';
 
 function IngredientsField({
   ingredients, handleIngredientChange, handleRemoveIngredient,
@@ -20,7 +20,7 @@ function IngredientsField({
         } = currentIngredient;
 
         return (
-          <div className="form-ingredients-ingredient" key={id}>
+          <div className="form-ingredients-ingredient border-b" key={id}>
             <div className="form-ingredients-ingredient-name">{capitalizeFirstLetter(name)}</div>
             <div className="form-ingredients-ingredient-quantity-container">
               <Input
@@ -47,7 +47,7 @@ function IngredientsField({
                 <option value="" className="form-select-option" disabled>
                   Choose a unit...
                 </option>
-                {buildSelectOptions(SELECT_OPTIONS[INGREDIENT_STRING].unit, 'value')}
+                {buildSelectOptions(SELECT_OPTIONS[INGREDIENT_STRING].unit, 'name')}
               </select>
 
               <Button
@@ -57,7 +57,7 @@ function IngredientsField({
                 value={id}
                 onClick={() => handleRemoveIngredient(id)}
               >
-                <CloseIcon />
+                <Icon iconName="close" />
               </Button>
 
             </div>
