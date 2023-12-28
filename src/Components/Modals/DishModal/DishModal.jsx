@@ -17,7 +17,7 @@ function DishModal({
   const [dishData, setDishData] = useState({});
 
   useEffect(() => {
-    if (modalData.name) setDishData({ ...modalData });
+    if (modalData.name) setDishData({ ...modalData, sideDishTo: modalData.sideDishTo || [] });
     else {
       setDishData({
         name: '', types: [], servings: 1, time: { hours: 0, minutes: 0 }, description: '', instructions: '', ingredients: [],

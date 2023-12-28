@@ -10,9 +10,9 @@ import QuantityInput from '../../../QuantityInput';
 import { capitalizeFirstLetter, sortBy } from '../../../helpers';
 import Icon from '../../../Icon';
 
-const getMainDishes = (dishes, currentId, currentMainDishes = []) => {
+const getMainDishes = (currentId, dishes, currentMainDishes = []) => {
   const sideDishes = dishes
-    .filter(({ id, types: sideType }) => !sideType.includes('side') && !currentMainDishes.includes(id) && id !== currentId);
+    .filter(({ id, types }) => !types.includes('side') && !currentMainDishes.includes(id) && id !== currentId);
   return sortBy(sideDishes, 'name', 'alphabetical');
 };
 
@@ -22,7 +22,7 @@ function GeneralFields({
   const { dishes } = useContext(MainContext);
 
   const {
-    id, name, types = [], sideDishTo, servings, time: { hours, minutes } = {},
+    id, name, types = [], sideDishTo = [], servings, time: { hours, minutes } = {},
   } = currentData;
 
   const handleOnChange = ({ target: { value, name: eName } }) => {
@@ -64,7 +64,7 @@ function GeneralFields({
   };
 
   const showSideDishes = types.includes('side');
-  const sortedMainDishes = showSideDishes ? getMainDishes(dishes, id, sideDishTo) : [];
+  const sortedMainDishes = showSideDishes ? getMainDishes(id, dishes, sideDishTo) : [];
 
   return (
     <div className="general-fields">
