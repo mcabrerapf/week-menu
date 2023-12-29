@@ -9,6 +9,15 @@
 	display: none !important;
 }
 
+.upright-text {
+	writing-mode: tb;
+	text-orientation: upright;
+}
+
+.strike {
+	text-decoration: line-through;
+}
+
 .bot {
 	position: fixed;
 	bottom: 0px;
@@ -31,7 +40,6 @@
 .col {
 	display: flex;
 	flex-direction: column;
-	/* height: 100%; */
 }
 
 .wrap {
@@ -60,6 +68,10 @@
 
 .pad-10 {
 	padding: 10px;
+}
+
+.pad-20 {
+	padding: 20px;
 }
 
 .centered {

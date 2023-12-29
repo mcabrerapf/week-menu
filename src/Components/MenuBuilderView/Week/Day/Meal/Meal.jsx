@@ -44,7 +44,7 @@ function Meal({
 
   return (
     <div
-      className={`meal${type === 'lunch' ? ' lunch' : ''}`}
+      className={`meal row centered${type === 'lunch' ? ' lunch' : ''}`}
     >
       <Button modifier={modififier} onClick={openMealModal} buttonText={parsedMealName} />
     </div>

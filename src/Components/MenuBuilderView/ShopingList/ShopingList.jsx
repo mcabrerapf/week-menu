@@ -29,7 +29,7 @@ function ShopingList({ menuDishes, menuPeople }) {
   if (!ingredienSections) return null;
 
   return (
-    <div className="shopping-list">
+    <div className="shopping-list col pad-20 gap-10 bgc-b">
       <Button modifier="shopping-list-copy-button l icon" onClick={handleCopyShopingList}>
         <Icon iconName="copy" />
       </Button>

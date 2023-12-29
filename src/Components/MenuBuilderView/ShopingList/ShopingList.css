@@ -1,9 +1,7 @@
 .shopping-list {
-	border-radius: 5px;
-	padding: 20px;
-	width: 100%;
 	height: 100%;
-	background: var(--blue-color);
+	width: 100%;
+	border-radius: 5px;
 }
 
 .shopping-list-copy-button {
@@ -13,44 +11,17 @@
 
 .shopping-list-sections {
 	overflow-y: auto;
-	display: flex;
-	height: 100%;
-	flex-direction: column;
 }
 
-.shoping-list-section-header {
-	width: 50%;
-	margin: 0px;
+.shoping-list-section {
+	width: 20rem;
 }
 
-.shoping-list-section-items {
-	margin-top: 5px;
-	margin-left: 10px;
-}
-
-.shoping-list-section-items-item-checkbox {
-	width: 100%;
-	display: flex;
-	flex-direction: row;
+.shoping-list-item {
 	align-items: center;
 }
 
-.checkbox-input {
-	width: 20px;
-	height: 20px;
-	margin: 0;
-}
-
-.shoping-list-section-items-item-name {
-	margin-left: 15px;
-}
-
-.shoping-list-section-items-item strong {
-	font-size: 0.85rem;
-	padding-left: 5px;
-	padding-top: 3px;
-}
-
-.got-it {
-	text-decoration: line-through;
+.shoping-list-item .input {
+	height: 2rem;
+	width: 2rem;
 }

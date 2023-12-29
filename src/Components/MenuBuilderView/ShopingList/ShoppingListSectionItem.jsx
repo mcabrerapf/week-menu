@@ -30,38 +30,34 @@ function ShopingListSectionItem({
   const {
     name, quantity, unit,
   } = ingredient;
-  const className = gotIt ? 'shoping-list-section-items-item-name got-it' : 'shoping-list-section-items-item-name';
   const [convertedQuantity, convertedUnit] = checkUnitConversion(quantity, unit);
   const parsedName = capitalizeFirstLetter(name);
   const parsedLabel = `${capitalizeFirstLetter(name)} (${convertedQuantity}${convertedUnit})`;
 
   return (
     <div
-      className="shoping-list-section-items-item"
+      className="shoping-list-item row gap-10"
     >
       <Input
-        modifier="shoping-list-section-items-item-checkbox"
         id={parsedLabel}
         type="checkbox"
         value={gotIt}
         onChange={() => setGotIt(!gotIt)}
+      />
+      <span
+        className={gotIt ? 'strike' : ''}
+        role="button"
+        tabIndex={0}
+        onClick={() => handleOnClick(ingredient)}
+        onKeyDown={() => handleOnClick(ingredient)}
       >
-        <span
-          className={className}
-          role="button"
-          tabIndex={0}
-          onClick={() => handleOnClick(ingredient)}
-          onKeyDown={() => handleOnClick(ingredient)}
-        >
-          {parsedName}
+        {parsedName}
 
-          {/* {parsedLabel} */}
-        </span>
-        <strong>
-          {convertedQuantity}
-          {convertedUnit}
-        </strong>
-      </Input>
+      </span>
+      <strong>
+        {convertedQuantity}
+        {convertedUnit}
+      </strong>
     </div>
   );
 }

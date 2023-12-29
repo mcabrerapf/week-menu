@@ -3,9 +3,9 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import './ShopingList.css';
-import { capitalizeFirstLetter } from '../../helpers';
 import ShopingListSectionItem from './ShoppingListSectionItem';
 import { ModalContext } from '../../../Contexts/ModalContext';
+import Icon from '../../Icon';
 
 function ShopingListSection({ ingredients, label }) {
   const { addModal } = useContext(ModalContext);
@@ -21,9 +21,11 @@ function ShopingListSection({ ingredients, label }) {
   if (!ingredients.length) return null;
 
   return (
-    <div className="shoping-list-section">
-      <h3 className="shoping-list-section-header border-b">{capitalizeFirstLetter(label)}</h3>
-      <div className="shoping-list-section-items">
+    <div className="shoping-list-section col">
+      <div className="row pad-5 border-b">
+        <Icon modifier="icon-xl" iconName={label} />
+      </div>
+      <div className="col gap-5 pad-5">
         {ingredients.map((ingredient, i) => {
           const { id } = ingredient;
 

@@ -1,10 +1,3 @@
-.meal {
-	display: flex;
-	flex: 1 1 0px;
-	justify-content: center;
-	align-items: center;
-}
-
 .meal.lunch {
 	border-right: solid 1px var(--black-color);
 	border-left: solid 1px var(--black-color);
@@ -14,8 +7,4 @@
 	font-size: 0.75rem;
 	overflow: hidden;
 	height: 100%;
-}
-
-.meal:last-of-type {
-	border-right: none !important;
 }

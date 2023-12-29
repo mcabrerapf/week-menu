@@ -1,20 +1,6 @@
 .day {
-	display: flex;
-	color: black;
 	text-align: center;
-	background-color: var(--blue-color);
 	border-radius: 5px;
 	flex: 1 1 0px;
-	width: 100%;
-}
-
-.day-label {
-	writing-mode: tb;
-	text-orientation: upright;
-	font-weight: 500;
-}
-
-.day-meals {
-	display: flex;
 	width: 100%;
 }

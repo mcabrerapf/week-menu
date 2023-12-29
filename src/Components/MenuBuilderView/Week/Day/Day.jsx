@@ -12,11 +12,11 @@ function Day({
   const hasMeals = !!breakfasts.length || !!lunches.length || !!dinners.length;
 
   return (
-    <div className={`day${hasMeals ? '' : ' bgc-gr'}`}>
-      <div className="day-label">
+    <div className={`day row${hasMeals ? ' bgc-b' : ' bgc-gr'}`}>
+      <div className="day-label upright-text label">
         {name}
       </div>
-      <div className="day-meals">
+      <div className="row">
         <Meal meals={breakfasts} type="breakfast" dayIndex={dayIndex} handleUpdateDish={handleUpdateDish} />
         <Meal meals={lunches} type="lunch" dayIndex={dayIndex} handleUpdateDish={handleUpdateDish} />
         <Meal meals={dinners} type="dinner" dayIndex={dayIndex} handleUpdateDish={handleUpdateDish} />
