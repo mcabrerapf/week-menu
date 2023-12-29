@@ -1,11 +1,8 @@
 .list-item {
-	display: flex;
 	cursor: pointer;
 	align-items: center;
-	justify-content: space-between;
 	height: 3rem;
 	width: 100%;
-	background-color: var(--blue-green-color);
 	border-radius: 10px;
 	padding: 5px 10px;
 }
@@ -14,17 +11,9 @@
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
-	font-weight: 500;
 }
 
 .list-item-buttons {
 	display: flex;
-}
-
-.list-item-type {
-	display: flex;
-	align-items: center;
-	background-color: var(--blue-green-color);
-	font-size: 0.8rem;
-	font-weight: 500;
+	width: auto;
 }

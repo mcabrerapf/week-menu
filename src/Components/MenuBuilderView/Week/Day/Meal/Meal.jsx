@@ -35,7 +35,6 @@ function Meal({
       type: 'meal',
       modalData: firstMeal,
       onClose: updateDishes,
-      modifier: 'full',
       hideHeader: true,
     });
   };

@@ -36,12 +36,12 @@ function InstructionField({
   };
 
   return (
-    <div ref={ref} className="instruction-container">
-      <div className="instruction-buttons">
+    <div ref={ref} className="row gap-5 centered">
+      <div className="col gap-5">
         <Button
           modifier="m"
           type="button"
-          onClick={handleMoveUp}
+          onClick={() => handleMoveUp()}
           disabled={index === 0}
         >
           <Icon iconName="arrow-u" />
@@ -49,7 +49,7 @@ function InstructionField({
         <Button
           modifier="m"
           type="button"
-          onClick={handleMoveDown}
+          onClick={() => handleMoveDown}
           disabled={isLast}
         >
           <Icon iconName="arrow-d" />
@@ -66,9 +66,9 @@ function InstructionField({
       />
       <div className="instruction-buttons">
         <Button
-          modifier="m"
+          modifier="m icon bgc-bg"
           type="button"
-          onClick={handleDeleteClick}
+          onClick={() => handleDeleteClick()}
         >
           <Icon iconName="close" />
         </Button>

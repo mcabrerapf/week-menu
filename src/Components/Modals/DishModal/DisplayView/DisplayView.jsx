@@ -17,10 +17,10 @@ function DisplayView({
   const displayTime = !!time && !!(time.hours || time.minutes);
 
   return (
-    <div className="display-view">
-      <div className="display-view-props">
+    <div className="modal-content-dish-view col justify-between pad-10 gap-10">
+      <div className="dish-props col gap-10">
         {!!types && !!types.length && (
-        <div className="display-view-props-prop block-prop">
+        <div className="row">
           <span>
             <strong>Type: </strong>
             {types.map((tType) => capitalizeFirstLetter(tType)).join('')}
@@ -29,7 +29,7 @@ function DisplayView({
         </div>
         )}
         {servings && (
-        <div className="display-view-props-prop block-prop">
+        <div className="row">
           <span>
             <strong>Serves: </strong>
             {servings}
@@ -39,7 +39,7 @@ function DisplayView({
         )}
 
         {displayTime && (
-        <div className="display-view-props-prop block-prop">
+        <div className="row">
           <span>
             <strong>Time: </strong>
             {time.hours}
@@ -51,50 +51,54 @@ function DisplayView({
         )}
 
         {!!ingredients && !!ingredients.length && (
-        <ul className="display-view-props-ingredients">
-          <li
-            className="display-view-props-ingredients-label"
-          >
-            Ingredients:
-          </li>
-          {ingredients.map(({
-            id: ingId, name: ingName, quantity, unit: ingUnit,
-          }) => (
-            <li key={ingId}>
-              {`- ${ingName}: ${quantity}`}
-              <b>{ingUnit}</b>
-            </li>
-          ))}
-        </ul>
+          <div className="col">
+            <span>
+              <strong>Ingredients: </strong>
+            </span>
+            <ul className="col gap-5">
+              {ingredients.map(({
+                id: ingId, name: ingName, quantity, unit: ingUnit,
+              }) => (
+                <li key={ingId}>
+                  {`- ${ingName}: ${quantity}`}
+                  <b>{ingUnit}</b>
+                </li>
+              ))}
+            </ul>
+          </div>
+
         )}
         {description && (
-        <div className="display-view-props-prop">
-          <h4>Description: </h4>
+        <div className="col">
+          <span>
+            <strong>Description: </strong>
+          </span>
           <p>{description}</p>
         </div>
         )}
         {instructions && (
-        <div className="display-view-props-prop">
-          <h4>Instructions: </h4>
+        <div className="col">
+          <span>
+            <strong>Instructions: </strong>
+          </span>
+          <ul className="col gap-5">
             {instructions.split('---').map((ins, i) => (
-              <p key={i}>
+              <li key={i}>
                 {i + 1}
                 .
                 {' '}
                 {ins}
-              </p>
+              </li>
             ))}
+          </ul>
 
         </div>
         )}
       </div>
-      <div className="display-view-footer">
+      <div>
         <Button modifier="icon" onClick={() => setModalView('edit')}>
           <Icon iconName="edit" />
         </Button>
-        {/* <Button modifier="delete">
-          <DeleteIcon />
-        </Button> */}
       </div>
     </div>
   );

@@ -13,11 +13,15 @@ function NewIngredientForm({
   const {
     handleSave,
   } = useContext(MainContext);
-  const [newIngredientData, setNewIngredientData] = useState({});
+  const [newIngredientData, setNewIngredientData] = useState({ name: '', unit: 'u', type: 'other' });
   const { name, type, unit } = newIngredientData;
 
   const handleOnChange = ({ target: { name: eName, value } }) => {
     setNewIngredientData({ ...newIngredientData, [eName]: value });
+  };
+
+  const handleOnClick = (eValue, eName) => {
+    setNewIngredientData({ ...newIngredientData, [eName]: eValue });
   };
 
   const handleAddNewIngredient = async () => {
@@ -28,8 +32,8 @@ function NewIngredientForm({
   const canSubmit = !!name && !!type && !!unit;
 
   return (
-    <form className="form">
-      <div className="add-ingredient-form-inputs">
+    <>
+      <div className="col gap-10">
         <Input
           autoComplete="off"
           type="text"
@@ -39,29 +43,30 @@ function NewIngredientForm({
           onChange={handleOnChange}
           placeholder="Name"
         />
-        <div className="buttons-group border-b">
+        <div className="row centered wrap gap-5">
           {INGREDIENT_TYPES
-            .map(({ value, name: tName }) => (
+            .map(({ value }) => (
               <Button
                 key={value}
-                modifier={type !== value ? 'bgc-gr' : ''}
+                modifier={type === value ? 'l' : 'l bgc-gr'}
                 name="type"
                 value={value}
-                buttonText={tName}
-                onClick={handleOnChange}
-              />
+                onClick={() => handleOnClick(value, 'type')}
+              >
+                <Icon iconName={value} />
+              </Button>
             ))}
         </div>
-        <div className="buttons-group">
+        <div className="row centered wrap gap-5">
           {INGREDIENT_UNITS
             .map(({ value, name: uName }) => (
               <Button
                 key={value}
-                modifier={unit !== value ? 'bgc-gr' : ''}
+                modifier={unit === value ? 'l' : 'l bgc-gr'}
                 name="unit"
                 value={value}
                 buttonText={uName}
-                onClick={handleOnChange}
+                onClick={() => handleOnClick(value, 'unit')}
               />
             ))}
         </div>
@@ -75,7 +80,7 @@ function NewIngredientForm({
       >
         <Icon iconName="save" />
       </Button>
-    </form>
+    </>
 
   );
 }

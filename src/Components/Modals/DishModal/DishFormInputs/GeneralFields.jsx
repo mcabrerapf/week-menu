@@ -67,8 +67,8 @@ function GeneralFields({
   const sortedMainDishes = showSideDishes ? getMainDishes(id, dishes, sideDishTo) : [];
 
   return (
-    <div className="general-fields">
-      <div className="general-inputs">
+    <>
+      <div className="col gap-20">
         <div className="row">
           <Input
             autoComplete="off"
@@ -80,7 +80,7 @@ function GeneralFields({
             onBlur={handleOnChange}
             placeholder="Name"
           />
-          <div className="group-c">
+          <div className="row centered gap-5">
             {DISH_TYPES
               .map(({ id: typeId }) => (
                 <Button
@@ -95,10 +95,9 @@ function GeneralFields({
 
           </div>
         </div>
-
-        <div className="row">
-          <div className="column centered">
-            <span className="icon-l"><Icon iconName="people" /></span>
+        <div className="row gap-20">
+          <div className="col justify-between gap-5">
+            <div className="row centered icon-l"><Icon iconName="people" /></div>
             <QuantityInput
               value={servings}
               min={1}
@@ -108,9 +107,9 @@ function GeneralFields({
               handleIncrease={handleIncrease}
             />
           </div>
-          <div className="column centered">
-            <span className="icon-l"><Icon iconName="clock" /></span>
-            <div className="row">
+          <div className="time-input col justify-between gap-5">
+            <div className="row centered icon-l"><Icon iconName="clock" /></div>
+            <div className="row gap-5">
               <Input
                 type="number"
                 id="hours"
@@ -183,7 +182,7 @@ function GeneralFields({
         <Icon iconName="save" />
       </Button>
 
-    </div>
+    </>
 
   );
 }

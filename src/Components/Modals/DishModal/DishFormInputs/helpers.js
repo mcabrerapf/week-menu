@@ -3,7 +3,7 @@ import { sortBy } from '../../../helpers';
 const filterIngredinents = (ingredients, selectedType, searchValue) => {
   const filteredIngredients = ingredients
     .filter(({ type, name }) => {
-      if (selectedType === 'ALL') {
+      if (selectedType === '') {
         if (!searchValue) return true;
         return name.toLowerCase().indexOf(searchValue.toLowerCase()) !== -1;
       }

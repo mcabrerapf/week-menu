@@ -1,9 +1,5 @@
 .list-container {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
 	height: 100%;
-	padding: 0px 5px 5px 5px;
 }
 
 .list-filters {
@@ -27,17 +23,15 @@
 }
 
 .list {
-	display: flex;
-	flex-direction: column;
 	overflow-y: auto;
+	align-items: center;
 	height: calc(100% - 3rem);
 	width: 100%;
-	margin: 0;
-	padding-top: 5px;
-	gap: 5px;
+	padding: 0px 5px;
+	margin-top: 3rem;
 }
 
 .list-add-button {
-	position: absolute;
-	bottom: 3.5rem;
+	position: fixed;
+	bottom: 3.2rem;
 }

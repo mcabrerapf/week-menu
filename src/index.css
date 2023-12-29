@@ -1,15 +1,15 @@
 :root {
-	font-size: 16px;
+	font-size: 15px;
 	--beige-color: #ceb8a1;
-	--blue-green-color: #3f8881;
+	--blue-color: #3f8881;
 	--gray-color: #757f7e;
 	--white-color: white;
 	--black-color: black;
-	--blue-color: blue;
 	--red-color: red;
 	--green-color: green;
 	--offiline-background-color: #deb9e0;
 	--basic-box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.5);
+	--full-modal-height: 36rem;
 }
 
 @media (min-width: 480px) {
@@ -56,5 +56,11 @@ code {
 }
 
 ul {
+	list-style: none;
 	padding: 0px;
+	margin: 0px;
+}
+
+p {
+	margin: 0px;
 }

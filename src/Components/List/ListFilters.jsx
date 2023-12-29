@@ -13,7 +13,7 @@ function ListFilters({
   const filterOptions = getFilterOptions(view);
 
   return (
-    <div className="list-filters">
+    <div className="list-filters top pad-5">
       <Input
         type="search"
         modifier="list-search-filter"

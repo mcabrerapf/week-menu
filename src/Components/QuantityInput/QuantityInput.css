@@ -1,21 +1,3 @@
-.quantity-input-container {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-}
-
-.quantity-input-container .quantity-input-label {
-	font-size: 0.8rem;
-	font-weight: 500;
-}
-
-.quantity-input-buttons {
-	display: flex;
-}
-
-.quantity-input-container .quantity-input-container-quantity {
+.quantity-input-value {
 	width: 2rem;
-	display: flex;
-	justify-content: center;
-	align-items: center;
 }

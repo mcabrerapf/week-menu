@@ -10,22 +10,22 @@ function EditView({ dishData, setDishData, handleSubmit }) {
   if (!dishData) return null;
 
   return (
-    <div className="form">
-      <div className="form-header">
+    <>
+      <div className="header">
         <Button
-          modifier={`header-option icon${fieldsView !== 0 ? ' bgc-gr' : ''}`}
+          modifier={`icon${fieldsView !== 0 ? ' bgc-gr' : ''}`}
           onClick={() => setFieldsView(0)}
         >
           <Icon iconName="info" />
         </Button>
         <Button
-          modifier={`header-option icon${fieldsView !== 1 ? ' bgc-gr' : ''}`}
+          modifier={`icon${fieldsView !== 1 ? ' bgc-gr' : ''}`}
           onClick={() => setFieldsView(1)}
         >
           <Icon iconName="ingredient" />
         </Button>
         <Button
-          modifier={`header-option icon${fieldsView !== 2 ? ' bgc-gr' : ''}`}
+          modifier={`icon${fieldsView !== 2 ? ' bgc-gr' : ''}`}
           onClick={() => setFieldsView(2)}
         >
           <Icon iconName="list" />
@@ -37,7 +37,7 @@ function EditView({ dishData, setDishData, handleSubmit }) {
         fieldsView={fieldsView}
         handleSubmit={handleSubmit}
       />
-    </div>
+    </>
   );
 }
 

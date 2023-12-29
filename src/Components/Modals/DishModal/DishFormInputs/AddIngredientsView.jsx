@@ -11,12 +11,8 @@ import { filterIngredinents } from './helpers';
 function AddIngredientsView({
   ingredients, selectedIngredients, setIngredientsView, updateIngredients,
 }) {
-  const [selectedType, setSelectedType] = useState('ALL');
+  const [selectedType, setSelectedType] = useState('');
   const [searchValue, setSearchValue] = useState('');
-
-  const handleTypeSelect = (e) => {
-    setSelectedType(e.target.value);
-  };
 
   const handleIngredientSelect = (ingredientId, isSelected) => {
     const ingMatch = ingredients.find((ingredient) => ingredientId === ingredient.id);
@@ -36,11 +32,10 @@ function AddIngredientsView({
 
   return (
     <>
-      <div className="add-ingredients-content">
-        <div className="add-ingredients-actions">
+      <div className="col gap-10">
+        <div className="row gap-5">
           <Input
             type="search"
-            modifier="list-search-filter"
             value={searchValue}
             id="search-value"
             name="search-value"
@@ -55,26 +50,26 @@ function AddIngredientsView({
             <Icon iconName="plus" />
           </Button>
         </div>
-        <div className="ingredients-types-container ingredient-types border-b">
+        <div className="row centered wrap gap-5">
           <Button
-            value="ALL"
-            modifier={selectedType === 'ALL' ? '' : 'bgc-gr'}
+            modifier={selectedType === '' ? 'l' : 'l bgc-gr'}
             buttonText="All"
-            onClick={handleTypeSelect}
+            onClick={() => setSelectedType('')}
           />
           {INGREDIENT_TYPES
-            .map(({ value, name: uName }) => (
+            .map(({ value }) => (
               <Button
                 key={value}
                 value={value}
-                modifier={selectedType !== value && 'bgc-gr'}
-                buttonText={uName}
-                onClick={handleTypeSelect}
-              />
+                modifier={selectedType === value ? 'l' : 'l bgc-gr'}
+                onClick={() => setSelectedType(value)}
+              >
+                <Icon iconName={value} />
+              </Button>
             ))}
 
         </div>
-        <div className="ingredients-types-container">
+        <div className="ingredient-options row centered wrap gap-5">
           {ingredientOptions.map((ingredientOption) => {
             const isSelected = !!selectedIngredients.find(({ id }) => id === ingredientOption.id);
             return (

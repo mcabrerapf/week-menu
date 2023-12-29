@@ -36,7 +36,7 @@ function Footer() {
   const checkIfSelected = (check) => (view === check ? 'icon' : 'icon bgc-gr');
 
   return (
-    <footer className="footer">
+    <footer className="footer bot">
       <Button
         value={MENU_BUILDER_STRING}
         modifier={checkIfSelected(MENU_BUILDER_STRING)}

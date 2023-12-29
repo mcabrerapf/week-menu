@@ -60,6 +60,7 @@ function ModalContextWrapper({ children }) {
             closeModal={closeModal}
             modifier={modifier}
             hideHeader={hideHeader}
+            type={type}
           >
             <ModalToUse
               modalData={modalData}

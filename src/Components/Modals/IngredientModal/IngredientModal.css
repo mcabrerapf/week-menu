@@ -1,29 +1,3 @@
 .ingredient-modal {
 	height: 100%;
 }
-
-.form {
-	height: 100%;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-}
-
-.form-inputs {
-	overflow-y: auto;
-	padding: 10px 10px 5px 10px;
-	display: flex;
-	flex-direction: column;
-	gap: 5px;
-}
-.ingredient-item-group {
-	display: flex;
-	flex-direction: column;
-	gap: 5px;
-	padding-bottom: 5px;
-}
-
-.form-footer {
-	padding: 5px 10px 5px 10px;
-	font-size: 1.5rem;
-}

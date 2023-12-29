@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import Button from '../../Button';
-import './DeleteModal.css';
 import { MainContext } from '../../../Contexts/MainContext';
 import Icon from '../../Icon';
 
@@ -23,17 +22,16 @@ function DeleteModal({
   };
 
   return (
-    <div className="delete-modal">
-      <div className="delete-modal-message">
-
+    <div className="col gap-5 pad-10">
+      <div className="col centered icon gap 5">
         <strong>
           {name}
         </strong>
         <Icon iconName="arrow-d" />
 
       </div>
-      <div className="delete-modal-buttons">
-        <Button modifier="delete" onClick={handleDelete} disableMultipleClicks>
+      <div className="row">
+        <Button modifier="icon bgc-bl" onClick={handleDelete} disableMultipleClicks>
           <Icon iconName="delete" />
         </Button>
 

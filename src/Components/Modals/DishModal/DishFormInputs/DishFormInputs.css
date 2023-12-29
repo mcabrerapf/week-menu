@@ -1,167 +1,41 @@
-.form-header {
-	display: flex;
-	height: 3rem;
+.modal-content-dish-edit {
+	height: calc(var(--full-modal-height) - 6rem);
 }
 
-.form-header .button {
-	background-color: var(--blue-green-color);
-	border-radius: 0px;
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
+.dish-modal-ingredients-list {
+	max-height: 23rem;
+	overflow-y: auto;
 }
 
-.form-header .button:first-of-type {
-	border-bottom-right-radius: 5px;
-	border-bottom-left-radius: 0px;
+.dish-modal-ingredients-list .input {
+	width: 2rem;
+	height: 2rem;
 }
 
-.form-header .button:last-of-type {
-	border-bottom-right-radius: 0px;
-	border-bottom-left-radius: 5px;
+.dish-modal-ingredients-list input {
+	width: 3rem;
+	height: 2rem;
+	background-color: transparent;
 }
 
-.form-inputs.dish {
-	height: 28rem;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-}
-
-.row {
-	justify-content: space-around;
-}
-
-.add-ingredients-content {
-	display: flex;
-	flex-direction: column;
-	gap: 5px;
-}
-
-.add-ingredients-actions {
-	align-items: center;
-	display: flex;
-	gap: 5px;
-}
-
-.ingredients-types-container {
-	max-height: 17rem;
-	display: flex;
-	gap: 5px;
-	flex-direction: row;
-	align-items: center;
-	overflow-x: hidden;
-	overflow-y: scroll;
-	flex-wrap: wrap;
-	padding-bottom: 5px;
-	justify-content: center;
-}
-
-.ingredients-types-container.ingredient-types {
-	height: 5rem !important;
-}
-
-.ingredients-types-container button {
-	min-width: 45px;
-	width: auto !important;
-}
-
-.ingredients-types-container .input {
-	/* background-color: var(--blue-green-color); */
-	max-width: 7rem;
-}
-
-.ingredients-types-container .input .select-input {
-	background-color: var(--blue-green-color);
-}
-
-.instructions-container {
-	display: flex;
-	flex-direction: column;
-	gap: 10px;
-	height: 23rem;
-	overflow-y: scroll;
-}
-
-.instruction-container {
-	display: flex;
-	gap: 5px;
-}
-
-.instruction-container .input {
-	flex: 2 1 auto;
-}
-
-.instruction-container .button {
-	flex: 1 1;
-}
-
-.instruction-buttons {
-	display: flex;
-	flex-direction: column;
-	gap: 2px;
-}
-/* Ingredients bit */
-
-.form-ingredients {
-	width: 100%;
-	/* margin: 5px 0 15px 0px; */
-	padding-top: 5px;
-	/* padding-bottom: 5px; */
-	height: 22rem;
-	overflow-y: scroll;
-}
-
-.form-ingredients-ingredient {
-	display: flex;
-	justify-content: space-between;
-	width: 98%;
-	margin-bottom: 5px;
-	font-size: 0.9rem;
-	align-items: center;
-}
-
-.form-ingredients-ingredient-name {
-	width: 50%;
-	padding: 5px;
-	font-weight: 500;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-}
-
-.form-ingredients-ingredient-quantity-container {
-	display: flex;
-	width: 50%;
-	justify-content: flex-end;
-}
-
-.form-ingredients-ingredient-quantity {
-	width: 3rem !important;
-}
-
-.form-ingredients-ingredient-quantity input {
-	background-color: transparent !important;
-	box-shadow: none;
-}
-
-.form-ingredients-ingredient-unit {
-	width: 4rem;
+.dish-modal-ingredients-list select {
+	width: 3rem;
+	height: 2rem;
 	background-color: transparent;
 	border: none;
-	cursor: pointer;
-	box-shadow: none;
 }
 
-.form-ingredients-ingredient-remove {
-	background-color: transparent !important;
-	border: none !important;
-	width: 2rem;
+.ingredient-options {
+	height: 16rem;
+	overflow-y: auto;
 }
 
-.add-ingredient-form-inputs {
-	display: flex;
-	flex-direction: column;
-	justify-content: space-around;
-	height: 100%;
-	gap: 5px;
+.instructions-content {
+	height: 23rem;
+	overflow-y: auto;
+}
+
+.ingredient-options button {
+	height: 2rem;
+	width: auto !important;
 }

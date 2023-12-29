@@ -55,7 +55,7 @@ function InstructionsFields({
 
   return (
     <>
-      <div className="instructions-container">
+      <div className="instructions-content col gap-10">
         {currentInstructions.map((instruction, i) => (
           <InstructionField
             key={`${i}-instruction`}
@@ -70,7 +70,7 @@ function InstructionsFields({
         ))}
 
       </div>
-      <div className="instruction-buttons">
+      <div className="col gap-5">
         <Button
           modifier="icon"
           type="button"

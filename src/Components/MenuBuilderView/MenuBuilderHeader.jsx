@@ -44,7 +44,7 @@ function MenuBuilderHeader({
   };
 
   return (
-    <div className="menu-builder-header">
+    <div className="header top">
       <Button
         modifier="icon"
         onClick={showBuildMenuModal}

@@ -6,7 +6,7 @@ import Button from '../../../Components/Button';
 import Icon from '../../../Components/Icon';
 
 function ModalContainer({
-  children, closeModal, headerText, hideHeader, modifier,
+  children, closeModal, headerText, hideHeader, modifier, type,
 }) {
   const wrapperRef = useRef(null);
 
@@ -31,14 +31,14 @@ function ModalContainer({
   return (
     <div ref={wrapperRef} className={`modal ${modifier}`}>
       {!hideHeader && (
-        <div className="modal-header">
+        <div className="modal-header row bgc-b">
           <p className="modal-header-text">{parsedHeaderText}</p>
-          <Button modifier="modal-header-close-button" onClick={closeModal}>
+          <Button modifier="icon l" onClick={closeModal}>
             <Icon iconName="close" />
           </Button>
         </div>
       )}
-      <div className="modal-content">
+      <div className={`modal-content${type ? ` ${type}` : ''}`}>
         {children}
       </div>
     </div>
@@ -52,12 +52,14 @@ ModalContainer.propTypes = {
   hideHeader: PropTypes.bool,
   headerText: PropTypes.string,
   modifier: PropTypes.string,
+  type: PropTypes.string,
 };
 
 ModalContainer.defaultProps = {
   hideHeader: false,
   headerText: '',
   modifier: '',
+  type: '',
   children: null,
 };
 

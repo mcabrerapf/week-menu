@@ -2,7 +2,7 @@
 	display: flex;
 	color: black;
 	text-align: center;
-	background-color: var(--blue-green-color);
+	background-color: var(--blue-color);
 	border-radius: 5px;
 	flex: 1 1 0px;
 	width: 100%;

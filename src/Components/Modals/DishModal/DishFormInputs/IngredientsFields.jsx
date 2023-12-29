@@ -49,7 +49,13 @@ function IngredientsFields({
 
   return (
     <>
-
+      {ingredientsView === 0 && (
+      <IngredientsField
+        ingredients={ingredients}
+        handleIngredientChange={handleIngredientChange}
+        handleRemoveIngredient={handleRemoveIngredient}
+      />
+      )}
       {ingredientsView === 1 && (
         <AddIngredientsView
           ingredients={contextIngredients}
@@ -58,32 +64,27 @@ function IngredientsFields({
           updateIngredients={updateIngredients}
         />
       )}
-
-      {ingredientsView === 0 && (
-      <IngredientsField
-        ingredients={ingredients}
-        handleIngredientChange={handleIngredientChange}
-        handleRemoveIngredient={handleRemoveIngredient}
-      />
-      )}
       {ingredientsView === 2
       && <NewIngredientForm toggleNewIngredientView={toggleNewIngredientView} />}
-      {ingredientsView === 0 && (
-      <Button
-        modifier="icon"
-        onClick={() => setIngredientsView(1)}
-      >
-        <Icon iconName="plus" />
-      </Button>
-      )}
-      {ingredientsView === 0 && (
-      <Button
-        modifier="icon"
-        onClick={handleSubmit}
-        disabled={!canSave}
-      >
-        <Icon iconName="save" />
-      </Button>
+      { ingredientsView === 0 && (
+      <div className="col gap-5">
+
+        <Button
+          modifier="icon"
+          onClick={() => setIngredientsView(1)}
+        >
+          <Icon iconName="plus" />
+        </Button>
+
+        <Button
+          modifier="icon"
+          onClick={handleSubmit}
+          disabled={!canSave}
+        >
+          <Icon iconName="save" />
+        </Button>
+
+      </div>
       )}
 
     </>

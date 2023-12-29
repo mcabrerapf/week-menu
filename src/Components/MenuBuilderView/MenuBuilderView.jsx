@@ -68,7 +68,7 @@ function MenuBuilderView() {
         menu={menuDishes}
       />
       <div
-        className="menu-builder-container"
+        className="menu-builder-content row pad-5 centered"
       >
         {!hasLoadedMenu && (
           <Button onClick={openBuildMenuModal} modifier="l icon shadow">

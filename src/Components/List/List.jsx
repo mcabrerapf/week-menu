@@ -36,14 +36,14 @@ function List() {
   const filteredList = filterList(listData, searchValue, filterValue);
 
   return (
-    <div className="list-container">
+    <div className="list-container col">
       <ListFilters
         setFilterValue={setFilterValue}
         setSearchValue={setSearchValue}
         searchValue={searchValue}
         filterValue={filterValue}
       />
-      <ul className="list">
+      <ul className="list col gap-5">
         {filteredList.map((listItem) => (
           <ListItem
             key={listItem.id}
@@ -53,8 +53,7 @@ function List() {
             handleLoadMenu={handleLoadMenu}
           />
         ))}
-      </ul>
-      {view !== 'menu' && (
+        {view !== 'menu' && (
         <Button
           modifier="circle l icon shadow list-add-button"
           type="button"
@@ -62,7 +61,9 @@ function List() {
         >
           <Icon iconName="plus" />
         </Button>
-      )}
+        )}
+      </ul>
+
     </div>
   );
 }

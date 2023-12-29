@@ -1,78 +1,9 @@
-.build-menu-modal-content {
-	height: 100%;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	padding: 5px;
-	width: 100%;
+.menu-builder-day button:first-of-type {
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
 }
 
-.build-menu-modal-inputs {
-	padding: 10px;
-	height: 16rem;
-	overflow-y: auto;
-	display: flex;
-}
-
-.build-menu-modal-day-inputs {
-	display: flex;
-	flex-direction: column;
-	width: 15rem;
-}
-
-.build-menu-modal-day-container {
-	display: flex;
-	width: 100%;
-}
-
-.build-menu-modal-day-container .day-button {
-	border-radius: 0;
-	width: 40%;
-}
-
-.has-meal-button {
-	justify-content: center;
-	border-radius: 0;
-	align-items: center;
-}
-
-.build-menu-modal-day-meals {
-	display: flex;
-	border-left: 1px solid black;
-	width: 55%;
-}
-
-.build-menu-modal-max-inputs {
-	width: 45%;
-	gap: 5px;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-}
-
-.day-button.mon {
-	border-top-left-radius: 5px !important;
-}
-
-.has-meal-button.mon {
-	border-top-right-radius: 5px !important;
-}
-
-.day-button.sun {
-	border-bottom-left-radius: 5px !important;
-}
-
-.has-meal-button.sun {
-	border-bottom-right-radius: 5px !important;
-}
-
-.build-menu-modal-max-inputs-header {
-	font-size: 0.9rem;
-	font-weight: 500;
-	text-decoration: underline;
-}
-
-.build-menu-button {
-	font-size: 2rem;
-	padding: 0px;
+.menu-builder-day button:last-of-type {
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
 }

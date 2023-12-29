@@ -12,7 +12,7 @@ function IngredientsField({
 }) {
   const sortedIngredients = sortBy(ingredients, 'name', 'alphabetical');
   return (
-    <div className="form-ingredients">
+    <div className="dish-modal-ingredients-list col gap-5">
       {!sortedIngredients.length && <div>No ingredients...</div>}
       {sortedIngredients.map((currentIngredient) => {
         const {
@@ -20,12 +20,11 @@ function IngredientsField({
         } = currentIngredient;
 
         return (
-          <div className="form-ingredients-ingredient border-b" key={id}>
-            <div className="form-ingredients-ingredient-name">{capitalizeFirstLetter(name)}</div>
-            <div className="form-ingredients-ingredient-quantity-container">
+          <div className="row gap-5 border-b" key={id}>
+            <div className="row">{capitalizeFirstLetter(name)}</div>
+            <div className="row justify-end gap-5">
               <Input
                 type="number"
-                modifier="form-ingredients-ingredient-quantity"
                 key={id}
                 id={id}
                 name="quantity"
@@ -36,9 +35,7 @@ function IngredientsField({
                 onBlur={handleIngredientChange}
                 onChange={handleIngredientChange}
               />
-              {/* <div className="form-ingredients-ingredient-unit">{unit}</div> */}
               <select
-                className="form-ingredients-ingredient-unit"
                 id={id}
                 name="unit"
                 value={unit}
@@ -51,7 +48,7 @@ function IngredientsField({
               </select>
 
               <Button
-                modifier="form-ingredients-ingredient-remove"
+                modifier="square m bgc-bg icon"
                 aria-label={`remove-${id}`}
                 type="button"
                 value={id}
@@ -59,7 +56,6 @@ function IngredientsField({
               >
                 <Icon iconName="close" />
               </Button>
-
             </div>
           </div>
         );

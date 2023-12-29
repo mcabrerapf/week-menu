@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { MainContext } from '../../../Contexts/MainContext';
 import DisplayView from './DisplayView';
 import EditView from './EditView';
-import './DishModal.css';
 import { deepCompare } from '../../helpers';
 import { DISH_STRING } from '../../../constants';
 
@@ -20,7 +19,7 @@ function DishModal({
     if (modalData.name) setDishData({ ...modalData, sideDishTo: modalData.sideDishTo || [] });
     else {
       setDishData({
-        name: '', types: [], servings: 1, time: { hours: 0, minutes: 0 }, description: '', instructions: '', ingredients: [],
+        name: '', types: ['lunch'], servings: 1, time: { hours: 0, minutes: 0 }, description: '', instructions: '', ingredients: [],
       });
       setModalView('edit');
     }
@@ -33,12 +32,9 @@ function DishModal({
     return closeModal();
   };
 
-  return (
-    <div className="dish-modal">
-      {modalView === 'display'
-        ? <DisplayView dishData={dishData} closeModal={closeModal} setModalView={setModalView} />
-        : <EditView dishData={dishData} setDishData={setDishData} handleSubmit={handleSubmit} /> }
-    </div>
+  return (modalView === 'display'
+    ? <DisplayView dishData={dishData} closeModal={closeModal} setModalView={setModalView} />
+    : <EditView dishData={dishData} setDishData={setDishData} handleSubmit={handleSubmit} />
 
   );
 }

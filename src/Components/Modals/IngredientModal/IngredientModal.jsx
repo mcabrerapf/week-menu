@@ -15,7 +15,7 @@ function IngredientModal({
   const {
     handleSave,
   } = useContext(MainContext);
-  const [ingredientData, setIngredientData] = useState({});
+  const [ingredientData, setIngredientData] = useState({ name: '', type: 'other', unit: 'u' });
 
   useEffect(() => {
     if (modalData.name) {
@@ -40,6 +40,7 @@ function IngredientModal({
   const handleOnClick = (eValue, eName) => {
     setIngredientData({ ...ingredientData, [eName]: eValue });
   };
+
   const handleOnChange = ({ target: { value, name: eName } }) => {
     setIngredientData({ ...ingredientData, [eName]: value });
   };
@@ -48,65 +49,60 @@ function IngredientModal({
   const isButtonDisabled = !name || !type || !unit;
 
   return (
-    <div className="ingredient-modal">
-      <form className="form">
-        <div className="form-inputs">
-          <Input
-            autoComplete="off"
-            type="text"
-            id="name"
-            name="name"
-            value={name}
-            onChange={handleOnChange}
-            placeholder="Name"
-          />
-          <div className="ingredient-item-group border-b">
-            <div className="buttons-group">
-              {INGREDIENT_TYPES
-                .map(({ value }) => (
-                  <Button
-                    key={value}
-                    modifier={type === value ? 'icon-l l' : 'icon-l l bgc-gr'}
-                    name="type"
-                    value={value}
-                    onClick={() => handleOnClick(value, 'type')}
-                  >
-                    <Icon iconName={value} />
-                  </Button>
-                ))}
-            </div>
-          </div>
-          <div className="ingredient-item-group">
-            <div className="buttons-group">
-              {INGREDIENT_UNITS
-                .map(({ value, name: uName }) => (
-                  <Button
-                    key={value}
-                    modifier={unit === value ? 'l' : 'l bgc-gr'}
-                    name="unit"
-                    value={value}
-                    buttonText={uName}
-                    onChange={() => handleOnClick(value, 'unit')}
-                  />
-                ))}
-            </div>
-          </div>
+    <form className="col pad-10 gap-10">
+      <div className="col gap-10">
+        <Input
+          autoComplete="off"
+          type="text"
+          id="name"
+          name="name"
+          value={name}
+          onChange={handleOnChange}
+          placeholder="Name"
+        />
+        <div className="row centered wrap gap-5">
+          {INGREDIENT_TYPES
+            .map(({ value }) => (
+              <Button
+                key={value}
+                modifier={type === value ? 'icon-l l' : 'icon-l l bgc-gr'}
+                name="type"
+                value={value}
+                onClick={() => handleOnClick(value, 'type')}
+              >
+                <Icon iconName={value} />
+              </Button>
+            ))}
         </div>
 
-        <div className="form-footer">
-          <Button
-            modifier="icon"
-            onClick={handleSubmit}
-            disabled={isButtonDisabled}
-            disableMultipleClicks
-          >
-            <Icon iconName="save" />
-          </Button>
+        <div className="row centered wrap gap-5">
+          {INGREDIENT_UNITS
+            .map(({ value, name: uName }) => (
+              <Button
+                key={value}
+                modifier={unit === value ? 'l' : 'l bgc-gr'}
+                name="unit"
+                value={value}
+                buttonText={uName}
+                onChange={() => handleOnClick(value, 'unit')}
+              />
+            ))}
         </div>
 
-      </form>
-    </div>
+      </div>
 
+      <div className="form-footer">
+        <Button
+          modifier="icon"
+          onClick={handleSubmit}
+          disabled={isButtonDisabled}
+          disableMultipleClicks
+        >
+          <Icon iconName="save" />
+        </Button>
+      </div>
+
+    </form>
   );
 }
 

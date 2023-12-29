@@ -1,30 +1,4 @@
-.menu-builder-container {
-	height: 100%;
-	width: 100%;
-	padding: 5px;
-	overflow: hidden;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
-.menu-builder-header {
-	height: 3rem;
-	width: 100%;
-	display: flex;
-	justify-content: space-between;
-}
-
-.menu-builder-header button {
-	border-radius: 0;
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
-}
-
-.menu-builder-header button:last-of-type {
-	border-bottom-right-radius: 0px;
-}
-
-.menu-builder-header button:first-of-type {
-	border-bottom-left-radius: 0px;
+.menu-builder-content {
+	margin-top: 3rem;
+	height: calc(100% - 3rem);
 }

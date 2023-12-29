@@ -7,6 +7,7 @@ import { buildMenuDishes, deepCopy } from '../../helpers';
 import { initMenuOptions, getMealMinMax } from './helpers';
 import QuantityInput from '../../QuantityInput';
 import { MainContext } from '../../../Contexts/MainContext';
+import Icon from '../../Icon';
 
 function BuildMenuModal({
   modalData, closeModal,
@@ -87,62 +88,62 @@ function BuildMenuModal({
   };
 
   return (
-    <div className="build-menu-modal-content">
-      <div className="build-menu-modal-inputs">
-        <div className="build-menu-modal-day-inputs">
+    <div className="col pad-10 gap-10">
+      <div className="row gap-20">
+        <div className="menu-builder-day col gap-5">
           {days.map((day, index) => {
             const {
               hasBreakfast, hasLunch, hasDinner, name,
             } = day;
             const hasMeal = hasBreakfast || hasLunch || hasDinner;
-            const dayMealsClassname = 'build-menu-modal-day-meals';
-            const dayButtonClassName = `day-button${hasMeal ? '' : ' bgc-gr'} ${name.toLowerCase()}`;
 
             return (
-              <div key={name} className="build-menu-modal-day-container">
+              <div key={name} className="row">
                 <Button
                   value={index}
-                  modifier={dayButtonClassName}
+                  modifier={`centered square l${hasMeal ? '' : ' bgc-gr'}`}
                   buttonText={name}
                   onClick={() => {
                     handleDayChange(hasMeal, index);
                   }}
                 />
-                <div className={dayMealsClassname}>
-                  <Button
-                    modifier={`has-meal-button${hasBreakfast ? '' : ' bgc-gr'}`}
-                    value={hasBreakfast}
-                    buttonText="B"
-                    disabled={availableBreakfasts === 0}
-                    onClick={() => {
-                      handleMealChange(index, 'hasBreakfast', hasBreakfast);
-                    }}
-                  />
-                  <Button
-                    modifier={`has-meal-button${hasLunch ? '' : ' bgc-gr'}`}
-                    value={hasLunch}
-                    buttonText="L"
-                    disabled={availableLunches === 0}
-                    onClick={() => {
-                      handleMealChange(index, 'hasLunch', hasLunch);
-                    }}
-                  />
-                  <Button
-                    modifier={`has-meal-button${hasDinner ? '' : ' bgc-gr'} ${name.toLowerCase()}`}
-                    value={hasDinner}
-                    buttonText="D"
-                    disabled={availableDinners === 0}
-                    onClick={() => {
-                      handleMealChange(index, 'hasDinner', hasDinner);
-                    }}
-                  />
-                </div>
+                <Button
+                  modifier={`centered square l icon${hasBreakfast ? '' : ' bgc-gr'}`}
+                  value={hasBreakfast}
+                  disabled={availableBreakfasts === 0}
+                  onClick={() => {
+                    handleMealChange(index, 'hasBreakfast', hasBreakfast);
+                  }}
+                >
+                  <Icon iconName="breakfast" />
+                </Button>
+                <Button
+                  modifier={`centered square l icon${hasLunch ? '' : ' bgc-gr'}`}
+                  value={hasLunch}
+                  disabled={availableLunches === 0}
+                  onClick={() => {
+                    handleMealChange(index, 'hasLunch', hasLunch);
+                  }}
+                >
+                  <Icon iconName="lunch" />
+                </Button>
+                <Button
+                  modifier={`centered square l icon${hasDinner ? '' : ' bgc-gr'} ${name.toLowerCase()}`}
+                  value={hasDinner}
+                  disabled={availableDinners === 0}
+                  onClick={() => {
+                    handleMealChange(index, 'hasDinner', hasDinner);
+                  }}
+                >
+                  <Icon iconName="dinner" />
+                </Button>
+
               </div>
             );
           })}
         </div>
 
-        <div className="build-menu-modal-max-inputs">
+        <div className="col gap-10">
           <QuantityInput
             value={maxBreakfasts}
             valueKey="maxBreakfasts"
@@ -150,7 +151,7 @@ function BuildMenuModal({
             max={breakfastMax}
             handleDecrease={handleDecrease}
             handleIncrease={handleIncrease}
-            labelText="B"
+            iconName="breakfast"
           />
           <QuantityInput
             value={maxLunches}
@@ -159,7 +160,7 @@ function BuildMenuModal({
             max={lunchMax}
             handleDecrease={handleDecrease}
             handleIncrease={handleIncrease}
-            labelText="L"
+            iconName="lunch"
           />
           <QuantityInput
             value={maxDinners}
@@ -168,7 +169,7 @@ function BuildMenuModal({
             max={dinnerMax}
             handleDecrease={handleDecrease}
             handleIncrease={handleIncrease}
-            labelText="D"
+            iconName="dinner"
           />
 
           <QuantityInput
@@ -178,13 +179,12 @@ function BuildMenuModal({
             max={99}
             handleDecrease={handleDecrease}
             handleIncrease={handleIncrease}
-            labelText="People"
+            iconName="people"
           />
 
         </div>
-
       </div>
-      <div>
+      <div className="row">
         <Button
           modifier="icon"
           onClick={handleButtonClick}
