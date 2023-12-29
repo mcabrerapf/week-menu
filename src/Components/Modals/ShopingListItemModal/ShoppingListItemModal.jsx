@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './ShoppingListItemModal.css';
 
 function ShoppingListItemModal({
   modalData,
@@ -8,13 +7,18 @@ function ShoppingListItemModal({
   const { dishes = [] } = modalData;
 
   return (
-    <ul className="shopping-list-modal-content-list">
-      {dishes.map((dish) => (
-        <li key={dish} className="shopping-list-modal-content-item">
-          {dish}
-        </li>
-      ))}
-    </ul>
+    <div className="shopping-list-modal-content pad-10">
+      <ul className="shopping-list-modal-content-list">
+        {dishes.map((dish) => (
+          <li key={dish} className="shopping-list-modal-content-list--item">
+            -
+            {' '}
+            {dish}
+          </li>
+        ))}
+      </ul>
+    </div>
+
   );
 }
 

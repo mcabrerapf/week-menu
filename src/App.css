@@ -46,6 +46,14 @@
 	flex-wrap: wrap;
 }
 
+.width-a {
+	width: auto;
+}
+
+.justify-start {
+	justify-content: flex-start;
+}
+
 .justify-end {
 	justify-content: flex-end;
 }

@@ -1,6 +1,5 @@
 import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
-import './MealModal.css';
 import Button from '../../Button';
 import Input from '../../Input';
 import { MainContext } from '../../../Contexts/MainContext';
@@ -42,16 +41,15 @@ function MealModal({ modalData, closeModal }) {
   };
 
   return (
-    <div className="meal-modal-content">
+    <div className="col">
       {/* {mode === 'display' && (
       <DisplayMode modalData={modalData} setModalMode={setMode} buttonText="Change Dish" />
       )} */}
       {/* {mode === 'edit' && ( */}
-      <div className="edit-container">
-        <div className="meal-modal-inputs">
+      <div className="col pad-10 gap-10">
+        <div className="col gap-10">
           {id && (
-          <div className="old-dish-name">
-
+          <div className="col gap-5 centered icon">
             <span>{name}</span>
             <Icon iconName="arrow-d" />
           </div>
@@ -77,7 +75,7 @@ function MealModal({ modalData, closeModal }) {
           />
           )} */}
         </div>
-        <div className="meal-modal-buttons">
+        <div className="row gap-5">
           {!id && <Button buttonText="Add dish" onClick={() => handleButtonClick(false)} disabled={!selectedDish} />}
           {id && <Button buttonText="ALL" onClick={() => handleButtonClick(true)} disabled={!selectedDish} />}
           {id && <Button buttonText="One" onClick={() => handleButtonClick(false)} disabled={!selectedDish} />}

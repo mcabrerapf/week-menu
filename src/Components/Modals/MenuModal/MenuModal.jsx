@@ -28,8 +28,8 @@ function MenuModal({ modalData, closeModal }) {
   const favouriteButtonClass = `m icon${isFavourite ? '' : ' bgc-gr'}`;
 
   return (
-    <div className="menu-modal-content">
-      <div className="menu-modal-inputs">
+    <div className="menu-modal-content col gap-10 pad-10">
+      <div className="row gap-10">
         <Input
           name="name"
           id="name"
@@ -42,7 +42,7 @@ function MenuModal({ modalData, closeModal }) {
           <Icon iconName="star" />
         </Button>
       </div>
-      <div className="menu-modal-buttons">
+      <div className="col">
         <Button modifier="icon" onClick={saveMenu} disabled={!menuName} disableMultipleClicks>
           <Icon iconName="save" />
         </Button>
