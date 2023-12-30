@@ -29,13 +29,12 @@ function MenuModal({ modalData, closeModal }) {
 
   return (
     <div className="menu-modal-content col gap-10 pad-10">
-      <div className="row gap-10">
+      <div className="row centered gap-10">
         <Input
           name="name"
           id="name"
           value={menuName}
           onChange={({ target: { value: eValue } }) => setMenuName(eValue)}
-          placeholder="Menu name"
           type="text"
         />
         <Button modifier={favouriteButtonClass} onClick={() => setIsFavourite(!isFavourite)}>

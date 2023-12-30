@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '../../../Button';
 import Input from '../../../Input';
-import { buildSelectOptions, capitalizeFirstLetter, sortBy } from '../../../helpers';
+import { capitalizeFirstLetter, sortBy } from '../../../helpers';
 import { SELECT_OPTIONS } from '../../../constants';
 import { INGREDIENT_STRING } from '../../../../constants';
 import Icon from '../../../Icon';
@@ -12,7 +12,7 @@ function IngredientsField({
 }) {
   const sortedIngredients = sortBy(ingredients, 'name', 'alphabetical');
   return (
-    <div className="dish-modal-ingredients-list col gap-5">
+    <div className="dish-modal-ingredients-list col overflow-y gap-5">
       {!sortedIngredients.length && <div>No ingredients...</div>}
       {sortedIngredients.map((currentIngredient) => {
         const {
@@ -20,14 +20,15 @@ function IngredientsField({
         } = currentIngredient;
 
         return (
-          <div className="row gap-5 border-b" key={id}>
+          <div className="row gap-5 w-f justify-between border-b" key={id}>
             <div className="row">{capitalizeFirstLetter(name)}</div>
-            <div className="row justify-end gap-5">
+            <div className="row j-end gap-5">
               <Input
                 type="number"
                 key={id}
                 id={id}
                 name="quantity"
+                modifier="s bgc-tr"
                 value={quantity}
                 resetValueOnClick
                 min={1}
@@ -35,18 +36,16 @@ function IngredientsField({
                 onBlur={handleIngredientChange}
                 onChange={handleIngredientChange}
               />
-              <select
+              <Input
+                type="select"
+                modifier="bgc-tr font-xs s"
+                value={unit}
                 id={id}
                 name="unit"
-                value={unit}
                 onChange={handleIngredientChange}
-              >
-                <option value="" className="form-select-option" disabled>
-                  Choose a unit...
-                </option>
-                {buildSelectOptions(SELECT_OPTIONS[INGREDIENT_STRING].unit, 'name')}
-              </select>
-
+                placeholder="Choose unit..."
+                selectOptions={SELECT_OPTIONS[INGREDIENT_STRING].unit}
+              />
               <Button
                 modifier="square m bgc-bg icon"
                 aria-label={`remove-${id}`}

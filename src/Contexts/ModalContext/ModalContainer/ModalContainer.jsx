@@ -29,11 +29,11 @@ function ModalContainer({
   const parsedHeaderText = capitalizeFirstLetter(headerText);
 
   return (
-    <div ref={wrapperRef} className={`modal ${modifier}`}>
+    <div ref={wrapperRef} className={`modal border-rad-10 bgc-bg ${modifier}`}>
       {!hideHeader && (
-        <div className="modal-header row bgc-b">
-          <p className="modal-header-text">{parsedHeaderText}</p>
-          <Button modifier="icon l" onClick={closeModal}>
+        <div className="modal-header row centered bgc-b">
+          <p className="modal-header-text label centered">{parsedHeaderText}</p>
+          <Button modifier="icon l border-rad-10" onClick={closeModal}>
             <Icon iconName="close" />
           </Button>
         </div>

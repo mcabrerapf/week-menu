@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import './Meal.css';
 import Button from '../../../../Button';
 import { ModalContext } from '../../../../../Contexts/ModalContext';
 
@@ -39,12 +38,12 @@ function Meal({
     });
   };
 
-  const modififier = `meal-content${name ? '' : ' bgc-gr'}`;
+  const modififier = `meal-content font-xs h-f${name ? '' : ' bgc-gr'}`;
   const parsedMealName = getParsedMealName(name, sideDishesToUse);
 
   return (
     <div
-      className={`meal row centered${type === 'lunch' ? ' lunch' : ''}`}
+      className={`meal row w-f centered${type === 'lunch' ? ' border-r border-l' : ''}`}
     >
       <Button modifier={modififier} onClick={openMealModal} buttonText={parsedMealName} />
     </div>

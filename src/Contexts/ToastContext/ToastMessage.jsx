@@ -5,7 +5,7 @@ import Icon from '../../Components/Icon';
 const typeTimeout = {
   error: 5500,
   success: 3000,
-  info: 3500,
+  info: 4000,
 };
 
 function ToastMessage({
@@ -27,16 +27,24 @@ function ToastMessage({
 
   return (
     <div
-      role="button"
-      className="toast-message-container"
-      tabIndex={0}
-      onClick={() => setShowToast(false)}
-      onKeyDown={() => setShowToast(false)}
+      className="toast-message-container row pad-5"
     >
-      <div className={`toast-message ${type}`}>
+      <div
+        className={`toast-message row label icon shadow centered border-rad-5 pad-10 gap-5 ${type}`}
+        role="button"
+        onClick={(e) => {
+          e.stopPropagation();
+          setShowToast(false);
+        }}
+        onKeyDown={() => setShowToast(false)}
+        tabIndex={0}
+      >
         {type === 'success' && <Icon iconName="save" />}
         {type === 'delete' && <Icon iconName="delete" />}
-        {content}
+        <span className="font-s">
+          {content}
+        </span>
+
       </div>
     </div>
   );

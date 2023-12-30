@@ -50,7 +50,7 @@ function ModalContextWrapper({ children }) {
 
       {showModal && ModalToUse && (
         <div
-          className="modal-background"
+          className="modal-background row centered w-f h-f"
           onTouchStart={stopPropagation}
           onTouchMove={stopPropagation}
           onTouchEnd={stopPropagation}

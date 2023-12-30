@@ -1,7 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { MainContext } from '../../../Contexts/MainContext';
-import './IngredientModal.css';
 import Button from '../../Button';
 import { INGREDIENT_TYPES, INGREDIENT_UNITS } from '../../constants';
 import Input from '../../Input';

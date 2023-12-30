@@ -1,56 +1,46 @@
-.input {
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-}
-
 input {
-	height: 2rem;
-	width: 100%;
-	border-radius: 5px;
-	text-align: left;
 	border: 0;
-}
-
-select {
 	height: 2rem;
-	width: 100%;
-	border-radius: 5px;
-	text-align: center;
-	font-weight: 500;
-}
-
-textarea {
-	width: 100%;
-	border-radius: 5px;
-}
-
-.input-label {
-	font-weight: 500;
 }
 
 .checkbox-input {
+	height: 2rem;
+	width: 2rem;
 }
 
-.text-input {
-	padding: 5px;
-	border: 0;
-}
-
-.textarea-input {
-	resize: vertical;
-	font-size: 0.8rem;
-	min-height: 4rem;
-	max-height: 5rem;
-	padding: 5px;
-	border: 0;
-}
-
-.select-input {
-	padding: 5px;
-	border: 0;
+.checkbox-input.s {
+	height: 1.5rem;
+	width: 1.5rem;
 }
 
 .number-input {
 	text-align: center;
+}
+
+.number-input.s {
+	width: 4rem;
+}
+
+.number-input.xs {
+	width: 2rem;
+}
+
+select {
+	height: 2rem;
+	text-align: center;
+	font-weight: 500;
+	border: 0;
+}
+
+select.s {
+	height: 2rem;
+	width: 3rem;
+}
+
+textarea {
+	resize: none;
+	font-size: 0.8rem;
+	min-height: 4rem;
+	max-height: 5rem;
+	border: 0;
 }

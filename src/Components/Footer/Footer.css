@@ -1,11 +1,8 @@
 .footer {
-	display: flex;
-	width: 100%;
 	height: 3rem;
 }
 
 footer .button {
-	height: 100%;
 	border-radius: 0;
 	border-top-right-radius: 5px;
 	border-top-left-radius: 5px;

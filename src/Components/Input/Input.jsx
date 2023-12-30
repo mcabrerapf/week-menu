@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './Input.css';
-import { parseClassName, buildSelectOptions } from '../helpers';
+import { buildSelectOptions } from '../helpers';
 
 function Input({
   modifier,
@@ -16,8 +16,6 @@ function Input({
   onBlur,
   selectOptions,
   type,
-  label,
-  children,
   enableDefaultSelect,
   disabled,
   min,
@@ -92,14 +90,11 @@ function Input({
     onChange(e);
   };
 
-  const className = parseClassName('input', modifier);
-
   return (
-    <div className={className}>
-      {label && <label className="input-label" htmlFor={id}>{label}</label>}
+    <>
       {type === 'search' && (
       <input
-        className="text-input"
+        className={`text-input w-f border-rad-5 pad-5 ${modifier}`}
         autoComplete="off"
         type={type}
         id={id}
@@ -113,7 +108,7 @@ function Input({
       )}
       {type === 'text' && (
       <input
-        className="text-input"
+        className={`text-input w-f  border-rad-5 pad-5 ${modifier}`}
         autoComplete="off"
         type={type}
         id={id}
@@ -125,27 +120,13 @@ function Input({
         onKeyDown={handleEnter}
       />
       )}
-      {type === 'textarea' && (
-        <textarea
-          className="textarea-input"
-          autoComplete="off"
-          id={id}
-          name={name}
-          value={value}
-          onChange={onChange}
-          placeholder={placeholder}
-          disabled={disabled}
-          onBlur={onBlur}
-          autoFocus={autoFocus}
-        />
-      )}
       {type === 'number' && (
         <input
           type="text"
           autoComplete="off"
           inputMode="numeric"
           pattern="[0-9]*"
-          className="number-input"
+          className={`number-input w-f border-rad-5 pad-5 ${modifier}`}
           aria-label={id}
           key={id}
           id={id}
@@ -161,7 +142,7 @@ function Input({
       )}
       {type === 'checkbox' && (
       <input
-        className="checkbox-input"
+        className={`checkbox-input w-f border-rad-5 pad-5 ${modifier}`}
         autoComplete="off"
         type={type}
         id={id}
@@ -172,9 +153,23 @@ function Input({
         disabled={disabled}
       />
       )}
+      {type === 'textarea' && (
+      <textarea
+        className={`textarea-input w-f border-rad-5 pad-5 ${modifier}`}
+        autoComplete="off"
+        id={id}
+        name={name}
+        value={value}
+        onChange={onChange}
+        placeholder={placeholder}
+        disabled={disabled}
+        onBlur={onBlur}
+        autoFocus={autoFocus}
+      />
+      )}
       {type === 'select' && (
       <select
-        className="select-input"
+        className={`select-input w-f border-rad-5 pad-5 ${modifier}`}
         name={name}
         id={id}
         value={value}
@@ -191,8 +186,7 @@ function Input({
       </select>
       )}
 
-      {!!children && children}
-    </div>
+    </>
 
   );
 }
@@ -203,12 +197,10 @@ Input.propTypes = {
   onBlur: PropTypes.func,
   type: PropTypes.string,
   selectOptions: PropTypes.arrayOf(PropTypes.shape()),
-  label: PropTypes.string,
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   name: PropTypes.string,
   placeholder: PropTypes.string,
   modifier: PropTypes.string,
-  children: PropTypes.oneOfType([PropTypes.shape(), PropTypes.arrayOf(PropTypes.shape())]),
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
   enableDefaultSelect: PropTypes.bool,
   disabled: PropTypes.bool,
@@ -224,13 +216,11 @@ Input.defaultProps = {
   onBlur: () => {},
   onFocus: () => {},
   selectOptions: [],
-  label: '',
   modifier: '',
   id: '',
   name: '',
   placeholder: '',
   value: '',
-  children: null,
   enableDefaultSelect: false,
   disabled: false,
   min: null,

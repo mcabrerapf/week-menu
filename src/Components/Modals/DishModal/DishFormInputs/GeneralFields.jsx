@@ -1,7 +1,6 @@
 /* eslint-disable no-restricted-globals */
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import './GeneralFields.css';
 import { DISH_TYPES } from '../../../constants/DISHES';
 import { MainContext } from '../../../../Contexts/MainContext';
 import Input from '../../../Input';
@@ -69,7 +68,7 @@ function GeneralFields({
   return (
     <>
       <div className="col gap-20">
-        <div className="row">
+        <div className="row gap-5">
           <Input
             autoComplete="off"
             type="text"
@@ -95,7 +94,7 @@ function GeneralFields({
 
           </div>
         </div>
-        <div className="row gap-20">
+        <div className="row gap-40">
           <div className="col justify-between gap-5">
             <div className="row centered icon-l"><Icon iconName="people" /></div>
             <QuantityInput
@@ -114,6 +113,7 @@ function GeneralFields({
                 type="number"
                 id="hours"
                 name="hours"
+                modifier="xs"
                 value={hours}
                 resetValueOnClick
                 min={0}
@@ -127,6 +127,7 @@ function GeneralFields({
                 type="number"
                 id="minutes"
                 name="minutes"
+                modifier="xs"
                 value={minutes}
                 resetValueOnClick
                 min={0}
@@ -140,7 +141,7 @@ function GeneralFields({
         </div>
 
         {showSideDishes && (
-        <div className="side-dishes-container">
+        <div className="col">
           <Input
             value=""
             name="side-dishes"

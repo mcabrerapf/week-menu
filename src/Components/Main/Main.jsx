@@ -54,7 +54,7 @@ function Main() {
   return (
 
     <div
-      className={`main${offlineClass}`}
+      className={`main w-f${offlineClass}`}
       onTouchStart={onTouchStart}
       onTouchMove={onTouchMove}
       onTouchEnd={onTouchEnd}

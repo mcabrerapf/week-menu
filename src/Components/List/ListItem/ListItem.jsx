@@ -19,19 +19,19 @@ function ListItem({
 
   return (
     <li
-      className="list-item row justify-between bgc-b"
+      className="list-item row w-f justify-between bgc-b border-rad-10"
       role="button"
       tabIndex={0}
       onClick={() => handleOpenModal(modifier, defaultModalView, itemData)}
       onKeyDown={() => handleOpenModal(modifier, defaultModalView, itemData)}
     >
       <div
-        className="list-item-label column label"
+        className="list-item-label column label overflow-y-h"
       >
         {parsedLabel}
 
       </div>
-      <div className="list-item-buttons row">
+      <div className="row">
         {typeToUse && (
         <Button
           modifier="l icon"

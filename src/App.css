@@ -18,9 +18,18 @@
 	text-decoration: line-through;
 }
 
-.bot {
-	position: fixed;
-	bottom: 0px;
+.centered {
+	align-items: center;
+	text-align: center;
+	justify-content: center;
+}
+
+.text-a-l {
+	text-align: left;
+}
+
+.shadow {
+	box-shadow: var(--basic-box-shadow);
 }
 
 .top {
@@ -28,13 +37,33 @@
 	top: 0px;
 }
 
+.right {
+	position: fixed;
+	right: 0px;
+}
+
+.bot {
+	position: fixed;
+	bottom: 0px;
+}
+
+.left {
+	position: fixed;
+	left: 0px;
+}
+
 .label {
 	font-weight: 500;
 }
+
 .row {
 	display: flex;
 	flex-direction: row;
-	width: 100%;
+}
+
+.row-r {
+	display: flex;
+	flex-direction: row-reverse;
 }
 
 .col {
@@ -46,16 +75,64 @@
 	flex-wrap: wrap;
 }
 
-.width-a {
-	width: auto;
+.font-xs {
+	font-size: 0.75rem;
+}
+
+.font-s {
+	font-size: 1rem;
+}
+
+.h-a {
+	height: auto;
+}
+
+.h-f {
+	height: 100%;
+}
+
+.h-2 {
+	height: 2rem;
+}
+
+.h-3 {
+	height: 3rem;
+}
+
+.w-a {
+	width: auto !important;
+}
+
+.w-f {
+	width: 100%;
+}
+
+.w-2 {
+	width: 2rem;
+}
+
+.w-3 {
+	width: 3rem;
 }
 
 .justify-start {
 	justify-content: flex-start;
 }
 
-.justify-end {
+.j-end {
 	justify-content: flex-end;
+}
+
+.justify-between {
+	justify-content: space-between;
+}
+
+.overflow-y {
+	overflow-y: auto;
+}
+
+.overflow-y-h {
+	overflow-y: hidden;
 }
 
 .gap-5 {
@@ -70,6 +147,10 @@
 	gap: 20px;
 }
 
+.gap-40 {
+	gap: 40px;
+}
+
 .pad-5 {
 	padding: 5px;
 }
@@ -82,21 +163,20 @@
 	padding: 20px;
 }
 
-.centered {
-	align-items: center;
-	justify-content: center;
-}
-
-.justify-between {
-	justify-content: space-between;
-}
-
 .align-r {
 	align-self: flex-end;
 }
 
 .align-l {
 	align-self: flex-start;
+}
+
+.icon-xs {
+	font-size: 1rem;
+}
+
+.icon-s {
+	font-size: 1.25rem;
 }
 
 .icon {
@@ -148,8 +228,12 @@
 	border-right: 1px solid;
 }
 
-.shadow {
-	box-shadow: var(--basic-box-shadow);
+.border-rad-5 {
+	border-radius: 5px;
+}
+
+.border-rad-10 {
+	border-radius: 10px;
 }
 
 .bgc-b {
@@ -175,4 +259,9 @@
 .bgc-bl {
 	background-color: var(--black-color) !important;
 	color: var(--white-color) !important;
+}
+
+.bgc-tr {
+	background-color: transparent !important;
+	color: var(--black-color) !important;
 }

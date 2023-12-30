@@ -18,7 +18,7 @@ function Button({
   name,
   disableMultipleClicks,
 }) {
-  const baseClassName = `button${disabled ? ' bgc-gr' : ''}`;
+  const baseClassName = `button row label w-f centered border-rad-5 bgc-b pad-5${disabled ? ' bgc-gr' : ''}`;
   const [amountOfClicks, setAmountOfClicks] = useState(0);
 
   return (

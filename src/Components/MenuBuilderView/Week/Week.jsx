@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './Week.css';
 import Day from './Day';
 
 function Week({
@@ -10,7 +9,7 @@ function Week({
   const { days } = options;
 
   return (
-    <div className="week col gap-5">
+    <div className="week col h-f w-f gap-5">
       {days.map((day, dayIndex) => {
         const { name } = day;
         const dishes = menu.filter((dish) => {

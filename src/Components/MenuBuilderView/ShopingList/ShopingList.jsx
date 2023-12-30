@@ -29,11 +29,11 @@ function ShopingList({ menuDishes, menuPeople }) {
   if (!ingredienSections) return null;
 
   return (
-    <div className="shopping-list col pad-20 gap-10 bgc-b">
+    <div className="col h-f w-f border-rad-10 pad-20 gap-10 bgc-b">
       <Button modifier="shopping-list-copy-button l icon" onClick={handleCopyShopingList}>
         <Icon iconName="copy" />
       </Button>
-      <div className="shopping-list-sections">
+      <div className="overflow-y">
         {INGREDIENT_TYPES.map((type) => {
           const sectionData = ingredienSections[type];
           if (!sectionData) return null;

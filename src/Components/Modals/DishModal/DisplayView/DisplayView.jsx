@@ -2,7 +2,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './DisplayView.css';
-// import { capitalizeFirstLetter } from '../../../helpers';
 import Button from '../../../Button';
 import Icon from '../../../Icon';
 
@@ -18,32 +17,27 @@ function DisplayView({
 
   return (
     <div className="modal-content-dish-view col justify-between pad-10 gap-10">
-      <div className="dish-props col gap-20">
+      <div className="col gap-20 overflow-y">
         <div className="row gap-20">
           {!!types && !!types.length && (
           <div className="row width-a">
-            {/* <span> */}
-            {/* <strong>Type: </strong> */}
             {types.map((tType) => <Icon iconName={tType} modifier="icon-l" />)}
-            {/* </span> */}
-
           </div>
           )}
           {servings && (
-          <div className="row width-a gap-5">
+          <div className="row w-a centered gap-10">
             <Icon iconName="people" modifier="icon-l" />
-            <span>
+            <span className="label">
               {' '}
               {servings}
             </span>
-
           </div>
           )}
 
           {displayTime && (
-          <div className="row width-a gap-5">
+          <div className="row w-a centered gap-10">
             <Icon iconName="clock" modifier="icon-l" />
-            <span>
+            <span className="label">
               {time.hours}
               :
               {time.minutes}
@@ -52,16 +46,20 @@ function DisplayView({
           </div>
           )}
         </div>
-
         {!!ingredients && !!ingredients.length && (
           <div className="col border-t pad-5">
             <ul className="col gap-5">
               {ingredients.map(({
                 id: ingId, name: ingName, quantity, unit: ingUnit,
               }) => (
-                <li key={ingId}>
-                  {`- ${ingName}: ${quantity}`}
-                  <b>{ingUnit}</b>
+                <li key={ingId} className="row gap-5 text-a-l">
+                  <span>- </span>
+                  <span>{ingName}</span>
+                  <span className="label">
+                    {quantity}
+                    {ingUnit}
+                  </span>
+
                 </li>
               ))}
             </ul>
@@ -80,15 +78,12 @@ function DisplayView({
         <div className="col border-t pad-5">
           <ul className="col gap-5">
             {instructions.split('---').map((ins, i) => (
-              <li key={i}>
-                {i + 1}
-                .
-                {' '}
-                {ins}
+              <li key={i} className="row gap-5 text-a-l">
+                <span>{`${i + 1}.`}</span>
+                <span>{ins}</span>
               </li>
             ))}
           </ul>
-
         </div>
         )}
       </div>

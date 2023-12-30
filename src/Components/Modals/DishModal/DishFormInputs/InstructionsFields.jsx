@@ -55,7 +55,7 @@ function InstructionsFields({
 
   return (
     <>
-      <div className="instructions-content col gap-10">
+      <div className="instructions-content col overflow-y gap-10">
         {currentInstructions.map((instruction, i) => (
           <InstructionField
             key={`${i}-instruction`}

@@ -41,6 +41,7 @@ function ShopingListSectionItem({
       <Input
         id={parsedLabel}
         type="checkbox"
+        modifier="s"
         value={gotIt}
         onChange={() => setGotIt(!gotIt)}
       />

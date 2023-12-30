@@ -1,18 +1,8 @@
 .button {
-	width: 100%;
-	padding: 5px;
-	border-radius: 5px;
-	font-weight: 500;
-	background-color: var(--blue-color);
 	color: var(--black-color);
-	display: flex;
 	cursor: pointer;
 	border: none;
 	user-select: none !important;
-	align-items: center;
-	text-align: center;
-	justify-content: center;
-	align-items: center;
 }
 
 .button.s {
@@ -36,16 +26,4 @@
 
 .button.square {
 	border-radius: 0px;
-}
-
-.buttons-group {
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	gap: 5px;
-	justify-content: center;
-}
-
-.buttons-group .button {
-	max-width: 6rem !important;
 }

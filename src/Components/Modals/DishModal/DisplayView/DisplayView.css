@@ -1,7 +1,3 @@
 .modal-content-dish-view {
 	height: calc(var(--full-modal-height) - 3rem);
 }
-
-.dish-props {
-	overflow-y: auto;
-}

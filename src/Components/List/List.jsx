@@ -36,14 +36,14 @@ function List() {
   const filteredList = filterList(listData, searchValue, filterValue);
 
   return (
-    <div className="list-container col">
+    <div className="list-container col h-f">
       <ListFilters
         setFilterValue={setFilterValue}
         setSearchValue={setSearchValue}
         searchValue={searchValue}
         filterValue={filterValue}
       />
-      <ul className="list col gap-5">
+      <ul className="list col w-f overflow-y gap-5">
         {filteredList.map((listItem) => (
           <ListItem
             key={listItem.id}

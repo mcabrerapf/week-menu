@@ -1,16 +1,6 @@
-.shopping-list {
-	height: 100%;
-	width: 100%;
-	border-radius: 5px;
-}
-
 .shopping-list-copy-button {
 	position: fixed;
 	right: 2rem;
-}
-
-.shopping-list-sections {
-	overflow-y: auto;
 }
 
 .shoping-list-section {
@@ -19,9 +9,4 @@
 
 .shoping-list-item {
 	align-items: center;
-}
-
-.shoping-list-item .input {
-	height: 2rem;
-	width: 2rem;
 }

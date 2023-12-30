@@ -1,39 +1,18 @@
 .toast-context-wrapper {
-	display: flex;
-	position: absolute;
-	top: 35px;
-	width: 100%;
+	position: fixed;
+	top: 3rem;
+	right: 0px;
 	z-index: 600;
-	justify-content: end;
-	flex-direction: column;
-}
-
-.toast-message-container {
-	display: flex;
-	flex-direction: row-reverse;
-	max-width: 100%;
-	margin: 5px;
 }
 
 .toast-message {
 	max-width: 20rem;
-	min-width: 10rem;
-	background-color: black;
-	padding: 10px;
-	border-radius: 5px;
-	color: white;
-	font-size: 0.85rem;
-	font-weight: 500;
-	box-shadow: var(--basic-box-shadow);
-	display: flex;
-	flex-direction: row;
-	justify-content: flex-start;
-	align-items: center;
-	gap: 5px;
+	color: var(--white-color);
+	background-color: var(--green-color);
 }
 
 .toast-message.info {
-	background-color: var(--blue-color);
+	background-color: var(--green-color);
 }
 
 .toast-message.success {

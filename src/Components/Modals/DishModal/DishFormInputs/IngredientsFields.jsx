@@ -23,7 +23,6 @@ function IngredientsFields({
 
   const handleIngredientChange = (e = {}) => {
     const { target: { value: eValue, id: eId, name: eName } } = e;
-
     const updatedIngredients = ingredients.map((ing) => {
       const { id: ingId } = ing;
       if (ingId === eId) {

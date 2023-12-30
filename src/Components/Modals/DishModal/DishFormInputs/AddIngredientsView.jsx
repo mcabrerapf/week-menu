@@ -69,14 +69,14 @@ function AddIngredientsView({
             ))}
 
         </div>
-        <div className="ingredient-options row centered wrap gap-5">
+        <div className="ingredient-options row centered wrap overflow-y gap-5">
           {ingredientOptions.map((ingredientOption) => {
             const isSelected = !!selectedIngredients.find(({ id }) => id === ingredientOption.id);
             return (
               <Button
                 key={ingredientOption.id}
                 value={ingredientOption.id}
-                modifier={isSelected ? '' : 'bgc-gr'}
+                modifier={isSelected ? 'w-a' : 'w-a bgc-gr'}
                 buttonText={ingredientOption.name}
                 onClick={() => handleIngredientSelect(ingredientOption.id, isSelected)}
               />

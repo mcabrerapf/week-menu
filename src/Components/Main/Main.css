@@ -1,9 +1,5 @@
 .main {
-	display: flex;
-	flex-direction: column;
 	height: calc(100% - 3rem);
-	width: 100%;
-	background-color: var(--beige-color);
 }
 
 .offline-mode {

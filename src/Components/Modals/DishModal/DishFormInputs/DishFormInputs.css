@@ -3,39 +3,13 @@
 }
 
 .dish-modal-ingredients-list {
-	max-height: 23rem;
-	overflow-y: auto;
-}
-
-.dish-modal-ingredients-list .input {
-	width: 2rem;
-	height: 2rem;
-}
-
-.dish-modal-ingredients-list input {
-	width: 3rem;
-	height: 2rem;
-	background-color: transparent;
-}
-
-.dish-modal-ingredients-list select {
-	width: 3rem;
-	height: 2rem;
-	background-color: transparent;
-	border: none;
-}
-
-.ingredient-options {
-	height: 16rem;
-	overflow-y: auto;
+	height: 23rem;
 }
 
 .instructions-content {
 	height: 23rem;
-	overflow-y: auto;
 }
 
-.ingredient-options button {
-	height: 2rem;
-	width: auto !important;
+.ingredient-options {
+	height: 16rem;
 }
