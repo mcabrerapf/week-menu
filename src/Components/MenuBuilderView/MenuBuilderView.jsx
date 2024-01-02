@@ -65,12 +65,16 @@ function MenuBuilderView() {
         menu={menuDishes}
       />
       <div
-        className="menu-builder-content row pad-5 centered"
+        className="menu-builder-content row"
       >
         {!hasLoadedMenu && (
-          <Button onClick={openBuildMenuModal} modifier="l icon shadow">
-            <Icon iconName="brain" />
-          </Button>
+          <div className="col w-f h-f centered">
+
+            <Button onClick={openBuildMenuModal} modifier="l icon shadow">
+              <Icon iconName="brain" />
+            </Button>
+          </div>
+
         )}
         {view === 0 && (
         <Week

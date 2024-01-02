@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/interactive-supports-focus */
 /* eslint-disable jsx-a11y/no-noninteractive-element-to-interactive-role */
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
@@ -25,34 +26,30 @@ function Week({
   };
 
   return (
-    <div className="col h-f w-f border-rad-10 pad-10 gap-10 bgc-b">
-      <ul className="days-list col h-f j-even overflow-y font-s">
-        {weekList.map((day, index) => (
-          <div key={DAYS[index][2]} className="row gap-5 border-rad-5">
-            <div className="day-label row label border-r">
-              <span className="day-label upright-text label">
-                {DAYS[index][2]}
-              </span>
-            </div>
-            <div className="col w-f">
-              {day.map((dish) => (
-                <li
-                  key={dish.id}
-                  className="row a-c w-f border-rad-5 gap-5 pad-l-5"
-                  role="button"
-                  onClick={() => openMealModal(dish)}
-                  onKeyDown={() => {}}
-                >
-                  <Icon iconName={dish.useAs} />
-                  <span>{dish?.name || '---'}</span>
-                </li>
-
-              ))}
-            </div>
-
+    <div className="col w-f h-f j-bet overflow-y-h font-s pad-5">
+      {weekList.map((day, index) => (
+        <div key={DAYS[index][2]} className="row h-a gap-5 border-rad-5 bgc-b">
+          <div className="day-label row label border-r centered">
+            <span className="day-label upright-text label">
+              {DAYS[index][2]}
+            </span>
           </div>
-        ))}
-      </ul>
+          <div className="col w-f pad-v-2">
+            {day.map((dish) => (
+              <div
+                key={dish.id}
+                className="row a-c w-f border-rad-5 gap-5"
+                role="button"
+                onClick={() => openMealModal(dish)}
+                onKeyDown={() => {}}
+              >
+                <Icon iconName={dish.useAs} />
+                <span>{dish?.name || '---'}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
     </div>
 
   );
