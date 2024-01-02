@@ -1,18 +1,20 @@
 /* eslint-disable import/prefer-default-export */
 import { INGREDIENT_TYPES, DISH_TYPES } from '../constants';
-import { DISH_STRING, INGREDIENT_STRING } from '../../constants';
+import {
+  DISH_STRING, INGREDIENTS_STRING, INGREDIENT_STRING, MENU_STRING,
+} from '../../constants';
 
 const getListData = (view, contextProps) => {
   const { menus, dishes, ingredients } = contextProps;
   switch (view) {
-    case 'menu':
+    case MENU_STRING:
       return menus;
-    case 'dish':
+    case DISH_STRING:
       return dishes;
-    case 'ingredients':
+    case INGREDIENTS_STRING:
       return ingredients;
     default:
-      return ingredients;
+      return [];
   }
 };
 
@@ -37,7 +39,7 @@ const filterList = (list, searchValue, filterValue) => {
 
 const getFilterOptions = (view) => {
   switch (view) {
-    case 'menu':
+    case MENU_STRING:
       return [{ value: 'favourite', name: 'Favourite' }];
     case DISH_STRING:
       return DISH_TYPES;

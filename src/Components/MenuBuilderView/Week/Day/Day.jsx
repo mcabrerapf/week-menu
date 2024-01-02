@@ -2,13 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './Day.css';
 import Meal from './Meal';
+import { BREAKFAST_STRING, DINNER_STRING, LUNCH_STRING } from '../../../../constants';
 
 function Day({
   name, dayIndex, dishes, handleUpdateDish,
 }) {
-  const breakfasts = dishes.filter(({ useAs }) => useAs === 'breakfast');
-  const lunches = dishes.filter(({ useAs }) => useAs === 'lunch');
-  const dinners = dishes.filter(({ useAs }) => useAs === 'dinner');
+  const breakfasts = dishes.filter(({ useAs }) => useAs === BREAKFAST_STRING);
+  const lunches = dishes.filter(({ useAs }) => useAs === LUNCH_STRING);
+  const dinners = dishes.filter(({ useAs }) => useAs === DINNER_STRING);
   const hasMeals = !!breakfasts.length || !!lunches.length || !!dinners.length;
 
   return (
@@ -17,9 +18,24 @@ function Day({
         {name}
       </div>
       <div className="row w-f">
-        <Meal meals={breakfasts} type="breakfast" dayIndex={dayIndex} handleUpdateDish={handleUpdateDish} />
-        <Meal meals={lunches} type="lunch" dayIndex={dayIndex} handleUpdateDish={handleUpdateDish} />
-        <Meal meals={dinners} type="dinner" dayIndex={dayIndex} handleUpdateDish={handleUpdateDish} />
+        <Meal
+          meals={breakfasts}
+          type={BREAKFAST_STRING}
+          dayIndex={dayIndex}
+          handleUpdateDish={handleUpdateDish}
+        />
+        <Meal
+          meals={lunches}
+          type={LUNCH_STRING}
+          dayIndex={dayIndex}
+          handleUpdateDish={handleUpdateDish}
+        />
+        <Meal
+          meals={dinners}
+          type={DINNER_STRING}
+          dayIndex={dayIndex}
+          handleUpdateDish={handleUpdateDish}
+        />
       </div>
     </div>
   );

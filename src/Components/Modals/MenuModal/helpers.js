@@ -3,11 +3,11 @@ const parseMenuData = (data) => {
     dishes, name, favourite, id,
   } = data;
   const parsedDishes = dishes.map(({
-    useAs, days, sideDishesToUse,
+    id: dishId, useAs, days, sideDishesToUse,
   }) => {
     const sideDishesIds = sideDishesToUse.map(({ id: sideDishId }) => sideDishId);
     return {
-      id, useAs, days, sideDishesToUse: sideDishesIds,
+      id: dishId, useAs, days, sideDishesToUse: sideDishesIds,
     };
   });
   const parsedData = { name, favourite, dishes: parsedDishes };

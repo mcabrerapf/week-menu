@@ -1,12 +1,12 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { MainContext } from '../../../Contexts/MainContext';
 import Button from '../../Button';
-import { INGREDIENT_TYPES, INGREDIENT_UNITS } from '../../constants';
 import Input from '../../Input';
-import { deepCompare } from '../../helpers';
 import Icon from '../../Icon';
+import { deepCompare, initData } from '../../helpers';
 import { INGREDIENT_STRING } from '../../../constants';
+import { INGREDIENT_TYPES, INGREDIENT_UNITS } from '../../constants';
 
 function IngredientModal({
   modalData, closeModal,
@@ -14,26 +14,12 @@ function IngredientModal({
   const {
     handleSave,
   } = useContext(MainContext);
-  const [ingredientData, setIngredientData] = useState({ name: '', type: 'other', unit: 'u' });
-
-  useEffect(() => {
-    if (modalData.name) {
-      setIngredientData(
-        {
-          id: modalData.id,
-          name: modalData.name,
-          type: modalData.type,
-          unit: modalData.unit,
-        },
-      );
-    }
-  }, []);
+  const [ingredientData, setIngredientData] = useState(initData(modalData, INGREDIENT_STRING));
 
   const handleSubmit = async () => {
     const noChange = deepCompare(ingredientData, modalData);
     if (noChange) return closeModal();
-    await handleSave(ingredientData, INGREDIENT_STRING);
-    return closeModal();
+    return handleSave(ingredientData, INGREDIENT_STRING, closeModal);
   };
 
   const handleOnClick = (eValue, eName) => {
@@ -45,7 +31,7 @@ function IngredientModal({
   };
 
   const { name, type, unit } = ingredientData;
-  const isButtonDisabled = !name || !type || !unit;
+  const isButtonDisabled = !name;
 
   return (
     <form className="col pad-10 gap-10">
@@ -73,7 +59,6 @@ function IngredientModal({
               </Button>
             ))}
         </div>
-
         <div className="row centered wrap gap-5">
           {INGREDIENT_UNITS
             .map(({ value, name: uName }) => (
@@ -83,14 +68,12 @@ function IngredientModal({
                 name="unit"
                 value={value}
                 buttonText={uName}
-                onChange={() => handleOnClick(value, 'unit')}
+                onClick={() => handleOnClick(value, 'unit')}
               />
             ))}
         </div>
-
       </div>
-
-      <div className="form-footer">
+      <div className="col">
         <Button
           modifier="icon"
           onClick={handleSubmit}

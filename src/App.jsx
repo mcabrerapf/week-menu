@@ -23,18 +23,16 @@ Amplify.configure({
 
 function App() {
   return (
-    <div className="app">
+    <div className="app h-f w-f col">
       <Authenticator hideSignUp>
         {({ signOut }) => (
           <ToastContextWrapper>
             <MainContextWrapper>
               <ModalContextWrapper>
-
                 <Main />
                 <Footer signOut={signOut} />
               </ModalContextWrapper>
             </MainContextWrapper>
-
           </ToastContextWrapper>
         )}
       </Authenticator>

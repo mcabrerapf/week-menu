@@ -53,6 +53,8 @@ function InstructionsFields({
     updateInstructions(updatedInstructions.join('---'));
   };
 
+  const showDeleteButton = currentInstructions.length > 1;
+
   return (
     <>
       <div className="instructions-content col overflow-y gap-10">
@@ -61,6 +63,7 @@ function InstructionsFields({
             key={`${i}-instruction`}
             id={`${i}-instruction`}
             index={i}
+            showDeleteButton={showDeleteButton}
             instruction={instruction}
             handleInstructionChange={handleInstructionChange}
             handleDeleteInstruction={handleDeleteInstruction}

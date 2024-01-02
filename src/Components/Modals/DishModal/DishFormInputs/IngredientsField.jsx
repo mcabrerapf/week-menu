@@ -20,7 +20,7 @@ function IngredientsField({
         } = currentIngredient;
 
         return (
-          <div className="row gap-5 w-f justify-between border-b" key={id}>
+          <div className="row gap-5 w-f j-bet border-b" key={id}>
             <div className="row">{capitalizeFirstLetter(name)}</div>
             <div className="row j-end gap-5">
               <Input

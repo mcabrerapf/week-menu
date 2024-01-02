@@ -19,7 +19,7 @@ function ListItem({
 
   return (
     <li
-      className="list-item row w-f justify-between bgc-b border-rad-10"
+      className="list-item row w-f j-bet bgc-b border-rad-10"
       role="button"
       tabIndex={0}
       onClick={() => handleOpenModal(modifier, defaultModalView, itemData)}

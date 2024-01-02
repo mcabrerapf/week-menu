@@ -8,6 +8,7 @@ import { initMenuOptions, getMealMinMax } from './helpers';
 import QuantityInput from '../../QuantityInput';
 import { MainContext } from '../../../Contexts/MainContext';
 import Icon from '../../Icon';
+import { BREAKFAST_STRING, DINNER_STRING, LUNCH_STRING } from '../../../constants';
 
 function BuildMenuModal({
   modalData, closeModal,
@@ -53,9 +54,9 @@ function BuildMenuModal({
     people,
   } = currentData;
 
-  const [breakfastMin, breakfastMax, availableBreakfasts] = getMealMinMax(dishesData, currentData, 'breakfast', 'hasBreakfast');
-  const [lunchMin, lunchMax, availableLunches] = getMealMinMax(dishesData, currentData, 'lunch', 'hasLunch');
-  const [dinnerMin, dinnerMax, availableDinners] = getMealMinMax(dishesData, currentData, 'dinner', 'hasDinner');
+  const [breakfastMin, breakfastMax, availableBreakfasts] = getMealMinMax(dishesData, currentData, BREAKFAST_STRING, 'hasBreakfast');
+  const [lunchMin, lunchMax, availableLunches] = getMealMinMax(dishesData, currentData, LUNCH_STRING, 'hasLunch');
+  const [dinnerMin, dinnerMax, availableDinners] = getMealMinMax(dishesData, currentData, DINNER_STRING, 'hasDinner');
   const { length: daysWithMeals } = days
     .filter(({ hasBreakfast: hB, hasLunch: hL, hasDinner: hD }) => hB || hL || hD);
 

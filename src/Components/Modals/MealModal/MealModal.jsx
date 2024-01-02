@@ -5,6 +5,7 @@ import Input from '../../Input';
 import { MainContext } from '../../../Contexts/MainContext';
 import { deepCopy, sortBy } from '../../helpers';
 import Icon from '../../Icon';
+import { SIDE_STRING } from '../../../constants';
 // import DisplayMode from '../DisplayMode';
 
 const getDishesAndSideDishes = (dishes, id) => {
@@ -13,7 +14,7 @@ const getDishesAndSideDishes = (dishes, id) => {
   dishes.forEach((dish) => {
     const { id: dishId, types } = dish;
     if (dishId === id) return;
-    if (types.includes('side')) sideDishes.push(dish);
+    if (types.includes(SIDE_STRING)) sideDishes.push(dish);
     else mainDishes.push(dish);
   });
   return [sortBy(mainDishes, 'name', 'alphabetical'), sortBy(sideDishes, 'name', 'alphabetical')];

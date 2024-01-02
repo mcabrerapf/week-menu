@@ -1,15 +1,19 @@
+import {
+  BREAKFAST_STRING, DINNER_STRING, LUNCH_STRING, SIDE_STRING,
+} from '../../constants';
+
 const DISH_TYPES = [
   {
-    id: 'breakfast', name: 'Breakfast', shortLabel: 'B',
+    id: BREAKFAST_STRING, name: 'Breakfast', shortLabel: 'B',
   },
   {
-    id: 'lunch', name: 'Lunch', shortLabel: 'L',
+    id: LUNCH_STRING, name: 'Lunch', shortLabel: 'L',
   },
   {
-    id: 'dinner', name: 'Dinner', shortLabel: 'D',
+    id: DINNER_STRING, name: 'Dinner', shortLabel: 'D',
   },
   {
-    id: 'side', name: 'Side', shortLabel: 'S',
+    id: SIDE_STRING, name: 'Side', shortLabel: 'S',
   },
 ];
 

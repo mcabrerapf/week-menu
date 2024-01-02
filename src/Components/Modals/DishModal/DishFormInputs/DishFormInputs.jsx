@@ -27,7 +27,7 @@ function DishFormInputs({
   const canSave = !!currentData.name && !!currentData.types.length;
 
   return (
-    <div className="modal-content-dish-edit col justify-between pad-10 gap-10">
+    <div className="modal-content-dish-edit col j-bet pad-10 gap-10">
       {fieldsView === 0
       && (
       <GeneralFields

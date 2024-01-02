@@ -102,16 +102,19 @@ function MainContextWrapper({ children }) {
     setContextState({ ...contextState, [key]: value });
   };
 
-  const handleSave = async (data, serviceName) => {
+  const handleSave = async (data, serviceName, callback = () => {}) => {
     const serviceString = data.id ? UPDATE_STRING : CREATE_STRING;
     const serviceToUse = serviceHandler(serviceString);
     const response = await serviceToUse(serviceName, data);
     if (response.errors) {
+      callback();
       addToast(response.errors[0], 'error');
-      return null;
+      return {};
     }
-    addToast(data.name, 'success');
+
     await updateList(serviceName);
+    callback();
+    addToast(data.name, 'success');
     return response;
   };
 

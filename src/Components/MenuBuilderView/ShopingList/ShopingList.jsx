@@ -7,8 +7,6 @@ import ShopingListSection from './ShopingListSection';
 import Button from '../../Button';
 import Icon from '../../Icon';
 
-const INGREDIENT_TYPES = ['meat', 'fish', 'fruit', 'vegetable', 'sauce', 'liquor', 'spice', 'other'];
-
 function ShopingList({ menuDishes, menuPeople }) {
   const { addToast } = useContext(ToastContext);
   const ingredienSections = buildIngredientSections(menuDishes, menuPeople);
@@ -26,25 +24,22 @@ function ShopingList({ menuDishes, menuPeople }) {
     addToast('Coppied shoping list to clipboard', 'info');
   };
 
-  if (!ingredienSections) return null;
+  if (!ingredienSections.length) return null;
 
   return (
     <div className="col h-f w-f border-rad-10 pad-20 gap-10 bgc-b">
       <Button modifier="shopping-list-copy-button l icon" onClick={handleCopyShopingList}>
         <Icon iconName="copy" />
       </Button>
-      <div className="overflow-y">
-        {INGREDIENT_TYPES.map((type) => {
-          const sectionData = ingredienSections[type];
-          if (!sectionData) return null;
+      <div className="col overflow-y gap-5">
+        {ingredienSections.map(({ name, ingredients }) => {
+          if (!ingredients.length) return null;
           return (
-            <ShopingListSection key={type} label={type} ingredients={sectionData} />
+            <ShopingListSection key={name} name={name} ingredients={ingredients} />
           );
         })}
       </div>
-
     </div>
-
   );
 }
 

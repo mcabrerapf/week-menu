@@ -447,7 +447,7 @@ export const DISHES_MOCK = [
     description: '',
     instructions: null,
   }, {
-    id: '91052207-35eb-43e9-945e-9238c538b7c0', name: 'Patats Iron', sideDishes: [], sideDishTo: ['5d7cfe81-a0e9-44c2-956e-bc12b6d0b0e1'], ingredients: [], types: ['side'], size: null, servings: 1, time: { hours: 0, minutes: 15 }, description: '', instructions: 'Cortar las patatas y remojar 1 o 2 horas (con o sin piel)---Calentar la sarten con mantequilla y aceite y poner las patatas---Saltear con pebre, ajo, callena y tomillo y cocinar por 10 mins',
+    id: '91052207-35eb-43e9-945e-9238c538b7c0', name: 'Patats Iron', sideDishes: [], sideDishTo: ['5d7cfe81-a0e9-44c2-956e-bc12b6d0b0e1'], ingredients: [], types: [], size: null, servings: 1, time: { hours: 0, minutes: 15 }, description: '', instructions: 'Cortar las patatas y remojar 1 o 2 horas (con o sin piel)---Calentar la sarten con mantequilla y aceite y poner las patatas---Saltear con pebre, ajo, callena y tomillo y cocinar por 10 mins',
   }, {
     id: '4fd2f617-4671-4b2d-b3e2-67328c4a775d',
     name: 'Pizza',

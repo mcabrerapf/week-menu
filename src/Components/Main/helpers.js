@@ -1,3 +1,6 @@
+import {
+  DISH_STRING, INGREDIENT_STRING, MENU_BUILDER_STRING, MENU_STRING,
+} from '../../constants';
 import { MIN_SWIPE_DISTANCE } from '../constants';
 
 const getNewView = ({
@@ -8,19 +11,19 @@ const getNewView = ({
   const isRightSwipe = distance < -MIN_SWIPE_DISTANCE;
 
   switch (view) {
-    case 'menuBuilder':
-      if (isLeftSwipe) return 'menu';
+    case MENU_BUILDER_STRING:
+      if (isLeftSwipe) return MENU_STRING;
       return view;
-    case 'menu':
-      if (isLeftSwipe) return 'dish';
-      if (isRightSwipe) return 'menuBuilder';
+    case MENU_STRING:
+      if (isLeftSwipe) return DISH_STRING;
+      if (isRightSwipe) return MENU_BUILDER_STRING;
       return view;
-    case 'dish':
-      if (isLeftSwipe) return 'ingredient';
-      if (isRightSwipe) return 'menu';
+    case DISH_STRING:
+      if (isLeftSwipe) return INGREDIENT_STRING;
+      if (isRightSwipe) return MENU_STRING;
       return view;
-    case 'ingredient':
-      if (isRightSwipe) return 'dish';
+    case INGREDIENT_STRING:
+      if (isRightSwipe) return DISH_STRING;
       return view;
     default:
       return view;

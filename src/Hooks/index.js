@@ -1,5 +1,4 @@
+/* eslint-disable import/prefer-default-export */
 import useLongPress from './useLongPress';
 
-function mock() {}
-
-export { useLongPress, mock };
+export { useLongPress };

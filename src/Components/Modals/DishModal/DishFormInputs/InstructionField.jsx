@@ -5,7 +5,14 @@ import Button from '../../../Button';
 import Icon from '../../../Icon';
 
 function InstructionField({
-  instruction, handleInstructionChange, handleDeleteInstruction, moveInstruction, index, id, isLast,
+  instruction,
+  handleInstructionChange,
+  handleDeleteInstruction,
+  moveInstruction,
+  index,
+  id,
+  isLast,
+  showDeleteButton,
 }) {
   const ref = useRef(null);
 
@@ -66,8 +73,9 @@ function InstructionField({
       />
       <div className="instruction-buttons">
         <Button
-          modifier="m icon bgc-bg"
+          modifier="m icon"
           type="button"
+          disabled={!showDeleteButton}
           onClick={() => handleDeleteClick()}
         >
           <Icon iconName="close" />
@@ -83,6 +91,7 @@ InstructionField.propTypes = {
   handleInstructionChange: PropTypes.func.isRequired,
   handleDeleteInstruction: PropTypes.func.isRequired,
   moveInstruction: PropTypes.func.isRequired,
+  showDeleteButton: PropTypes.bool.isRequired,
   index: PropTypes.number.isRequired,
   id: PropTypes.string.isRequired,
   isLast: PropTypes.bool.isRequired,

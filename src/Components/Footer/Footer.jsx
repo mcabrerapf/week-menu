@@ -27,8 +27,8 @@ function Footer() {
   };
 
   const handleCopyList = (listName) => {
-    if (listName === 'menu') return;
-    const items = listName === 'dish' ? dishes : ingredients;
+    if (listName === MENU_STRING) return;
+    const items = listName === DISH_STRING ? dishes : ingredients;
     navigator.clipboard.writeText(JSON.stringify(items));
     addToast(`Copied ${listName} list to clipboard`, 'info');
   };

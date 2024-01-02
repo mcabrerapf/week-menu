@@ -1,3 +1,11 @@
 .menu-modal-content {
 	max-height: 30rem;
 }
+
+.menu-modal-content .days-list {
+	max-height: 23rem;
+}
+
+.days-list .day-label {
+	max-width: 5rem;
+}

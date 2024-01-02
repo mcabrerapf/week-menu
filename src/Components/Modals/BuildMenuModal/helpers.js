@@ -1,3 +1,5 @@
+import { BREAKFAST_STRING, DINNER_STRING, LUNCH_STRING } from '../../../constants';
+
 const getMealMinMax = (dishes, currentData, mealType, dayKeyCheck) => {
   const { days } = currentData;
   const { length: availableDishes } = dishes
@@ -19,9 +21,9 @@ const initMenuOptions = (data, dishes) => {
     maxBreakfasts, maxLunches, maxDinners,
   } = data;
 
-  const [breakfastMin, breakfastMax] = getMealMinMax(dishes, data, 'breakfast', 'hasBreakfast');
-  const [lunchMin, lunchMax] = getMealMinMax(dishes, data, 'lunch', 'hasLunch');
-  const [dinnerMin, dinnerMax] = getMealMinMax(dishes, data, 'dinner', 'hasDinner');
+  const [breakfastMin, breakfastMax] = getMealMinMax(dishes, data, BREAKFAST_STRING, 'hasBreakfast');
+  const [lunchMin, lunchMax] = getMealMinMax(dishes, data, LUNCH_STRING, 'hasLunch');
+  const [dinnerMin, dinnerMax] = getMealMinMax(dishes, data, DINNER_STRING, 'hasDinner');
 
   const breakfastsToUse = checkIfInRange(maxBreakfasts, breakfastMin, breakfastMax);
   const lunchesToUse = checkIfInRange(maxLunches, lunchMin, lunchMax);

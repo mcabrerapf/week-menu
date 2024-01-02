@@ -7,15 +7,22 @@ function ShoppingListItemModal({
   const { dishes = [] } = modalData;
 
   return (
-    <div className="shopping-list-modal-content pad-10">
-      <ul className="shopping-list-modal-content-list">
-        {dishes.map((dish) => (
-          <li key={dish} className="shopping-list-modal-content-list--item">
-            -
-            {' '}
-            {dish}
-          </li>
-        ))}
+    <div className="col pad-20">
+      <ul className="col">
+        {dishes.map((dish) => {
+          const {
+            id: dishId, name, quantity, unit,
+          } = dish;
+          return (
+            <li key={dishId} className="row gap-5">
+              <span>{`- ${name}`}</span>
+              <span className="label">
+                {quantity}
+                {unit}
+              </span>
+            </li>
+          );
+        })}
       </ul>
     </div>
 

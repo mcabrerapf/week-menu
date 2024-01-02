@@ -16,12 +16,12 @@ function DisplayView({
   const displayTime = !!time && !!(time.hours || time.minutes);
 
   return (
-    <div className="modal-content-dish-view col justify-between pad-10 gap-10">
+    <div className="modal-content-dish-view col j-bet pad-10 gap-10">
       <div className="col gap-20 overflow-y">
         <div className="row gap-20">
           {!!types && !!types.length && (
           <div className="row width-a">
-            {types.map((tType) => <Icon iconName={tType} modifier="icon-l" />)}
+            {types.map((tType) => <Icon key={tType} iconName={tType} modifier="icon-l" />)}
           </div>
           )}
           {servings && (

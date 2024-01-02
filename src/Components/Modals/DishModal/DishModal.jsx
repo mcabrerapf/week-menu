@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { MainContext } from '../../../Contexts/MainContext';
 import DisplayView from './DisplayView';
 import EditView from './EditView';
-import { deepCompare } from '../../helpers';
+import { deepCompare, initData } from '../../helpers';
 import { DISH_STRING } from '../../../constants';
 
 function DishModal({
@@ -13,23 +13,12 @@ function DishModal({
     handleSave,
   } = useContext(MainContext);
   const [modalView, setModalView] = useState(mode);
-  const [dishData, setDishData] = useState({});
-
-  useEffect(() => {
-    if (modalData.name) setDishData({ ...modalData, sideDishTo: modalData.sideDishTo || [] });
-    else {
-      setDishData({
-        name: '', types: ['lunch'], servings: 1, time: { hours: 0, minutes: 0 }, description: '', instructions: '', ingredients: [],
-      });
-      setModalView('edit');
-    }
-  }, []);
+  const [dishData, setDishData] = useState(initData(modalData, DISH_STRING));
 
   const handleSubmit = async () => {
     const noChange = deepCompare(dishData, modalData);
     if (noChange) return closeModal();
-    await handleSave(dishData, DISH_STRING);
-    return closeModal();
+    return handleSave(dishData, DISH_STRING, closeModal);
   };
 
   return (modalView === 'display'

@@ -1,8 +1,9 @@
 /* eslint-disable max-len */
+import { BREAKFAST_STRING, DINNER_STRING, LUNCH_STRING } from '../../constants';
 import deepCopy from './deep-copy';
 import generateRandomNumber from './generate-random-number';
 
-const DISH_TYPES = ['breakfast', 'lunch', 'dinner'];
+const DISH_TYPES = [BREAKFAST_STRING, LUNCH_STRING, DINNER_STRING];
 
 const populateSideDishes = (dish, dishes) => {
   const { id } = dish;

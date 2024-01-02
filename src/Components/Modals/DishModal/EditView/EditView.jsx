@@ -11,7 +11,7 @@ function EditView({ dishData, setDishData, handleSubmit }) {
 
   return (
     <>
-      <div className="header">
+      <div className="header row">
         <Button
           modifier={`icon${fieldsView !== 0 ? ' bgc-gr' : ''}`}
           onClick={() => setFieldsView(0)}

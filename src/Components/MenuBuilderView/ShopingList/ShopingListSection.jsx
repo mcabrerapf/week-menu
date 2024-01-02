@@ -6,24 +6,23 @@ import './ShopingList.css';
 import ShopingListSectionItem from './ShoppingListSectionItem';
 import { ModalContext } from '../../../Contexts/ModalContext';
 import Icon from '../../Icon';
+import { SHOPING_LIST_ITEM_STRING } from '../../../constants';
 
-function ShopingListSection({ ingredients, label }) {
+function ShopingListSection({ ingredients, name }) {
   const { addModal } = useContext(ModalContext);
 
   const handleOnClick = (data) => {
     addModal({
-      type: 'shopingListItem',
+      type: SHOPING_LIST_ITEM_STRING,
       modalData: data,
       modifier: 'full',
     });
   };
 
-  if (!ingredients.length) return null;
-
   return (
     <div className="shoping-list-section col">
       <div className="row pad-10 border-b">
-        <Icon modifier="icon-xl" iconName={label} />
+        <Icon modifier="icon-xl" iconName={name} />
       </div>
       <div className="col gap-10 pad-10">
         {ingredients.map((ingredient, i) => {
@@ -46,7 +45,7 @@ function ShopingListSection({ ingredients, label }) {
 }
 
 ShopingListSection.propTypes = {
-  label: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
   ingredients: PropTypes.arrayOf(PropTypes.shape()).isRequired,
 };
 

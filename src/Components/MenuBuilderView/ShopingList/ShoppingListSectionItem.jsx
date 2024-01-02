@@ -6,21 +6,21 @@ import './ShopingList.css';
 import Input from '../../Input';
 import { capitalizeFirstLetter } from '../../helpers';
 
-const checkUnitConversion = (q, u) => {
-  if (q > 999) {
-    const parsedQUantity = (q / 1000).toFixed(1);
-    if (u === 'mg') return [parsedQUantity, 'g'];
-    if (u === 'g') return [parsedQUantity, 'kg'];
-    if (u === 'ml') return [parsedQUantity, 'l'];
-  }
-  if (q < 1) {
-    const parsedQUantity = (q * 1000).toFixed(0);
-    if (u === 'g') return [parsedQUantity, 'mg'];
-    if (u === 'kg') return [parsedQUantity, 'g'];
-    if (u === 'l') return [parsedQUantity, 'ml'];
-  }
-  return [q, u];
-};
+// const checkUnitConversion = (q, u) => {
+//   if (q > 999) {
+//     const parsedQUantity = (q / 1000).toFixed(1);
+//     if (u === 'mg') return [parsedQUantity, 'g'];
+//     if (u === 'g') return [parsedQUantity, 'kg'];
+//     if (u === 'ml') return [parsedQUantity, 'l'];
+//   }
+//   if (q < 1) {
+//     const parsedQUantity = (q * 1000).toFixed(0);
+//     if (u === 'g') return [parsedQUantity, 'mg'];
+//     if (u === 'kg') return [parsedQUantity, 'g'];
+//     if (u === 'l') return [parsedQUantity, 'ml'];
+//   }
+//   return [q, u];
+// };
 
 function ShopingListSectionItem({
   ingredient, handleOnClick,
@@ -30,13 +30,13 @@ function ShopingListSectionItem({
   const {
     name, quantity, unit,
   } = ingredient;
-  const [convertedQuantity, convertedUnit] = checkUnitConversion(quantity, unit);
+  // const [convertedQuantity, convertedUnit] = checkUnitConversion(quantity, unit);
   const parsedName = capitalizeFirstLetter(name);
-  const parsedLabel = `${capitalizeFirstLetter(name)} (${convertedQuantity}${convertedUnit})`;
+  const parsedLabel = `${capitalizeFirstLetter(name)} (${quantity}${unit})`;
 
   return (
     <div
-      className="shoping-list-item row gap-10"
+      className="shoping-list-item row gap-5"
     >
       <Input
         id={parsedLabel}
@@ -46,7 +46,7 @@ function ShopingListSectionItem({
         onChange={() => setGotIt(!gotIt)}
       />
       <span
-        className={gotIt ? 'strike' : ''}
+        className={gotIt ? 'font-s strike' : 'font-s'}
         role="button"
         tabIndex={0}
         onClick={() => handleOnClick(ingredient)}
@@ -56,8 +56,8 @@ function ShopingListSectionItem({
 
       </span>
       <strong>
-        {convertedQuantity}
-        {convertedUnit}
+        {quantity}
+        {unit}
       </strong>
     </div>
   );

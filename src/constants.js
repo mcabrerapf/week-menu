@@ -15,3 +15,11 @@ export const MENUS_STRING = 'menus';
 
 export const ITEMS_STRING = 'items';
 export const LIST_STRING = 'list';
+
+export const MEAL_STRING = 'meal';
+export const SHOPING_LIST_ITEM_STRING = 'shopingListItem';
+
+export const BREAKFAST_STRING = 'breakfast';
+export const LUNCH_STRING = 'lunch';
+export const DINNER_STRING = 'dinner';
+export const SIDE_STRING = 'side';

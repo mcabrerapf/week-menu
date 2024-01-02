@@ -7,6 +7,7 @@ import { filterList, getListData } from './helpers';
 import ListItem from './ListItem';
 import ListFilters from './ListFilters';
 import Icon from '../Icon';
+import { MENU_STRING } from '../../constants';
 
 function List() {
   const {
@@ -53,7 +54,7 @@ function List() {
             handleLoadMenu={handleLoadMenu}
           />
         ))}
-        {view !== 'menu' && (
+        {view !== MENU_STRING && (
         <Button
           modifier="circle l icon shadow list-add-button"
           type="button"

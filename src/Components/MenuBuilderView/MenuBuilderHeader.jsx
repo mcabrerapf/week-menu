@@ -12,6 +12,7 @@ import {
 } from '../../Contexts/ToastContext';
 import { ModalContext } from '../../Contexts/ModalContext';
 import Icon from '../Icon';
+import { MENU_STRING } from '../../constants';
 
 function MenuBuilderHeader({
   showBuildMenuModal, handleChangeView, handleBuildMenu, view, hasLoadedMenu, menu,
@@ -36,15 +37,15 @@ function MenuBuilderHeader({
 
   const handleSaveClick = () => {
     addModal({
-      type: 'menu',
+      type: MENU_STRING,
       modalData: { dishes: menu },
-      modifier: 's',
+      modifier: 'full',
       hideHeader: true,
     });
   };
 
   return (
-    <div className="header top">
+    <div className="header top row">
       <Button
         modifier="icon"
         onClick={showBuildMenuModal}

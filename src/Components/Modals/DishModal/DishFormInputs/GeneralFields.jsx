@@ -8,10 +8,12 @@ import Button from '../../../Button';
 import QuantityInput from '../../../QuantityInput';
 import { capitalizeFirstLetter, sortBy } from '../../../helpers';
 import Icon from '../../../Icon';
+import { SIDE_STRING } from '../../../../constants';
 
 const getMainDishes = (currentId, dishes, currentMainDishes = []) => {
   const sideDishes = dishes
-    .filter(({ id, types }) => !types.includes('side') && !currentMainDishes.includes(id) && id !== currentId);
+    .filter(({ id, types }) => !types.includes(SIDE_STRING)
+    && !currentMainDishes.includes(id) && id !== currentId);
   return sortBy(sideDishes, 'name', 'alphabetical');
 };
 
@@ -49,9 +51,10 @@ function GeneralFields({
   };
 
   const toggleType = (eValue) => {
-    if (eValue === 'side') return updateGeneralFields({ ...currentData, types: [eValue] });
+    if (eValue === SIDE_STRING) return updateGeneralFields({ ...currentData, types: [eValue] });
     const newTypes = types.includes(eValue)
-      ? types.filter((type) => type !== eValue) : [...types, eValue].filter((type) => type !== 'side');
+      ? types.filter((type) => type !== eValue)
+      : [...types, eValue].filter((type) => type !== SIDE_STRING);
     return updateGeneralFields({ ...currentData, types: newTypes });
   };
 
@@ -62,7 +65,7 @@ function GeneralFields({
     updateGeneralFields({ ...currentData, servings: servings - 1 });
   };
 
-  const showSideDishes = types.includes('side');
+  const showSideDishes = types.includes();
   const sortedMainDishes = showSideDishes ? getMainDishes(id, dishes, sideDishTo) : [];
 
   return (
@@ -95,7 +98,7 @@ function GeneralFields({
           </div>
         </div>
         <div className="row gap-40">
-          <div className="col justify-between gap-5">
+          <div className="col j-bet gap-5">
             <div className="row centered icon-l"><Icon iconName="people" /></div>
             <QuantityInput
               value={servings}
@@ -106,7 +109,7 @@ function GeneralFields({
               handleIncrease={handleIncrease}
             />
           </div>
-          <div className="time-input col justify-between gap-5">
+          <div className="time-input col j-bet gap-5">
             <div className="row centered icon-l"><Icon iconName="clock" /></div>
             <div className="row gap-5">
               <Input

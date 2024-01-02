@@ -6,6 +6,7 @@ import { INGREDIENT_TYPES, INGREDIENT_UNITS } from '../../../constants';
 import { INGREDIENT_STRING } from '../../../../constants';
 import { MainContext } from '../../../../Contexts/MainContext';
 import Icon from '../../../Icon';
+import { initData } from '../../../helpers';
 
 function NewIngredientForm({
   toggleNewIngredientView,
@@ -13,7 +14,7 @@ function NewIngredientForm({
   const {
     handleSave,
   } = useContext(MainContext);
-  const [newIngredientData, setNewIngredientData] = useState({ name: '', unit: 'u', type: 'other' });
+  const [newIngredientData, setNewIngredientData] = useState(initData({}, INGREDIENT_STRING));
   const { name, type, unit } = newIngredientData;
 
   const handleOnChange = ({ target: { name: eName, value } }) => {
