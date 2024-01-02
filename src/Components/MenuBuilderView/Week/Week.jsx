@@ -34,7 +34,7 @@ function Week({
               {DAYS[index][2]}
             </span>
           </div>
-          <div className="col w-f pad-v-2">
+          <div className="col w-f pad-5">
             {day.map((dish) => (
               <div
                 key={dish.id}
