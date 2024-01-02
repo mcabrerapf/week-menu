@@ -13,6 +13,11 @@ input {
 	width: 1.5rem;
 }
 
+.checkbox-input.xs {
+	height: 1.25rem;
+	width: 1.25rem;
+}
+
 .number-input {
 	text-align: center;
 }

@@ -22,9 +22,9 @@ function ShopingListSection({ ingredients, name }) {
   return (
     <div className="shoping-list-section col">
       <div className="row pad-5 border-b">
-        <Icon modifier="icon-l" iconName={name} />
+        <Icon modifier="icon" iconName={name} />
       </div>
-      <div className="col gap-10 pad-10">
+      <div className="col gap-10 pad-top-10">
         {ingredients.map((ingredient, i) => {
           const { id } = ingredient;
 

@@ -16,7 +16,7 @@ const getDishDayIndex = (dishType) => {
 const getMenuWeekList = (dishes) => {
   const days = [];
   for (let index = 0; index < 7; index += 1) {
-    days.push([{}, {}, {}]);
+    days.push([{ useAs: BREAKFAST_STRING }, { useAs: LUNCH_STRING }, { useAs: DINNER_STRING }]);
   }
   console.log(days);
   dishes.forEach((dish) => {

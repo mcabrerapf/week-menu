@@ -36,12 +36,12 @@ function ShopingListSectionItem({
 
   return (
     <div
-      className="shoping-list-item row gap-5"
+      className="shoping-list-item row a-c gap-5"
     >
       <Input
         id={parsedLabel}
         type="checkbox"
-        modifier="s"
+        modifier="xs"
         value={gotIt}
         onChange={() => setGotIt(!gotIt)}
       />
@@ -55,10 +55,10 @@ function ShopingListSectionItem({
         {parsedName}
 
       </span>
-      <strong>
+      <span className="label">
         {quantity}
         {unit}
-      </strong>
+      </span>
     </div>
   );
 }

@@ -160,7 +160,9 @@
 .gap-40 {
 	gap: 40px;
 }
-
+.pad-top-10 {
+	padding-top: 10px;
+}
 .pad-5 {
 	padding: 5px;
 }

@@ -26,7 +26,7 @@ function Week({
 
   return (
     <div className="col h-f w-f border-rad-10 pad-20 gap-10 bgc-b">
-      <ul className="days-list col h-f j-even overflow-y font-m">
+      <ul className="days-list col h-f j-even overflow-y">
         {weekList.map((day, index) => (
           <div key={DAYS[index][2]} className="row gap-5">
             <div className="day-label row label border-r">
