@@ -30,7 +30,7 @@ function ShopingListSectionItem({
   const {
     name, quantity, unit,
   } = ingredient;
-  // const [convertedQuantity, convertedUnit] = checkUnitConversion(quantity, unit);
+
   const parsedName = capitalizeFirstLetter(name);
   const parsedLabel = `${capitalizeFirstLetter(name)} (${quantity}${unit})`;
 
@@ -46,7 +46,7 @@ function ShopingListSectionItem({
         onChange={() => setGotIt(!gotIt)}
       />
       <span
-        className={gotIt ? 'font-s strike' : 'font-s'}
+        className={gotIt ? 'strike' : ''}
         role="button"
         tabIndex={0}
         onClick={() => handleOnClick(ingredient)}

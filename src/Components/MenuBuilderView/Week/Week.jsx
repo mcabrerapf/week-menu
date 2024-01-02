@@ -25,20 +25,20 @@ function Week({
   };
 
   return (
-    <div className="col h-f w-f border-rad-10 pad-20 gap-10 bgc-b">
-      <ul className="days-list col h-f j-even overflow-y">
+    <div className="col h-f w-f border-rad-10 pad-10 gap-10 bgc-b">
+      <ul className="days-list col h-f j-even overflow-y font-s">
         {weekList.map((day, index) => (
-          <div key={DAYS[index][2]} className="row gap-5">
+          <div key={DAYS[index][2]} className="row gap-5 border-rad-5">
             <div className="day-label row label border-r">
               <span className="day-label upright-text label">
                 {DAYS[index][2]}
               </span>
             </div>
-            <div>
+            <div className="col w-f">
               {day.map((dish) => (
                 <li
                   key={dish.id}
-                  className="row a-c gap-5"
+                  className="row a-c w-f border-rad-5 gap-5 pad-l-5"
                   role="button"
                   onClick={() => openMealModal(dish)}
                   onKeyDown={() => {}}

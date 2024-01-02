@@ -27,11 +27,11 @@ function ShopingList({ menuDishes, menuPeople }) {
   if (!ingredienSections.length) return null;
 
   return (
-    <div className="col h-f w-f border-rad-10 pad-20 gap-10 bgc-b">
+    <div className="col h-f w-f border-rad-10 pad-10 gap-10 bgc-b">
       <Button modifier="shopping-list-copy-button l icon" onClick={handleCopyShopingList}>
         <Icon iconName="copy" />
       </Button>
-      <div className="col overflow-y gap-5">
+      <div className="col overflow-y gap-5 pad-l-5 font-s">
         {ingredienSections.map(({ name, ingredients }) => {
           if (!ingredients.length) return null;
           return (
