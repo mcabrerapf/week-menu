@@ -27,19 +27,22 @@ function ShopingList({ menuDishes, menuPeople }) {
   if (!ingredienSections.length) return null;
 
   return (
-    <div className="col h-f w-f border-rad-10 pad-10 gap-10 bgc-b">
-      <Button modifier="shopping-list-copy-button l icon" onClick={handleCopyShopingList}>
-        <Icon iconName="copy" />
-      </Button>
-      <div className="col overflow-y gap-5 pad-l-5 font-s">
-        {ingredienSections.map(({ name, ingredients }) => {
-          if (!ingredients.length) return null;
-          return (
-            <ShopingListSection key={name} name={name} ingredients={ingredients} />
-          );
-        })}
+    <div className="h-f pad-5">
+      <div className="col h-f w-f border-rad-10 pad-15 bgc-b">
+        <Button modifier="shopping-list-copy-button l icon" onClick={handleCopyShopingList}>
+          <Icon iconName="copy" />
+        </Button>
+        <div className="col overflow-y gap-5 pad-l-5 font-s">
+          {ingredienSections.map(({ name, ingredients }) => {
+            if (!ingredients.length) return null;
+            return (
+              <ShopingListSection key={name} name={name} ingredients={ingredients} />
+            );
+          })}
+        </div>
       </div>
     </div>
+
   );
 }
 

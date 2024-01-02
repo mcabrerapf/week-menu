@@ -65,7 +65,7 @@ function MenuBuilderView() {
         menu={menuDishes}
       />
       <div
-        className="menu-builder-content row"
+        className="menu-builder-content"
       >
         {!hasLoadedMenu && (
           <div className="col w-f h-f centered">
