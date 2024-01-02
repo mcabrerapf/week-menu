@@ -21,13 +21,10 @@ function MenuBuilderView() {
   const [view, setView] = useState(0);
 
   const handleBuildMenu = () => {
-    if (view !== 0) {
-      setView(0);
-      return;
-    }
     const newDishes = buildMenuDishes(dishesFromContext, menuOptions);
     if (!newDishes) return;
     setContextState('currentMenu', { menuOptions, menuDishes: newDishes });
+    if (view !== 0) setView(0);
   };
 
   const handleChangeView = (newView) => {

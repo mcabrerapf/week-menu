@@ -7,41 +7,10 @@ import { MainContext } from '../../../Contexts/MainContext';
 import { parseMenuData } from './helpers';
 import Icon from '../../Icon';
 import {
-  BREAKFAST_STRING, DINNER_STRING, LUNCH_STRING, MENU_STRING,
+  MENU_STRING,
 } from '../../../constants';
-import { initData } from '../../helpers';
+import { initData, getMenuWeekList } from '../../helpers';
 import { DAYS } from '../../constants';
-
-const getDishDayIndex = (dishType) => {
-  switch (dishType) {
-    case BREAKFAST_STRING:
-      return 0;
-    case LUNCH_STRING:
-      return 1;
-    case DINNER_STRING:
-      return 2;
-
-    default:
-      return 0;
-  }
-};
-const orderMenuDishes = (dishes) => {
-  const days = [];
-  dishes.forEach((dish) => {
-    const dishIndex = getDishDayIndex(dish.useAs);
-    if (dish.days) {
-      dish.days.forEach((day) => {
-        if (days[day]) {
-          days[day][dishIndex] = dish;
-        } else {
-          days[day] = [{}, {}, {}];
-          days[day][dishIndex] = dish;
-        }
-      });
-    }
-  });
-  return days;
-};
 
 function MenuModal({ modalData, closeModal }) {
   const {
@@ -53,7 +22,7 @@ function MenuModal({ modalData, closeModal }) {
     await handleSave(parsedData, MENU_STRING, closeModal);
   };
   const favouriteButtonClass = `m icon${menuData.favourite ? '' : ' bgc-gr'}`;
-  const dishesList = orderMenuDishes(modalData.dishes);
+  const dishesList = getMenuWeekList(modalData.dishes);
 
   return (
     <div className="menu-modal-content col gap-10 pad-10">
@@ -73,16 +42,26 @@ function MenuModal({ modalData, closeModal }) {
         </Button>
 
       </div>
-      <ul className="days-list col overflow-y gap-10">
+      <ul className="days-list col gap-5 overflow-y">
         {dishesList.map((day, index) => (
-          <div key={DAYS[index][1]} className="col gap-5">
-            <div className="day-label row label border-b">{DAYS[index][1]}</div>
-            {day.map((dish) => (
-              <li key={dish.id} className="row a-c gap-5">
-                <Icon iconName={dish.useAs} />
-                <span>{dish?.name || '---'}</span>
-              </li>
-            ))}
+          <div key={DAYS[index][2]} className="row gap-5">
+            <div className="day-label row label border-r">
+              <span className="day-label upright-text label">
+                {DAYS[index][2]}
+              </span>
+            </div>
+            <div>
+              {day.map((dish) => (
+                <li
+                  key={dish.id}
+                  className="row a-c gap-5"
+                >
+                  <Icon iconName={dish.useAs} />
+                  <span>{dish?.name || '---'}</span>
+                </li>
+
+              ))}
+            </div>
           </div>
         ))}
       </ul>

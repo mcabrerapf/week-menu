@@ -21,8 +21,8 @@ function ShopingListSection({ ingredients, name }) {
 
   return (
     <div className="shoping-list-section col">
-      <div className="row pad-10 border-b">
-        <Icon modifier="icon-xl" iconName={name} />
+      <div className="row pad-5 border-b">
+        <Icon modifier="icon-l" iconName={name} />
       </div>
       <div className="col gap-10 pad-10">
         {ingredients.map((ingredient, i) => {

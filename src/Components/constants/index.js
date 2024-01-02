@@ -2,13 +2,13 @@ import { DISH_TYPES } from './DISHES';
 import { INGREDIENT_UNITS, INGREDIENT_TYPES } from './INGREDIENTS';
 
 const DAYS = [
-  ['Monday', 'Mon'],
-  ['Tuesday', 'Tue'],
-  ['Wednesday', 'Wed'],
-  ['Thursday', 'Thu'],
-  ['Friday', 'Fri'],
-  ['Saturday', 'Sat'],
-  ['Sunday', 'Sun'],
+  ['Monday', 'Mon', 'MON'],
+  ['Tuesday', 'Tue', 'TUE'],
+  ['Wednesday', 'Wed', 'WED'],
+  ['Thursday', 'Thu', 'THU'],
+  ['Friday', 'Fri', 'FRI'],
+  ['Saturday', 'Sat', 'SAT'],
+  ['Sunday', 'Sun', 'SUN'],
 ];
 
 const SELECT_OPTIONS = {

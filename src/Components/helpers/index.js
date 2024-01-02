@@ -9,6 +9,7 @@ import parseClassName from './parse-classname';
 import deepCopy from './deep-copy';
 import deepCompare from './deep-compare';
 import initData from './init-data';
+import getMenuWeekList from './get-menu-week-list';
 
 export {
   capitalizeFirstLetter,
@@ -22,4 +23,5 @@ export {
   deepCopy,
   deepCompare,
   initData,
+  getMenuWeekList,
 };

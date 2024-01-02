@@ -85,6 +85,10 @@
 	font-size: 1rem;
 }
 
+.font-m {
+	font-size: 1.25rem;
+}
+
 .h-a {
 	height: auto !important;
 }
@@ -127,6 +131,10 @@
 
 .j-bet {
 	justify-content: space-between;
+}
+
+.j-even {
+	justify-content: space-evenly;
 }
 
 .overflow-y {
@@ -268,4 +276,8 @@
 .bgc-tr {
 	background-color: transparent !important;
 	color: var(--black-color) !important;
+}
+
+.c-g {
+	color: var(--gray-color) !important;
 }

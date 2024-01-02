@@ -40,7 +40,6 @@ function MenuBuilderHeader({
       type: MENU_STRING,
       modalData: { dishes: menu },
       modifier: 'full',
-      hideHeader: true,
     });
   };
 
