@@ -1,7 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 import { INGREDIENT_TYPES, DISH_TYPES } from '../constants';
 import {
-  DISH_STRING, INGREDIENTS_STRING, INGREDIENT_STRING, MENU_STRING,
+  DISH_STRING, INGREDIENT_STRING, MENU_STRING,
 } from '../../constants';
 
 const getListData = (view, contextProps) => {
@@ -11,7 +11,7 @@ const getListData = (view, contextProps) => {
       return menus;
     case DISH_STRING:
       return dishes;
-    case INGREDIENTS_STRING:
+    case INGREDIENT_STRING:
       return ingredients;
     default:
       return [];

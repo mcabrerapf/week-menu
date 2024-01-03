@@ -37,11 +37,9 @@ function MainContextWrapper({ children }) {
         return setContextState({ ...contextState, errorMessage: allIngredients.errors[0].message });
       }
       const allDishes = await serviceHandler(GET_ALL_STRING)(DISH_STRING);
-
       if (allDishes.errors) {
         return setContextState({ ...contextState, errorMessage: allDishes.errors[0].message });
       }
-
       const allMenus = await serviceHandler(GET_ALL_STRING)(MENU_STRING);
       if (allMenus.errors) {
         return setContextState({ ...contextState, errorMessage: allMenus.errors[0].message });
@@ -87,6 +85,7 @@ function MainContextWrapper({ children }) {
       addToast(newData.errors, 'error');
       return;
     }
+
     const [updatedList, listKey] = getListAndKey(listToUpdate, newData);
     setContextState({
       ...contextState,

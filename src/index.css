@@ -1,5 +1,5 @@
 :root {
-	font-size: 15px;
+	font-size: 13px;
 	--beige-color: #ceb8a1;
 	--blue-color: #3f8881;
 	--gray-color: #757f7e;
@@ -10,12 +10,17 @@
 	--offiline-background-color: #deb9e0;
 	--basic-box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.5);
 	--full-modal-height: 36rem;
-	--full-modal-width: 22rem;
+	--full-modal-width: 25rem;
 }
 
+@media (max-height: 575px) {
+	:root {
+		font-size: 12px;
+	}
+}
 @media (min-width: 480px) {
 	:root {
-		font-size: 17px;
+		font-size: 15px;
 	}
 }
 
