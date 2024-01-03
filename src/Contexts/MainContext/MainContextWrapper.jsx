@@ -13,15 +13,15 @@ import {
   CREATE_STRING,
 } from '../../constants';
 import { buildDishesWithIngredients, buildMenusWithDishes, sortBy } from '../../Components/helpers';
-import { defaultMenuOptions } from '../../Components/MenuBuilderView/Week/constants';
 import { ToastContext } from '../ToastContext';
+import { DEFAULT_MENU_OPTIONS } from '../../Components/constants';
 
 function MainContextWrapper({ children }) {
   const { addToast } = useContext(ToastContext);
   const [contextState, setContextState] = useState({
     view: DISH_STRING,
     offlineMode: 0,
-    currentMenu: { menuOptions: defaultMenuOptions, menuDishes: [] },
+    currentMenu: { menuOptions: DEFAULT_MENU_OPTIONS, menuDishes: [] },
     menus: [],
     dishes: [],
     ingredients: [],
@@ -98,6 +98,7 @@ function MainContextWrapper({ children }) {
   };
 
   const stateHandler = (key, value) => {
+    if (!key || !value) return;
     setContextState({ ...contextState, [key]: value });
   };
 

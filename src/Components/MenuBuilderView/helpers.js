@@ -4,26 +4,24 @@ import { deepCopy } from '../helpers';
 // TODO refactor
 const updateDishes = (updateData, menuDishes) => {
   const {
-    changeAll, dayIndex, oldDishId, newDish,
+    changeAll, oldDish, newDish,
   } = updateData;
 
+  const { id: oldDishId } = oldDish;
   const { id: newDishId } = newDish;
   const oldDishes = deepCopy(menuDishes);
-  const newDishes = oldDishes
-    .map((currentDish) => {
-      const { id, days } = currentDish;
-      if (id === oldDishId) {
-        if (changeAll) newDish.days = days;
-        const updatedDays = changeAll ? [] : days.filter((day) => day !== dayIndex);
-        if (!updatedDays.length) return null;
-        return { ...currentDish, days: updatedDays };
-      }
-      if (id === newDishId) {
-        return null;
-      }
-
-      return currentDish;
-    }).filter(Boolean);
+  const newDishes = [];
+  oldDishes.forEach((dish) => {
+    const { id } = dish;
+    if (id === oldDishId) {
+      if (changeAll) return;
+      newDishes.push(oldDish);
+    } else if (id === newDishId) {
+      newDishes.push(newDish);
+    } else {
+      newDishes.push(dish);
+    }
+  });
   newDishes.push({ ...newDish });
   return newDishes;
 };

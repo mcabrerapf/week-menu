@@ -6,30 +6,33 @@ import { MainContext } from '../../../Contexts/MainContext';
 import { deepCopy, sortBy } from '../../helpers';
 import Icon from '../../Icon';
 import { SIDE_STRING } from '../../../constants';
-// import DisplayMode from '../DisplayMode';
 
-const getDishesAndSideDishes = (dishes, id) => {
+const getDishesAndSideDishes = (dishes, usedDishes) => {
   const mainDishes = [];
   const sideDishes = [];
   dishes.forEach((dish) => {
     const { id: dishId, types } = dish;
-    if (dishId === id) return;
+    if (usedDishes.find(({ id: usedId }) => usedId === dishId)) return;
     if (types.includes(SIDE_STRING)) sideDishes.push(dish);
     else mainDishes.push(dish);
   });
   return [sortBy(mainDishes, 'name', 'alphabetical'), sortBy(sideDishes, 'name', 'alphabetical')];
 };
 
-function MealModal({ modalData, closeModal }) {
-  const { dishes: dishesFromContext } = useContext(MainContext);
+function MealModal({ modalData, closeModal, onClose }) {
+  const { dishes: dishesFromContext, currentMenu: { menuDishes } } = useContext(MainContext);
   const {
-    id, name,
+    dish: {
+      id, name, useAs, days,
+    },
+    dish,
+    dayIndex,
   } = modalData;
   const dishesCopy = deepCopy(dishesFromContext);
   const [selectedDish, setSelectedDish] = useState();
   // const [selectedSideDish, setSelectedSideDish] = useState();
   // const [mode, setMode] = useState(id ? 'display' : 'edit');
-  const [sortedDishes] = getDishesAndSideDishes(dishesCopy, id);
+  const [sortedDishes] = getDishesAndSideDishes(dishesCopy, menuDishes);
 
   const handleButtonClick = (changeAll) => {
     if (!selectedDish) return closeModal();
@@ -37,8 +40,15 @@ function MealModal({ modalData, closeModal }) {
     //   .find(({ id: newSideDishId }) => newSideDishId === selectedSideDish);
     // const sideDishesToUse = newSideDish ? [newSideDish] : [];
     const newDish = sortedDishes.find(({ id: newDishId }) => newDishId === selectedDish);
-    const data = { newDish: { ...newDish }, oldDishId: id, changeAll };
-    return closeModal({ updateParent: true, data });
+    const newDishDays = changeAll ? days : [dayIndex];
+    const oldDishDays = changeAll ? [] : days.filter((day) => day !== dayIndex);
+    const data = {
+      newDish: { ...newDish, useAs, days: newDishDays },
+      oldDish: { ...dish, days: oldDishDays },
+      changeAll,
+    };
+    onClose(data);
+    return closeModal();
   };
 
   return (
@@ -89,6 +99,7 @@ function MealModal({ modalData, closeModal }) {
 
 MealModal.propTypes = {
   closeModal: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired,
   modalData: PropTypes.shape().isRequired,
 };
 

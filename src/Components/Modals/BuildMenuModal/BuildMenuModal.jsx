@@ -28,7 +28,7 @@ function BuildMenuModal({
     setCurrentData(initedData);
   }, []);
 
-  const handleButtonClick = () => {
+  const handleBuildMenu = () => {
     const menuDishes = buildMenuDishes(dishes, currentData);
     setContextState('currentMenu', { menuDishes, menuOptions: currentData });
     closeModal({ updateParent: true, data: {} });
@@ -51,6 +51,7 @@ function BuildMenuModal({
     maxBreakfasts,
     maxLunches,
     maxDinners,
+    weeks,
     people,
   } = currentData;
 
@@ -90,7 +91,7 @@ function BuildMenuModal({
 
   return (
     <div className="col pad-10 gap-10">
-      <div className="row gap-20">
+      <div className="row j-around">
         <div className="menu-builder-day col gap-5">
           {days.map((day, index) => {
             const {
@@ -172,7 +173,6 @@ function BuildMenuModal({
             handleIncrease={handleIncrease}
             iconName="dinner"
           />
-
           <QuantityInput
             value={people}
             valueKey="people"
@@ -182,13 +182,22 @@ function BuildMenuModal({
             handleIncrease={handleIncrease}
             iconName="people"
           />
+          <QuantityInput
+            value={weeks}
+            valueKey="weeks"
+            min={1}
+            max={99}
+            handleDecrease={handleDecrease}
+            handleIncrease={handleIncrease}
+            iconName="calendar"
+          />
 
         </div>
       </div>
       <div className="row">
         <Button
           modifier="icon"
-          onClick={handleButtonClick}
+          onClick={handleBuildMenu}
           disabled={daysWithMeals === 0}
         >
           <FaCheck />

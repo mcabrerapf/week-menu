@@ -12,6 +12,7 @@ const initialModalState = {
   type: '',
   onClose: null,
 };
+
 function ModalContextWrapper({ children }) {
   const [contextState, setContextState] = useState(initialModalState);
 
@@ -25,12 +26,13 @@ function ModalContextWrapper({ children }) {
     });
   };
 
-  const closeModal = (closeOptions) => {
-    if (
-      onClose
-      && closeOptions
-      && closeOptions.updateParent
-      && closeOptions.data) onClose(closeOptions.data);
+  const closeModal = () => {
+    // if (
+    //   onClose
+    //   && closeOptions
+    //   && closeOptions.updateParent
+    //   && closeOptions.data) onClose(closeOptions.data);
+    // if (onClose)onClose();
     setContextState(initialModalState);
   };
 
@@ -66,6 +68,7 @@ function ModalContextWrapper({ children }) {
               modalData={modalData}
               mode={mode}
               closeModal={closeModal}
+              onClose={onClose}
 
             />
           </ModalContainer>
