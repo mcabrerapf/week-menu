@@ -17,12 +17,15 @@ function MenuModal({ modalData, closeModal }) {
     handleSave,
   } = useContext(MainContext);
   const [menuData, setMenuData] = useState(initData(modalData, MENU_STRING));
+  const [selectedWeekIndex, setSelectedWeekIndex] = useState(0);
+  const { weeks } = menuData;
+  const favouriteButtonClass = `m icon${menuData.favourite ? '' : ' bgc-gr'}`;
+  const dishesList = getMenuWeekList(weeks[selectedWeekIndex].dishes);
+
   const saveMenu = async () => {
     const parsedData = parseMenuData(menuData);
     await handleSave(parsedData, MENU_STRING, closeModal);
   };
-  const favouriteButtonClass = `m icon${menuData.favourite ? '' : ' bgc-gr'}`;
-  const dishesList = getMenuWeekList(modalData.dishes);
 
   return (
     <div className="menu-modal-content col gap-10 pad-10">
@@ -40,7 +43,27 @@ function MenuModal({ modalData, closeModal }) {
         >
           <Icon iconName="star" />
         </Button>
-
+      </div>
+      <div className="row centered gap-20">
+        <Button
+          modifier="icon m"
+          disabled={selectedWeekIndex === 0}
+          onClick={() => setSelectedWeekIndex(selectedWeekIndex - 1)}
+        >
+          <Icon iconName="arrow-l" />
+        </Button>
+        <Button
+          modifier="icon m circle bgc-bg"
+        >
+          {selectedWeekIndex + 1}
+        </Button>
+        <Button
+          modifier="icon m"
+          disabled={selectedWeekIndex >= weeks.length - 1}
+          onClick={() => setSelectedWeekIndex(selectedWeekIndex + 1)}
+        >
+          <Icon iconName="arrow-r" />
+        </Button>
       </div>
       <ul className="days-list col gap-5 overflow-y">
         {dishesList.map((day, index) => (

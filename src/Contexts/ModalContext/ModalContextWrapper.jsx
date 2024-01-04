@@ -27,12 +27,6 @@ function ModalContextWrapper({ children }) {
   };
 
   const closeModal = () => {
-    // if (
-    //   onClose
-    //   && closeOptions
-    //   && closeOptions.updateParent
-    //   && closeOptions.data) onClose(closeOptions.data);
-    // if (onClose)onClose();
     setContextState(initialModalState);
   };
 

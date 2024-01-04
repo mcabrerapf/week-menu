@@ -20,14 +20,16 @@ const getDishesAndSideDishes = (dishes, usedDishes) => {
 };
 
 function MealModal({ modalData, closeModal, onClose }) {
-  const { dishes: dishesFromContext, currentMenu: { menuDishes } } = useContext(MainContext);
+  const { dishes: dishesFromContext } = useContext(MainContext);
   const {
     dish: {
       id, name, useAs, days,
     },
     dish,
+    menuDishes,
     dayIndex,
   } = modalData;
+
   const dishesCopy = deepCopy(dishesFromContext);
   const [selectedDish, setSelectedDish] = useState();
   // const [selectedSideDish, setSelectedSideDish] = useState();

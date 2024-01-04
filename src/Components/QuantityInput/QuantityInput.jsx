@@ -6,7 +6,16 @@ import Button from '../Button';
 import Icon from '../Icon';
 
 function QuantityInput({
-  value, labelText, min, max, valueKey, handleDecrease, handleIncrease, modifier, iconName,
+  value,
+  labelText,
+  min,
+  max,
+  valueKey,
+  valueIndex,
+  handleDecrease,
+  handleIncrease,
+  modifier,
+  iconName,
 }) {
   return (
     <div className={parseClassName('col gap-5', modifier)}>
@@ -19,7 +28,7 @@ function QuantityInput({
         <Button
           modifier="m"
           disabled={value === min}
-          onClick={() => handleDecrease(valueKey)}
+          onClick={() => handleDecrease(valueKey, valueIndex)}
         >
           <Icon iconName="minus" />
         </Button>
@@ -27,7 +36,7 @@ function QuantityInput({
         <Button
           modifier="m"
           disabled={value === max}
-          onClick={() => handleIncrease(valueKey)}
+          onClick={() => handleIncrease(valueKey, valueIndex)}
         >
           <Icon iconName="plus" />
         </Button>
@@ -40,7 +49,8 @@ function QuantityInput({
 QuantityInput.propTypes = {
   handleDecrease: PropTypes.func.isRequired,
   handleIncrease: PropTypes.func.isRequired,
-  valueKey: PropTypes.string.isRequired,
+  valueKey: PropTypes.string,
+  valueIndex: PropTypes.number,
   iconName: PropTypes.string,
   labelText: PropTypes.string,
   modifier: PropTypes.string,
@@ -55,6 +65,8 @@ QuantityInput.defaultProps = {
   labelText: '',
   iconName: '',
   modifier: '',
+  valueKey: null,
+  valueIndex: null,
   min: null,
   max: null,
 };

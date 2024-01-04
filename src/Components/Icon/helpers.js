@@ -2,6 +2,8 @@
 import {
   FaBowlFood,
   FaArrowDown,
+  FaArrowLeft,
+  FaArrowRight,
   FaArrowUp,
   FaBrain,
   FaCartShopping,
@@ -38,10 +40,14 @@ import {
 
 const getIcon = (iconName) => {
   switch (iconName) {
-    case 'arrow-d':
-      return FaArrowDown;
     case 'arrow-u':
       return FaArrowUp;
+    case 'arrow-d':
+      return FaArrowDown;
+    case 'arrow-l':
+      return FaArrowLeft;
+    case 'arrow-r':
+      return FaArrowRight;
     case 'brain':
       return FaBrain;
     case 'breakfast':

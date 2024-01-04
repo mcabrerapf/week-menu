@@ -15,9 +15,9 @@ import Icon from '../Icon';
 import { MENU_STRING } from '../../constants';
 
 function MenuBuilderHeader({
-  showBuildMenuModal, handleChangeView, handleBuildMenu, view, hasLoadedMenu, menu,
+  showBuildMenuModal, handleChangeView, handleBuildMenu, view, hasLoadedMenu,
 }) {
-  const { setContextState } = useContext(MainContext);
+  const { setContextState, currentMenu: { weeks } } = useContext(MainContext);
   const { addModal } = useContext(ModalContext);
   const { addToast } = useContext(ToastContext);
   const checkView = () => {
@@ -38,7 +38,7 @@ function MenuBuilderHeader({
   const handleSaveClick = () => {
     addModal({
       type: MENU_STRING,
-      modalData: { dishes: menu },
+      modalData: { weeks },
       modifier: 'full',
     });
   };

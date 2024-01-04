@@ -18,17 +18,6 @@ export const UPDATE_MENU_MUTATION = `
     updateMenu(input: $input, condition: $condition) {
       id
       name
-      favourite
-      description
-      tags
-      snacks 
-      dessert 
-      dishes {
-        id
-        days
-        useAs
-        sideDishesToUse
-      }
     }
   }
 `;

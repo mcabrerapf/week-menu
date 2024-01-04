@@ -8,6 +8,14 @@ export const GET_MENU_QUERY = `
       tags
       snacks 
       dessert 
+      weeks {
+        dishes {
+          id
+          days
+          useAs
+          sideDishesToUse
+        }
+      }
       dishes {
         id
         days
@@ -29,6 +37,14 @@ query ListMenu($filter: ModelMenuFilterInput, $nextToken: String) {
       tags
       snacks 
       dessert 
+      weeks {
+        dishes {
+          id
+          days
+          useAs
+          sideDishesToUse
+        }
+      }
       dishes {
         id
         days

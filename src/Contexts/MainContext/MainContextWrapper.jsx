@@ -21,7 +21,7 @@ function MainContextWrapper({ children }) {
   const [contextState, setContextState] = useState({
     view: DISH_STRING,
     offlineMode: 0,
-    currentMenu: { menuOptions: DEFAULT_MENU_OPTIONS, menuDishes: [] },
+    currentMenu: { menuOptions: DEFAULT_MENU_OPTIONS, weeks: [] },
     menus: [],
     dishes: [],
     ingredients: [],
@@ -94,7 +94,12 @@ function MainContextWrapper({ children }) {
   };
 
   const updateCurrentMenu = (newMenu) => {
-    setContextState({ ...contextState, currentMenu: newMenu, view: MENU_BUILDER_STRING });
+    const { currentMenu: { menuOptions } } = contextState;
+    setContextState({
+      ...contextState,
+      view: MENU_BUILDER_STRING,
+      currentMenu: { menuOptions, weeks: newMenu },
+    });
   };
 
   const stateHandler = (key, value) => {

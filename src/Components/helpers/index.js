@@ -1,5 +1,5 @@
 import sortBy from './sort-by';
-import buildMenuDishes from './build-menu-dishes';
+import buildMenuWeeks from './build-menu-weeks';
 import buildDishesWithIngredients from './build-dishes-with-ingredients';
 import buildMenusWithDishes from './build-menus-with-dishes';
 import capitalizeFirstLetter from './capitalize-first-letter';
@@ -13,7 +13,7 @@ import getMenuWeekList from './get-menu-week-list';
 
 export {
   capitalizeFirstLetter,
-  buildMenuDishes,
+  buildMenuWeeks,
   buildSelectOptions,
   sortBy,
   buildDishesWithIngredients,

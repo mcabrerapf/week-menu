@@ -24,35 +24,36 @@ const SELECT_OPTIONS = {
 
 const MIN_SWIPE_DISTANCE = 50;
 
-const DEFAULT_MENU_OPTIONS = {
-  days: [
-    {
-      name: DAYS[0][2], hasBreakfast: false, hasLunch: true, hasDinner: true,
-    },
-    {
-      name: DAYS[1][2], hasBreakfast: false, hasLunch: true, hasDinner: true,
-    },
-    {
-      name: DAYS[2][2], hasBreakfast: false, hasLunch: true, hasDinner: true,
-    },
-    {
-      name: DAYS[3][2], hasBreakfast: false, hasLunch: true, hasDinner: true,
-    },
-    {
-      name: DAYS[4][2], hasBreakfast: false, hasLunch: true, hasDinner: true,
-    },
-    {
-      name: DAYS[5][2], hasBreakfast: false, hasLunch: true, hasDinner: true,
-    },
-    {
-      name: DAYS[6][2], hasBreakfast: false, hasLunch: true, hasDinner: true,
-    },
-  ],
+const DEFAULT_DAY_MEALS = [
+  [false, true, true],
+  [false, true, true],
+  [false, true, true],
+  [false, true, true],
+  [false, true, true],
+  [false, true, true],
+  [false, false, false],
+];
+
+const DEFAULT_WEEK_SETTINGS = {
+  days: DEFAULT_DAY_MEALS,
   people: 2,
-  weeks: 1,
-  maxBreakfasts: 0,
-  maxLunches: 3,
-  maxDinners: 3,
+  mealLimits: [
+    0, // Breakfasts
+    3, // Lunches
+    3, // Diners
+  ],
+};
+
+const DEFAULT_MENU_OPTIONS = {
+  weeks: [DEFAULT_WEEK_SETTINGS],
+  weekLimit: 1,
+  // days: DEFAULT_DAY_MEALS,
+  // people: 2,
+  // mealLimits: [
+  //   0, // Breakfasts
+  //   3, // Lunches
+  //   3, // Diners
+  // ],
 };
 
 export {
@@ -63,4 +64,5 @@ export {
   SELECT_OPTIONS,
   MIN_SWIPE_DISTANCE,
   DEFAULT_MENU_OPTIONS,
+  DEFAULT_WEEK_SETTINGS,
 };

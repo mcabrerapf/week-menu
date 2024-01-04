@@ -2,3 +2,22 @@
 	margin-top: 3rem;
 	height: calc(100% - 3rem);
 }
+
+.week-number,
+.week-prev-button,
+.week-next-button {
+	position: fixed;
+	margin-top: -1rem;
+}
+
+.week-number {
+	align-self: center;
+}
+
+.week-prev-button {
+	left: 0.5rem;
+}
+
+.week-next-button {
+	right: 0.5rem;
+}

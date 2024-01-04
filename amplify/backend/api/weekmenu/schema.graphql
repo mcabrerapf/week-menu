@@ -1,3 +1,7 @@
+type MenuWeekType {
+  dishes: [MenuDishType]
+}
+
 type MenuDishType {
   id: ID
   days: [Int]
@@ -58,5 +62,6 @@ type Menu @model @auth(rules: [{allow: owner}]) {
   dessert: [ID]
   snacks: [ID]
   testfield: String
+  weeks: [MenuWeekType]
 }
  

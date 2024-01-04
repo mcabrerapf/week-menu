@@ -17,7 +17,7 @@ function Week({
   const openMealModal = (modalData) => {
     addModal({
       type: 'meal',
-      modalData,
+      modalData: { ...modalData, menuDishes: menu },
       onClose: handleUpdateDish,
       hideHeader: true,
     });

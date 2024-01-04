@@ -45,11 +45,12 @@ const initMenu = (data) => {
     return {
       id: data.id,
       name: data.name || '',
-      dishes: data.dishes || [],
+      weeks: data.weeks || [],
+      // dishes: data.dishes || [],
       favourite: data.favourite || false,
     };
   }
-  return { name: '', dishes: data.dishes || [], favourite: false };
+  return { name: '', weeks: data.weeks || [], favourite: false };
 };
 
 const initData = (data, type) => {

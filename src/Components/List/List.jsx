@@ -28,9 +28,8 @@ function List() {
   };
 
   const handleLoadMenu = (menuData) => {
-    const { dishes } = menuData;
-    const newCurrentMenu = { ...currentMenu, menuDishes: dishes };
-    updateCurrentMenu(newCurrentMenu);
+    const { weeks } = menuData;
+    updateCurrentMenu(weeks);
   };
 
   const listData = getListData(view, contextProps);

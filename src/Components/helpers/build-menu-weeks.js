@@ -38,18 +38,16 @@ const buildDishesByType = (dishes, type, filters) => {
   const finalDishes = [];
   if (limit === 0) return dayIndexes;
 
-  days.forEach(({
-    hasBreakfast, hasLunch, hasDinner,
-  }, index) => {
+  days.forEach((day, index) => {
     switch (type) {
       case DISH_TYPES[0]:
-        if (hasBreakfast) dayIndexes.push(index);
+        if (day[0]) dayIndexes.push(index);
         break;
       case DISH_TYPES[1]:
-        if (hasLunch) dayIndexes.push(index);
+        if (day[1]) dayIndexes.push(index);
         break;
       case DISH_TYPES[2]:
-        if (hasDinner) dayIndexes.push(index);
+        if (day[2]) dayIndexes.push(index);
         break;
       default:
         break;
@@ -73,21 +71,33 @@ const buildDishesByType = (dishes, type, filters) => {
   return finalDishes;
 };
 
-const buildMenuDishes = (dishes, options) => {
+const buildMenuWeeks = (dishes, options) => {
   const {
-    maxLunches, maxDinners, maxBreakfasts, days,
+    weeks,
   } = options;
 
-  const dishesCopy = deepCopy(dishes);
+  const builtWeeks = [];
+  weeks.forEach((week) => {
+    const {
+      mealLimits, days,
+    } = week;
+    const maxDishes = {
+      [DISH_TYPES[0]]: mealLimits[0],
+      [DISH_TYPES[1]]: mealLimits[1],
+      [DISH_TYPES[2]]: mealLimits[2],
+    };
+    const dishesCopy = deepCopy(dishes);
+    const weekDishes = DISH_TYPES
+      .map((dishType) => buildDishesByType(
+        dishesCopy,
+        dishType,
+        { limit: maxDishes[dishType], days },
+      ))
+      .flat();
+    builtWeeks.push({ dishes: weekDishes });
+  });
 
-  const maxDishes = {
-    [DISH_TYPES[0]]: maxBreakfasts,
-    [DISH_TYPES[1]]: maxLunches,
-    [DISH_TYPES[2]]: maxDinners,
-  };
-
-  return DISH_TYPES
-    .map((dishType) => buildDishesByType(dishesCopy, dishType, { limit: maxDishes[dishType], days })).flat();
+  return builtWeeks;
 };
 
-export default buildMenuDishes;
+export default buildMenuWeeks;
