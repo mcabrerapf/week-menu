@@ -21,7 +21,7 @@ function MainContextWrapper({ children }) {
     view: DISH_STRING,
     offlineMode: 0,
     menuOptions: DEFAULT_MENU_OPTIONS,
-    currentMenu: { weeks: [] },
+    currentMenu: {},
     menus: [],
     dishes: [],
     ingredients: [],
@@ -93,9 +93,11 @@ function MainContextWrapper({ children }) {
     });
   };
 
-  const stateHandler = (key, value) => {
+  const stateHandler = (key, value, newView) => {
     if (!key || !value) return;
-    setContextState({ ...contextState, [key]: value });
+    const updatedContext = { ...contextState, [key]: value };
+    if (newView) updatedContext.view = newView;
+    setContextState(updatedContext);
   };
 
   const handleSave = async (data, serviceName, callback = () => {}) => {

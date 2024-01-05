@@ -8,6 +8,7 @@ const buildMenusWithDishes = (menus, allDishes) => {
         const { days } = week;
         const builtDays = days.map(({ dishes }) => {
           const parsedDishes = dishes.map((dish) => {
+            if (!dish) return null;
             const {
               id: dishId,
               sideDishesToUse,
@@ -19,7 +20,6 @@ const buildMenusWithDishes = (menus, allDishes) => {
 
             return {
               ...dishMatch,
-              days,
               sideDishesToUse: populatedSideDishes,
             };
           });

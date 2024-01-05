@@ -27,9 +27,8 @@ function List() {
     });
   };
 
-  const handleLoadMenu = (menuData) => {
-    setContextState('currentMenu', menuData);
-    setContextState('view', MENU_BUILDER_STRING);
+  const handleLoadMenu = async (menuData) => {
+    setContextState('currentMenu', menuData, MENU_BUILDER_STRING);
   };
 
   const listData = getListData(view, contextProps);

@@ -1,9 +1,13 @@
+type MenuDayType {
+  dishes: [MenuDishType]
+}
+
 type MenuSideDishType {
   id: ID
 }
 
 type MenuWeekType {
-  days: [MenuDishType]
+  days: [MenuDayType]
   mealLimits: [Int]
   people: Int
 }

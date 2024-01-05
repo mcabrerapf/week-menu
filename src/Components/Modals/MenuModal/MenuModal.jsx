@@ -10,6 +10,7 @@ import { DAYS, DAY_DISH_TYPES } from '../../constants';
 import Icon from '../../Icon';
 import Button from '../../Button';
 import Input from '../../Input';
+import { parseMenuData } from './helpers';
 
 function MenuModal({ modalData, closeModal }) {
   const {
@@ -22,10 +23,9 @@ function MenuModal({ modalData, closeModal }) {
   const { days } = weeks[selectedWeekIndex];
 
   const saveMenu = async () => {
-    await handleSave(menuData, MENU_STRING, closeModal);
+    const parsedData = parseMenuData(menuData);
+    await handleSave(parsedData, MENU_STRING, closeModal);
   };
-
-  console.log(modalData);
 
   return (
     <div className="menu-modal-content col gap-10 pad-10">
@@ -39,7 +39,7 @@ function MenuModal({ modalData, closeModal }) {
         />
         <Button
           modifier={favouriteButtonClass}
-          onClick={({ target: { value: eVal } }) => setMenuData({ ...menuData, favourite: eVal })}
+          onClick={() => setMenuData({ ...menuData, favourite: !menuData.favourite })}
         >
           <Icon iconName="star" />
         </Button>

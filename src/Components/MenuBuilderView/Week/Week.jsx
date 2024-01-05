@@ -7,7 +7,7 @@ import Icon from '../../Icon';
 import { ModalContext } from '../../../Contexts/ModalContext';
 
 function Week({
-  week, handleUpdateDish,
+  week, selectedWeekIndex, handleUpdateWeek,
 }) {
   const { addModal } = useContext(ModalContext);
   if (!week || !week.days) return null;
@@ -16,7 +16,7 @@ function Week({
     addModal({
       type: 'meal',
       modalData: { ...modalData, week },
-      onClose: handleUpdateDish,
+      onClose: handleUpdateWeek,
       hideHeader: true,
     });
   };
@@ -38,7 +38,9 @@ function Week({
                 key={mealIndex}
                 className={`row a-c h-f w-f border-rad-5 pad-l-10 gap-5${dish?.name ? '' : ' bgc-gr'}`}
                 role="button"
-                onClick={() => openMealModal({ dish, dayIndex: index })}
+                onClick={() => openMealModal({
+                  dish, dayIndex: index, mealIndex, weekIndex: selectedWeekIndex,
+                })}
                 onKeyDown={() => {}}
               >
                 <Icon iconName={DAY_DISH_TYPES[mealIndex]} />
@@ -54,8 +56,10 @@ function Week({
 }
 
 Week.propTypes = {
-  handleUpdateDish: PropTypes.func.isRequired,
+  handleUpdateWeek: PropTypes.func.isRequired,
+  selectedWeekIndex: PropTypes.number.isRequired,
   week: PropTypes.shape(),
+
 };
 
 Week.defaultProps = {

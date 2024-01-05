@@ -19,39 +19,57 @@ const getDishesAndSideDishes = (dishes, usedDishes) => {
   return [sortBy(mainDishes, 'name', 'alphabetical'), sortBy(sideDishes, 'name', 'alphabetical')];
 };
 
-function MealModal({ modalData, closeModal, onClose }) {
-  const { dishes: dishesFromContext } = useContext(MainContext);
-  const {
-    dish: {
-      id, name, useAs, days,
-    },
-    dish,
-    menuDishes,
-    dayIndex,
-  } = modalData;
+const getMenuDishes = (selectedWeek) => {
+  const menuDishes = [];
+  const { days } = selectedWeek;
+  days.forEach(({ dishes }) => {
+    dishes.forEach((dish) => {
+      if (!dish) return;
+      const alreadyAdded = menuDishes.find((menuDish) => menuDish.id === dish.id);
+      if (!alreadyAdded)menuDishes.push(dish);
+    });
+  });
+  return menuDishes;
+};
 
+function MealModal({ modalData, closeModal, onClose }) {
+  const { dishes: dishesFromContext, currentMenu } = useContext(MainContext);
+  const {
+    dish,
+    dayIndex,
+    mealIndex,
+    weekIndex,
+  } = modalData;
+  const { weeks } = currentMenu;
+  const selectedWeek = deepCopy(weeks[weekIndex]);
   const dishesCopy = deepCopy(dishesFromContext);
-  const [selectedDish, setSelectedDish] = useState();
+  const [selectedDishId, setSelectedDish] = useState();
   // const [selectedSideDish, setSelectedSideDish] = useState();
   // const [mode, setMode] = useState(id ? 'display' : 'edit');
+  const menuDishes = getMenuDishes(selectedWeek);
   const [sortedDishes] = getDishesAndSideDishes(dishesCopy, menuDishes);
 
   const handleButtonClick = (changeAll) => {
-    if (!selectedDish) return closeModal();
-    // const newSideDish = sortedSideDishes
-    //   .find(({ id: newSideDishId }) => newSideDishId === selectedSideDish);
-    // const sideDishesToUse = newSideDish ? [newSideDish] : [];
-    const newDish = sortedDishes.find(({ id: newDishId }) => newDishId === selectedDish);
-    const newDishDays = changeAll ? days : [dayIndex];
-    const oldDishDays = changeAll ? [] : days.filter((day) => day !== dayIndex);
-    const data = {
-      newDish: { ...newDish, useAs, days: newDishDays },
-      oldDish: { ...dish, days: oldDishDays },
-      changeAll,
-    };
-    onClose(data);
+    const selectedDish = sortedDishes.find((sortedDish) => sortedDish.id === selectedDishId);
+    const updatedDays = selectedWeek.days.map((day, dIndex) => {
+      const { dishes } = day;
+      const updatedDishes = dishes.map((dayDish, mIndex) => {
+        if (!dayDish) return null;
+        if (dayDish.id === dish.id) {
+          if (changeAll) return selectedDish;
+        } if (dIndex === dayIndex && mIndex === mealIndex) return selectedDish;
+        return dayDish;
+      });
+      return { ...day, dishes: updatedDishes };
+    });
+    const updatedWeek = { ...selectedWeek, days: updatedDays };
+    onClose(updatedWeek);
     return closeModal();
   };
+
+  const {
+    name,
+  } = dish || {};
 
   return (
     <div className="col">
@@ -61,7 +79,7 @@ function MealModal({ modalData, closeModal, onClose }) {
       {/* {mode === 'edit' && ( */}
       <div className="col pad-10 gap-10">
         <div className="col gap-10">
-          {id && (
+          {name && (
           <div className="col gap-5 centered icon">
             <span>{name}</span>
             <Icon iconName="arrow-d" />
@@ -70,7 +88,7 @@ function MealModal({ modalData, closeModal, onClose }) {
           <Input
             name="dish"
             id="dish"
-            value={selectedDish}
+            value={selectedDishId}
             onChange={({ target: { value: eValue } }) => setSelectedDish(eValue)}
             placeholder="Selecet dish"
             selectOptions={sortedDishes}
@@ -89,12 +107,22 @@ function MealModal({ modalData, closeModal, onClose }) {
           )} */}
         </div>
         <div className="row gap-5">
-          {!id && <Button buttonText="Add dish" onClick={() => handleButtonClick(false)} disabled={!selectedDish} />}
-          {id && <Button buttonText="ALL" onClick={() => handleButtonClick(true)} disabled={!selectedDish} />}
-          {id && <Button buttonText="One" onClick={() => handleButtonClick(false)} disabled={!selectedDish} />}
+          {name && (
+          <Button
+            onClick={() => handleButtonClick(true)}
+            disabled={!selectedDishId}
+          >
+            <Icon iconName="check-double" />
+          </Button>
+          )}
+          <Button
+            onClick={() => handleButtonClick()}
+            disabled={!selectedDishId}
+          >
+            <Icon iconName="check" />
+          </Button>
         </div>
       </div>
-      {/* )} */}
     </div>
   );
 }

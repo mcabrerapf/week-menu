@@ -1,8 +1,7 @@
 import './MenuBuilderView.css';
 import React, { useState, useContext } from 'react';
-import { buildMenu } from '../helpers';
+import { buildMenu, deepCopy } from '../helpers';
 import { MENU_BUILDER_STRING } from '../../constants';
-import { updateDishes } from './helpers';
 import Week from './Week';
 import ShopingList from './ShopingList';
 import MenuBuilderHeader from './MenuBuilderHeader';
@@ -23,7 +22,7 @@ function MenuBuilderView() {
   const [view, setView] = useState(0);
   const [selectedWeekIndex, setSelectedWeekIndex] = useState(0);
   const hasLoadedMenu = !!weeks && !!weeks.length;
-  const selectedWeek = weeks[selectedWeekIndex] || {};
+  const selectedWeek = hasLoadedMenu ? weeks[selectedWeekIndex] : {};
   const showWeekButtons = hasLoadedMenu && weeks.length > 1;
 
   const handleBuildMenu = () => {
@@ -52,12 +51,11 @@ function MenuBuilderView() {
     });
   };
 
-  const handleUpdateDish = (updateData) => {
+  const handleUpdateWeek = (updateData) => {
     if (!updateData) return;
-    const newDishes = updateDishes(updateData, selectedWeek.dishes);
-    const newWeeks = [...weeks];
-    newWeeks[selectedWeekIndex] = { ...newWeeks[selectedWeekIndex], dishes: newDishes };
-    setContextState('currentMenu', { ...currentMenu, weeks: newWeeks });
+    const updatedWeeks = deepCopy(weeks);
+    updatedWeeks[selectedWeekIndex] = updateData;
+    setContextState('currentMenu', { ...currentMenu, weeks: updatedWeeks });
   };
 
   const handleWeekChange = (increase) => {
@@ -109,8 +107,8 @@ function MenuBuilderView() {
         {view === 0 && (
         <Week
           week={selectedWeek}
-          options={menuOptions}
-          handleUpdateDish={handleUpdateDish}
+          selectedWeekIndex={selectedWeekIndex}
+          handleUpdateWeek={handleUpdateWeek}
         />
         )}
         {view === 1 && (
