@@ -38,19 +38,12 @@ query ListMenu($filter: ModelMenuFilterInput, $nextToken: String) {
       snacks 
       dessert 
       weeks {
-        dishes {
+        days {
           id
-          days
-          useAs
           sideDishesToUse
         }
       }
-      dishes {
-        id
-        days
-        useAs
-        sideDishesToUse
-      }
+     
     }
     nextToken
   }

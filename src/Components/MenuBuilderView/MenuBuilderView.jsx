@@ -1,6 +1,6 @@
 import './MenuBuilderView.css';
 import React, { useState, useContext } from 'react';
-import { buildMenuWeeks } from '../helpers';
+import { buildMenu } from '../helpers';
 import { MENU_BUILDER_STRING } from '../../constants';
 import { updateDishes } from './helpers';
 import Week from './Week';
@@ -14,7 +14,9 @@ import Icon from '../Icon';
 function MenuBuilderView() {
   const {
     dishes: dishesFromContext,
-    currentMenu: { menuOptions, weeks },
+    menuOptions,
+    currentMenu: { weeks },
+    currentMenu,
     setContextState,
   } = useContext(MainContext);
   const { addModal } = useContext(ModalContext);
@@ -25,9 +27,10 @@ function MenuBuilderView() {
   const showWeekButtons = hasLoadedMenu && weeks.length > 1;
 
   const handleBuildMenu = () => {
-    const newWeeks = buildMenuWeeks(dishesFromContext, menuOptions);
+    const newWeeks = buildMenu(dishesFromContext, menuOptions);
     if (!newWeeks.length) return;
-    setContextState('currentMenu', { menuOptions, weeks: newWeeks });
+    setContextState('menuOptions', menuOptions);
+    setContextState('currentMenu', { ...currentMenu, weeks: newWeeks });
     setView(0);
     setSelectedWeekIndex(0);
   };
@@ -54,7 +57,7 @@ function MenuBuilderView() {
     const newDishes = updateDishes(updateData, selectedWeek.dishes);
     const newWeeks = [...weeks];
     newWeeks[selectedWeekIndex] = { ...newWeeks[selectedWeekIndex], dishes: newDishes };
-    setContextState('currentMenu', { menuOptions, weeks: newWeeks });
+    setContextState('currentMenu', { ...currentMenu, weeks: newWeeks });
   };
 
   const handleWeekChange = (increase) => {
@@ -72,7 +75,7 @@ function MenuBuilderView() {
         handleBuildMenu={handleBuildMenu}
       />
       <div
-        className="menu-builder-content col"
+        className="menu-builder-content col pad-v-5 pad-h-15"
       >
         {!hasLoadedMenu && (
           <div className="col w-f h-f centered">
@@ -105,15 +108,14 @@ function MenuBuilderView() {
         )}
         {view === 0 && (
         <Week
-          menu={selectedWeek.dishes}
+          week={selectedWeek}
           options={menuOptions}
           handleUpdateDish={handleUpdateDish}
         />
         )}
         {view === 1 && (
         <ShopingList
-          menuDishes={selectedWeek.dishes}
-          menuPeople={selectedWeek.people}
+          week={selectedWeek}
         />
         )}
       </div>

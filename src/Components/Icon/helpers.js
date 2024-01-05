@@ -1,5 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 import {
+  FaCheck,
+  FaCheckDouble,
   FaBowlFood,
   FaArrowDown,
   FaArrowLeft,
@@ -50,6 +52,10 @@ const getIcon = (iconName) => {
       return FaArrowRight;
     case 'brain':
       return FaBrain;
+    case 'check':
+      return FaCheck;
+    case 'check-double':
+      return FaCheckDouble;
     case 'breakfast':
       return FaMugHot;
     case 'calendar':

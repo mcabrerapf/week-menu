@@ -84,7 +84,6 @@ MenuBuilderHeader.propTypes = {
   handleChangeView: PropTypes.func.isRequired,
   handleBuildMenu: PropTypes.func.isRequired,
   hasLoadedMenu: PropTypes.bool.isRequired,
-  menu: PropTypes.arrayOf(PropTypes.shape()).isRequired,
 };
 
 export default MenuBuilderHeader;

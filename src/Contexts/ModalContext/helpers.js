@@ -1,4 +1,4 @@
-import BuildMenuModal from '../../Components/Modals/BuildMenuModal';
+import MenuBuilderModal from '../../Components/Modals/MenuBuilderModal';
 import MealModal from '../../Components/Modals/MealModal';
 import ShoppingListItemModal from '../../Components/Modals/ShopingListItemModal';
 import MenuModal from '../../Components/Modals/MenuModal';
@@ -24,7 +24,7 @@ const getModalByType = (type) => {
     case MENU_STRING:
       return MenuModal;
     case MENU_BUILDER_STRING:
-      return BuildMenuModal;
+      return MenuBuilderModal;
     case MEAL_STRING:
       return MealModal;
     case SHOPING_LIST_ITEM_STRING:

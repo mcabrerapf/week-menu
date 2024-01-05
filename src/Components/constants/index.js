@@ -1,3 +1,4 @@
+import { BREAKFAST_STRING, DINNER_STRING, LUNCH_STRING } from '../../constants';
 import { DISH_TYPES } from './DISHES';
 import { INGREDIENT_UNITS, INGREDIENT_TYPES } from './INGREDIENTS';
 
@@ -47,14 +48,9 @@ const DEFAULT_WEEK_SETTINGS = {
 const DEFAULT_MENU_OPTIONS = {
   weeks: [DEFAULT_WEEK_SETTINGS],
   weekLimit: 1,
-  // days: DEFAULT_DAY_MEALS,
-  // people: 2,
-  // mealLimits: [
-  //   0, // Breakfasts
-  //   3, // Lunches
-  //   3, // Diners
-  // ],
 };
+
+const DAY_DISH_TYPES = [BREAKFAST_STRING, LUNCH_STRING, DINNER_STRING];
 
 export {
   DAYS,
@@ -65,4 +61,5 @@ export {
   MIN_SWIPE_DISTANCE,
   DEFAULT_MENU_OPTIONS,
   DEFAULT_WEEK_SETTINGS,
+  DAY_DISH_TYPES,
 };

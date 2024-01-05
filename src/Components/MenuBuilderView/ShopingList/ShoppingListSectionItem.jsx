@@ -26,7 +26,6 @@ function ShopingListSectionItem({
   ingredient, handleOnClick,
 }) {
   const [gotIt, setGotIt] = useState(false);
-
   const {
     name, quantity, unit,
   } = ingredient;

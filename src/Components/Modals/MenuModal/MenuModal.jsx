@@ -1,16 +1,15 @@
 import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import './MenuModal.css';
-import Button from '../../Button';
-import Input from '../../Input';
 import { MainContext } from '../../../Contexts/MainContext';
-import { parseMenuData } from './helpers';
-import Icon from '../../Icon';
 import {
   MENU_STRING,
 } from '../../../constants';
-import { initData, getMenuWeekList } from '../../helpers';
-import { DAYS } from '../../constants';
+import { initData } from '../../helpers';
+import { DAYS, DAY_DISH_TYPES } from '../../constants';
+import Icon from '../../Icon';
+import Button from '../../Button';
+import Input from '../../Input';
 
 function MenuModal({ modalData, closeModal }) {
   const {
@@ -20,12 +19,13 @@ function MenuModal({ modalData, closeModal }) {
   const [selectedWeekIndex, setSelectedWeekIndex] = useState(0);
   const { weeks } = menuData;
   const favouriteButtonClass = `m icon${menuData.favourite ? '' : ' bgc-gr'}`;
-  const dishesList = getMenuWeekList(weeks[selectedWeekIndex].dishes);
+  const { days } = weeks[selectedWeekIndex];
 
   const saveMenu = async () => {
-    const parsedData = parseMenuData(menuData);
-    await handleSave(parsedData, MENU_STRING, closeModal);
+    await handleSave(menuData, MENU_STRING, closeModal);
   };
+
+  console.log(modalData);
 
   return (
     <div className="menu-modal-content col gap-10 pad-10">
@@ -66,7 +66,7 @@ function MenuModal({ modalData, closeModal }) {
         </Button>
       </div>
       <ul className="days-list col gap-5 overflow-y">
-        {dishesList.map((day, index) => (
+        {days.map((day, index) => (
           <div key={DAYS[index][2]} className="row gap-5">
             <div className="day-label row label border-r">
               <span className="day-label upright-text label">
@@ -74,12 +74,13 @@ function MenuModal({ modalData, closeModal }) {
               </span>
             </div>
             <div>
-              {day.map((dish) => (
+              {day.map((dish, mealIndex) => (
                 <li
-                  key={dish.id}
+                  // eslint-disable-next-line react/no-array-index-key
+                  key={mealIndex}
                   className="row a-c gap-5"
                 >
-                  <Icon iconName={dish.useAs} />
+                  <Icon iconName={DAY_DISH_TYPES[mealIndex]} />
                   <span>{dish?.name || '---'}</span>
                 </li>
 

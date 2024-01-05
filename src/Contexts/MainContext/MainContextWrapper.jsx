@@ -7,7 +7,6 @@ import {
   GET_ALL_STRING,
   INGREDIENT_STRING,
   MENU_STRING,
-  MENU_BUILDER_STRING,
   DELETE_STRING,
   UPDATE_STRING,
   CREATE_STRING,
@@ -21,7 +20,8 @@ function MainContextWrapper({ children }) {
   const [contextState, setContextState] = useState({
     view: DISH_STRING,
     offlineMode: 0,
-    currentMenu: { menuOptions: DEFAULT_MENU_OPTIONS, weeks: [] },
+    menuOptions: DEFAULT_MENU_OPTIONS,
+    currentMenu: { weeks: [] },
     menus: [],
     dishes: [],
     ingredients: [],
@@ -93,15 +93,6 @@ function MainContextWrapper({ children }) {
     });
   };
 
-  const updateCurrentMenu = (newMenu) => {
-    const { currentMenu: { menuOptions } } = contextState;
-    setContextState({
-      ...contextState,
-      view: MENU_BUILDER_STRING,
-      currentMenu: { menuOptions, weeks: newMenu },
-    });
-  };
-
   const stateHandler = (key, value) => {
     if (!key || !value) return;
     setContextState({ ...contextState, [key]: value });
@@ -139,7 +130,6 @@ function MainContextWrapper({ children }) {
       ...contextState,
       setContextState: stateHandler,
       updateList,
-      updateCurrentMenu,
       handleDelete,
       handleSave,
     }}

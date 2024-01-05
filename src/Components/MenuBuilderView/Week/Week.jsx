@@ -2,30 +2,29 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-to-interactive-role */
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import { getMenuWeekList } from '../../helpers';
-import { DAYS } from '../../constants';
+import { DAYS, DAY_DISH_TYPES } from '../../constants';
 import Icon from '../../Icon';
 import { ModalContext } from '../../../Contexts/ModalContext';
 
 function Week({
-  menu, handleUpdateDish,
+  week, handleUpdateDish,
 }) {
   const { addModal } = useContext(ModalContext);
-  if (!menu || !menu.length) return null;
-  const weekList = getMenuWeekList(menu);
+  if (!week || !week.days) return null;
 
   const openMealModal = (modalData) => {
     addModal({
       type: 'meal',
-      modalData: { ...modalData, menuDishes: menu },
+      modalData: { ...modalData, week },
       onClose: handleUpdateDish,
       hideHeader: true,
     });
   };
+  const { days } = week;
 
   return (
-    <div className="col w-f h-f overflow-y font-s pad-5 gap-5">
-      {weekList.map((day, index) => (
+    <div className="col w-f h-f overflow-y font-s gap-5">
+      {days.map((day, index) => (
         <div key={DAYS[index][2]} className="row h-f border-rad-5 bgc-b">
           <div className="day-label row label border-r centered">
             <span className="day-label upright-text label">
@@ -33,15 +32,16 @@ function Week({
             </span>
           </div>
           <div className="col w-f">
-            {day.map((dish) => (
+            {day.map((dish, mealIndex) => (
               <div
-                key={dish.id}
+                // eslint-disable-next-line react/no-array-index-key
+                key={mealIndex}
                 className={`row a-c h-f w-f border-rad-5 pad-l-10 gap-5${dish?.name ? '' : ' bgc-gr'}`}
                 role="button"
                 onClick={() => openMealModal({ dish, dayIndex: index })}
                 onKeyDown={() => {}}
               >
-                <Icon iconName={dish.useAs} />
+                <Icon iconName={DAY_DISH_TYPES[mealIndex]} />
                 <span>{dish?.name || '---'}</span>
               </div>
             ))}
@@ -55,11 +55,11 @@ function Week({
 
 Week.propTypes = {
   handleUpdateDish: PropTypes.func.isRequired,
-  menu: PropTypes.arrayOf(PropTypes.shape()),
+  week: PropTypes.shape(),
 };
 
 Week.defaultProps = {
-  menu: [],
+  week: {},
 };
 
 export default Week;

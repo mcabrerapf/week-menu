@@ -1,52 +1,66 @@
 import { INGREDIENT_TYPES } from '../constants';
 
-const getSectionIngredients = (sectionName, dishes, people) => {
+const getSectionIngredients = (sectionName, days, people) => {
   const sectionIngredients = [];
-  dishes.forEach((dish) => {
-    const { servings, days } = dish;
-
-    dish?.ingredients.forEach((ingredient) => {
+  days.forEach((day) => {
+    day.forEach((dish) => {
+      if (!dish) return;
       const {
-        id, type, unit, quantity,
-      } = ingredient;
-      if (type !== sectionName) return;
-      const dishRepeats = days.length;
-      const weekServings = dishRepeats * people;
-      const multi = weekServings / servings;
-      const parsedQuantity = quantity * multi;
-      let ingredientIndex = -1;
-      sectionIngredients
-        .forEach((sectionIngredient, index) => {
-          if (sectionIngredient
-            && sectionIngredient.id === id
-            && sectionIngredient.unit === unit)ingredientIndex = index;
-        });
-      const ingredientDish = { name: dish.name, quantity: parsedQuantity, unit };
-      if (ingredientIndex === -1) {
+        ingredients, servings, name: dishName, id: dishId,
+      } = dish;
+      ingredients.forEach((ingredient) => {
+        if (!ingredient) return;
+        const {
+          id, type, unit, quantity,
+        } = ingredient;
+        if (type !== sectionName) return;
+        const multi = people / servings;
+        const parsedQuantity = quantity * multi;
+        let ingredientIndex = -1;
         sectionIngredients
-          .push({
-            ...ingredient, quantity: parsedQuantity, checked: false, dishes: [ingredientDish],
+          .forEach((sectionIngredient, index) => {
+            if (sectionIngredient
+        && sectionIngredient.id === id
+        && sectionIngredient.unit === unit)ingredientIndex = index;
           });
-      } else {
-        sectionIngredients[ingredientIndex] = {
-          ...sectionIngredients[ingredientIndex],
-          checked: false,
-          quantity: sectionIngredients[ingredientIndex].quantity + parsedQuantity,
-          dishes: [...sectionIngredients[ingredientIndex].dishes, ingredientDish],
+        const ingredientDish = {
+          id: dishId, name: dishName, quantity: parsedQuantity, unit,
         };
-      }
+
+        if (ingredientIndex === -1) {
+          sectionIngredients
+            .push({
+              ...ingredient, quantity: parsedQuantity, checked: false, dishes: [ingredientDish],
+            });
+        } else {
+          const ingredientDishes = sectionIngredients[ingredientIndex].dishes;
+          let updatedDish = false;
+          ingredientDishes.forEach((iDish, index) => {
+            if (iDish.id === ingredientDish.id) {
+              updatedDish = true;
+              ingredientDishes[index].quantity += parsedQuantity;
+            }
+          });
+          if (!updatedDish) ingredientDishes.push(ingredientDish);
+          sectionIngredients[ingredientIndex] = {
+            ...sectionIngredients[ingredientIndex],
+            checked: false,
+            quantity: sectionIngredients[ingredientIndex].quantity + parsedQuantity,
+            dishes: ingredientDishes,
+          };
+        }
+      });
     });
   });
   return sectionIngredients;
 };
 
-const buildIngredientSections = (dishes, people = 1) => {
-  const sections = INGREDIENT_TYPES.map(({ value }) => {
-    const sectionIngredients = getSectionIngredients(value, dishes, people);
-    return { name: value, ingredients: sectionIngredients };
+const buildIngredientSections = (week) => {
+  const { days, people } = week;
+  return INGREDIENT_TYPES.map(({ value, name }) => {
+    const sectionIngredients = getSectionIngredients(value, days, people);
+    return { value, name, ingredients: sectionIngredients };
   });
-
-  return sections;
 };
 
 export default buildIngredientSections;

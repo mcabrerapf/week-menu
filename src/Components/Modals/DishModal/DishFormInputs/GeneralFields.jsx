@@ -1,7 +1,7 @@
 /* eslint-disable no-restricted-globals */
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import { DISH_TYPES } from '../../../constants/DISHES';
+import { DISH_TYPES } from '../../../constants';
 import { MainContext } from '../../../../Contexts/MainContext';
 import Input from '../../../Input';
 import Button from '../../../Button';

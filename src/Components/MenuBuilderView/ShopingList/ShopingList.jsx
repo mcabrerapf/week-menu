@@ -7,36 +7,38 @@ import ShopingListSection from './ShopingListSection';
 import Button from '../../Button';
 import Icon from '../../Icon';
 
-function ShopingList({ menuDishes, menuPeople }) {
+function ShopingList({ week }) {
   const { addToast } = useContext(ToastContext);
-  const ingredienSections = buildIngredientSections(menuDishes, menuPeople);
+  const ingredienSections = buildIngredientSections(week);
 
   const handleCopyShopingList = () => {
     const shopingListItems = [];
-    Object.keys(ingredienSections).forEach((sectionKey) => {
-      const sectionData = ingredienSections[sectionKey];
-      sectionData.forEach((data) => {
-        const { name, quantity, unit } = data;
-        shopingListItems.push(`${name}: ${quantity}${unit}`);
+    ingredienSections.forEach(({ name, ingredients }, index) => {
+      if (!ingredients || !ingredients.length) return;
+      if (index !== 0)shopingListItems.push('\n');
+      shopingListItems.push(name);
+      shopingListItems.push('------');
+      ingredients.forEach((ingredient) => {
+        if (ingredient.checked) return;
+        const { name: iName, quantity, unit } = ingredient;
+        shopingListItems.push(`${iName}: ${quantity}${unit}`);
       });
     });
     navigator.clipboard.writeText(shopingListItems.join('\n'));
     addToast('Coppied shoping list to clipboard', 'info');
   };
 
-  if (!ingredienSections.length) return null;
-
   return (
-    <div className="h-f pad-5">
+    <div className="h-f">
       <div className="col h-f w-f border-rad-10 pad-15 bgc-b">
         <Button modifier="shopping-list-copy-button l icon" onClick={handleCopyShopingList}>
           <Icon iconName="copy" />
         </Button>
         <div className="col overflow-y gap-5 pad-l-5 font-s">
-          {ingredienSections.map(({ name, ingredients }) => {
+          {ingredienSections.map(({ value, ingredients }) => {
             if (!ingredients.length) return null;
             return (
-              <ShopingListSection key={name} name={name} ingredients={ingredients} />
+              <ShopingListSection key={value} name={value} ingredients={ingredients} />
             );
           })}
         </div>
@@ -47,14 +49,12 @@ function ShopingList({ menuDishes, menuPeople }) {
 }
 
 ShopingList.propTypes = {
-  menuDishes: PropTypes.arrayOf(PropTypes.shape()),
-  menuPeople: PropTypes.number,
+  week: PropTypes.shape(),
 
 };
 
 ShopingList.defaultProps = {
-  menuDishes: [],
-  menuPeople: 1,
+  week: {},
 };
 
 export default ShopingList;

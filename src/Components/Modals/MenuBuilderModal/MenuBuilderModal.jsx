@@ -1,10 +1,9 @@
 /* eslint-disable max-len */
 import React, { useState, useEffect, useContext } from 'react';
-import { FaCheck } from 'react-icons/fa6';
 import PropTypes from 'prop-types';
-import './BuildMenuModal.css';
+import './MenuBuilderModal.css';
 import Button from '../../Button';
-import { buildMenuWeeks, deepCopy } from '../../helpers';
+import { buildMenu, deepCopy } from '../../helpers';
 import { initMenuOptions, getMealMinMax } from './helpers';
 import QuantityInput from '../../QuantityInput';
 import { MainContext } from '../../../Contexts/MainContext';
@@ -12,10 +11,10 @@ import Icon from '../../Icon';
 import { BREAKFAST_STRING, DINNER_STRING, LUNCH_STRING } from '../../../constants';
 import { DAYS, DEFAULT_WEEK_SETTINGS } from '../../constants';
 
-function BuildMenuModal({
+function MenuBuilderModal({
   modalData, closeModal, onClose,
 }) {
-  const { dishes, setContextState } = useContext(MainContext);
+  const { dishes, currentMenu, setContextState } = useContext(MainContext);
   const [currentData, setCurrentData] = useState(null);
   const [dishesData, setDishesData] = useState(null);
   const [selectedWeekIndex, setSelectedWeekIndex] = useState(0);
@@ -41,8 +40,9 @@ function BuildMenuModal({
   const { days, mealLimits, people } = selectedWeek;
 
   const handleBuildMenu = () => {
-    const menuWeeks = buildMenuWeeks(dishes, currentData);
-    setContextState('currentMenu', { weeks: menuWeeks, menuOptions: currentData });
+    const menuWeeks = buildMenu(dishes, currentData);
+    setContextState('menuOptions', currentData);
+    setContextState('currentMenu', { ...currentMenu, weeks: menuWeeks });
     onClose();
     closeModal();
   };
@@ -229,7 +229,7 @@ function BuildMenuModal({
           onClick={handleBuildMenu}
           disabled={daysWithMeals === 0}
         >
-          <FaCheck />
+          <Icon iconName="check" />
         </Button>
       </div>
 
@@ -237,15 +237,15 @@ function BuildMenuModal({
   );
 }
 
-BuildMenuModal.propTypes = {
+MenuBuilderModal.propTypes = {
   closeModal: PropTypes.func.isRequired,
   onClose: PropTypes.func,
   modalData: PropTypes.shape(),
 };
 
-BuildMenuModal.defaultProps = {
+MenuBuilderModal.defaultProps = {
   onClose: null,
   modalData: {},
 };
 
-export default BuildMenuModal;
+export default MenuBuilderModal;
