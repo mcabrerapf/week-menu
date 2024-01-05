@@ -3,34 +3,9 @@ import PropTypes from 'prop-types';
 import Button from '../../Button';
 import Input from '../../Input';
 import { MainContext } from '../../../Contexts/MainContext';
-import { deepCopy, sortBy } from '../../helpers';
+import { deepCopy } from '../../helpers';
 import Icon from '../../Icon';
-import { SIDE_STRING } from '../../../constants';
-
-const getDishesAndSideDishes = (dishes, usedDishes) => {
-  const mainDishes = [];
-  const sideDishes = [];
-  dishes.forEach((dish) => {
-    const { id: dishId, types } = dish;
-    if (usedDishes.find(({ id: usedId }) => usedId === dishId)) return;
-    if (types.includes(SIDE_STRING)) sideDishes.push(dish);
-    else mainDishes.push(dish);
-  });
-  return [sortBy(mainDishes, 'name', 'alphabetical'), sortBy(sideDishes, 'name', 'alphabetical')];
-};
-
-const getMenuDishes = (selectedWeek) => {
-  const menuDishes = [];
-  const { days } = selectedWeek;
-  days.forEach(({ dishes }) => {
-    dishes.forEach((dish) => {
-      if (!dish) return;
-      const alreadyAdded = menuDishes.find((menuDish) => menuDish.id === dish.id);
-      if (!alreadyAdded)menuDishes.push(dish);
-    });
-  });
-  return menuDishes;
-};
+import { getDishesAndSideDishes } from './helpers';
 
 function MealModal({ modalData, closeModal, onClose }) {
   const { dishes: dishesFromContext, currentMenu } = useContext(MainContext);
@@ -46,18 +21,17 @@ function MealModal({ modalData, closeModal, onClose }) {
   const [selectedDishId, setSelectedDish] = useState();
   // const [selectedSideDish, setSelectedSideDish] = useState();
   // const [mode, setMode] = useState(id ? 'display' : 'edit');
-  const menuDishes = getMenuDishes(selectedWeek);
-  const [sortedDishes] = getDishesAndSideDishes(dishesCopy, menuDishes);
+  const [sortedDishes] = getDishesAndSideDishes(dishesCopy, dish);
 
   const handleButtonClick = (changeAll) => {
     const selectedDish = sortedDishes.find((sortedDish) => sortedDish.id === selectedDishId);
     const updatedDays = selectedWeek.days.map((day, dIndex) => {
       const { dishes } = day;
       const updatedDishes = dishes.map((dayDish, mIndex) => {
-        if (!dayDish) return null;
-        if (dayDish.id === dish.id) {
+        if (dayDish?.id === dish?.id) {
           if (changeAll) return selectedDish;
-        } if (dIndex === dayIndex && mIndex === mealIndex) return selectedDish;
+        }
+        if (dIndex === dayIndex && mIndex === mealIndex) return selectedDish;
         return dayDish;
       });
       return { ...day, dishes: updatedDishes };
