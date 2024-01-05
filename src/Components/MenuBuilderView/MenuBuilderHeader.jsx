@@ -15,11 +15,12 @@ import Icon from '../Icon';
 import { MENU_STRING } from '../../constants';
 
 function MenuBuilderHeader({
-  showBuildMenuModal, handleChangeView, handleBuildMenu, view, hasLoadedMenu,
+  openBuildMenuModal, handleChangeView, handleBuildMenu, view, hasLoadedMenu,
 }) {
   const { setContextState, currentMenu: { weeks } } = useContext(MainContext);
   const { addModal } = useContext(ModalContext);
   const { addToast } = useContext(ToastContext);
+
   const checkView = () => {
     const newView = view === 0 ? 1 : 0;
     handleChangeView(newView);
@@ -47,7 +48,7 @@ function MenuBuilderHeader({
     <div className="header top row">
       <Button
         modifier="icon"
-        onClick={showBuildMenuModal}
+        onClick={openBuildMenuModal}
       >
         <Icon iconName="settings" />
       </Button>
@@ -80,7 +81,7 @@ function MenuBuilderHeader({
 
 MenuBuilderHeader.propTypes = {
   view: PropTypes.number.isRequired,
-  showBuildMenuModal: PropTypes.func.isRequired,
+  openBuildMenuModal: PropTypes.func.isRequired,
   handleChangeView: PropTypes.func.isRequired,
   handleBuildMenu: PropTypes.func.isRequired,
   hasLoadedMenu: PropTypes.bool.isRequired,

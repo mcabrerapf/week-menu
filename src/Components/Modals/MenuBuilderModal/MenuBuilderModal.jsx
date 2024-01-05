@@ -14,7 +14,7 @@ import { DAYS, DEFAULT_WEEK_SETTINGS } from '../../constants';
 function MenuBuilderModal({
   modalData, closeModal, onClose,
 }) {
-  const { dishes, currentMenu, setContextState } = useContext(MainContext);
+  const { dishes, currentMenu } = useContext(MainContext);
   const [currentData, setCurrentData] = useState(null);
   const [dishesData, setDishesData] = useState(null);
   const [selectedWeekIndex, setSelectedWeekIndex] = useState(0);
@@ -41,9 +41,7 @@ function MenuBuilderModal({
 
   const handleBuildMenu = () => {
     const menuWeeks = buildMenu(dishes, currentData);
-    setContextState('menuOptions', currentData);
-    setContextState('currentMenu', { ...currentMenu, weeks: menuWeeks });
-    onClose();
+    onClose({ ...currentMenu, weeks: menuWeeks }, currentData);
     closeModal();
   };
 

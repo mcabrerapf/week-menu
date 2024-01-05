@@ -16,7 +16,7 @@ function MenuBuilderView() {
     menuOptions,
     currentMenu: { weeks },
     currentMenu,
-    setContextState,
+    updateCurrentMenu,
   } = useContext(MainContext);
   const { addModal } = useContext(ModalContext);
   const [view, setView] = useState(0);
@@ -28,8 +28,7 @@ function MenuBuilderView() {
   const handleBuildMenu = () => {
     const newWeeks = buildMenu(dishesFromContext, menuOptions);
     if (!newWeeks.length) return;
-    setContextState('menuOptions', menuOptions);
-    setContextState('currentMenu', { ...currentMenu, weeks: newWeeks });
+    updateCurrentMenu({ ...currentMenu, weeks: newWeeks });
     setView(0);
     setSelectedWeekIndex(0);
   };
@@ -42,7 +41,8 @@ function MenuBuilderView() {
     addModal({
       type: MENU_BUILDER_STRING,
       modalData: menuOptions,
-      onClose: () => {
+      onClose: (updatedMenu, updatedOptions) => {
+        updateCurrentMenu(updatedMenu, updatedOptions);
         setView(0);
         setSelectedWeekIndex(0);
       },
@@ -55,7 +55,7 @@ function MenuBuilderView() {
     if (!updateData) return;
     const updatedWeeks = deepCopy(weeks);
     updatedWeeks[selectedWeekIndex] = updateData;
-    setContextState('currentMenu', { ...currentMenu, weeks: updatedWeeks });
+    updateCurrentMenu({ ...currentMenu, weeks: updatedWeeks });
   };
 
   const handleWeekChange = (increase) => {
@@ -68,7 +68,7 @@ function MenuBuilderView() {
       <MenuBuilderHeader
         view={view}
         hasLoadedMenu={hasLoadedMenu}
-        showBuildMenuModal={openBuildMenuModal}
+        openBuildMenuModal={openBuildMenuModal}
         handleChangeView={handleChangeView}
         handleBuildMenu={handleBuildMenu}
       />

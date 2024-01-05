@@ -7,11 +7,11 @@ import { filterList, getListData } from './helpers';
 import ListItem from './ListItem';
 import ListFilters from './ListFilters';
 import Icon from '../Icon';
-import { MENU_BUILDER_STRING, MENU_STRING } from '../../constants';
+import { MENU_STRING } from '../../constants';
 
 function List() {
   const {
-    view, setContextState, ...contextProps
+    view, updateCurrentMenu, ...contextProps
   } = useContext(MainContext);
   const { addModal } = useContext(ModalContext);
   const [searchValue, setSearchValue] = useState('');
@@ -28,7 +28,7 @@ function List() {
   };
 
   const handleLoadMenu = async (menuData) => {
-    setContextState('currentMenu', menuData, MENU_BUILDER_STRING);
+    updateCurrentMenu(menuData);
   };
 
   const listData = getListData(view, contextProps);

@@ -10,6 +10,7 @@ import {
   DELETE_STRING,
   UPDATE_STRING,
   CREATE_STRING,
+  MENU_BUILDER_STRING,
 } from '../../constants';
 import { buildDishesWithIngredients, buildMenusWithDishes, sortBy } from '../../Components/helpers';
 import { ToastContext } from '../ToastContext';
@@ -100,6 +101,14 @@ function MainContextWrapper({ children }) {
     setContextState(updatedContext);
   };
 
+  const updateCurrentMenu = (newMenu, newOptions) => {
+    if (!newMenu && !newOptions) return;
+    const updatedContext = { ...contextState, view: MENU_BUILDER_STRING };
+    if (newMenu)updatedContext.currentMenu = newMenu;
+    if (newOptions)updatedContext.menuOptions = newOptions;
+    setContextState(updatedContext);
+  };
+
   const handleSave = async (data, serviceName, callback = () => {}) => {
     const serviceString = data.id ? UPDATE_STRING : CREATE_STRING;
     const serviceToUse = serviceHandler(serviceString);
@@ -132,6 +141,7 @@ function MainContextWrapper({ children }) {
       ...contextState,
       setContextState: stateHandler,
       updateList,
+      updateCurrentMenu,
       handleDelete,
       handleSave,
     }}
