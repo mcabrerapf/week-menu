@@ -66,7 +66,7 @@ function MenuModal({ modalData, closeModal }) {
         </Button>
       </div>
       <ul className="days-list col gap-5 overflow-y">
-        {days.map((day, index) => (
+        {days.map(({ dishes }, index) => (
           <div key={DAYS[index][2]} className="row gap-5">
             <div className="day-label row label border-r">
               <span className="day-label upright-text label">
@@ -74,7 +74,7 @@ function MenuModal({ modalData, closeModal }) {
               </span>
             </div>
             <div>
-              {day.map((dish, mealIndex) => (
+              {dishes.map((dish, mealIndex) => (
                 <li
                   // eslint-disable-next-line react/no-array-index-key
                   key={mealIndex}

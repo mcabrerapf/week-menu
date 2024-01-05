@@ -1,12 +1,16 @@
+type MenuSideDishType {
+  id: ID
+}
+
 type MenuWeekType {
-  dishes: [MenuDishType]
+  days: [MenuDishType]
+  mealLimits: [Int]
+  people: Int
 }
 
 type MenuDishType {
   id: ID
-  days: [Int]
-  useAs: String
-  sideDishesToUse: [ID]
+  sideDishesToUse: [MenuSideDishType]
 }
 
 type TimeType {
@@ -56,12 +60,10 @@ type Menu @model @auth(rules: [{allow: owner}]) {
   id: ID!
   name: String!
   favourite: Boolean
-  dishes: [MenuDishType!]
   description: String
   tags: [String]
   dessert: [ID]
   snacks: [ID]
-  testfield: String
   weeks: [MenuWeekType]
 }
  

@@ -2,8 +2,8 @@ import { INGREDIENT_TYPES } from '../constants';
 
 const getSectionIngredients = (sectionName, days, people) => {
   const sectionIngredients = [];
-  days.forEach((day) => {
-    day.forEach((dish) => {
+  days.forEach(({ dishes }) => {
+    dishes.forEach((dish) => {
       if (!dish) return;
       const {
         ingredients, servings, name: dishName, id: dishId,

@@ -9,11 +9,11 @@ const populateSideDishes = (dish, dishes) => {
     .filter(({ sideDishTo }) => !!sideDishTo && !!sideDishTo
       .filter((sideId) => sideId === id).length);
 
-  if (!sideDishes || !sideDishes.length) return { ...dish, sideDishesToUse: [], days: [] };
+  if (!sideDishes || !sideDishes.length) return { ...dish, sideDishesToUse: [] };
   const rIndex = generateRandomNumber(0, sideDishes.length);
   const randomSideDish = sideDishes[rIndex];
 
-  return { ...dish, days: [], sideDishesToUse: [randomSideDish] };
+  return { ...dish, sideDishesToUse: [randomSideDish] };
 };
 
 const getRandomDishByType = (type, dishes) => {
@@ -49,7 +49,7 @@ const buildWeek = (week, dishes) => {
   const mealCounters = [0, 0, 0];
 
   const builtDays = days.map((day) => {
-    const builtDay = day
+    const dayDishes = day
       .map((needsDish, mealIndex) => {
         if (!needsDish) return null;
         const mealOptions = meals[mealIndex];
@@ -63,7 +63,7 @@ const buildWeek = (week, dishes) => {
         return mealToUse;
       });
 
-    return builtDay;
+    return { dishes: dayDishes };
   });
   return ({ days: builtDays, people, mealLimits });
 };

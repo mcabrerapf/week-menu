@@ -5,27 +5,28 @@ const buildMenusWithDishes = (menus, allDishes) => {
     .map((menu) => {
       const { weeks } = menu;
       const parsedWeeks = weeks.map((week) => {
-        const { dishes } = week;
-        const parsedDishes = dishes.map((dish) => {
-          const {
-            id: dishId,
-            useAs,
-            days,
-            sideDishesToUse,
-          } = dish;
-          const dishMatch = allDishes
-            .find(({ id: idToCheck }) => idToCheck === dishId) || {};
-          const populatedSideDishes = !sideDishesToUse ? [] : sideDishesToUse
-            .map((sideDishId) => allDishes.find(({ id: idToCheck }) => idToCheck === sideDishId));
+        const { days } = week;
+        const builtDays = days.map(({ dishes }) => {
+          const parsedDishes = dishes.map((dish) => {
+            const {
+              id: dishId,
+              sideDishesToUse,
+            } = dish;
+            const dishMatch = allDishes
+              .find(({ id: idToCheck }) => idToCheck === dishId) || {};
+            const populatedSideDishes = !sideDishesToUse ? [] : sideDishesToUse
+              .map((sideDishId) => allDishes.find(({ id: idToCheck }) => idToCheck === sideDishId));
 
-          return {
-            ...dishMatch,
-            useAs,
-            days,
-            sideDishesToUse: populatedSideDishes,
-          };
+            return {
+              ...dishMatch,
+              days,
+              sideDishesToUse: populatedSideDishes,
+            };
+          });
+          return { dishes: parsedDishes };
         });
-        return { ...week, dishes: parsedDishes };
+
+        return { ...week, days: builtDays };
       });
 
       return { ...menu, weeks: parsedWeeks };

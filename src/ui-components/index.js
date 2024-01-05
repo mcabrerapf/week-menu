@@ -8,4 +8,6 @@ export { default as DishCreateForm } from "./DishCreateForm";
 export { default as DishUpdateForm } from "./DishUpdateForm";
 export { default as IngredientCreateForm } from "./IngredientCreateForm";
 export { default as IngredientUpdateForm } from "./IngredientUpdateForm";
+export { default as MenuCreateForm } from "./MenuCreateForm";
+export { default as MenuUpdateForm } from "./MenuUpdateForm";
 export { default as studioTheme } from "./studioTheme";

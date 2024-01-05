@@ -24,7 +24,7 @@ function Week({
 
   return (
     <div className="col w-f h-f overflow-y font-s gap-5">
-      {days.map((day, index) => (
+      {days.map(({ dishes }, index) => (
         <div key={DAYS[index][2]} className="row h-f border-rad-5 bgc-b">
           <div className="day-label row label border-r centered">
             <span className="day-label upright-text label">
@@ -32,7 +32,7 @@ function Week({
             </span>
           </div>
           <div className="col w-f">
-            {day.map((dish, mealIndex) => (
+            {dishes.map((dish, mealIndex) => (
               <div
                 // eslint-disable-next-line react/no-array-index-key
                 key={mealIndex}
