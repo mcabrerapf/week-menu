@@ -49,7 +49,8 @@ function NewIngredientForm({
             .map(({ value }) => (
               <Button
                 key={value}
-                modifier={type === value ? 'l' : 'l bgc-gr'}
+                modifier="l"
+                fakeDisabled={type !== value}
                 name="type"
                 value={value}
                 onClick={() => handleOnClick(value, 'type')}
@@ -63,7 +64,8 @@ function NewIngredientForm({
             .map(({ value, name: uName }) => (
               <Button
                 key={value}
-                modifier={unit === value ? 'l' : 'l bgc-gr'}
+                modifier="l"
+                fakeDisabled={unit !== value}
                 name="unit"
                 value={value}
                 buttonText={uName}

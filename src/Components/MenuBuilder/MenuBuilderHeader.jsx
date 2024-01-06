@@ -10,7 +10,7 @@ import Icon from '../Icon';
 function MenuBuilderHeader({
   openBuildMenuModal, handleChangeView, handleBuildMenu, view, hasLoadedMenu,
 }) {
-  const { setContextState, currentMenu: { weeks } } = useContext(MainContext);
+  const { setContextState, currentMenu } = useContext(MainContext);
   const { addModal } = useContext(ModalContext);
   const { addToast } = useContext(ToastContext);
 
@@ -32,7 +32,7 @@ function MenuBuilderHeader({
   const handleSaveClick = () => {
     addModal({
       type: MENU_STRING,
-      modalData: { weeks },
+      modalData: currentMenu,
       modifier: 'full',
     });
   };

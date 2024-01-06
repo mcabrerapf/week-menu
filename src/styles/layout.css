@@ -164,6 +164,21 @@
 	padding-bottom: 5px;
 }
 
+.pad-v-10 {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.pad-h-5 {
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.pad-h-10 {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
 .pad-h-15 {
 	padding-left: 15px;
 	padding-right: 15px;

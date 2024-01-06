@@ -87,7 +87,8 @@ function GeneralFields({
               .map(({ id: typeId }) => (
                 <Button
                   key={typeId}
-                  modifier={types.includes(typeId) ? 'icon m' : 'icon m bgc-gr'}
+                  fakeDisabled={!types.includes(typeId)}
+                  modifier="icon m"
                   value={typeId}
                   onClick={() => toggleType(typeId)}
                 >

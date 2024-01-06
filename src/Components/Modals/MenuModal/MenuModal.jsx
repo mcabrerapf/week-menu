@@ -19,7 +19,6 @@ function MenuModal({ modalData, closeModal }) {
   const [menuData, setMenuData] = useState(initData(modalData, MENU_STRING));
   const [selectedWeekIndex, setSelectedWeekIndex] = useState(0);
   const { weeks } = menuData;
-  const favouriteButtonClass = `m icon${menuData.favourite ? '' : ' bgc-gr'}`;
   const { days } = weeks[selectedWeekIndex];
 
   const saveMenu = async () => {
@@ -27,19 +26,22 @@ function MenuModal({ modalData, closeModal }) {
     await handleSave(parsedData, MENU_STRING, closeModal);
   };
 
+  const { name, favourite } = menuData;
+
   return (
     <div className="menu-modal-content col gap-10 pad-10">
       <div className="row centered gap-10">
         <Input
           name="name"
           id="name"
-          value={menuData.name}
+          value={name}
           onChange={({ target: { value: eVal } }) => setMenuData({ ...menuData, name: eVal })}
           type="text"
         />
         <Button
-          modifier={favouriteButtonClass}
-          onClick={() => setMenuData({ ...menuData, favourite: !menuData.favourite })}
+          modifier="m icon"
+          fakeDisabled={!favourite}
+          onClick={() => setMenuData({ ...menuData, favourite: !favourite })}
         >
           <Icon iconName="star" />
         </Button>
@@ -90,7 +92,7 @@ function MenuModal({ modalData, closeModal }) {
         ))}
       </ul>
       <div className="col">
-        <Button modifier="icon" onClick={saveMenu} disabled={!menuData.name} disableMultipleClicks>
+        <Button modifier="icon" onClick={saveMenu} disabled={!name} disableMultipleClicks>
           <Icon iconName="save" />
         </Button>
       </div>

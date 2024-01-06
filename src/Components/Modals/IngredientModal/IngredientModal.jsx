@@ -50,7 +50,8 @@ function IngredientModal({
             .map(({ value }) => (
               <Button
                 key={value}
-                modifier={type === value ? 'icon-l l' : 'icon-l l bgc-gr'}
+                modifier="icon l"
+                fakeDisabled={type !== value}
                 name="type"
                 value={value}
                 onClick={() => handleOnClick(value, 'type')}
@@ -64,7 +65,8 @@ function IngredientModal({
             .map(({ value, name: uName }) => (
               <Button
                 key={value}
-                modifier={unit === value ? 'l' : 'l bgc-gr'}
+                modifier="l"
+                fakeDisabled={unit !== value}
                 name="unit"
                 value={value}
                 buttonText={uName}

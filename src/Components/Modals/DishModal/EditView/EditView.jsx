@@ -13,19 +13,22 @@ function EditView({ dishData, setDishData, handleSubmit }) {
     <>
       <div className="header row">
         <Button
-          modifier={`icon${fieldsView !== 0 ? ' bgc-gr' : ''}`}
+          modifier="icon"
+          fakeDisabled={fieldsView !== 0}
           onClick={() => setFieldsView(0)}
         >
           <Icon iconName="info" />
         </Button>
         <Button
-          modifier={`icon${fieldsView !== 1 ? ' bgc-gr' : ''}`}
+          modifier="icon"
+          fakeDisabled={fieldsView !== 1}
           onClick={() => setFieldsView(1)}
         >
           <Icon iconName="ingredient" />
         </Button>
         <Button
-          modifier={`icon${fieldsView !== 2 ? ' bgc-gr' : ''}`}
+          modifier="icon"
+          fakeDisabled={fieldsView !== 2}
           onClick={() => setFieldsView(2)}
         >
           <Icon iconName="list" />

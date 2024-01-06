@@ -52,7 +52,8 @@ function AddIngredientsView({
         </div>
         <div className="row centered wrap gap-5">
           <Button
-            modifier={selectedType === '' ? 'l' : 'l bgc-gr'}
+            modifier="l"
+            fakeDisabled={selectedType !== ''}
             buttonText="All"
             onClick={() => setSelectedType('')}
           />
@@ -61,7 +62,8 @@ function AddIngredientsView({
               <Button
                 key={value}
                 value={value}
-                modifier={selectedType === value ? 'l' : 'l bgc-gr'}
+                modifier="l"
+                fakeDisabled={selectedType !== value}
                 onClick={() => setSelectedType(value)}
               >
                 <Icon iconName={value} />
@@ -76,7 +78,8 @@ function AddIngredientsView({
               <Button
                 key={ingredientOption.id}
                 value={ingredientOption.id}
-                modifier={isSelected ? 'w-a' : 'w-a bgc-gr'}
+                modifier="w-a"
+                fakeDisabled={!isSelected}
                 buttonText={ingredientOption.name}
                 onClick={() => handleIngredientSelect(ingredientOption.id, isSelected)}
               />

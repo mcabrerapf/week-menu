@@ -1,8 +1,5 @@
 .list-item {
 	cursor: pointer;
-	align-items: center;
-	height: 3rem;
-	padding: 5px 10px;
 }
 
 .list-item-label {

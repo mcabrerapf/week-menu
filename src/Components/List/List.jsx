@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import './List.css';
 import { MENU_STRING } from '../../constants/STRINGS';
 import { MainContext, ModalContext } from '../../Contexts';
@@ -15,6 +15,11 @@ function List() {
   const { addModal } = useContext(ModalContext);
   const [searchValue, setSearchValue] = useState('');
   const [filterValue, setFilterValue] = useState('');
+
+  useEffect(() => {
+    setSearchValue('');
+    setFilterValue('');
+  }, [view]);
 
   const handleOpenModal = (type, mode, data, modifier) => {
     addModal({
@@ -41,7 +46,7 @@ function List() {
         searchValue={searchValue}
         filterValue={filterValue}
       />
-      <ul className="list col w-f overflow-y gap-5">
+      <ul className="list col a-c w-f overflow-y gap-5">
         {filteredList.map((listItem) => (
           <ListItem
             key={listItem.id}
@@ -61,7 +66,6 @@ function List() {
         </Button>
         )}
       </ul>
-
     </div>
   );
 }

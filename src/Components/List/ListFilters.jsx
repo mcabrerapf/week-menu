@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+import { getFilterOptions } from './helpers';
 import { MainContext } from '../../Contexts';
 import Input from '../Input';
-import { getFilterOptions } from './helpers';
 
 function ListFilters({
   setFilterValue, setSearchValue, searchValue, filterValue,
@@ -10,10 +10,11 @@ function ListFilters({
   const {
     view,
   } = useContext(MainContext);
+
   const filterOptions = getFilterOptions(view);
 
   return (
-    <div className="list-filters w-f centered top pad-5">
+    <div className="row w-f centered top a-c gap-5 h-3 pad-5">
       <Input
         type="search"
         modifier="list-search-filter"

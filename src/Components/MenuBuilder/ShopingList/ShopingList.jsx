@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import { ToastContext } from '../../../Contexts';
-import { buildIngredientSections } from '../../helpers';
 import './ShopingList.css';
+import { buildIngredientSections } from '../../helpers';
+import { ToastContext } from '../../../Contexts';
 import ShopingListSection from './ShopingListSection';
 import Button from '../../Button';
 import Icon from '../../Icon';
@@ -35,12 +35,9 @@ function ShopingList({ week }) {
           <Icon iconName="copy" />
         </Button>
         <div className="col overflow-y gap-5 pad-l-5 font-s">
-          {ingredienSections.map(({ value, ingredients }) => {
-            if (!ingredients.length) return null;
-            return (
-              <ShopingListSection key={value} name={value} ingredients={ingredients} />
-            );
-          })}
+          {ingredienSections.map(({ value, ingredients }) => (
+            <ShopingListSection key={value} name={value} ingredients={ingredients} />
+          ))}
         </div>
       </div>
     </div>

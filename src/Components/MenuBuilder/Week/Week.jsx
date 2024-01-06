@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { DAYS, DAY_DISH_TYPES } from '../../../constants/MENU';
 import Icon from '../../Icon';
 import { ModalContext } from '../../../Contexts';
+import { MEAL_STRING } from '../../../constants/STRINGS';
 
 function Week({
   week, selectedWeekIndex, handleUpdateWeek,
@@ -14,7 +15,7 @@ function Week({
 
   const openMealModal = (modalData) => {
     addModal({
-      type: 'meal',
+      type: MEAL_STRING,
       modalData: { ...modalData, week },
       onClose: handleUpdateWeek,
       hideHeader: true,

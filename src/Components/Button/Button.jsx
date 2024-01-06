@@ -15,10 +15,12 @@ function Button({
   children,
   value,
   disabled,
+  fakeDisabled,
   name,
   disableMultipleClicks,
 }) {
-  const baseClassName = `button row label w-f centered border-rad-5 bgc-b pad-5${disabled ? ' bgc-gr' : ''}`;
+  const appendDisabledClass = disabled || fakeDisabled;
+  const baseClassName = `button row label w-f centered border-rad-5 bgc-b pad-5${appendDisabledClass ? ' bgc-gr' : ''}`;
   const [amountOfClicks, setAmountOfClicks] = useState(0);
 
   return (
@@ -66,6 +68,7 @@ Button.propTypes = {
   modifier: PropTypes.string,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
   disabled: PropTypes.bool,
+  fakeDisabled: PropTypes.bool,
   name: PropTypes.string,
   disableMultipleClicks: PropTypes.bool,
 };
@@ -82,6 +85,7 @@ Button.defaultProps = {
   children: null,
   value: '',
   disabled: false,
+  fakeDisabled: false,
   disableMultipleClicks: false,
   name: '',
 };

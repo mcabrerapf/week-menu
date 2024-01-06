@@ -1,13 +1,13 @@
 import './MenuBuilder.css';
 import React, { useState, useContext } from 'react';
-import { buildMenu, deepCopy } from '../helpers';
 import { MENU_BUILDER_STRING } from '../../constants/STRINGS';
-import MenuBuilderHeader from './MenuBuilderHeader';
+import { buildMenu, deepCopy } from '../helpers';
 import { MainContext, ModalContext } from '../../Contexts';
 import Button from '../Button';
 import Icon from '../Icon';
 import Week from './Week';
 import ShopingList from './ShopingList';
+import MenuBuilderHeader from './MenuBuilderHeader';
 
 function MenuBuilder() {
   const {
@@ -20,9 +20,6 @@ function MenuBuilder() {
   const { addModal } = useContext(ModalContext);
   const [view, setView] = useState(0);
   const [selectedWeekIndex, setSelectedWeekIndex] = useState(0);
-  const hasLoadedMenu = !!weeks && !!weeks.length;
-  const selectedWeek = hasLoadedMenu ? weeks[selectedWeekIndex] : {};
-  const showWeekButtons = hasLoadedMenu && weeks.length > 1;
 
   const handleBuildMenu = () => {
     const newWeeks = buildMenu(dishesFromContext, menuOptions);
@@ -61,6 +58,10 @@ function MenuBuilder() {
     if (increase && weeks[selectedWeekIndex + 1]) setSelectedWeekIndex(selectedWeekIndex + 1);
     if (!increase && selectedWeekIndex !== 0) setSelectedWeekIndex(selectedWeekIndex - 1);
   };
+
+  const hasLoadedMenu = !!weeks && !!weeks.length;
+  const showWeekButtons = hasLoadedMenu && weeks.length > 1;
+  const selectedWeek = hasLoadedMenu ? weeks[selectedWeekIndex] : {};
 
   return (
     <>

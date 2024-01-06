@@ -57,10 +57,13 @@ const getSectionIngredients = (sectionName, days, people) => {
 
 const buildIngredientSections = (week) => {
   const { days, people } = week;
-  return INGREDIENT_TYPES.map(({ value, name }) => {
-    const sectionIngredients = getSectionIngredients(value, days, people);
-    return { value, name, ingredients: sectionIngredients };
-  });
+  return INGREDIENT_TYPES
+    .map(({ value, name }) => {
+      const sectionIngredients = getSectionIngredients(value, days, people);
+      if (!sectionIngredients.length) return null;
+      return { value, name, ingredients: sectionIngredients };
+    })
+    .filter(Boolean);
 };
 
 export default buildIngredientSections;

@@ -3,6 +3,8 @@ export const GET_ALL_STRING = 'getAll';
 export const UPDATE_STRING = 'update';
 export const DELETE_STRING = 'delete';
 export const CREATE_STRING = 'create';
+export const EDIT_STRING = 'edit';
+export const DISPLAY_STRING = 'display';
 
 export const INGREDIENT_STRING = 'ingredient';
 export const DISH_STRING = 'dish';

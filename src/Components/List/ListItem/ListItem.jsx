@@ -4,7 +4,9 @@ import PropTypes from 'prop-types';
 import './ListItem.css';
 import { capitalizeFirstLetter } from '../../helpers';
 import Button from '../../Button';
-import { DISH_STRING, MENU_STRING } from '../../../constants/STRINGS';
+import {
+  DISH_STRING, MENU_STRING, EDIT_STRING, DELETE_STRING, DISPLAY_STRING,
+} from '../../../constants/STRINGS';
 import Icon from '../../Icon';
 
 function ListItem({
@@ -15,11 +17,11 @@ function ListItem({
   } = itemData;
   const parsedLabel = capitalizeFirstLetter(name);
   const typeToUse = types ? types[0] : type;
-  const defaultModalView = modifier === DISH_STRING ? 'display' : 'edit';
+  const defaultModalView = modifier === DISH_STRING ? DISPLAY_STRING : EDIT_STRING;
 
   return (
     <li
-      className="list-item row w-f j-bet bgc-b border-rad-10"
+      className="list-item row h-3 w-f a-c j-bet pad-v-10 pad-h-5 border-rad-10 bgc-b"
       role="button"
       tabIndex={0}
       onClick={() => handleOpenModal(modifier, defaultModalView, itemData)}
@@ -29,12 +31,12 @@ function ListItem({
         className="list-item-label column label overflow-y-h"
       >
         {parsedLabel}
-
       </div>
       <div className="row">
         {typeToUse && (
         <Button
           modifier="l icon"
+          onClick={() => handleOpenModal(modifier, EDIT_STRING, itemData)}
         >
           <Icon iconName={typeToUse} />
         </Button>
@@ -42,7 +44,7 @@ function ListItem({
         {favourite && (
         <Button
           modifier="l icon"
-          onClick={() => {}}
+          onClick={() => handleOpenModal(modifier, EDIT_STRING, itemData)}
         >
           <Icon iconName="star" />
         </Button>
@@ -59,14 +61,14 @@ function ListItem({
         {modifier === DISH_STRING && (
         <Button
           modifier="l icon"
-          onClick={() => handleOpenModal(modifier, 'edit', itemData)}
+          onClick={() => handleOpenModal(modifier, EDIT_STRING, itemData)}
         >
           <Icon iconName="edit" />
         </Button>
         )}
         <Button
           modifier="l icon"
-          onClick={() => handleOpenModal('delete', 'delete', itemData, 's')}
+          onClick={() => handleOpenModal(DELETE_STRING, DELETE_STRING, itemData, 's')}
         >
           <Icon iconName="delete" />
         </Button>

@@ -124,21 +124,23 @@ function MenuBuilderModal({
       <div className="row j-around">
         <div className="menu-builder-day col gap-5">
           {days.map((day, index) => {
-            const name = DAYS[index][2];
+            const dayName = DAYS[index][2];
             const hasMeal = day[0] || day[1] || day[2];
 
             return (
-              <div key={name} className="row">
+              <div key={dayName} className="row">
                 <Button
                   value={index}
-                  modifier={`centered square l${hasMeal ? '' : ' bgc-gr'}`}
-                  buttonText={name}
+                  modifier="centered square l"
+                  fakeDisabled={!hasMeal}
+                  buttonText={dayName}
                   onClick={() => {
                     handleDayChange(hasMeal, index);
                   }}
                 />
                 <Button
-                  modifier={`centered square l icon${day[0] ? '' : ' bgc-gr'}`}
+                  modifier="centered square l icon"
+                  fakeDisabled={!day[0]}
                   value={day[0]}
                   disabled={availableBreakfasts === 0}
                   onClick={() => {
@@ -148,7 +150,8 @@ function MenuBuilderModal({
                   <Icon iconName="breakfast" />
                 </Button>
                 <Button
-                  modifier={`centered square l icon${day[1] ? '' : ' bgc-gr'}`}
+                  modifier="centered square l icon"
+                  fakeDisabled={!day[1]}
                   value={day[1]}
                   disabled={availableLunches === 0}
                   onClick={() => {
@@ -158,7 +161,8 @@ function MenuBuilderModal({
                   <Icon iconName="lunch" />
                 </Button>
                 <Button
-                  modifier={`centered square l icon${day[2] ? '' : ' bgc-gr'} ${name.toLowerCase()}`}
+                  modifier="centered square l icon"
+                  fakeDisabled={!day[2]}
                   value={day[2]}
                   disabled={availableDinners === 0}
                   onClick={() => {
