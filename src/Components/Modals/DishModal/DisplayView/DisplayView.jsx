@@ -57,7 +57,7 @@ function DisplayView({
             return (
               <div className="col">
                 <div
-                  className="row pad-5 gap-5 border-b"
+                  className="row pad-5 gap-5 w-10 border-b"
                 >
                   <Icon modifier="icon" iconName={value} />
                 </div>
