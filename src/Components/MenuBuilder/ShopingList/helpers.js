@@ -20,4 +20,20 @@ const copyShopingList = (ingredietnSections) => {
   navigator.clipboard.writeText(shopingListItems.join('\n'));
 };
 
-export { copyShopingList };
+const converIngredientUnitQuantity = (q, u) => {
+  if (q > 999) {
+    const parsedQUantity = (q / 1000).toFixed(1);
+    if (u === 'mg') return [parsedQUantity, 'g'];
+    if (u === 'g') return [parsedQUantity, 'kg'];
+    if (u === 'ml') return [parsedQUantity, 'l'];
+  }
+  if (q < 1) {
+    const parsedQUantity = (q * 1000).toFixed(0);
+    if (u === 'g') return [parsedQUantity, 'mg'];
+    if (u === 'kg') return [parsedQUantity, 'g'];
+    if (u === 'l') return [parsedQUantity, 'ml'];
+  }
+  return [q, u];
+};
+
+export { copyShopingList, converIngredientUnitQuantity };

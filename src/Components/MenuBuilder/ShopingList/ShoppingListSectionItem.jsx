@@ -5,22 +5,8 @@ import PropTypes from 'prop-types';
 import './ShopingList.css';
 import Input from '../../Input';
 import { capitalizeFirstLetter } from '../../helpers';
-
-// const checkUnitConversion = (q, u) => {
-//   if (q > 999) {
-//     const parsedQUantity = (q / 1000).toFixed(1);
-//     if (u === 'mg') return [parsedQUantity, 'g'];
-//     if (u === 'g') return [parsedQUantity, 'kg'];
-//     if (u === 'ml') return [parsedQUantity, 'l'];
-//   }
-//   if (q < 1) {
-//     const parsedQUantity = (q * 1000).toFixed(0);
-//     if (u === 'g') return [parsedQUantity, 'mg'];
-//     if (u === 'kg') return [parsedQUantity, 'g'];
-//     if (u === 'l') return [parsedQUantity, 'ml'];
-//   }
-//   return [q, u];
-// };
+import { INGREDIENT_UNITS_MATCHES } from '../../../constants/INGREDIENT';
+import { converIngredientUnitQuantity } from './helpers';
 
 function ShopingListSectionItem({
   ingredient,
@@ -34,11 +20,13 @@ function ShopingListSectionItem({
   } = ingredient;
 
   const parsedName = capitalizeFirstLetter(name);
-  const parsedLabel = `${capitalizeFirstLetter(name)} (${quantity}${unit})`;
+  const [convertedQuantity, convertedUnit] = converIngredientUnitQuantity(quantity, unit);
+  const parsedUnit = INGREDIENT_UNITS_MATCHES[convertedUnit];
+  const parsedLabel = `${name}(${quantity}${parsedUnit})`;
 
   return (
     <div
-      className="shoping-list-item row a-c gap-5"
+      className="shoping-list-section-item row a-c gap-5"
     >
       <Input
         id={parsedLabel}
@@ -48,7 +36,7 @@ function ShopingListSectionItem({
         onChange={() => updatedShopingList(index, sectionIndex)}
       />
       <span
-        className={checked ? 'strike' : ''}
+        className={checked ? 'pad-l-5 strike' : 'pad-l-5'}
         role="button"
         tabIndex={0}
         onClick={() => handleOnClick(ingredient)}
@@ -58,8 +46,8 @@ function ShopingListSectionItem({
 
       </span>
       <span className="label">
-        {quantity}
-        {unit}
+        {convertedQuantity}
+        {convertedUnit}
       </span>
     </div>
   );

@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import './DisplayView.css';
 import Button from '../../../Button';
 import Icon from '../../../Icon';
+import { INGREDIENT_UNITS_MATCHES } from '../../../../constants/INGREDIENT';
 
 function DisplayView({
   dishData,
@@ -57,7 +58,7 @@ function DisplayView({
                   <span>{ingName}</span>
                   <span className="label">
                     {quantity}
-                    {ingUnit}
+                    {INGREDIENT_UNITS_MATCHES[ingUnit]}
                   </span>
 
                 </li>

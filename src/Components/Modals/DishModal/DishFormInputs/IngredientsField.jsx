@@ -13,7 +13,6 @@ function IngredientsField({
   const sortedIngredients = sortBy(ingredients, 'name', 'alphabetical');
   return (
     <div className="dish-modal-ingredients-list col overflow-y gap-5">
-      {!sortedIngredients.length && <div>No ingredients...</div>}
       {sortedIngredients.map((currentIngredient) => {
         const {
           id, name, quantity, unit,

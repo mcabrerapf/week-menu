@@ -1,45 +1,62 @@
+const INGREDIENT_UNITS_MATCHES = {
+  u: 'u',
+  mg: 'mg',
+  g: 'g',
+  kg: 'kg',
+  l: 'l',
+  ml: 'ml',
+  lb: 'lb',
+  oz: 'oz',
+  tsp: 'cdta',
+  tbsp: 'cda',
+  pt: 'pt',
+  cup: 'tz',
+  qt: 'ct',
+  doz: 'dz',
+};
+
 const INGREDIENT_UNITS = [
   {
-    value: 'u', name: 'U',
+    value: 'u', name: 'U', shortLabel: 'u',
   },
   {
-    value: 'mg', name: 'Mg',
+    value: 'mg', name: 'Mg', shortLabel: 'mg',
   },
   {
-    value: 'g', name: 'G',
+    value: 'g', name: 'G', shortLabel: 'g',
   },
   {
-    value: 'kg', name: 'K',
+    value: 'kg', name: 'K', shortLabel: 'kg',
   },
   {
-    value: 'l', name: 'L',
+    value: 'l', name: 'L', shortLabel: 'l',
   },
   {
-    value: 'ml', name: 'Ml',
+    value: 'ml', name: 'Ml', shortLabel: 'ml',
   },
   {
-    value: 'lb', name: 'Lb',
+    value: 'lb', name: 'Lb', shortLabel: 'lb',
   },
   {
-    value: 'oz', name: 'Oz',
+    value: 'oz', name: 'Oz', shortLabel: 'oz',
   },
   {
-    value: 'tsp', name: 'Cdita',
+    value: 'tsp', name: 'Cdta', shortLabel: 'cdta',
   },
   {
-    value: 'tbsp', name: 'Cda',
+    value: 'tbsp', name: 'Cda', shortLabel: 'cda',
   },
   {
-    value: 'pt', name: 'Pt',
+    value: 'pt', name: 'Pt', shortLabel: 'pt',
   },
   {
-    value: 'cup', name: 'Tz',
+    value: 'cup', name: 'Tz', shortLabel: 'tz',
   },
   {
-    value: 'qt', name: 'Ct',
+    value: 'qt', name: 'Ct', shortLabel: 'ct',
   },
   {
-    value: 'doz', name: 'Dz',
+    value: 'doz', name: 'Dc', shortLabel: 'dz',
   },
 ];
 
@@ -70,4 +87,4 @@ const INGREDIENT_TYPES = [
   },
 ];
 
-export { INGREDIENT_UNITS, INGREDIENT_TYPES };
+export { INGREDIENT_UNITS, INGREDIENT_TYPES, INGREDIENT_UNITS_MATCHES };

@@ -6,3 +6,7 @@
 .shoping-list-section {
 	width: 15rem;
 }
+
+.shoping-list-section-item {
+	cursor: pointer;
+}

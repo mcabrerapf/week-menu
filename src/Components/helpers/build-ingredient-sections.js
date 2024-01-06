@@ -1,4 +1,5 @@
 import { INGREDIENT_TYPES } from '../../constants/INGREDIENT';
+import sortBy from './sort-by';
 
 const getSectionIngredients = (sectionName, days, people) => {
   const sectionIngredients = [];
@@ -63,7 +64,7 @@ const buildIngredientSections = (week) => {
     .map(({ value, name }) => {
       const sectionIngredients = getSectionIngredients(value, days, people);
       if (!sectionIngredients.length) return null;
-      return { value, name, ingredients: sectionIngredients };
+      return { value, name, ingredients: sortBy(sectionIngredients) };
     })
     .filter(Boolean);
 };

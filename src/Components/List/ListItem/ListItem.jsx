@@ -15,22 +15,24 @@ function ListItem({
   const {
     name, type, types, favourite,
   } = itemData;
+
+  // const truncated = name.length > 30 ? `${name.substring(0, 27)}...` : name;
   const parsedLabel = capitalizeFirstLetter(name);
   const typeToUse = types ? types[0] : type;
   const defaultModalView = modifier === DISH_STRING ? DISPLAY_STRING : EDIT_STRING;
 
   return (
     <li
-      className="list-item row h-3 w-f a-c j-bet pad-v-10 pad-h-5 border-rad-10 bgc-b"
+      className="list-item row h-3 w-f a-c j-bet pad-v-5 pad-h-10 border-rad-10 bgc-b"
       role="button"
       tabIndex={0}
       onClick={() => handleOpenModal(modifier, defaultModalView, itemData)}
       onKeyDown={() => handleOpenModal(modifier, defaultModalView, itemData)}
     >
       <div
-        className="list-item-label column label overflow-y-h"
+        className="list-item-label column label"
       >
-        {parsedLabel}
+        <span>{parsedLabel}</span>
       </div>
       <div className="row">
         {typeToUse && (

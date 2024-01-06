@@ -3,6 +3,8 @@
 }
 
 .list-item-label {
+	overflow: hidden;
+	width: 70%;
 	white-space: nowrap;
 	text-overflow: ellipsis;
 }

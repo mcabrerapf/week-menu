@@ -9,7 +9,7 @@ function getSortValue(item, itemKey, sorttype) {
   }
 }
 
-export default function sortBy(items, itemKey, sortType) {
+export default function sortBy(items, itemKey = 'name', sortType = 'alphabetical') {
   return items.sort((a, b) => {
     if (getSortValue(a, itemKey, sortType) < getSortValue(b, itemKey, sortType)) return -1;
     if (getSortValue(a, itemKey, sortType) > getSortValue(b, itemKey, sortType)) return 1;
