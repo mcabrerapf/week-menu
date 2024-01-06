@@ -5,6 +5,7 @@ import MenuModal from '../../Components/Modals/MenuModal';
 import IngredientModal from '../../Components/Modals/IngredientModal';
 import DishModal from '../../Components/Modals/DishModal';
 import DeleteModal from '../../Components/Modals/DeleteModal';
+import ListFiltersModal from '../../Components/Modals/ListFiltersModal';
 import {
   DELETE_STRING,
   DISH_STRING,
@@ -13,6 +14,7 @@ import {
   MENU_BUILDER_STRING,
   MENU_STRING,
   SHOPING_LIST_ITEM_STRING,
+  LIST_FILTERS_STRING,
 } from '../../constants/STRINGS';
 
 const getModalByType = (type) => {
@@ -31,6 +33,8 @@ const getModalByType = (type) => {
       return ShoppingListItemModal;
     case DELETE_STRING:
       return DeleteModal;
+    case LIST_FILTERS_STRING:
+      return ListFiltersModal;
     default:
       return null;
   }

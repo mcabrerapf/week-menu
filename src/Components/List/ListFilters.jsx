@@ -1,8 +1,10 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import { getFilterOptions } from './helpers';
-import { MainContext } from '../../Contexts';
+import { MainContext, ModalContext } from '../../Contexts';
+import { LIST_FILTERS_STRING } from '../../constants/STRINGS';
 import Input from '../Input';
+import Button from '../Button';
+import Icon from '../Icon';
 
 function ListFilters({
   setFilterValue, setSearchValue, searchValue, filterValue,
@@ -10,8 +12,16 @@ function ListFilters({
   const {
     view,
   } = useContext(MainContext);
+  const { addModal } = useContext(ModalContext);
 
-  const filterOptions = getFilterOptions(view);
+  const openFiltersModal = () => {
+    addModal({
+      type: LIST_FILTERS_STRING,
+      hideHeader: true,
+      modalData: { name: view, filterValue },
+      onClose: setFilterValue,
+    });
+  };
 
   return (
     <div className="row w-f centered top a-c gap-5 h-3 pad-5">
@@ -24,7 +34,14 @@ function ListFilters({
         placeholder="🔍"
         onChange={({ target: { value } }) => setSearchValue(value)}
       />
-      <Input
+      <Button
+        modifier="h-2 w-2 icon"
+        fakeDisabled={!filterValue}
+        onClick={openFiltersModal}
+      >
+        <Icon iconName="filter" />
+      </Button>
+      {/* <Input
         type="select"
         modifier="list-filter-by"
         value={filterValue}
@@ -34,7 +51,7 @@ function ListFilters({
         placeholder="All"
         enableDefaultSelect
         selectOptions={filterOptions}
-      />
+      /> */}
       {/* <Input
           type="select"
           modifier="list-sort-by"

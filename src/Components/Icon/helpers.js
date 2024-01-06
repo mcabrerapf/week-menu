@@ -42,19 +42,11 @@ import {
   FaChevronDown,
   FaChevronLeft,
   FaChevronRight,
-
+  FaFilter,
 } from 'react-icons/fa6';
 
 const getIcon = (iconName) => {
   switch (iconName) {
-    case 'chevron-u':
-      return FaChevronUp;
-    case 'chevron-d':
-      return FaChevronDown;
-    case 'chevron-l':
-      return FaChevronLeft;
-    case 'chevron-r':
-      return FaChevronRight;
     case 'arrow-u':
       return FaArrowUp;
     case 'arrow-d':
@@ -65,16 +57,24 @@ const getIcon = (iconName) => {
       return FaArrowRight;
     case 'brain':
       return FaBrain;
-    case 'check':
-      return FaCheck;
-    case 'check-double':
-      return FaCheckDouble;
     case 'breakfast':
       return FaMugHot;
     case 'calendar':
       return FaRegCalendar;
     case 'cart':
       return FaCartShopping;
+    case 'check':
+      return FaCheck;
+    case 'check-double':
+      return FaCheckDouble;
+    case 'chevron-u':
+      return FaChevronUp;
+    case 'chevron-d':
+      return FaChevronDown;
+    case 'chevron-l':
+      return FaChevronLeft;
+    case 'chevron-r':
+      return FaChevronRight;
     case 'clock':
       return FaClock;
     case 'copy':
@@ -91,6 +91,8 @@ const getIcon = (iconName) => {
       return FaPencil;
     case 'eye':
       return FaEye;
+    case 'filter':
+      return FaFilter;
     case 'fish':
       return FaFish;
     case 'fruit':

@@ -63,7 +63,6 @@ function ModalContextWrapper({ children }) {
               mode={mode}
               closeModal={closeModal}
               onClose={onClose}
-
             />
           </ModalContainer>
         </div>

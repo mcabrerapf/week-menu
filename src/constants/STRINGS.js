@@ -20,6 +20,7 @@ export const LIST_STRING = 'list';
 
 export const MEAL_STRING = 'meal';
 export const SHOPING_LIST_ITEM_STRING = 'shopingListItem';
+export const LIST_FILTERS_STRING = 'listFilters';
 
 export const BREAKFAST_STRING = 'breakfast';
 export const LUNCH_STRING = 'lunch';

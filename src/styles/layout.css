@@ -116,6 +116,10 @@
 	width: 3rem;
 }
 
+.w-15 {
+	width: 15rem;
+}
+
 /* Gap */
 .gap-5 {
 	gap: 5px;

@@ -15,7 +15,7 @@ const getSectionIngredients = (sectionName, days, people) => {
         } = ingredient;
 
         if (type !== sectionName) return;
-        console.log(ingredient.name, type, sectionName);
+
         const multi = people / servings;
         const parsedQuantity = quantity * multi;
         let ingredientIndex = -1;
