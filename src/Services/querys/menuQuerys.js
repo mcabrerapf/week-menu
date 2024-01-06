@@ -9,6 +9,8 @@ export const GET_MENU_QUERY = `
       snacks 
       dessert 
       weeks {
+        mealLimits
+        people
         days {
           dishes {
             id
@@ -35,6 +37,8 @@ query ListMenu($filter: ModelMenuFilterInput, $nextToken: String) {
       snacks 
       dessert 
       weeks {
+        mealLimits
+        people
         days {
           dishes {
             id

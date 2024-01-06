@@ -106,7 +106,7 @@ const getIcon = (iconName) => {
     case 'list':
       return FaList;
     case 'lunch':
-      return FaBowlRice;
+      return FaBowlFood;
     case 'meat':
       return FaDrumstickBite;
     case 'menu':
@@ -133,6 +133,8 @@ const getIcon = (iconName) => {
       return FaStar;
     case 'vegetable':
       return FaCarrot;
+    case 'side':
+      return FaBowlRice;
     default:
       return FaBowlFood;
   }
