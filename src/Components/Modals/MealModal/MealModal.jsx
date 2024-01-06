@@ -20,10 +20,8 @@ function MealModal({ modalData, closeModal, onClose }) {
   const { weeks } = currentMenu;
   const selectedWeek = deepCopy(weeks[weekIndex]);
   const dishesCopy = deepCopy(dishesFromContext);
-  const [selectedDishId, setSelectedDish] = useState();
-  // const [selectedSideDish, setSelectedSideDish] = useState();
-  // const [mode, setMode] = useState(id ? 'display' : 'edit');
   const [sortedDishes] = getDishesAndSideDishes(dishesCopy, dish);
+  const [selectedDishId, setSelectedDish] = useState(sortedDishes[0].id);
 
   const handleButtonClick = (changeAll) => {
     const selectedDish = findByKey(sortedDishes, selectedDishId);

@@ -62,9 +62,10 @@ const buildMenu = (dishes, options) => {
   const {
     weeks,
   } = options;
+  const filteredDishes = dishes.filter((dish) => !!dish.ingredients.length);
 
   const builtWeeks = weeks
-    .map((week) => buildWeek(week, dishes));
+    .map((week) => buildWeek(week, filteredDishes));
 
   return builtWeeks;
 };
