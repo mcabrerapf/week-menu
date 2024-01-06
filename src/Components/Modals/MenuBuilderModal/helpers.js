@@ -1,9 +1,10 @@
 import { BREAKFAST_STRING, DINNER_STRING, LUNCH_STRING } from '../../../constants/STRINGS';
+import { filterByKey } from '../../helpers';
 
 const getMealMinMax = (dishes, days, mealType, mealIndex) => {
   const { length: availableDishes } = dishes
-    .filter(({ types }) => types && types.includes(mealType)) || [];
-  const { length: selectedDays } = days.filter((day) => !!day[mealIndex]) || [];
+    .filter(({ types }) => types && types.includes(mealType));
+  const { length: selectedDays } = filterByKey(days, mealIndex);
   const min = availableDishes === 0 || selectedDays === 0 ? 0 : 1;
   const max = selectedDays > availableDishes ? availableDishes : selectedDays;
   return [min, max, availableDishes];

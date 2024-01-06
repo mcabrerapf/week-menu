@@ -7,7 +7,9 @@ import { MainContext } from '../../../../Contexts/MainContext';
 import Input from '../../../Input';
 import Button from '../../../Button';
 import QuantityInput from '../../../QuantityInput';
-import { capitalizeFirstLetter, sortBy } from '../../../helpers';
+import {
+  capitalizeFirstLetter, filterByKey, findByKey, sortBy,
+} from '../../../helpers';
 import Icon from '../../../Icon';
 
 const getMainDishes = (currentId, dishes, currentMainDishes = []) => {
@@ -37,7 +39,7 @@ function GeneralFields({
   const handleRemoveMainDish = (idToCheck) => {
     updateGeneralFields({
       ...currentData,
-      sideDishTo: sideDishTo.filter((sideDishId) => sideDishId !== idToCheck),
+      sideDishTo: filterByKey(sideDishTo, null, idToCheck, true),
     });
   };
 
@@ -52,9 +54,10 @@ function GeneralFields({
 
   const toggleType = (eValue) => {
     if (eValue === SIDE_STRING) return updateGeneralFields({ ...currentData, types: [eValue] });
+
     const newTypes = types.includes(eValue)
-      ? types.filter((type) => type !== eValue)
-      : [...types, eValue].filter((type) => type !== SIDE_STRING);
+      ? filterByKey(types, null, eValue)
+      : filterByKey([...types, eValue], null, SIDE_STRING, true);
     return updateGeneralFields({ ...currentData, types: newTypes });
   };
 
@@ -65,8 +68,8 @@ function GeneralFields({
     updateGeneralFields({ ...currentData, servings: servings - 1 });
   };
 
-  const showSideDishes = types.includes();
-  const sortedMainDishes = showSideDishes ? getMainDishes(id, dishes, sideDishTo) : [];
+  const sortedMainDishes = getMainDishes(id, dishes, sideDishTo);
+  const showSideDishes = types.includes('side');
 
   return (
     <>
@@ -157,22 +160,21 @@ function GeneralFields({
             type="select"
           />
           {!!sideDishTo.length && (
-          <div className="ingredients-options-container">
+          <div>
             {sideDishTo.map((sideDishId) => {
-              const { name: sideDishName } = dishes
-                .find(({ id: sideId }) => sideDishId === sideId) || {};
+              const { name: sideDishName } = findByKey(dishes, sideDishId) || {};
+
               return (
-                <div className="form-side-dish" key={sideDishId}>
+                <div key={sideDishId}>
                   <Button
-                    modifier="form-side-dish-remove"
                     aria-label={`remove-${sideDishId}`}
                     type="button"
                     value={sideDishId}
                     buttonText={capitalizeFirstLetter(sideDishName)}
+                    onClick={() => handleRemoveMainDish(sideDishId)}
                   >
                     <Icon
                       iconName="close"
-                      onClick={() => handleRemoveMainDish(sideDishId)}
                     />
                   </Button>
                 </div>

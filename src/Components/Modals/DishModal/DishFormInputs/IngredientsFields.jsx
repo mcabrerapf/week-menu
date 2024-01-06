@@ -8,6 +8,7 @@ import Button from '../../../Button';
 import NewIngredientForm from './NewIngredientForm';
 import AddIngredientsView from './AddIngredientsView';
 import Icon from '../../../Icon';
+import { filterByKey } from '../../../helpers';
 
 function IngredientsFields({
   ingredients, updateIngredients, handleSubmit, canSave,
@@ -16,8 +17,7 @@ function IngredientsFields({
   const [ingredientsView, setIngredientsView] = useState(0);
 
   const handleRemoveIngredient = (ingredientId) => {
-    const updatedIngredients = ingredients
-      .filter(({ id: currentId }) => ingredientId !== currentId);
+    const updatedIngredients = filterByKey(ingredients, 'id', ingredientId, true);
     updateIngredients(updatedIngredients);
   };
 

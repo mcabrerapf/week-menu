@@ -3,18 +3,8 @@ import { DAY_DISH_TYPES } from '../../constants/MENU';
 import deepCopy from './deep-copy';
 import generateRandomNumber from './generate-random-number';
 
-const populateSideDishes = (dish, dishes) => {
-  const { id } = dish;
-  const sideDishes = dishes
-    .filter(({ sideDishTo }) => !!sideDishTo && !!sideDishTo
-      .filter((sideId) => sideId === id).length);
-
-  if (!sideDishes || !sideDishes.length) return { ...dish, sideDishesToUse: [] };
-  const rIndex = generateRandomNumber(0, sideDishes.length);
-  const randomSideDish = sideDishes[rIndex];
-
-  return { ...dish, sideDishesToUse: [randomSideDish] };
-};
+// TODO finish sidedishes but
+const populateSideDishes = (dish) => ({ ...dish, sideDishesToUse: [] });
 
 const getRandomDishByType = (type, dishes) => {
   let foundDish;

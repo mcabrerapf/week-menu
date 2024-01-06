@@ -1,3 +1,5 @@
+import findByKey from './find-by-key';
+
 const buildMenusWithDishes = (menus, allDishes) => {
   if (!Array.isArray(menus) || !Array.isArray(allDishes)) return [];
 
@@ -13,10 +15,9 @@ const buildMenusWithDishes = (menus, allDishes) => {
               id: dishId,
               sideDishesToUse,
             } = dish;
-            const dishMatch = allDishes
-              .find(({ id: idToCheck }) => idToCheck === dishId) || {};
+            const dishMatch = findByKey(allDishes, dishId);
             const populatedSideDishes = !sideDishesToUse ? [] : sideDishesToUse
-              .map((sideDishId) => allDishes.find(({ id: idToCheck }) => idToCheck === sideDishId));
+              .map((sideDishId) => findByKey(allDishes, sideDishId));
 
             return {
               ...dishMatch,

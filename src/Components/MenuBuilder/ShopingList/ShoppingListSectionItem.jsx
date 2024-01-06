@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable jsx-a11y/no-noninteractive-element-to-interactive-role */
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import './ShopingList.css';
 import Input from '../../Input';
@@ -23,11 +23,14 @@ import { capitalizeFirstLetter } from '../../helpers';
 // };
 
 function ShopingListSectionItem({
-  ingredient, handleOnClick,
+  ingredient,
+  handleOnClick,
+  updatedShopingList,
+  sectionIndex,
+  index,
 }) {
-  const [gotIt, setGotIt] = useState(false);
   const {
-    name, quantity, unit,
+    name, quantity, unit, checked,
   } = ingredient;
 
   const parsedName = capitalizeFirstLetter(name);
@@ -41,11 +44,11 @@ function ShopingListSectionItem({
         id={parsedLabel}
         type="checkbox"
         modifier="xs"
-        value={gotIt}
-        onChange={() => setGotIt(!gotIt)}
+        value={checked}
+        onChange={() => updatedShopingList(index, sectionIndex)}
       />
       <span
-        className={gotIt ? 'strike' : ''}
+        className={checked ? 'strike' : ''}
         role="button"
         tabIndex={0}
         onClick={() => handleOnClick(ingredient)}
@@ -65,6 +68,9 @@ function ShopingListSectionItem({
 ShopingListSectionItem.propTypes = {
   ingredient: PropTypes.shape().isRequired,
   handleOnClick: PropTypes.func.isRequired,
+  updatedShopingList: PropTypes.func.isRequired,
+  index: PropTypes.number.isRequired,
+  sectionIndex: PropTypes.number.isRequired,
 };
 
 export default ShopingListSectionItem;

@@ -1,3 +1,5 @@
+import findByKey from './find-by-key';
+
 const buildDishesWithIngredients = (dishes, allIngredients) => {
   if (!Array.isArray(dishes) || !Array.isArray(allIngredients)) return [];
 
@@ -8,10 +10,7 @@ const buildDishesWithIngredients = (dishes, allIngredients) => {
         const {
           id: ingredientId, unit, quantity = 1, name, type,
         } = currentIngredient;
-
-        const ingredientMatch = allIngredients
-          .find(({ id: idToCheck }) => idToCheck === ingredientId);
-
+        const ingredientMatch = findByKey(allIngredients, ingredientId);
         if (!ingredientMatch) console.log(`${dishName} failed to match: \n ${name} ${ingredientId}`);
         const { name: nameMatch, unit: unitMatch, type: typeMatch } = ingredientMatch || {};
         return {

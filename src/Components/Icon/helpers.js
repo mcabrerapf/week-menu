@@ -38,10 +38,23 @@ import {
   FaMugHot,
   FaBowlRice,
   FaBurger,
+  FaChevronUp,
+  FaChevronDown,
+  FaChevronLeft,
+  FaChevronRight,
+
 } from 'react-icons/fa6';
 
 const getIcon = (iconName) => {
   switch (iconName) {
+    case 'chevron-u':
+      return FaChevronUp;
+    case 'chevron-d':
+      return FaChevronDown;
+    case 'chevron-l':
+      return FaChevronLeft;
+    case 'chevron-r':
+      return FaChevronRight;
     case 'arrow-u':
       return FaArrowUp;
     case 'arrow-d':

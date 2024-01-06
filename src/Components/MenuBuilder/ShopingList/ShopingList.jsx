@@ -1,31 +1,32 @@
-import React, { useContext } from 'react';
+/* eslint-disable max-len */
+import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import './ShopingList.css';
-import { buildIngredientSections } from '../../helpers';
+import { buildIngredientSections, deepCopy } from '../../helpers';
 import { ToastContext } from '../../../Contexts';
 import ShopingListSection from './ShopingListSection';
 import Button from '../../Button';
 import Icon from '../../Icon';
+import { copyShopingList } from './helpers';
 
 function ShopingList({ week }) {
   const { addToast } = useContext(ToastContext);
-  const ingredienSections = buildIngredientSections(week);
+  const [ingredietnSections, setIngredientSections] = useState([]);
+
+  useEffect(() => {
+    const builtSections = buildIngredientSections(week);
+    setIngredientSections(builtSections);
+  }, [week]);
 
   const handleCopyShopingList = () => {
-    const shopingListItems = [];
-    ingredienSections.forEach(({ name, ingredients }, index) => {
-      if (!ingredients || !ingredients.length) return;
-      if (index !== 0)shopingListItems.push('\n');
-      shopingListItems.push(name);
-      shopingListItems.push('------');
-      ingredients.forEach((ingredient) => {
-        if (ingredient.checked) return;
-        const { name: iName, quantity, unit } = ingredient;
-        shopingListItems.push(`${iName}: ${quantity}${unit}`);
-      });
-    });
-    navigator.clipboard.writeText(shopingListItems.join('\n'));
+    copyShopingList(ingredietnSections);
     addToast('Coppied shoping list to clipboard', 'info');
+  };
+
+  const updatedShopingList = (ingredientIndex, sectionIndex) => {
+    const copiedList = deepCopy(ingredietnSections);
+    copiedList[sectionIndex].ingredients[ingredientIndex].checked = !copiedList[sectionIndex].ingredients[ingredientIndex].checked;
+    setIngredientSections(copiedList);
   };
 
   return (
@@ -35,8 +36,14 @@ function ShopingList({ week }) {
           <Icon iconName="copy" />
         </Button>
         <div className="col overflow-y gap-5 pad-l-5 font-s">
-          {ingredienSections.map(({ value, ingredients }) => (
-            <ShopingListSection key={value} name={value} ingredients={ingredients} />
+          {ingredietnSections.map(({ value, ingredients }, index) => (
+            <ShopingListSection
+              key={value}
+              name={value}
+              ingredients={ingredients}
+              index={index}
+              updatedShopingList={updatedShopingList}
+            />
           ))}
         </div>
       </div>

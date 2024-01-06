@@ -7,6 +7,7 @@ import Button from '../../../Button';
 import Icon from '../../../Icon';
 import Input from '../../../Input';
 import { filterIngredinents } from './helpers';
+import { filterByKey, findByKey } from '../../../helpers';
 
 function AddIngredientsView({
   ingredients, selectedIngredients, setIngredientsView, updateIngredients,
@@ -14,13 +15,19 @@ function AddIngredientsView({
   const [selectedType, setSelectedType] = useState('');
   const [searchValue, setSearchValue] = useState('');
 
+  const buildNewIngredient = (ingredientId) => {
+    const ingMatch = findByKey(ingredients, ingredientId);
+    return { ...ingMatch, quantity: 1 };
+  };
+
   const handleIngredientSelect = (ingredientId, isSelected) => {
-    const ingMatch = ingredients.find((ingredient) => ingredientId === ingredient.id);
     const updatedIngredients = isSelected
-      ? selectedIngredients.filter(({ id }) => id !== ingredientId)
+      ? filterByKey(selectedIngredients, 'id', ingredientId, true)
       : [
         ...selectedIngredients,
-        { ...ingMatch, quantity: 1 }];
+        buildNewIngredient(ingredientId),
+      ];
+
     updateIngredients(updatedIngredients);
   };
 
@@ -73,7 +80,8 @@ function AddIngredientsView({
         </div>
         <div className="ingredient-options row centered wrap overflow-y gap-5">
           {ingredientOptions.map((ingredientOption) => {
-            const isSelected = !!selectedIngredients.find(({ id }) => id === ingredientOption.id);
+            const isSelected = !!findByKey(selectedIngredients, ingredientOption.id);
+
             return (
               <Button
                 key={ingredientOption.id}

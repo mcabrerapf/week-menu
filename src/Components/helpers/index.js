@@ -9,6 +9,8 @@ import parseClassName from './parse-classname';
 import deepCopy from './deep-copy';
 import deepCompare from './deep-compare';
 import initData from './init-data';
+import findByKey from './find-by-key';
+import filterByKey from './filter-by-key';
 
 export {
   buildDishesWithIngredients,
@@ -19,6 +21,8 @@ export {
   capitalizeFirstLetter,
   deepCopy,
   deepCompare,
+  findByKey,
+  filterByKey,
   initData,
   parseClassName,
   sortBy,

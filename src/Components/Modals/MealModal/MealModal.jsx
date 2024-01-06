@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Button from '../../Button';
 import Input from '../../Input';
 import { MainContext } from '../../../Contexts/MainContext';
-import { deepCopy } from '../../helpers';
+import { deepCopy, findByKey } from '../../helpers';
 import Icon from '../../Icon';
 import { getDishesAndSideDishes } from './helpers';
 import { DAYS } from '../../../constants/MENU';
@@ -26,7 +26,7 @@ function MealModal({ modalData, closeModal, onClose }) {
   const [sortedDishes] = getDishesAndSideDishes(dishesCopy, dish);
 
   const handleButtonClick = (changeAll) => {
-    const selectedDish = sortedDishes.find((sortedDish) => sortedDish.id === selectedDishId);
+    const selectedDish = findByKey(sortedDishes, selectedDishId);
     const updatedDays = selectedWeek.days.map((day, dIndex) => {
       const { dishes } = day;
       const updatedDishes = dishes.map((dayDish, mIndex) => {
