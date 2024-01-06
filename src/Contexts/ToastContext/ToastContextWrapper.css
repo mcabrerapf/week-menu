@@ -2,7 +2,7 @@
 	position: fixed;
 	top: 3rem;
 	right: 0px;
-	z-index: 600;
+	z-index: var(--toast-z-index);
 }
 
 .toast-message {

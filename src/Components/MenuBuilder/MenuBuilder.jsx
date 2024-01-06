@@ -1,16 +1,15 @@
-import './MenuBuilderView.css';
+import './MenuBuilder.css';
 import React, { useState, useContext } from 'react';
 import { buildMenu, deepCopy } from '../helpers';
-import { MENU_BUILDER_STRING } from '../../constants';
-import Week from './Week';
-import ShopingList from './ShopingList';
+import { MENU_BUILDER_STRING } from '../../constants/STRINGS';
 import MenuBuilderHeader from './MenuBuilderHeader';
-import { MainContext } from '../../Contexts/MainContext';
-import { ModalContext } from '../../Contexts/ModalContext';
+import { MainContext, ModalContext } from '../../Contexts';
 import Button from '../Button';
 import Icon from '../Icon';
+import Week from './Week';
+import ShopingList from './ShopingList';
 
-function MenuBuilderView() {
+function MenuBuilder() {
   const {
     dishes: dishesFromContext,
     menuOptions,
@@ -121,4 +120,4 @@ function MenuBuilderView() {
   );
 }
 
-export default MenuBuilderView;
+export default MenuBuilder;

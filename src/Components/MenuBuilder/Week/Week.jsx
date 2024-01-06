@@ -2,9 +2,9 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-to-interactive-role */
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import { DAYS, DAY_DISH_TYPES } from '../../constants';
+import { DAYS, DAY_DISH_TYPES } from '../../../constants/MENU';
 import Icon from '../../Icon';
-import { ModalContext } from '../../../Contexts/ModalContext';
+import { ModalContext } from '../../../Contexts';
 
 function Week({
   week, selectedWeekIndex, handleUpdateWeek,

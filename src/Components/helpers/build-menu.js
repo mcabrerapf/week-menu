@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import { DAY_DISH_TYPES } from '../constants';
+import { DAY_DISH_TYPES } from '../../constants/MENU';
 import deepCopy from './deep-copy';
 import generateRandomNumber from './generate-random-number';
 

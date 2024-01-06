@@ -1,6 +1,6 @@
 import {
   BREAKFAST_STRING, DINNER_STRING, LUNCH_STRING, SIDE_STRING,
-} from '../../constants';
+} from './STRINGS';
 
 const DISH_TYPES = [
   {

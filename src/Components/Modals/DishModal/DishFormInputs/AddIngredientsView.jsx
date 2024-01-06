@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './DishFormInputs.css';
-import { INGREDIENT_TYPES } from '../../../constants';
+import { INGREDIENT_TYPES } from '../../../../constants/INGREDIENT';
 import Button from '../../../Button';
 import Icon from '../../../Icon';
 import Input from '../../../Input';

@@ -1,4 +1,4 @@
-export const INGREDIENT_UNITS = [
+const INGREDIENT_UNITS = [
   {
     value: 'u', name: 'U',
   },
@@ -43,7 +43,7 @@ export const INGREDIENT_UNITS = [
   },
 ];
 
-export const INGREDIENT_TYPES = [
+const INGREDIENT_TYPES = [
   {
     value: 'meat', name: 'Carne', shortLabel: 'C',
   },
@@ -69,3 +69,5 @@ export const INGREDIENT_TYPES = [
     value: 'other', name: 'Otro', shortLabel: 'O',
   },
 ];
+
+export { INGREDIENT_UNITS, INGREDIENT_TYPES };

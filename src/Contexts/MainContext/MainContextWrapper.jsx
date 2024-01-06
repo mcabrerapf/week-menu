@@ -11,10 +11,10 @@ import {
   UPDATE_STRING,
   CREATE_STRING,
   MENU_BUILDER_STRING,
-} from '../../constants';
+} from '../../constants/STRINGS';
+import { DEFAULT_MENU_OPTIONS } from '../../constants/MENU';
 import { buildDishesWithIngredients, buildMenusWithDishes, sortBy } from '../../Components/helpers';
 import { ToastContext } from '../ToastContext';
-import { DEFAULT_MENU_OPTIONS } from '../../Components/constants';
 
 function MainContextWrapper({ children }) {
   const { addToast } = useContext(ToastContext);

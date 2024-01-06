@@ -1,4 +1,4 @@
-import { SIDE_STRING } from '../../../constants';
+import { SIDE_STRING } from '../../../constants/STRINGS';
 import { sortBy } from '../../helpers';
 
 /* eslint-disable import/prefer-default-export */

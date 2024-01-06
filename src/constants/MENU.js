@@ -1,6 +1,4 @@
-import { BREAKFAST_STRING, DINNER_STRING, LUNCH_STRING } from '../../constants';
-import { DISH_TYPES } from './DISHES';
-import { INGREDIENT_UNITS, INGREDIENT_TYPES } from './INGREDIENTS';
+import { BREAKFAST_STRING, DINNER_STRING, LUNCH_STRING } from './STRINGS';
 
 const DAYS = [
   ['Monday', 'Mon', 'MON'],
@@ -11,19 +9,6 @@ const DAYS = [
   ['Saturday', 'Sat', 'SAT'],
   ['Sunday', 'Sun', 'SUN'],
 ];
-
-const SELECT_OPTIONS = {
-  ingredient: {
-    type: INGREDIENT_TYPES,
-    unit: INGREDIENT_UNITS,
-  },
-  dish: {
-    type: DISH_TYPES,
-
-  },
-};
-
-const MIN_SWIPE_DISTANCE = 50;
 
 const DEFAULT_DAY_MEALS = [
   [false, true, true],
@@ -49,17 +34,8 @@ const DEFAULT_MENU_OPTIONS = {
   weeks: [DEFAULT_WEEK_SETTINGS],
   weekLimit: 1,
 };
-
 const DAY_DISH_TYPES = [BREAKFAST_STRING, LUNCH_STRING, DINNER_STRING];
 
 export {
-  DAYS,
-  DISH_TYPES,
-  INGREDIENT_UNITS,
-  INGREDIENT_TYPES,
-  SELECT_OPTIONS,
-  MIN_SWIPE_DISTANCE,
-  DEFAULT_MENU_OPTIONS,
-  DEFAULT_WEEK_SETTINGS,
-  DAY_DISH_TYPES,
+  DAYS, DEFAULT_DAY_MEALS, DEFAULT_WEEK_SETTINGS, DEFAULT_MENU_OPTIONS, DAY_DISH_TYPES,
 };

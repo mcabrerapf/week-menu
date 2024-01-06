@@ -1,14 +1,14 @@
 /* eslint-disable no-restricted-globals */
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import { DISH_TYPES } from '../../../constants';
+import { DISH_TYPES } from '../../../../constants/DISH';
+import { SIDE_STRING } from '../../../../constants/STRINGS';
 import { MainContext } from '../../../../Contexts/MainContext';
 import Input from '../../../Input';
 import Button from '../../../Button';
 import QuantityInput from '../../../QuantityInput';
 import { capitalizeFirstLetter, sortBy } from '../../../helpers';
 import Icon from '../../../Icon';
-import { SIDE_STRING } from '../../../../constants';
 
 const getMainDishes = (currentId, dishes, currentMainDishes = []) => {
   const sideDishes = dishes

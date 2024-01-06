@@ -1,4 +1,4 @@
-import { BREAKFAST_STRING, DINNER_STRING, LUNCH_STRING } from '../../../constants';
+import { BREAKFAST_STRING, DINNER_STRING, LUNCH_STRING } from '../../../constants/STRINGS';
 
 const getMealMinMax = (dishes, days, mealType, mealIndex) => {
   const { length: availableDishes } = dishes

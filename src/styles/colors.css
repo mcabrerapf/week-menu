@@ -1,0 +1,37 @@
+.bgc-b {
+	background-color: var(--blue-color) !important;
+}
+
+.bgc-bg {
+	background-color: var(--beige-color) !important;
+}
+
+.bgc-g {
+	background-color: var(--green-color) !important;
+}
+
+.bgc-gr {
+	background-color: var(--gray-color) !important;
+}
+
+.bgc-r {
+	background-color: var(--red-color) !important;
+}
+
+.bgc-bl {
+	background-color: var(--black-color) !important;
+	color: var(--white-color) !important;
+}
+
+.bgc-tr {
+	background-color: transparent !important;
+	color: var(--black-color) !important;
+}
+
+.bc-off {
+	background-color: var(--offiline-background-color) !important;
+}
+
+.c-g {
+	color: var(--gray-color) !important;
+}

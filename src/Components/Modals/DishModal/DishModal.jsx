@@ -4,7 +4,7 @@ import { MainContext } from '../../../Contexts/MainContext';
 import DisplayView from './DisplayView';
 import EditView from './EditView';
 import { deepCompare, initData } from '../../helpers';
-import { DISH_STRING } from '../../../constants';
+import { DISH_STRING } from '../../../constants/STRINGS';
 
 function DishModal({
   modalData, closeModal, mode,

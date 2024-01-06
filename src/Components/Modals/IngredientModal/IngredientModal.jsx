@@ -5,8 +5,8 @@ import Button from '../../Button';
 import Input from '../../Input';
 import Icon from '../../Icon';
 import { deepCompare, initData } from '../../helpers';
-import { INGREDIENT_STRING } from '../../../constants';
-import { INGREDIENT_TYPES, INGREDIENT_UNITS } from '../../constants';
+import { INGREDIENT_STRING } from '../../../constants/STRINGS';
+import { INGREDIENT_TYPES, INGREDIENT_UNITS } from '../../../constants/INGREDIENT';
 
 function IngredientModal({
   modalData, closeModal,

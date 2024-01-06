@@ -4,9 +4,9 @@ import './MenuModal.css';
 import { MainContext } from '../../../Contexts/MainContext';
 import {
   MENU_STRING,
-} from '../../../constants';
+} from '../../../constants/STRINGS';
 import { initData } from '../../helpers';
-import { DAYS, DAY_DISH_TYPES } from '../../constants';
+import { DAYS, DAY_DISH_TYPES } from '../../../constants/MENU';
 import Icon from '../../Icon';
 import Button from '../../Button';
 import Input from '../../Input';

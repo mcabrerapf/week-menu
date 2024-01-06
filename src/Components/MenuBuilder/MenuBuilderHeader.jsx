@@ -1,18 +1,11 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import './MenuBuilderView.css';
-import Button from '../Button';
+import { MENU_STRING } from '../../constants/STRINGS';
 import { useLongPress } from '../../Hooks';
-import {
-  MainContext,
-} from '../../Contexts/MainContext';
-import {
-  ToastContext,
-} from '../../Contexts/ToastContext';
-import { ModalContext } from '../../Contexts/ModalContext';
+import { MainContext, ToastContext, ModalContext } from '../../Contexts';
+import Button from '../Button';
 import Icon from '../Icon';
-import { MENU_STRING } from '../../constants';
 
 function MenuBuilderHeader({
   openBuildMenuModal, handleChangeView, handleBuildMenu, view, hasLoadedMenu,

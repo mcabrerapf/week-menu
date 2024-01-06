@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import { MainContext } from '../../Contexts/MainContext';
+import { MainContext } from '../../Contexts';
 import Input from '../Input';
 import { getFilterOptions } from './helpers';
 

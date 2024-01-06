@@ -6,6 +6,8 @@ import { MainContext } from '../../../Contexts/MainContext';
 import { deepCopy } from '../../helpers';
 import Icon from '../../Icon';
 import { getDishesAndSideDishes } from './helpers';
+import { DAYS } from '../../../constants/MENU';
+import { DISH_TYPES } from '../../../constants/DISH';
 
 function MealModal({ modalData, closeModal, onClose }) {
   const { dishes: dishesFromContext, currentMenu } = useContext(MainContext);
@@ -53,6 +55,10 @@ function MealModal({ modalData, closeModal, onClose }) {
       {/* {mode === 'edit' && ( */}
       <div className="col pad-10 gap-10">
         <div className="col gap-10">
+          <div className="col icon centered gap-5 pad-b-5 m-5 border-b">
+            <span>{DAYS[dayIndex][1]}</span>
+            <Icon iconName={DISH_TYPES[mealIndex].id} />
+          </div>
           {name && (
           <div className="col gap-5 centered icon">
             <span>{name}</span>
@@ -64,7 +70,7 @@ function MealModal({ modalData, closeModal, onClose }) {
             id="dish"
             value={selectedDishId}
             onChange={({ target: { value: eValue } }) => setSelectedDish(eValue)}
-            placeholder="Selecet dish"
+            placeholder=""
             selectOptions={sortedDishes}
             type="select"
           />
@@ -81,6 +87,12 @@ function MealModal({ modalData, closeModal, onClose }) {
           )} */}
         </div>
         <div className="row gap-5">
+          <Button
+            onClick={() => handleButtonClick()}
+            disabled={!selectedDishId}
+          >
+            <Icon iconName="check" />
+          </Button>
           {name && (
           <Button
             onClick={() => handleButtonClick(true)}
@@ -89,12 +101,6 @@ function MealModal({ modalData, closeModal, onClose }) {
             <Icon iconName="check-double" />
           </Button>
           )}
-          <Button
-            onClick={() => handleButtonClick()}
-            disabled={!selectedDishId}
-          >
-            <Icon iconName="check" />
-          </Button>
         </div>
       </div>
     </div>

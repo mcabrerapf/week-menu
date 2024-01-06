@@ -1,6 +1,6 @@
 import {
   DISH_STRING, INGREDIENT_STRING, LUNCH_STRING, MENU_STRING,
-} from '../../constants';
+} from '../../constants/STRINGS';
 
 const initIngredient = (data) => {
   if (data.id) {

@@ -1,4 +1,4 @@
-import { INGREDIENT_TYPES } from '../constants';
+import { INGREDIENT_TYPES } from '../../constants/INGREDIENT';
 
 const getSectionIngredients = (sectionName, days, people) => {
   const sectionIngredients = [];

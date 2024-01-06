@@ -2,6 +2,6 @@
 	position: fixed;
 	top: 0;
 	left: 0;
-	z-index: 500;
+	z-index: var(--modal-z-index);
 	background-color: rgba(0, 0, 0, 0.7);
 }

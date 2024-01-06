@@ -1,13 +1,12 @@
 import React, { useState, useContext } from 'react';
 import './List.css';
-import { MainContext } from '../../Contexts/MainContext';
-import { ModalContext } from '../../Contexts/ModalContext';
-import Button from '../Button';
+import { MENU_STRING } from '../../constants/STRINGS';
+import { MainContext, ModalContext } from '../../Contexts';
 import { filterList, getListData } from './helpers';
+import Button from '../Button';
 import ListItem from './ListItem';
 import ListFilters from './ListFilters';
 import Icon from '../Icon';
-import { MENU_STRING } from '../../constants';
 
 function List() {
   const {

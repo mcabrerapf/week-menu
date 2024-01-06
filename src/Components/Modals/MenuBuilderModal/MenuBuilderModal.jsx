@@ -8,8 +8,8 @@ import { initMenuOptions, getMealMinMax } from './helpers';
 import QuantityInput from '../../QuantityInput';
 import { MainContext } from '../../../Contexts/MainContext';
 import Icon from '../../Icon';
-import { BREAKFAST_STRING, DINNER_STRING, LUNCH_STRING } from '../../../constants';
-import { DAYS, DEFAULT_WEEK_SETTINGS } from '../../constants';
+import { BREAKFAST_STRING, DINNER_STRING, LUNCH_STRING } from '../../../constants/STRINGS';
+import { DAYS, DEFAULT_WEEK_SETTINGS } from '../../../constants/MENU';
 
 function MenuBuilderModal({
   modalData, closeModal, onClose,

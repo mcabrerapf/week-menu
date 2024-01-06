@@ -13,7 +13,7 @@ import {
   MENU_BUILDER_STRING,
   MENU_STRING,
   SHOPING_LIST_ITEM_STRING,
-} from '../../constants';
+} from '../../constants/STRINGS';
 
 const getModalByType = (type) => {
   switch (type) {

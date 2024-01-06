@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './QuantityInput.css';
 import { parseClassName } from '../helpers';
 import Button from '../Button';
 import Icon from '../Icon';
@@ -32,7 +31,7 @@ function QuantityInput({
         >
           <Icon iconName="minus" />
         </Button>
-        <div className="quantity-input-value row centered">{value}</div>
+        <div className="row centered w-2">{value}</div>
         <Button
           modifier="m"
           disabled={value === max}

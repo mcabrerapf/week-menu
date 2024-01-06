@@ -2,10 +2,10 @@ import React, { useContext, useEffect, useState } from 'react';
 import './Main.css';
 import {
   MENU_BUILDER_STRING,
-} from '../../constants';
-import { MainContext } from '../../Contexts/MainContext';
+} from '../../constants/STRINGS';
+import { MainContext } from '../../Contexts';
 import { getNewView } from './helpers';
-import MenuBuilderView from '../MenuBuilderView';
+import MenuBuilder from '../MenuBuilder';
 import List from '../List';
 
 function Main() {
@@ -49,7 +49,7 @@ function Main() {
     };
   });
 
-  const offlineClass = offlineMode === 1 ? ' offline-mode' : '';
+  const offlineClass = offlineMode === 1 ? ' bgc-off' : '';
 
   return (
 
@@ -59,7 +59,7 @@ function Main() {
       onTouchMove={onTouchMove}
       onTouchEnd={onTouchEnd}
     >
-      {view === MENU_BUILDER_STRING && <MenuBuilderView />}
+      {view === MENU_BUILDER_STRING && <MenuBuilder />}
       {view !== MENU_BUILDER_STRING && <List />}
     </div>
 

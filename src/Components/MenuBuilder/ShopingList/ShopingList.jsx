@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import { ToastContext } from '../../../Contexts/ToastContext';
+import { ToastContext } from '../../../Contexts';
 import { buildIngredientSections } from '../../helpers';
 import './ShopingList.css';
 import ShopingListSection from './ShopingListSection';

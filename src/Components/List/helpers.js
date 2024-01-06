@@ -1,8 +1,10 @@
 /* eslint-disable import/prefer-default-export */
-import { INGREDIENT_TYPES, DISH_TYPES } from '../constants';
+
 import {
   DISH_STRING, INGREDIENT_STRING, MENU_STRING,
-} from '../../constants';
+} from '../../constants/STRINGS';
+import { DISH_TYPES } from '../../constants/DISH';
+import { INGREDIENT_TYPES } from '../../constants/INGREDIENT';
 
 const getListData = (view, contextProps) => {
   const { menus, dishes, ingredients } = contextProps;

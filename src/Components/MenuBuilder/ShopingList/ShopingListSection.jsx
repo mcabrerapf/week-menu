@@ -4,9 +4,9 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import './ShopingList.css';
 import ShopingListSectionItem from './ShoppingListSectionItem';
-import { ModalContext } from '../../../Contexts/ModalContext';
+import { ModalContext } from '../../../Contexts';
 import Icon from '../../Icon';
-import { SHOPING_LIST_ITEM_STRING } from '../../../constants';
+import { SHOPING_LIST_ITEM_STRING } from '../../../constants/STRINGS';
 
 function ShopingListSection({ ingredients, name }) {
   const { addModal } = useContext(ModalContext);

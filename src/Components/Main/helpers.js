@@ -1,7 +1,7 @@
 import {
   DISH_STRING, INGREDIENT_STRING, MENU_BUILDER_STRING, MENU_STRING,
-} from '../../constants';
-import { MIN_SWIPE_DISTANCE } from '../constants';
+} from '../../constants/STRINGS';
+import { MIN_SWIPE_DISTANCE } from '../../constants';
 
 const getNewView = ({
   view, touchStart, touchEnd,

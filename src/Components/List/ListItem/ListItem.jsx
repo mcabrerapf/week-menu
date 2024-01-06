@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import './ListItem.css';
 import { capitalizeFirstLetter } from '../../helpers';
 import Button from '../../Button';
-import { DISH_STRING, MENU_STRING } from '../../../constants';
+import { DISH_STRING, MENU_STRING } from '../../../constants/STRINGS';
 import Icon from '../../Icon';
 
 function ListItem({

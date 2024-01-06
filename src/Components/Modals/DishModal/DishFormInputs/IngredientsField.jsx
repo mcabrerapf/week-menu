@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { capitalizeFirstLetter, sortBy } from '../../../helpers';
+import { SELECT_OPTIONS } from '../../../../constants';
+import { INGREDIENT_STRING } from '../../../../constants/STRINGS';
+import Icon from '../../../Icon';
 import Button from '../../../Button';
 import Input from '../../../Input';
-import { capitalizeFirstLetter, sortBy } from '../../../helpers';
-import { SELECT_OPTIONS } from '../../../constants';
-import { INGREDIENT_STRING } from '../../../../constants';
-import Icon from '../../../Icon';
 
 function IngredientsField({
   ingredients, handleIngredientChange, handleRemoveIngredient,

@@ -1,12 +1,13 @@
 import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
-import Input from '../../../Input';
-import Button from '../../../Button';
-import { INGREDIENT_TYPES, INGREDIENT_UNITS } from '../../../constants';
-import { INGREDIENT_STRING } from '../../../../constants';
+import { initData } from '../../../helpers';
+import { INGREDIENT_TYPES, INGREDIENT_UNITS } from '../../../../constants/INGREDIENT';
+import { INGREDIENT_STRING } from '../../../../constants/STRINGS';
 import { MainContext } from '../../../../Contexts/MainContext';
 import Icon from '../../../Icon';
-import { initData } from '../../../helpers';
+import Input from '../../../Input';
+import Button from '../../../Button';
+
 
 function NewIngredientForm({
   toggleNewIngredientView,

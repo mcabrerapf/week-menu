@@ -1,20 +1,18 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import Icon from '../Icon';
-import './Footer.css';
 import {
-  MainContext,
-} from '../../Contexts/MainContext';
-import { ToastContext } from '../../Contexts/ToastContext';
+  MainContext, ToastContext,
+} from '../../Contexts';
+import { useLongPress } from '../../Hooks';
 import {
   DISH_STRING,
   INGREDIENT_STRING,
   MENU_STRING,
   MENU_BUILDER_STRING,
-} from '../../constants';
+} from '../../constants/STRINGS';
 import Button from '../Button';
-import { useLongPress } from '../../Hooks';
+import Icon from '../Icon';
 
 function Footer() {
   const {
