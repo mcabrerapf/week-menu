@@ -49,7 +49,7 @@ function DisplayView({
           </div>
           )}
         </div>
-        {orderedIngredients.length
+        {!!orderedIngredients.length
         && (
         <div className="pad-5">
           {orderedIngredients.map((ingredientSection) => {
