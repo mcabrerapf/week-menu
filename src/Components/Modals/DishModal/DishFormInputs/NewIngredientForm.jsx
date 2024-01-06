@@ -8,7 +8,6 @@ import Icon from '../../../Icon';
 import Input from '../../../Input';
 import Button from '../../../Button';
 
-
 function NewIngredientForm({
   toggleNewIngredientView,
 }) {
