@@ -11,6 +11,7 @@ import deepCompare from './deep-compare';
 import initData from './init-data';
 import findByKey from './find-by-key';
 import filterByKey from './filter-by-key';
+import orderIngredientsBySection from './order-ingredients-by-section';
 
 export {
   buildDishesWithIngredients,
@@ -24,6 +25,7 @@ export {
   findByKey,
   filterByKey,
   initData,
+  orderIngredientsBySection,
   parseClassName,
   sortBy,
 };
