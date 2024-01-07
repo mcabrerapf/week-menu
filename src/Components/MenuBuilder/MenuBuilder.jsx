@@ -95,7 +95,7 @@ function MenuBuilder() {
           </div>
 
         )}
-        {showWeekButtons === 'show thisss' && (
+        {showWeekButtons && (
           <>
             <Button modifier="week-number icon m shadow circle">
               {selectedWeekIndex + 1}
