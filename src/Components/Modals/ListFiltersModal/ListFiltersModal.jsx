@@ -6,19 +6,18 @@ import { DISH_STRING, INGREDIENT_STRING } from '../../../constants/STRINGS';
 import { DISH_TYPES } from '../../../constants/DISH';
 import { INGREDIENT_TYPES } from '../../../constants/INGREDIENT';
 
-function ListFiltersModal({ modalData, closeModal, onClose }) {
-  const { name, filterValue } = modalData;
+function ListFiltersModal({ modalData, closeModal }) {
+  const { view, filterValue } = modalData;
 
   const handleFilterSelect = (filterId) => {
     const valueToSend = filterId === filterValue ? '' : filterId;
-    onClose(valueToSend);
-    closeModal();
+    closeModal({ value: valueToSend });
   };
 
   return (
-    <div className="col gap-10 pad-10">
-      <div className="row w-15 centered wrap pad-5 gap-5">
-        {name === DISH_STRING && DISH_TYPES.map(({ id }) => (
+    <div className="col w-16 gap-10 pad-10">
+      <div className="row centered wrap pad-5 gap-5">
+        {view === DISH_STRING && DISH_TYPES.map(({ id }) => (
           <Button
             key={id}
             fakeDisabled={filterValue !== id}
@@ -28,7 +27,7 @@ function ListFiltersModal({ modalData, closeModal, onClose }) {
             <Icon iconName={id} />
           </Button>
         ))}
-        {name === INGREDIENT_STRING && INGREDIENT_TYPES.map(({ value }) => (
+        {view === INGREDIENT_STRING && INGREDIENT_TYPES.map(({ value }) => (
           <Button
             key={value}
             fakeDisabled={filterValue !== value}
@@ -38,14 +37,12 @@ function ListFiltersModal({ modalData, closeModal, onClose }) {
             <Icon iconName={value} />
           </Button>
         ))}
-
       </div>
     </div>
   );
 }
 
 ListFiltersModal.propTypes = {
-  onClose: PropTypes.func.isRequired,
   closeModal: PropTypes.func.isRequired,
   modalData: PropTypes.shape().isRequired,
 };

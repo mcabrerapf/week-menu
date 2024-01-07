@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 function ShoppingListItemModal({
   modalData,
 }) {
-  const { dishes = [] } = modalData;
+  const { ingredientData: { dishes = [] } = {} } = modalData;
 
   return (
     <div className="col pad-20">
@@ -25,7 +25,6 @@ function ShoppingListItemModal({
         })}
       </ul>
     </div>
-
   );
 }
 

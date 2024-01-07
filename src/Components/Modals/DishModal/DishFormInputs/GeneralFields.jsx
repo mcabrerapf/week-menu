@@ -16,7 +16,7 @@ const getMainDishes = (currentId, dishes, currentMainDishes = []) => {
   const sideDishes = dishes
     .filter(({ id, types }) => !types.includes(SIDE_STRING)
     && !currentMainDishes.includes(id) && id !== currentId);
-  return sortBy(sideDishes, 'name', 'alphabetical');
+  return sortBy(sideDishes);
 };
 
 function GeneralFields({

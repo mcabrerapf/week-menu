@@ -1,25 +1,25 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { MainContext } from '../../../Contexts/MainContext';
 import Button from '../../Button';
 import Input from '../../Input';
 import Icon from '../../Icon';
 import { deepCompare, initData } from '../../helpers';
-import { INGREDIENT_STRING } from '../../../constants/STRINGS';
+import { INGREDIENT_STRING, SAVE_STRING } from '../../../constants/STRINGS';
 import { INGREDIENT_TYPES, INGREDIENT_UNITS } from '../../../constants/INGREDIENT';
 
 function IngredientModal({
   modalData, closeModal,
 }) {
-  const {
-    handleSave,
-  } = useContext(MainContext);
-  const [ingredientData, setIngredientData] = useState(initData(modalData, INGREDIENT_STRING));
+  const { itemData } = modalData;
+  const [ingredientData, setIngredientData] = useState(initData(itemData, INGREDIENT_STRING));
 
   const handleSubmit = async () => {
-    const noChange = deepCompare(ingredientData, modalData);
+    const noChange = deepCompare(ingredientData, itemData);
     if (noChange) return closeModal();
-    return handleSave(ingredientData, INGREDIENT_STRING, closeModal);
+    return closeModal({
+      type: SAVE_STRING,
+      data: ingredientData,
+    });
   };
 
   const handleOnClick = (eValue, eName) => {

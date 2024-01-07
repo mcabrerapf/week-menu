@@ -2,24 +2,28 @@ import './MenuBuilder.css';
 import React, { useState, useContext } from 'react';
 import { MENU_BUILDER_STRING } from '../../constants/STRINGS';
 import { buildMenu, deepCopy } from '../helpers';
-import { MainContext, ModalContext } from '../../Contexts';
+import { MainContext } from '../../Contexts';
 import Button from '../Button';
 import Icon from '../Icon';
 import Week from './Week';
 import ShopingList from './ShopingList';
 import MenuBuilderHeader from './MenuBuilderHeader';
+import Modal from '../Modal';
 
 function MenuBuilder() {
   const {
     dishes: dishesFromContext,
     menuOptions,
-    currentMenu: { weeks },
     currentMenu,
     updateCurrentMenu,
+    handleSave,
   } = useContext(MainContext);
-  const { addModal } = useContext(ModalContext);
   const [view, setView] = useState(0);
   const [selectedWeekIndex, setSelectedWeekIndex] = useState(0);
+  const [showModal, setShowModal] = useState(false);
+  const [modalData, setModalData] = useState(null);
+
+  const { weeks } = currentMenu;
 
   const handleBuildMenu = () => {
     const newWeeks = buildMenu(dishesFromContext, menuOptions);
@@ -33,18 +37,24 @@ function MenuBuilder() {
     setView(newView);
   };
 
-  const openBuildMenuModal = () => {
-    addModal({
+  const openModal = () => {
+    setModalData({
       type: MENU_BUILDER_STRING,
-      modalData: menuOptions,
-      onClose: (updatedMenu, updatedOptions) => {
-        updateCurrentMenu(updatedMenu, updatedOptions);
-        setView(0);
-        setSelectedWeekIndex(0);
-      },
-      modifier: 'full',
+      menuOptions,
+      modifier: 'f',
       hideHeader: true,
     });
+    setShowModal(true);
+  };
+
+  const closeModal = (closeEvent) => {
+    if (closeEvent) {
+      updateCurrentMenu(closeEvent.menu, closeEvent.options);
+      setView(0);
+      setSelectedWeekIndex(0);
+    }
+    setModalData(null);
+    setShowModal(false);
   };
 
   const handleUpdateWeek = (updateData) => {
@@ -68,16 +78,18 @@ function MenuBuilder() {
       <MenuBuilderHeader
         view={view}
         hasLoadedMenu={hasLoadedMenu}
-        openBuildMenuModal={openBuildMenuModal}
+        currentMenu={currentMenu}
+        openMenuBuilderModal={openModal}
         handleChangeView={handleChangeView}
         handleBuildMenu={handleBuildMenu}
+        handleSave={handleSave}
       />
       <div
         className="menu-builder-content col pad-v-5 pad-h-15"
       >
         {!hasLoadedMenu && (
           <div className="col w-f h-f centered">
-            <Button onClick={openBuildMenuModal} modifier="l icon shadow">
+            <Button onClick={openModal} modifier="l icon shadow">
               <Icon iconName="brain" />
             </Button>
           </div>
@@ -109,6 +121,8 @@ function MenuBuilder() {
           week={selectedWeek}
           selectedWeekIndex={selectedWeekIndex}
           handleUpdateWeek={handleUpdateWeek}
+          currentMenu={currentMenu}
+          dishes={dishesFromContext}
         />
         )}
         {view === 1 && (
@@ -117,6 +131,7 @@ function MenuBuilder() {
         />
         )}
       </div>
+      {showModal && <Modal modalData={modalData} closeModal={closeModal} />}
     </>
   );
 }

@@ -1,30 +1,32 @@
-import React, { useContext } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { MainContext, ModalContext } from '../../Contexts';
-import { LIST_FILTERS_STRING } from '../../constants/STRINGS';
+import { LIST_FILTERS_STRING, MENU_STRING } from '../../constants/STRINGS';
 import Input from '../Input';
 import Button from '../Button';
 import Icon from '../Icon';
+import Modal from '../Modal';
 
 function ListFilters({
-  setFilterValue, setSearchValue, searchValue, filterValue,
+  setFilterValue, setSearchValue, searchValue, filterValue, view,
 }) {
-  const {
-    view,
-  } = useContext(MainContext);
-  const { addModal } = useContext(ModalContext);
+  const [showModal, setShowModal] = useState(false);
 
-  const openFiltersModal = () => {
-    addModal({
-      type: LIST_FILTERS_STRING,
-      hideHeader: true,
-      modalData: { name: view, filterValue },
-      onClose: setFilterValue,
-    });
+  const handleCloseModal = (closeEvent) => {
+    if (closeEvent && closeEvent.value) setFilterValue(closeEvent.value);
+    setShowModal(false);
+  };
+
+  const modalData = {
+    type: LIST_FILTERS_STRING,
+    filterValue,
+    view,
+    closeModal: handleCloseModal,
+    hideHeader: true,
+    modifier: 's',
   };
 
   return (
-    <div className="row w-f centered top a-c gap-5 h-3 pad-5">
+    <div className="row w-f centered a-c gap-5 h-3 pad-5">
       <Input
         type="search"
         modifier="list-search-filter"
@@ -36,8 +38,9 @@ function ListFilters({
       />
       <Button
         modifier="h-2 w-2 icon"
+        disabled={view === MENU_STRING}
         fakeDisabled={!filterValue}
-        onClick={openFiltersModal}
+        onClick={() => setShowModal(true)}
       >
         <Icon iconName="filter" />
       </Button>
@@ -62,11 +65,13 @@ function ListFilters({
           onChange={({ target: { value } }) => setListSort(value)}
           selectOptions={sortOptions}
         /> */}
+      {showModal && <Modal closeModal={handleCloseModal} modalData={modalData} />}
     </div>
   );
 }
 
 ListFilters.propTypes = {
+  view: PropTypes.string.isRequired,
   setFilterValue: PropTypes.func.isRequired,
   setSearchValue: PropTypes.func.isRequired,
   searchValue: PropTypes.string.isRequired,

@@ -16,13 +16,14 @@ function DisplayView({
   } = dishData;
 
   const displayTime = !!time && !!(time.hours || time.minutes);
+  const displayTypes = !!types && !!types.length;
   const orderedIngredients = orderIngredientsBySection(ingredients);
 
   return (
     <div className="modal-content-dish-view col j-bet pad-10 gap-10">
-      <div className="col gap-15 overflow-y">
+      <div className="col gap-15 pad-5 overflow-y">
         <div className="row gap-20">
-          {!!types && !!types.length && (
+          {displayTypes && (
           <div className="row width-a">
             {types.map((tType) => <Icon key={tType} iconName={tType} modifier="icon-l" />)}
           </div>
@@ -31,12 +32,10 @@ function DisplayView({
           <div className="row w-a centered gap-10">
             <Icon iconName="people" modifier="icon-l" />
             <span className="label">
-              {' '}
               {servings}
             </span>
           </div>
           )}
-
           {displayTime && (
           <div className="row w-a centered gap-10">
             <Icon iconName="clock" modifier="icon-l" />
@@ -45,29 +44,28 @@ function DisplayView({
               :
               {time.minutes}
             </span>
-
           </div>
           )}
         </div>
         {!!orderedIngredients.length
         && (
-        <div className="pad-5">
+        <div>
           {orderedIngredients.map((ingredientSection) => {
             const { value, ingredients: sectionIngredients } = ingredientSection;
             return (
-              <div className="col">
+              <div className="col" key={value}>
                 <div
-                  className="row pad-5 gap-5 w-10 border-b"
+                  className="row gap-5 w-10 pad-v-5 border-b"
                 >
                   <Icon modifier="icon" iconName={value} />
                 </div>
-                <div className="col gap-10 pad-t-10">
+                <div className="col gap-10 pad-v-10">
                   {sectionIngredients.map((ingredient) => {
                     const {
                       id: ingId, name: ingName, quantity, unit: ingUnit,
                     } = ingredient;
                     return (
-                      <li key={ingId} className="row gap-5 text-a-l">
+                      <li key={`${ingId}-${ingUnit}`} className="row gap-5 text-a-l">
                         <span>- </span>
                         <span>{ingName}</span>
                         <span className="label">
@@ -93,7 +91,7 @@ function DisplayView({
         </div>
         )} */}
         {instructions && (
-        <div className="col border-t pad-5">
+        <div className="col border-t">
           <ul className="col gap-5">
             {instructions.split('---').map((ins, i) => (
               <li key={i} className="row gap-5 text-a-l">

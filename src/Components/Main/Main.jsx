@@ -52,7 +52,6 @@ function Main() {
   const offlineClass = offlineMode === 1 ? ' bgc-off' : '';
 
   return (
-
     <div
       className={`main w-f${offlineClass}`}
       onTouchStart={onTouchStart}
@@ -62,7 +61,6 @@ function Main() {
       {view === MENU_BUILDER_STRING && <MenuBuilder />}
       {view !== MENU_BUILDER_STRING && <List />}
     </div>
-
   );
 }
 

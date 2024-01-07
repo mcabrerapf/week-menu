@@ -1,27 +1,34 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/interactive-supports-focus */
 /* eslint-disable react/no-array-index-key */
-/* eslint-disable react/jsx-props-no-spreading */
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './ShopingList.css';
 import ShopingListSectionItem from './ShoppingListSectionItem';
-import { ModalContext } from '../../../Contexts';
 import Icon from '../../Icon';
 import { SHOPING_LIST_ITEM_STRING } from '../../../constants/STRINGS';
+import Modal from '../../Modal';
 
 function ShopingListSection({
   ingredients, name, index, updatedShopingList,
 }) {
-  const { addModal } = useContext(ModalContext);
   const [showSection, setShowSection] = useState(true);
+  const [showModal, setShowModal] = useState(false);
+  const [modalData, setModalData] = useState(null);
 
   const handleOnClick = (data) => {
-    addModal({
+    setModalData({
       type: SHOPING_LIST_ITEM_STRING,
-      modalData: data,
-      modifier: 'full',
+      ingredientData: data,
+      headerText: data.name,
+      modifier: 'f',
     });
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+    setModalData(null);
   };
 
   return (
@@ -52,9 +59,8 @@ function ShopingListSection({
           );
         })}
       </div>
-
+      {showModal && <Modal modalData={modalData} closeModal={closeModal} />}
     </div>
-
   );
 }
 

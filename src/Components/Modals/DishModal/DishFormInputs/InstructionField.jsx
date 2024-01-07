@@ -81,9 +81,7 @@ function InstructionField({
           <Icon iconName="close" />
         </Button>
       </div>
-
     </div>
-
   );
 }
 

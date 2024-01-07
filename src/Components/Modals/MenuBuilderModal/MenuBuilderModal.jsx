@@ -12,15 +12,16 @@ import { BREAKFAST_STRING, DINNER_STRING, LUNCH_STRING } from '../../../constant
 import { DAYS, DEFAULT_WEEK_SETTINGS } from '../../../constants/MENU';
 
 function MenuBuilderModal({
-  modalData, closeModal, onClose,
+  modalData, closeModal,
 }) {
+  const { menuOptions } = modalData;
   const { dishes, currentMenu } = useContext(MainContext);
   const [currentData, setCurrentData] = useState(null);
   const [dishesData, setDishesData] = useState(null);
   const [selectedWeekIndex, setSelectedWeekIndex] = useState(0);
 
   useEffect(() => {
-    const copiedData = deepCopy(modalData);
+    const copiedData = deepCopy(menuOptions);
     const copiedDishes = deepCopy(dishes);
     const initedData = initMenuOptions(
       copiedData,
@@ -41,8 +42,8 @@ function MenuBuilderModal({
 
   const handleBuildMenu = () => {
     const menuWeeks = buildMenu(dishes, currentData);
-    onClose({ ...currentMenu, weeks: menuWeeks }, currentData);
-    closeModal();
+    const updatedMenu = { menu: { ...currentMenu, weeks: menuWeeks }, options: currentData };
+    closeModal(updatedMenu);
   };
 
   const handleLimitChange = (key, index, increase) => {
@@ -176,7 +177,6 @@ function MenuBuilderModal({
             );
           })}
         </div>
-
         <div className="col gap-10">
           <QuantityInput
             value={weekLimit}
@@ -241,12 +241,10 @@ function MenuBuilderModal({
 
 MenuBuilderModal.propTypes = {
   closeModal: PropTypes.func.isRequired,
-  onClose: PropTypes.func,
   modalData: PropTypes.shape(),
 };
 
 MenuBuilderModal.defaultProps = {
-  onClose: null,
   modalData: {},
 };
 

@@ -1,4 +1,13 @@
-.modal.full {
+.modal-background {
+	position: fixed;
+	top: 0;
+	left: 0;
+	overflow: hidden;
+	z-index: var(--modal-z-index);
+	background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal.f {
 	width: var(--full-modal-width);
 	max-height: var(--full-modal-height);
 }
@@ -6,11 +15,10 @@
 .modal.s {
 	min-width: 12rem;
 	max-width: var(--full-modal-width);
-	max-height: 10rem;
+	max-height: 20rem;
 }
 
 .modal-header {
-	height: 3rem;
 	border-top-left-radius: 10px;
 	border-top-right-radius: 10px;
 }

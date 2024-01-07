@@ -52,9 +52,9 @@ function MainContextWrapper({ children }) {
       return setContextState({
         ...contextState,
         offlineMode: localOfflineMode,
-        ingredients: sortBy(allIngredients, 'name', 'alphabetical'),
-        dishes: sortBy(dishesWithIngredients, 'name', 'alphabetical'),
-        menus: sortBy(menusWithDishes, 'name', 'alphabetical'),
+        ingredients: sortBy(allIngredients),
+        dishes: sortBy(dishesWithIngredients),
+        menus: sortBy(menusWithDishes),
       });
     }
 
@@ -109,7 +109,7 @@ function MainContextWrapper({ children }) {
     setContextState(updatedContext);
   };
 
-  const handleSave = async (data, serviceName, callback = () => {}) => {
+  const handleSave = async (data, serviceName, callback) => {
     const serviceString = data.id ? UPDATE_STRING : CREATE_STRING;
     const serviceToUse = serviceHandler(serviceString);
     const response = await serviceToUse(serviceName, data);
@@ -120,12 +120,13 @@ function MainContextWrapper({ children }) {
     }
 
     await updateList(serviceName);
-    callback();
+    if (callback)callback();
     addToast(data.name, 'success');
     return response;
   };
 
-  const handleDelete = async (id, name, serviceName) => {
+  const handleDelete = async (data, serviceName) => {
+    const { id, name } = data;
     const serviceToUse = serviceHandler(DELETE_STRING);
     const response = await serviceToUse(serviceName, { id });
     if (response.errors) {

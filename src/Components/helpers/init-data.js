@@ -45,12 +45,15 @@ const initMenu = (data) => {
     return {
       id: data.id,
       name: data.name || '',
-      weeks: data.weeks || [],
-      // dishes: data.dishes || [],
       favourite: data.favourite || false,
+      description: data.description || null,
+      tags: data.tags || null,
+      snacks: data.snacks || null,
+      dessert: data.dessert || null,
+      weeks: data.weeks || [],
     };
   }
-  return { name: '', weeks: data.weeks || [], favourite: false };
+  return { name: '', favourite: false, weeks: data.weeks || [] };
 };
 
 const initData = (data, type) => {

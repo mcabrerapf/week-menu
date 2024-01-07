@@ -1,34 +1,49 @@
 import React, { useState, useContext, useEffect } from 'react';
 import './List.css';
-import { MENU_STRING } from '../../constants/STRINGS';
-import { MainContext, ModalContext } from '../../Contexts';
+import {
+  MENU_STRING, DELETE_STRING, SAVE_STRING, EDIT_STRING,
+} from '../../constants/STRINGS';
+import { MainContext } from '../../Contexts';
 import { filterList, getListData } from './helpers';
 import Button from '../Button';
 import ListItem from './ListItem';
 import ListFilters from './ListFilters';
 import Icon from '../Icon';
+import Modal from '../Modal';
 
 function List() {
   const {
-    view, updateCurrentMenu, ...contextProps
+    view, updateCurrentMenu, handleDelete, handleSave, ...contextProps
   } = useContext(MainContext);
-  const { addModal } = useContext(ModalContext);
+
   const [searchValue, setSearchValue] = useState('');
   const [filterValue, setFilterValue] = useState('');
+  const [showModal, setShowModal] = useState(false);
+  const [modalData, setModalData] = useState(null);
 
   useEffect(() => {
     setSearchValue('');
     setFilterValue('');
   }, [view]);
 
-  const handleOpenModal = (type, mode, data, modifier) => {
-    addModal({
-      type,
-      mode,
-      hideHeader: mode === 'delete',
-      modalData: data,
-      modifier: modifier || 'full',
-    });
+  const handleOpenModal = (mData) => {
+    setShowModal(true);
+    setModalData(mData);
+  };
+
+  const handleCloseEvent = async (event) => {
+    const { type, data } = event;
+    if (type === DELETE_STRING) await handleDelete(data, view);
+    if (type === SAVE_STRING) await handleSave(data, view);
+  };
+
+  const handleCloseModal = async (closeEvent) => {
+    if (closeEvent) {
+      await handleCloseEvent(closeEvent);
+      if (closeEvent.dontClose) return;
+    }
+    setShowModal(false);
+    setModalData(null);
   };
 
   const handleLoadMenu = async (menuData) => {
@@ -45,12 +60,13 @@ function List() {
         setSearchValue={setSearchValue}
         searchValue={searchValue}
         filterValue={filterValue}
+        view={view}
       />
       <ul className="list col a-c w-f overflow-y gap-5">
         {filteredList.map((listItem) => (
           <ListItem
             key={listItem.id}
-            modifier={view}
+            itemType={view}
             itemData={listItem}
             handleOpenModal={handleOpenModal}
             handleLoadMenu={handleLoadMenu}
@@ -60,12 +76,15 @@ function List() {
         <Button
           modifier="circle l icon shadow list-add-button"
           type="button"
-          onClick={() => handleOpenModal(view, 'create', {})}
+          onClick={() => handleOpenModal({
+            type: view, modalView: EDIT_STRING, itemData: {},
+          })}
         >
           <Icon iconName="plus" />
         </Button>
         )}
       </ul>
+      {showModal && <Modal closeModal={handleCloseModal} modalData={modalData} />}
     </div>
   );
 }

@@ -1,11 +1,11 @@
-import MenuBuilderModal from '../../Components/Modals/MenuBuilderModal';
-import MealModal from '../../Components/Modals/MealModal';
-import ShoppingListItemModal from '../../Components/Modals/ShopingListItemModal';
-import MenuModal from '../../Components/Modals/MenuModal';
-import IngredientModal from '../../Components/Modals/IngredientModal';
-import DishModal from '../../Components/Modals/DishModal';
-import DeleteModal from '../../Components/Modals/DeleteModal';
-import ListFiltersModal from '../../Components/Modals/ListFiltersModal';
+import MenuBuilderModal from '../Modals/MenuBuilderModal';
+import MealModal from '../Modals/MealModal';
+import ShoppingListItemModal from '../Modals/ShopingListItemModal';
+import MenuModal from '../Modals/MenuModal';
+import IngredientModal from '../Modals/IngredientModal';
+import DishModal from '../Modals/DishModal';
+import DeleteModal from '../Modals/DeleteModal';
+import ListFiltersModal from '../Modals/ListFiltersModal';
 import {
   DELETE_STRING,
   DISH_STRING,
@@ -36,7 +36,7 @@ const getModalByType = (type) => {
     case LIST_FILTERS_STRING:
       return ListFiltersModal;
     default:
-      return null;
+      return () => {};
   }
 };
 

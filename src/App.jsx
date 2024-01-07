@@ -5,7 +5,6 @@ import { Authenticator } from '@aws-amplify/ui-react';
 import { Amplify, AuthModeStrategyType } from 'aws-amplify';
 import { ToastContextWrapper } from './Contexts/ToastContext';
 import { MainContextWrapper } from './Contexts/MainContext';
-import { ModalContextWrapper } from './Contexts/ModalContext';
 import awsExports from './aws-exports';
 import Main from './Components/Main';
 import Footer from './Components/Footer';
@@ -25,10 +24,8 @@ function App() {
         {({ signOut }) => (
           <ToastContextWrapper>
             <MainContextWrapper>
-              <ModalContextWrapper>
-                <Main />
-                <Footer signOut={signOut} />
-              </ModalContextWrapper>
+              <Main />
+              <Footer signOut={signOut} />
             </MainContextWrapper>
           </ToastContextWrapper>
         )}

@@ -7,8 +7,6 @@ import Icon from '../../../Icon';
 function EditView({ dishData, setDishData, handleSubmit }) {
   const [fieldsView, setFieldsView] = useState(0);
 
-  if (!dishData) return null;
-
   return (
     <>
       <div className="header row">

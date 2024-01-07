@@ -14,19 +14,19 @@ function NewIngredientForm({
   const {
     handleSave,
   } = useContext(MainContext);
-  const [newIngredientData, setNewIngredientData] = useState(initData({}, INGREDIENT_STRING));
-  const { name, type, unit } = newIngredientData;
+  const [ingredientData, setIngredientData] = useState(initData({}, INGREDIENT_STRING));
+  const { name, type, unit } = ingredientData;
 
   const handleOnChange = ({ target: { name: eName, value } }) => {
-    setNewIngredientData({ ...newIngredientData, [eName]: value });
+    setIngredientData({ ...ingredientData, [eName]: value });
   };
 
   const handleOnClick = (eValue, eName) => {
-    setNewIngredientData({ ...newIngredientData, [eName]: eValue });
+    setIngredientData({ ...ingredientData, [eName]: eValue });
   };
 
   const handleAddNewIngredient = async () => {
-    const response = await handleSave(newIngredientData, INGREDIENT_STRING);
+    const response = await handleSave(ingredientData, INGREDIENT_STRING);
     toggleNewIngredientView(response);
   };
 
@@ -73,7 +73,6 @@ function NewIngredientForm({
               />
             ))}
         </div>
-
       </div>
       <Button
         disabled={!canSubmit}

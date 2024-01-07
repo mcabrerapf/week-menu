@@ -10,24 +10,26 @@ import {
 import Icon from '../../Icon';
 
 function ListItem({
-  modifier, itemData, handleOpenModal, handleLoadMenu,
+  itemType, itemData, handleOpenModal, handleLoadMenu,
 }) {
   const {
     name, type, types, favourite,
   } = itemData;
-
-  // const truncated = name.length > 30 ? `${name.substring(0, 27)}...` : name;
   const parsedLabel = capitalizeFirstLetter(name);
   const typeToUse = types ? types[0] : type;
-  const defaultModalView = modifier === DISH_STRING ? DISPLAY_STRING : EDIT_STRING;
+  const modalView = itemType === DISH_STRING ? DISPLAY_STRING : EDIT_STRING;
 
   return (
     <li
       className="list-item row h-3 w-f a-c j-bet pad-v-5 pad-h-10 border-rad-10 bgc-b"
       role="button"
       tabIndex={0}
-      onClick={() => handleOpenModal(modifier, defaultModalView, itemData)}
-      onKeyDown={() => handleOpenModal(modifier, defaultModalView, itemData)}
+      onClick={() => handleOpenModal({
+        type: itemType, modalView, itemData, headerText: name,
+      })}
+      onKeyDown={() => handleOpenModal({
+        type: itemType, modalView, itemData, headerText: name,
+      })}
     >
       <div
         className="list-item-label column label"
@@ -38,7 +40,12 @@ function ListItem({
         {typeToUse && (
         <Button
           modifier="l icon"
-          onClick={() => handleOpenModal(modifier, EDIT_STRING, itemData)}
+          onClick={() => handleOpenModal({
+            type: itemType,
+            modalView: EDIT_STRING,
+            itemData,
+            headerText: name,
+          })}
         >
           <Icon iconName={typeToUse} />
         </Button>
@@ -46,12 +53,14 @@ function ListItem({
         {favourite && (
         <Button
           modifier="l icon"
-          onClick={() => handleOpenModal(modifier, EDIT_STRING, itemData)}
+          onClick={() => handleOpenModal({
+            type: itemType, modalView: EDIT_STRING, itemData, headerText: name,
+          })}
         >
           <Icon iconName="star" />
         </Button>
         )}
-        {modifier === MENU_STRING && (
+        {itemType === MENU_STRING && (
         <Button
           modifier="l icon"
           onClick={() => handleLoadMenu(itemData)}
@@ -60,17 +69,21 @@ function ListItem({
           <Icon iconName="eye" />
         </Button>
         )}
-        {modifier === DISH_STRING && (
+        {itemType === DISH_STRING && (
         <Button
           modifier="l icon"
-          onClick={() => handleOpenModal(modifier, EDIT_STRING, itemData)}
+          onClick={() => handleOpenModal({
+            type: itemType, modalView: EDIT_STRING, itemData, headerText: name,
+          })}
         >
           <Icon iconName="edit" />
         </Button>
         )}
         <Button
           modifier="l icon"
-          onClick={() => handleOpenModal(DELETE_STRING, DELETE_STRING, itemData, 's')}
+          onClick={() => handleOpenModal({
+            type: DELETE_STRING, itemData, modifier: 's', hideHeader: true,
+          })}
         >
           <Icon iconName="delete" />
         </Button>
@@ -83,11 +96,11 @@ ListItem.propTypes = {
   handleOpenModal: PropTypes.func.isRequired,
   handleLoadMenu: PropTypes.func.isRequired,
   itemData: PropTypes.shape().isRequired,
-  modifier: PropTypes.string,
+  itemType: PropTypes.string,
 };
 
 ListItem.defaultProps = {
-  modifier: '',
+  itemType: '',
 };
 
 export default ListItem;

@@ -10,7 +10,8 @@ import Input from '../../../Input';
 function IngredientsField({
   ingredients, handleIngredientChange, handleRemoveIngredient,
 }) {
-  const sortedIngredients = sortBy(ingredients, 'name', 'alphabetical');
+  const sortedIngredients = sortBy(ingredients);
+
   return (
     <div className="dish-modal-ingredients-list col overflow-y gap-5">
       {sortedIngredients.map((currentIngredient) => {
@@ -21,7 +22,7 @@ function IngredientsField({
         return (
           <div className="row gap-5 w-f j-bet border-b" key={id}>
             <div className="row">{capitalizeFirstLetter(name)}</div>
-            <div className="row j-end gap-5">
+            <div className="row j-end">
               <Input
                 type="number"
                 key={id}
@@ -59,7 +60,6 @@ function IngredientsField({
         );
       })}
     </div>
-
   );
 }
 

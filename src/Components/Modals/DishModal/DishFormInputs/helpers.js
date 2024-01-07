@@ -14,7 +14,7 @@ const filterIngredinents = (ingredients, selectedType, searchValue) => {
       return false;
     });
 
-  return sortBy(filteredIngredients, 'name', 'alphabetical');
+  return sortBy(filteredIngredients);
 };
 // eslint-disable-next-line import/prefer-default-export
 export { filterIngredinents };

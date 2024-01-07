@@ -1,24 +1,21 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { MainContext } from '../../../Contexts/MainContext';
 import DisplayView from './DisplayView';
 import EditView from './EditView';
 import { deepCompare, initData } from '../../helpers';
-import { DISH_STRING } from '../../../constants/STRINGS';
+import { DISH_STRING, SAVE_STRING } from '../../../constants/STRINGS';
 
 function DishModal({
-  modalData, closeModal, mode,
+  modalData, closeModal,
 }) {
-  const {
-    handleSave,
-  } = useContext(MainContext);
-  const [modalView, setModalView] = useState(mode);
-  const [dishData, setDishData] = useState(initData(modalData, DISH_STRING));
+  const { itemData, modalView: _modalView } = modalData;
+  const [modalView, setModalView] = useState(_modalView);
+  const [dishData, setDishData] = useState(initData(itemData, DISH_STRING));
 
   const handleSubmit = async () => {
-    const noChange = deepCompare(dishData, modalData);
+    const noChange = deepCompare(dishData, itemData);
     if (noChange) return closeModal();
-    return handleSave(dishData, DISH_STRING, closeModal);
+    return closeModal({ type: SAVE_STRING, data: dishData });
   };
 
   return (modalView === 'display'
@@ -30,13 +27,11 @@ function DishModal({
 
 DishModal.propTypes = {
   closeModal: PropTypes.func.isRequired,
-  mode: PropTypes.string,
   modalData: PropTypes.shape(),
 };
 
 DishModal.defaultProps = {
   modalData: {},
-  mode: 'display',
 };
 
 export default DishModal;

@@ -24,6 +24,7 @@ function DishFormInputs({
   const updateInstructions = (updatedFields) => {
     setCurrentData({ ...currentData, instructions: updatedFields });
   };
+
   const canSave = !!currentData.name && !!currentData.types.length;
 
   return (

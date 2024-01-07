@@ -11,7 +11,7 @@ const getDishesAndSideDishes = (dishes, oldDish) => {
     if (types.includes(SIDE_STRING)) sideDishes.push(dish);
     else mainDishes.push(dish);
   });
-  return [sortBy(mainDishes, 'name', 'alphabetical'), sortBy(sideDishes, 'name', 'alphabetical')];
+  return [sortBy(mainDishes), sortBy(sideDishes)];
 };
 
 export { getDishesAndSideDishes };

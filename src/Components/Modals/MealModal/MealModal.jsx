@@ -1,33 +1,34 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Button from '../../Button';
 import Input from '../../Input';
-import { MainContext } from '../../../Contexts/MainContext';
 import { deepCopy, findByKey } from '../../helpers';
 import Icon from '../../Icon';
 import { getDishesAndSideDishes } from './helpers';
 import { DAYS } from '../../../constants/MENU';
 import { DISH_TYPES } from '../../../constants/DISH';
 
-function MealModal({ modalData, closeModal, onClose }) {
-  const { dishes: dishesFromContext, currentMenu } = useContext(MainContext);
+function MealModal({ modalData, closeModal }) {
   const {
-    dish,
-    dayIndex,
-    mealIndex,
-    weekIndex,
+    itemData: {
+      dish,
+      dishes,
+      currentMenu,
+      dayIndex,
+      mealIndex,
+      weekIndex,
+    },
   } = modalData;
   const { weeks } = currentMenu;
   const selectedWeek = deepCopy(weeks[weekIndex]);
-  const dishesCopy = deepCopy(dishesFromContext);
-  const [sortedDishes] = getDishesAndSideDishes(dishesCopy, dish);
+  const [sortedDishes] = getDishesAndSideDishes(dishes, dish);
   const [selectedDishId, setSelectedDish] = useState(sortedDishes[0].id);
 
   const handleButtonClick = (changeAll) => {
     const selectedDish = findByKey(sortedDishes, selectedDishId);
     const updatedDays = selectedWeek.days.map((day, dIndex) => {
-      const { dishes } = day;
-      const updatedDishes = dishes.map((dayDish, mIndex) => {
+      const { dishes: dayDishes } = day;
+      const updatedDishes = dayDishes.map((dayDish, mIndex) => {
         if (dayDish?.id === dish?.id) {
           if (changeAll) return selectedDish;
         }
@@ -37,8 +38,7 @@ function MealModal({ modalData, closeModal, onClose }) {
       return { ...day, dishes: updatedDishes };
     });
     const updatedWeek = { ...selectedWeek, days: updatedDays };
-    onClose(updatedWeek);
-    return closeModal();
+    return closeModal(updatedWeek);
   };
 
   const {
@@ -107,7 +107,6 @@ function MealModal({ modalData, closeModal, onClose }) {
 
 MealModal.propTypes = {
   closeModal: PropTypes.func.isRequired,
-  onClose: PropTypes.func.isRequired,
   modalData: PropTypes.shape().isRequired,
 };
 

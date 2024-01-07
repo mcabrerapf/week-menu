@@ -5,6 +5,7 @@ export const DELETE_STRING = 'delete';
 export const CREATE_STRING = 'create';
 export const EDIT_STRING = 'edit';
 export const DISPLAY_STRING = 'display';
+export const SAVE_STRING = 'save';
 
 export const INGREDIENT_STRING = 'ingredient';
 export const DISH_STRING = 'dish';

@@ -1,25 +1,20 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '../../Button';
-import { MainContext } from '../../../Contexts/MainContext';
 import Icon from '../../Icon';
+import { DELETE_STRING } from '../../../constants/STRINGS';
 
 function DeleteModal({
   modalData, closeModal,
 }) {
   const {
-    handleDelete: contextHandleDelete, view,
-  } = useContext(MainContext);
-
-  const {
-    name,
-    id,
+    itemData: {
+      name,
+    },
+    itemData,
   } = modalData;
 
-  const handleDelete = async () => {
-    contextHandleDelete(id, name, view);
-    return closeModal();
-  };
+  const handleDelete = async () => closeModal({ type: DELETE_STRING, data: itemData });
 
   return (
     <div className="col gap-5 pad-10">
@@ -34,7 +29,6 @@ function DeleteModal({
         <Button modifier="icon bgc-bl" onClick={handleDelete} disableMultipleClicks>
           <Icon iconName="delete" />
         </Button>
-
       </div>
     </div>
   );

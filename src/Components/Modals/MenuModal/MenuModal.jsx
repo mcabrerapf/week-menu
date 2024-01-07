@@ -1,11 +1,10 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './MenuModal.css';
-import { MainContext } from '../../../Contexts/MainContext';
 import {
-  MENU_STRING,
+  MENU_STRING, SAVE_STRING,
 } from '../../../constants/STRINGS';
-import { initData } from '../../helpers';
+import { deepCompare, initData } from '../../helpers';
 import { DAYS, DAY_DISH_TYPES } from '../../../constants/MENU';
 import Icon from '../../Icon';
 import Button from '../../Button';
@@ -13,17 +12,17 @@ import Input from '../../Input';
 import { parseMenuData } from './helpers';
 
 function MenuModal({ modalData, closeModal }) {
-  const {
-    handleSave,
-  } = useContext(MainContext);
-  const [menuData, setMenuData] = useState(initData(modalData, MENU_STRING));
+  const { itemData } = modalData;
+  const [menuData, setMenuData] = useState(initData(itemData, MENU_STRING));
   const [selectedWeekIndex, setSelectedWeekIndex] = useState(0);
   const { weeks } = menuData;
   const { days } = weeks[selectedWeekIndex];
 
   const saveMenu = async () => {
+    const noChange = deepCompare(menuData, itemData);
+    if (noChange) return closeModal();
     const parsedData = parseMenuData(menuData);
-    await handleSave(parsedData, MENU_STRING, closeModal);
+    return closeModal({ type: SAVE_STRING, data: parsedData });
   };
 
   const { name, favourite } = menuData;
