@@ -1,21 +1,13 @@
-.list-search-filter {
-	flex: 2;
-}
-
-.list-filter-by {
-	flex: 1;
-}
-
-.list-sort-by {
-	flex: 1;
-}
-
 .list {
-	height: calc(100% - 3rem);
-	padding: 0px 5px 10px 5px;
+	height: calc(100% - 4rem);
+}
+
+.list-filters input {
+	width: calc(100% - 3.5rem);
 }
 
 .list-add-button {
 	position: fixed;
 	bottom: 3.2rem;
+	left: calc(50% - 1.5rem);
 }

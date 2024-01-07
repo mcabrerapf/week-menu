@@ -85,7 +85,7 @@ function MenuBuilder() {
         handleSave={handleSave}
       />
       <div
-        className="menu-builder-content col pad-v-5 pad-h-15"
+        className="menu-builder-content m-5"
       >
         {!hasLoadedMenu && (
           <div className="col w-f h-f centered">
@@ -95,7 +95,7 @@ function MenuBuilder() {
           </div>
 
         )}
-        {showWeekButtons && (
+        {showWeekButtons === 'show thisss' && (
           <>
             <Button modifier="week-number icon m shadow circle">
               {selectedWeekIndex + 1}

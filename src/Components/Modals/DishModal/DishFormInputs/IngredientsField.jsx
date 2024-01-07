@@ -20,15 +20,15 @@ function IngredientsField({
         } = currentIngredient;
 
         return (
-          <div className="row gap-5 w-f j-bet border-b" key={id}>
+          <div className="row gap-5 w-f j-bet centered border-b" key={id}>
             <div className="row">{capitalizeFirstLetter(name)}</div>
-            <div className="row j-end">
+            <div className="row j-end centered">
               <Input
                 type="number"
                 key={id}
                 id={id}
                 name="quantity"
-                modifier="s bgc-tr"
+                modifier="s font-xs bgc-tr"
                 value={quantity}
                 resetValueOnClick
                 min={1}

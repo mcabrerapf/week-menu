@@ -30,12 +30,12 @@ function ShopingList({ week }) {
   };
 
   return (
-    <div className="h-f">
-      <div className="col h-f w-f border-rad-10 pad-15 bgc-b">
+    <div className="h-f w-f">
+      <div className="col h-f w-f border-rad-10 bgc-b">
         <Button modifier="shopping-list-copy-button l icon" onClick={handleCopyShopingList}>
           <Icon iconName="copy" />
         </Button>
-        <div className="col overflow-y gap-5 pad-l-5 font-s">
+        <div className="col overflow-y gap-5 font-s">
           {ingredietnSections.map(({ value, ingredients }, index) => (
             <ShopingListSection
               key={value}

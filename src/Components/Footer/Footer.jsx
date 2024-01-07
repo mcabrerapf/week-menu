@@ -32,7 +32,7 @@ function Footer() {
   };
 
   return (
-    <footer className="footer bot row w-f">
+    <footer className="footer row w-f">
       <Button
         value={MENU_BUILDER_STRING}
         modifier="icon"

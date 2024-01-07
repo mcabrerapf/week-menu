@@ -57,7 +57,7 @@ function MenuBuilderHeader({
 
   return (
     <>
-      <div className="header row">
+      <div className="menu-builder header row">
         <Button
           modifier="icon"
           onClick={openMenuBuilderModal}

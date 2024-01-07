@@ -43,7 +43,6 @@ function IngredientModal({
           name="name"
           value={name}
           onChange={handleOnChange}
-          placeholder="Name"
         />
         <div className="row centered wrap gap-5">
           {INGREDIENT_TYPES

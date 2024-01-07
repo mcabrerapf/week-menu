@@ -1,5 +1,3 @@
-// eslint-disable-next-line import/no-unresolved
-import '@aws-amplify/ui-react/styles.css';
 import React from 'react';
 import { Authenticator } from '@aws-amplify/ui-react';
 import { Amplify, AuthModeStrategyType } from 'aws-amplify';
@@ -19,7 +17,7 @@ Amplify.configure({
 
 function App() {
   return (
-    <div className="col h-f w-f">
+    <div className="app h-f w-f bgc-bg">
       <Authenticator hideSignUp>
         {({ signOut }) => (
           <ToastContextWrapper>

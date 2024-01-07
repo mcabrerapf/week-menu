@@ -32,7 +32,7 @@ function ShopingListSection({
   };
 
   return (
-    <div className="shoping-list-section col">
+    <div className="shoping-list-section col  pad-l-15 pad-v-10">
       <div
         className="row pointer pad-5 gap-5 border-b"
         role="button"

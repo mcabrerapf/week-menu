@@ -26,14 +26,13 @@ function ListFilters({
   };
 
   return (
-    <div className="row w-f centered a-c gap-5 h-3 pad-5">
+    <div className="list-filters row a-c gap-5 h-3 w-f pad-5">
       <Input
         type="search"
-        modifier="list-search-filter"
+        modifier="h-2"
         value={searchValue}
         id="search-value"
         name="search-value"
-        placeholder="🔍"
         onChange={({ target: { value } }) => setSearchValue(value)}
       />
       <Button

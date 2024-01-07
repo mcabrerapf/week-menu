@@ -1,6 +1,6 @@
 input {
 	border: 0;
-	height: 2rem;
+	height: 1.5rem;
 }
 
 .checkbox-input {
@@ -23,7 +23,7 @@ input {
 }
 
 .number-input.s {
-	width: 4rem;
+	width: 3rem;
 }
 
 .number-input.xs {

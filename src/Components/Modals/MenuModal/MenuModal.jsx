@@ -34,6 +34,7 @@ function MenuModal({ modalData, closeModal }) {
           name="name"
           id="name"
           value={name}
+          modifier="w-f"
           onChange={({ target: { value: eVal } }) => setMenuData({ ...menuData, name: eVal })}
           type="text"
         />

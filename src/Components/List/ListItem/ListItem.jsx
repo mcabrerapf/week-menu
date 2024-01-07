@@ -21,7 +21,7 @@ function ListItem({
 
   return (
     <li
-      className="list-item row h-3 w-f a-c j-bet pad-v-5 pad-h-10 border-rad-10 bgc-b"
+      className="list-item row h-3 a-c j-bet m-5 pad-v-5 pad-h-10 border-rad-10 bgc-b"
       role="button"
       tabIndex={0}
       onClick={() => handleOpenModal({

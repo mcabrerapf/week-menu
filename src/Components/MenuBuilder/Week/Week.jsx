@@ -21,6 +21,7 @@ function Week({
         ...modalData, currentMenu, dishes, week,
       },
       hideHeader: true,
+      modifier: 'f',
     });
     setShowModal(true);
   };
@@ -34,27 +35,27 @@ function Week({
 
   return (
     <>
-      <div className="col w-f h-f overflow-y font-s gap-5">
+      <div className="week w-f h-f col centered gap-5 font-s">
         {days.map(({ dishes: dayDishes }, index) => (
-          <div key={DAYS[index][2]} className="row h-f border-rad-5 bgc-b">
+          <div key={DAYS[index][2]} className="day row w-f h-6 m-h-5 border-rad-5 bgc-b">
             <div className="day-label row label border-r centered">
-              <span className="day-label upright-text label">
+              <span className="day-label upright-text label pad-h-5">
                 {DAYS[index][2]}
               </span>
             </div>
-            <div className="col w-f">
+            <div className="day-content col w-f">
               {dayDishes.map((dish, mealIndex) => (
                 <div
                 // eslint-disable-next-line react/no-array-index-key
                   key={mealIndex}
-                  className={`row a-c h-f w-f pointer border-rad-5 pad-l-10 gap-5${dish?.name ? '' : ' bgc-gr'}`}
+                  className={`row a-c h-f w-f pointer border-rad-5 gap-5${dish?.name ? '' : ' bgc-gr'}`}
                   role="button"
                   onClick={() => openModal({
                     dish, dayIndex: index, mealIndex, weekIndex: selectedWeekIndex,
                   })}
                   onKeyDown={() => {}}
                 >
-                  <Icon iconName={DAY_DISH_TYPES[mealIndex]} />
+                  <Icon modifier="pad-l-5" iconName={DAY_DISH_TYPES[mealIndex]} />
                   <span>{dish?.name || '---'}</span>
                 </div>
               ))}

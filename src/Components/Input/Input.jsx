@@ -94,7 +94,7 @@ function Input({
     <>
       {type === 'search' && (
       <input
-        className={`text-input w-f border-rad-5 pad-5 ${modifier}`}
+        className={`text-input border-rad-5 pad-5 ${modifier}`}
         autoComplete="off"
         type={type}
         id={id}
@@ -108,7 +108,7 @@ function Input({
       )}
       {type === 'text' && (
       <input
-        className={`text-input w-f  border-rad-5 pad-5 ${modifier}`}
+        className={`text-input  border-rad-5 pad-5 ${modifier}`}
         autoComplete="off"
         type={type}
         id={id}
@@ -126,7 +126,7 @@ function Input({
           autoComplete="off"
           inputMode="numeric"
           pattern="[0-9]*"
-          className={`number-input w-f border-rad-5 pad-5 ${modifier}`}
+          className={`number-input border-rad-5 pad-5 ${modifier}`}
           aria-label={id}
           key={id}
           id={id}
@@ -142,7 +142,7 @@ function Input({
       )}
       {type === 'checkbox' && (
       <input
-        className={`checkbox-input w-f border-rad-5 pad-5 ${modifier}`}
+        className={`checkbox-input border-rad-5 pad-5 ${modifier}`}
         autoComplete="off"
         type={type}
         id={id}
@@ -155,7 +155,7 @@ function Input({
       )}
       {type === 'textarea' && (
       <textarea
-        className={`textarea-input w-f border-rad-5 pad-5 ${modifier}`}
+        className={`textarea-input border-rad-5 pad-5 w-f ${modifier}`}
         autoComplete="off"
         id={id}
         name={name}
@@ -169,7 +169,7 @@ function Input({
       )}
       {type === 'select' && (
       <select
-        className={`select-input w-f border-rad-5 pad-5 ${modifier}`}
+        className={`select-input border-rad-5 pad-5 ${modifier}`}
         name={name}
         id={id}
         value={value}
