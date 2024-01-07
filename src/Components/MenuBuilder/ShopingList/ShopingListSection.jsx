@@ -34,7 +34,7 @@ function ShopingListSection({
   return (
     <div className="shoping-list-section col">
       <div
-        className="row pad-5 gap-5 border-b"
+        className="row pointer pad-5 gap-5 border-b"
         role="button"
         onClick={() => setShowSection(!showSection)}
       >

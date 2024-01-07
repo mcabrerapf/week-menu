@@ -47,7 +47,7 @@ function Week({
                 <div
                 // eslint-disable-next-line react/no-array-index-key
                   key={mealIndex}
-                  className={`row a-c h-f w-f border-rad-5 pad-l-10 gap-5${dish?.name ? '' : ' bgc-gr'}`}
+                  className={`row a-c h-f w-f pointer border-rad-5 pad-l-10 gap-5${dish?.name ? '' : ' bgc-gr'}`}
                   role="button"
                   onClick={() => openModal({
                     dish, dayIndex: index, mealIndex, weekIndex: selectedWeekIndex,
