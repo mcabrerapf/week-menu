@@ -74,16 +74,16 @@ function GeneralFields({
   return (
     <>
       <div className="col gap-20">
-        <div className="row gap-5">
+        <div className="row j-bet gap-5">
           <Input
             autoComplete="off"
             type="text"
             id="name"
             name="name"
             value={name}
+            modifier="w-f"
             onChange={handleOnChange}
             onBlur={handleOnChange}
-            placeholder="Name"
           />
           <div className="row centered gap-5">
             {DISH_TYPES

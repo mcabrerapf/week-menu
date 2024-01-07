@@ -108,7 +108,7 @@ function Input({
       )}
       {type === 'text' && (
       <input
-        className={`text-input  border-rad-5 pad-5 ${modifier}`}
+        className={`text-input border-rad-5 pad-5 ${modifier}`}
         autoComplete="off"
         type={type}
         id={id}
