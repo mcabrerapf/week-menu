@@ -12,7 +12,7 @@ function ListFilters({
   const [showModal, setShowModal] = useState(false);
 
   const handleCloseModal = (closeEvent) => {
-    if (closeEvent && closeEvent.value) setFilterValue(closeEvent.value);
+    if (closeEvent) setFilterValue(closeEvent.value);
     setShowModal(false);
   };
 
@@ -26,17 +26,16 @@ function ListFilters({
   };
 
   return (
-    <div className="list-filters row a-c gap-5 h-3 w-f pad-5">
+    <div className="list-filters row a-c gap-5 h-3 w-a pad-5">
       <Input
         type="search"
-        modifier="h-2"
         value={searchValue}
         id="search-value"
         name="search-value"
         onChange={({ target: { value } }) => setSearchValue(value)}
       />
       <Button
-        modifier="h-2 w-2 icon"
+        modifier="l icon"
         disabled={view === MENU_STRING}
         fakeDisabled={!filterValue}
         onClick={() => setShowModal(true)}

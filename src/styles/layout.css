@@ -137,119 +137,124 @@
 }
 /* Gap */
 .gap-5 {
-	gap: 5px;
+	gap: 0.5rem;
 }
 
 .gap-10 {
-	gap: 10px;
+	gap: 1rem;
 }
 
 .gap-15 {
-	gap: 15px;
+	gap: 1.5rem;
 }
 
 .gap-20 {
-	gap: 20px;
+	gap: 2rem;
 }
 
 .gap-40 {
-	gap: 40px;
+	gap: 4rem;
 }
 
 /* Padding */
 .pad-5 {
-	padding: 5px;
+	padding: 0.5rem;
 }
 
 .pad-10 {
-	padding: 10px;
+	padding: 1rem;
 }
 
 .pad-15 {
-	padding: 15px;
+	padding: 1.5rem;
 }
 
 .pad-20 {
-	padding: 20px;
+	padding: 2rem;
 }
 
 .pad-40 {
-	padding: 40px;
+	padding: 4rem;
 }
 
 .pad-v-2 {
-	padding-top: 2px;
-	padding-bottom: 2px;
+	padding-top: 0.2rem;
+	padding-bottom: 0.2rem;
 }
 
 .pad-v-5 {
-	padding-top: 5px;
-	padding-bottom: 5px;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
 }
 
 .pad-v-10 {
-	padding-top: 10px;
-	padding-bottom: 10px;
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+}
+
+.pad-v-15 {
+	padding-top: 1.5rem;
+	padding-bottom: 1.5rem;
 }
 
 .pad-h-5 {
-	padding-left: 5px;
-	padding-right: 5px;
+	padding-left: 0.5rem;
+	padding-right: 0.5rem;
 }
 
 .pad-h-10 {
-	padding-left: 10px;
-	padding-right: 10px;
+	padding-left: 1rem;
+	padding-right: 1rem;
 }
 
 .pad-h-15 {
-	padding-left: 15px;
-	padding-right: 15px;
+	padding-left: 1.5rem;
+	padding-right: 1.5rem;
 }
 
 .pad-b-5 {
-	padding-bottom: 5px;
+	padding-bottom: 0.5rem;
 }
 
 .pad-t-5 {
-	padding-top: 5px;
+	padding-top: 0.5rem;
 }
 
 .pad-t-10 {
-	padding-top: 10px;
+	padding-top: 1rem;
 }
 
 .pad-l-5 {
-	padding-left: 5px;
+	padding-left: 0.5rem;
 }
 
 .pad-l-10 {
-	padding-left: 10px;
+	padding-left: 1rem;
 }
 
 .pad-l-15 {
-	padding-left: 15px;
+	padding-left: 1.5rem;
 }
 
 /* Margin */
 .m-t-5 {
-	margin-top: 5px;
+	margin-top: 0.5rem;
 }
 
 .m-5 {
-	margin: 5px;
+	margin: 0.5rem;
 }
 
 .m-10 {
-	margin: 10px;
+	margin: 1rem;
 }
 
 .m-h-5 {
-	margin-left: 5px;
-	margin-right: 5px;
+	margin-left: 0.5rem;
+	margin-right: 0.5rem;
 }
 
 .m-h-10 {
-	margin-left: 10px;
-	margin-right: 10px;
+	margin-left: 1rem;
+	margin-right: 1rem;
 }

@@ -123,7 +123,7 @@ function MenuBuilderModal({
         </Button>
       </div>
       <div className="row j-around">
-        <div className="menu-builder-day col gap-5">
+        <div className="menu-builder-days col centered gap-5">
           {days.map((day, index) => {
             const dayName = DAYS[index][2];
             const hasMeal = day[0] || day[1] || day[2];
@@ -177,7 +177,7 @@ function MenuBuilderModal({
             );
           })}
         </div>
-        <div className="col gap-10">
+        <div className="menu-builder-options col gap-10">
           <QuantityInput
             value={weekLimit}
             valueKey="weekLimit"

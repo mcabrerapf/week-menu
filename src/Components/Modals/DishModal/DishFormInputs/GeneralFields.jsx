@@ -74,32 +74,31 @@ function GeneralFields({
   return (
     <>
       <div className="col gap-20">
-        <div className="row j-bet gap-5">
+        <div className="row j-bet w-a h-3 gap-5">
           <Input
-            autoComplete="off"
             type="text"
             id="name"
             name="name"
+            modifier="h-a"
             value={name}
-            modifier="w-f"
             onChange={handleOnChange}
             onBlur={handleOnChange}
           />
-          <div className="row centered gap-5">
-            {DISH_TYPES
-              .map(({ id: typeId }) => (
-                <Button
-                  key={typeId}
-                  fakeDisabled={!types.includes(typeId)}
-                  modifier="icon m"
-                  value={typeId}
-                  onClick={() => toggleType(typeId)}
-                >
-                  <Icon iconName={typeId} />
-                </Button>
-              ))}
 
-          </div>
+        </div>
+        <div className="row gap-5">
+          {DISH_TYPES
+            .map(({ id: typeId }) => (
+              <Button
+                key={typeId}
+                fakeDisabled={!types.includes(typeId)}
+                modifier="icon m"
+                value={typeId}
+                onClick={() => toggleType(typeId)}
+              >
+                <Icon iconName={typeId} />
+              </Button>
+            ))}
         </div>
         <div className="row gap-40">
           <div className="col j-bet gap-5">
@@ -115,12 +114,12 @@ function GeneralFields({
           </div>
           <div className="time-input col j-bet gap-5">
             <div className="row centered icon-l"><Icon iconName="clock" /></div>
-            <div className="row gap-5">
+            <div className="row gap-5 h-a ">
               <Input
                 type="number"
                 id="hours"
                 name="hours"
-                modifier="xs"
+                modifier="xs h-a"
                 value={hours}
                 resetValueOnClick
                 min={0}
@@ -134,7 +133,7 @@ function GeneralFields({
                 type="number"
                 id="minutes"
                 name="minutes"
-                modifier="xs"
+                modifier="xs h-a"
                 value={minutes}
                 resetValueOnClick
                 min={0}

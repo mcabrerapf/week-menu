@@ -49,7 +49,8 @@ function DisplayView({
         </div>
         {!!orderedIngredients.length
         && (
-        <div>
+        // TODO turnn nthis list into a component
+        <div className="col gap-5">
           {orderedIngredients.map((ingredientSection) => {
             const { value, ingredients: sectionIngredients } = ingredientSection;
             return (
@@ -91,7 +92,7 @@ function DisplayView({
         </div>
         )} */}
         {instructions && (
-        <div className="col border-t">
+        <div className="col border-t pad-t-10">
           <ul className="col gap-5">
             {instructions.split('---').map((ins, i) => (
               <li key={i} className="row gap-5 text-a-l">

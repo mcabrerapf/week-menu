@@ -6,6 +6,7 @@ import IngredientModal from '../Modals/IngredientModal';
 import DishModal from '../Modals/DishModal';
 import DeleteModal from '../Modals/DeleteModal';
 import ListFiltersModal from '../Modals/ListFiltersModal';
+import WeekModal from '../Modals/WeekModal';
 import {
   DELETE_STRING,
   DISH_STRING,
@@ -15,6 +16,7 @@ import {
   MENU_STRING,
   SHOPING_LIST_ITEM_STRING,
   LIST_FILTERS_STRING,
+  WEEK_STRING,
 } from '../../constants/STRINGS';
 
 const getModalByType = (type) => {
@@ -35,6 +37,8 @@ const getModalByType = (type) => {
       return DeleteModal;
     case LIST_FILTERS_STRING:
       return ListFiltersModal;
+    case WEEK_STRING:
+      return WeekModal;
     default:
       return () => {};
   }

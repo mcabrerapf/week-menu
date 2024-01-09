@@ -9,8 +9,8 @@
 }
 
 .week-number {
-	left: calc(50% - 1.5rem);
-	margin-top: -1rem;
+	left: calc(50% - 1rem);
+	top: 1.5rem;
 }
 
 .week-prev-button {

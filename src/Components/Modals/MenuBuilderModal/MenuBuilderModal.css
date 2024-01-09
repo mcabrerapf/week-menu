@@ -1,9 +1,9 @@
-.menu-builder-day button:first-of-type {
-	border-top-left-radius: 5px;
-	border-bottom-left-radius: 5px;
+.menu-builder-days button:first-of-type {
+	border-top-left-radius: 0.5rem;
+	border-bottom-left-radius: 0.5rem;
 }
 
-.menu-builder-day button:last-of-type {
-	border-top-right-radius: 5px;
-	border-bottom-right-radius: 5px;
+.menu-builder-days button:last-of-type {
+	border-top-right-radius: 0.5rem;
+	border-bottom-right-radius: 0.5rem;
 }

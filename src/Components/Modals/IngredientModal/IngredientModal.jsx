@@ -34,16 +34,17 @@ function IngredientModal({
   const isButtonDisabled = !name;
 
   return (
-    <form className="col pad-10 gap-10">
-      <div className="col gap-10">
-        <Input
-          autoComplete="off"
-          type="text"
-          id="name"
-          name="name"
-          value={name}
-          onChange={handleOnChange}
-        />
+    <form className="col w-a h-a pad-10 gap-10">
+      <div className="col w-a h-a gap-10">
+        <div className="row w-a pad-5">
+          <Input
+            type="text"
+            id="name"
+            name="name"
+            value={name}
+            onChange={handleOnChange}
+          />
+        </div>
         <div className="row centered wrap gap-5">
           {INGREDIENT_TYPES
             .map(({ value }) => (

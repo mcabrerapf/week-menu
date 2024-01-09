@@ -11,6 +11,7 @@ export const INGREDIENT_STRING = 'ingredient';
 export const DISH_STRING = 'dish';
 export const MENU_STRING = 'menu';
 export const MENU_BUILDER_STRING = 'menuBuilder';
+export const WEEK_STRING = 'week';
 
 export const INGREDIENTS_STRING = 'ingredients';
 export const DISHES_STRING = 'dishes';

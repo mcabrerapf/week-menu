@@ -92,9 +92,9 @@ function Input({
 
   return (
     <>
-      {type === 'search' && (
+      {(type === 'search' || type === 'text') && (
       <input
-        className={`text-input border-rad-5 pad-5 ${modifier}`}
+        className={`text-input w-f h-f border-rad-5 pad-5 ${modifier}`}
         autoComplete="off"
         type={type}
         id={id}
@@ -106,43 +106,30 @@ function Input({
         onKeyDown={handleEnter}
       />
       )}
-      {type === 'text' && (
-      <input
-        className={`text-input border-rad-5 pad-5 ${modifier}`}
-        autoComplete="off"
-        type={type}
-        id={id}
-        name={name}
-        value={value}
-        placeholder={placeholder}
-        disabled={disabled}
-        onChange={onChange}
-        onKeyDown={handleEnter}
-      />
-      )}
+
       {type === 'number' && (
-        <input
-          type="text"
-          autoComplete="off"
-          inputMode="numeric"
-          pattern="[0-9]*"
-          className={`number-input border-rad-5 pad-5 ${modifier}`}
-          aria-label={id}
-          key={id}
-          id={id}
-          name={name}
-          value={value}
-          onClick={setCursorOnInputEnd}
-          onFocus={handleNumberFocus}
-          onBlur={handleNumberBlur}
-          onChange={handleNumberChange}
-          disabled={disabled}
-          onKeyDown={handleEnter}
-        />
+      <input
+        className={`number-input w-f h-f border-rad-5 pad-5 ${modifier}`}
+        type="text"
+        autoComplete="off"
+        inputMode="numeric"
+        pattern="[0-9]*"
+        aria-label={id}
+        key={id}
+        id={id}
+        name={name}
+        value={value}
+        onClick={setCursorOnInputEnd}
+        onFocus={handleNumberFocus}
+        onBlur={handleNumberBlur}
+        onChange={handleNumberChange}
+        disabled={disabled}
+        onKeyDown={handleEnter}
+      />
       )}
       {type === 'checkbox' && (
       <input
-        className={`checkbox-input border-rad-5 pad-5 ${modifier}`}
+        className={`checkbox-input w-f h-f border-rad-5 pad-5 ${modifier}`}
         autoComplete="off"
         type={type}
         id={id}
@@ -155,7 +142,7 @@ function Input({
       )}
       {type === 'textarea' && (
       <textarea
-        className={`textarea-input border-rad-5 pad-5 w-f ${modifier}`}
+        className={`textarea-input w-f h-a border-rad-5 pad-5 ${modifier}`}
         autoComplete="off"
         id={id}
         name={name}
@@ -169,7 +156,7 @@ function Input({
       )}
       {type === 'select' && (
       <select
-        className={`select-input border-rad-5 pad-5 ${modifier}`}
+        className={`select-input w-f h-f border-rad-5 pad-5 ${modifier}`}
         name={name}
         id={id}
         value={value}

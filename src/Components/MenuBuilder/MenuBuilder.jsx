@@ -1,6 +1,6 @@
 import './MenuBuilder.css';
 import React, { useState, useContext } from 'react';
-import { MENU_BUILDER_STRING } from '../../constants/STRINGS';
+import { MENU_BUILDER_STRING, WEEK_STRING } from '../../constants/STRINGS';
 import { buildMenu, deepCopy } from '../helpers';
 import { MainContext } from '../../Contexts';
 import Button from '../Button';
@@ -21,6 +21,7 @@ function MenuBuilder() {
   const [view, setView] = useState(0);
   const [selectedWeekIndex, setSelectedWeekIndex] = useState(0);
   const [showModal, setShowModal] = useState(false);
+  const [showWeekModal, setShowWeekModal] = useState(false);
   const [modalData, setModalData] = useState(null);
 
   const { weeks } = currentMenu;
@@ -64,13 +65,7 @@ function MenuBuilder() {
     updateCurrentMenu({ ...currentMenu, weeks: updatedWeeks });
   };
 
-  const handleWeekChange = (increase) => {
-    if (increase && weeks[selectedWeekIndex + 1]) setSelectedWeekIndex(selectedWeekIndex + 1);
-    if (!increase && selectedWeekIndex !== 0) setSelectedWeekIndex(selectedWeekIndex - 1);
-  };
-
   const hasLoadedMenu = !!weeks && !!weeks.length;
-  const showWeekButtons = hasLoadedMenu && weeks.length > 1;
   const selectedWeek = hasLoadedMenu ? weeks[selectedWeekIndex] : {};
 
   return (
@@ -85,7 +80,7 @@ function MenuBuilder() {
         handleSave={handleSave}
       />
       <div
-        className="menu-builder-content m-5"
+        className="menu-builder-content col pad-5"
       >
         {!hasLoadedMenu && (
           <div className="col w-f h-f centered">
@@ -95,26 +90,10 @@ function MenuBuilder() {
           </div>
 
         )}
-        {showWeekButtons && (
-          <>
-            <Button modifier="week-number icon m shadow circle">
-              {selectedWeekIndex + 1}
-            </Button>
-            <Button
-              modifier="week-prev-button icon m shadow"
-              disabled={selectedWeekIndex === 0}
-              onClick={() => handleWeekChange()}
-            >
-              <Icon iconName="arrow-l" />
-            </Button>
-            <Button
-              modifier="week-next-button icon m shadow"
-              disabled={selectedWeekIndex >= weeks.length - 1}
-              onClick={() => handleWeekChange(true)}
-            >
-              <Icon iconName="arrow-r" />
-            </Button>
-          </>
+        {hasLoadedMenu && (
+        <Button modifier="week-number icon m shadow circle" onClick={() => setShowWeekModal(true)}>
+          {selectedWeekIndex + 1}
+        </Button>
         )}
         {view === 0 && (
         <Week
@@ -132,6 +111,18 @@ function MenuBuilder() {
         )}
       </div>
       {showModal && <Modal modalData={modalData} closeModal={closeModal} />}
+      {showWeekModal
+      && (
+      <Modal
+        modalData={{
+          type: WEEK_STRING, currentMenu, hideHeader: true, selectedWeekIndex, modifier: 's',
+        }}
+        closeModal={(newWeekIndex) => {
+          if (newWeekIndex !== undefined) setSelectedWeekIndex(newWeekIndex);
+          setShowWeekModal(false);
+        }}
+      />
+      )}
     </>
   );
 }

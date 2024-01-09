@@ -2,10 +2,6 @@
 	height: calc(100% - 4rem);
 }
 
-.list-filters input {
-	width: calc(100% - 3.5rem);
-}
-
 .list-add-button {
 	position: fixed;
 	bottom: 3.2rem;

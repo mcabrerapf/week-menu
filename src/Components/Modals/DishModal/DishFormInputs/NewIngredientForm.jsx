@@ -34,16 +34,16 @@ function NewIngredientForm({
 
   return (
     <>
-      <div className="col gap-10">
-        <Input
-          autoComplete="off"
-          type="text"
-          id="name"
-          name="name"
-          value={name}
-          onChange={handleOnChange}
-          placeholder="Name"
-        />
+      <div className="col w-a h-a gap-10">
+        <div className="row w-a">
+          <Input
+            type="text"
+            id="name"
+            name="name"
+            value={name}
+            onChange={handleOnChange}
+          />
+        </div>
         <div className="row centered wrap gap-5">
           {INGREDIENT_TYPES
             .map(({ value }) => (
