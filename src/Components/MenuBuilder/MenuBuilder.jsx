@@ -1,7 +1,7 @@
 import './MenuBuilder.css';
 import React, { useState, useContext } from 'react';
 import { MENU_BUILDER_STRING, WEEK_STRING } from '../../constants/STRINGS';
-import { buildMenu, deepCopy } from '../helpers';
+import { buildIngredientSections, buildMenu, deepCopy } from '../helpers';
 import { MainContext } from '../../Contexts';
 import Button from '../Button';
 import Icon from '../Icon';
@@ -67,6 +67,7 @@ function MenuBuilder() {
 
   const hasLoadedMenu = !!weeks && !!weeks.length;
   const selectedWeek = hasLoadedMenu ? weeks[selectedWeekIndex] : {};
+  const shopingList = buildIngredientSections(selectedWeek);
 
   return (
     <div className="menu-builder col w-f h-f">
@@ -105,7 +106,7 @@ function MenuBuilder() {
         )}
         {view === 1 && (
         <ShopingList
-          week={selectedWeek}
+          shopingList={shopingList}
         />
         )}
       </div>

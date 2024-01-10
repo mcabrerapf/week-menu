@@ -1,22 +1,22 @@
 /* eslint-disable max-len */
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import './ShopingList.css';
-import { buildIngredientSections, deepCopy } from '../../helpers';
+import { deepCopy } from '../../helpers';
 import { ToastContext } from '../../../Contexts';
 import ShopingListSection from './ShopingListSection';
 import Button from '../../Button';
 import Icon from '../../Icon';
 import { copyShopingList } from './helpers';
 
-function ShopingList({ week }) {
+function ShopingList({ shopingList }) {
   const { addToast } = useContext(ToastContext);
-  const [ingredietnSections, setIngredientSections] = useState([]);
+  const [ingredietnSections, setIngredientSections] = useState(shopingList);
 
-  useEffect(() => {
-    const builtSections = buildIngredientSections(week);
-    setIngredientSections(builtSections);
-  }, [week]);
+  // useEffect(() => {
+  //   const builtSections = buildIngredientSections(week);
+  //   setIngredientSections(builtSections);
+  // }, [week]);
 
   const handleCopyShopingList = () => {
     copyShopingList(ingredietnSections);
@@ -50,12 +50,12 @@ function ShopingList({ week }) {
 }
 
 ShopingList.propTypes = {
-  week: PropTypes.shape(),
+  shopingList: PropTypes.arrayOf(PropTypes.shape()),
 
 };
 
 ShopingList.defaultProps = {
-  week: {},
+  shopingList: [],
 };
 
 export default ShopingList;

@@ -59,9 +59,11 @@ const getSectionIngredients = (sectionName, days, people) => {
 };
 
 const buildIngredientSections = (week) => {
+  if (!week) return [];
   const { days, people } = week;
   return INGREDIENT_TYPES
     .map(({ value, name }) => {
+      if (!days || !days.length) return null;
       const sectionIngredients = getSectionIngredients(value, days, people);
       if (!sectionIngredients.length) return null;
       return { value, name, ingredients: sortBy(sectionIngredients) };
