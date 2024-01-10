@@ -77,7 +77,7 @@ function List() {
           modifier="circle xl icon-l shadow list-add-button"
           type="button"
           onClick={() => handleOpenModal({
-            type: view, modalView: EDIT_STRING, itemData: {},
+            type: view, modalView: EDIT_STRING, itemData: {}, modifier: 'f',
           })}
         >
           <Icon iconName="plus" />

@@ -20,11 +20,10 @@ function InstructionsFields({
 }) {
   const [currentInstructions, setCurrentInstructions] = useState(initInstructions(instructions));
 
-  const handleInstructionChange = (index, newInstruction, isBlur) => {
+  const handleInstructionChange = (index, newInstruction) => {
     const shouldAddNew = newInstruction && currentInstructions[index + 1] === undefined;
-    let updatedInstructions = [...currentInstructions];
+    const updatedInstructions = [...currentInstructions];
     updatedInstructions[index] = newInstruction;
-    if (!newInstruction && isBlur) updatedInstructions = updatedInstructions.filter(Boolean);
     if (shouldAddNew)updatedInstructions.push('');
     setCurrentInstructions(updatedInstructions);
     updateInstructions(updatedInstructions.join('---'));
@@ -48,8 +47,6 @@ function InstructionsFields({
     updateInstructions(updatedInstructions.join('---'));
   };
 
-  const showDeleteButton = currentInstructions.length > 1;
-
   return (
     <>
       <div className="instructions-content col overflow-y gap-10">
@@ -58,7 +55,6 @@ function InstructionsFields({
             key={`${i}-instruction`}
             id={`${i}-instruction`}
             index={i}
-            showDeleteButton={showDeleteButton}
             instruction={instruction}
             handleInstructionChange={handleInstructionChange}
             handleDeleteInstruction={handleDeleteInstruction}
@@ -74,7 +70,6 @@ function InstructionsFields({
         </Button>
       </div>
     </>
-
   );
 }
 

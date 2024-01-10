@@ -12,7 +12,6 @@ function InstructionField({
   index,
   id,
   isLast,
-  showDeleteButton,
 }) {
   const handleChange = (e) => {
     handleInstructionChange(index, e.target.value);
@@ -67,7 +66,7 @@ function InstructionField({
         <Button
           modifier="m icon"
           type="button"
-          disabled={!showDeleteButton}
+          disabled={isLast}
           onClick={() => handleDeleteClick()}
         >
           <Icon iconName="close" />
@@ -81,7 +80,6 @@ InstructionField.propTypes = {
   handleInstructionChange: PropTypes.func.isRequired,
   handleDeleteInstruction: PropTypes.func.isRequired,
   moveInstruction: PropTypes.func.isRequired,
-  showDeleteButton: PropTypes.bool.isRequired,
   index: PropTypes.number.isRequired,
   id: PropTypes.string.isRequired,
   isLast: PropTypes.bool.isRequired,
