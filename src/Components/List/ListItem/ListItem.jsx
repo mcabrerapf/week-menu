@@ -54,7 +54,7 @@ function ListItem({
         <Button
           modifier="l icon"
           onClick={() => handleOpenModal({
-            type: itemType, modalView: EDIT_STRING, itemData, headerText: name,
+            type: itemType, modalView: EDIT_STRING, itemData, headerText: name, modifier: 'f',
           })}
         >
           <Icon iconName="star" />
@@ -73,7 +73,7 @@ function ListItem({
         <Button
           modifier="l icon"
           onClick={() => handleOpenModal({
-            type: itemType, modalView: EDIT_STRING, itemData, headerText: name,
+            type: itemType, modalView: EDIT_STRING, itemData, headerText: name, modifier: 'f',
           })}
         >
           <Icon iconName="edit" />

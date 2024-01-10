@@ -20,24 +20,19 @@ function InstructionsFields({
 }) {
   const [currentInstructions, setCurrentInstructions] = useState(initInstructions(instructions));
 
-  const addInstruction = () => {
-    if (currentInstructions[currentInstructions.length - 1] === '') return;
-    const updatedInstructions = [...currentInstructions, ''];
-
-    setCurrentInstructions(updatedInstructions);
-  };
-
-  const handleInstructionChange = (index, newInstruction) => {
-    const updatedInstructions = [...currentInstructions];
+  const handleInstructionChange = (index, newInstruction, isBlur) => {
+    const shouldAddNew = newInstruction && currentInstructions[index + 1] === undefined;
+    let updatedInstructions = [...currentInstructions];
     updatedInstructions[index] = newInstruction;
+    if (!newInstruction && isBlur) updatedInstructions = updatedInstructions.filter(Boolean);
+    if (shouldAddNew)updatedInstructions.push('');
     setCurrentInstructions(updatedInstructions);
     updateInstructions(updatedInstructions.join('---'));
   };
 
   const handleDeleteInstruction = (index) => {
     const updatedInstructions = [...currentInstructions];
-    updatedInstructions[index] = '';
-    const filteredInstructions = updatedInstructions.filter(Boolean);
+    const filteredInstructions = updatedInstructions.filter((_, i) => i !== index);
     setCurrentInstructions(filteredInstructions);
     updateInstructions(filteredInstructions.join('---'));
   };
@@ -74,13 +69,6 @@ function InstructionsFields({
 
       </div>
       <div className="col gap-5">
-        <Button
-          modifier="icon"
-          type="button"
-          onClick={addInstruction}
-        >
-          <Icon iconName="plus" />
-        </Button>
         <Button modifier="icon" onClick={handleSubmit} disabled={!canSave}>
           <Icon iconName="save" />
         </Button>

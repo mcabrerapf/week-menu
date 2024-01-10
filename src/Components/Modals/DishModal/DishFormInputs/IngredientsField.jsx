@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { capitalizeFirstLetter, sortBy } from '../../../helpers';
+import { capitalizeFirstLetter, parseClassName, sortBy } from '../../../helpers';
 import { SELECT_OPTIONS } from '../../../../constants';
 import { INGREDIENT_STRING } from '../../../../constants/STRINGS';
 import Icon from '../../../Icon';
@@ -20,7 +20,7 @@ function IngredientsField({
         } = currentIngredient;
 
         return (
-          <div className="row gap-5 w-f j-bet centered border-b" key={id}>
+          <div key={id} className={parseClassName('row gap-5 w-f j-bet centered', 'border-b')}>
             <div className="row">{capitalizeFirstLetter(name)}</div>
             <div className="row j-end centered">
               <Input

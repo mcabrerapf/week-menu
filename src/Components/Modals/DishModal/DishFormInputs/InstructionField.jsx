@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Input from '../../../Input';
 import Button from '../../../Button';
@@ -14,20 +14,12 @@ function InstructionField({
   isLast,
   showDeleteButton,
 }) {
-  const ref = useRef(null);
-
-  useEffect(() => {
-    if (!instruction) {
-      document.getElementById(`${index}-instruction`).focus();
-    }
-  }, [ref]);
-
   const handleChange = (e) => {
     handleInstructionChange(index, e.target.value);
   };
 
   const handleBlur = (e) => {
-    handleInstructionChange(index, e.target.value);
+    handleInstructionChange(index, e.target.value, true);
   };
 
   const handleDeleteClick = () => {
@@ -43,13 +35,13 @@ function InstructionField({
   };
 
   return (
-    <div ref={ref} className="row gap-5 centered">
+    <div className="row gap-5 centered">
       <div className="col gap-5">
         <Button
           modifier="m"
           type="button"
           onClick={() => handleMoveUp()}
-          disabled={index === 0}
+          disabled={index === 0 || !instruction}
         >
           <Icon iconName="arrow-u" />
         </Button>
@@ -57,7 +49,7 @@ function InstructionField({
           modifier="m"
           type="button"
           onClick={() => handleMoveDown}
-          disabled={isLast}
+          disabled={isLast || !instruction}
         >
           <Icon iconName="arrow-d" />
         </Button>

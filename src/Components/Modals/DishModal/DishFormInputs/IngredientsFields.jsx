@@ -49,11 +49,22 @@ function IngredientsFields({
   return (
     <>
       {ingredientsView === 0 && (
-      <IngredientsField
-        ingredients={ingredients}
-        handleIngredientChange={handleIngredientChange}
-        handleRemoveIngredient={handleRemoveIngredient}
-      />
+        <div className="col gap-5">
+          <IngredientsField
+            ingredients={ingredients}
+            handleIngredientChange={handleIngredientChange}
+            handleRemoveIngredient={handleRemoveIngredient}
+          />
+          <div className="row centered">
+            <Button
+              modifier="circle l icon-l"
+              onClick={() => setIngredientsView(1)}
+            >
+              <Icon iconName="plus" />
+            </Button>
+          </div>
+
+        </div>
       )}
       {ingredientsView === 1 && (
         <AddIngredientsView
@@ -70,22 +81,13 @@ function IngredientsFields({
 
         <Button
           modifier="icon"
-          onClick={() => setIngredientsView(1)}
-        >
-          <Icon iconName="plus" />
-        </Button>
-
-        <Button
-          modifier="icon"
           onClick={handleSubmit}
           disabled={!canSave}
         >
           <Icon iconName="save" />
         </Button>
-
       </div>
       )}
-
     </>
   );
 }
