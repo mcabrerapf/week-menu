@@ -9,7 +9,7 @@ import Icon from '../../../Icon';
 
 const initInstructions = (ins) => {
   if (!ins) return [''];
-  return ins.split('---');
+  return [...ins.split('---'), ''];
 };
 
 function InstructionsFields({
