@@ -29,22 +29,23 @@ function InstructionsFields({
     updateInstructions(updatedInstructions.join('---'));
   };
 
-  const handleDeleteInstruction = (index) => {
-    const updatedInstructions = [...currentInstructions];
-    const filteredInstructions = updatedInstructions.filter((_, i) => i !== index);
-    setCurrentInstructions(filteredInstructions);
-    updateInstructions(filteredInstructions.join('---'));
-  };
-
   const moveInstruction = (index1, index2) => {
     const updatedInstructions = currentInstructions.map((inst, index) => {
       if (index === index1) return currentInstructions[index2];
       if (index === index2) return currentInstructions[index1];
       return inst;
     });
-
+    if (updatedInstructions[updatedInstructions.length - 1]) updatedInstructions.push('');
     setCurrentInstructions(updatedInstructions);
     updateInstructions(updatedInstructions.join('---'));
+  };
+
+  const handleDeleteInstruction = (index) => {
+    const updatedInstructions = [...currentInstructions];
+    const filteredInstructions = updatedInstructions.filter((_, i) => i !== index);
+    if (filteredInstructions[filteredInstructions.length - 1]) filteredInstructions.push('');
+    setCurrentInstructions(filteredInstructions);
+    updateInstructions(filteredInstructions.join('---'));
   };
 
   return (

@@ -5,12 +5,12 @@ import Button from '../../../Button';
 import Icon from '../../../Icon';
 
 function InstructionField({
+  id,
   instruction,
   handleInstructionChange,
   handleDeleteInstruction,
   moveInstruction,
   index,
-  id,
   isLast,
 }) {
   const handleChange = (e) => {
@@ -18,7 +18,7 @@ function InstructionField({
   };
 
   const handleBlur = (e) => {
-    handleInstructionChange(index, e.target.value, true);
+    handleInstructionChange(index, e.target.value);
   };
 
   const handleDeleteClick = () => {
@@ -40,15 +40,15 @@ function InstructionField({
           modifier="m"
           type="button"
           onClick={() => handleMoveUp()}
-          disabled={index === 0 || !instruction}
+          disabled={index === 0}
         >
           <Icon iconName="arrow-u" />
         </Button>
         <Button
           modifier="m"
           type="button"
-          onClick={() => handleMoveDown}
-          disabled={isLast || !instruction}
+          onClick={() => handleMoveDown()}
+          disabled={isLast}
         >
           <Icon iconName="arrow-d" />
         </Button>
@@ -66,7 +66,7 @@ function InstructionField({
         <Button
           modifier="m icon"
           type="button"
-          disabled={isLast}
+          disabled={isLast && !instruction}
           onClick={() => handleDeleteClick()}
         >
           <Icon iconName="close" />
