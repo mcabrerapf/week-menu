@@ -1,3 +1,7 @@
-.modal-content-dish-view {
-	height: calc(var(--full-modal-height) - 5rem);
+.dish-display-view {
+	height: calc(100% - 2rem);
+}
+
+.display-view-info {
+	height: calc(100% - 4rem);
 }

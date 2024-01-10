@@ -5,17 +5,17 @@ const buildDishesWithIngredients = (dishes, allIngredients) => {
 
   return dishes
     .map((dish) => {
-      const { ingredients, name: dishName } = dish;
+      const { ingredients, name: dName } = dish;
       const parsedIngredients = ingredients.map((currentIngredient) => {
         const {
-          id: ingredientId, unit, quantity = 1, name, type,
+          id: iId, name: iName, type, unit, quantity = 1,
         } = currentIngredient;
-        const ingredientMatch = findByKey(allIngredients, ingredientId);
-        if (!ingredientMatch) console.log(`${dishName} failed to match: \n ${name} ${ingredientId}`);
+        const ingredientMatch = findByKey(allIngredients, iId);
+        if (!ingredientMatch) console.log(`${dName} failed to match: \n ${iName} => ${iId}`);
         const { name: nameMatch, unit: unitMatch, type: typeMatch } = ingredientMatch || {};
         return {
-          id: ingredientId,
-          name: name || nameMatch,
+          id: iId,
+          name: iName || nameMatch,
           unit: unit || unitMatch,
           type: type || typeMatch,
           quantity,

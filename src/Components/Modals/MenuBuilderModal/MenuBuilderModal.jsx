@@ -105,22 +105,19 @@ function MenuBuilderModal({
 
   return (
     <div className="col pad-10 gap-10">
-      <div className="row centered gap-20">
-        <Button
-          modifier="m icon"
-          disabled={selectedWeekIndex === 0}
-          onClick={() => setSelectedWeekIndex(selectedWeekIndex - 1)}
-        >
-          <Icon iconName="arrow-l" />
-        </Button>
-        <div className="icon w-2">{selectedWeekIndex + 1}</div>
-        <Button
-          modifier="m icon"
-          disabled={selectedWeekIndex >= weeks.length - 1}
-          onClick={() => setSelectedWeekIndex(selectedWeekIndex + 1)}
-        >
-          <Icon iconName="arrow-r" />
-        </Button>
+      <div className="row a-c gap-5">
+        <Icon modifier="h-2 w-2" iconName="calendar" />
+        {weeks.map((_, i) => (
+          <Button
+            // eslint-disable-next-line react/no-array-index-key
+            key={i}
+            modifier="w-2 h-2 icon"
+            fakeDisabled={i !== selectedWeekIndex}
+            onClick={() => setSelectedWeekIndex(i)}
+          >
+            {i + 1}
+          </Button>
+        ))}
       </div>
       <div className="row j-around">
         <div className="menu-builder-days col centered gap-5">
@@ -182,7 +179,7 @@ function MenuBuilderModal({
             value={weekLimit}
             valueKey="weekLimit"
             min={1}
-            max={99}
+            max={5}
             handleDecrease={() => handleWeekLimitChange()}
             handleIncrease={() => handleWeekLimitChange(true)}
             iconName="calendar"

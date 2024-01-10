@@ -12,10 +12,10 @@ const buildMenusWithDishes = (menus, allDishes) => {
           const parsedDishes = dishes.map((dish) => {
             if (!dish) return null;
             const {
-              id: dishId,
+              id: dId,
               sideDishesToUse,
             } = dish;
-            const dishMatch = findByKey(allDishes, dishId);
+            const dishMatch = findByKey(allDishes, dId);
             const populatedSideDishes = !sideDishesToUse ? [] : sideDishesToUse
               .map((sideDishId) => findByKey(allDishes, sideDishId));
 
@@ -26,10 +26,8 @@ const buildMenusWithDishes = (menus, allDishes) => {
           });
           return { dishes: parsedDishes };
         });
-
         return { ...week, days: builtDays };
       });
-
       return { ...menu, weeks: parsedWeeks };
     });
 };

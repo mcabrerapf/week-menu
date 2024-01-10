@@ -1,5 +1,5 @@
 .menu-modal-content {
-	max-height: 30rem;
+	max-height: calc(--full-modal-height - 10rem);
 }
 
 .menu-modal-content .days-list {

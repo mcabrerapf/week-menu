@@ -25,7 +25,7 @@ function ListItem({
       role="button"
       tabIndex={0}
       onClick={() => handleOpenModal({
-        type: itemType, modalView, itemData, headerText: name,
+        type: itemType, modalView, itemData, headerText: name, modifier: 'f',
       })}
       onKeyDown={() => handleOpenModal({
         type: itemType, modalView, itemData, headerText: name,

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Icon from '../../Components/Icon';
+import { DELETE_STRING, SAVE_STRING } from '../../constants/STRINGS';
 
 const typeTimeout = {
   error: 5500,
@@ -39,8 +40,8 @@ function ToastMessage({
         onKeyDown={() => setShowToast(false)}
         tabIndex={0}
       >
-        {type === 'success' && <Icon iconName="save" />}
-        {type === 'delete' && <Icon iconName="delete" />}
+        {type === 'success' && <Icon modifier="icon" iconName={SAVE_STRING} />}
+        {type === 'delete' && <Icon iconName={DELETE_STRING} />}
         <span className="font-s">
           {content}
         </span>

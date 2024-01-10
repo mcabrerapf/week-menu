@@ -15,8 +15,6 @@ function MenuModal({ modalData, closeModal }) {
   const { itemData } = modalData;
   const [menuData, setMenuData] = useState(initData(itemData, MENU_STRING));
   const [selectedWeekIndex, setSelectedWeekIndex] = useState(0);
-  const { weeks } = menuData;
-  const { days } = weeks[selectedWeekIndex];
 
   const saveMenu = async () => {
     const noChange = deepCompare(menuData, itemData);
@@ -24,48 +22,41 @@ function MenuModal({ modalData, closeModal }) {
     const parsedData = parseMenuData(menuData);
     return closeModal({ type: SAVE_STRING, data: parsedData });
   };
-
-  const { name, favourite } = menuData;
+  const { weeks, name, favourite } = menuData;
+  const { days } = weeks[selectedWeekIndex];
 
   return (
-    <div className="menu-modal-content col gap-10 pad-10">
-      <div className="row centered gap-10">
+    <div className="menu-modal-content col gap-15 pad-10">
+      <div className="row centered gap-5">
         <Input
           name="name"
           id="name"
           value={name}
-          modifier="w-f"
+          modifier="w-f h-2"
           onChange={({ target: { value: eVal } }) => setMenuData({ ...menuData, name: eVal })}
           type="text"
         />
         <Button
-          modifier="m icon"
+          modifier="h-3 w-3 icon"
           fakeDisabled={!favourite}
           onClick={() => setMenuData({ ...menuData, favourite: !favourite })}
         >
           <Icon iconName="star" />
         </Button>
       </div>
-      <div className="row centered gap-20">
-        <Button
-          modifier="icon m"
-          disabled={selectedWeekIndex === 0}
-          onClick={() => setSelectedWeekIndex(selectedWeekIndex - 1)}
-        >
-          <Icon iconName="arrow-l" />
-        </Button>
-        <Button
-          modifier="icon m circle bgc-bg"
-        >
-          {selectedWeekIndex + 1}
-        </Button>
-        <Button
-          modifier="icon m"
-          disabled={selectedWeekIndex >= weeks.length - 1}
-          onClick={() => setSelectedWeekIndex(selectedWeekIndex + 1)}
-        >
-          <Icon iconName="arrow-r" />
-        </Button>
+      <div className="row a-c gap-5">
+        <Icon modifier="h-2 w-2" iconName="calendar" />
+        {weeks.map((_, i) => (
+          <Button
+            // eslint-disable-next-line react/no-array-index-key
+            key={i}
+            modifier="w-2 h-2 icon"
+            fakeDisabled={i !== selectedWeekIndex}
+            onClick={() => setSelectedWeekIndex(i)}
+          >
+            {i + 1}
+          </Button>
+        ))}
       </div>
       <ul className="days-list col gap-5 overflow-y">
         {days.map(({ dishes }, index) => (

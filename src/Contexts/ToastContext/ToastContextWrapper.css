@@ -1,18 +1,21 @@
 .toast-context-wrapper {
 	position: fixed;
-	top: 3rem;
+	top: 3.5rem;
 	right: 0px;
 	z-index: var(--toast-z-index);
 }
 
 .toast-message {
-	max-width: 2rem;
+	max-width: 25rem;
 	color: var(--white-color);
-	background-color: var(--green-color);
 }
 
 .toast-message.info {
 	background-color: var(--green-color);
+}
+
+.toast-message.delete {
+	background-color: var(--black-color);
 }
 
 .toast-message.success {

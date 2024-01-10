@@ -1,0 +1,23 @@
+@media (min-width: 480px) {
+	:root {
+		font-size: 12px !important;
+	}
+}
+
+@media (min-width: 769px) {
+	:root {
+		font-size: 14px !important;
+	}
+	.modal {
+		--full-modal-width: 40rem;
+	}
+}
+
+@media (min-width: 1025px) {
+	:root {
+		font-size: 16px !important;
+	}
+	.modal {
+		--full-modal-width: 40rem;
+	}
+}

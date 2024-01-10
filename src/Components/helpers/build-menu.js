@@ -3,7 +3,7 @@ import { DAY_DISH_TYPES } from '../../constants/MENU';
 import deepCopy from './deep-copy';
 import generateRandomNumber from './generate-random-number';
 
-// TODO finish sidedishes but
+// TODO finish sidedishes bit
 const populateSideDishes = (dish) => ({ ...dish, sideDishesToUse: [] });
 
 const getRandomDishByType = (type, dishes) => {

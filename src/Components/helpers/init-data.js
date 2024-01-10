@@ -65,7 +65,7 @@ const initData = (data, type) => {
     case INGREDIENT_STRING:
       return initIngredient(data);
     default:
-      return {};
+      return data || {};
   }
 };
 

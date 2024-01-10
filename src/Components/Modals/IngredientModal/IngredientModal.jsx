@@ -50,7 +50,7 @@ function IngredientModal({
             .map(({ value }) => (
               <Button
                 key={value}
-                modifier="icon l"
+                modifier="icon-l xl"
                 fakeDisabled={type !== value}
                 name="type"
                 value={value}
@@ -65,7 +65,7 @@ function IngredientModal({
             .map(({ value, name: uName }) => (
               <Button
                 key={value}
-                modifier="l"
+                modifier="font-m l"
                 fakeDisabled={unit !== value}
                 name="unit"
                 value={value}

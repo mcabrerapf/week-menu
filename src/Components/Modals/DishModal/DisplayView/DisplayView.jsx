@@ -20,9 +20,9 @@ function DisplayView({
   const orderedIngredients = orderIngredientsBySection(ingredients);
 
   return (
-    <div className="modal-content-dish-view col j-bet pad-10 gap-10">
-      <div className="col gap-15 pad-5 overflow-y">
-        <div className="row gap-20">
+    <div className="dish-display-view col j-bet pad-10 gap-10">
+      <div className="display-view-info col gap-5">
+        <div className="display-view-info-header row gap-20 pad-b-5 border-b">
           {displayTypes && (
           <div className="row width-a">
             {types.map((tType) => <Icon key={tType} iconName={tType} modifier="icon-l" />)}
@@ -47,7 +47,8 @@ function DisplayView({
           </div>
           )}
         </div>
-        {!!orderedIngredients.length
+        <div className="display-view-info-content col gap-10 overflow-y">
+          {!!orderedIngredients.length
         && (
         // TODO turnn nthis list into a component
         <div className="col gap-5">
@@ -83,7 +84,7 @@ function DisplayView({
           })}
         </div>
         )}
-        {/* {description && (
+          {/* {description && (
         <div className="col">
           <span>
             <strong>Description: </strong>
@@ -91,20 +92,21 @@ function DisplayView({
           <p>{description}</p>
         </div>
         )} */}
-        {instructions && (
-        <div className="col border-t pad-t-10">
-          <ul className="col gap-5">
-            {instructions.split('---').map((ins, i) => (
-              <li key={i} className="row gap-5 text-a-l">
-                <span>{`${i + 1}.`}</span>
-                <span>{ins}</span>
-              </li>
-            ))}
-          </ul>
+          {instructions && (
+          <div className="col border-t pad-t-10">
+            <ul className="col gap-5">
+              {instructions.split('---').map((ins, i) => (
+                <li key={i} className="row gap-5 text-a-l">
+                  <span>{`${i + 1}.`}</span>
+                  <span>{ins}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          )}
         </div>
-        )}
       </div>
-      <div>
+      <div className="dish-footer">
         <Button modifier="icon" onClick={() => setModalView('edit')}>
           <Icon iconName="edit" />
         </Button>

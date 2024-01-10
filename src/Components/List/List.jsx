@@ -27,8 +27,8 @@ function List() {
   }, [view]);
 
   const handleOpenModal = (mData) => {
-    setShowModal(true);
     setModalData(mData);
+    setShowModal(true);
   };
 
   const handleCloseEvent = async (event) => {

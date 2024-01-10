@@ -3,13 +3,13 @@
 }
 
 .dish-modal-ingredients-list {
-	height: 25rem;
+	height: calc(var(--full-modal-height) - 16rem);
 }
 
 .instructions-content {
-	height: 25rem;
+	height: calc(var(--full-modal-height) - 16rem);
 }
 
 .ingredient-options {
-	height: 15rem;
+	height: calc(var(--full-modal-height) - 24rem);
 }
