@@ -9,14 +9,14 @@ function WeekModal({ modalData, closeModal }) {
   return (
     <div className="col gap-10 pad-10">
       <div className="row centered">
-        <Icon modifier="icon-l" iconName="calendar" />
+        <Icon modifier="icon-xl" iconName="calendar" />
       </div>
       <div className="row centered wrap pad-5 gap-5">
-        {weeks.map((week, i) => (
+        {weeks.map((_, i) => (
           <Button
             key={i}
             fakeDisabled={selectedWeekIndex !== i}
-            modifier="m"
+            modifier="xl icon-xl"
             onClick={() => closeModal(i)}
           >
             {i + 1}
