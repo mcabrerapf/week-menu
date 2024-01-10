@@ -15,6 +15,8 @@
 	--basic-box-shadow: 0rem 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
 	--full-modal-height: 40rem;
 	--full-modal-width: 25rem;
+	--footer-height: 4rem;
+	--header-height: 4rem;
 	--modal-z-index: 500;
 	--toast-z-index: 600;
 }

@@ -69,7 +69,7 @@ function MenuBuilder() {
   const selectedWeek = hasLoadedMenu ? weeks[selectedWeekIndex] : {};
 
   return (
-    <>
+    <div className="menu-builder col w-f h-f">
       <MenuBuilderHeader
         view={view}
         hasLoadedMenu={hasLoadedMenu}
@@ -80,18 +80,17 @@ function MenuBuilder() {
         handleSave={handleSave}
       />
       <div
-        className="menu-builder-content col pad-5"
+        className="menu-builder-content col w-a m-5"
       >
         {!hasLoadedMenu && (
           <div className="col w-f h-f centered">
-            <Button onClick={openModal} modifier="l icon shadow">
+            <Button onClick={openModal} modifier="xl icon-l shadow">
               <Icon iconName="brain" />
             </Button>
           </div>
-
         )}
         {hasLoadedMenu && (
-        <Button modifier="week-number icon m shadow circle" onClick={() => setShowWeekModal(true)}>
+        <Button modifier="week-number fixed icon-xl l shadow circle" onClick={() => setShowWeekModal(true)}>
           {selectedWeekIndex + 1}
         </Button>
         )}
@@ -123,7 +122,7 @@ function MenuBuilder() {
         }}
       />
       )}
-    </>
+    </div>
   );
 }
 

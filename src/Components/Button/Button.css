@@ -20,6 +20,16 @@
 	height: 3rem;
 }
 
+.button.xl {
+	width: 4rem;
+	height: 4rem;
+}
+
+.button.xxl {
+	width: 5rem;
+	height: 5rem;
+}
+
 .button.circle {
 	border-radius: 2rem;
 }

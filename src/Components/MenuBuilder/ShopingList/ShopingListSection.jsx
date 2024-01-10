@@ -34,11 +34,11 @@ function ShopingListSection({
   return (
     <div className="shoping-list-section col  pad-l-15 pad-v-10">
       <div
-        className="row pointer pad-5 gap-5 border-b"
+        className="shoping-list-section-icon row pointer a-c pad-5 gap-5 border-b"
         role="button"
         onClick={() => setShowSection(!showSection)}
       >
-        <Icon modifier="icon" iconName={name} />
+        <Icon modifier="icon-xl" iconName={name} />
         {showSection && <Icon modifier="icon" iconName="chevron-d" />}
         {!showSection && <Icon modifier="icon" iconName="chevron-u" />}
       </div>

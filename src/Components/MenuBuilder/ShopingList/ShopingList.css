@@ -1,6 +1,7 @@
 .shopping-list-copy-button {
 	position: fixed;
 	right: 2rem;
+	/* margin-top: 0.5rem; */
 }
 
 .shoping-list-section {

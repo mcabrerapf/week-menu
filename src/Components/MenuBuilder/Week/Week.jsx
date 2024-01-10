@@ -35,7 +35,7 @@ function Week({
 
   return (
     <>
-      <div className="week w-f h-f col gap-5 font-s">
+      <div className="week col w-f h-f gap-5 font-m">
         {days.map(({ dishes: dayDishes }, index) => (
           <div key={DAYS[index][2]} className="day row w-a h-f m-h-5 border-rad-5 bgc-b">
             <div className="day-label row label border-r centered">

@@ -1,9 +1,5 @@
-.list {
-	height: calc(100% - 4rem);
-}
-
 .list-add-button {
 	position: fixed;
-	bottom: 3.2rem;
-	left: calc(50% - 1.5rem);
+	bottom: 3rem;
+	left: calc(50% - 2rem);
 }

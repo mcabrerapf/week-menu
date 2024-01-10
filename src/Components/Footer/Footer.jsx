@@ -35,7 +35,7 @@ function Footer() {
     <footer className="footer row w-f">
       <Button
         value={MENU_BUILDER_STRING}
-        modifier="icon"
+        modifier="icon-l"
         fakeDisabled={view !== MENU_BUILDER_STRING}
         onClick={() => handleOnClick(MENU_BUILDER_STRING)}
       >
@@ -46,7 +46,7 @@ function Footer() {
         //   onLongPress: () => handleCopyList(MENU_STRING),
         // })}
         value={MENU_STRING}
-        modifier="icon"
+        modifier="icon-l"
         fakeDisabled={view !== MENU_STRING}
         onClick={() => handleOnClick(MENU_STRING)}
       >
@@ -57,7 +57,7 @@ function Footer() {
         //   onLongPress: () => handleCopyList(DISH_STRING),
         // })}
         value={DISH_STRING}
-        modifier="icon"
+        modifier="icon-l"
         fakeDisabled={view !== DISH_STRING}
         onClick={() => handleOnClick(DISH_STRING)}
       >
@@ -68,7 +68,7 @@ function Footer() {
         //   onLongPress: () => handleCopyList(INGREDIENT_STRING),
         // })}
         value={INGREDIENT_STRING}
-        modifier="icon"
+        modifier="icon-l"
         fakeDisabled={view !== INGREDIENT_STRING}
         onClick={() => handleOnClick(INGREDIENT_STRING)}
       >

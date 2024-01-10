@@ -66,7 +66,7 @@
 }
 
 .header {
-	height: 3rem;
+	height: var(--header-height);
 	width: 100%;
 }
 
@@ -85,7 +85,7 @@
 }
 
 .footer {
-	height: 3rem;
+	height: var(--footer-height);
 }
 
 footer .button {
@@ -100,6 +100,10 @@ footer button:first-of-type {
 
 footer button:last-of-type {
 	border-top-right-radius: 0px;
+}
+
+.main {
+	height: calc(100% - var(--footer-height));
 }
 
 .overflow-y {

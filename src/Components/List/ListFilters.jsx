@@ -26,7 +26,7 @@ function ListFilters({
   };
 
   return (
-    <div className="list-filters row a-c gap-5 h-3 w-a pad-5">
+    <div className="list-filters row a-c gap-5 h-3 w-a m-h-5 m-t-5">
       <Input
         type="search"
         value={searchValue}

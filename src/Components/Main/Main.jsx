@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from 'react';
-import './Main.css';
 import {
   MENU_BUILDER_STRING,
 } from '../../constants/STRINGS';
@@ -53,7 +52,7 @@ function Main() {
 
   return (
     <div
-      className={`main w-f${offlineClass}`}
+      className={`main col w-f${offlineClass}`}
       onTouchStart={onTouchStart}
       onTouchMove={onTouchMove}
       onTouchEnd={onTouchEnd}

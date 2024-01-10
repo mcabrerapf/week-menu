@@ -132,7 +132,7 @@ function MenuBuilderModal({
               <div key={dayName} className="row">
                 <Button
                   value={index}
-                  modifier="centered square l"
+                  modifier="centered square l font-s"
                   fakeDisabled={!hasMeal}
                   buttonText={dayName}
                   onClick={() => {

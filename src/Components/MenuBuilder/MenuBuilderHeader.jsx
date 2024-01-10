@@ -59,19 +59,19 @@ function MenuBuilderHeader({
     <>
       <div className="menu-builder header row">
         <Button
-          modifier="icon"
+          modifier="icon-l"
           onClick={openMenuBuilderModal}
         >
           <Icon iconName="settings" />
         </Button>
         <Button
-          modifier="icon"
+          modifier="icon-l"
           onClick={handleBuildMenu}
         >
           <Icon iconName="shuffle" />
         </Button>
         <Button
-          modifier="icon"
+          modifier="icon-l"
           disabled={!hasLoadedMenu}
         // {...longPressProps}
           onClick={checkView}
@@ -80,7 +80,7 @@ function MenuBuilderHeader({
 
         </Button>
         <Button
-          modifier="icon"
+          modifier="icon-l"
           disabled={!hasLoadedMenu}
         // {...longPressProps}
           onClick={handleSaveClick}

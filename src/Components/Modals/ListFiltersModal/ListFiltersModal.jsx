@@ -15,13 +15,13 @@ function ListFiltersModal({ modalData, closeModal }) {
   };
 
   return (
-    <div className="col w-16 gap-10 pad-10">
+    <div className="col gap-10 pad-10">
       <div className="row centered wrap pad-5 gap-5">
         {view === DISH_STRING && DISH_TYPES.map(({ id }) => (
           <Button
             key={id}
             fakeDisabled={filterValue !== id}
-            modifier="l icon"
+            modifier="xl icon-xl"
             onClick={() => handleFilterSelect(id)}
           >
             <Icon iconName={id} />
@@ -31,7 +31,7 @@ function ListFiltersModal({ modalData, closeModal }) {
           <Button
             key={value}
             fakeDisabled={filterValue !== value}
-            modifier="l icon"
+            modifier="xl icon-xl"
             onClick={() => handleFilterSelect(value)}
           >
             <Icon iconName={value} />
