@@ -1,5 +1,5 @@
 import './MenuBuilder.css';
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { MENU_BUILDER_STRING, WEEK_STRING } from '../../constants/STRINGS';
 import { buildMenu, deepCopy } from '../helpers';
@@ -24,14 +24,19 @@ function MenuBuilder({ show }) {
   const [showModal, setShowModal] = useState(false);
   const [showWeekModal, setShowWeekModal] = useState(false);
   const [modalData, setModalData] = useState(null);
-
   const { weeks = [] } = currentMenu || {};
+
+  useEffect(
+    () => {
+      setView(0);
+    },
+    [currentMenu],
+  );
 
   const handleBuildMenu = () => {
     const newWeeks = buildMenu(dishesFromContext, menuOptions);
     if (!newWeeks.length) return;
     updateCurrentMenu({ ...currentMenu, weeks: newWeeks });
-    setView(0);
     setSelectedWeekIndex(0);
   };
 

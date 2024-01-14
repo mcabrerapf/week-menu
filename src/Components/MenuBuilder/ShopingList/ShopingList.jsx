@@ -19,6 +19,7 @@ function ShopingList({ show, weeks, selectedWeekIndex }) {
   useEffect(
     () => {
       const shopingLists = buildShopingLists(weeks);
+      setIsCollectiveListActive(false);
       setAllShoppingLists(shopingLists);
     },
     [weeks],
