@@ -57,7 +57,7 @@ function Main() {
       onTouchMove={onTouchMove}
       onTouchEnd={onTouchEnd}
     >
-      {view === MENU_BUILDER_STRING && <MenuBuilder />}
+      <MenuBuilder show={view === MENU_BUILDER_STRING} />
       {view !== MENU_BUILDER_STRING && <List />}
     </div>
   );

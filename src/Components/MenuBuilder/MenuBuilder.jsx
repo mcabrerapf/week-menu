@@ -1,7 +1,8 @@
 import './MenuBuilder.css';
 import React, { useState, useContext } from 'react';
+import PropTypes from 'prop-types';
 import { MENU_BUILDER_STRING, WEEK_STRING } from '../../constants/STRINGS';
-import { buildIngredientSections, buildMenu, deepCopy } from '../helpers';
+import { buildMenu, deepCopy } from '../helpers';
 import { MainContext } from '../../Contexts';
 import Button from '../Button';
 import Icon from '../Icon';
@@ -10,7 +11,7 @@ import ShopingList from './ShopingList';
 import MenuBuilderHeader from './MenuBuilderHeader';
 import Modal from '../Modal';
 
-function MenuBuilder() {
+function MenuBuilder({ show }) {
   const {
     dishes: dishesFromContext,
     menuOptions,
@@ -24,7 +25,7 @@ function MenuBuilder() {
   const [showWeekModal, setShowWeekModal] = useState(false);
   const [modalData, setModalData] = useState(null);
 
-  const { weeks } = currentMenu;
+  const { weeks = [] } = currentMenu || {};
 
   const handleBuildMenu = () => {
     const newWeeks = buildMenu(dishesFromContext, menuOptions);
@@ -67,10 +68,10 @@ function MenuBuilder() {
 
   const hasLoadedMenu = !!weeks && !!weeks.length;
   const selectedWeek = hasLoadedMenu ? weeks[selectedWeekIndex] : {};
-  const shopingList = buildIngredientSections(selectedWeek);
+  const className = `menu-builder col w-f h-f${show ? '' : ' hidden'}`;
 
   return (
-    <div className="menu-builder col w-f h-f">
+    <div className={className}>
       <MenuBuilderHeader
         view={view}
         hasLoadedMenu={hasLoadedMenu}
@@ -91,24 +92,23 @@ function MenuBuilder() {
           </div>
         )}
         {hasLoadedMenu && (
-        <Button modifier="week-number fixed icon-xl l shadow circle" onClick={() => setShowWeekModal(true)}>
+        <Button modifier="week-number fixed icon-xl xl shadow circle" onClick={() => setShowWeekModal(true)}>
           {selectedWeekIndex + 1}
         </Button>
         )}
-        {view === 0 && (
         <Week
           week={selectedWeek}
           selectedWeekIndex={selectedWeekIndex}
           handleUpdateWeek={handleUpdateWeek}
           currentMenu={currentMenu}
           dishes={dishesFromContext}
+          show={view === 0}
         />
-        )}
-        {view === 1 && (
         <ShopingList
-          shopingList={shopingList}
+          weeks={weeks}
+          selectedWeekIndex={selectedWeekIndex}
+          show={view === 1}
         />
-        )}
       </div>
       {showModal && <Modal modalData={modalData} closeModal={closeModal} />}
       {showWeekModal
@@ -126,5 +126,8 @@ function MenuBuilder() {
     </div>
   );
 }
+MenuBuilder.propTypes = {
+  show: PropTypes.bool.isRequired,
+};
 
 export default MenuBuilder;

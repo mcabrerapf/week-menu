@@ -3,6 +3,6 @@
 }
 
 .week-number {
-	left: calc(50% - 1rem);
-	top: 2rem;
+	right: 0.25rem;
+	bottom: 4.2rem;
 }

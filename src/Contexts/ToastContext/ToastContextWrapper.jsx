@@ -28,10 +28,8 @@ function ToastContextWrapper({ children }) {
         {contextToasts.map(({ content, type }, index) => (
           <ToastMessage
             key={`${content}-${index}`}
-            // id={index}
             content={content}
             type={type}
-            // removeToast={removeToast}
           />
         ))}
       </div>

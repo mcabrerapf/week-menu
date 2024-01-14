@@ -17,9 +17,5 @@ const DISH_TYPES = [
   },
 ];
 
-// const DISH_TAGS = {
-//   fish: 'pescado', meat: 'carne', latin: 'latino', pasta: 'pasta',
-// };
-
 // eslint-disable-next-line import/prefer-default-export
 export { DISH_TYPES };

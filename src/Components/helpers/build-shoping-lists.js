@@ -71,4 +71,46 @@ const buildIngredientSections = (week) => {
     .filter(Boolean);
 };
 
-export default buildIngredientSections;
+const buildCollectiveShopingList = (allShopingLists) => INGREDIENT_TYPES
+  .map(({ value, name }) => {
+    const collectiveIngredients = [];
+    allShopingLists.forEach((shopingList) => {
+      shopingList.forEach((section) => {
+        if (section.value === value) {
+          const { ingredients } = section;
+          ingredients.forEach((ingredient) => {
+            const {
+              unit, id, quantity, dishes,
+            } = ingredient;
+            let ingMatch = false;
+            collectiveIngredients.forEach((collectiveIngredient, index) => {
+              if (collectiveIngredient.id === id && collectiveIngredient.unit === unit) {
+                collectiveIngredients[index] = {
+                  ...collectiveIngredient,
+                  quantity: collectiveIngredient.quantity + quantity,
+                  dishes: [...collectiveIngredient.dishes, ...dishes],
+                };
+                ingMatch = true;
+              }
+            });
+            if (!ingMatch)collectiveIngredients.push(ingredient);
+          });
+        }
+      });
+    });
+    if (!collectiveIngredients.length) return null;
+    return { value, name, ingredients: sortBy(collectiveIngredients) };
+  })
+  .filter(Boolean);
+
+const buildShopingLists = (weeks) => {
+  if (!weeks || !weeks.length) return [];
+
+  const allShopingLists = weeks.map(buildIngredientSections);
+  const collectiveShopingList = buildCollectiveShopingList(allShopingLists);
+  allShopingLists.push(collectiveShopingList);
+
+  return allShopingLists;
+};
+
+export default buildShopingLists;

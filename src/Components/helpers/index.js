@@ -4,7 +4,7 @@ import buildDishesWithIngredients from './build-dishes-with-ingredients';
 import buildMenusWithDishes from './build-menus-with-dishes';
 import capitalizeFirstLetter from './capitalize-first-letter';
 import buildSelectOptions from './build-select-options';
-import buildIngredientSections from './build-ingredient-sections';
+import buildShopingLists from './build-shoping-lists';
 import parseClassName from './parse-classname';
 import deepCopy from './deep-copy';
 import deepCompare from './deep-compare';
@@ -15,7 +15,7 @@ import orderIngredientsBySection from './order-ingredients-by-section';
 
 export {
   buildDishesWithIngredients,
-  buildIngredientSections,
+  buildShopingLists,
   buildMenu,
   buildMenusWithDishes,
   buildSelectOptions,

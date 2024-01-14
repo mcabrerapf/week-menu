@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/interactive-supports-focus */
-/* eslint-disable react/no-array-index-key */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './ShopingList.css';
@@ -39,16 +38,16 @@ function ShopingListSection({
         onClick={() => setShowSection(!showSection)}
       >
         <Icon modifier="icon-xl" iconName={name} />
-        {showSection && <Icon modifier="icon" iconName="chevron-d" />}
-        {!showSection && <Icon modifier="icon" iconName="chevron-u" />}
+        <Icon modifier="icon" iconName={`chevron-${showSection ? 'd' : 'u'}`} />
       </div>
       <div className="col gap-10 pad-t-10">
         {showSection && ingredients.map((ingredient, i) => {
-          const { id } = ingredient;
+          const { id, unit, quantity } = ingredient;
 
           return (
             <ShopingListSectionItem
-              key={`${id}-${i}`}
+              // eslint-disable-next-line react/no-array-index-key
+              key={`${id}-${unit}-${quantity}-${i}`}
               ingredient={ingredient}
               handleOnClick={handleOnClick}
               sectionIndex={index}
