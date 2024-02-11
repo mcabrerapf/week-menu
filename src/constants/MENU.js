@@ -33,6 +33,11 @@ const DEFAULT_WEEK_SETTINGS = {
 const DEFAULT_MENU_OPTIONS = {
   weeks: [DEFAULT_WEEK_SETTINGS],
   weekLimit: 1,
+  filters: {
+    ingredientTypes: [],
+    ingredients: [],
+    dishes: [],
+  },
 };
 const DAY_DISH_TYPES = [BREAKFAST_STRING, LUNCH_STRING, DINNER_STRING];
 
