@@ -20,10 +20,8 @@ function MenuBuilderModal({
 
   useEffect(() => {
     const copiedData = deepCopy(menuOptions);
-    const copiedDishes = deepCopy(dishes);
     const initedData = initMenuOptions(
       copiedData,
-      copiedDishes,
       0,
     );
     setCurrentData(initedData);

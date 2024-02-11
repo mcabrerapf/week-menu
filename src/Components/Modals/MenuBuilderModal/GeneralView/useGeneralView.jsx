@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { deepCopy } from '../../../helpers';
-import { initMenuOptions, getMealMinMax } from '../helpers';
-import { BREAKFAST_STRING, DINNER_STRING, LUNCH_STRING } from '../../../../constants/STRINGS';
+import { initMenuOptions } from '../helpers';
 import { DEFAULT_WEEK_SETTINGS } from '../../../../constants/MENU';
 
 function useGeneralView({
@@ -13,12 +12,9 @@ function useGeneralView({
     weeks,
     weekLimit,
   } = currentData || {};
-  console.log({ currentData });
+
   const selectedWeek = weeks[selectedWeekIndex];
   const { days, mealLimits, people } = selectedWeek;
-  const breakfastLimits = getMealMinMax(dishes, days, BREAKFAST_STRING, 0);
-  const lunchesLimits = getMealMinMax(dishes, days, LUNCH_STRING, 1);
-  const dinnerLimits = getMealMinMax(dishes, days, DINNER_STRING, 2);
 
   const handleLimitChange = (key, index, increase) => {
     const quantity = key
@@ -64,9 +60,9 @@ function useGeneralView({
       updatedData.weeks[selectedWeekIndex].days[dayIndex][1] = false;
       updatedData.weeks[selectedWeekIndex].days[dayIndex][2] = false;
     } else {
-      updatedData.weeks[selectedWeekIndex].days[dayIndex][0] = breakfastLimits[2] > 0;
-      updatedData.weeks[selectedWeekIndex].days[dayIndex][1] = lunchesLimits[2] > 0;
-      updatedData.weeks[selectedWeekIndex].days[dayIndex][2] = dinnerLimits[2] > 0;
+      updatedData.weeks[selectedWeekIndex].days[dayIndex][0] = true;
+      updatedData.weeks[selectedWeekIndex].days[dayIndex][1] = true;
+      updatedData.weeks[selectedWeekIndex].days[dayIndex][2] = true;
     }
     const initedData = initMenuOptions(
       updatedData,
@@ -81,9 +77,6 @@ function useGeneralView({
     days,
     weekLimit,
     people,
-    breakfastLimits,
-    lunchesLimits,
-    dinnerLimits,
     mealLimits,
     selectedWeekIndex,
     setSelectedWeekIndex,

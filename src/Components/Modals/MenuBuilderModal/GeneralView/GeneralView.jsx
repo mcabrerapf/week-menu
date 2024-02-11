@@ -12,9 +12,6 @@ function GeneralView(props) {
     days,
     weekLimit,
     people,
-    breakfastLimits,
-    lunchesLimits,
-    dinnerLimits,
     mealLimits,
     selectedWeekIndex,
     setSelectedWeekIndex,
@@ -59,7 +56,6 @@ function GeneralView(props) {
                 modifier="square l icon"
                 fakeDisabled={!day[0]}
                 value={day[0]}
-                disabled={breakfastLimits[2] === 0}
                 onClick={() => {
                   handleMealChange(index, 0, day[0]);
                 }}
@@ -70,7 +66,6 @@ function GeneralView(props) {
                 modifier="square l icon"
                 fakeDisabled={!day[1]}
                 value={day[1]}
-                disabled={lunchesLimits[2] === 0}
                 onClick={() => {
                   handleMealChange(index, 1, day[1]);
                 }}
@@ -81,7 +76,6 @@ function GeneralView(props) {
                 modifier="square l icon"
                 fakeDisabled={!day[2]}
                 value={day[2]}
-                disabled={dinnerLimits[2] === 0}
                 onClick={() => {
                   handleMealChange(index, 2, day[2]);
                 }}
@@ -107,7 +101,7 @@ function GeneralView(props) {
           value={people}
           valueKey="people"
           min={1}
-          max={99}
+          max={10}
           handleDecrease={(key, index) => handleLimitChange(key, index)}
           handleIncrease={(key, index) => handleLimitChange(key, index, true)}
           iconName="people"
@@ -115,8 +109,8 @@ function GeneralView(props) {
         <QuantityInput
           value={mealLimits[0]}
           valueIndex={0}
-          min={breakfastLimits[0]}
-          max={breakfastLimits[1]}
+          min={0}
+          max={7}
           handleDecrease={(key, index) => handleLimitChange(key, index)}
           handleIncrease={(key, index) => handleLimitChange(key, index, true)}
           iconName="breakfast"
@@ -124,8 +118,8 @@ function GeneralView(props) {
         <QuantityInput
           value={mealLimits[1]}
           valueIndex={1}
-          min={lunchesLimits[0]}
-          max={lunchesLimits[1]}
+          min={0}
+          max={7}
           handleDecrease={(key, index) => handleLimitChange(key, index)}
           handleIncrease={(key, index) => handleLimitChange(key, index, true)}
           iconName="lunch"
@@ -133,8 +127,8 @@ function GeneralView(props) {
         <QuantityInput
           value={mealLimits[2]}
           valueIndex={2}
-          min={dinnerLimits[0]}
-          max={dinnerLimits[1]}
+          min={0}
+          max={7}
           handleDecrease={(key, index) => handleLimitChange(key, index)}
           handleIncrease={(key, index) => handleLimitChange(key, index, true)}
           iconName="dinner"
