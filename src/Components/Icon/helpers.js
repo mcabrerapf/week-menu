@@ -7,6 +7,8 @@ import {
   FaArrowLeft,
   FaArrowRight,
   FaArrowUp,
+  FaAngleDown,
+  FaAngleUp,
   FaBrain,
   FaCartShopping,
   FaClock,
@@ -55,6 +57,10 @@ const getIcon = (iconName) => {
       return FaArrowLeft;
     case 'arrow-r':
       return FaArrowRight;
+    case 'arrow-a-u':
+      return FaAngleUp;
+    case 'arrow-a-d':
+      return FaAngleDown;
     case 'brain':
       return FaBrain;
     case 'breakfast':

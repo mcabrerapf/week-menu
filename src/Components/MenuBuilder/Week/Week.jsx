@@ -2,9 +2,8 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-to-interactive-role */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { DAYS, DAY_DISH_TYPES } from '../../../constants/MENU';
+import { DAYS } from '../../../constants/MENU';
 import { MEAL_STRING } from '../../../constants/STRINGS';
-import Icon from '../../Icon';
 import Modal from '../../Modal';
 
 function Week({
@@ -33,31 +32,31 @@ function Week({
 
   const { days } = week;
   const className = `week col w-f h-f gap-5 font-m${show ? '' : ' hidden'}`;
+  const dayClassName = 'row centered h-f w-f pointer gap-5';
 
   return (
     <>
       <div className={className}>
         {days.map(({ dishes: dayDishes }, index) => (
-          <div key={DAYS[index][2]} className="day row w-a h-f border-rad-5 bgc-b">
-            <div className="day-label row label border-r centered">
-              <span className="day-label upright-text label pad-h-5">
+          <div key={DAYS[index][2]} className="day col w-a h-f border-rad-5 bgc-b">
+            <div className="day-label row label centered border-b">
+              <span className="day-label label pad-h-5">
                 {DAYS[index][2]}
               </span>
             </div>
-            <div className="day-content col w-f">
+            <div className="day-content row w-f h-f">
               {dayDishes.map((dish, mealIndex) => (
                 <div
                 // eslint-disable-next-line react/no-array-index-key
                   key={mealIndex}
-                  className={`row a-c h-f w-f pointer border-rad-5 gap-5${dish?.name ? '' : ' bgc-gr'}`}
+                  className={`${dayClassName}${dish?.name ? '' : ' bgc-gr'}${mealIndex !== 2 ? ' border-r' : ''}`}
                   role="button"
                   onClick={() => openModal({
                     dish, dayIndex: index, mealIndex, weekIndex: selectedWeekIndex,
                   })}
                   onKeyDown={() => {}}
                 >
-                  <Icon modifier="pad-l-5" iconName={DAY_DISH_TYPES[mealIndex]} />
-                  <span>{dish?.name || '---'}</span>
+                  <span>{dish?.name}</span>
                 </div>
               ))}
             </div>

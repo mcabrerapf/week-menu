@@ -34,6 +34,11 @@ const initMenuOptions = (data, dishes, selectedWeekIndex) => {
   updatedWeek[selectedWeekIndex] = updatedWeek;
   return {
     ...data,
+    filters: {
+      ingredientTypes: [],
+      ingredients: [],
+      dishes: [],
+    },
     weeks: updatedWeeks,
   };
 };

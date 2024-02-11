@@ -11,6 +11,20 @@
 	text-decoration: line-through;
 }
 
+.top-radius-5 {
+	border-top-left-radius: 0.5rem!important;
+	border-top-right-radius: 0.5rem!important;
+}
+
+.top-l-radius-5 {
+	border-top-left-radius: 0.5rem!important;
+}
+
+.top-r-radius-5 {
+	border-top-right-radius: 0.5rem!important;
+}
+
+
 .pointer {
 	cursor: pointer;
 }
@@ -128,6 +142,10 @@ footer button:last-of-type {
 
 .border-r {
 	border-right: 1px solid;
+}
+
+.border-rad-0 {
+	border-radius: 0rem!important;
 }
 
 .border-rad-5 {

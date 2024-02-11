@@ -41,6 +41,19 @@ function MealModal({ modalData, closeModal }) {
     return closeModal(updatedWeek);
   };
 
+  const handleRemoveMeal = () => {
+    const updatedDays = selectedWeek.days.map((day, dIndex) => {
+      const { dishes: dayDishes } = day;
+      const updatedDishes = dayDishes.map((dayDish, mIndex) => {
+        if (dIndex === dayIndex && mIndex === mealIndex) return null;
+        return dayDish;
+      });
+      return { ...day, dishes: updatedDishes };
+    });
+    const updatedWeek = { ...selectedWeek, days: updatedDays };
+    return closeModal(updatedWeek);
+  };
+
   const {
     name,
   } = dish || {};
@@ -53,8 +66,8 @@ function MealModal({ modalData, closeModal }) {
       {/* {mode === 'edit' && ( */}
       <div className="col pad-10 gap-10">
         <div className="col gap-10">
-          <div className="col icon centered gap-5 pad-b-5 m-5 border-b">
-            <span>{DAYS[dayIndex][1]}</span>
+          <div className="row icon centered gap-10 pad-b-5 m-5 border-b">
+            <span>{DAYS[dayIndex][2]}</span>
             <Icon iconName={DISH_TYPES[mealIndex].id} />
           </div>
           {name && (
@@ -92,13 +105,23 @@ function MealModal({ modalData, closeModal }) {
             <Icon iconName="check" />
           </Button>
           {name && (
-          <Button
-            onClick={() => handleButtonClick(true)}
-            disabled={!selectedDishId}
-          >
-            <Icon iconName="check-double" />
-          </Button>
+            <>
+              <Button
+                onClick={() => handleButtonClick(true)}
+                disabled={!selectedDishId}
+              >
+                <Icon iconName="check-double" />
+              </Button>
+              <Button
+                onClick={handleRemoveMeal}
+                disabled={!selectedDishId}
+              >
+                <Icon iconName="delete" />
+              </Button>
+            </>
+
           )}
+
         </div>
       </div>
     </div>

@@ -7,3 +7,8 @@
 	border-top-right-radius: 0.5rem;
 	border-bottom-right-radius: 0.5rem;
 }
+
+.menu-builder-modal-content {
+	height: calc(var(--full-modal-height ) - 18rem);
+	overflow-y: auto;
+}
