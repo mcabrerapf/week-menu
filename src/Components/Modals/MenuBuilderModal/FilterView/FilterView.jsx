@@ -39,8 +39,16 @@ function FilterView(props) {
           ))}
       </div>
       <div className="row centered border-b">
-        <Button modifier="icon-l xl bgc-bg" onClick={() => setShowIngredients(!showIngredients)}>
+        <Button
+          modifier="icon-l xl bgc-bg"
+          onClick={() => setShowIngredients(!showIngredients)}
+        >
           <Icon iconName="ingredient" />
+        </Button>
+        <Button
+          modifier="icon-l xl bgc-bg"
+          onClick={() => setShowIngredients(!showIngredients)}
+        >
           <Icon iconName={ingredientsArrowIcon} />
         </Button>
       </div>
@@ -61,8 +69,16 @@ function FilterView(props) {
       </div>
       )}
       <div className="row centered border-b">
-        <Button modifier="icon-l xl bgc-bg" onClick={() => setShowDishes(!showDishes)}>
+        <Button
+          modifier="row icon-l xl bgc-bg"
+          onClick={() => setShowDishes(!showDishes)}
+        >
           <Icon iconName="dish" />
+        </Button>
+        <Button
+          modifier="row icon-l xl bgc-bg gap-5"
+          onClick={() => setShowDishes(!showDishes)}
+        >
           <Icon iconName={dishesArrowIcon} />
         </Button>
       </div>

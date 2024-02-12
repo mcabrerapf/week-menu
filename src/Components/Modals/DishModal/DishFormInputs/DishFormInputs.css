@@ -1,5 +1,5 @@
 .modal-content-dish-edit {
-	height: calc(var(--full-modal-height) - 9rem);
+	height: calc(var(--full-modal-height) - 8rem);
 }
 
 .dish-modal-ingredients-list {

@@ -14,10 +14,10 @@
 	--green-color: green;
 	--offiline-background-color: #deb9e0;
 	--basic-box-shadow: 0rem 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
-	--full-modal-height: calc(100vh - 18rem);
+	--full-modal-height: calc(100vh - 28rem);
 	--full-modal-width: calc(100vw - 5rem);
-	--footer-height: 4rem;
-	--header-height: 4rem;
+	--footer-height: 3.5rem;
+	--header-height: 3rem;
 	--modal-z-index: 500;
 	--toast-z-index: 600;
 }
