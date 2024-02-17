@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/interactive-supports-focus */
 /* eslint-disable max-len */
 import React from 'react';
 import useFilterView from './useFilterView';
@@ -28,7 +30,7 @@ function FilterView(props) {
           .map(({ value }) => (
             <Button
               key={value}
-              modifier="icon-l xl"
+              modifier="icon-l l"
               fakeDisabled={ingredientTypes.includes(value)}
               name="type"
               value={value}
@@ -38,19 +40,13 @@ function FilterView(props) {
             </Button>
           ))}
       </div>
-      <div className="row centered border-b">
-        <Button
-          modifier="icon-l xl bgc-bg"
-          onClick={() => setShowIngredients(!showIngredients)}
-        >
-          <Icon iconName="ingredient" />
-        </Button>
-        <Button
-          modifier="icon-l xl bgc-bg"
-          onClick={() => setShowIngredients(!showIngredients)}
-        >
-          <Icon iconName={ingredientsArrowIcon} />
-        </Button>
+      <div
+        className="row pointer centered pad-5 gap-5 border-b"
+        role="button"
+        onClick={() => setShowIngredients(!showIngredients)}
+      >
+        <Icon modifier="icon-xl" iconName="ingredient" />
+        <Icon modifier="icon" iconName={ingredientsArrowIcon} />
       </div>
       {showIngredients && (
       <div className="row wrap gap-5 h-10">
@@ -68,19 +64,13 @@ function FilterView(props) {
         ))}
       </div>
       )}
-      <div className="row centered border-b">
-        <Button
-          modifier="row icon-l xl bgc-bg"
-          onClick={() => setShowDishes(!showDishes)}
-        >
-          <Icon iconName="dish" />
-        </Button>
-        <Button
-          modifier="row icon-l xl bgc-bg gap-5"
-          onClick={() => setShowDishes(!showDishes)}
-        >
-          <Icon iconName={dishesArrowIcon} />
-        </Button>
+      <div
+        className="row pointer centered pad-5 gap-5 border-b"
+        role="button"
+        onClick={() => setShowDishes(!showDishes)}
+      >
+        <Icon modifier="icon-xl" iconName="dish" />
+        <Icon modifier="icon" iconName={dishesArrowIcon} />
       </div>
       {showDishes && (
       <div className="row wrap gap-5 h-10">

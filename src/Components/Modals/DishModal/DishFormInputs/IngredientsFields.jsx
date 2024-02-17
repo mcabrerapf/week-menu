@@ -63,7 +63,6 @@ function IngredientsFields({
               <Icon iconName="plus" />
             </Button>
           </div>
-
         </div>
       )}
       {ingredientsView === 1 && (

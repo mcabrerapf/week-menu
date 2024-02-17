@@ -74,6 +74,7 @@ function MenuBuilder({ show }) {
   const hasLoadedMenu = !!weeks && !!weeks.length;
   const selectedWeek = hasLoadedMenu ? weeks[selectedWeekIndex] : {};
   const className = `menu-builder col w-f h-f${show ? '' : ' hidden'}`;
+  const showWeekButton = hasLoadedMenu && weeks.length > 1;
 
   return (
     <div className={className}>
@@ -96,7 +97,7 @@ function MenuBuilder({ show }) {
             </Button>
           </div>
         )}
-        {hasLoadedMenu && (
+        {showWeekButton && (
         <Button modifier="week-number fixed icon-xl xl shadow circle" onClick={() => setShowWeekModal(true)}>
           {selectedWeekIndex + 1}
         </Button>

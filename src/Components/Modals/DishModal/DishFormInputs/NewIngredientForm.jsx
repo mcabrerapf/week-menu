@@ -35,11 +35,12 @@ function NewIngredientForm({
   return (
     <>
       <div className="col w-a h-a gap-10">
-        <div className="row w-a">
+        <div className="row w-a h-2">
           <Input
             type="text"
             id="name"
             name="name"
+            modifier="h-a"
             value={name}
             onChange={handleOnChange}
           />

@@ -1,72 +1,37 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 import React from 'react';
 import PropTypes from 'prop-types';
-import Input from '../../../Input';
 import Button from '../../../Button';
 import Icon from '../../../Icon';
 
 function InstructionField({
-  id,
   instruction,
-  handleInstructionChange,
+  isSelected,
+  handleInstructionSelect,
   handleDeleteInstruction,
-  moveInstruction,
   index,
-  isLast,
 }) {
-  const handleChange = (e) => {
-    handleInstructionChange(index, e.target.value);
-  };
-
-  const handleBlur = (e) => {
-    handleInstructionChange(index, e.target.value);
-  };
-
   const handleDeleteClick = () => {
     handleDeleteInstruction(index);
   };
 
-  const handleMoveUp = () => {
-    moveInstruction(index, index - 1);
-  };
-
-  const handleMoveDown = () => {
-    moveInstruction(index, index + 1);
-  };
-
   return (
-    <div className="row gap-5 centered">
-      <div className="col gap-5">
-        <Button
-          modifier="m"
-          type="button"
-          onClick={() => handleMoveUp()}
-          disabled={index === 0}
-        >
-          <Icon iconName="arrow-u" />
-        </Button>
-        <Button
-          modifier="m"
-          type="button"
-          onClick={() => handleMoveDown()}
-          disabled={isLast}
-        >
-          <Icon iconName="arrow-d" />
-        </Button>
+    <div className="row w-f a-c gap-5">
+      <div>
+        {index + 1}
+        .
       </div>
-      <Input
-        id={id}
-        name="instruction"
-        value={instruction}
-        onChange={handleChange}
-        onBlur={handleBlur}
-        placeholder="Hmm..."
-        type="textarea"
-      />
+      <div
+        className={`row w-f border-rad-5 pad-5 text-a-l ${isSelected ? '  shadow' : ''}`}
+        onClick={() => handleInstructionSelect(index)}
+      >
+        <span>{instruction}</span>
+      </div>
       <div className="instruction-buttons">
         <Button
           modifier="m icon"
           type="button"
-          disabled={isLast && !instruction}
           onClick={() => handleDeleteClick()}
         >
           <Icon iconName="close" />
@@ -77,12 +42,10 @@ function InstructionField({
 }
 
 InstructionField.propTypes = {
-  handleInstructionChange: PropTypes.func.isRequired,
+  handleInstructionSelect: PropTypes.func.isRequired,
   handleDeleteInstruction: PropTypes.func.isRequired,
-  moveInstruction: PropTypes.func.isRequired,
+  isSelected: PropTypes.bool.isRequired,
   index: PropTypes.number.isRequired,
-  id: PropTypes.string.isRequired,
-  isLast: PropTypes.bool.isRequired,
   instruction: PropTypes.string,
 };
 

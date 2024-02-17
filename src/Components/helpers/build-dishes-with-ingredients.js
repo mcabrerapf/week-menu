@@ -6,6 +6,7 @@ const buildDishesWithIngredients = (dishes, allIngredients) => {
   return dishes
     .map((dish) => {
       const { ingredients, name: dName } = dish;
+      if (!ingredients || !ingredients.length) console.log('No ingredients on ', dName);
       const parsedIngredients = ingredients.map((currentIngredient) => {
         const {
           id: iId, name: iName, type, unit, quantity = 1,
