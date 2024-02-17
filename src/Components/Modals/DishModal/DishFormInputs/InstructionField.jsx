@@ -23,7 +23,7 @@ function InstructionField({
         .
       </div>
       <div
-        className={`row w-f border-rad-5 pad-5 text-a-l ${isSelected ? '  shadow' : ''}`}
+        className={`selected-instruction row w-f border-rad-5 pad-5 text-a-l ${isSelected ? ' shadow' : ''}`}
         onClick={() => handleInstructionSelect(index)}
       >
         <span>{instruction}</span>
