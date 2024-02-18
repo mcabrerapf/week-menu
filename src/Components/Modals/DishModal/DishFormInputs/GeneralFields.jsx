@@ -54,10 +54,9 @@ function GeneralFields({
 
   const toggleType = (eValue) => {
     if (eValue === SIDE_STRING) return updateGeneralFields({ ...currentData, types: [eValue] });
-
     const newTypes = types.includes(eValue)
-      ? filterByKey(types, null, eValue)
-      : filterByKey([...types, eValue], null, SIDE_STRING, true);
+      ? types.filter((type) => type !== eValue)
+      : [...types, eValue].filter((type) => type !== SIDE_STRING);
     return updateGeneralFields({ ...currentData, types: newTypes });
   };
 

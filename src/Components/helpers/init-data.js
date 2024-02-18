@@ -23,7 +23,7 @@ const initDish = (data) => {
       servings: data.servings || 1,
       time: data.time || { hours: 0, minutes: 0 },
       description: data.description || '',
-      instructions: data.instructions || '',
+      instructions: data.instructions || [],
       ingredients: data.ingredients || [],
       sideDishTo: data.sideDishTo || [],
     };
@@ -34,7 +34,7 @@ const initDish = (data) => {
     servings: 1,
     time: { hours: 0, minutes: 0 },
     description: '',
-    instructions: '',
+    instructions: [],
     ingredients: [],
     sideDishTo: [],
   };

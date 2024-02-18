@@ -95,7 +95,7 @@ function DisplayView({
           {instructions && (
           <div className="col border-t pad-t-10">
             <ul className="col gap-5">
-              {instructions.split('---').map((ins, i) => (
+              {instructions.map((ins, i) => (
                 <li key={i} className="row gap-5 text-a-l">
                   <span>{`${i + 1}.`}</span>
                   <span>{ins}</span>

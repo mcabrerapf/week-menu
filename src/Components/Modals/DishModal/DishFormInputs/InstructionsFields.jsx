@@ -9,8 +9,8 @@ import Icon from '../../../Icon';
 import Input from '../../../Input';
 
 const initInstructions = (ins) => {
-  if (!ins) return [''];
-  return [...ins.split('---'), ''];
+  if (!ins || !ins.length) return [''];
+  return ins;
 };
 
 function InstructionsFields({
@@ -26,14 +26,14 @@ function InstructionsFields({
     const updatedInstructions = [...currentInstructions];
     updatedInstructions[selectedIndex] = e.target.value;
     setCurrentInstructions(updatedInstructions);
-    updateInstructions(updatedInstructions.join('---'));
+    updateInstructions(updatedInstructions);
   };
 
   const handleAddInstruction = () => {
     const updatedInstructions = [...currentInstructions];
     updatedInstructions.push('');
     setCurrentInstructions(updatedInstructions);
-    updateInstructions(updatedInstructions.join('---'));
+    updateInstructions(updatedInstructions);
     setSelectedIndex(updatedInstructions.length - 1);
   };
 
@@ -45,7 +45,7 @@ function InstructionsFields({
     const updatedInstructions = [...currentInstructions];
     const filteredInstructions = updatedInstructions.filter((_, i) => i !== index);
     setCurrentInstructions(filteredInstructions);
-    updateInstructions(filteredInstructions.join('---'));
+    updateInstructions(filteredInstructions);
     setSelectedIndex(filteredInstructions.length - 1);
   };
 
@@ -97,12 +97,12 @@ InstructionsFields.propTypes = {
   updateInstructions: PropTypes.func.isRequired,
   canSave: PropTypes.bool.isRequired,
   handleSubmit: PropTypes.func.isRequired,
-  instructions: PropTypes.string,
+  instructions: PropTypes.arrayOf(PropTypes.string),
 
 };
 
 InstructionsFields.defaultProps = {
-  instructions: '',
+  instructions: [],
 };
 
 export default InstructionsFields;

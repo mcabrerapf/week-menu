@@ -3,7 +3,7 @@ import React, { useContext } from 'react';
 import {
   MainContext,
 } from '../../Contexts';
-// import { useLongPress } from '../../Hooks';
+
 import {
   DISH_STRING,
   INGREDIENT_STRING,
@@ -42,9 +42,6 @@ function Footer() {
         <Icon iconName="calendar" />
       </Button>
       <Button
-        // {...useLongPress({
-        //   onLongPress: () => handleCopyList(MENU_STRING),
-        // })}
         value={MENU_STRING}
         modifier="icon-l"
         fakeDisabled={view !== MENU_STRING}
@@ -53,9 +50,6 @@ function Footer() {
         <Icon iconName="menu" />
       </Button>
       <Button
-        // {...useLongPress({
-        //   onLongPress: () => handleCopyList(DISH_STRING),
-        // })}
         value={DISH_STRING}
         modifier="icon-l"
         fakeDisabled={view !== DISH_STRING}
@@ -64,9 +58,6 @@ function Footer() {
         <Icon iconName="dish" />
       </Button>
       <Button
-        // {...useLongPress({
-        //   onLongPress: () => handleCopyList(INGREDIENT_STRING),
-        // })}
         value={INGREDIENT_STRING}
         modifier="icon-l"
         fakeDisabled={view !== INGREDIENT_STRING}
