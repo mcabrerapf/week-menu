@@ -100,6 +100,22 @@ export const DISHES_MOCK = [{
   description: null,
   instructions: null,
 }, {
+  id: '4cacfee7-2921-4585-91f3-7d686c878b35',
+  name: 'Brocoli amb patates',
+  sideDishes: null,
+  sideDishTo: [],
+  ingredients: [{
+    id: 'ceda734b-b7f4-47de-ab61-cfbd6dd1a82e', name: 'Brocolli', unit: 'u', type: 'vegetable', quantity: 1,
+  }, {
+    id: '414df6ce-d665-4448-8abd-282be36a007f', name: 'Patatas', unit: 'u', type: 'vegetable', quantity: 2,
+  }],
+  types: ['dinner', 'lunch'],
+  size: null,
+  servings: 2,
+  time: { hours: 0, minutes: 0 },
+  description: '',
+  instructions: '',
+}, {
   id: '3ae22f6b-a3f4-4d01-a477-0ec1bb4905ac',
   name: 'Bunyols bacala',
   sideDishes: [],
@@ -125,8 +141,6 @@ export const DISHES_MOCK = [{
   time: { hours: 0, minutes: 0 },
   description: null,
   instructions: 'Mezclar la harina y levadura---Calentar el agua sin que hierva---Mezclaro con la harina/levadura que quede uniforme y dejar que enfrie---Agregar huevo y sal, mezclar hasta que este todo integrado y dejar reposar 10 mins---Agregar el bacalao, cebolla y perejil que amase todo y a freir',
-}, {
-  id: 'a27dfd22-0d70-497c-a612-ac1befdb0c78', name: 'Bunyols de carbassa', sideDishes: [], sideDishTo: [], ingredients: [], types: ['dinner'], size: null, servings: 4, time: { hours: 0, minutes: 0 }, description: null, instructions: 'Pelar y picar la calabaza---Hervirla y escurrir---Picar la cebolla y el ajo---Poner en un bol la calabaza, harina, verdures y especias y salpimentar---Darle forma de bunuelos a los ingredientes, rebozarlos y a freir',
 }, {
   id: '9437f151-75c7-4277-a0b8-86b7ba1e75fb',
   name: 'Calamares encebollados',
@@ -159,22 +173,26 @@ export const DISHES_MOCK = [{
   ingredients: [{
     id: 'ac9f9e0c-1864-4dc7-b454-0b3cf4b7c9ce', name: 'Ajo', unit: 'u', type: 'spice', quantity: 1,
   }, {
-    id: 'e460f077-0580-4da5-94ba-ab42e948d628', name: 'Guanciale', unit: 'g', type: 'meat', quantity: 400,
+    id: 'd5eb9eff-899d-4994-8f3c-7b9cfb1ca050', name: 'Bacon', unit: 'g', type: 'meat', quantity: 100,
   }, {
-    id: '29178177-65f2-4f9c-b197-f018edcdd909', name: 'Nata de cocinar', unit: 'ml', type: 'other', quantity: 250,
+    id: '8907e448-80a3-4e14-9e0c-50bcfe14939d', name: 'Cebolla', unit: 'u', type: 'vegetable', quantity: 1,
+  }, {
+    id: 'aa02c55d-4200-4c75-83ec-6c941e41b886', name: 'Huevo', unit: 'u', type: 'other', quantity: 2,
+  }, {
+    id: '29178177-65f2-4f9c-b197-f018edcdd909', name: 'Nata de cocinar', unit: 'ml', type: 'other', quantity: 200,
+  }, {
+    id: 'b4786c95-86bf-4db6-a9e1-526fb1d328f9', name: 'Parmesano', unit: 'g', type: 'other', quantity: 40,
   }, {
     id: 'fcaed146-ae57-4501-ae45-6507cd377cf2', name: 'Pimienta', unit: 'u', type: 'spice', quantity: 1,
   }, {
-    id: '01b1a1ef-660e-4f27-98ce-7e9e06ad3f75', name: 'Queso', unit: 'g', type: 'other', quantity: 200,
+    id: 'a031b244-3caf-4966-b2d1-0fd49c03d417', name: 'Spaghetti', unit: 'g', type: 'other', quantity: 400,
   }],
   types: ['lunch'],
   size: null,
   servings: 4,
-  time: { hours: 0, minutes: 0 },
-  description: null,
-  instructions: '',
-}, {
-  id: '0296b0d5-0bf6-43c9-958d-421b1d36ad72', name: 'Cassoleta de cigrons amb curri', sideDishes: [], sideDishTo: [], ingredients: [], types: ['dinner'], size: null, servings: 4, time: { hours: 0, minutes: 0 }, description: null, instructions: 'Picar la cebolla y cocinar---Agregar el apio cortado fino, las patatas en dados, el curry y saltear. Cocinar 5 mins---Agregar los cigrons, el caldo y se cocina 5-8 minutos mas---Agregar el perejil al servir',
+  time: { hours: 0, minutes: 20 },
+  description: '',
+  instructions: 'Picar cebolla y cocinar por 10 mins---Anadir el bacon y cocinar 5 mins---Anadir la nata, salpimentar y cocinar 2 mins---Batir los huevos mientras se cocina la pasta---Añadir la pasta y los huevos batidos',
 }, {
   id: 'e16147bd-be86-480b-b7e0-cb1892206e2f',
   name: 'Cigrons amb espinacs',
@@ -189,6 +207,8 @@ export const DISHES_MOCK = [{
   }, {
     id: '6b0756cc-2424-43b8-840c-09cde0cf7e74', name: 'Cigrons', unit: 'g', type: 'vegetable', quantity: 400,
   }, {
+    id: '6a0801cd-0fe9-49bf-b0bd-823f8df44496', name: 'Espinacas', unit: 'g', type: 'vegetable', quantity: 400,
+  }, {
     id: '73735a3d-f7b9-4e15-9c6b-f78629131683', name: 'Pimiento rojo', unit: 'u', type: 'vegetable', quantity: 1,
   }, {
     id: '76a49442-4b26-4cb6-a898-51a4a98779ca', name: 'Tomate triturado', unit: 'u', type: 'vegetable', quantity: 1,
@@ -199,7 +219,7 @@ export const DISHES_MOCK = [{
   size: null,
   servings: 4,
   time: { hours: 0, minutes: 0 },
-  description: null,
+  description: '',
   instructions: '',
 }, {
   id: '22e3f03a-5697-4470-b815-5224d5ecb262',
@@ -280,18 +300,42 @@ export const DISHES_MOCK = [{
   description: null,
   instructions: '',
 }, {
+  id: '333464f3-ff59-4a61-9da0-c7f6e9192521',
+  name: 'Fajitas',
+  sideDishes: null,
+  sideDishTo: [],
+  ingredients: [{
+    id: '8907e448-80a3-4e14-9e0c-50bcfe14939d', name: 'Cebolla', unit: 'u', type: 'vegetable', quantity: 1,
+  }, {
+    id: '8a10dcea-ea01-4182-bde3-9e9647e051bd', name: 'Frijol negro', unit: 'g', type: 'vegetable', quantity: 1,
+  }, {
+    id: 'c605e92a-f466-4758-9cf7-bb96b6c66f4d', name: 'Pechuga', unit: 'u', type: 'meat', quantity: 1,
+  }, {
+    id: '73735a3d-f7b9-4e15-9c6b-f78629131683', name: 'Pimiento rojo', unit: 'u', type: 'vegetable', quantity: 1,
+  }, {
+    id: 'a3f862dd-ba3d-4ed0-8f2b-6d49f635a259', name: 'Pimiento verde', unit: 'u', type: 'vegetable', quantity: 1,
+  }, {
+    id: 'ce59cd0b-5d6f-49b9-863d-de775c1b60e6', name: 'Tortillas de maiz', unit: 'u', type: 'other', quantity: 1,
+  }],
+  types: ['lunch', 'dinner'],
+  size: null,
+  servings: 2,
+  time: { hours: 0, minutes: 0 },
+  description: '',
+  instructions: '',
+}, {
   id: 'ba91bd5a-0140-4312-8689-f5a1cf683400',
   name: 'Linguini al zuccini',
   sideDishes: [],
   sideDishTo: [],
   ingredients: [{
-    id: '0697c3f5-0e25-4b8a-9f4a-f8e8e0731346', name: 'Calabacín', unit: 'u', type: 'vegetable', quantity: 3,
+    id: '0697c3f5-0e25-4b8a-9f4a-f8e8e0731346', name: 'Calabacín', unit: 'u', type: 'vegetable', quantity: 4,
   }, {
     id: 'a043d316-1483-4f37-8be1-f6a75059aa81', name: 'Limon', unit: 'u', type: 'fruit', quantity: 1,
   }, {
     id: '91aa0ea1-0e5f-487e-b2da-5b369317b86e', name: 'Menta', unit: 'u', type: 'spice', quantity: 1,
   }, {
-    id: 'b4786c95-86bf-4db6-a9e1-526fb1d328f9', name: 'Parmesano', unit: 'g', type: 'other', quantity: 60,
+    id: 'b4786c95-86bf-4db6-a9e1-526fb1d328f9', name: 'Parmesano', unit: 'g', type: 'other', quantity: 100,
   }, {
     id: '85910c44-b810-4e98-b76f-810af07576a7', name: 'Pasta', unit: 'g', type: 'other', quantity: 400,
   }],
@@ -299,7 +343,7 @@ export const DISHES_MOCK = [{
   size: null,
   servings: 4,
   time: { hours: 0, minutes: 0 },
-  description: null,
+  description: '',
   instructions: 'Cortar zuccini en julianas, picar la menta, rallar el parmesano---Hervir la pasta, salpimentar el zuccini y sofreir en una sarten---Cuando este cocinado el zuccini anadir la menta picada, rayar cascara de lima y exprimr el juego en la misma sarten---Cuando la pasta este, anadir a la sarten y poner el parmesano',
 }, {
   id: 'db441213-39f0-4100-8a71-225294d59113',
@@ -337,14 +381,14 @@ export const DISHES_MOCK = [{
   }, {
     id: '4a265405-cedf-416a-9eee-ea71add94448', name: 'Pan rallado', unit: 'g', type: 'other', quantity: 50,
   }, {
-    id: '9c323ff8-72aa-4abb-b76d-4ead123a0b33', name: 'Queso en lonchas', unit: 'u', type: 'other', quantity: 2,
+    id: '9c323ff8-72aa-4abb-b76d-4ead123a0b33', name: 'Queso en lonchas', unit: 'u', type: 'other', quantity: 4,
   }],
   types: ['dinner'],
   size: null,
   servings: 2,
   time: { hours: 0, minutes: 0 },
-  description: null,
-  instructions: null,
+  description: '',
+  instructions: '',
 }, {
   id: '2ba21bd0-fedf-4ed4-b73f-f45cf914a2b3',
   name: 'Mongetes amb bacon i botifarra',
@@ -366,7 +410,41 @@ export const DISHES_MOCK = [{
   description: '',
   instructions: '',
 }, {
-  id: 'f6921bb6-e2ab-4aee-81f0-ae3bee68b305', name: 'Past amb salmo fumata', sideDishes: [], sideDishTo: [], ingredients: [], types: ['lunch'], size: null, servings: 2, time: { hours: 0, minutes: 10 }, description: null, instructions: null,
+  id: 'ac2d5dd6-edd7-417b-921c-e6e7d63e5d4c',
+  name: 'Paella Xavi',
+  sideDishes: null,
+  sideDishTo: [],
+  ingredients: [{
+    id: 'ac9f9e0c-1864-4dc7-b454-0b3cf4b7c9ce', name: 'Ajo', unit: 'u', type: 'spice', quantity: 1,
+  }, {
+    id: 'f8443e1d-48e1-4dd9-b84e-31d64d422138', name: 'Alitas de pollo', unit: 'u', type: 'meat', quantity: 8,
+  }, {
+    id: '4e0c5807-2a75-4a91-a76d-864c57b8d691', name: 'Arroz', unit: 'g', type: 'other', quantity: 400,
+  }, {
+    id: '65208c1a-8b19-49b7-945d-24517df47624', name: 'Caldo de peix ', unit: 'u', type: 'other', quantity: 1,
+  }, {
+    id: '8907e448-80a3-4e14-9e0c-50bcfe14939d', name: 'Cebolla', unit: 'u', type: 'vegetable', quantity: 1,
+  }, {
+    id: '7078bb91-5007-4d66-984b-1dca0d6ab3b1', name: 'Costillas de cerdo', unit: 'g', type: 'meat', quantity: 300,
+  }, {
+    id: '9fa2cd28-d548-4831-a63e-3aeccd7b4799', name: 'Gambas', unit: 'u', type: 'fish', quantity: 8,
+  }, {
+    id: '3518c9c1-f5d1-41d7-b786-4adc1c198fd6', name: 'Pimenton dulce ', unit: 'tsp', type: 'spice', quantity: 1,
+  }, {
+    id: 'a3f862dd-ba3d-4ed0-8f2b-6d49f635a259', name: 'Pimiento verde', unit: 'u', type: 'vegetable', quantity: 1,
+  }, {
+    id: '76a49442-4b26-4cb6-a898-51a4a98779ca', name: 'Tomate triturado', unit: 'u', type: 'vegetable', quantity: 1,
+  }, {
+    id: '9afc142f-6ce9-432b-844e-1ee8fe33709a', name: 'Tronco de calamar', unit: 'u', type: 'fish', quantity: 1,
+  }],
+  types: ['lunch'],
+  size: null,
+  servings: 4,
+  time: { hours: 0, minutes: 0 },
+  description: '',
+  instructions: "Fregir la carn i les gambes i reservar---Sofregir l'all, la cebolla i el pimiento. Quan s'hagi fet afegir el calamar tallat petit. ---Afegir una cullerada de pimenton---Afegir el tomaquet, un pot i fregir fins que se separi l'oli del tomàquet. ---Tirar una cervesa o un got de vi o algo d'alcohol. Fins que redueixi. ---Afegir la carn i l'arròs. Remenar una mica i afegir el caldo CALENT!. ---Si cal, posarho al forn perquè l'escalfor sigui uniforme. Fer el temps de cooció que posi a les indicacions de l'arròs. ---",
+}, {
+  id: 'f6921bb6-e2ab-4aee-81f0-ae3bee68b305', name: 'Pasta amb salmo fumata', sideDishes: [], sideDishTo: [], ingredients: [], types: ['lunch'], size: null, servings: 2, time: { hours: 0, minutes: 10 }, description: '', instructions: '',
 }, {
   id: '8eff1b41-ce94-42fd-bb83-e730d93ac5d5',
   name: 'Patacones con pollo',
@@ -383,20 +461,32 @@ export const DISHES_MOCK = [{
   }, {
     id: '674f0e74-30e4-4c00-bf69-fc45d535d360', name: 'Platano verde', unit: 'u', type: 'fruit', quantity: 1,
   }, {
-    id: '01b1a1ef-660e-4f27-98ce-7e9e06ad3f75', name: 'Queso', unit: 'g', type: 'other', quantity: 1,
+    id: '01b1a1ef-660e-4f27-98ce-7e9e06ad3f75', name: 'Queso', unit: 'u', type: 'other', quantity: 1,
   }],
   types: ['dinner'],
   size: null,
   servings: 4,
   time: { hours: 0, minutes: 0 },
-  description: null,
-  instructions: null,
+  description: '',
+  instructions: '',
 }, {
   id: '648d472b-5bae-4f27-ae61-9813d91bc3e1', name: 'Patates', sideDishes: [], sideDishTo: [], ingredients: [], types: ['side'], size: null, servings: 2, time: { hours: 0, minutes: 0 }, description: null, instructions: null,
 }, {
   id: '651a8908-33e5-4af7-9a95-ab1beb6f50b9', name: 'Patats Iron', sideDishes: [], sideDishTo: [], ingredients: [], types: ['side'], size: null, servings: 1, time: { hours: 0, minutes: 15 }, description: null, instructions: 'Cortar las patatas y remojar 1 o 2 horas (con o sin piel)---Calentar la sarten con mantequilla y aceite y poner las patatas---Saltear con pebre, ajo, callena y tomillo y cocinar por 10 mins',
 }, {
-  id: '2b223fa4-71c4-4a3d-95ac-eb155f30b5bf', name: 'Pizza', sideDishes: [], sideDishTo: [], ingredients: [], types: ['dinner'], size: null, servings: 2, time: { hours: 0, minutes: 0 }, description: null, instructions: '',
+  id: '2b223fa4-71c4-4a3d-95ac-eb155f30b5bf',
+  name: 'Pizza',
+  sideDishes: [],
+  sideDishTo: [],
+  ingredients: [{
+    id: '1ea73b44-7186-4b96-833b-a2168bbcdcab', name: 'Pizza', unit: 'u', type: 'other', quantity: 1,
+  }],
+  types: ['dinner'],
+  size: null,
+  servings: 2,
+  time: { hours: 0, minutes: 0 },
+  description: '',
+  instructions: '',
 }, {
   id: '1fe49240-f081-4415-8a24-701daa5b8e0e', name: 'Pollastre rostit amb mel', sideDishes: [], sideDishTo: [], ingredients: [], types: ['lunch'], size: null, servings: 4, time: { hours: 0, minutes: 0 }, description: null, instructions: 'Calentar horno 180°---Dorar el pollo en la sarten---Pelar cebola y naranjas',
 }, {
@@ -422,6 +512,34 @@ export const DISHES_MOCK = [{
   description: null,
   instructions: 'Pelar todo y picar---En una olla cubrir con agua, poner sal y a hervir hasta que este hecha la patata ---Triturar',
 }, {
+  id: 'b0f3b582-194e-4f66-ad00-74011208b466',
+  name: 'Salmo a la sal amb citrics i herbes fresques',
+  sideDishes: null,
+  sideDishTo: [],
+  ingredients: [{
+    id: '9c7f7e10-b5d1-42d3-8bbd-1e90ab27b8cf', name: 'Albahaca', unit: 'u', type: 'spice', quantity: 5,
+  }, {
+    id: '91aa0ea1-0e5f-487e-b2da-5b369317b86e', name: 'Menta', unit: 'u', type: 'spice', quantity: 5,
+  }, {
+    id: 'df1e86c3-9797-4084-bece-56758b37d588', name: 'Piel de lima', unit: 'u', type: 'fruit', quantity: 1,
+  }, {
+    id: '63f8ef6b-a958-4672-b145-a246db16451c', name: 'Piel de limon', unit: 'u', type: 'fruit', quantity: 1,
+  }, {
+    id: 'f9a8b48e-cb3a-4008-a9e5-360e5c8ef7b9', name: 'Piel de naranja', unit: 'u', type: 'fruit', quantity: 1,
+  }, {
+    id: '9f3ca5d3-b62a-45be-b740-6d6c4fef4903', name: 'Romero', unit: 'u', type: 'spice', quantity: 1,
+  }, {
+    id: '457266fe-a25d-4c05-9196-f5e45f71b7ad', name: 'Salmon', unit: 'u', type: 'fish', quantity: 4,
+  }, {
+    id: 'f76d9734-e394-4e9f-840c-c8a82a1fcb6e', name: 'Tomillo', unit: 'g', type: 'spice', quantity: 1,
+  }],
+  types: ['lunch', 'dinner'],
+  size: null,
+  servings: 4,
+  time: { hours: 0, minutes: 0 },
+  description: '',
+  instructions: 'Cubrir un recipiente para el horno con una cama de sal gruesa---Poner los lomos de salmon piel abajo en el recipiente y ponerle una mica de pebre---Esparcir todas las especias y pieles sobre---Tapr con papel aluminio y al forn a 210 durante 8-10 mins---',
+}, {
   id: '86f8b8e2-0e27-4a1d-a039-8c5b32b8bf03',
   name: 'Sanguich ous',
   sideDishes: [],
@@ -444,7 +562,23 @@ export const DISHES_MOCK = [{
 }, {
   id: 'ff33a3cc-31c7-4cf4-95da-becd3628eb61', name: 'Shakshuka verde', sideDishes: [], sideDishTo: [], ingredients: [], types: ['dinner'], size: null, servings: 2, time: { hours: 0, minutes: 0 }, description: null, instructions: 'Picar todos los ingredientes y mezclar la nata con el queso fresco---Poner el boroccoli, esparragos, media cebolla y col en la sarten a fuego medio bajo y que se cocinen---Poner la menta, perejil y cebollin en la sarten, mezclar todo y dejar que se cocine un poco---Poner la mezcla de nata y queso fresco y esperar unos minutos que se cocine---Hacer hueco en la sarten para los huevos, subir el fuego y poner parmesano rallado por encima---Cuando este todo cocinado apagar, tapar unos minutos para que se termine de cocinar todo, antes de servir poner un poquito de yogurt',
 }, {
-  id: '6e99c444-6a65-4f48-a1d0-9d9b00bb3fd0', name: "Truita d'alls tendres", sideDishes: [], sideDishTo: [], ingredients: [], types: ['dinner'], size: null, servings: 2, time: { hours: 0, minutes: 0 }, description: null, instructions: '',
+  id: '6e99c444-6a65-4f48-a1d0-9d9b00bb3fd0',
+  name: "Truita d'alls tendres",
+  sideDishes: [],
+  sideDishTo: [],
+  ingredients: [{
+    id: '62be3d61-b8bf-402f-8e07-39849a0c5c66', name: 'Alls tendres', unit: 'u', type: 'vegetable', quantity: 2,
+  }, {
+    id: 'aa02c55d-4200-4c75-83ec-6c941e41b886', name: 'Huevo', unit: 'u', type: 'other', quantity: 2,
+  }, {
+    id: '01b1a1ef-660e-4f27-98ce-7e9e06ad3f75', name: 'Queso', unit: 'g', type: 'other', quantity: 1,
+  }],
+  types: ['dinner'],
+  size: null,
+  servings: 2,
+  time: { hours: 0, minutes: 0 },
+  description: '',
+  instructions: '',
 }, {
   id: '9baff37b-06ce-4ad1-8d6e-82ba550af389',
   name: 'Vichi',
@@ -470,8 +604,6 @@ export const DISHES_MOCK = [{
 }];
 
 export const INGREDIENTS_MOCK = [{
-  id: 'a7371514-52e7-4815-b0eb-959afb904d8c', name: 'aaaaaa', type: 'fish', unit: 'doz',
-}, {
   id: '33ac471c-0d1c-4557-9419-45d138b24d5f', name: 'Aceite', type: 'other', unit: 'ml',
 }, {
   id: 'ba0777e5-761e-458a-adc9-491281fbdfae', name: 'Agua', type: 'other', unit: 'ml',
@@ -479,6 +611,10 @@ export const INGREDIENTS_MOCK = [{
   id: 'ac9f9e0c-1864-4dc7-b454-0b3cf4b7c9ce', name: 'Ajo', type: 'spice', unit: 'u',
 }, {
   id: '985dda75-880a-48a5-afae-4bba38aa3cfa', name: 'Ajo molido', type: 'spice', unit: 'g',
+}, {
+  id: '9c7f7e10-b5d1-42d3-8bbd-1e90ab27b8cf', name: 'Albahaca', type: 'spice', unit: 'u',
+}, {
+  id: 'f8443e1d-48e1-4dd9-b84e-31d64d422138', name: 'Alitas de pollo', type: 'meat', unit: 'u',
 }, {
   id: '62be3d61-b8bf-402f-8e07-39849a0c5c66', name: 'Alls tendres', type: 'vegetable', unit: 'u',
 }, {
@@ -508,6 +644,8 @@ export const INGREDIENTS_MOCK = [{
 }, {
   id: '3c2f7031-8105-448f-9b28-c4743b9e14ef', name: 'Calamars', type: 'fish', unit: 'u',
 }, {
+  id: '65208c1a-8b19-49b7-945d-24517df47624', name: 'Caldo de peix ', type: 'other', unit: 'u',
+}, {
   id: 'b8c11e6d-ba8f-4206-8742-08e8b4ab1995', name: 'Caldo vegetal', type: 'other', unit: 'l',
 }, {
   id: 'f3db8a16-b1c6-461f-80d6-95199d427146', name: 'Canela', type: 'spice', unit: 'g',
@@ -534,6 +672,8 @@ export const INGREDIENTS_MOCK = [{
 }, {
   id: 'fe281fe5-8f1c-4cf2-a89f-f0f4a0c9dbb6', name: 'Comino', type: 'spice', unit: 'tbsp',
 }, {
+  id: '7078bb91-5007-4d66-984b-1dca0d6ab3b1', name: 'Costillas de cerdo', type: 'meat', unit: 'g',
+}, {
   id: '3dbfa0f6-5894-4236-b9f5-0a371773baf7', name: 'Croquetas', type: 'other', unit: 'u',
 }, {
   id: '66d963d5-6782-4fe4-8c26-2e59dc91241f', name: 'Curry', type: 'spice', unit: 'tbsp',
@@ -547,6 +687,10 @@ export const INGREDIENTS_MOCK = [{
   id: '6a0801cd-0fe9-49bf-b0bd-823f8df44496', name: 'Espinacas', type: 'vegetable', unit: 'g',
 }, {
   id: 'fd5348a9-6085-425a-b7d0-a1356eaee813', name: 'Frijol blanco', type: 'vegetable', unit: 'g',
+}, {
+  id: '8a10dcea-ea01-4182-bde3-9e9647e051bd', name: 'Frijol negro', type: 'vegetable', unit: 'g',
+}, {
+  id: '9fa2cd28-d548-4831-a63e-3aeccd7b4799', name: 'Gambas', type: 'fish', unit: 'u',
 }, {
   id: 'e460f077-0580-4da5-94ba-ab42e948d628', name: 'Guanciale', type: 'meat', unit: 'g',
 }, {
@@ -614,6 +758,14 @@ export const INGREDIENTS_MOCK = [{
 }, {
   id: '97ab699e-a5f4-441f-9f1b-a44b5c7b2aeb', name: 'Pescado blanco', type: 'fish', unit: 'g',
 }, {
+  id: 'df1e86c3-9797-4084-bece-56758b37d588', name: 'Piel de lima', type: 'fruit', unit: 'u',
+}, {
+  id: '63f8ef6b-a958-4672-b145-a246db16451c', name: 'Piel de limon', type: 'fruit', unit: 'u',
+}, {
+  id: 'f9a8b48e-cb3a-4008-a9e5-360e5c8ef7b9', name: 'Piel de naranja', type: 'fruit', unit: 'u',
+}, {
+  id: '3518c9c1-f5d1-41d7-b786-4adc1c198fd6', name: 'Pimenton dulce ', type: 'spice', unit: 'tsp',
+}, {
   id: 'fcaed146-ae57-4501-ae45-6507cd377cf2', name: 'Pimienta', type: 'spice', unit: 'g',
 }, {
   id: '73735a3d-f7b9-4e15-9c6b-f78629131683', name: 'Pimiento rojo', type: 'vegetable', unit: 'u',
@@ -661,6 +813,10 @@ export const INGREDIENTS_MOCK = [{
   id: '76a49442-4b26-4cb6-a898-51a4a98779ca', name: 'Tomate triturado', type: 'vegetable', unit: 'u',
 }, {
   id: 'f76d9734-e394-4e9f-840c-c8a82a1fcb6e', name: 'Tomillo', type: 'spice', unit: 'g',
+}, {
+  id: 'ce59cd0b-5d6f-49b9-863d-de775c1b60e6', name: 'Tortillas de maiz', type: 'other', unit: 'u',
+}, {
+  id: '9afc142f-6ce9-432b-844e-1ee8fe33709a', name: 'Tronco de calamar', type: 'fish', unit: 'u',
 }, {
   id: '996c1b3a-c3cd-4b79-a608-c6102091e089', name: 'Vi blanc', type: 'liquor', unit: 'ml',
 }, {
