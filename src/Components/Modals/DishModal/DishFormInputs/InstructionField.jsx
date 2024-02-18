@@ -8,6 +8,7 @@ import Icon from '../../../Icon';
 function InstructionField({
   instruction,
   isSelected,
+  disableDelete,
   handleInstructionSelect,
   handleDeleteInstruction,
   index,
@@ -32,6 +33,7 @@ function InstructionField({
         <Button
           modifier="m icon"
           type="button"
+          disabled={disableDelete}
           onClick={() => handleDeleteClick()}
         >
           <Icon iconName="close" />
@@ -44,6 +46,7 @@ function InstructionField({
 InstructionField.propTypes = {
   handleInstructionSelect: PropTypes.func.isRequired,
   handleDeleteInstruction: PropTypes.func.isRequired,
+  disableDelete: PropTypes.bool.isRequired,
   isSelected: PropTypes.bool.isRequired,
   index: PropTypes.number.isRequired,
   instruction: PropTypes.string,

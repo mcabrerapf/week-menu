@@ -1,12 +1,11 @@
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable no-restricted-globals */
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import './DishFormInputs.css';
 import Button from '../../../Button';
 import InstructionField from './InstructionField';
 import Icon from '../../../Icon';
-import Input from '../../../Input';
 
 const initInstructions = (ins) => {
   if (!ins || !ins.length) return [''];
@@ -19,6 +18,7 @@ function InstructionsFields({
   handleSubmit,
   canSave,
 }) {
+  const textareaRef = useRef(null);
   const [currentInstructions, setCurrentInstructions] = useState(initInstructions(instructions));
   const [selectedIndex, setSelectedIndex] = useState(currentInstructions.length - 1);
 
@@ -35,10 +35,12 @@ function InstructionsFields({
     setCurrentInstructions(updatedInstructions);
     updateInstructions(updatedInstructions);
     setSelectedIndex(updatedInstructions.length - 1);
+    if (textareaRef.current) textareaRef.current.focus();
   };
 
   const handleInstructionSelect = (clickedIndex) => {
     setSelectedIndex(clickedIndex);
+    if (textareaRef.current) textareaRef.current.focus();
   };
 
   const handleDeleteInstruction = (index) => {
@@ -62,13 +64,15 @@ function InstructionsFields({
               isSelected={selectedIndex === i}
               handleInstructionSelect={handleInstructionSelect}
               handleDeleteInstruction={handleDeleteInstruction}
-              isLast={currentInstructions.length - 1 === i}
+              disableDelete={currentInstructions.length < 2}
             />
           ))}
 
         </div>
         <div className="row gap-5 centered">
-          <Input
+          <textarea
+            ref={textareaRef}
+            className="textarea-input w-f h-a border-rad-5 pad-5"
             name="instruction"
             value={currentInstructions[selectedIndex]}
             onChange={handleInstructionChange}

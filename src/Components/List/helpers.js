@@ -20,18 +20,46 @@ const getListData = (view, contextProps) => {
   }
 };
 
+const checkHasTextMatch = (listItem, searchValue) => {
+  const { name, weeks, ingredients } = listItem;
+  const hasNameMatch = name.toLowerCase().indexOf(searchValue.toLowerCase()) !== -1;
+  if (hasNameMatch) return true;
+  if (weeks && weeks.length) {
+    return !!weeks
+      .find(({ days }) => days
+        .find(({ dishes }) => dishes
+          .find((dish) => {
+            if (!dish) return false;
+            const { name: dName, ingredients: dIngredients } = dish;
+            if (dName.toLowerCase().indexOf(searchValue.toLowerCase()) !== -1) return true;
+            if (!ingredients) return false;
+            return !!dIngredients
+              .find(({ name: iName }) => iName
+                .toLowerCase()
+                .indexOf(searchValue.toLowerCase()) !== -1);
+          })));
+  }
+  if (ingredients && ingredients.length) {
+    return !!ingredients
+      .find(({ name: iName }) => iName
+        .toLowerCase()
+        .indexOf(searchValue.toLowerCase()) !== -1);
+  }
+  return false;
+};
 const filterList = (list, searchValue, filterValue) => {
   if (!searchValue && !filterValue) return list;
   const useFavourite = filterValue === 'favourite';
-  return list.filter(({
-    name, ingredients = [], type, types, favourite,
-  }) => {
+  return list.filter((listItem) => {
+    const {
+      type, types, favourite,
+    } = listItem;
+
     const filterMatch = types ? types.includes(filterValue) : type === filterValue;
     const matchToUse = useFavourite ? favourite : filterMatch;
     if (searchValue) {
-      const hasTextMatch = name.toLowerCase().indexOf(searchValue.toLowerCase()) !== -1
-      || !!ingredients
-        .find(({ name: iname }) => iname.toLowerCase().indexOf(searchValue.toLowerCase()) !== -1);
+      const hasTextMatch = checkHasTextMatch(listItem, searchValue);
+
       if (filterValue) {
         return hasTextMatch && matchToUse;
       }
