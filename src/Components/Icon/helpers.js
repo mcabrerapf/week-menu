@@ -10,6 +10,7 @@ import {
   FaAngleDown,
   FaAngleUp,
   FaBrain,
+  FaClipboard,
   FaCartShopping,
   FaClock,
   FaXmark,
@@ -83,6 +84,8 @@ const getIcon = (iconName) => {
       return FaChevronRight;
     case 'clock':
       return FaClock;
+    case 'clipboard':
+      return FaClipboard;
     case 'copy':
       return FaCopy;
     case 'close':

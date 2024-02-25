@@ -55,7 +55,7 @@ function ShopingList({ show, weeks, selectedWeekIndex }) {
     <div className={className}>
       <div className="shoping-list-buttons col">
         <Button modifier="shopping-list-copy-button xl icon-xl" onClick={handleCopyShopingList}>
-          <Icon iconName="copy" />
+          <Icon iconName="clipboard" />
         </Button>
         {hasMoreThanOneList && (
         <Button modifier="shopping-list-copy-button xl icon-xl" onClick={handleToggleCollectiveList}>

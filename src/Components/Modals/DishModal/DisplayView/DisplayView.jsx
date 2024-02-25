@@ -1,11 +1,13 @@
 /* eslint-disable react/no-array-index-key */
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import './DisplayView.css';
 import Button from '../../../Button';
 import Icon from '../../../Icon';
 import { INGREDIENT_UNITS_MATCHES } from '../../../../constants/INGREDIENT';
 import { orderIngredientsBySection } from '../../../helpers';
+import { ToastContext } from '../../../../Contexts';
+import { copyDishToClipboard } from '../helpers';
 
 function DisplayView({
   dishData,
@@ -14,43 +16,57 @@ function DisplayView({
   const {
     types, servings, time, instructions, ingredients,
   } = dishData;
-
+  const { addToast } = useContext(ToastContext);
   const displayTime = !!time && !!(time.hours || time.minutes);
   const displayTypes = !!types && !!types.length;
   const orderedIngredients = orderIngredientsBySection(ingredients);
 
+  const handleCopyDishToClipboard = () => {
+    copyDishToClipboard(dishData);
+    addToast('Coppied dish to clipboard', 'info');
+  };
+
   return (
     <div className="dish-display-view col j-bet pad-10 gap-10">
       <div className="display-view-info col gap-5">
-        <div className="display-view-info-header row gap-20 pad-b-5 border-b">
-          {displayTypes && (
-          <div className="row width-a">
-            {types.map((tType) => <Icon key={tType} iconName={tType} modifier="icon-l" />)}
+        <div className="display-view-info-header row j-bet gap-20 pad-b-5 border-b">
+          <div className="row gap-15">
+            {displayTypes && (
+            <div className="row width-a">
+              {types.map((tType) => <Icon key={tType} iconName={tType} modifier="icon-l" />)}
+            </div>
+            )}
+            {servings && (
+            <div className="row w-a centered gap-10">
+              <Icon iconName="people" modifier="icon-l" />
+              <span className="label">
+                {servings}
+              </span>
+            </div>
+            )}
+            {displayTime && (
+            <div className="row w-a centered gap-10">
+              <Icon iconName="clock" modifier="icon-l" />
+              <span className="label">
+                {time.hours}
+                :
+                {time.minutes}
+              </span>
+            </div>
+            )}
           </div>
-          )}
-          {servings && (
-          <div className="row w-a centered gap-10">
-            <Icon iconName="people" modifier="icon-l" />
-            <span className="label">
-              {servings}
-            </span>
+
+          <div className="row">
+            <Button modifier="" onClick={handleCopyDishToClipboard}>
+              <Icon iconName="clipboard" />
+            </Button>
+
           </div>
-          )}
-          {displayTime && (
-          <div className="row w-a centered gap-10">
-            <Icon iconName="clock" modifier="icon-l" />
-            <span className="label">
-              {time.hours}
-              :
-              {time.minutes}
-            </span>
-          </div>
-          )}
         </div>
         <div className="display-view-info-content col gap-10 overflow-y">
           {!!orderedIngredients.length
         && (
-        // TODO turnn nthis list into a component
+        // TODO turnn this list into a component
         <div className="col gap-5">
           {orderedIngredients.map((ingredientSection) => {
             const { value, ingredients: sectionIngredients } = ingredientSection;

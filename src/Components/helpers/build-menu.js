@@ -65,7 +65,7 @@ const buildWeek = (week, dishes) => {
 
     return { dishes: dayDishes };
   });
-  return ({ days: builtDays, people, validatedMealLimits });
+  return ({ days: builtDays, people });
 };
 
 const filterDishes = (dishes, filters) => {
