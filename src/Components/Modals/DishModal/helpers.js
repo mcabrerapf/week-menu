@@ -1,11 +1,14 @@
 /* eslint-disable import/prefer-default-export */
 const copyDishToClipboard = (dish) => {
   const {
+    name,
     servings,
     ingredients,
     instructions,
   } = dish;
-  const clipboardData = [`People: ${servings}`];
+  const clipboardData = [
+    `${name} (${servings})`,
+  ];
 
   if (ingredients && ingredients.length) {
     clipboardData.push('\n\n');
