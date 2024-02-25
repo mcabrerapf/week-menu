@@ -5,7 +5,6 @@ import './DisplayView.css';
 import Button from '../../../Button';
 import Icon from '../../../Icon';
 import { INGREDIENT_UNITS_MATCHES } from '../../../../constants/INGREDIENT';
-import { orderIngredientsBySection } from '../../../helpers';
 import { ToastContext } from '../../../../Contexts';
 import { copyDishToClipboard } from '../helpers';
 
@@ -19,7 +18,6 @@ function DisplayView({
   const { addToast } = useContext(ToastContext);
   const displayTime = !!time && !!(time.hours || time.minutes);
   const displayTypes = !!types && !!types.length;
-  const orderedIngredients = orderIngredientsBySection(ingredients);
 
   const handleCopyDishToClipboard = () => {
     copyDishToClipboard(dishData);
@@ -64,41 +62,26 @@ function DisplayView({
           </div>
         </div>
         <div className="display-view-info-content col gap-10 overflow-y">
-          {!!orderedIngredients.length
+          {!!ingredients.length
         && (
-        // TODO turnn this list into a component
-        <div className="col gap-5">
-          {orderedIngredients.map((ingredientSection) => {
-            const { value, ingredients: sectionIngredients } = ingredientSection;
+        <ul className="col gap-5">
+          {ingredients.map((ingredient) => {
+            const {
+              id: ingId, name: ingName, quantity, unit: ingUnit,
+            } = ingredient;
             return (
-              <div className="col" key={value}>
-                <div
-                  className="row gap-5 w-10 pad-v-5 border-b"
-                >
-                  <Icon modifier="icon" iconName={value} />
-                </div>
-                <div className="col gap-10 pad-v-10">
-                  {sectionIngredients.map((ingredient) => {
-                    const {
-                      id: ingId, name: ingName, quantity, unit: ingUnit,
-                    } = ingredient;
-                    return (
-                      <li key={`${ingId}-${ingUnit}`} className="row gap-5 text-a-l">
-                        <span>- </span>
-                        <span>{ingName}</span>
-                        <span className="label">
-                          {quantity}
-                          {INGREDIENT_UNITS_MATCHES[ingUnit]}
-                        </span>
+              <li key={`${ingId}-${ingUnit}`} className="row gap-5 text-a-l">
+                <span>- </span>
+                <span>{ingName}</span>
+                <span className="label">
+                  {quantity}
+                  {INGREDIENT_UNITS_MATCHES[ingUnit]}
+                </span>
 
-                      </li>
-                    );
-                  })}
-                </div>
-              </div>
+              </li>
             );
           })}
-        </div>
+        </ul>
         )}
           {/* {description && (
         <div className="col">
