@@ -20,7 +20,7 @@ function InstructionsFields({
 }) {
   const textareaRef = useRef(null);
   const [currentInstructions, setCurrentInstructions] = useState(initInstructions(instructions));
-  const [selectedIndex, setSelectedIndex] = useState(currentInstructions.length - 1);
+  const [selectedIndex, setSelectedIndex] = useState(0);
 
   const handleInstructionChange = (e) => {
     const updatedInstructions = [...currentInstructions];

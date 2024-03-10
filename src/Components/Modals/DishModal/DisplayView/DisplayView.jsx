@@ -106,7 +106,12 @@ function DisplayView({
         </div>
       </div>
       <div className="dish-footer">
-        <Button modifier="icon" onClick={() => setModalView('edit')}>
+        <Button
+          modifier="icon"
+          onClick={() => {
+            setModalView('edit');
+          }}
+        >
           <Icon iconName="edit" />
         </Button>
       </div>
@@ -117,7 +122,6 @@ function DisplayView({
 DisplayView.propTypes = {
   dishData: PropTypes.shape(),
   setModalView: PropTypes.func.isRequired,
-
 };
 
 DisplayView.defaultProps = {

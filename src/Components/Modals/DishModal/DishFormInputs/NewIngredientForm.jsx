@@ -75,14 +75,25 @@ function NewIngredientForm({
             ))}
         </div>
       </div>
-      <Button
-        disabled={!canSubmit}
-        modifier="icon"
-        onClick={handleAddNewIngredient}
-        disableMultipleClicks
-      >
-        <Icon iconName="save" />
-      </Button>
+      <div className="row gap-5">
+        <Button
+          modifier="icon"
+          onClick={() => toggleNewIngredientView()}
+          disableMultipleClicks
+        >
+          <Icon iconName="close" />
+        </Button>
+        <Button
+          disabled={!canSubmit}
+          modifier="icon"
+          onClick={handleAddNewIngredient}
+          disableMultipleClicks
+        >
+          <Icon iconName="save" />
+        </Button>
+
+      </div>
+
     </>
 
   );

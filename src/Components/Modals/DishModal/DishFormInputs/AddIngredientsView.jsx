@@ -96,7 +96,7 @@ function AddIngredientsView({
         </div>
       </div>
       <Button modifier="icon" onClick={handleUpdateIngredients}>
-        <Icon iconName="save" />
+        <Icon iconName="check" />
       </Button>
     </>
   );

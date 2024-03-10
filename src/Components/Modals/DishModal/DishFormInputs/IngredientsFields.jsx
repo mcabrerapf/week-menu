@@ -36,7 +36,7 @@ function IngredientsFields({
     updateIngredients(updatedIngredients);
   };
 
-  const toggleNewIngredientView = (newIngredient) => {
+  const toggleNewIngredientView = (newIngredient = {}) => {
     if (newIngredient.id) {
       const updatedIngredients = [...ingredients, {
         ...newIngredient, quantity: 1,

@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import './Modal.css';
 import Modals from '../Modals';
@@ -13,13 +13,17 @@ function Modal({ closeModal, modalData }) {
     type, hideHeader, modifier, headerText,
   } = modalData;
   const wrapperRef = useRef(null);
+  const [closeOnBgClick, setCloseOnBgClick] = useState(true);
 
   useEffect(
     () => {
       function handleClickOutside({ target }) {
         const shouldHideModal = wrapperRef.current
           && !wrapperRef.current.contains(target);
-        if (shouldHideModal) closeModal();
+
+        if (shouldHideModal && closeOnBgClick) {
+          closeModal();
+        }
       }
 
       document.addEventListener('mousedown', handleClickOutside);
@@ -27,7 +31,7 @@ function Modal({ closeModal, modalData }) {
         document.removeEventListener('mousedown', handleClickOutside);
       };
     },
-    [wrapperRef],
+    [wrapperRef, closeOnBgClick],
   );
 
   const stopPropagation = (e) => {
@@ -54,7 +58,11 @@ function Modal({ closeModal, modalData }) {
           </div>
         )}
         <div className={parseClassName('modal-content', type)}>
-          <ModalToUse modalData={modalData} closeModal={closeModal} />
+          <ModalToUse
+            modalData={modalData}
+            closeModal={closeModal}
+            setCloseOnBgClick={setCloseOnBgClick}
+          />
         </div>
       </div>
     </div>
