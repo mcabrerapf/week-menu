@@ -1,26 +1,77 @@
-body {
-  width: 100%;
-  min-height: 100%;
-  height: 100%;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url('./styles/breakouts.css');
+@import url('./styles/generic.css');
+@import url('./styles/colors.css');
+@import url('./styles/layout.css');
+
+:root {
+	font-size: 11px;
+	--beige-color: #ceb8a1;
+	--blue-color: #3f8881;
+	--gray-color: #757f7e;
+	--white-color: white;
+	--black-color: black;
+	--red-color: red;
+	--green-color: green;
+	--offiline-background-color: #deb9e0;
+	--basic-box-shadow: 0rem 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
+	--full-modal-height: calc(100vh - 25rem);
+	--full-modal-width: calc(100vw - 5rem);
+	--footer-height: 3.5rem;
+	--header-height: 3.5rem;
+	--modal-z-index: 500;
+	--toast-z-index: 600;
 }
 
-html {
-  min-height: 100%;
-  height: 100%;
+body {
+	position: fixed;
+	width: 100% !important;
+	height: 100% !important;
+	margin: 0;
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+		'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+		sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
 #root {
-  min-height: 100%;
-  height: 100%;
+	width: 100%;
+	height: 100%;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+		monospace;
+}
+
+ul {
+	list-style: none;
+	padding: 0px;
+	margin: 0px;
+}
+
+p {
+	margin: 0px;
+}
+
+input {
+	margin: 0;
+	border: 0;
+}
+
+select {
+	height: 2rem;
+	text-align: center;
+	font-weight: 500;
+	border: 0;
+	margin: 0;
+}
+
+textarea {
+	resize: none;
+	font-size: 0.8rem;
+	min-height: 4rem;
+	max-height: 5rem;
+	margin: 0;
+	border: 0;
 }

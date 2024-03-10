@@ -1,0 +1,9 @@
+.menu-builder-content {
+	height: calc(100% - 5rem);
+}
+
+.week-number {
+	position: fixed;
+	bottom: 2.5rem;
+	left: calc(50% - 2rem);
+}

@@ -1,0 +1,13 @@
+.shoping-list-buttons {
+	position: fixed;
+	right: 2rem;
+	/* margin-top: 0.5rem; */
+}
+
+.shoping-list-section-icon {
+	width: 15rem;
+}
+
+.shoping-list-section-item {
+	cursor: pointer;
+}
