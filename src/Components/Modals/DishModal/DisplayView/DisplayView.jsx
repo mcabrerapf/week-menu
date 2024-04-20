@@ -11,6 +11,7 @@ import { copyDishToClipboard } from '../helpers';
 function DisplayView({
   dishData,
   setModalView,
+  hideFooter,
 }) {
   const {
     types, servings, time, instructions, ingredients,
@@ -83,14 +84,6 @@ function DisplayView({
           })}
         </ul>
         )}
-          {/* {description && (
-        <div className="col">
-          <span>
-            <strong>Description: </strong>
-          </span>
-          <p>{description}</p>
-        </div>
-        )} */}
           {instructions && (
           <div className="col border-t pad-t-10">
             <ul className="col gap-5">
@@ -105,6 +98,7 @@ function DisplayView({
           )}
         </div>
       </div>
+      {!hideFooter && (
       <div className="dish-footer">
         <Button
           modifier="icon"
@@ -115,17 +109,21 @@ function DisplayView({
           <Icon iconName="edit" />
         </Button>
       </div>
+      )}
     </div>
   );
 }
 
 DisplayView.propTypes = {
   dishData: PropTypes.shape(),
-  setModalView: PropTypes.func.isRequired,
+  setModalView: PropTypes.func,
+  hideFooter: PropTypes.bool,
 };
 
 DisplayView.defaultProps = {
   dishData: {},
+  setModalView: () => {},
+  hideFooter: false,
 };
 
 export default DisplayView;

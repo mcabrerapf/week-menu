@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './MenuModal.css';
 import {
-  MENU_STRING, SAVE_STRING,
+  MENU_STRING, SAVE_STRING, UPDATE_STRING,
 } from '../../../constants/STRINGS';
 import { deepCompare, initData } from '../../helpers';
 import { DAYS, DAY_DISH_TYPES } from '../../../constants/MENU';
@@ -15,12 +15,14 @@ function MenuModal({ modalData, closeModal }) {
   const { itemData } = modalData;
   const [menuData, setMenuData] = useState(initData(itemData, MENU_STRING));
   const [selectedWeekIndex, setSelectedWeekIndex] = useState(0);
-
+  const isNew = !menuData.id;
+  console.log(menuData);
   const saveMenu = async () => {
     const noChange = deepCompare(menuData, itemData);
     if (noChange) return closeModal();
     const parsedData = parseMenuData(menuData);
-    return closeModal({ type: SAVE_STRING, data: parsedData });
+    console.log({ parsedData });
+    return closeModal({ type: isNew ? SAVE_STRING : UPDATE_STRING, data: parsedData });
   };
   const { weeks, name, favourite } = menuData;
   const { days } = weeks[selectedWeekIndex];
@@ -82,7 +84,7 @@ function MenuModal({ modalData, closeModal }) {
           </div>
         ))}
       </ul>
-      <div className="col">
+      <div className="row gap-5">
         <Button modifier="icon" onClick={saveMenu} disabled={!name} disableMultipleClicks>
           <Icon iconName="save" />
         </Button>

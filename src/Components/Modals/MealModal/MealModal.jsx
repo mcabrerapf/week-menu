@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import './MealModal.css';
 import Button from '../../Button';
 import Input from '../../Input';
 import { deepCopy, findByKey } from '../../helpers';
@@ -7,6 +8,7 @@ import Icon from '../../Icon';
 import { getDishesAndSideDishes } from './helpers';
 import { DAYS } from '../../../constants/MENU';
 import { DISH_TYPES } from '../../../constants/DISH';
+import DisplayView from '../DishModal/DisplayView/DisplayView';
 
 function MealModal({ modalData, closeModal }) {
   const {
@@ -23,6 +25,7 @@ function MealModal({ modalData, closeModal }) {
   const selectedWeek = deepCopy(weeks[weekIndex]);
   const [sortedDishes] = getDishesAndSideDishes(dishes, dish);
   const [selectedDishId, setSelectedDish] = useState(sortedDishes[0].id);
+  const [showDishInfo, setShowDishInfo] = useState(false);
 
   const handleButtonClick = (changeAll) => {
     const selectedDish = findByKey(sortedDishes, selectedDishId);
@@ -59,44 +62,47 @@ function MealModal({ modalData, closeModal }) {
   } = dish || {};
 
   return (
-    <div className="col">
-      {/* {mode === 'display' && (
-      <DisplayMode modalData={modalData} setModalMode={setMode} buttonText="Change Dish" />
-      )} */}
-      {/* {mode === 'edit' && ( */}
+    <div className="meal-modal col">
       <div className="col pad-10 gap-10">
         <div className="col gap-10">
-          <div className="row icon centered gap-10 pad-b-5 m-5 border-b">
-            <span>{DAYS[dayIndex][2]}</span>
-            <Icon iconName={DISH_TYPES[mealIndex].id} />
+          <div className="row icon j-bet gap-10 pad-b-5 border-b a-c">
+            <div />
+            <div className="row gap-5 a-c">
+              <span>{DAYS[dayIndex][2]}</span>
+              <Icon iconName={DISH_TYPES[mealIndex].id} />
+            </div>
+            <div>
+              <Button modifier="w-3 h-3" onClick={() => setShowDishInfo(!showDishInfo)}>
+                <Icon iconName="info" />
+              </Button>
+            </div>
+
           </div>
-          {name && (
-          <div className="col gap-5 centered icon">
-            <span>{name}</span>
-            <Icon iconName="arrow-d" />
+          <div className="col gap-10">
+            {showDishInfo && <DisplayView dishData={dish} hideFooter />}
+            {!showDishInfo && name && (
+            <div className="col gap-5 centered icon">
+              <span>{name}</span>
+              <Icon iconName="arrow-d" />
+
+            </div>
+            )}
+            {!showDishInfo && (
+            <Input
+              name="dish"
+              id="dish"
+              value={selectedDishId}
+              onChange={({ target: { value: eValue } }) => setSelectedDish(eValue)}
+              placeholder=""
+              selectOptions={sortedDishes}
+              type="select"
+            />
+            )}
+
           </div>
-          )}
-          <Input
-            name="dish"
-            id="dish"
-            value={selectedDishId}
-            onChange={({ target: { value: eValue } }) => setSelectedDish(eValue)}
-            placeholder=""
-            selectOptions={sortedDishes}
-            type="select"
-          />
-          {/* {!!sortedSideDishes.length && (
-          <Input
-            name="dish"
-            id="dish"
-            value={selectedSideDish}
-            onChange={({ target: { value: eValue } }) => setSelectedSideDish(eValue)}
-            placeholder="Side dish"
-            selectOptions={sortedSideDishes}
-            type="select"
-          />
-          )} */}
+
         </div>
+        {!showDishInfo && (
         <div className="row gap-5">
           <Button
             onClick={() => handleButtonClick()}
@@ -105,24 +111,25 @@ function MealModal({ modalData, closeModal }) {
             <Icon iconName="check" />
           </Button>
           {name && (
-            <>
-              <Button
-                onClick={() => handleButtonClick(true)}
-                disabled={!selectedDishId}
-              >
-                <Icon iconName="check-double" />
-              </Button>
-              <Button
-                onClick={handleRemoveMeal}
-                disabled={!selectedDishId}
-              >
-                <Icon iconName="delete" />
-              </Button>
-            </>
+          <>
+            <Button
+              onClick={() => handleButtonClick(true)}
+              disabled={!selectedDishId}
+            >
+              <Icon iconName="check-double" />
+            </Button>
+            <Button
+              onClick={handleRemoveMeal}
+              disabled={!selectedDishId}
+            >
+              <Icon iconName="delete" />
+            </Button>
+          </>
 
           )}
 
         </div>
+        )}
       </div>
     </div>
   );

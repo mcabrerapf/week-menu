@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { MENU_STRING, SAVE_STRING } from '../../constants/STRINGS';
+import { MENU_STRING, SAVE_STRING, UPDATE_STRING } from '../../constants/STRINGS';
 // import { useLongPress } from '../../Hooks';
 import Button from '../Button';
 import Icon from '../Icon';
@@ -43,7 +43,7 @@ function MenuBuilderHeader({
 
   const handleCloseEvent = async (event) => {
     const { type, data } = event;
-    if (type === SAVE_STRING) await handleSave(data, MENU_STRING);
+    if (type === SAVE_STRING || type === UPDATE_STRING) await handleSave(data, MENU_STRING);
   };
 
   const closeModal = async (closeEvent) => {

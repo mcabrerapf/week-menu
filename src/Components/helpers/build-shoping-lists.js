@@ -1,6 +1,6 @@
 import { INGREDIENT_TYPES } from '../../constants/INGREDIENT';
 import sortBy from './sort-by';
-
+// TODO optimize
 const getSectionIngredients = (sectionName, days, people) => {
   const sectionIngredients = [];
   days.forEach(({ dishes }) => {
@@ -9,6 +9,7 @@ const getSectionIngredients = (sectionName, days, people) => {
       const {
         ingredients, servings, name: dishName, id: dishId,
       } = dish;
+      if (!ingredients || !ingredients.length) return;
       ingredients.forEach((ingredient) => {
         if (!ingredient) return;
         const {
@@ -18,7 +19,8 @@ const getSectionIngredients = (sectionName, days, people) => {
         if (type !== sectionName) return;
 
         const multi = people / servings;
-        const parsedQuantity = quantity * multi;
+        const parsedQuantity = parseFloat((quantity * multi).toFixed(1));
+
         let ingredientIndex = -1;
         sectionIngredients
           .forEach((sectionIngredient, index) => {

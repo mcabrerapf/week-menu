@@ -1,0 +1,9 @@
+.meal-modal {
+    .dish-display-view {
+        height: 25rem!important;
+
+        .display-view-info {
+            height: 100%!important;
+        }
+    }
+}

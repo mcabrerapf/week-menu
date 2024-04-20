@@ -73,7 +73,7 @@ function GeneralFields({
   return (
     <>
       <div className="col gap-20">
-        <div className="row j-bet w-a h-3 gap-5">
+        <div className="row w-a gap-5 a-c">
           <Input
             type="text"
             id="name"
@@ -83,10 +83,8 @@ function GeneralFields({
             onChange={handleOnChange}
             onBlur={handleOnChange}
           />
-
-        </div>
-        <div className="row gap-5">
           {DISH_TYPES
+            .filter(({ id: dTypeId }) => dTypeId !== 'side')
             .map(({ id: typeId }) => (
               <Button
                 key={typeId}
@@ -113,7 +111,7 @@ function GeneralFields({
           </div>
           <div className="time-input col j-bet gap-5">
             <div className="row centered icon-l"><Icon iconName="clock" /></div>
-            <div className="row gap-5 h-a ">
+            <div className="row gap-5 h-a a-c">
               <Input
                 type="number"
                 id="hours"
