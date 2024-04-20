@@ -4,9 +4,7 @@ const parseMenuData = (menu) => {
       const parsedDishes = day.dishes.map((dish) => {
         if (!dish) return null;
         const { id } = dish;
-        const sideDishesToUse = dish.sideDishesToUse || [];
-        const parsedSideDishesToUse = sideDishesToUse.map((sideDish) => sideDish?.id);
-        return { id, sideDishesToUse: parsedSideDishesToUse };
+        return { id, sideDishesToUse: [] };
       });
       return { ...day, dishes: parsedDishes };
     });

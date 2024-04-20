@@ -31,7 +31,7 @@ function DisplayView({
         <div className="display-view-info-header row j-bet gap-20 pad-b-5 border-b">
           <div className="row gap-15">
             {displayTypes && (
-            <div className="row width-a">
+            <div className="row width-a gap-5">
               {types.map((tType) => <Icon key={tType} iconName={tType} modifier="icon-l" />)}
             </div>
             )}

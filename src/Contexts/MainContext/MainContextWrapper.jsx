@@ -88,6 +88,7 @@ function MainContextWrapper({ children }) {
     }
 
     const [updatedList, listKey] = getListAndKey(listToUpdate, newData);
+
     setContextState({
       ...contextState,
       [listKey]: sortBy(updatedList, 'name', 'alphabetical'),
@@ -104,8 +105,8 @@ function MainContextWrapper({ children }) {
   const updateCurrentMenu = (newMenu, newOptions) => {
     if (!newMenu && !newOptions) return;
     const updatedContext = { ...contextState, view: MENU_BUILDER_STRING };
-    if (newMenu)updatedContext.currentMenu = newMenu;
-    if (newOptions)updatedContext.menuOptions = newOptions;
+    if (newMenu) updatedContext.currentMenu = newMenu;
+    if (newOptions) updatedContext.menuOptions = newOptions;
     setContextState(updatedContext);
   };
 
@@ -120,7 +121,7 @@ function MainContextWrapper({ children }) {
     }
 
     await updateList(serviceName);
-    if (callback)callback();
+    if (callback) callback();
     addToast(data.name, 'success');
     return response;
   };

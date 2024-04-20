@@ -14,6 +14,7 @@ import Modal from '../Modal';
 function MenuBuilder({ show }) {
   const {
     dishes: dishesFromContext,
+    menus,
     menuOptions,
     currentMenu,
     updateCurrentMenu,
@@ -81,7 +82,10 @@ function MenuBuilder({ show }) {
       <MenuBuilderHeader
         view={view}
         hasLoadedMenu={hasLoadedMenu}
+        menus={menus}
         currentMenu={currentMenu}
+        menuOptions={menuOptions}
+        updateCurrentMenu={updateCurrentMenu}
         openMenuBuilderModal={openModal}
         handleChangeView={handleChangeView}
         handleBuildMenu={handleBuildMenu}

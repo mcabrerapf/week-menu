@@ -12,6 +12,7 @@ import initData from './init-data';
 import findByKey from './find-by-key';
 import filterByKey from './filter-by-key';
 import orderIngredientsBySection from './order-ingredients-by-section';
+import truncateString from './truncate-string';
 
 export {
   buildDishesWithIngredients,
@@ -28,4 +29,5 @@ export {
   orderIngredientsBySection,
   parseClassName,
   sortBy,
+  truncateString,
 };

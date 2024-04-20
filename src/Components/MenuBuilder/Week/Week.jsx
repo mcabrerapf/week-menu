@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { DAYS } from '../../../constants/MENU';
 import { MEAL_STRING } from '../../../constants/STRINGS';
 import Modal from '../../Modal';
+import { truncateString } from '../../helpers';
 
 function Week({
   week, selectedWeekIndex, handleUpdateWeek, currentMenu, dishes, show,
@@ -56,7 +57,7 @@ function Week({
                   })}
                   onKeyDown={() => {}}
                 >
-                  <span>{dish?.name}</span>
+                  <span>{truncateString(dish?.name, 45)}</span>
                 </div>
               ))}
             </div>

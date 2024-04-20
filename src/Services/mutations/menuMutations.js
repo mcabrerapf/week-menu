@@ -6,6 +6,7 @@ export const CREATE_MENU_MUTATION = `
     createMenu(input: $input, condition: $condition) {
       id
       name
+      favourite
     }
   }
 `;
@@ -18,6 +19,7 @@ export const UPDATE_MENU_MUTATION = `
     updateMenu(input: $input, condition: $condition) {
       id
       name
+      favourite
     }
   }
 `;

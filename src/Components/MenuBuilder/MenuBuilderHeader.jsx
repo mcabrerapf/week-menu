@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { MENU_STRING, SAVE_STRING, UPDATE_STRING } from '../../constants/STRINGS';
-// import { useLongPress } from '../../Hooks';
+import { parseMenuData } from './helpers';
 import Button from '../Button';
 import Icon from '../Icon';
 import Modal from '../Modal';
@@ -15,9 +15,12 @@ function MenuBuilderHeader({
   handleSave,
   view,
   currentMenu,
+  // menuOptions,
+  // updateCurrentMenu,
 }) {
   const [showModal, setShowModal] = useState(false);
   const [modalData, setModalData] = useState(null);
+
   const checkView = () => {
     const newView = view === 0 ? 1 : 0;
     handleChangeView(newView);
@@ -43,7 +46,13 @@ function MenuBuilderHeader({
 
   const handleCloseEvent = async (event) => {
     const { type, data } = event;
-    if (type === SAVE_STRING || type === UPDATE_STRING) await handleSave(data, MENU_STRING);
+    if (type === SAVE_STRING || type === UPDATE_STRING) {
+      const parsedData = parseMenuData(data);
+      if (type === UPDATE_STRING) delete parsedData.id;
+      await handleSave(parsedData, MENU_STRING);
+      // const finalizedMenu = { ...data, ...updatedMenu };
+      // updateCurrentMenu(finalizedMenu, menuOptions);
+    }
   };
 
   const closeModal = async (closeEvent) => {
@@ -102,6 +111,8 @@ MenuBuilderHeader.propTypes = {
   handleBuildMenu: PropTypes.func.isRequired,
   hasLoadedMenu: PropTypes.bool.isRequired,
   currentMenu: PropTypes.shape().isRequired,
+  // menuOptions: PropTypes.shape().isRequired,
+  // updateCurrentMenu: PropTypes.func.isRequired,
 };
 
 export default MenuBuilderHeader;

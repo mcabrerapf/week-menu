@@ -9,20 +9,18 @@ import { DAYS, DAY_DISH_TYPES } from '../../../constants/MENU';
 import Icon from '../../Icon';
 import Button from '../../Button';
 import Input from '../../Input';
-import { parseMenuData } from './helpers';
 
 function MenuModal({ modalData, closeModal }) {
   const { itemData } = modalData;
   const [menuData, setMenuData] = useState(initData(itemData, MENU_STRING));
   const [selectedWeekIndex, setSelectedWeekIndex] = useState(0);
   const isNew = !menuData.id;
-  console.log(menuData);
-  const saveMenu = async () => {
+
+  const saveMenu = async (action) => {
     const noChange = deepCompare(menuData, itemData);
     if (noChange) return closeModal();
-    const parsedData = parseMenuData(menuData);
-    console.log({ parsedData });
-    return closeModal({ type: isNew ? SAVE_STRING : UPDATE_STRING, data: parsedData });
+
+    return closeModal({ type: action, data: menuData });
   };
   const { weeks, name, favourite } = menuData;
   const { days } = weeks[selectedWeekIndex];
@@ -85,9 +83,15 @@ function MenuModal({ modalData, closeModal }) {
         ))}
       </ul>
       <div className="row gap-5">
-        <Button modifier="icon" onClick={saveMenu} disabled={!name} disableMultipleClicks>
+        <Button modifier="icon" onClick={() => saveMenu(SAVE_STRING)} disabled={!name} disableMultipleClicks>
           <Icon iconName="save" />
         </Button>
+        {!isNew && (
+        <Button modifier="icon" onClick={() => saveMenu(UPDATE_STRING)} disabled={!name} disableMultipleClicks>
+          <Icon iconName="plus" />
+          <Icon iconName="save" />
+        </Button>
+        )}
       </div>
     </div>
   );
