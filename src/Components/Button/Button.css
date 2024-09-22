@@ -1,5 +1,5 @@
 .button {
-	color: var(--black-white);
+	color: var(--white-color);
 	cursor: pointer;
 	border: none;
 	user-select: none !important;

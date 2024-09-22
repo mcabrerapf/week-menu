@@ -48,7 +48,7 @@ function Main() {
     };
   });
 
-  const offlineClass = offlineMode === 1 ? ' bgc-off' : '';
+  const offlineClass = offlineMode === 1 ? ' bgc-offline' : '';
 
   return (
     <div

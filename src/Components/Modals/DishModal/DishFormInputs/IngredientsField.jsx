@@ -28,7 +28,7 @@ function IngredientsField({
                 key={id}
                 id={id}
                 name="quantity"
-                modifier="s font-xs bgc-tr"
+                modifier="s font-xs bgc-trans"
                 value={quantity}
                 resetValueOnClick
                 min={1}
@@ -38,7 +38,7 @@ function IngredientsField({
               />
               <Input
                 type="select"
-                modifier="bgc-tr font-xs s"
+                modifier="bgc-trans font-xs s"
                 value={unit}
                 id={id}
                 name="unit"
@@ -47,7 +47,7 @@ function IngredientsField({
                 selectOptions={SELECT_OPTIONS[INGREDIENT_STRING].unit}
               />
               <Button
-                modifier="square m bgc-bg icon"
+                modifier="square m bgc-trans c-darkest icon"
                 aria-label={`remove-${id}`}
                 type="button"
                 value={id}

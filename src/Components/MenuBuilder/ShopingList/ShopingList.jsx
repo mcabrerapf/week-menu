@@ -48,13 +48,13 @@ function ShopingList({ show, weeks, selectedWeekIndex }) {
     setAllShoppingLists(copiedLists);
   };
 
-  const className = `shopping-list col h-a w-a border-rad-10 pad-15 bgc-b overflow-y${show ? '' : ' hidden'}`;
+  const className = `shopping-list col h-a w-a border-rad-10 pad-15 bgc-primary overflow-y${show ? '' : ' hidden'}`;
   const hasMoreThanOneList = allShopingLists.length > 2;
 
   return (
     <div className={className}>
       <div className="shoping-list-buttons col">
-        <Button modifier="shopping-list-copy-button xl icon-xl" onClick={handleCopyShopingList}>
+        <Button modifier="shopping-list-copy-button bgc-trans xl icon-xl" onClick={handleCopyShopingList}>
           <Icon iconName="clipboard" />
         </Button>
         {hasMoreThanOneList && (

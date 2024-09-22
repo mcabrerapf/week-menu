@@ -26,7 +26,7 @@ function DeleteModal({
 
       </div>
       <div className="row">
-        <Button modifier="icon bgc-bl" onClick={handleDelete} disableMultipleClicks>
+        <Button modifier="icon bgc-darkest" onClick={handleDelete} disableMultipleClicks>
           <Icon iconName="delete" />
         </Button>
       </div>

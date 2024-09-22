@@ -48,11 +48,11 @@ function Modal({ closeModal, modalData }) {
       onTouchMove={stopPropagation}
       onTouchEnd={stopPropagation}
     >
-      <div ref={wrapperRef} className={parseClassName('modal border-rad-10 bgc-bg', modifier)}>
+      <div ref={wrapperRef} className={parseClassName('modal border-rad-10 bgc-lightest', modifier)}>
         {!hideHeader && (
-          <div className="modal-header row centered h-3 bgc-b">
+          <div className="modal-header row centered h-3 bgc-darkest">
             <p className="modal-header-text font-m label centered">{parsedHeaderText}</p>
-            <Button modifier="icon-l l border-rad-10" onClick={closeModal}>
+            <Button modifier="icon-l l border-rad-10 bgc-darkest" onClick={closeModal}>
               <Icon iconName="close" />
             </Button>
           </div>

@@ -20,7 +20,7 @@ function Button({
   disableMultipleClicks,
 }) {
   const appendDisabledClass = disabled || fakeDisabled;
-  const baseClassName = `button row label w-f centered border-rad-5 bgc-b pad-5${appendDisabledClass ? ' bgc-gr' : ''}`;
+  const baseClassName = `button row label w-f centered border-rad-5 bgc-primary pad-5${appendDisabledClass ? ' bgc-light' : ''}`;
   const [amountOfClicks, setAmountOfClicks] = useState(0);
 
   return (

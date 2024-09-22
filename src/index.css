@@ -6,22 +6,27 @@
 :root {
 	font-size: 13px;
 	/* --beige-color: #ceb8a1; */
-	/* --blue-color: #3f8881; */
+	/* --primary-color: #3f8881; */
 	/* --gray-color: #757f7e; */
 
 	/* --gray-color: #522258;
-	--blue-color: #8C3061;
+	--primary-color: #8C3061;
 	--beige-color: #C63C51; */
 
-	--gray-color: #040D12;
-	--blue-color: #183D3D;
-	--beige-color: #93B1A6;
+	/* Colors */
+	--primary-color: #183D3D;
+	--lightest-color: #93B1A6;
+	--light-color: #5C8374;
+	--dark-color: #183D3D;
+	--darkest-color: #040D12;
 	
-	--white-color: white;
-	--black-color: black;
+	--white-color: #FFFFFF;
+	--black-color: #000000;
 	--red-color: red;
 	--green-color: green;
 	--offiline-background-color: #deb9e0;
+	/*  */
+
 	--basic-box-shadow: 0rem 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
 	--full-modal-height: calc(100vh - 25rem);
 	--full-modal-width: calc(100vw - 5rem);
@@ -29,7 +34,7 @@
 	--header-height: 3.5rem;
 	--modal-z-index: 500;
 	--toast-z-index: 600;
-	color: white;
+	color: var(--white-color);
 }
 
 body {

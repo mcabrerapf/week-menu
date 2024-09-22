@@ -39,7 +39,7 @@ function Week({
     <>
       <div className={className}>
         {days.map(({ dishes: dayDishes }, index) => (
-          <div key={DAYS[index][2]} className="day col w-a h-f border-rad-5 bgc-b">
+          <div key={DAYS[index][2]} className="day col w-a h-f border-rad-5 bgc-primary">
             <div className="day-label row label centered border-b">
               <span className="day-label label pad-h-5">
                 {DAYS[index][2]}
@@ -50,7 +50,7 @@ function Week({
                 <div
                 // eslint-disable-next-line react/no-array-index-key
                   key={mealIndex}
-                  className={`${dayClassName}${dish?.name ? '' : ' bgc-gr'}${mealIndex !== 2 ? ' border-r' : ''}`}
+                  className={`${dayClassName}${dish?.name ? '' : ' bgc-light'}${mealIndex !== 2 ? ' border-r' : ''}`}
                   role="button"
                   onClick={() => openModal({
                     dish, dayIndex: index, mealIndex, weekIndex: selectedWeekIndex,
