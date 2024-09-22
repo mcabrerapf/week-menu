@@ -21,7 +21,7 @@ function ListItem({
 
   return (
     <li
-      className="list-item row h-3 a-c j-bet m-5 pad-v-5 pad-h-10 border-rad-10 bgc-primary"
+      className="list-item row h-3 a-c j-bet m-5 pad-v-5 pad-h-10 border-rad-10 bgc-dark"
       role="button"
       tabIndex={0}
       onClick={() => handleOpenModal({
@@ -39,7 +39,7 @@ function ListItem({
       <div className="row">
         {typeToUse && (
         <Button
-          modifier="l icon"
+          modifier="l icon bgc-trans"
           onClick={() => handleOpenModal({
             type: itemType,
             modalView: EDIT_STRING,
@@ -52,7 +52,7 @@ function ListItem({
         )}
         {favourite && (
         <Button
-          modifier="l icon"
+          modifier="l icon bgc-trans"
           onClick={() => handleOpenModal({
             type: itemType, modalView: EDIT_STRING, itemData, headerText: name, modifier: 'f',
           })}
@@ -62,7 +62,7 @@ function ListItem({
         )}
         {itemType === MENU_STRING && (
         <Button
-          modifier="l icon"
+          modifier="l icon bgc-trans"
           onClick={() => handleLoadMenu(itemData)}
 
         >
@@ -71,7 +71,7 @@ function ListItem({
         )}
         {itemType === DISH_STRING && (
         <Button
-          modifier="l icon"
+          modifier="l icon bgc-trans"
           onClick={() => handleOpenModal({
             type: itemType, modalView: EDIT_STRING, itemData, headerText: name, modifier: 'f',
           })}
@@ -80,7 +80,7 @@ function ListItem({
         </Button>
         )}
         <Button
-          modifier="l icon"
+          modifier="l icon bgc-trans"
           onClick={() => handleOpenModal({
             type: DELETE_STRING, itemData, modifier: 's', hideHeader: true,
           })}

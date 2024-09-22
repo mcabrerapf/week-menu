@@ -5,17 +5,43 @@
 
 :root {
 	/* Colors */
-	--primary-color: #183D3D;
-	--lightest-color: #93B1A6;
-	--light-color: #5C8374;
-	--dark-color: #183D3D;
-	--darkest-color: #040D12;
+	// --primary-color: #474E68;
+	// --lightest-color: #6B728E;
+	// --light-color: #50577A;
+	// --dark-color: #474E68;
+	// --darkest-color: #404258;
+
+	// --primary-color: #183D3D;
+	// --lightest-color: #93B1A6;
+	// --light-color: #5C8374;
+	// --dark-color: #183D3D;
+	// --darkest-color: #040D12;
+
+	// --primary-color: #704264;
+	// --lightest-color: #DBAFA0;
+	// --light-color: #BB8493;
+	// --dark-color: #704264;
+	// --darkest-color: #49243E;
+
+	--primary-color: #7a5af5;
+	--lightest-color: #908d96;
+	--light-color: #5e5a66;
+	--dark-color: #2f2b3a;
+	--darkest-color: #1a1625;
+
+	// --primary-color: #3F2E3E;
+	// --lightest-color: #EFE1D1;
+	// --light-color: #A78295;
+	// --dark-color: #3F2E3E;
+	// --darkest-color: #331D2C;
 	
 	--white-color: #FFFFFF;
 	--black-color: #000000;
 	--error-color: red;
 	--success-color: green;
 	--offiline-background-color: #deb9e0;
+
+	--text-color: #FFFFFF;
 	/*  */
 
 	--basic-box-shadow: 0rem 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
@@ -27,7 +53,7 @@
 	--toast-z-index: 600;
 
 	font-size: 13px;
-	color: var(--white-color);
+	color: var(--text-color);
 }
 
 body {
