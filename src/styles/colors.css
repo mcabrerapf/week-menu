@@ -35,3 +35,7 @@
 .c-g {
 	color: var(--gray-color) !important;
 }
+
+.c-b {
+	color: var(--black-color) !important;
+}

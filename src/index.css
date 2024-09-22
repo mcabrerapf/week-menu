@@ -5,9 +5,18 @@
 
 :root {
 	font-size: 13px;
-	--beige-color: #ceb8a1;
-	--blue-color: #3f8881;
-	--gray-color: #757f7e;
+	/* --beige-color: #ceb8a1; */
+	/* --blue-color: #3f8881; */
+	/* --gray-color: #757f7e; */
+
+	/* --gray-color: #522258;
+	--blue-color: #8C3061;
+	--beige-color: #C63C51; */
+
+	--gray-color: #040D12;
+	--blue-color: #183D3D;
+	--beige-color: #93B1A6;
+	
 	--white-color: white;
 	--black-color: black;
 	--red-color: red;
@@ -20,6 +29,7 @@
 	--header-height: 3.5rem;
 	--modal-z-index: 500;
 	--toast-z-index: 600;
+	color: white;
 }
 
 body {
