@@ -2,7 +2,6 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-to-interactive-role */
 import React from 'react';
 import PropTypes from 'prop-types';
-import './ShopingList.css';
 import Input from '../../Input';
 import { capitalizeFirstLetter } from '../../helpers';
 import { INGREDIENT_UNITS_MATCHES } from '../../../constants/INGREDIENT';

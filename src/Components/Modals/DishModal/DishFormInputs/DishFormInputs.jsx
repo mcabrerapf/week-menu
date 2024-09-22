@@ -1,7 +1,6 @@
 /* eslint-disable no-restricted-globals */
 import React from 'react';
 import PropTypes from 'prop-types';
-import './DishFormInputs.css';
 import IngredientsFields from './IngredientsFields';
 import GeneralFields from './GeneralFields';
 import InstructionsFields from './InstructionsFields';

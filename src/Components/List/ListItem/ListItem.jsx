@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-to-interactive-role */
 import React from 'react';
 import PropTypes from 'prop-types';
-import './ListItem.css';
+import './ListItem.scss';
 import { capitalizeFirstLetter } from '../../helpers';
 import Button from '../../Button';
 import {

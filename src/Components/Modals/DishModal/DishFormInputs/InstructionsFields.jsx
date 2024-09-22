@@ -2,7 +2,6 @@
 /* eslint-disable no-restricted-globals */
 import React, { useRef, useState } from 'react';
 import PropTypes from 'prop-types';
-import './DishFormInputs.css';
 import Button from '../../../Button';
 import InstructionField from './InstructionField';
 import Icon from '../../../Icon';

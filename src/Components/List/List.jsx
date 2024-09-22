@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import './List.css';
+import './List.scss';
 import {
   MENU_STRING, DELETE_STRING, SAVE_STRING, EDIT_STRING,
 } from '../../constants/STRINGS';

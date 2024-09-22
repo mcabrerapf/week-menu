@@ -1,4 +1,4 @@
-import './MenuBuilder.css';
+import './MenuBuilder.scss';
 import React, { useState, useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { MENU_BUILDER_STRING, WEEK_STRING } from '../../constants/STRINGS';

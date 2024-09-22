@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
-import './Modal.css';
+import './Modal.scss';
 import Modals from '../Modals';
 import { capitalizeFirstLetter, parseClassName } from '../helpers';
 import Button from '../Button';
@@ -50,9 +50,9 @@ function Modal({ closeModal, modalData }) {
     >
       <div ref={wrapperRef} className={parseClassName('modal border-rad-10 bgc-lightest', modifier)}>
         {!hideHeader && (
-          <div className="modal-header row centered h-3 bgc-darkest">
+          <div className="modal-header row centered h-3 bgc-dark">
             <p className="modal-header-text font-m label centered">{parsedHeaderText}</p>
-            <Button modifier="icon-l l border-rad-10 bgc-darkest" onClick={closeModal}>
+            <Button modifier="icon-l l border-rad-10 bgc-trans" onClick={closeModal}>
               <Icon iconName="close" />
             </Button>
           </div>

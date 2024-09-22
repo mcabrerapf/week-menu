@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './EditView.scss';
 import PropTypes from 'prop-types';
 import Button from '../../../Button';
 import DishFormInputs from '../DishFormInputs';

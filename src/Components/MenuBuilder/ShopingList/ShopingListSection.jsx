@@ -3,7 +3,6 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import './ShopingList.css';
 import ShopingListSectionItem from './ShoppingListSectionItem';
 import Icon from '../../Icon';
 import { SHOPING_LIST_ITEM_STRING } from '../../../constants/STRINGS';

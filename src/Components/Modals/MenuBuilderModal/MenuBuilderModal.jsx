@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
-import './MenuBuilderModal.css';
+import './MenuBuilderModal.scss';
 import Button from '../../Button';
 import { buildMenu, deepCopy } from '../../helpers';
 import { initMenuOptions } from './helpers';

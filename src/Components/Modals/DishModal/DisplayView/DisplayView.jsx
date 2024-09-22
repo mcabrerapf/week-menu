@@ -1,7 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import './DisplayView.css';
+import './DisplayView.scss';
 import Button from '../../../Button';
 import Icon from '../../../Icon';
 import { INGREDIENT_UNITS_MATCHES } from '../../../../constants/INGREDIENT';

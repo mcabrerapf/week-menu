@@ -52,7 +52,7 @@ function Main() {
 
   return (
     <div
-      className={`main col w-f${offlineClass}`}
+      className={`main border-box col w-f${offlineClass}`}
       onTouchStart={onTouchStart}
       onTouchMove={onTouchMove}
       onTouchEnd={onTouchEnd}

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import './Button.css';
+import './Button.scss';
 import { parseClassName } from '../helpers';
 
 function Button({

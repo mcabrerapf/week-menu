@@ -110,7 +110,6 @@
 
 
 /* Specific */
-
 .hidden {
 	display: none !important;
 }
@@ -149,40 +148,41 @@
 .header {
 	height: var(--header-height);
 	width: 100%;
-}
 
-.header button {
-	border-radius: 0;
-	border-bottom-left-radius: 0.5rem;
-	border-bottom-right-radius: 0.5rem;
-}
+	button {
+		border-radius: 0;
+		border-bottom-left-radius: 0.5rem;
+		border-bottom-right-radius: 0.5rem;
 
-.header button:first-of-type {
-	border-bottom-left-radius: 0px;
-}
+		&:first-of-type {
+			border-bottom-left-radius: 0px;
+		}
 
-.header button:last-of-type {
-	border-bottom-right-radius: 0px;
-}
-
-.footer {
-	height: var(--footer-height);
-}
-
-footer .button {
-	border-radius: 0;
-	border-top-right-radius: 0.5rem;
-	border-top-left-radius: 0.5rem;
-}
-
-footer button:first-of-type {
-	border-top-left-radius: 0px;
-}
-
-footer button:last-of-type {
-	border-top-right-radius: 0px;
+		&:last-of-type {
+			border-bottom-right-radius: 0px;
+		}
+	}
 }
 
 .main {
 	height: calc(100% - var(--footer-height));
+}
+
+
+.footer {
+	height: var(--footer-height);
+
+	button {
+		border-radius: 0;
+		border-top-right-radius: 0.5rem;
+		border-top-left-radius: 0.5rem;
+
+		&:first-of-type {
+			border-top-left-radius: 0px;
+		}
+		
+		&:last-of-type {
+			border-top-right-radius: 0px;
+		}
+	}
 }

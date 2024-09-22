@@ -13,7 +13,7 @@ function IngredientsField({
   const sortedIngredients = sortBy(ingredients);
 
   return (
-    <div className="dish-modal-ingredients-list col overflow-y gap-5">
+    <div className="dish-modal-ingredients-list col overflow-y c-black gap-5">
       {sortedIngredients.map((currentIngredient) => {
         const {
           id, name, quantity, unit,

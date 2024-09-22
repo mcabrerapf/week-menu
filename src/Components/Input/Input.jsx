@@ -2,7 +2,7 @@
 /* eslint-disable no-restricted-globals */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import './Input.css';
+import './Input.scss';
 import { buildSelectOptions } from '../helpers';
 
 function Input({

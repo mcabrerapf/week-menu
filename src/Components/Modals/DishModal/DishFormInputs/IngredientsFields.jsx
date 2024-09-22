@@ -1,7 +1,6 @@
 /* eslint-disable no-restricted-globals */
 import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
-import './DishFormInputs.css';
 import { MainContext } from '../../../../Contexts/MainContext';
 import IngredientsField from './IngredientsField';
 import Button from '../../../Button';

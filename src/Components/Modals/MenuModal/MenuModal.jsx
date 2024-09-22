@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import './MenuModal.css';
+import './MenuModal.scss';
 import {
   MENU_STRING, SAVE_STRING, UPDATE_STRING,
 } from '../../../constants/STRINGS';

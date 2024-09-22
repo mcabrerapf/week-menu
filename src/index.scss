@@ -1,18 +1,9 @@
-@import url('./styles/breakouts.css');
-@import url('./styles/generic.css');
-@import url('./styles/colors.css');
-@import url('./styles/layout.css');
+@import url('./styles/breakouts.scss');
+@import url('./styles/generic.scss');
+@import url('./styles/colors.scss');
+@import url('./styles/layout.scss');
 
 :root {
-	font-size: 13px;
-	/* --beige-color: #ceb8a1; */
-	/* --primary-color: #3f8881; */
-	/* --gray-color: #757f7e; */
-
-	/* --gray-color: #522258;
-	--primary-color: #8C3061;
-	--beige-color: #C63C51; */
-
 	/* Colors */
 	--primary-color: #183D3D;
 	--lightest-color: #93B1A6;
@@ -22,8 +13,8 @@
 	
 	--white-color: #FFFFFF;
 	--black-color: #000000;
-	--red-color: red;
-	--green-color: green;
+	--error-color: red;
+	--success-color: green;
 	--offiline-background-color: #deb9e0;
 	/*  */
 
@@ -34,6 +25,8 @@
 	--header-height: 3.5rem;
 	--modal-z-index: 500;
 	--toast-z-index: 600;
+
+	font-size: 13px;
 	color: var(--white-color);
 }
 

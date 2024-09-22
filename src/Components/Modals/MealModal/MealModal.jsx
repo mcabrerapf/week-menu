@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import './MealModal.css';
+import './MealModal.scss';
 import Button from '../../Button';
 import Input from '../../Input';
 import { deepCopy, findByKey } from '../../helpers';

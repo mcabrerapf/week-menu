@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { ToastContextProvider } from './ToastContext';
 import { deepCopy } from '../../Components/helpers';
-import './ToastContextWrapper.css';
+import './ToastContextWrapper.scss';
 import ToastMessage from './ToastMessage';
 
 function ToastContextWrapper({ children }) {
