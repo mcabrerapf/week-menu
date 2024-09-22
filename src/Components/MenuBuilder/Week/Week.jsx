@@ -33,7 +33,7 @@ function Week({
 
   const { days } = week;
   const className = `week col w-f h-f gap-5 font-m${show ? '' : ' hidden'}`;
-  const dayClassName = 'row centered h-f w-f pointer gap-5';
+  const dayClassName = 'row centered h-f w-f pointer gap-5 font-s';
 
   return (
     <>
