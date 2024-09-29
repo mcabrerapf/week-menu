@@ -177,13 +177,13 @@
 }
 
 .header {
-	// height: var(--header-height);
 	width: 100%;
 
 	button {
 		border-radius: 0;
 		border-bottom-left-radius: 0.5rem;
 		border-bottom-right-radius: 0.5rem;
+		transform: none!important;
 
 		&:first-of-type {
 			border-bottom-left-radius: 0px;
@@ -201,12 +201,11 @@
 
 
 .footer {
-	// height: var(--footer-height);
-
 	button {
 		border-radius: 0;
 		border-top-right-radius: 0.5rem;
 		border-top-left-radius: 0.5rem;
+		transform: none!important;
 
 		&:first-of-type {
 			border-top-left-radius: 0px;

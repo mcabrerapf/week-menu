@@ -7,11 +7,11 @@ button {
 	background-color: var(--primary-color);
 	min-height: 4rem;
 	min-width: 4rem;
-	transition: transform 0.1s ease, background-color 0.1s ease;
+	transition: transform 0.2s ease;
 	outline: none;
 	
 	&:active {
-		background-color: var(--light-color);
+		transform: scale(0.95);
 		outline: none;
 	}
 
