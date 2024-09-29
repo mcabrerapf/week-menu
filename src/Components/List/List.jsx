@@ -54,7 +54,7 @@ function List() {
   const filteredList = filterList(listData, searchValue, filterValue);
 
   return (
-    <div className="list-container col h-f w-f">
+    <div className="list-container col border-box pad-5 gap-5 h-f w-f">
       <ListFilters
         setFilterValue={setFilterValue}
         setSearchValue={setSearchValue}
@@ -62,7 +62,7 @@ function List() {
         filterValue={filterValue}
         view={view}
       />
-      <ul className="list h-a w-a overflow-y m-v-5">
+      <ul className="list h-f w-f col gap-5 pad-5 border-box overflow-y">
         {filteredList.map((listItem) => (
           <ListItem
             key={listItem.id}
@@ -74,7 +74,7 @@ function List() {
         ))}
         {view !== MENU_STRING && (
         <Button
-          modifier="circle xl icon-l shadow list-add-button"
+          modifier="list__add-button circle xl icon shadow"
           type="button"
           onClick={() => handleOpenModal({
             type: view, modalView: EDIT_STRING, itemData: {}, modifier: 'f',

@@ -34,9 +34,9 @@ function IngredientModal({
   const isButtonDisabled = !name;
 
   return (
-    <form className="col w-a h-a pad-10 gap-10">
-      <div className="col w-a h-a gap-10">
-        <div className="row w-a pad-5">
+    <form className="ingredient-modal col w-f h-f pad-10 gap-10 border-box">
+      <div className="ingredient-modal__content col w-f h-f gap-10">
+        <div className="ingredient-modal__content__name row w-f h-4 border-box">
           <Input
             type="text"
             id="name"
@@ -45,12 +45,12 @@ function IngredientModal({
             onChange={handleOnChange}
           />
         </div>
-        <div className="row centered wrap gap-5">
+        <div className="ingredient-modal__content__types row wrap gap-5">
           {INGREDIENT_TYPES
             .map(({ value }) => (
               <Button
                 key={value}
-                modifier="icon-l l"
+                modifier="icon"
                 fakeDisabled={type !== value}
                 name="type"
                 value={value}
@@ -60,12 +60,12 @@ function IngredientModal({
               </Button>
             ))}
         </div>
-        <div className="row centered wrap gap-5">
+        <div className="ingredient-modal__content__units row wrap gap-5">
           {INGREDIENT_UNITS
             .map(({ value, name: uName }) => (
               <Button
                 key={value}
-                modifier="font-m l"
+                modifier="font-l"
                 fakeDisabled={unit !== value}
                 name="unit"
                 value={value}
@@ -75,7 +75,7 @@ function IngredientModal({
             ))}
         </div>
       </div>
-      <div className="col">
+      <div className="ingredient-modal__footer col">
         <Button
           modifier="icon"
           onClick={handleSubmit}

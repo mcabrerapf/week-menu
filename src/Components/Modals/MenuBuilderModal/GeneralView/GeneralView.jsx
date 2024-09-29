@@ -22,72 +22,74 @@ function GeneralView(props) {
   } = useGeneralView(props);
 
   return (
-    <div className="menu-builder-modal-content row j-around pad-h-5">
-      <div className="col a-c gap-5">
-        {weeks.map((_, i) => (
-          <Button
+    <div className="menu-builder-modal__content row j-bet pad-10">
+      <div className="menu-builder-modal__content__left row gap-5">
+        <div className="menu-builder-modal__content__left__weeks col a-c gap-5">
+          {weeks.map((_, i) => (
+            <Button
         // eslint-disable-next-line react/no-array-index-key
-            key={i}
-            modifier="l icon"
-            fakeDisabled={i !== selectedWeekIndex}
-            onClick={() => setSelectedWeekIndex(i)}
-          >
-            {i + 1}
-          </Button>
-        ))}
-      </div>
-      <div className="menu-builder-days col gap-5">
-        {days.map((day, index) => {
-          const dayName = DAYS[index][2];
-          const hasMeal = day[0] || day[1] || day[2];
+              key={i}
+              modifier="icon"
+              fakeDisabled={i !== selectedWeekIndex}
+              onClick={() => setSelectedWeekIndex(i)}
+            >
+              {i + 1}
+            </Button>
+          ))}
+        </div>
+        <div className="menu-builder-modal__content__left__days col gap-5">
+          {days.map((day, index) => {
+            const dayName = DAYS[index][2];
+            const hasMeal = day[0] || day[1] || day[2];
 
-          return (
-            <div key={dayName} className="row">
-              <Button
-                value={index}
-                modifier="square l font-s"
-                fakeDisabled={!hasMeal}
-                buttonText={dayName}
-                onClick={() => {
-                  handleDayChange(hasMeal, index);
-                }}
-              />
-              <Button
-                modifier="square l icon"
-                fakeDisabled={!day[0]}
-                value={day[0]}
-                onClick={() => {
-                  handleMealChange(index, 0, day[0]);
-                }}
-              >
-                <Icon iconName="breakfast" />
-              </Button>
-              <Button
-                modifier="square l icon"
-                fakeDisabled={!day[1]}
-                value={day[1]}
-                onClick={() => {
-                  handleMealChange(index, 1, day[1]);
-                }}
-              >
-                <Icon iconName="lunch" />
-              </Button>
-              <Button
-                modifier="square l icon"
-                fakeDisabled={!day[2]}
-                value={day[2]}
-                onClick={() => {
-                  handleMealChange(index, 2, day[2]);
-                }}
-              >
-                <Icon iconName="dinner" />
-              </Button>
+            return (
+              <div key={dayName} className="row">
+                <Button
+                  value={index}
+                  modifier="square"
+                  fakeDisabled={!hasMeal}
+                  buttonText={dayName}
+                  onClick={() => {
+                    handleDayChange(hasMeal, index);
+                  }}
+                />
+                <Button
+                  modifier="square icon"
+                  fakeDisabled={!day[0]}
+                  value={day[0]}
+                  onClick={() => {
+                    handleMealChange(index, 0, day[0]);
+                  }}
+                >
+                  <Icon iconName="breakfast" />
+                </Button>
+                <Button
+                  modifier="square icon"
+                  fakeDisabled={!day[1]}
+                  value={day[1]}
+                  onClick={() => {
+                    handleMealChange(index, 1, day[1]);
+                  }}
+                >
+                  <Icon iconName="lunch" />
+                </Button>
+                <Button
+                  modifier="square icon"
+                  fakeDisabled={!day[2]}
+                  value={day[2]}
+                  onClick={() => {
+                    handleMealChange(index, 2, day[2]);
+                  }}
+                >
+                  <Icon iconName="dinner" />
+                </Button>
 
-            </div>
-          );
-        })}
+              </div>
+            );
+          })}
+        </div>
       </div>
-      <div className="menu-builder-options col gap-10">
+      <div className="menu-builder-modal__content__right col gap-10">
         <QuantityInput
           value={weekLimit}
           valueKey="weekLimit"

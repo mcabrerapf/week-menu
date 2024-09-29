@@ -1,6 +1,28 @@
+input {
+	padding: 0 1rem;
+	height: 4rem;
+
+	&:focus {
+		outline: 1px solid var(--primary-color);
+	}
+}
+
+select {
+	padding: 0 1rem;
+	height: 4rem;
+
+	&:focus {
+		outline: 1px solid var(--primary-color);
+	}
+	
+	&.s {
+		width: 5.5rem!important;
+	}
+}
+
 .checkbox-input {
-	height: 2rem;
-	width: 2rem;
+	height: 3rem;
+	width: 3rem;
 }
 
 .checkbox-input.s {
@@ -18,14 +40,9 @@
 }
 
 .number-input.s {
-	width: 3rem;
+	width: 2.5rem;
 }
 
 .number-input.xs {
 	width: 2rem;
-}
-
-select.s {
-	height: 2rem;
-	width: 4rem;
 }

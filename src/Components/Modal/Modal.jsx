@@ -50,9 +50,9 @@ function Modal({ closeModal, modalData }) {
     >
       <div ref={wrapperRef} className={parseClassName('modal border-rad-10 bgc-lightest', modifier)}>
         {!hideHeader && (
-          <div className="modal-header row centered h-3 bgc-dark">
-            <p className="modal-header-text font-m label centered">{parsedHeaderText}</p>
-            <Button modifier="icon-l l border-rad-10 bgc-trans" onClick={closeModal}>
+          <div className="modal__header row j-bet pad-5 centered border-box bgc-dark">
+            <p className="modal__header__text label centered font-l">{parsedHeaderText}</p>
+            <Button modifier="icon bgc-trans" onClick={closeModal}>
               <Icon iconName="close" />
             </Button>
           </div>

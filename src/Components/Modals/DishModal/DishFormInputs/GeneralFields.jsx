@@ -78,7 +78,6 @@ function GeneralFields({
             type="text"
             id="name"
             name="name"
-            modifier="h-a"
             value={name}
             onChange={handleOnChange}
             onBlur={handleOnChange}
@@ -89,7 +88,7 @@ function GeneralFields({
               <Button
                 key={typeId}
                 fakeDisabled={!types.includes(typeId)}
-                modifier="icon m"
+                modifier="icon"
                 value={typeId}
                 onClick={() => toggleType(typeId)}
               >
@@ -99,7 +98,9 @@ function GeneralFields({
         </div>
         <div className="row gap-40">
           <div className="col j-bet gap-5">
-            <div className="row centered icon-l"><Icon iconName="people" /></div>
+            <div className="row centered">
+              <Icon modifier="icon-xl" iconName="people" />
+            </div>
             <QuantityInput
               value={servings}
               min={1}
@@ -110,13 +111,12 @@ function GeneralFields({
             />
           </div>
           <div className="time-input col j-bet gap-5">
-            <div className="row centered icon-l"><Icon iconName="clock" /></div>
+            <div className="row centered icon-xl"><Icon iconName="clock" /></div>
             <div className="row gap-5 h-a a-c">
               <Input
                 type="number"
                 id="hours"
                 name="hours"
-                modifier="xs h-a"
                 value={hours}
                 resetValueOnClick
                 min={0}
@@ -130,7 +130,6 @@ function GeneralFields({
                 type="number"
                 id="minutes"
                 name="minutes"
-                modifier="xs h-a"
                 value={minutes}
                 resetValueOnClick
                 min={0}
@@ -181,10 +180,11 @@ function GeneralFields({
         </div>
         )}
       </div>
-      <Button modifier="icon" onClick={handleSubmit} disabled={!canSave}>
-        <Icon iconName="save" />
-      </Button>
-
+      <div className="row">
+        <Button modifier="icon w-f" onClick={handleSubmit} disabled={!canSave}>
+          <Icon iconName="save" />
+        </Button>
+      </div>
     </>
 
   );

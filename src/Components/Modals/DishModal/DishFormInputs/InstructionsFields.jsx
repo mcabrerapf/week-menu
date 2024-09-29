@@ -1,6 +1,6 @@
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable no-restricted-globals */
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Button from '../../../Button';
 import InstructionField from './InstructionField';
@@ -17,13 +17,11 @@ function InstructionsFields({
   handleSubmit,
   canSave,
 }) {
-  const textareaRef = useRef(null);
   const [currentInstructions, setCurrentInstructions] = useState(initInstructions(instructions));
-  const [selectedIndex, setSelectedIndex] = useState(0);
 
-  const handleInstructionChange = (e) => {
+  const handleInstructionChange = (val, index) => {
     const updatedInstructions = [...currentInstructions];
-    updatedInstructions[selectedIndex] = e.target.value;
+    updatedInstructions[index] = val;
     setCurrentInstructions(updatedInstructions);
     updateInstructions(updatedInstructions);
   };
@@ -33,13 +31,6 @@ function InstructionsFields({
     updatedInstructions.push('');
     setCurrentInstructions(updatedInstructions);
     updateInstructions(updatedInstructions);
-    setSelectedIndex(updatedInstructions.length - 1);
-    if (textareaRef.current) textareaRef.current.focus();
-  };
-
-  const handleInstructionSelect = (clickedIndex) => {
-    setSelectedIndex(clickedIndex);
-    if (textareaRef.current) textareaRef.current.focus();
   };
 
   const handleDeleteInstruction = (index) => {
@@ -47,7 +38,6 @@ function InstructionsFields({
     const filteredInstructions = updatedInstructions.filter((_, i) => i !== index);
     setCurrentInstructions(filteredInstructions);
     updateInstructions(filteredInstructions);
-    setSelectedIndex(filteredInstructions.length - 1);
   };
 
   return (
@@ -60,8 +50,7 @@ function InstructionsFields({
               id={i}
               index={i}
               instruction={instruction}
-              isSelected={selectedIndex === i}
-              handleInstructionSelect={handleInstructionSelect}
+              handleInstructionChange={handleInstructionChange}
               handleDeleteInstruction={handleDeleteInstruction}
               disableDelete={currentInstructions.length < 2}
             />
@@ -69,17 +58,8 @@ function InstructionsFields({
 
         </div>
         <div className="row gap-5 centered">
-          <textarea
-            ref={textareaRef}
-            className="textarea-input w-f h-a border-rad-5 pad-5"
-            name="instruction"
-            value={currentInstructions[selectedIndex]}
-            onChange={handleInstructionChange}
-            placeholder="Hmm..."
-            type="textarea"
-          />
           <Button
-            modifier="l icon-l"
+            modifier="circle icon"
             onClick={() => handleAddInstruction()}
           >
             <Icon iconName="plus" />

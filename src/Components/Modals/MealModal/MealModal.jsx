@@ -62,49 +62,50 @@ function MealModal({ modalData, closeModal }) {
   } = dish || {};
 
   return (
-    <div className="meal-modal col">
-      <div className="col pad-10 gap-10">
-        <div className="col gap-10">
-          <div className="row icon j-bet gap-10 pad-b-5 border-b a-c">
-            <div />
-            <div className="row gap-5 a-c">
-              <span>{DAYS[dayIndex][2]}</span>
-              <Icon iconName={DISH_TYPES[mealIndex].id} />
-            </div>
-            <div>
-              <Button modifier="w-3 h-3" onClick={() => setShowDishInfo(!showDishInfo)}>
-                <Icon iconName="info" />
-              </Button>
-            </div>
+    <div className="meal-modal col pad-10">
+      <div className="meal-modal__content col gap-10 m-b-10">
+        <div className="row icon j-bet gap-10 pad-b-5 h-4 border-b a-c">
+          <div className="row gap-10 a-c">
+            <Icon modifier="icon" iconName={DISH_TYPES[mealIndex].id} />
+            <span className="label">{DAYS[dayIndex][2]}</span>
 
           </div>
-          <div className="col gap-10">
-            {showDishInfo && <DisplayView dishData={dish} hideFooter />}
-            {!showDishInfo && name && (
-            <div className="col gap-5 centered icon">
-              <span>{name}</span>
-              <Icon iconName="arrow-d" />
-
-            </div>
+          <div>
+            {name && (
+            <Button modifier="icon" onClick={() => setShowDishInfo(!showDishInfo)}>
+              <Icon iconName="info" />
+            </Button>
             )}
-            {!showDishInfo && (
+          </div>
+        </div>
+        <div className="col gap-10">
+          {showDishInfo && <DisplayView dishData={dish} hideFooter />}
+          {!showDishInfo && name && (
+            <div className="col gap-5 centered icon">
+              <span className="label">{name}</span>
+              <Icon iconName="arrow-d" />
+            </div>
+          )}
+          {!showDishInfo && (
             <Input
               name="dish"
               id="dish"
+              modifier="font-l"
               value={selectedDishId}
               onChange={({ target: { value: eValue } }) => setSelectedDish(eValue)}
               placeholder=""
               selectOptions={sortedDishes}
               type="select"
             />
-            )}
-
-          </div>
+          )}
 
         </div>
+      </div>
+      <div className="meal-modal__footer row gap-5">
         {!showDishInfo && (
-        <div className="row gap-5">
+        <>
           <Button
+            modifier="icon w-f"
             onClick={() => handleButtonClick()}
             disabled={!selectedDishId}
           >
@@ -113,12 +114,14 @@ function MealModal({ modalData, closeModal }) {
           {name && (
           <>
             <Button
+              modifier="icon w-f"
               onClick={() => handleButtonClick(true)}
               disabled={!selectedDishId}
             >
               <Icon iconName="check-double" />
             </Button>
             <Button
+              modifier="icon w-f"
               onClick={handleRemoveMeal}
               disabled={!selectedDishId}
             >
@@ -127,8 +130,7 @@ function MealModal({ modalData, closeModal }) {
           </>
 
           )}
-
-        </div>
+        </>
         )}
       </div>
     </div>

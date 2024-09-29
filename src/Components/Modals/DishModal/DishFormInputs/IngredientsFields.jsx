@@ -48,7 +48,7 @@ function IngredientsFields({
   return (
     <>
       {ingredientsView === 0 && (
-        <div className="col gap-5">
+        <div className="col h-f gap-5 j-bet">
           <IngredientsField
             ingredients={ingredients}
             handleIngredientChange={handleIngredientChange}
@@ -56,7 +56,7 @@ function IngredientsFields({
           />
           <div className="row centered">
             <Button
-              modifier="circle l icon-l"
+              modifier="circle icon"
               onClick={() => setIngredientsView(1)}
             >
               <Icon iconName="plus" />

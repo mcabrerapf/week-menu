@@ -21,12 +21,12 @@
 	color: var(--darkest-color) !important;
 }
 
-.c-black {
-	color: var(--black-color) !important;
-}
-
 .c-white {
 	color: var(--white-color) !important;
+}
+
+.c-black {
+	color: var(--black-color) !important;
 }
 
 /* Background colors */
@@ -48,6 +48,10 @@
 
 .bgc-darkest {
 	background-color: var(--darkest-color) !important;
+}
+
+.bgc-white {
+	background-color: var(--white-color) !important;
 }
 
 .bgc-green {

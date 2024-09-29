@@ -21,7 +21,7 @@ function ListItem({
 
   return (
     <li
-      className="list-item row h-3 a-c j-bet m-5 pad-v-5 pad-h-10 border-rad-10 bgc-dark"
+      className="list-item row h-4 a-c pad-v-5 pad-h-10 border-rad-10 j-bet bgc-dark"
       role="button"
       tabIndex={0}
       onClick={() => handleOpenModal({
@@ -32,7 +32,7 @@ function ListItem({
       })}
     >
       <div
-        className="list-item-label column label"
+        className="list-item__label font-l label"
       >
         <span>{parsedLabel}</span>
       </div>

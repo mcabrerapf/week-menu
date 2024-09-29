@@ -5,8 +5,8 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import ShopingListSectionItem from './ShoppingListSectionItem';
 import Icon from '../../Icon';
-import { SHOPING_LIST_ITEM_STRING } from '../../../constants/STRINGS';
 import Modal from '../../Modal';
+import { SHOPING_LIST_ITEM_STRING } from '../../../constants/STRINGS';
 
 function ShopingListSection({
   ingredients, name, index, updatedShopingList,
@@ -31,16 +31,16 @@ function ShopingListSection({
   };
 
   return (
-    <div className="shoping-list-section col pad-l-15 pad-v-10">
+    <div className="shopping-list__sections__section col">
       <div
-        className="shoping-list-section-icon row pointer a-c pad-5 gap-5 border-b"
+        className="shopping-list__sections__section__icon row border-box pointer a-c h-4 pad-5 gap-10 border-b"
         role="button"
         onClick={() => setShowSection(!showSection)}
       >
         <Icon modifier="icon-xl" iconName={name} />
-        <Icon modifier="icon" iconName={`chevron-${showSection ? 'd' : 'u'}`} />
+        <Icon modifier="icon-xl" iconName={`chevron-${showSection ? 'd' : 'u'}`} />
       </div>
-      <div className="col gap-10 pad-t-10">
+      <div className="shopping-list__sections__section__items col border-box gap-10 pad-t-10">
         {showSection && ingredients.map((ingredient, i) => {
           const { id, unit, quantity } = ingredient;
 

@@ -35,7 +35,7 @@ function Footer() {
     <footer className="footer row w-f">
       <Button
         value={MENU_BUILDER_STRING}
-        modifier="icon-l"
+        modifier="icon-xl w-f"
         fakeDisabled={view !== MENU_BUILDER_STRING}
         onClick={() => handleOnClick(MENU_BUILDER_STRING)}
       >
@@ -43,7 +43,7 @@ function Footer() {
       </Button>
       <Button
         value={MENU_STRING}
-        modifier="icon-l"
+        modifier="icon-xl w-f"
         fakeDisabled={view !== MENU_STRING}
         onClick={() => handleOnClick(MENU_STRING)}
       >
@@ -51,7 +51,7 @@ function Footer() {
       </Button>
       <Button
         value={DISH_STRING}
-        modifier="icon-l"
+        modifier="icon-xl w-f"
         fakeDisabled={view !== DISH_STRING}
         onClick={() => handleOnClick(DISH_STRING)}
       >
@@ -59,7 +59,7 @@ function Footer() {
       </Button>
       <Button
         value={INGREDIENT_STRING}
-        modifier="icon-l"
+        modifier="icon-xl w-f"
         fakeDisabled={view !== INGREDIENT_STRING}
         onClick={() => handleOnClick(INGREDIENT_STRING)}
       >

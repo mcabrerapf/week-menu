@@ -26,68 +26,71 @@ function MenuModal({ modalData, closeModal }) {
   const { days } = weeks[selectedWeekIndex];
 
   return (
-    <div className="menu-modal-content col gap-15 pad-10">
-      <div className="row centered gap-5">
-        <Input
-          name="name"
-          id="name"
-          value={name}
-          modifier="w-f h-2"
-          onChange={({ target: { value: eVal } }) => setMenuData({ ...menuData, name: eVal })}
-          type="text"
-        />
-        <Button
-          modifier="h-3 w-3 icon"
-          fakeDisabled={!favourite}
-          onClick={() => setMenuData({ ...menuData, favourite: !favourite })}
-        >
-          <Icon iconName="star" />
-        </Button>
-      </div>
-      <div className="row a-c gap-5">
-        <Icon modifier="h-2 w-2" iconName="calendar" />
-        {weeks.map((_, i) => (
+    <div className="menu-modal col j-bet pad-10">
+      <div className="menu-modal__content col gap-15 pad-b-10">
+        <div className="menu-modal__content__name row centered gap-5">
+          <Input
+            name="name"
+            id="name"
+            value={name}
+            onChange={({ target: { value: eVal } }) => setMenuData({ ...menuData, name: eVal })}
+            type="text"
+          />
           <Button
-            // eslint-disable-next-line react/no-array-index-key
-            key={i}
-            modifier="w-2 h-2 icon"
-            fakeDisabled={i !== selectedWeekIndex}
-            onClick={() => setSelectedWeekIndex(i)}
+            modifier="icon"
+            fakeDisabled={!favourite}
+            onClick={() => setMenuData({ ...menuData, favourite: !favourite })}
           >
-            {i + 1}
+            <Icon iconName="star" />
           </Button>
-        ))}
-      </div>
-      <ul className="days-list col gap-5 overflow-y">
-        {days.map(({ dishes }, index) => (
-          <div key={DAYS[index][2]} className="row gap-5">
-            <div className="day-label row label border-r">
-              <span className="day-label upright-text label">
-                {DAYS[index][2]}
-              </span>
-            </div>
-            <div>
-              {dishes.map((dish, mealIndex) => (
-                <li
-                  // eslint-disable-next-line react/no-array-index-key
-                  key={mealIndex}
-                  className="row a-c gap-5"
-                >
-                  <Icon iconName={DAY_DISH_TYPES[mealIndex]} />
-                  <span>{dish?.name || '---'}</span>
-                </li>
-
-              ))}
-            </div>
+        </div>
+        <div className="menu-modal__content__weeks row a-c gap-10">
+          <Icon modifier="icon" iconName="calendar" />
+          <div className="menu-modal__content__weeks__buttons row gap-5">
+            {weeks.map((_, i) => (
+              <Button
+            // eslint-disable-next-line react/no-array-index-key
+                key={i}
+                modifier="icon"
+                fakeDisabled={i !== selectedWeekIndex}
+                onClick={() => setSelectedWeekIndex(i)}
+              >
+                {i + 1}
+              </Button>
+            ))}
           </div>
-        ))}
-      </ul>
-      <div className="row gap-5">
-        <Button modifier="icon" onClick={() => saveMenu(SAVE_STRING)} disabled={!name} disableMultipleClicks>
+        </div>
+        <ul className="menu-modal__content__days-list col gap-5 border-box overflow-y">
+          {days.map(({ dishes }, index) => (
+            <div key={DAYS[index][2]} className="row gap-5">
+              <div className="day-label row label border-r">
+                <span className="day-label font-m upright-text label">
+                  {DAYS[index][2]}
+                </span>
+              </div>
+              <div>
+                {dishes.map((dish, mealIndex) => (
+                  <li
+                  // eslint-disable-next-line react/no-array-index-key
+                    key={mealIndex}
+                    className="row a-c gap-5"
+                  >
+                    <Icon iconName={DAY_DISH_TYPES[mealIndex]} modifier="icon" />
+                    <span className="font-m">{dish?.name || '---'}</span>
+                  </li>
+
+                ))}
+              </div>
+            </div>
+          ))}
+        </ul>
+      </div>
+      <div className="menu-modal__footer row gap-5">
+        <Button modifier="icon w-f" onClick={() => saveMenu(SAVE_STRING)} disabled={!name} disableMultipleClicks>
           <Icon iconName="save" />
         </Button>
         {!isNew && (
-        <Button modifier="icon" onClick={() => saveMenu(UPDATE_STRING)} disabled={!name} disableMultipleClicks>
+        <Button modifier="icon w-f" onClick={() => saveMenu(UPDATE_STRING)} disabled={!name} disableMultipleClicks>
           <Icon iconName="plus" />
           <Icon iconName="save" />
         </Button>

@@ -25,13 +25,13 @@ function FilterView(props) {
   const { filters: { ingredientTypes, ingredients, dishes } } = currentData;
 
   return (
-    <div className="menu-builder-modal-content col pad-h-5 gap-5">
-      <div className="row wrap gap-5 h-10">
+    <div className="menu-builder-modal__content col pad-10 gap-5">
+      <div className="menu-builder-modal__content__types row wrap gap-5 h-10">
         {INGREDIENT_TYPES
           .map(({ value }) => (
             <Button
               key={value}
-              modifier="icon-l l"
+              modifier="icon"
               fakeDisabled={ingredientTypes.includes(value)}
               name="type"
               value={value}
@@ -41,54 +41,57 @@ function FilterView(props) {
             </Button>
           ))}
       </div>
-      <div
-        className="row pointer centered pad-5 gap-5 border-b"
-        role="button"
-        onClick={() => setShowIngredients(!showIngredients)}
-      >
-        <Icon modifier="icon-xl" iconName="ingredient" />
-        <Icon modifier="icon" iconName={ingredientsArrowIcon} />
+      <div className="menu-builder-modal__content__list col gap-5">
+        <div
+          className="menu-builder-modal__content__list__header row pointer centered pad-10 gap-5 border-b"
+          role="button"
+          onClick={() => setShowIngredients(!showIngredients)}
+        >
+          <Icon modifier="icon" iconName="ingredient" />
+          <Icon modifier="icon" iconName={ingredientsArrowIcon} />
+        </div>
+        {showIngredients && (
+        <div className="menu-builder-modal__content__list__content row wrap gap-5 pad-10">
+          {allIngredients.map(({ id, name }) => (
+            <Button
+              key={id}
+              fakeDisabled={ingredients.includes(id)}
+              onClick={() => handleButtonClick(id, ingredients.includes(id), 'ingredients')}
+              name="ingredients"
+              value={id}
+            >
+              {name}
+            </Button>
+          ))}
+        </div>
+        )}
       </div>
-      {showIngredients && (
-      <div className="row wrap gap-5 h-10">
-        {allIngredients.map(({ id, name }) => (
-          <Button
-            key={id}
-            modifier="w-a"
-            fakeDisabled={ingredients.includes(id)}
-            onClick={() => handleButtonClick(id, ingredients.includes(id), 'ingredients')}
-            name="ingredients"
-            value={id}
-          >
-            {name}
-          </Button>
-        ))}
+      <div className="menu-builder-modal__content__list col gap-5">
+        <div
+          className="menu-builder-modal__content__list__header row pointer centered pad-10 gap-5 border-b"
+          role="button"
+          onClick={() => setShowDishes(!showDishes)}
+        >
+          <Icon modifier="icon" iconName="dish" />
+          <Icon modifier="icon" iconName={dishesArrowIcon} />
+        </div>
+        {showDishes && (
+        <div className="menu-builder-modal__content__list__content row wrap gap-5 pad-10">
+          {allDishes.map(({ id, name }) => (
+            <Button
+              key={id}
+              fakeDisabled={dishes.includes(id)}
+              onClick={() => handleButtonClick(id, dishes.includes(id), 'dishes')}
+              name="dishes"
+              value={id}
+            >
+              {name}
+            </Button>
+          ))}
+        </div>
+        )}
       </div>
-      )}
-      <div
-        className="row pointer centered pad-5 gap-5 border-b"
-        role="button"
-        onClick={() => setShowDishes(!showDishes)}
-      >
-        <Icon modifier="icon-xl" iconName="dish" />
-        <Icon modifier="icon" iconName={dishesArrowIcon} />
-      </div>
-      {showDishes && (
-      <div className="row wrap gap-5 h-10">
-        {allDishes.map(({ id, name }) => (
-          <Button
-            key={id}
-            modifier="w-a"
-            fakeDisabled={dishes.includes(id)}
-            onClick={() => handleButtonClick(id, dishes.includes(id), 'dishes')}
-            name="dishes"
-            value={id}
-          >
-            {name}
-          </Button>
-        ))}
-      </div>
-      )}
+
     </div>
   );
 }

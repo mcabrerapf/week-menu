@@ -26,27 +26,27 @@ function DisplayView({
   };
 
   return (
-    <div className="dish-display-view col j-bet pad-10 gap-10">
-      <div className="display-view-info col gap-5">
-        <div className="display-view-info-header row j-bet gap-20 pad-b-5 border-b">
-          <div className="row gap-15">
+    <div className="dish-display-view col j-bet pad-10 gap-10 border-box">
+      <div className="dish-display-view__info col gap-5">
+        <div className="dish-display-view__info__header row j-bet pad-b-5 border-b">
+          <div className="row centered gap-15">
             {displayTypes && (
-            <div className="row width-a gap-5">
-              {types.map((tType) => <Icon key={tType} iconName={tType} modifier="icon-l" />)}
+            <div className="row w-a gap-5">
+              {types.map((tType) => <Icon key={tType} iconName={tType} modifier="icon" />)}
             </div>
             )}
             {servings && (
             <div className="row w-a centered gap-10">
-              <Icon iconName="people" modifier="icon-l" />
-              <span className="label">
+              <Icon iconName="people" modifier="icon" />
+              <span className="font-l label">
                 {servings}
               </span>
             </div>
             )}
             {displayTime && (
             <div className="row w-a centered gap-10">
-              <Icon iconName="clock" modifier="icon-l" />
-              <span className="label">
+              <Icon iconName="clock" modifier="icon" />
+              <span className="font-l label">
                 {time.hours}
                 :
                 {time.minutes}
@@ -54,15 +54,13 @@ function DisplayView({
             </div>
             )}
           </div>
-
           <div className="row">
-            <Button modifier="" onClick={handleCopyDishToClipboard}>
+            <Button modifier="icon" onClick={handleCopyDishToClipboard}>
               <Icon iconName="clipboard" />
             </Button>
-
           </div>
         </div>
-        <div className="display-view-info-content col gap-10 overflow-y">
+        <div className="dish-display-view__info-content col gap-10 overflow-y">
           {!!ingredients.length
         && (
         <ul className="col gap-5">
@@ -71,7 +69,7 @@ function DisplayView({
               id: ingId, name: ingName, quantity, unit: ingUnit,
             } = ingredient;
             return (
-              <li key={`${ingId}-${ingUnit}`} className="row gap-5 text-a-l">
+              <li key={`${ingId}-${ingUnit}`} className="row gap-5 font-l text-a-l">
                 <span>- </span>
                 <span>{ingName}</span>
                 <span className="label">
@@ -88,7 +86,7 @@ function DisplayView({
           <div className="col border-t pad-t-10">
             <ul className="col gap-5">
               {instructions.map((ins, i) => (
-                <li key={i} className="row gap-5 text-a-l">
+                <li key={i} className="row gap-5 font-l text-a-l">
                   <span>{`${i + 1}.`}</span>
                   <span>{ins}</span>
                 </li>
@@ -99,7 +97,7 @@ function DisplayView({
         </div>
       </div>
       {!hideFooter && (
-      <div className="dish-footer">
+      <div className="dish-display-view__footer w-f col">
         <Button
           modifier="icon"
           onClick={() => {

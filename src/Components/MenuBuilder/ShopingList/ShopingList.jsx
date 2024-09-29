@@ -48,23 +48,21 @@ function ShopingList({ show, weeks, selectedWeekIndex }) {
     setAllShoppingLists(copiedLists);
   };
 
-  const className = `shopping-list col h-a w-a border-rad-10 pad-15 bgc-primary overflow-y${show ? '' : ' hidden'}`;
   const hasMoreThanOneList = allShopingLists.length > 2;
 
   return (
-    <div className={className}>
-      <div className="shoping-list-buttons col">
-        <Button modifier="shopping-list-copy-button bgc-trans xl icon-xl" onClick={handleCopyShopingList}>
+    <div className={`shopping-list col h-f w-f border-box border-rad-10 pad-15 bgc-primary overflow-y${show ? '' : ' hidden'}`}>
+      <div className="shoping-list__buttons col">
+        <Button modifier="shoping-list__buttons__copy bgc-trans icon" onClick={handleCopyShopingList}>
           <Icon iconName="clipboard" />
         </Button>
         {hasMoreThanOneList && (
-        <Button modifier="shopping-list-copy-button xl icon-xl" onClick={handleToggleCollectiveList}>
+        <Button modifier="shoping-list__buttons__weeks icon" onClick={handleToggleCollectiveList}>
           <Icon iconName={`check${isCollectiveListActive ? '-double' : ''}`} />
         </Button>
         )}
       </div>
-
-      <div className="shoping-list-content col h-a w-f overflow-y gap-5 font-m">
+      <div className="shopping-list__sections col h-f w-f overflow-y gap-5">
         {selectedShopingList.map(({ value, ingredients }, index) => (
           <ShopingListSection
             key={value}

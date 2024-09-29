@@ -4,12 +4,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '../../../Button';
 import Icon from '../../../Icon';
+import AutoResizingInput from '../../../AutoResizingInput/AutoResizingInput';
 
 function InstructionField({
   instruction,
-  isSelected,
   disableDelete,
-  handleInstructionSelect,
+  handleInstructionChange,
   handleDeleteInstruction,
   index,
 }) {
@@ -19,19 +19,17 @@ function InstructionField({
 
   return (
     <div className="row w-f a-c gap-5">
-      <div>
+      <div className="font-l">
         {index + 1}
         .
       </div>
-      <div
-        className={`selected-instruction row w-f border-rad-5 pad-5 text-a-l ${isSelected ? ' shadow' : ''}`}
-        onClick={() => handleInstructionSelect(index)}
-      >
-        <span>{instruction}</span>
-      </div>
+      <AutoResizingInput
+        initialValue={instruction}
+        onChange={(val) => handleInstructionChange(val, index)}
+      />
       <div className="instruction-buttons">
         <Button
-          modifier="m icon"
+          modifier="icon"
           type="button"
           disabled={disableDelete}
           onClick={() => handleDeleteClick()}
@@ -44,10 +42,11 @@ function InstructionField({
 }
 
 InstructionField.propTypes = {
-  handleInstructionSelect: PropTypes.func.isRequired,
+  // handleInstructionSelect: PropTypes.func.isRequired,
   handleDeleteInstruction: PropTypes.func.isRequired,
   disableDelete: PropTypes.bool.isRequired,
-  isSelected: PropTypes.bool.isRequired,
+  handleInstructionChange: PropTypes.func.isRequired,
+  // isSelected: PropTypes.bool.isRequired,
   index: PropTypes.number.isRequired,
   instruction: PropTypes.string,
 };

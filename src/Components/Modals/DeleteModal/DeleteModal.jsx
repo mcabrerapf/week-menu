@@ -17,15 +17,15 @@ function DeleteModal({
   const handleDelete = async () => closeModal({ type: DELETE_STRING, data: itemData });
 
   return (
-    <div className="col gap-5 pad-10">
-      <div className="col centered icon gap 5">
+    <div className="col gap-10 pad-10">
+      <div className="col centered icon gap-10">
         <strong>
           {name}
         </strong>
         <Icon iconName="arrow-d" />
 
       </div>
-      <div className="row">
+      <div className="row centered">
         <Button modifier="icon bgc-darkest" onClick={handleDelete} disableMultipleClicks>
           <Icon iconName="delete" />
         </Button>

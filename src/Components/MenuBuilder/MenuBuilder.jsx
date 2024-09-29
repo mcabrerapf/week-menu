@@ -96,7 +96,7 @@ function MenuBuilder({ show }) {
       >
         {!hasLoadedMenu && (
           <div className="col w-f h-f centered">
-            <Button onClick={openModal} modifier="xl icon-l shadow">
+            <Button onClick={openModal} modifier="icon xl shadow">
               <Icon iconName="brain" />
             </Button>
           </div>

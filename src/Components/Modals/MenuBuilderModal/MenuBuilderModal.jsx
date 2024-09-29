@@ -36,17 +36,17 @@ function MenuBuilderModal({
   if (!currentData) return null;
 
   return (
-    <div className="col gap-5">
-      <div className="header row">
+    <div className="menu-builder-modal col gap-5">
+      <div className="menu-builder-modal__header header row">
         <Button
-          modifier="icon top-l-radius-5"
+          modifier="icon top-l-radius-5 w-f"
           fakeDisabled={view !== 0}
           onClick={() => setView(0)}
         >
           <Icon iconName="settings" />
         </Button>
         <Button
-          modifier="icon top-r-radius-5"
+          modifier="icon top-r-radius-5 w-f"
           fakeDisabled={view !== 1}
           onClick={() => setView(1)}
         >
@@ -70,9 +70,9 @@ function MenuBuilderModal({
         ingredients={ingredients}
       />
       )}
-      <div className="row pad-5">
+      <div className="menu-builder-modal__footer row pad-b-10 pad-h-10">
         <Button
-          modifier="icon"
+          modifier="icon w-f"
           onClick={handleBuildMenu}
         >
           <Icon iconName="check" />

@@ -13,7 +13,7 @@ function IngredientsField({
   const sortedIngredients = sortBy(ingredients);
 
   return (
-    <div className="dish-modal-ingredients-list col overflow-y c-black gap-5">
+    <div className="dish-modal-ingredients-list col overflow-y gap-5">
       {sortedIngredients.map((currentIngredient) => {
         const {
           id, name, quantity, unit,
@@ -21,14 +21,14 @@ function IngredientsField({
 
         return (
           <div key={id} className={parseClassName('row gap-5 w-f j-bet centered', 'border-b')}>
-            <div className="row">{capitalizeFirstLetter(name)}</div>
+            <div className="font-l label">{capitalizeFirstLetter(name)}</div>
             <div className="row j-end centered">
               <Input
                 type="number"
                 key={id}
                 id={id}
                 name="quantity"
-                modifier="s font-xs bgc-trans"
+                modifier="font-m c-white bgc-trans"
                 value={quantity}
                 resetValueOnClick
                 min={1}
@@ -38,7 +38,7 @@ function IngredientsField({
               />
               <Input
                 type="select"
-                modifier="bgc-trans font-xs s"
+                modifier="bgc-trans c-white font-m s"
                 value={unit}
                 id={id}
                 name="unit"
@@ -47,7 +47,7 @@ function IngredientsField({
                 selectOptions={SELECT_OPTIONS[INGREDIENT_STRING].unit}
               />
               <Button
-                modifier="square m bgc-trans c-darkest icon"
+                modifier="square m bgc-trans icon"
                 aria-label={`remove-${id}`}
                 type="button"
                 value={id}

@@ -38,7 +38,7 @@ function AddIngredientsView({
 
   return (
     <>
-      <div className="col gap-10">
+      <div className="add-ingredients-view col gap-10">
         <div className="row gap-5">
           <Input
             type="search"

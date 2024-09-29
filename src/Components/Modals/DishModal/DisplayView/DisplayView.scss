@@ -1,7 +1,6 @@
 .dish-display-view {
-	height: calc(100% - 2rem);
-}
-
-.display-view-info {
-	height: calc(100% - 4rem);
+	&__info-content {
+		height: 34rem;
+		overflow-y: auto;
+	}
 }

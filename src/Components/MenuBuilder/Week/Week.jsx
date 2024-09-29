@@ -33,19 +33,19 @@ function Week({
 
   const { days } = week;
   const className = `week col w-f h-f gap-5 font-m${show ? '' : ' hidden'}`;
-  const dayClassName = 'row centered h-f w-f pointer gap-5 font-s';
+  const dayClassName = 'week__day__list__day row centered h-f w-f pointer font-l border-box pad-10 centered';
 
   return (
     <>
       <div className={className}>
         {days.map(({ dishes: dayDishes }, index) => (
-          <div key={DAYS[index][2]} className="day col w-a h-f border-rad-5 bgc-primary">
-            <div className="day-label row label centered border-b">
-              <span className="day-label label pad-h-5">
+          <div key={DAYS[index][2]} className="week__day row w-f h-f border-rad-5 bgc-primary">
+            <div className="week__day__label row label centered upright-text border-r">
+              <span className="week__day__label__text label font-l pad-h-5">
                 {DAYS[index][2]}
               </span>
             </div>
-            <div className="day-content row w-f h-f">
+            <div className="week__day__list row w-f h-f">
               {dayDishes.map((dish, mealIndex) => (
                 <div
                 // eslint-disable-next-line react/no-array-index-key
@@ -57,7 +57,10 @@ function Week({
                   })}
                   onKeyDown={() => {}}
                 >
-                  <span>{truncateString(dish?.name, 45)}</span>
+                  <span className="week__day__list__day__text col centered label h-f w-f grow-0 shrink-0">
+                    {/* {dish?.name} */}
+                    {truncateString(dish?.name, 45)}
+                  </span>
                 </div>
               ))}
             </div>

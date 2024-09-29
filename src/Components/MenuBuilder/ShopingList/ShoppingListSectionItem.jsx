@@ -25,17 +25,16 @@ function ShopingListSectionItem({
 
   return (
     <div
-      className="shoping-list-section-item row a-c gap-5"
+      className="shopping-list__sections__section__items__item row a-c gap-5"
     >
       <Input
         id={parsedLabel}
         type="checkbox"
-        modifier="xs"
         value={checked}
         onChange={() => updatedShopingList(index, sectionIndex)}
       />
       <span
-        className={checked ? 'pad-l-5 strike' : 'pad-l-5'}
+        className={checked ? 'pad-l-5 font-l strike' : 'pad-l-5 font-l'}
         role="button"
         tabIndex={0}
         onClick={() => handleOnClick(ingredient)}
@@ -44,7 +43,7 @@ function ShopingListSectionItem({
         {parsedName}
 
       </span>
-      <span className="label">
+      <span className="label font-l">
         {convertedQuantity}
         {convertedUnit}
       </span>

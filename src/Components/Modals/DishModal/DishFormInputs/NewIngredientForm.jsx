@@ -34,8 +34,8 @@ function NewIngredientForm({
 
   return (
     <>
-      <div className="col w-a h-a gap-10">
-        <div className="row w-a h-2">
+      <div className="new-ingredient-form col w-f gap-10">
+        <div className="row w-f">
           <Input
             type="text"
             id="name"
@@ -50,7 +50,7 @@ function NewIngredientForm({
             .map(({ value }) => (
               <Button
                 key={value}
-                modifier="l"
+                modifier="icon"
                 fakeDisabled={type !== value}
                 name="type"
                 value={value}
@@ -65,7 +65,6 @@ function NewIngredientForm({
             .map(({ value, name: uName }) => (
               <Button
                 key={value}
-                modifier="l"
                 fakeDisabled={unit !== value}
                 name="unit"
                 value={value}
@@ -77,7 +76,7 @@ function NewIngredientForm({
       </div>
       <div className="row gap-5">
         <Button
-          modifier="icon"
+          modifier="icon w-f"
           onClick={() => toggleNewIngredientView()}
           disableMultipleClicks
         >
@@ -85,7 +84,7 @@ function NewIngredientForm({
         </Button>
         <Button
           disabled={!canSubmit}
-          modifier="icon"
+          modifier="icon w-f"
           onClick={handleAddNewIngredient}
           disableMultipleClicks
         >

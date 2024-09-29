@@ -17,7 +17,7 @@ function QuantityInput({
   iconName,
 }) {
   return (
-    <div className={parseClassName('col gap-5', modifier)}>
+    <div className={parseClassName('col gap-10', modifier)}>
       <div className="quantity-input-label row centered">
         {!!labelText && <span>{labelText}</span>}
         {!!iconName && <Icon iconName={iconName} modifier="icon" />}
@@ -25,15 +25,15 @@ function QuantityInput({
 
       <div className="row">
         <Button
-          modifier="m"
+          modifier="icon"
           disabled={value === min}
           onClick={() => handleDecrease(valueKey, valueIndex)}
         >
           <Icon iconName="minus" />
         </Button>
-        <div className="row centered w-2">{value}</div>
+        <div className="row centered w-4 font-l">{value}</div>
         <Button
-          modifier="m"
+          modifier="icon"
           disabled={value === max}
           onClick={() => handleIncrease(valueKey, valueIndex)}
         >

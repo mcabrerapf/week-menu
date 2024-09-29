@@ -7,16 +7,16 @@ import Icon from '../../Icon';
 function WeekModal({ modalData, closeModal }) {
   const { currentMenu: { weeks }, selectedWeekIndex } = modalData;
   return (
-    <div className="col gap-10 pad-10">
+    <div className="col gap-10 pad-10 gap-15">
       <div className="row centered">
-        <Icon modifier="icon-xl" iconName="calendar" />
+        <Icon modifier="icon" iconName="calendar" />
       </div>
       <div className="row centered wrap pad-5 gap-5">
         {weeks.map((_, i) => (
           <Button
             key={i}
             fakeDisabled={selectedWeekIndex !== i}
-            modifier="xl icon-xl"
+            modifier="icon"
             onClick={() => closeModal(i)}
           >
             {i + 1}

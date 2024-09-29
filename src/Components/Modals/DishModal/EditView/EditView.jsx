@@ -10,23 +10,23 @@ function EditView({ dishData, setDishData, handleSubmit }) {
 
   return (
     <>
-      <div className="header row">
+      <div className="header row w-f">
         <Button
-          modifier="icon"
+          modifier="icon w-f"
           fakeDisabled={fieldsView !== 0}
           onClick={() => setFieldsView(0)}
         >
           <Icon iconName="info" />
         </Button>
         <Button
-          modifier="icon"
+          modifier="icon w-f"
           fakeDisabled={fieldsView !== 1}
           onClick={() => setFieldsView(1)}
         >
           <Icon iconName="ingredient" />
         </Button>
         <Button
-          modifier="icon"
+          modifier="icon w-f"
           fakeDisabled={fieldsView !== 2}
           onClick={() => setFieldsView(2)}
         >

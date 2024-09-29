@@ -4,6 +4,10 @@
 }
 
 .font-s {
+	font-size: 0.85rem;
+}
+
+.font-m {
 	font-size: 1rem;
 }
 
@@ -11,25 +15,37 @@
 	font-size: 1.25rem;
 }
 
-/* Icon sizes */
-.icon-xs {
-	font-size: 1rem;
-}
-
-.icon-s {
-	font-size: 1.25rem;
-}
-
-.icon {
+.font-l {
 	font-size: 1.5rem;
 }
 
-.icon-l {
+.font-xl {
 	font-size: 1.75rem;
 }
 
-.icon-xl {
+.font-xxl {
 	font-size: 2rem;
+}
+
+/* Icon sizes */
+.icon-xs {
+	font-size: 1.50rem;
+}
+
+.icon-s {
+	font-size: 1.75rem;
+}
+
+.icon {
+	font-size: 2rem;
+}
+
+.icon-l {
+	font-size: 1.25rem;
+}
+
+.icon-xl {
+	font-size: 2.50rem;
 }
 
 /* Overflow */
@@ -49,21 +65,28 @@
 	overflow-x: hidden;
 }
 
+.overflow-elipsis {
+	overflow: hidden;		
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+
 /* Borders */
 .border-t {
-	border-top: 1px solid;
+	border-top: 1px dotted;
 }
 
 .border-b {
-	border-bottom: 1px solid;
+	border-bottom: 1px dotted;
 }
 
 .border-l {
-	border-left: 1px solid;
+	border-left: 1px dotted;
 }
 
 .border-r {
-	border-right: 1px solid;
+	border-right: 1px dotted;
 }
 
 .border-rad-0 {
@@ -138,7 +161,7 @@
 }
 
 .label {
-	font-weight: 500;
+	font-weight: 700;
 }
 
 .wrap {
@@ -146,7 +169,7 @@
 }
 
 .header {
-	height: var(--header-height);
+	// height: var(--header-height);
 	width: 100%;
 
 	button {
@@ -165,12 +188,12 @@
 }
 
 .main {
-	height: calc(100% - var(--footer-height));
+	height: calc(100% - 4rem);
 }
 
 
 .footer {
-	height: var(--footer-height);
+	// height: var(--footer-height);
 
 	button {
 		border-radius: 0;

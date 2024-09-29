@@ -31,7 +31,7 @@ function ToastMessage({
       className="toast-message-container row pad-5"
     >
       <div
-        className={`toast-message row label icon shadow centered border-rad-5 pad-10 gap-5 ${type}`}
+        className={`toast-message row label shadow centered border-rad-5 pad-10 gap-5 ${type}`}
         role="button"
         onClick={(e) => {
           e.stopPropagation();
@@ -42,7 +42,7 @@ function ToastMessage({
       >
         {type === 'success' && <Icon modifier="icon" iconName={SAVE_STRING} />}
         {type === 'delete' && <Icon iconName={DELETE_STRING} />}
-        <span className="font-s">
+        <span className="font-l">
           {content}
         </span>
 

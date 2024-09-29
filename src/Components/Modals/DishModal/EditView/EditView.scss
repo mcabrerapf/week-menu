@@ -1,19 +1,24 @@
 .modal-content-dish-edit {
-	height: calc(var(--full-modal-height) - 8rem);
-}
-
-.dish-modal-ingredients-list {
-	max-height: calc(var(--full-modal-height) - 15rem);
-}
-
-.instructions-content {
-	max-height: calc(var(--full-modal-height) - 18rem);
-}
-
-.ingredient-options {
-	height: calc(var(--full-modal-height) - 24rem);
-}
-
-.selected-instruction {
-	min-height: 1rem;
+	height: 40rem;
+	
+	.dish-modal-ingredients-list {
+		max-height: 30rem;
+	}
+	
+	.instructions-content {
+		height: 30rem;
+	}
+	
+	.ingredient-options {
+		height:30rem;
+	}
+	
+	.add-ingredients-view {
+		height: 35rem;
+	}
+	
+	.new-ingredient-form {
+		height: 35rem;
+	}
+	
 }

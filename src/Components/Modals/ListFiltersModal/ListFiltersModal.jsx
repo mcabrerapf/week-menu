@@ -21,7 +21,7 @@ function ListFiltersModal({ modalData, closeModal }) {
           <Button
             key={id}
             fakeDisabled={filterValue !== id}
-            modifier="xl icon-xl"
+            modifier="icon"
             onClick={() => handleFilterSelect(id)}
           >
             <Icon iconName={id} />
@@ -31,7 +31,7 @@ function ListFiltersModal({ modalData, closeModal }) {
           <Button
             key={value}
             fakeDisabled={filterValue !== value}
-            modifier="xl icon-xl"
+            modifier="icon"
             onClick={() => handleFilterSelect(value)}
           >
             <Icon iconName={value} />

@@ -14,7 +14,7 @@ function ShoppingListItemModal({
             id: dishId, name, quantity, unit,
           } = dish;
           return (
-            <li key={dishId} className="row gap-5">
+            <li key={dishId} className="row gap-5 font-l">
               <span>{`- ${name}`}</span>
               <span className="label">
                 {quantity}
