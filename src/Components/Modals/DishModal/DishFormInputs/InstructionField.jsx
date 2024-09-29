@@ -18,7 +18,7 @@ function InstructionField({
   };
 
   return (
-    <div className="row w-f a-c gap-5">
+    <div className="instruction-field row w-f a-c gap-5 grow-0 shrink-0">
       <div className="font-l">
         {index + 1}
         .

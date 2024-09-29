@@ -69,15 +69,15 @@ function MenuBuilderHeader({
       <header className="menu-builder header row w-f">
         <Button
           modifier="icon w-f"
-          onClick={openMenuBuilderModal}
-        >
-          <Icon iconName="settings" />
-        </Button>
-        <Button
-          modifier="icon w-f"
           onClick={handleBuildMenu}
         >
           <Icon iconName="shuffle" />
+        </Button>
+        <Button
+          modifier="icon w-f"
+          onClick={openMenuBuilderModal}
+        >
+          <Icon iconName="settings" />
         </Button>
         <Button
           modifier="icon w-f"

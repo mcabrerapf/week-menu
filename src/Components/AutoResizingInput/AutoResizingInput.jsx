@@ -19,7 +19,9 @@ function AutoResizingInput({ initialValue, onChange }) {
   }, [inputValue]);
 
   return (
-    <div className="auto-resizing-input">
+    <div
+      className="auto-resizing-input"
+    >
       <textarea
         className="auto-resizing-input__textarea"
         value={inputValue}

@@ -28,7 +28,7 @@ function IngredientsField({
                 key={id}
                 id={id}
                 name="quantity"
-                modifier="font-m c-white bgc-trans"
+                modifier="font-m bgc-trans border-trans"
                 value={quantity}
                 resetValueOnClick
                 min={1}
@@ -38,7 +38,7 @@ function IngredientsField({
               />
               <Input
                 type="select"
-                modifier="bgc-trans c-white font-m s"
+                modifier="bgc-trans font-m s border-trans"
                 value={unit}
                 id={id}
                 name="unit"
