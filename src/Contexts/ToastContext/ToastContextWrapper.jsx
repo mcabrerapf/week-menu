@@ -9,12 +9,12 @@ import ToastMessage from './ToastMessage';
 function ToastContextWrapper({ children }) {
   const [contextToasts, setContextToasts] = useState([]);
 
-  const addToast = (newMsg, type = 'info') => {
+  const addToast = (newMsg = '', type = 'info', itemType = '') => {
     const newToasts = deepCopy(contextToasts);
     if (Array.isArray(newMsg)) {
-      newMsg.forEach(({ message }) => newToasts.push({ content: message, type }));
+      newMsg.forEach(({ message }) => newToasts.push({ content: message, type, itemType }));
     } else {
-      newToasts.push({ content: newMsg, type });
+      newToasts.push({ content: newMsg, type, itemType });
     }
     setContextToasts(() => (newToasts));
   };
@@ -25,11 +25,12 @@ function ToastContextWrapper({ children }) {
     }}
     >
       <div className="toast-context-wrapper col">
-        {contextToasts.map(({ content, type }, index) => (
+        {contextToasts.map(({ content, type, itemType }, index) => (
           <ToastMessage
             key={`${content}-${index}`}
             content={content}
             type={type}
+            itemType={itemType}
           />
         ))}
       </div>

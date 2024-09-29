@@ -2,8 +2,9 @@ input {
 	padding: 0 1rem;
 	height: 4rem;
 	background-color: transparent;
-	border: 2px dashed var(--text-color);
+	border: 2px solid var(--text-color);
 	color: var(--text-color);
+	font-size: 1.8rem;
 
 	&:focus {
 		border: 2px dashed transparent;
@@ -17,6 +18,7 @@ select {
 	background-color: transparent;
 	border: 2px dashed var(--text-color);
 	color: var(--text-color);
+	font-size: 1.8rem;
 
 	&:focus {
 		border: 2px dashed transparent;

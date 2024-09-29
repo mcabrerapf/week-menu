@@ -13,7 +13,7 @@ function ListItem({
   itemType, itemData, handleOpenModal, handleLoadMenu,
 }) {
   const {
-    name, type, types, favourite,
+    name, type, types, favourite, match,
   } = itemData;
   const parsedLabel = capitalizeFirstLetter(name);
   const typeToUse = types ? types[0] : type;
@@ -21,7 +21,7 @@ function ListItem({
 
   return (
     <li
-      className="list-item row h-4 a-c pad-v-5 pad-h-10 border-rad-10 j-bet bgc-dark"
+      className={`list-item row h-4 a-c pad-v-5 pad-h-10 border-rad-10 j-bet ${match ? 'bgc-dark' : 'bgc-light'}`}
       role="button"
       tabIndex={0}
       onClick={() => handleOpenModal({
@@ -82,7 +82,7 @@ function ListItem({
         <Button
           modifier="l icon bgc-trans"
           onClick={() => handleOpenModal({
-            type: DELETE_STRING, itemData, modifier: 's', hideHeader: true,
+            type: DELETE_STRING, itemData, modifier: 's', hideHeader: true, itemType,
           })}
         >
           <Icon iconName="delete" />

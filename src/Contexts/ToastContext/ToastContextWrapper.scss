@@ -1,5 +1,6 @@
 .toast-context-wrapper {
 	position: fixed;
+	align-items: end;
 	top: 3.5rem;
 	right: 0px;
 	z-index: var(--toast-z-index);

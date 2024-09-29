@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import './List.scss';
 import {
   MENU_STRING, DELETE_STRING, SAVE_STRING, EDIT_STRING,
+  UPDATE_STRING,
 } from '../../constants/STRINGS';
 import { MainContext } from '../../Contexts';
 import { filterList, getListData } from './helpers';
@@ -35,6 +36,7 @@ function List() {
     const { type, data } = event;
     if (type === DELETE_STRING) await handleDelete(data, view);
     if (type === SAVE_STRING) await handleSave(data, view);
+    if (type === UPDATE_STRING) await handleSave(data, view);
   };
 
   const handleCloseModal = async (closeEvent) => {

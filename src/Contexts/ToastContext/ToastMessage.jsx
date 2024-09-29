@@ -10,7 +10,7 @@ const typeTimeout = {
 };
 
 function ToastMessage({
-  content, type,
+  content, type, itemType,
 }) {
   const [showToast, setShowToast] = useState(true);
 
@@ -31,7 +31,7 @@ function ToastMessage({
       className="toast-message-container row pad-5"
     >
       <div
-        className={`toast-message row label shadow centered border-rad-5 pad-10 gap-5 ${type}`}
+        className={`toast-message row label shadow centered border-rad-5 pad-10 gap-10 ${type}`}
         role="button"
         onClick={(e) => {
           e.stopPropagation();
@@ -41,10 +41,11 @@ function ToastMessage({
         tabIndex={0}
       >
         {type === 'success' && <Icon modifier="icon" iconName={SAVE_STRING} />}
-        {type === 'delete' && <Icon iconName={DELETE_STRING} />}
+        {type === 'delete' && <Icon modifier="icon" iconName={DELETE_STRING} />}
         <span className="font-l">
           {content}
         </span>
+        <Icon modifier="icon" iconName={itemType} />
 
       </div>
     </div>
@@ -54,6 +55,7 @@ function ToastMessage({
 ToastMessage.propTypes = {
   content: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
+  itemType: PropTypes.string.isRequired,
 };
 
 export default ToastMessage;

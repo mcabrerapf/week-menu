@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 /* eslint-disable import/prefer-default-export */
 
 import {
@@ -47,26 +48,32 @@ const checkHasTextMatch = (listItem, searchValue) => {
   }
   return false;
 };
+
 const filterList = (list, searchValue, filterValue) => {
-  if (!searchValue && !filterValue) return list;
   const useFavourite = filterValue === 'favourite';
-  return list.filter((listItem) => {
-    const {
-      type, types, favourite,
-    } = listItem;
+  // TODO imporve this shit
+  return list.slice().sort((itemA, itemB) => {
+    const filterMatchA = itemA.types
+      ? itemA.types.includes(filterValue) : itemA.type === filterValue;
+    const filterMatchB = itemB.types
+      ? itemB.types.includes(filterValue) : itemB.type === filterValue;
+    const fMatchA = filterValue ? filterMatchA : true;
+    const fMatchB = filterValue ? filterMatchB : true;
+    const matchToUseA = useFavourite ? itemA.favourite : fMatchA;
+    const matchToUseB = useFavourite ? itemB.favourite : fMatchB;
+    const hasTextMatchA = searchValue
+      ? checkHasTextMatch(itemA, searchValue) : true;
+    const hasTextMatchB = searchValue
+      ? checkHasTextMatch(itemB, searchValue) : true;
 
-    const filterMatch = types ? types.includes(filterValue) : type === filterValue;
-    const matchToUse = useFavourite ? favourite : filterMatch;
-    if (searchValue) {
-      const hasTextMatch = checkHasTextMatch(listItem, searchValue);
+    const mA = matchToUseA && hasTextMatchA;
+    const mB = matchToUseB && hasTextMatchB;
 
-      if (filterValue) {
-        return hasTextMatch && matchToUse;
-      }
-      return hasTextMatch;
-    }
-    if (filterValue) return matchToUse;
-    return true;
+    itemA.match = mA;
+    itemB.match = mB;
+    if (mA && !mB) return -1;
+    if (!mA && mB) return 1;
+    return 0;
   });
 };
 

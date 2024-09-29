@@ -4,12 +4,34 @@ import './MenuModal.scss';
 import {
   MENU_STRING, SAVE_STRING, UPDATE_STRING,
 } from '../../../constants/STRINGS';
-import { deepCompare, initData } from '../../helpers';
+import { deepCompare, deepCopy, initData } from '../../helpers';
 import { DAYS, DAY_DISH_TYPES } from '../../../constants/MENU';
 import Icon from '../../Icon';
 import Button from '../../Button';
 import Input from '../../Input';
+// TODO move this
+const pMenuD = (data, action) => {
+  const uData = deepCopy(data);
+  uData.weeks = uData.weeks.map((week) => {
+    const uDays = week.days.map((day) => {
+      const uDishes = day.dishes.map((dish) => {
+        if (!dish) return null;
+        return {
+          id: dish.id,
+          sideDishesToUse: dish.sideDishesToUse,
+        };
+      });
+      return { dishes: uDishes };
+    });
 
+    return {
+      days: uDays,
+      people: week.people,
+    };
+  });
+  if (action === SAVE_STRING) delete uData.id;
+  return uData;
+};
 function MenuModal({ modalData, closeModal }) {
   const { itemData } = modalData;
   const [menuData, setMenuData] = useState(initData(itemData, MENU_STRING));
@@ -18,9 +40,10 @@ function MenuModal({ modalData, closeModal }) {
 
   const saveMenu = async (action) => {
     const noChange = deepCompare(menuData, itemData);
-    if (noChange) return closeModal();
 
-    return closeModal({ type: action, data: menuData });
+    if (noChange) return closeModal();
+    const uD = pMenuD(menuData, action);
+    return closeModal({ type: action, data: uD });
   };
   const { weeks, name, favourite } = menuData;
   const { days } = weeks[selectedWeekIndex];
@@ -86,11 +109,21 @@ function MenuModal({ modalData, closeModal }) {
         </ul>
       </div>
       <div className="menu-modal__footer row gap-5">
-        <Button modifier="icon w-f" onClick={() => saveMenu(SAVE_STRING)} disabled={!name} disableMultipleClicks>
+        <Button
+          modifier="icon w-f"
+          onClick={() => saveMenu(UPDATE_STRING)}
+          disabled={!name}
+          disableMultipleClicks
+        >
           <Icon iconName="save" />
         </Button>
         {!isNew && (
-        <Button modifier="icon w-f" onClick={() => saveMenu(UPDATE_STRING)} disabled={!name} disableMultipleClicks>
+        <Button
+          modifier="icon w-f"
+          onClick={() => saveMenu(SAVE_STRING)}
+          disabled={!name}
+          disableMultipleClicks
+        >
           <Icon iconName="plus" />
           <Icon iconName="save" />
         </Button>

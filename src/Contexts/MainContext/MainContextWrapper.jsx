@@ -115,14 +115,14 @@ function MainContextWrapper({ children }) {
     const serviceToUse = serviceHandler(serviceString);
     const response = await serviceToUse(serviceName, data);
     if (response.errors) {
-      callback();
+      if (callback) callback();
       addToast(response.errors[0], 'error');
       return {};
     }
 
     await updateList(serviceName);
     if (callback) callback();
-    addToast(data.name, 'success');
+    addToast(data.name, 'success', serviceName);
     return response;
   };
 
@@ -134,7 +134,7 @@ function MainContextWrapper({ children }) {
       addToast(response.errors[0], 'error');
       return;
     }
-    addToast(name, 'delete');
+    addToast(name, 'delete', serviceName);
     await updateList(serviceName);
   };
 

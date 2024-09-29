@@ -19,12 +19,12 @@
 	
 	&.f {
 		width: 36rem;
-		max-height: var(--full-modal-height);
+		// max-height: var(--full-modal-height);
 	}
 
 	&.s {
 		min-width: 12rem;
 		max-width: 36rem;
-		max-height: 20rem;
+		// max-height: 20rem;
 	}
 }

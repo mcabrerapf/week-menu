@@ -46,10 +46,10 @@ const initMenu = (data) => {
       id: data.id,
       name: data.name || '',
       favourite: data.favourite || false,
-      description: data.description || null,
-      tags: data.tags || null,
-      snacks: data.snacks || null,
-      dessert: data.dessert || null,
+      // description: data.description || null,
+      // tags: data.tags || null,
+      // snacks: data.snacks || null,
+      // dessert: data.dessert || null,
       weeks: data.weeks || [],
     };
   }
