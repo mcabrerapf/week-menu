@@ -1,6 +1,16 @@
 .list-item {
 	cursor: pointer;
+	outline: none;
 
+	&:active {
+		background-color: var(--light-color);
+		outline: none;
+	}
+
+	&:focus {
+		outline: none;
+	}
+	
 	&__label {
 		overflow: hidden;		
 		white-space: nowrap;
