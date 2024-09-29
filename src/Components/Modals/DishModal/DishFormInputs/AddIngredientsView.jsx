@@ -45,12 +45,11 @@ function AddIngredientsView({
             value={searchValue}
             id="search-value"
             name="search-value"
-            placeholder="🔍"
             onChange={({ target: { value } }) => setSearchValue(value)}
           />
           <Button
             value="ALL"
-            modifier="m icon"
+            modifier="icon"
             onClick={() => setIngredientsView(2)}
           >
             <Icon iconName="plus" />
@@ -58,7 +57,7 @@ function AddIngredientsView({
         </div>
         <div className="row centered wrap gap-5">
           <Button
-            modifier="l"
+            modifier="icon"
             fakeDisabled={selectedType !== ''}
             buttonText="All"
             onClick={() => setSelectedType('')}
@@ -68,7 +67,7 @@ function AddIngredientsView({
               <Button
                 key={value}
                 value={value}
-                modifier="l"
+                modifier="icon"
                 fakeDisabled={selectedType !== value}
                 onClick={() => setSelectedType(value)}
               >
@@ -77,7 +76,7 @@ function AddIngredientsView({
             ))}
 
         </div>
-        <div className="ingredient-options row centered wrap overflow-y gap-5">
+        <div className="ingredient-options row centered wrap border-box border-dashed border-rad-5 overflow-y gap-5 pad-5">
           {ingredientOptions.map((ingredientOption) => {
             const isSelected = !!findByKey(selectedIngredients, ingredientOption.id);
 

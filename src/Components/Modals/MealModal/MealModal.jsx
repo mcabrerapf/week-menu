@@ -93,12 +93,10 @@ function MealModal({ modalData, closeModal }) {
               modifier="font-l"
               value={selectedDishId}
               onChange={({ target: { value: eValue } }) => setSelectedDish(eValue)}
-              placeholder=""
               selectOptions={sortedDishes}
               type="select"
             />
           )}
-
         </div>
       </div>
       <div className="meal-modal__footer row gap-5">

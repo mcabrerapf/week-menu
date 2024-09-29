@@ -20,7 +20,7 @@ function IngredientsField({
         } = currentIngredient;
 
         return (
-          <div key={id} className={parseClassName('row gap-5 w-f j-bet centered', 'border-b')}>
+          <div key={id} className={parseClassName('row gap-5 w-f j-bet border-box centered pad-v-2', 'border-b')}>
             <div className="font-l label">{capitalizeFirstLetter(name)}</div>
             <div className="row j-end centered">
               <Input
@@ -28,7 +28,7 @@ function IngredientsField({
                 key={id}
                 id={id}
                 name="quantity"
-                modifier="font-m bgc-trans border-trans"
+                modifier="font-m border-trans"
                 value={quantity}
                 resetValueOnClick
                 min={1}
@@ -38,7 +38,7 @@ function IngredientsField({
               />
               <Input
                 type="select"
-                modifier="bgc-trans font-m s border-trans"
+                modifier="font-m s border-trans"
                 value={unit}
                 id={id}
                 name="unit"

@@ -3,7 +3,7 @@
 	border: none;
 	user-select: none !important;
 	width: auto;
-	color: var(--white-color);
+	color: var(--text-color);
 	background-color: var(--primary-color);
 	min-height: 4rem;
 	min-width: 4rem;
@@ -16,10 +16,6 @@
 	&:focus {
 		outline: none;
 	}
-
-	// &.icon {
-	// 	font-size: 2rem;
-	// }
 
 	&.xs {
 		width: 1rem;
