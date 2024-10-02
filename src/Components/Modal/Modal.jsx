@@ -1,17 +1,30 @@
-import React, { useEffect, useRef } from 'react';
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
-import './Modal.css';
-import { capitalizeFirstLetter } from '../helpers';
+import './Modal.scss';
+import Modals from '../Modals';
+import { capitalizeFirstLetter, parseClassName } from '../helpers';
+import Button from '../Button';
+import Icon from '../Icon';
 
-function Modal({ children, hideModal, headerText }) {
+function Modal({ closeModal, modalData }) {
+  const {
+    type, hideHeader, modifier, headerText: _headerText,
+  } = modalData;
   const wrapperRef = useRef(null);
+  const [closeOnBgClick, setCloseOnBgClick] = useState(true);
+  const [headerText, setHeaderText] = useState(_headerText);
 
   useEffect(
     () => {
       function handleClickOutside({ target }) {
-        const shouldHideFlyOut = wrapperRef.current
+        const shouldHideModal = wrapperRef.current
           && !wrapperRef.current.contains(target);
-        if (shouldHideFlyOut) hideModal();
+
+        if (shouldHideModal && closeOnBgClick) {
+          closeModal();
+        }
       }
 
       document.addEventListener('mousedown', handleClickOutside);
@@ -19,36 +32,49 @@ function Modal({ children, hideModal, headerText }) {
         document.removeEventListener('mousedown', handleClickOutside);
       };
     },
-    [hideModal, wrapperRef],
+    [wrapperRef, closeOnBgClick],
   );
-  const parsedHeaderText = capitalizeFirstLetter(headerText);
+
+  const stopPropagation = (e) => {
+    e.stopPropagation();
+  };
+
+  const ModalToUse = Modals[type];
+  const parsedHeaderText = headerText ? capitalizeFirstLetter(headerText) : '';
 
   return (
-    <div className="modal-background">
-      <div ref={wrapperRef} className="modal-container">
-        {headerText && (
-        <div className="modal-header">
-          <h3>{parsedHeaderText}</h3>
-        </div>
+    <div
+      className="modal-background col w-f h-f centered"
+      onTouchStart={stopPropagation}
+      onTouchMove={stopPropagation}
+      onTouchEnd={stopPropagation}
+    >
+      <div ref={wrapperRef} className={parseClassName('modal border-rad-10 bgc-lightest', modifier)}>
+        {!hideHeader && (
+          <div className="modal__header row j-bet pad-5 centered border-box bgc-dark">
+            <p className="modal__header__text label centered font-l">{parsedHeaderText}</p>
+            <Button modifier="icon bgc-trans" onClick={closeModal}>
+              <Icon iconName="close" />
+            </Button>
+          </div>
         )}
-        <div className="modal-content">
-          {children}
+        <div className={parseClassName('modal-content', type)}>
+          <ModalToUse
+            modalData={modalData}
+            closeModal={closeModal}
+            setHeaderText={setHeaderText}
+            setCloseOnBgClick={setCloseOnBgClick}
+          />
         </div>
       </div>
-
     </div>
-
   );
 }
 
 Modal.propTypes = {
-  children: PropTypes.shape().isRequired,
-  hideModal: PropTypes.func.isRequired,
-  headerText: PropTypes.string,
-};
+  closeModal: PropTypes.func.isRequired,
+  modalData: PropTypes.shape().isRequired,
 
-Modal.defaultProps = {
-  headerText: '',
 };
 
 export default Modal;

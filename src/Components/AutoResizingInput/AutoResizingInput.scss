@@ -1,0 +1,47 @@
+.auto-resizing-input {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+
+    &__textarea {
+        resize: none;
+        box-sizing: border-box;
+        overflow: hidden;
+        color: var(--text-color);
+        background-color: transparent;
+        -webkit-tap-highlight-color: var(--text-color);
+        border: 2px solid var(--text-color);
+        width: 100%;
+        min-height: 5rem;
+        border-radius: 5px;
+        font-size: 1.2rem;
+        padding: 1rem 0.5rem;
+
+        &:focus {
+            border: 2px solid transparent;
+            outline: 2px solid var(--primary-color);
+        }
+    }
+
+    &__reference-div {
+        visibility: hidden;
+        position: absolute;
+        box-sizing: border-box;
+        white-space: pre-wrap;
+        font-family: monospace;
+        line-height: inherit;
+        padding: inherit;
+        border: inherit;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        word-break: break-word;
+        top: 0;
+        left: 0;
+        width: 100%;
+        min-height: 4rem;
+        padding: 1rem 0.5rem;
+        font-size: 1.2rem;
+        border-radius: 5px;
+        border: 2px dashed var(--text-color);
+    }
+}

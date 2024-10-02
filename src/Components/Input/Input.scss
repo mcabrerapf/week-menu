@@ -1,0 +1,58 @@
+input {
+	padding: 0 1rem;
+	height: 4rem;
+	background-color: transparent;
+	border: 2px solid var(--text-color);
+	color: var(--text-color);
+	font-size: 1.8rem;
+
+	&:focus {
+		border: 2px dashed transparent;
+		outline: 2px solid var(--primary-color);
+	}
+}
+
+select {
+	padding: 0 1rem;
+	height: 4rem;
+	background-color: transparent;
+	border: 2px dashed var(--text-color);
+	color: var(--text-color);
+	font-size: 1.8rem;
+
+	&:focus {
+		border: 2px dashed transparent;
+		outline: 2px solid var(--primary-color);
+	}
+	
+	&.s {
+		width: 5.5rem!important;
+	}
+}
+
+.checkbox-input {
+	height: 3rem;
+	width: 3rem;
+}
+
+.checkbox-input.s {
+	height: 1.5rem;
+	width: 1.5rem;
+}
+
+.checkbox-input.xs {
+	height: 1.25rem;
+	width: 1.25rem;
+}
+
+.number-input {
+	text-align: center;
+}
+
+.number-input.s {
+	width: 2.5rem;
+}
+
+.number-input.xs {
+	width: 2rem;
+}

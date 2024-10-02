@@ -1,0 +1,20 @@
+.list-item {
+	cursor: pointer;
+	outline: none;
+	transition: transform 0.2s ease;
+
+	&:active {
+		transform: scale(0.98);
+		outline: none;
+	}
+
+	&:focus {
+		outline: none;
+	}
+
+	&__label {
+		overflow: hidden;		
+		white-space: nowrap;
+		text-overflow: ellipsis;
+	}
+}

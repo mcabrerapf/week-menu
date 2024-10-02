@@ -1,0 +1,30 @@
+.modal-background {
+	position: fixed;
+	top: 0;
+	left: 0;
+	overflow: hidden;
+	z-index: var(--modal-z-index);
+	background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal {
+	&__header {
+		border-top-left-radius: 1rem;
+		border-top-right-radius: 1rem;
+
+		&__text {
+			padding-left: 1rem;
+		}
+	}
+	
+	&.f {
+		width: 36rem;
+		// max-height: var(--full-modal-height);
+	}
+
+	&.s {
+		min-width: 12rem;
+		max-width: 36rem;
+		// max-height: 20rem;
+	}
+}

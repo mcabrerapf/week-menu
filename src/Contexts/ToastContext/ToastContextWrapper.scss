@@ -1,0 +1,32 @@
+.toast-context-wrapper {
+	position: fixed;
+	align-items: end;
+	top: 3.5rem;
+	right: 0px;
+	z-index: var(--toast-z-index);
+}
+
+.toast-message {
+	max-width: 25rem;
+	color: var(--text-color);
+}
+
+.toast-message.info {
+	background-color: var(--success-color);
+}
+
+.toast-message.delete {
+	background-color: var(--black-color);
+}
+
+.toast-message.success {
+	background-color: var(--success-color);
+}
+
+.toast-message.alert {
+	background-color: var(--error-color);
+}
+
+.toast-message.error {
+	background-color: var(--error-color);
+}

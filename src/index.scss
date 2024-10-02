@@ -1,0 +1,114 @@
+@import url('./styles/breakouts.scss');
+@import url('./styles/generic.scss');
+@import url('./styles/colors.scss');
+@import url('./styles/layout.scss');
+
+:root {
+	/* Colors */
+	// --primary-color: #474E68;
+	// --lightest-color: #6B728E;
+	// --light-color: #50577A;
+	// --dark-color: #474E68;
+	// --darkest-color: #404258;
+
+	// --primary-color: #183D3D;
+	// --lightest-color: #93B1A6;
+	// --light-color: #5C8374;
+	// --dark-color: #183D3D;
+	// --darkest-color: #040D12;
+
+	// --primary-color: #704264;
+	// --lightest-color: #DBAFA0;
+	// --light-color: #BB8493;
+	// --dark-color: #704264;
+	// --darkest-color: #49243E;
+
+	--primary-color: #7a5af5;
+	--lightest-color: #908d96;
+	--light-color: #5e5a66;
+	--dark-color: #2f2b3a;
+	--darkest-color: #1a1625;
+
+	// --primary-color: #3F2E3E;
+	// --lightest-color: #EFE1D1;
+	// --light-color: #A78295;
+	// --dark-color: #3F2E3E;
+	// --darkest-color: #331D2C;
+	
+	--white-color: #FFFFFF;
+	--black-color: #000000;
+	--danger-color: red;
+	--error-color: red;
+	--success-color: green;
+	--offiline-background-color: #deb9e0;
+	--text-color: #FFFFFF;
+
+	--basic-box-shadow: 0rem 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
+	--full-modal-height: calc(100vh - 25rem);
+	--full-modal-width: calc(100vw - 5rem);
+	--footer-height: 3.5rem;
+	--header-height: 3.5rem;
+	--modal-z-index: 500;
+	--toast-z-index: 600;
+
+	font-size: 10px;
+	color: var(--text-color);
+}
+
+
+html {
+	background-color: var(--background-color);
+	color: var(--text-color);
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	width: 100%;
+	font-size: 10px;
+}
+  
+body,
+#root {
+	overflow: hidden;
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	width: 100%;
+}
+
+body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+	"Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+	sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+code {
+	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+	monospace;
+}
+  
+ul {
+	list-style: none;
+	padding: 0px;
+	margin: 0px;
+}
+
+p {
+	margin: 0px;
+}
+
+input {
+	margin: 0;
+}
+
+select {
+	text-align: center;
+	margin: 0;
+}
+
+* {
+	-webkit-tap-highlight-color: transparent; /* Remove blue flash */
+  	// outline: none;
+}
+

@@ -1,16 +1,34 @@
 import React from 'react';
-import './App.css';
-import { Main, Footer } from './Components';
-import { MainContextWrapper } from './Context';
+import { Authenticator } from '@aws-amplify/ui-react';
+import { Amplify, AuthModeStrategyType } from 'aws-amplify';
+import { ToastContextWrapper } from './Contexts/ToastContext';
+import { MainContextWrapper } from './Contexts/MainContext';
+import awsExports from './aws-exports';
+import Main from './Components/Main';
+import Footer from './Components/Footer';
+
+Amplify.configure({
+  ...awsExports,
+  aws_appsync_authenticationType: 'AMAZON_COGNITO_USER_POOLS',
+  DataStore: {
+    authModeStrategyType: AuthModeStrategyType.MULTI_AUTH,
+  },
+});
 
 function App() {
   return (
-    <MainContextWrapper>
-      <div className="app">
-        <Main />
-        <Footer />
-      </div>
-    </MainContextWrapper>
+    <div className="app col h-f w-f bgc-lightest">
+      <Authenticator hideSignUp>
+        {({ signOut }) => (
+          <ToastContextWrapper>
+            <MainContextWrapper>
+              <Main />
+              <Footer signOut={signOut} />
+            </MainContextWrapper>
+          </ToastContextWrapper>
+        )}
+      </Authenticator>
+    </div>
 
   );
 }
