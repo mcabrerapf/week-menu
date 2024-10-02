@@ -10,10 +10,11 @@ import Icon from '../Icon';
 
 function Modal({ closeModal, modalData }) {
   const {
-    type, hideHeader, modifier, headerText,
+    type, hideHeader, modifier, headerText: _headerText,
   } = modalData;
   const wrapperRef = useRef(null);
   const [closeOnBgClick, setCloseOnBgClick] = useState(true);
+  const [headerText, setHeaderText] = useState(_headerText);
 
   useEffect(
     () => {
@@ -61,6 +62,7 @@ function Modal({ closeModal, modalData }) {
           <ModalToUse
             modalData={modalData}
             closeModal={closeModal}
+            setHeaderText={setHeaderText}
             setCloseOnBgClick={setCloseOnBgClick}
           />
         </div>

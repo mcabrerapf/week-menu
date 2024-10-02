@@ -1,21 +1,21 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import './List.scss';
 import {
   MENU_STRING, DELETE_STRING, SAVE_STRING, EDIT_STRING,
   UPDATE_STRING,
 } from '../../constants/STRINGS';
-import { MainContext } from '../../Contexts';
 import { filterList, getListData } from './helpers';
 import Button from '../Button';
 import ListItem from './ListItem';
 import ListFilters from './ListFilters';
 import Icon from '../Icon';
 import Modal from '../Modal';
+import { useMainContext } from '../../Contexts/MainContext';
 
 function List() {
   const {
     view, updateCurrentMenu, handleDelete, handleSave, ...contextProps
-  } = useContext(MainContext);
+  } = useMainContext();
 
   const [searchValue, setSearchValue] = useState('');
   const [filterValue, setFilterValue] = useState('');
@@ -86,7 +86,13 @@ function List() {
         </Button>
         )}
       </ul>
-      {showModal && <Modal closeModal={handleCloseModal} modalData={modalData} />}
+      {showModal && (
+      <Modal
+        // TODO rewrite all this
+        closeModal={handleCloseModal}
+        modalData={modalData}
+      />
+      )}
     </div>
   );
 }

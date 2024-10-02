@@ -3,12 +3,16 @@ import PropTypes from 'prop-types';
 import DisplayView from './DisplayView';
 import EditView from './EditView';
 import { deepCompare, initData } from '../../helpers';
-import { DISH_STRING, SAVE_STRING } from '../../../constants/STRINGS';
+import { DISH_STRING } from '../../../constants/STRINGS';
+import { useMainContext } from '../../../Contexts/MainContext';
 
 function DishModal({
-  modalData, closeModal, setCloseOnBgClick,
+  modalData, setHeaderText, closeModal, setCloseOnBgClick,
 }) {
   const { itemData, modalView: _modalView } = modalData;
+  const {
+    handleSave,
+  } = useMainContext();
   const [modalView, setModalView] = useState(_modalView);
   const [dishData, setDishData] = useState(initData(itemData, DISH_STRING));
 
@@ -19,7 +23,9 @@ function DishModal({
   const handleSubmit = async () => {
     const noChange = deepCompare(dishData, itemData);
     if (noChange) return closeModal();
-    return closeModal({ type: SAVE_STRING, data: dishData });
+    await handleSave(dishData, DISH_STRING);
+    setHeaderText(dishData.name);
+    return setModalView('display');
   };
 
   return (modalView === 'display'
@@ -32,6 +38,7 @@ function DishModal({
 DishModal.propTypes = {
   closeModal: PropTypes.func.isRequired,
   setCloseOnBgClick: PropTypes.func.isRequired,
+  setHeaderText: PropTypes.func.isRequired,
   modalData: PropTypes.shape(),
 };
 
