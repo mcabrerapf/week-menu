@@ -113,6 +113,7 @@ function MainContextWrapper({ children }) {
   const handleSave = async (data, serviceName, callback) => {
     const serviceString = data.id ? UPDATE_STRING : CREATE_STRING;
     const serviceToUse = serviceHandler(serviceString);
+
     const response = await serviceToUse(serviceName, data);
     if (response.errors) {
       if (callback) callback();

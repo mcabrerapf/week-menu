@@ -1,9 +1,9 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { initData } from '../../../helpers';
 import { INGREDIENT_TYPES, INGREDIENT_UNITS } from '../../../../constants/INGREDIENT';
 import { INGREDIENT_STRING } from '../../../../constants/STRINGS';
-import { MainContext } from '../../../../Contexts/MainContext';
+import { useMainContext } from '../../../../Contexts/MainContext';
 import Icon from '../../../Icon';
 import Input from '../../../Input';
 import Button from '../../../Button';
@@ -13,7 +13,7 @@ function NewIngredientForm({
 }) {
   const {
     handleSave,
-  } = useContext(MainContext);
+  } = useMainContext();
   const [ingredientData, setIngredientData] = useState(initData({}, INGREDIENT_STRING));
   const { name, type, unit } = ingredientData;
 

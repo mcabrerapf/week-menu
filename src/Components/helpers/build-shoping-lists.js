@@ -1,60 +1,74 @@
 import { INGREDIENT_TYPES } from '../../constants/INGREDIENT';
 import sortBy from './sort-by';
+
+const checkDish = ({
+  dish, sectionName, sectionIngredients, people,
+}) => {
+  if (!dish) return;
+  const {
+    ingredients, servings, name: dishName, id: dishId,
+  } = dish;
+
+  if (!ingredients || !ingredients.length) return;
+  ingredients.forEach((ingredient) => {
+    if (!ingredient || ingredient.type !== sectionName) return;
+    const {
+      id, unit, quantity,
+    } = ingredient;
+
+    const multi = people / servings;
+    const parsedQuantity = parseFloat((quantity * multi).toFixed(1));
+
+    let ingredientIndex = -1;
+    sectionIngredients
+      .forEach((sectionIngredient, index) => {
+        if (sectionIngredient
+    && sectionIngredient.id === id
+    && sectionIngredient.unit === unit)ingredientIndex = index;
+      });
+    const ingredientDish = {
+      id: dishId, name: dishName, quantity: parsedQuantity, unit,
+    };
+
+    if (ingredientIndex === -1) {
+      sectionIngredients
+        .push({
+          ...ingredient, quantity: parsedQuantity, checked: false, dishes: [ingredientDish],
+        });
+    } else {
+      const ingredientDishes = sectionIngredients[ingredientIndex].dishes;
+      let updatedDish = false;
+      ingredientDishes.forEach((iDish, index) => {
+        if (iDish.id === ingredientDish.id) {
+          updatedDish = true;
+          ingredientDishes[index].quantity += parsedQuantity;
+        }
+      });
+      if (!updatedDish) ingredientDishes.push(ingredientDish);
+      // eslint-disable-next-line no-param-reassign
+      sectionIngredients[ingredientIndex] = {
+        ...sectionIngredients[ingredientIndex],
+        checked: false,
+        quantity: sectionIngredients[ingredientIndex].quantity + parsedQuantity,
+        dishes: ingredientDishes,
+      };
+    }
+  });
+};
 // TODO optimize
 const getSectionIngredients = (sectionName, days, people) => {
   const sectionIngredients = [];
   days.forEach(({ dishes }) => {
     dishes.forEach((dish) => {
-      if (!dish) return;
-      const {
-        ingredients, servings, name: dishName, id: dishId,
-      } = dish;
-      if (!ingredients || !ingredients.length) return;
-      ingredients.forEach((ingredient) => {
-        if (!ingredient) return;
-        const {
-          id, type, unit, quantity,
-        } = ingredient;
-
-        if (type !== sectionName) return;
-
-        const multi = people / servings;
-        const parsedQuantity = parseFloat((quantity * multi).toFixed(1));
-
-        let ingredientIndex = -1;
-        sectionIngredients
-          .forEach((sectionIngredient, index) => {
-            if (sectionIngredient
-        && sectionIngredient.id === id
-        && sectionIngredient.unit === unit)ingredientIndex = index;
-          });
-        const ingredientDish = {
-          id: dishId, name: dishName, quantity: parsedQuantity, unit,
-        };
-
-        if (ingredientIndex === -1) {
-          sectionIngredients
-            .push({
-              ...ingredient, quantity: parsedQuantity, checked: false, dishes: [ingredientDish],
-            });
-        } else {
-          const ingredientDishes = sectionIngredients[ingredientIndex].dishes;
-          let updatedDish = false;
-          ingredientDishes.forEach((iDish, index) => {
-            if (iDish.id === ingredientDish.id) {
-              updatedDish = true;
-              ingredientDishes[index].quantity += parsedQuantity;
-            }
-          });
-          if (!updatedDish) ingredientDishes.push(ingredientDish);
-          sectionIngredients[ingredientIndex] = {
-            ...sectionIngredients[ingredientIndex],
-            checked: false,
-            quantity: sectionIngredients[ingredientIndex].quantity + parsedQuantity,
-            dishes: ingredientDishes,
-          };
-        }
+      checkDish({
+        dish, sectionName, sectionIngredients, people,
       });
+      const sideDish = dish?.sideDishesToUse[0];
+      if (!!sideDish && !!sideDish.id) {
+        checkDish({
+          dish: sideDish, sectionName, sectionIngredients, people,
+        });
+      }
     });
   });
   return sectionIngredients;

@@ -1,11 +1,11 @@
 /* eslint-disable max-len */
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import './MenuBuilderModal.scss';
 import Button from '../../Button';
 import { buildMenu, deepCopy } from '../../helpers';
 import { initMenuOptions } from './helpers';
-import { MainContext } from '../../../Contexts/MainContext';
+import { useMainContext } from '../../../Contexts/MainContext';
 import Icon from '../../Icon';
 import GeneralView from './GeneralView';
 import FilterView from './FilterView';
@@ -14,7 +14,7 @@ function MenuBuilderModal({
   modalData, closeModal,
 }) {
   const { menuOptions } = modalData;
-  const { currentMenu, dishes, ingredients } = useContext(MainContext);
+  const { currentMenu, dishes, ingredients } = useMainContext();
   const [view, setView] = useState(0);
   const [currentData, setCurrentData] = useState(null);
 

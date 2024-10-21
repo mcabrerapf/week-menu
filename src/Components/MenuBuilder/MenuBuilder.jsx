@@ -1,9 +1,9 @@
 import './MenuBuilder.scss';
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { MENU_BUILDER_STRING, WEEK_STRING } from '../../constants/STRINGS';
 import { buildMenu, deepCopy } from '../helpers';
-import { MainContext } from '../../Contexts';
+import { useMainContext } from '../../Contexts/MainContext';
 import Button from '../Button';
 import Icon from '../Icon';
 import Week from './Week';
@@ -19,7 +19,7 @@ function MenuBuilder({ show }) {
     currentMenu,
     updateCurrentMenu,
     handleSave,
-  } = useContext(MainContext);
+  } = useMainContext();
   const [view, setView] = useState(0);
   const [selectedWeekIndex, setSelectedWeekIndex] = useState(0);
   const [showModal, setShowModal] = useState(false);

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import './MealModal.scss';
 import Button from '../../Button';
 import Input from '../../Input';
-import { deepCopy, findByKey } from '../../helpers';
+import { deepCopy, findByKey, truncateString } from '../../helpers';
 import Icon from '../../Icon';
 import { getDishesAndSideDishes } from './helpers';
 import { DAYS } from '../../../constants/MENU';
@@ -23,19 +23,25 @@ function MealModal({ modalData, closeModal }) {
   } = modalData;
   const { weeks } = currentMenu;
   const selectedWeek = deepCopy(weeks[weekIndex]);
-  const [sortedDishes] = getDishesAndSideDishes(dishes, dish);
-  const [selectedDishId, setSelectedDish] = useState(sortedDishes[0].id);
-  const [showDishInfo, setShowDishInfo] = useState(false);
+  const [sortedDishes] = getDishesAndSideDishes(dishes);
+  const [selectedDishId, setSelectedDish] = useState(dish?.id || sortedDishes[0].id);
+  const [selectedSideDishId, setSelectedSideDish] = useState(dish?.sideDishesToUse[0]?.id);
+  const [dishInfo, setDishInfo] = useState(null);
 
   const handleButtonClick = (changeAll) => {
     const selectedDish = findByKey(sortedDishes, selectedDishId);
+    const side = dishes.find(({ id: dId }) => dId === selectedSideDishId);
+    const withSide = selectedSideDishId
+      ? { ...selectedDish, sideDishesToUse: [side] }
+      : { ...selectedDish, sideDishesToUse: [] };
+
     const updatedDays = selectedWeek.days.map((day, dIndex) => {
       const { dishes: dayDishes } = day;
       const updatedDishes = dayDishes.map((dayDish, mIndex) => {
         if (dayDish?.id === dish?.id) {
-          if (changeAll) return selectedDish;
+          if (changeAll) return withSide;
         }
-        if (dIndex === dayIndex && mIndex === mealIndex) return selectedDish;
+        if (dIndex === dayIndex && mIndex === mealIndex) return withSide;
         return dayDish;
       });
       return { ...day, dishes: updatedDishes };
@@ -57,9 +63,11 @@ function MealModal({ modalData, closeModal }) {
     return closeModal(updatedWeek);
   };
 
-  const {
-    name,
-  } = dish || {};
+  const handleInfoClick = (dInfoId) => {
+    if (!dInfoId) setDishInfo(null);
+    const dData = dishes.find(({ id: dId }) => dId === dInfoId);
+    setDishInfo(dData);
+  };
 
   return (
     <div className="meal-modal col pad-10">
@@ -68,39 +76,67 @@ function MealModal({ modalData, closeModal }) {
           <div className="row gap-10 a-c">
             <Icon modifier="icon" iconName={DISH_TYPES[mealIndex].id} />
             <span className="label">{DAYS[dayIndex][2]}</span>
+            <span className="label">{truncateString(dishInfo?.name, 20)}</span>
 
           </div>
-          <div>
-            {name && (
-            <Button modifier="icon" onClick={() => setShowDishInfo(!showDishInfo)}>
-              <Icon iconName="info" />
-            </Button>
-            )}
-          </div>
+          <Button
+            modifier="icon"
+            onClick={() => setDishInfo(null)}
+          >
+            <Icon iconName="arrow-l" />
+          </Button>
         </div>
         <div className="col gap-10">
-          {showDishInfo && <DisplayView dishData={dish} hideFooter />}
-          {!showDishInfo && name && (
+          {dishInfo && <DisplayView dishData={dishInfo} hideFooter />}
+          {!dishInfo && dish?.name && (
             <div className="col gap-5 centered icon">
-              <span className="label">{name}</span>
+              <span className="label">{dish?.name}</span>
               <Icon iconName="arrow-d" />
             </div>
           )}
-          {!showDishInfo && (
-            <Input
-              name="dish"
-              id="dish"
-              modifier="font-l"
-              value={selectedDishId}
-              onChange={({ target: { value: eValue } }) => setSelectedDish(eValue)}
-              selectOptions={sortedDishes}
-              type="select"
-            />
+          {!dishInfo && (
+          <div className="col gap-10">
+            <div className="row border-box gap-10">
+              <Input
+                name="dish"
+                id="dish"
+                modifier="font-l"
+                value={selectedDishId}
+                onChange={({ target: { value: eValue } }) => setSelectedDish(eValue)}
+                selectOptions={sortedDishes}
+                type="select"
+              />
+              <Button
+                modifier="icon"
+                onClick={() => handleInfoClick(selectedDishId)}
+              >
+                <Icon iconName="info" />
+              </Button>
+            </div>
+            <div className="row border-box gap-10">
+              <Input
+                name="side-dish"
+                id="side-dish"
+                modifier="font-l"
+                value={selectedSideDishId}
+                onChange={({ target: { value: eValue } }) => setSelectedSideDish(eValue)}
+                selectOptions={[{}, ...sortedDishes]}
+                type="select"
+              />
+              <Button
+                modifier="icon"
+                disabled={!selectedSideDishId}
+                onClick={() => handleInfoClick(selectedSideDishId)}
+              >
+                <Icon iconName="info" />
+              </Button>
+            </div>
+          </div>
           )}
         </div>
       </div>
       <div className="meal-modal__footer row gap-5">
-        {!showDishInfo && (
+        {!dishInfo && (
         <>
           <Button
             modifier="icon w-f"
@@ -109,7 +145,7 @@ function MealModal({ modalData, closeModal }) {
           >
             <Icon iconName="check" />
           </Button>
-          {name && (
+          {dish?.name && (
           <>
             <Button
               modifier="icon w-f"

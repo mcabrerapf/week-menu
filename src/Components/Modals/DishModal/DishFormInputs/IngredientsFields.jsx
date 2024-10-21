@@ -1,7 +1,7 @@
 /* eslint-disable no-restricted-globals */
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { MainContext } from '../../../../Contexts/MainContext';
+import { useMainContext } from '../../../../Contexts/MainContext';
 import IngredientsField from './IngredientsField';
 import Button from '../../../Button';
 import NewIngredientForm from './NewIngredientForm';
@@ -12,7 +12,7 @@ import { filterByKey } from '../../../helpers';
 function IngredientsFields({
   ingredients, updateIngredients, handleSubmit, canSave,
 }) {
-  const { ingredients: contextIngredients } = useContext(MainContext);
+  const { ingredients: contextIngredients } = useMainContext();
   const [ingredientsView, setIngredientsView] = useState(0);
 
   const handleRemoveIngredient = (ingredientId) => {

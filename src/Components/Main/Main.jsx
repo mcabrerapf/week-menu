@@ -1,8 +1,8 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   MENU_BUILDER_STRING,
 } from '../../constants/STRINGS';
-import { MainContext } from '../../Contexts';
+import { useMainContext } from '../../Contexts/MainContext';
 import { getNewView } from './helpers';
 import MenuBuilder from '../MenuBuilder';
 import List from '../List';
@@ -10,7 +10,7 @@ import List from '../List';
 function Main() {
   const {
     offlineMode, view, setContextState,
-  } = useContext(MainContext);
+  } = useMainContext();
   const [touchStart, setTouchStart] = useState(null);
   const [touchEnd, setTouchEnd] = useState(null);
 

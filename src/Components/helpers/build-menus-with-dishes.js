@@ -16,8 +16,8 @@ const buildMenusWithDishes = (menus, allDishes) => {
               sideDishesToUse,
             } = dish;
             const dishMatch = findByKey(allDishes, dId);
-            const populatedSideDishes = !sideDishesToUse ? [] : sideDishesToUse
-              .map((sideDishId) => findByKey(allDishes, sideDishId));
+            const populatedSideDishes = sideDishesToUse
+              .map((sideDish) => findByKey(allDishes, sideDish?.id));
 
             return {
               ...dishMatch,

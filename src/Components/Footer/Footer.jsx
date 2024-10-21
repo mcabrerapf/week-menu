@@ -1,8 +1,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useContext } from 'react';
+import React from 'react';
 import {
-  MainContext,
-} from '../../Contexts';
+  useMainContext,
+} from '../../Contexts/MainContext';
 
 import {
   DISH_STRING,
@@ -16,7 +16,7 @@ import Icon from '../Icon';
 function Footer() {
   const {
     view, setContextState,
-  } = useContext(MainContext);
+  } = useMainContext();
   // const { addToast } = useContext(ToastContext);
 
   // const handleCopyList = (listName) => {

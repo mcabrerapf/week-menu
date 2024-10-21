@@ -1,9 +1,9 @@
 /* eslint-disable no-restricted-globals */
-import React, { useContext } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { DISH_TYPES } from '../../../../constants/DISH';
 import { SIDE_STRING } from '../../../../constants/STRINGS';
-import { MainContext } from '../../../../Contexts/MainContext';
+import { useMainContext } from '../../../../Contexts/MainContext';
 import Input from '../../../Input';
 import Button from '../../../Button';
 import QuantityInput from '../../../QuantityInput';
@@ -22,7 +22,7 @@ const getMainDishes = (currentId, dishes, currentMainDishes = []) => {
 function GeneralFields({
   currentData, updateGeneralFields, handleSubmit, canSave,
 }) {
-  const { dishes } = useContext(MainContext);
+  const { dishes } = useMainContext();
 
   const {
     id, name, types = [], sideDishTo = [], servings, time: { hours, minutes } = {},
