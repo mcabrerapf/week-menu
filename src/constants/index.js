@@ -1,7 +1,7 @@
 import { DISH_TYPES } from './DISH';
 import { INGREDIENT_TYPES, INGREDIENT_UNITS } from './INGREDIENT';
 
-const MIN_SWIPE_DISTANCE = 50;
+const MIN_SWIPE_DISTANCE = 100;
 
 const SELECT_OPTIONS = {
   ingredient: {

@@ -12,17 +12,16 @@ export const getResultData = (data, dataKeysString) => {
   return iterateOverObj(data, dataKeys);
 };
 
-export const fetchData = async (queryObject, dataKeys) => {
-  try {
-    const result = await API.graphql(queryObject) || {};
-    const { data } = result;
-    if (!data) return null;
+export const fetchData = async (queryObject, dataKeys) => API.graphql(queryObject)
+  .then((res) => {
+    const { data } = res || {};
     const resultMatch = getResultData(data, dataKeys);
+
     return resultMatch;
-  } catch (error) {
+  })
+  .catch((err) => {
     console.log('fetchData ERROR');
-    console.log(queryObject, dataKeys);
-    console.error(error);
-    return error;
-  }
-};
+    console.log({ queryObject, dataKeys });
+    console.error(err);
+    return err;
+  });

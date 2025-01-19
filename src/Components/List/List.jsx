@@ -35,8 +35,7 @@ function List() {
   const handleCloseEvent = async (event) => {
     const { type, data } = event;
     if (type === DELETE_STRING) await handleDelete(data, view);
-    if (type === SAVE_STRING) await handleSave(data, view);
-    if (type === UPDATE_STRING) await handleSave(data, view);
+    if (type === SAVE_STRING || type === UPDATE_STRING) await handleSave(data, view);
   };
 
   const handleCloseModal = async (closeEvent) => {

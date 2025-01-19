@@ -92,13 +92,13 @@ export const services = {
   getAll: handleGetAll,
 };
 
-export function serviceHandler(action) {
+export function serviceHandler(actionName) {
   const currentMode = window.localStorage.getItem('week-menu-offline-mode');
   const isOffline = currentMode === '1';
   const servicesToUse = isOffline ? offlineServices : services;
-  if (!action || !servicesToUse[action]) {
-    console.log('No actions found for ', action);
+  if (!actionName || !servicesToUse[actionName]) {
+    console.log('No actions found for ', actionName);
     return () => {};
   }
-  return servicesToUse[action];
+  return servicesToUse[actionName];
 }

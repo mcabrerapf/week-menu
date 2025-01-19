@@ -26,8 +26,10 @@ function NewIngredientForm({
   };
 
   const handleAddNewIngredient = async () => {
-    const response = await handleSave(ingredientData, INGREDIENT_STRING);
-    toggleNewIngredientView(response);
+    await handleSave(ingredientData, INGREDIENT_STRING)
+      .then((res) => {
+        toggleNewIngredientView(res);
+      });
   };
 
   const canSubmit = !!name && !!type && !!unit;
